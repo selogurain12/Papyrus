@@ -1,18 +1,51 @@
 {
   "compilerOptions": {
-    "target": "es2021",
-    "lib": ["es2021", "dom"],
-    "module": "commonjs",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "outDir": "dist",
+    "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "target": "esnext",
+    "noEmit": true,
+    "incremental": true,
+    "types": [
+      "node",
+    ],
+    "paths": {
+      "/": [
+        "./src/",
+        "./public/*"
+      ]
+    },
     "strict": true,
-    "isolatedModules": true
-  }
+    "allowJs": false,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "exactOptionalPropertyTypes": false,
+    "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "experimentalDecorators": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./src"
+  },
+  "include": [
+    "vite.*.config.ts",
+    "src",
+  ]
 }

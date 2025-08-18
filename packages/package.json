@@ -1,8 +1,26 @@
 {
-  "name": "packages",
+  "name": "@papyrus/source",
   "type": "module",
   "packageManager": "yarn@4.9.2",
   "dependencies": {
+    "reflect-metadata": "^0.2.2",
     "zod": "^4.0.17"
+  },
+  "scripts": {
+    "lint": "eslint ",
+    "typecheck": "tsc"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
   }
 }

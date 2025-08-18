@@ -26,8 +26,5 @@
     "esModuleInterop": true,
     "experimentalDecorators": true
   },
-  "include": [
-    "dtos",
-    "utils",
-  ]
+  "include": ["dtos", "utils"]
 }

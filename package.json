@@ -46,8 +46,9 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint --no-cache --max-warnings=0 --fix",
+      "prettier --write --check",
+      "yarn tsc --noEmit --skipLibCheck"
     ]
   },
   "workspaces": [

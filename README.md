@@ -80,7 +80,7 @@ yarn nx g @nx/nest:controller <name> --project=api
 ## Troubleshooting
 
 ```bash
-# Problème de cache
+# Problème de cach
 yarn nx reset
 
 # Reinstall propre

@@ -15,7 +15,7 @@ export default tseslint.config(
       parserOptions: {
         sourceType: "module",
         ecmaVersion: "latest",
-        project: ["./apps/*/tsconfig.json", "./packages/tsconfig.json"],
+        projectService: true,
         tsconfigRootDir: process.cwd(),
       },
     },

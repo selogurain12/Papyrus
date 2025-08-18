@@ -1,0 +1,8 @@
+{
+  "name": "packages",
+  "type": "module",
+  "packageManager": "yarn@4.9.2",
+  "dependencies": {
+    "zod": "^4.0.17"
+  }
+}

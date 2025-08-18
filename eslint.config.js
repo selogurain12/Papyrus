@@ -15,6 +15,8 @@ export default tseslint.config(
       parserOptions: {
         sourceType: "module",
         ecmaVersion: "latest",
+        project: ["./tsconfig.json", "./apps/*/tsconfig.json", "./packages/tsconfig.json"],
+        tsconfigRootDir: process.cwd(),
       },
     },
     plugins: {
@@ -24,6 +26,7 @@ export default tseslint.config(
       import: eslintPluginImport,
     },
     rules: {
+      ...tseslint.plugin.configs["recommended-type-checked"].rules,
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/no-explicit-any": "error",
       "no-dupe-else-if": "error",

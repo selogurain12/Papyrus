@@ -5,6 +5,7 @@ import {
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryKey,
   Property,
   type Ref,
@@ -14,6 +15,7 @@ import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { Project } from "../projects/projects.entity";
 import { Character } from "../characters/characters.entity";
 import { TimelineEvent } from "../timelines/timelines.entity";
+import { MindMap } from "../mindmaps/mindmaps.entity";
 
 @Entity()
 export class Object {
@@ -63,4 +65,7 @@ export class Object {
 
   @ManyToOne(() => Project, { ref: true })
   public project: Ref<Project>;
+
+  @OneToMany(() => MindMap, (mindMap) => mindMap.objectCenter)
+  public mindMaps = new Collection<MindMap>(this);
 }

@@ -1,9 +1,19 @@
 import { randomUUID } from "node:crypto";
 import { ZonedDateTime } from "@internationalized/date";
-import { Entity, ManyToOne, PrimaryKey, Property, type Ref, UuidType } from "@mikro-orm/postgresql";
+import {
+  Collection,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryKey,
+  Property,
+  type Ref,
+  UuidType,
+} from "@mikro-orm/postgresql";
 import { LanguageType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { Project } from "../projects/projects.entity";
+import { MindMap } from "../mindmaps/mindmaps.entity";
 
 @Entity()
 export class Place {
@@ -62,4 +72,7 @@ export class Place {
 
   @ManyToOne(() => Project, { ref: true })
   public project: Ref<Project>;
+
+  @OneToMany(() => MindMap, (mindMap) => mindMap.placeCenter)
+  public mindMaps = new Collection<MindMap>(this);
 }

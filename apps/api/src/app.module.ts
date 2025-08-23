@@ -5,4 +5,5 @@ import { Module } from "@nestjs/common";
   controllers: [],
   providers: [],
 })
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class AppModule {}

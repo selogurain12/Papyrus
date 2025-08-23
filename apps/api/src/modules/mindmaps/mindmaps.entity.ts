@@ -14,7 +14,7 @@ import { Branches } from "../branches/branches.entity";
 import { Character } from "../characters/characters.entity";
 import { Place } from "../places/places.entity";
 import { Object } from "../objects/objects.entity";
-import { TimelineEvent } from "../timelines/timelines.entity";
+import { Events } from "../events/events.entity";
 
 @Entity()
 export class MindMap {
@@ -38,8 +38,8 @@ export class MindMap {
   @ManyToOne(() => Object, { ref: true, nullable: true })
   public objectCenter: Ref<Object> | null;
 
-  @ManyToOne(() => TimelineEvent, { ref: true, nullable: true })
-  public eventCenter: Ref<TimelineEvent> | null;
+  @ManyToOne(() => Events, { ref: true, nullable: true })
+  public eventCenter: Ref<Events> | null;
 
   @OneToMany(() => Branches, (branches) => branches.mindMap)
   public branches = new Collection<Branches>(this);

@@ -17,7 +17,7 @@ import { Object } from "../objects/objects.entity";
 import { MindMap } from "../mindmaps/mindmaps.entity";
 
 @Entity()
-export class TimelineEvent {
+export class Events {
   @PrimaryKey({
     type: UuidType,
   })

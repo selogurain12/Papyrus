@@ -18,7 +18,7 @@ import { Character } from "../characters/characters.entity";
 import { Place } from "../places/places.entity";
 import { Object } from "../objects/objects.entity";
 import { Chapter } from "../chapters/chapters.entity";
-import { TimelineEvent } from "../timelines/timelines.entity";
+import { Events } from "../events/events.entity";
 import { Research } from "../research/research.entity";
 import { Note } from "../notes/notes.entity";
 import { MindMap } from "../mindmaps/mindmaps.entity";
@@ -101,6 +101,6 @@ export class Project {
   @OneToMany(() => Research, (research) => research.project)
   public research = new Collection<Research>(this);
 
-  @OneToMany(() => TimelineEvent, (event) => event.project)
-  public timelineEvents = new Collection<TimelineEvent>(this);
+  @OneToMany(() => Events, (event) => event.project)
+  public timelineEvents = new Collection<Events>(this);
 }

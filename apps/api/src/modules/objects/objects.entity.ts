@@ -14,7 +14,7 @@ import {
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { Project } from "../projects/projects.entity";
 import { Character } from "../characters/characters.entity";
-import { TimelineEvent } from "../timelines/timelines.entity";
+import { Events } from "../events/events.entity";
 import { MindMap } from "../mindmaps/mindmaps.entity";
 
 @Entity()
@@ -30,16 +30,16 @@ export class Object {
   @Property({ type: "string", nullable: true })
   public importance: "high" | "medium" | "low" | null = null;
 
-  @Property({ type: "string", nullable: true })
+  @Property({ type: "text", nullable: true })
   public description: string | null = null;
 
-  @Property({ type: "string", nullable: true })
+  @Property({ type: "text", nullable: true })
   public appearance: string | null = null;
 
-  @Property({ type: "string", nullable: true })
+  @Property({ type: "text", nullable: true })
   public significance: string | null = null;
 
-  @Property({ type: "string", nullable: true })
+  @Property({ type: "text", nullable: true })
   public location: string | null = null;
 
   @Property({ type: "string", nullable: true })
@@ -51,8 +51,8 @@ export class Object {
   @ManyToMany(() => Character, (character) => character.objects)
   public characters = new Collection<Character>(this);
 
-  @ManyToMany(() => TimelineEvent, (event) => event.objects)
-  public events = new Collection<TimelineEvent>(this);
+  @ManyToMany(() => Events, (event) => event.objects)
+  public events = new Collection<Events>(this);
 
   @Property({ type: ZonedDateTimeType })
   public createdAt: ZonedDateTime;

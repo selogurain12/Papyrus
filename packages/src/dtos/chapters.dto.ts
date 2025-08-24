@@ -1,9 +1,9 @@
-import { isZonedIso8601 } from "utils/zoned-iso";
 import z from "zod";
+import { isZonedIso8601 } from "../utils/zoned-iso";
 import { projectSchema } from "./projects.dto";
 import { partSchema } from "./parts.dto";
 
-export const createChaptersSchema = z.object({
+export const createChapterSchema = z.object({
   title: z.string().min(2).max(100),
   status: z.enum(["toStart", "inProgress", "completed"]).default("toStart"),
   content: z.string().nullable(),
@@ -17,12 +17,12 @@ export const createChaptersSchema = z.object({
   part: z.lazy(() => partSchema),
 });
 
-export const chapterSchema = createChaptersSchema.extend({
+export const chapterSchema = createChapterSchema.extend({
   id: z.uuid("Le format de l'id du chapitre est invalide"),
 });
 
-export const updatedChaptersSchema = createChaptersSchema.partial();
+export const updateChapterSchema = createChapterSchema.partial();
 
-export type CreateChaptersDto = z.infer<typeof createChaptersSchema>;
+export type CreateChapterDto = z.infer<typeof createChapterSchema>;
 export type ChapterDto = z.infer<typeof chapterSchema>;
-export type UpdateChaptersDto = z.infer<typeof updatedChaptersSchema>;
+export type UpdateChapterDto = z.infer<typeof updateChapterSchema>;

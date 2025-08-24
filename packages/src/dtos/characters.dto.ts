@@ -1,9 +1,9 @@
-import { isZonedIso8601 } from "utils/zoned-iso";
 import z from "zod";
+import { isZonedIso8601 } from "../utils/zoned-iso";
 import { projectSchema } from "./projects.dto";
 import { objectSchema } from "./objects.dto";
 
-export const createCharactersSchema = z.object({
+export const createCharacterSchema = z.object({
   name: z.string().min(2).max(100),
   role: z.enum(["protagonist", "antagonist", "ally", "mentor", "secondary character"]),
   description: z.string().optional().nullable(),
@@ -20,12 +20,12 @@ export const createCharactersSchema = z.object({
   objects: z.lazy(() => objectSchema).array(),
 });
 
-export const characterSchema = createCharactersSchema.extend({
+export const characterSchema = createCharacterSchema.extend({
   id: z.uuid("Le format de l'id du personnage est invalide"),
 });
 
-export const updatedCharactersSchema = createCharactersSchema.partial();
+export const updateCharacterSchema = createCharacterSchema.partial();
 
-export type CreateCharactersDto = z.infer<typeof createCharactersSchema>;
+export type CreateCharacterDto = z.infer<typeof createCharacterSchema>;
 export type CharacterDto = z.infer<typeof characterSchema>;
-export type UpdateCharactersDto = z.infer<typeof updatedCharactersSchema>;
+export type UpdateCharacterDto = z.infer<typeof updateCharacterSchema>;

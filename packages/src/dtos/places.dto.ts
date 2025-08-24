@@ -1,6 +1,6 @@
-import { languagesTypes } from "utils/languages.enum";
-import { isZonedIso8601 } from "utils/zoned-iso";
 import z from "zod";
+import { languagesTypes } from "../utils/languages.enum";
+import { isZonedIso8601 } from "../utils/zoned-iso";
 import { projectSchema } from "./projects.dto";
 
 export const createPlaceSchema = z.object({
@@ -27,8 +27,8 @@ export const placeSchema = createPlaceSchema.extend({
   id: z.uuid("Le format de l'id de la partie est invalide"),
 });
 
-export const updateSchema = createPlaceSchema.partial();
+export const updatePlaceSchema = createPlaceSchema.partial();
 
 export type CreatePlaceDto = z.infer<typeof createPlaceSchema>;
 export type PlaceDto = z.infer<typeof placeSchema>;
-export type UpdatePlaceDto = z.infer<typeof updateSchema>;
+export type UpdatePlaceDto = z.infer<typeof updatePlaceSchema>;

@@ -3,7 +3,7 @@ import { characterSchema } from "./characters.dto";
 import { projectSchema } from "./projects.dto";
 import { placeSchema } from "./places.dto";
 import { objectSchema } from "./objects.dto";
-import { eventSchema } from "./event.dto";
+import { eventSchema } from "./events.dto";
 
 export const createMindMapSchema = z.object({
   title: z.string().min(1).max(100),

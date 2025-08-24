@@ -1,5 +1,5 @@
-import { isZonedIso8601 } from "utils/zoned-iso";
 import z from "zod";
+import { isZonedIso8601 } from "../utils/zoned-iso";
 import { projectSchema } from "./projects.dto";
 
 export const createResearchSchema = z.object({

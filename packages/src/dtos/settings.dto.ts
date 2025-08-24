@@ -1,7 +1,7 @@
 import z from "zod";
 import { languagesTypes } from "../utils/languages.enum";
 
-export const createSettingsSchema = z.object({
+export const createSettingSchema = z.object({
   language: languagesTypes,
   autoSave: z.boolean().default(true),
   autoSaveInterval: z.number().default(5),
@@ -21,12 +21,12 @@ export const createSettingsSchema = z.object({
   saveHistory: z.boolean().default(true),
 });
 
-export const settingsSchema = createSettingsSchema.extend({
-  id: z.uuid("Invalid settings ID format"),
+export const settingSchema = createSettingSchema.extend({
+  id: z.uuid("Invalid setting ID format"),
 });
 
-export const updatedSettingsSchema = createSettingsSchema.partial();
+export const updateSettingSchema = createSettingSchema.partial();
 
-export type CreateProjetcDto = z.infer<typeof createSettingsSchema>;
-export type SettingsDto = z.infer<typeof settingsSchema>;
-export type UpdatedSettingsDto = z.infer<typeof updatedSettingsSchema>;
+export type CreateSettingDto = z.infer<typeof createSettingSchema>;
+export type SettingDto = z.infer<typeof settingSchema>;
+export type UpdatedSettingDto = z.infer<typeof updateSettingSchema>;

@@ -1,5 +1,5 @@
 import z from "zod";
-import { isZonedIso8601 } from "utils/zoned-iso";
+import { isZonedIso8601 } from "../utils/zoned-iso";
 import { characterRefSchema, eventRefSchema } from "./references.dto";
 import { projectSchema } from "./projects.dto";
 

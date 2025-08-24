@@ -1,18 +1,18 @@
 import z from "zod";
-import { mindMapSchema } from "./mindmap.dto";
+import { mindMapSchema } from "./mindmaps.dto";
 
-export const createBranchesSchema = z.object({
+export const createBrancheSchema = z.object({
   color: z.string(),
   title: z.string(),
   mindMap: z.lazy(() => mindMapSchema),
 });
 
-export const branchesSchema = createBranchesSchema.extend({
+export const brancheSchema = createBrancheSchema.extend({
   id: z.uuid("Le format de l'id de la branche est invalide"),
 });
 
-export const updatedBranchesSchema = createBranchesSchema.partial();
+export const updateBrancheSchema = createBrancheSchema.partial();
 
-export type CreateBranchesDto = z.infer<typeof createBranchesSchema>;
-export type BranchesDto = z.infer<typeof branchesSchema>;
-export type UpdateBranchesDto = z.infer<typeof updatedBranchesSchema>;
+export type CreateBrancheDto = z.infer<typeof createBrancheSchema>;
+export type BrancheDto = z.infer<typeof brancheSchema>;
+export type UpdateBrancheDto = z.infer<typeof updateBrancheSchema>;

@@ -1,8 +1,8 @@
 import z from "zod";
-import { branchesSchema } from "./branches.dto";
+import { brancheSchema } from "./branches.dto";
 
 export const createConnectionSchema = z.object({
-  branches: branchesSchema,
+  branches: brancheSchema,
   name: z.string().min(2).max(100),
   relation: z.string().min(2).max(100),
   strength: z.enum(["strong", "average", "weak", "conflicting", "critical"]),

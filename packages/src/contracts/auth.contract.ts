@@ -32,4 +32,3 @@ export const authContract = contract.router(
     pathPrefix: "/auth",
   }
 );
-

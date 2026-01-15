@@ -11,6 +11,7 @@ node_modules
 .nx
 .vscode
 .yarn
+/apps/apii/data
 
 # IDEs and editors
 /.idea

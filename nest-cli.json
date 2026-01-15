@@ -1,0 +1,16 @@
+{
+  "monorepo": true,
+  "root": "apps",
+  "projects": {
+    "apii": {
+      "type": "application",
+      "root": "apps/apii",
+      "entryFile": "main",
+      "sourceRoot": "apps/apii/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/apii/tsconfig.json",
+        "deleteOutDir": true
+      }
+    }
+  }
+}

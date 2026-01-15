@@ -12,6 +12,7 @@ node_modules
 .vscode
 .yarn
 /apps/apii/data
+.vite
 
 # IDEs and editors
 /.idea

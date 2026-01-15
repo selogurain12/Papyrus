@@ -2,7 +2,7 @@
   "name": "papyrus",
   "version": "0.0.0",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -10,19 +10,21 @@
     "@nestjs/cli": "^11.0.10",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.0",
-    "@nx/eslint": "^21.3.11",
-    "@nx/eslint-plugin": "^21.3.11",
-    "@nx/js": "21.3.11",
-    "@nx/nest": "^21.3.11",
-    "@nx/node": "^21.3.11",
+    "@nx/esbuild": "^22.3.3",
+    "@nx/eslint": "^22.3.3",
+    "@nx/eslint-plugin": "^22.3.3",
+    "@nx/js": "^22.3.3",
+    "@nx/nest": "21.3.11",
+    "@nx/node": "^22.3.3",
     "@nx/react": "^21.3.11",
     "@nx/vite": "^21.3.11",
     "@nx/web": "21.3.11",
-    "@nx/webpack": "^21.3.11",
+    "@nx/webpack": "^22.3.3",
     "@react-native-community/eslint-config": "^3.2.0",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@types/bcrypt": "^6.0.0",
     "@types/node": "~18.16.9",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
@@ -44,8 +46,11 @@
     "typescript-eslint": "^8.39.1",
     "webpack-cli": "^5.1.4"
   },
+  "engines": {
+    "node": "22.21.1"
+  },
   "workspaces": [
-    "packages",
+    "packages/*",
     "apps/*"
   ],
   "packageManager": "yarn@4.9.2",
@@ -55,10 +60,24 @@
     "typecheck": "nx run-many --target=typecheck --all"
   },
   "dependencies": {
+    "@mikro-orm/core": "^6.6.3",
+    "@mikro-orm/nestjs": "^6.1.1",
+    "@mikro-orm/postgresql": "^6.6.3",
     "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.0",
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/swagger": "^11.2.4",
+    "@ts-rest/core": "^3.52.1",
+    "@ts-rest/nest": "^3.52.1",
     "axios": "^1.6.0",
+    "bcrypt": "^6.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.3",
+    "passport": "^0.7.0",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
   }
 }

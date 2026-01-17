@@ -15,6 +15,18 @@
       "options": {
         "command": "nest start apii --watch"
       }
+    },
+    "migration": {
+    "executor": "nx:run-commands",
+    "options": {
+      "command": "yarn mikro-orm migration:create --config apps/apii/src/mikro-orm.config.ts"
+    }
+  },
+    "migrate:up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn mikro-orm migration:up --config apps/apii/src/mikro-orm.config.ts"
+      }
     }
   }
 }

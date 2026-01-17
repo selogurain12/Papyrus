@@ -10,5 +10,5 @@
     "esModuleInterop": true,
     "outDir": "../../dist/apps/apii"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/mikro-orm.cli.config.js"]
 }

@@ -5,6 +5,7 @@ import { UserEntity } from "../users/users.entity";
 import { AuthGuard } from "./authentification.guard";
 import { AuthificationService } from "./authentification.service";
 import { AuthificationMapper } from "./authentification.mapper";
+import { AuthentificationController } from "./authentification.controller";
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthificationMapper } from "./authentification.mapper";
       secret: process.env.SECRET,
     }),
   ],
+  controllers: [AuthentificationController],
   providers: [AuthGuard, AuthificationService, AuthificationMapper],
   exports: [AuthGuard, JwtModule, AuthificationService, AuthificationMapper],
 })

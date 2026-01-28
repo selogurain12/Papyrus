@@ -63,13 +63,12 @@ export class ProjectMapper {
     }
     return new ProjectEntity({
       ...createDto,
-      deadline:
-        createDto.deadline === null
-          ? null
-          : parseZonedDateTime(createDto.deadline).set({
-              second: 0,
-              millisecond: 0,
-            }),
+      targetWordCount: createDto.targetWordCount ?? 10000,
+      currentWordCount: createDto.currentWordCount ?? 0,
+      status: createDto.status ?? "planning",
+      deadline: createDto.deadline
+        ? parseZonedDateTime(createDto.deadline).set({ second: 0, millisecond: 0 })
+        : null,
       settings: this.settingsMapper.createDtoToEntity(),
       user: userEntity,
     });

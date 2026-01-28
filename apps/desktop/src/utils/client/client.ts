@@ -1,17 +1,12 @@
 import { initTsrReactQuery } from "@ts-rest/react-query/v5";
-import {
-  type ApiFetcherArgs,
-  type AppRouter,
-  tsRestFetchApi,
-} from "@ts-rest/core";
-import { localStorageBasePrefixVariable } from "../local-storage-base-prefix-variable";
+import { type ApiFetcherArgs, type AppRouter, tsRestFetchApi } from "@ts-rest/core";
 import { papyrusContract } from "@papyrus/source";
 
-const apiUrl = "https://bibliocine.onrender.com";
+const apiUrl = "http://localhost:3000";
 
-async function getIdTokenAsync(): Promise<string | null> {
+function getIdTokenAsync(): string | null {
   try {
-    return await localStorage.getItem(localStorageBasePrefixVariable("idToken"));
+    return localStorage.getItem("token");
   } catch (error) {
     console.error("Erreur lors de la récupération du token :", error);
     return null;
@@ -29,7 +24,7 @@ export function createClient<Tcontract extends AppRouter>(contract: Tcontract) {
     jsonQuery: false,
 
     api: async (args: ApiFetcherArgs) => {
-      const idToken = await getIdTokenAsync();
+      const idToken = getIdTokenAsync();
       const headers: Record<string, string> = {
         "Content-Type": "application/json",
       };
@@ -41,8 +36,6 @@ export function createClient<Tcontract extends AppRouter>(contract: Tcontract) {
   });
 }
 
-export type PapyrusClient = ReturnType<
-  typeof createClient<typeof papyrusContract>
->;
+export type PapyrusClient = ReturnType<typeof createClient<typeof papyrusContract>>;
 
 export const client: PapyrusClient = createClient(papyrusContract);

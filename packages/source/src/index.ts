@@ -2,6 +2,7 @@ import "reflect-metadata";
 
 export * from "./utils/languages.enum";
 export * from "./utils/zoned-iso";
+export * from "./dtos/api-response.dto";
 export * from "./dtos/architecture.dto";
 export * from "./dtos/chapter.dto";
 export * from "./dtos/character.dto";

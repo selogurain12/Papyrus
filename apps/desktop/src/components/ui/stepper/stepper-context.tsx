@@ -1,5 +1,5 @@
 /* eslint-disable no-empty-function */
- 
+
 import { createContext } from "react";
 
 import type { StepperProps } from "./stepper-types";

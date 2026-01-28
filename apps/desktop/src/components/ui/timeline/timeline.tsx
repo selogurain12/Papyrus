@@ -6,7 +6,6 @@ interface TimelineProps {
   children: ReactNode;
 }
 
- 
 const timeline: FC<TimelineProps> = ({ children }) => {
   const timelineItems = Children.toArray(children);
 

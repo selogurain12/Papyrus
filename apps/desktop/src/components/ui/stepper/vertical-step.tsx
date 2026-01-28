@@ -102,7 +102,6 @@ const verticalStep = forwardRef<HTMLDivElement, VerticalStepProps>(
         className={cn(
           "stepper__vertical-step",
           verticalStepVariants({
-             
             variant: variant?.includes("circle") ? "circle" : "line",
           }),
           isLastStepCurrentStep && "gap-[var(--step-gap)]",

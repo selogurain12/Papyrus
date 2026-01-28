@@ -10,7 +10,6 @@ interface TimelineItemProps {
   className?: string;
 }
 
- 
 const timelineItem: FC<TimelineItemProps> = ({ children, className }) => (
   <div className={cn("flex items-center", className)}>
     <TimelineDot />

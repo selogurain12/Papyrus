@@ -85,11 +85,9 @@ function reducer(state: State, action: Action): State {
       // but I'll keep it here for simplicity
       if (toastId === undefined) {
         state.toasts.forEach((toast) => {
-           
           addToRemoveQueue(toast.id);
         });
       } else {
-         
         addToRemoveQueue(toastId);
       }
 

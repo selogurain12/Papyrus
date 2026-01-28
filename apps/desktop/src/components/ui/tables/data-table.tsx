@@ -41,7 +41,7 @@ interface TableProps<Tdata, Value> extends HTMLAttributes<HTMLDivElement> {
   setItemsPerPage: (itemsPerPage: number) => void;
   setPage: (page: number) => void;
   setSearch: (search?: string) => void;
-   
+
   ToolbarComponent: Toolbar<Tdata>;
   defaultItemsPerPage?: number;
   onCellClick?: (cell: Cell<Tdata, unknown>) => void;
@@ -51,7 +51,7 @@ interface TableProps<Tdata, Value> extends HTMLAttributes<HTMLDivElement> {
 export function DataTable<Tdata extends { [key: string]: unknown }, Value>({
   className,
   columns,
-   
+
   data = [] as Tdata[],
   total,
   isLoading = false,
@@ -61,7 +61,7 @@ export function DataTable<Tdata extends { [key: string]: unknown }, Value>({
   setSearch,
   onCellClick = undefined,
   toolbarProps = undefined,
-   
+
   ToolbarComponent,
 }: TableProps<Tdata, Value>) {
   const [rowSelection, setRowSelection] = useState({});

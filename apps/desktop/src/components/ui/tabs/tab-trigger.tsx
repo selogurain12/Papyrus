@@ -25,8 +25,7 @@ const triggerVariants = cva(
 );
 
 interface TriggerProps
-  extends ComponentPropsWithoutRef<typeof Trigger>,
-    VariantProps<typeof triggerVariants> {}
+  extends ComponentPropsWithoutRef<typeof Trigger>, VariantProps<typeof triggerVariants> {}
 
 const tabsTrigger = forwardRef<ComponentRef<typeof Trigger>, TriggerProps>(
   ({ className, variant, ...props }, reference) => (

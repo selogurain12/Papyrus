@@ -6,7 +6,6 @@ interface TimelineContentProps {
   children: ReactNode;
 }
 
- 
 const timelineContent: FC<TimelineContentProps> = ({ children }) => (
   <div className={cn("ml-4")}>{children}</div>
 );

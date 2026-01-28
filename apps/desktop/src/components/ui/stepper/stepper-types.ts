@@ -1,9 +1,8 @@
- 
 import type { LucideIcon } from "lucide-react";
 
 import type { StepProps } from "./step";
 
-export type IconType = LucideIcon | React.ComponentType<unknown> | undefined;
+export type IconType = LucideIcon | React.ComponentType<{ className?: string }> | undefined;
 
 export interface StepOptions {
   orientation?: "horizontal" | "vertical";

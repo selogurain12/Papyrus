@@ -29,7 +29,8 @@ module.exports = [
     },
     plugins: {
       "@typescript-eslint": typescript,
-      "import": importPlugin,
+      import: importPlugin,
+      prettier: require("eslint-plugin-prettier"),
     },
     rules: {
       // TypeScript rules
@@ -43,8 +44,8 @@ module.exports = [
       "no-console": [
         "error",
         {
-          allow: ["error"]
-        }
+          allow: ["error"],
+        },
       ],
       "no-empty": "error",
       "no-empty-function": "error",
@@ -53,17 +54,17 @@ module.exports = [
       "no-plusplus": [
         "error",
         {
-          allowForLoopAfterthoughts: true
-        }
+          allowForLoopAfterthoughts: true,
+        },
       ],
       "no-redeclare": "error",
       "prefer-const": "error",
       "no-irregular-whitespace": "error",
-      "camelcase": "error",
-      "complexity": ["error", { max: 10 }],
-      "eqeqeq": "error",
+      camelcase: "error",
+      complexity: ["error", { max: 10 }],
+      eqeqeq: "error",
       "max-lines": ["error", 300],
-      "quotes": ["error", "double"],
+      quotes: ["error", "double"],
       "max-len": ["error", { code: 100, ignoreUrls: true }],
 
       // Import rules - no-unresolved turned off as TypeScript handles this
@@ -71,6 +72,7 @@ module.exports = [
       "import/named": "error",
       "import/default": "error",
       "import/namespace": "error",
+      "prettier/prettier": "error",
     },
     settings: {
       "import/resolver": {

@@ -1,5 +1,3 @@
- 
- 
 import React, {
   Children,
   forwardRef,
@@ -25,7 +23,6 @@ import type { StepperProps } from "./stepper-types";
 function useStepper() {
   const context = useContext(StepperContext);
 
-   
   if (context === undefined) {
     throw new Error("useStepper must be used within a StepperProvider");
   }

@@ -16,13 +16,14 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["electron", "node"],
+    "types": ["electron", "node", "vite/client"],
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noImplicitReturns": false,
     "noImplicitThis": false,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*",

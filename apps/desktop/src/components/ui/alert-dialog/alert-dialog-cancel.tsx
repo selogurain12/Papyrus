@@ -10,7 +10,7 @@ const alertDialogCancel = forwardRef<
   ComponentPropsWithoutRef<typeof Cancel>
 >(({ className, ...props }, reference) => (
   <Cancel
-    className={cn(buttonVariants({ variant: "third" }), "mt-2 sm:mt-0", className)}
+    className={cn(buttonVariants({ variant: "outline" }), "mt-2 sm:mt-0", className)}
     ref={reference}
     {...props}
   />

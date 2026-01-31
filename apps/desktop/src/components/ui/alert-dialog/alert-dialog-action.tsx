@@ -10,7 +10,7 @@ const alertDialogAction = forwardRef<
   ComponentPropsWithoutRef<typeof Action>
 >(({ className, ...props }, reference) => (
   <Action
-    className={cn(buttonVariants({ variant: "destructive" }), className)}
+    className={cn(buttonVariants({ variant: "red" }), className)}
     ref={reference}
     {...props}
   />

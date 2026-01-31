@@ -1,30 +1,30 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-len */
 import { Dispatch, SetStateAction } from "react";
-import { DialogContent } from "../ui/dialogs/dialog-content";
-import { DialogHeader } from "../ui/dialogs/dialog-header";
-import { DialogTitle } from "../ui/dialogs/dialog-title";
-import { Form } from "../ui/forms/form";
-import { FormField } from "../ui/forms/form-field-context";
+import { DialogContent } from "../../ui/dialogs/dialog-content";
+import { DialogHeader } from "../../ui/dialogs/dialog-header";
+import { DialogTitle } from "../../ui/dialogs/dialog-title";
+import { Form } from "../../ui/forms/form";
+import { FormField } from "../../ui/forms/form-field-context";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { client } from "../../utils/client/client";
+import { client } from "../../../utils/client/client";
 import { toast } from "sonner";
-import { queryClient } from "../../context/query-client";
+import { queryClient } from "../../../context/query-client";
 import { isFetchError } from "@ts-rest/react-query/v5";
-import { useAuth } from "../../context/auth-provider";
-import { FormItem } from "../ui/forms/form-item";
-import { FormLabel } from "../ui/forms/form-label";
-import { FormControl } from "../ui/forms/form-control";
-import { Input } from "../ui/input";
-import { FormMessage } from "../ui/forms/form-message";
-import { Textarea } from "../ui/textarea";
-import { genre, languageOptions, TypeOption } from "../../utils/value-for-select";
-import { SingleSelector } from "../ui/single-select";
+import { useAuth } from "../../../context/auth-provider";
+import { FormItem } from "../../ui/forms/form-item";
+import { FormLabel } from "../../ui/forms/form-label";
+import { FormControl } from "../../ui/forms/form-control";
+import { Input } from "../../ui/input";
+import { FormMessage } from "../../ui/forms/form-message";
+import { Textarea } from "../../ui/textarea";
+import { genre, languageOptions, TypeOption } from "../../../utils/value-for-select";
+import { SingleSelector } from "../../ui/single-select";
 import { BookOpen, Target } from "lucide-react";
-import { DatePicker } from "../ui/date-picker";
+import { DatePicker } from "../../ui/date-picker";
 import { CreateProjectDto, createProjectSchema } from "@papyrus/source";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 interface CreateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -48,7 +48,7 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
     onSuccess: () => {
       toast.success("Projet créé avec succès");
       void queryClient.invalidateQueries({
-        queryKey: ["project.list"],
+        queryKey: ["project.getAll"],
       });
       form.reset();
       setOpen(false);
@@ -76,7 +76,7 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
 
   return (
     <DialogContent
-      className="overscroll-none sm:max-w-[800px] sm:max-h-[80%] bg-white p-8 overflow-y-scroll max-h-4/5"
+      className="overscroll-none sm:max-w-[800px] sm:max-h-[80%] bg-white p-8 max-h-4/5"
       onInteractOutside={(event) => {
         event.preventDefault();
         setOpen(false);

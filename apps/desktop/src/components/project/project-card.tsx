@@ -5,6 +5,8 @@ import { Field, FieldLabel } from "../ui/field";
 import { Progress } from "../ui/progress";
 import { Button } from "../ui/button";
 import { PencilLine, Trash2 } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import { projectHomeRoute } from "../../routes/project/index.route";
 
 interface ProjectCardProps {
   project: ProjectDto;
@@ -13,6 +15,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
+  const navigate = useNavigate();
   const progress = (100 * (project?.currentWordCount ?? 0)) / (project?.targetWordCount ?? 1);
 
   function statusColor(status: "planning" | "writing" | "editing" | "completed" | undefined) {
@@ -78,7 +81,14 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
         <div className="pt-3 w-full flex items-center gap-2">
           <PencilLine className="text-gray-500 w-4 h-4" onClick={onEdit} />
           <Trash2 className="text-gray-500 w-4 h-4" onClick={onDelete} />
-          <Button className="text-xs rounded-xl" size="sm" variant="blue">
+          <Button
+            className="text-xs rounded-xl"
+            size="sm"
+            variant="blue"
+            onClick={() => {
+              void navigate({ to: projectHomeRoute.to, params: { name: project.title } });
+            }}
+          >
             Ouvrir
           </Button>
         </div>

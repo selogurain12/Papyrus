@@ -12,8 +12,13 @@ import {
   GitBranch,
   StickyNote,
   Download,
+  FolderOpen,
 } from "lucide-react";
 import React, { useState } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { Button } from "./ui/button";
+import { useNavigate } from "@tanstack/react-router";
+import { indexRoute } from "../routes/index.routes";
 
 const menu = [
   { id: "dashboard", label: "Tableau de bord", icon: Home },
@@ -30,8 +35,13 @@ const menu = [
   { id: "export", label: "Export", icon: Download },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  name: string;
+}
+
+export function Sidebar({ name }: SidebarProps) {
   const [activeView, setActiveView] = useState("dashboard");
+  const navigate = useNavigate();
   return (
     <div className="w-64 bg-background shadow-lg border-r border-gray-300">
       <div className="p-6 border-b border-gray-300">
@@ -42,6 +52,28 @@ export function Sidebar() {
           <div>
             <h1 className="text-xl font-bold text-secondary-900">Papyrus</h1>
             <p className="text-sm text-secondary-500">Studio d'écriture</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-between mt-3 bg-blue-200 rounded-xl p-2">
+          <div>
+            <p className="text-sm text-blue-600">Projet actuel</p>
+            <p className="text-sm text-blue-900">{name}</p>
+          </div>
+          <div className="w-5 h-5 flex items-center justify-center">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  onClick={() => {
+                    void navigate({ to: indexRoute.to });
+                  }}
+                >
+                  <FolderOpen className="w-4 h-4 text-blue-600" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Retour aux projets</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>

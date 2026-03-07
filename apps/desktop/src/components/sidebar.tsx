@@ -19,20 +19,22 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Button } from "./ui/button";
 import { useNavigate } from "@tanstack/react-router";
 import { indexRoute } from "../routes/index.routes";
+import { characterRoute } from "../routes/character/index.route";
+import { placeRoute } from "../routes/place/index.route";
 
 const menu = [
-  { id: "dashboard", label: "Tableau de bord", icon: Home },
-  { id: "characters", label: "Personnages", icon: Users },
-  { id: "places", label: "Lieux", icon: MapPin },
-  { id: "objects", label: "Objets", icon: Package },
-  { id: "chapters", label: "Chapitres", icon: BookOpen },
-  { id: "research", label: "Recherches", icon: Search },
-  { id: "writing-tools", label: "Outils d'écriture", icon: PenTool },
-  { id: "timeline", label: "Chronologie", icon: Calendar },
-  { id: "structure", label: "Structure", icon: Layers },
-  { id: "mind-maps", label: "Cartes mentales", icon: GitBranch },
-  { id: "notes", label: "Notes", icon: StickyNote },
-  { id: "export", label: "Export", icon: Download },
+  { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
+  { id: "characters", label: "Personnages", icon: Users, path: characterRoute },
+  { id: "places", label: "Lieux", icon: MapPin, path: placeRoute },
+  { id: "objects", label: "Objets", icon: Package, path: characterRoute },
+  { id: "chapters", label: "Chapitres", icon: BookOpen, path: characterRoute },
+  { id: "research", label: "Recherches", icon: Search, path: characterRoute },
+  { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
+  { id: "timeline", label: "Chronologie", icon: Calendar, path: characterRoute },
+  { id: "structure", label: "Structure", icon: Layers, path: characterRoute },
+  { id: "mind-maps", label: "Cartes mentales", icon: GitBranch, path: characterRoute },
+  { id: "notes", label: "Notes", icon: StickyNote, path: characterRoute },
+  { id: "export", label: "Export", icon: Download, path: characterRoute },
 ];
 
 interface SidebarProps {
@@ -43,7 +45,7 @@ export function Sidebar({ name }: SidebarProps) {
   const [activeView, setActiveView] = useState("dashboard");
   const navigate = useNavigate();
   return (
-    <div className="w-64 bg-background shadow-lg border-r border-gray-300">
+    <div className="w-64 bg-background shadow-lg border-r border-gray-300 h-full">
       <div className="p-6 border-b border-gray-300">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
@@ -87,7 +89,10 @@ export function Sidebar({ name }: SidebarProps) {
             return (
               <li key={item.id}>
                 <button
-                  onClick={() => setActiveView(item.id)}
+                  onClick={() => {
+                    setActiveView(item.id);
+                    void navigate({ to: item.path.to, params: { name: name } });
+                  }}
                   className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 ${
                     isActive
                       ? "bg-blue-50 text-blue-700 border-r-2 border-blue-600"

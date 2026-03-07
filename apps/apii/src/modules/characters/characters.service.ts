@@ -57,7 +57,7 @@ export class CharacterService {
       offset = ((filter.page ?? 1) - 1) * limit;
     }
     const orderBy = filter.orderBy ?? {
-      name: "DESC",
+      firstName: "DESC",
     };
     let qb = em.qb(CharacterEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
     if (filter.role !== undefined && filter.role.length > 0) {
@@ -78,7 +78,8 @@ export class CharacterService {
     if (filter.search !== undefined) {
       qb = qb.andWhere({
         $or: [
-          { name: { $ilike: `%${filter.search}%` } },
+          { firstName: { $ilike: `%${filter.search}%` } },
+          { lastName: { $ilike: `%${filter.search}%` } },
           { description: { $ilike: `%${filter.search}%` } },
         ],
       });
@@ -116,7 +117,7 @@ export class CharacterService {
         });
       }
       const item = await this.characterMapper.createDtoToEntity(parameters, projectId, em);
-      await em.persist(item).flush();
+      em.persist(item);
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.characterMapper.entityToDto(item, projectId, em);

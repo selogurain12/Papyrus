@@ -24,28 +24,124 @@ export class CharacterEntity {
   public id: string = randomUUID();
 
   @Property({ type: "string" })
-  public name: string;
-
-  @Property({ type: "string" })
   public role: "protagonist" | "antagonist" | "ally" | "mentor" | "secondary character";
 
+  @Property({ type: "int" })
+  public roleStar: number;
+
+  //état civil
+  @Property({ type: "string" })
+  public firstName: string;
+
+  @Property({ type: "string" })
+  public lastName: string;
+
+  @Property({ type: "string" })
+  public nickName: string;
+
+  @Property({ type: "string" })
+  public pronouns: string;
+
+  @Property({ type: "string" })
+  public gender: "female" | "male" | "other";
+
   @Property({ type: "string", nullable: true })
-  public description: string | null = null;
+  public nationality: string | null;
 
   @Property({ type: "int", nullable: true })
   public age: number | null = null;
 
-  @Property({ type: "string", nullable: true })
-  public appearance: string | null = null;
+  @Property({ type: ZonedDateTimeType, nullable: true })
+  public birthDate: ZonedDateTime | null;
 
   @Property({ type: "string", nullable: true })
-  public personality: string | null = null;
+  public birthPlace: string | null;
 
   @Property({ type: "string", nullable: true })
-  public story: string | null = null;
+  public residencePlace: string | null;
 
   @Property({ type: "string", nullable: true })
-  public motivation: string | null = null;
+  public occupation: string | null;
+
+  //physique
+  @Property({ type: "int", nullable: true })
+  public height: number | null;
+
+  @Property({ type: "int", nullable: true })
+  public weight: number | null;
+
+  @Property({ type: "string", nullable: true })
+  public corpulence: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public hairColor: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public eyesColor: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public voice: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public outfit: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public accessory: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public description: string | null = null;
+
+  //caractère
+  @Property({ type: "array", nullable: true })
+  public characterQualities: string[] | null;
+
+  @Property({ type: "array", nullable: true })
+  public characterFlaws: string[] | null;
+
+  @Property({ type: "string", nullable: true })
+  public tastes: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public tics: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public fears: string | null;
+
+  //profile
+  @Property({ type: "string", nullable: true })
+  public education: string | null;
+
+  @Property({ type: "int", nullable: true })
+  public richesses: number | null;
+
+  @Property({ type: "string", nullable: true })
+  public belief: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public secrets: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public notablePlaces: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public typicalExpression: string | null;
+
+  //evolution
+  @Property({ type: "string", nullable: true })
+  public goals: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public past: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public present: string | null;
+
+  @Property({ type: "string", nullable: true })
+  public future: string | null;
+
+  //autre
+  @Property({ type: "text", nullable: true })
+  public notes: string | null;
 
   @Property({ type: "string", nullable: true })
   public color: string | null = null;
@@ -69,25 +165,85 @@ export class CharacterEntity {
   public childRelationships = new Collection<RelationshipEntity>(this);
 
   public constructor(parameters: {
-    name: string;
+    roleStar: number;
     role: "protagonist" | "antagonist" | "ally" | "mentor" | "secondary character";
-    description: string | null;
+    firstName: string;
+    lastName: string;
+    nickName: string;
+    pronouns: string;
+    gender: "female" | "male" | "other";
+    nationality: string | null;
     age: number | null;
-    appearance: string | null;
-    personality: string | null;
-    story: string | null;
-    motivation: string | null;
+    birthDate: ZonedDateTime | null;
+    birthPlace: string | null;
+    residencePlace: string | null;
+    occupation: string | null;
+    height: number | null;
+    weight: number | null;
+    corpulence: string | null;
+    hairColor: string | null;
+    eyesColor: string | null;
+    voice: string | null;
+    outfit: string | null;
+    accessory: string | null;
+    description: string | null;
+    characterQualities: string[] | null;
+    characterFlaws: string[] | null;
+    tastes: string | null;
+    tics: string | null;
+    fears: string | null;
+    education: string | null;
+    richesses: number | null;
+    belief: string | null;
+    secrets: string | null;
+    notablePlaces: string | null;
+    typicalExpression: string | null;
+    goals: string | null;
+    past: string | null;
+    present: string | null;
+    future: string | null;
+    notes: string | null;
     color: string | null;
     project: ProjectEntity;
   }) {
-    this.name = parameters.name;
+    this.roleStar = parameters.roleStar;
     this.role = parameters.role;
-    this.description = parameters.description;
+    this.firstName = parameters.firstName;
+    this.lastName = parameters.lastName;
+    this.nickName = parameters.nickName;
+    this.pronouns = parameters.pronouns;
+    this.gender = parameters.gender;
+    this.nationality = parameters.nationality;
     this.age = parameters.age;
-    this.appearance = parameters.appearance;
-    this.personality = parameters.personality;
-    this.story = parameters.story;
-    this.motivation = parameters.motivation;
+    this.birthDate = parameters.birthDate;
+    this.birthPlace = parameters.birthPlace;
+    this.residencePlace = parameters.residencePlace;
+    this.occupation = parameters.occupation;
+    this.height = parameters.height;
+    this.weight = parameters.weight;
+    this.corpulence = parameters.corpulence;
+    this.hairColor = parameters.hairColor;
+    this.eyesColor = parameters.eyesColor;
+    this.voice = parameters.voice;
+    this.outfit = parameters.outfit;
+    this.accessory = parameters.accessory;
+    this.description = parameters.description;
+    this.characterQualities = parameters.characterQualities;
+    this.characterFlaws = parameters.characterFlaws;
+    this.tastes = parameters.tastes;
+    this.tics = parameters.tics;
+    this.fears = parameters.fears;
+    this.education = parameters.education;
+    this.richesses = parameters.richesses;
+    this.belief = parameters.belief;
+    this.secrets = parameters.secrets;
+    this.notablePlaces = parameters.notablePlaces;
+    this.typicalExpression = parameters.typicalExpression;
+    this.goals = parameters.goals;
+    this.past = parameters.past;
+    this.present = parameters.present;
+    this.future = parameters.future;
+    this.notes = parameters.notes;
     this.color = parameters.color;
     this.project = ref(parameters.project);
   }

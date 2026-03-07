@@ -5,9 +5,16 @@ import { rootRoute } from "./root.routes";
 import { queryClient } from "../context/query-client";
 import { loginRoute, registerRoute } from "./authentification/index.route";
 import { projectHomeRoute } from "./project/index.route";
+import { characterRoute } from "./character/index.route";
+import { placeRoute } from "./place/index.route";
 
 export const routeTree = rootRoute.addChildren([
-  defaultLayoutRoute.addChildren([indexRoute, loginRoute, registerRoute, projectHomeRoute]),
+  defaultLayoutRoute.addChildren([
+    indexRoute,
+    loginRoute,
+    registerRoute,
+    projectHomeRoute.addChildren([characterRoute, placeRoute]),
+  ]),
 ]);
 
 export const router = createRouter({

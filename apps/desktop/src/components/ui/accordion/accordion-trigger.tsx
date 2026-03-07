@@ -25,7 +25,7 @@ const accordionTrigger = forwardRef<ComponentRef<typeof Trigger>, AccordionTrigg
       <Trigger
         className={cn(
           // eslint-disable-next-line max-len
-          "flex flex-1 items-center justify-between py-4 gap-2 font-medium transition-all [&[data-state=open]>#triggerIcon]:rotate-180 hover:underline",
+          "flex flex-1 items-center justify-between py-4 gap-2 font-medium transition-all [&[data-state=open]>#triggerIcon]:rotate-180 hover:bg-gray-100",
           className
         )}
         ref={reference}

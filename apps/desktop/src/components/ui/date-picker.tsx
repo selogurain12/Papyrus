@@ -42,12 +42,12 @@ export function DatePicker({
         <Button
           className={cn("w-full justify-start text-left font-normal px-3")}
           disabled={disabled}
-          variant="outline"
+          variant="input"
         >
           <CalendarIcon className="mr-2 size-4" />
           <div className="normal-case">
             {value === undefined ? (
-              <span>{placeholder ?? "SÃ©lectionner une date..."}</span>
+              <span>{placeholder ?? "Sélectionner une date..."}</span>
             ) : (
               format(parseZonedDateTime(value), "dd MMMM yyyy")
             )}

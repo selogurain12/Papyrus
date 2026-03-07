@@ -37,6 +37,9 @@ const buttonVariants = cva(
         third: "bg-transparent text-foreground hover:bg-transparent border",
 
         noHover: "bg-transparent text-foreground hover:bg-transparent",
+
+        input:
+          "border border-gray-300 bg-background hover:bg-accent/50 focus-visible:ring-1 focus-visible:ring-primary",
       },
 
       size: {

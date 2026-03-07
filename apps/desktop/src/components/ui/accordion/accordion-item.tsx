@@ -5,7 +5,7 @@ import { cn } from "../../../lib/utils";
 
 const accordionItem = forwardRef<ComponentRef<typeof Item>, ComponentPropsWithoutRef<typeof Item>>(
   ({ className, ...props }, reference) => (
-    <Item className={cn("border-b", className)} ref={reference} {...props} />
+    <Item className={cn("border-b border-gray-200", className)} ref={reference} {...props} />
   )
 );
 accordionItem.displayName = "AccordionItem";

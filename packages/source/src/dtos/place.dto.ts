@@ -5,7 +5,7 @@ import { projectSchema } from "./project.dto";
 export const createPlaceSchema = z.object({
   name: z.string().min(1).max(100),
   nickname: z.string().min(1).max(100).optional().nullable(),
-  type: z.string().array(),
+  type: z.string(),
   localisation: z.string(),
   physicalDescription: z.string().min(1).max(1000).optional().nullable(),
   atmosphere: z.string().min(1).max(1000).optional().nullable(),
@@ -15,7 +15,8 @@ export const createPlaceSchema = z.object({
   language: z.enum(languagesTypes).optional().nullable(),
   government: z.string().min(1).max(1000).optional().nullable(),
   ressources: z.string().min(1).max(1000).optional().nullable(),
-  narrativeImportance: z.string().min(1).max(1000).optional().nullable(),
+  narrativeImportance: z.enum(["high", "medium", "low"]),
+  color: z.string(),
   project: z.lazy(() => projectSchema),
 });
 

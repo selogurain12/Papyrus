@@ -1,17 +1,61 @@
 import z from "zod";
+import { isZonedIso8601 } from "../utils/zoned-iso";
 import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
 
 export const createCharacterSchema = z.object({
-  name: z.string().min(2).max(100),
   role: z.enum(["protagonist", "antagonist", "ally", "mentor", "secondary character"]),
-  description: z.string().nullable(),
+  roleStar: z.number().min(0),
+
+  // état civil
+  firstName: z.string().min(1).max(100),
+  lastName: z.string().min(1).max(100),
+  nickName: z.string().min(1).max(100),
+  pronouns: z.string().min(1).max(50),
+  gender: z.enum(["female", "male", "other"]),
+  nationality: z.string().max(100).nullable(),
   age: z.number().min(0).nullable(),
-  appearance: z.string().nullable(),
-  personality: z.string().nullable(),
-  story: z.string().nullable(),
-  motivation: z.string().nullable(),
+  birthDate: z.string().refine(isZonedIso8601).nullable(),
+  birthPlace: z.string().max(150).nullable(),
+  residencePlace: z.string().max(150).nullable(),
+  occupation: z.string().max(150).nullable(),
+
+  // physique
+  height: z.number().min(0).nullable(),
+  weight: z.number().min(0).nullable(),
+  corpulence: z.string().nullable(),
+  hairColor: z.string().nullable(),
+  eyesColor: z.string().nullable(),
+  voice: z.string().nullable(),
+  outfit: z.string().nullable(),
+  accessory: z.string().nullable(),
+  description: z.string().nullable(),
+
+  // caractère
+  characterQualities: z.array(z.string()).nullable(),
+  characterFlaws: z.array(z.string()).nullable(),
+  tastes: z.string().nullable(),
+  tics: z.string().nullable(),
+  fears: z.string().nullable(),
+
+  // profil
+  education: z.string().nullable(),
+  richesses: z.number().min(0).nullable(),
+  belief: z.string().nullable(),
+  secrets: z.string().nullable(),
+  notablePlaces: z.string().nullable(),
+  typicalExpression: z.string().nullable(),
+
+  // évolution
+  goals: z.string().nullable(),
+  past: z.string().nullable(),
+  present: z.string().nullable(),
+  future: z.string().nullable(),
+
+  // autre
+  notes: z.string().nullable(),
   color: z.string().nullable(),
+
   project: z.lazy(() => projectSchema),
 });
 

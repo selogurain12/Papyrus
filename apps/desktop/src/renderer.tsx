@@ -8,6 +8,7 @@ import { Toaster } from "./components/ui/sonner";
 import { queryClient } from "./context/query-client";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { AuthProvider } from "./context/auth-provider";
+import { ProjectProvider } from "./context/project-provider";
 
 const container = document.querySelector("#root");
 
@@ -17,12 +18,14 @@ root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <main>
-          <TooltipProvider>
-            <Toaster richColors />
-            <RouterProvider basepath={import.meta.env.BASE_URL} router={router} />
-          </TooltipProvider>
-        </main>
+        <ProjectProvider>
+          <main>
+            <TooltipProvider>
+              <Toaster richColors />
+              <RouterProvider basepath={import.meta.env.BASE_URL} router={router} />
+            </TooltipProvider>
+          </main>
+        </ProjectProvider>
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>

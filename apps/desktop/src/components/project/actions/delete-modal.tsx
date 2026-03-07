@@ -57,9 +57,9 @@ export function ProjectDeleteActions({
     <AlertDialog onOpenChange={setOpen} open={open}>
       <AlertDialogContent className="sm:max-w-[800px] sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
-          <AlertDialogTitle>Supprimer une équipe</AlertDialogTitle>
+          <AlertDialogTitle>Supprimer un projet</AlertDialogTitle>
           <AlertDialogDescription>
-            Êtes-vous sûr de vouloir supprimer cette équipe ?
+            Êtes-vous sûr de vouloir supprimer ce projet ?
           </AlertDialogDescription>
         </AlertDialogHeader>
 

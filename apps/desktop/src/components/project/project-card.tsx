@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { PencilLine, Trash2 } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import { projectHomeRoute } from "../../routes/project/index.route";
+import { useProject } from "../../context/project-provider";
 
 interface ProjectCardProps {
   project: ProjectDto;
@@ -16,6 +17,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
   const navigate = useNavigate();
+  const { setCurrentProject } = useProject();
   const progress = (100 * (project?.currentWordCount ?? 0)) / (project?.targetWordCount ?? 1);
 
   function statusColor(status: "planning" | "writing" | "editing" | "completed" | undefined) {
@@ -86,6 +88,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
             size="sm"
             variant="blue"
             onClick={() => {
+              setCurrentProject(project);
               void navigate({ to: projectHomeRoute.to, params: { name: project.title } });
             }}
           >

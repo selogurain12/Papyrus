@@ -46,6 +46,30 @@ export const languageOptions = [
   { id: "cs", label: "Tchèque" },
 ];
 
+export const roleOptions = [
+  { id: "protagonist", label: "Protagoniste" },
+  { id: "antagonist", label: "Antagoniste" },
+  { id: "ally", label: "Allié" },
+  { id: "mentor", label: "Mentor" },
+  { id: "secondary character", label: "Personnage secondaire" },
+];
+
+export const importanceOptions = [
+  { id: "high", label: "Elevée" },
+  { id: "medium", label: "Moyenne" },
+  { id: "low", label: "Faible" },
+];
+
+export const typeOptions = [
+  { id: "city", label: "Ville" },
+  { id: "village", label: "Village" },
+  { id: "country", label: "Pays" },
+  { id: "continent", label: "Continent" },
+  { id: "planet", label: "Planète" },
+  { id: "space station", label: "Station spatiale" },
+  { id: "other", label: "Autre" },
+];
+
 export type TypeOption = {
   id: string;
   label: string;

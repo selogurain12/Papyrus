@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { ZonedDateTime } from "@internationalized/date";
+import { now, ZonedDateTime } from "@internationalized/date";
 import {
   Entity,
   ManyToOne,
@@ -26,8 +26,8 @@ export class PlaceEntity {
   @Property({ type: "string", nullable: true })
   public nickname: string | null = null;
 
-  @Property({ type: "array" })
-  public type: string[];
+  @Property({ type: "string" })
+  public type: string;
 
   @Property({ type: "text" })
   public localisation: string;
@@ -56,26 +56,28 @@ export class PlaceEntity {
   @Property({ type: "string", nullable: true })
   public ressources: string | null = null;
 
-  @Property({ type: "string", nullable: true })
-  public narrativeImportance: string | null = null;
+  @Property({ type: "string" })
+  public narrativeImportance: "high" | "medium" | "low";
 
-  @Property({ type: ZonedDateTimeType })
+  @Property({ type: "string" })
+  public color: string;
+
+  @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
 
-  @Property({ type: ZonedDateTimeType, nullable: true })
-  public updatedAt: ZonedDateTime | null = null;
+  @Property({ type: ZonedDateTimeType, nullable: true, onUpdate: () => now("UTC") })
+  public updatedAt?: ZonedDateTime | null;
 
   @Property({ type: ZonedDateTimeType, nullable: true })
-  public deletedAt: ZonedDateTime | null = null;
+  public deletedAt?: ZonedDateTime | null;
 
   @ManyToOne(() => ProjectEntity, { ref: true })
   public project: Ref<ProjectEntity>;
 
-  // eslint-disable-next-line complexity
   public constructor(parameters: {
     name: string;
     nickname?: string | null;
-    type: string[];
+    type: string;
     localisation: string;
     physicalDescription?: string | null;
     atmosphere?: string | null;
@@ -85,7 +87,8 @@ export class PlaceEntity {
     language?: LanguageType | null;
     government?: string | null;
     ressources?: string | null;
-    narrativeImportance?: string | null;
+    narrativeImportance: "high" | "medium" | "low";
+    color: string;
     project: ProjectEntity;
   }) {
     this.name = parameters.name;
@@ -100,7 +103,8 @@ export class PlaceEntity {
     this.language = parameters.language ?? null;
     this.government = parameters.government ?? null;
     this.ressources = parameters.ressources ?? null;
-    this.narrativeImportance = parameters.narrativeImportance ?? null;
+    this.narrativeImportance = parameters.narrativeImportance;
+    this.color = parameters.color;
     this.project = ref(parameters.project);
   }
 }

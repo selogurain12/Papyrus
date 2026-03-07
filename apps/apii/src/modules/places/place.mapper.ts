@@ -37,6 +37,7 @@ export class PlaceMapper {
       government: entity.government,
       ressources: entity.ressources,
       narrativeImportance: entity.narrativeImportance,
+      color: entity.color,
       project: await this.projectMapper.entityToDto(projectEntity, em),
     };
   }
@@ -74,6 +75,7 @@ export class PlaceMapper {
       government: createDto.government,
       ressources: createDto.ressources,
       narrativeImportance: createDto.narrativeImportance,
+      color: createDto.color,
       project: projectEntity,
     });
   }
@@ -101,6 +103,7 @@ export class PlaceMapper {
       government: updateDto.government,
       ressources: updateDto.ressources,
       narrativeImportance: updateDto.narrativeImportance,
+      color: updateDto.color,
     });
   }
 }

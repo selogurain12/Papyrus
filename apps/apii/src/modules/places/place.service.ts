@@ -57,7 +57,15 @@ export class PlaceService {
       createdAt: "DESC",
     };
 
-    const qb = em.qb(PlaceEntity).where({ project: { id: projectId } });
+    let qb = em.qb(PlaceEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
+    if (filter.search !== undefined) {
+      qb = qb.andWhere({
+        $or: [
+          { name: { $ilike: `%${filter.search}%` } },
+          { nickname: { $ilike: `%${filter.search}%` } },
+        ],
+      });
+    }
     const [items, total] = await qb
       .orderBy(orderBy)
       .limit(limit)
@@ -161,7 +169,7 @@ export class PlaceService {
     try {
       const repository = em.getRepository(PlaceEntity);
       const existingEntity = await repository.findOne({
-        $and: [{ id: id }, { project: { id: { $eq: projectId } } }, { deletedAt: null }],
+        $and: [{ id }, { deletedAt: { $eq: null }, project: { id: projectId } }],
       });
       if (!existingEntity) {
         throw new TsRestException(placeContract.delete, {
@@ -174,7 +182,7 @@ export class PlaceService {
         });
       }
       existingEntity.deletedAt = fromDate(new Date(), "UTC");
-      em.persist(existingEntity);
+      await em.persist(existingEntity).flush();
       await em.commit();
     } catch (error) {
       await em.rollback();

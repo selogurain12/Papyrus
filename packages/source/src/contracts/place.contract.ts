@@ -100,6 +100,6 @@ export const placeContract = contrat.router(
     },
   },
   {
-    pathPrefix: "/places",
+    pathPrefix: "/:projectId/places",
   }
 );

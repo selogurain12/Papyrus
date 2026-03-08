@@ -13,6 +13,7 @@ import { PlaceDeleteActions } from "./actions/delete-place";
 import { Input } from "../ui/input";
 import { useFilterDto } from "../../utils/filters/use-filter-dto";
 
+// eslint-disable-next-line complexity
 export function PlacesList() {
   const { currentProject } = useProject();
   const [placeSelected, setPlaceSelected] = useState<PlaceDto | undefined>(undefined);
@@ -30,11 +31,11 @@ export function PlacesList() {
 
   const { data } = client.place.getAll.useQuery({
     queryKey: queryKeys.place.getAll({
-      pathParams: { projectId: currentProject.id },
+      pathParams: { projectId: currentProject?.id ?? "" },
       query: { ...options },
     }),
     queryData: {
-      params: { projectId: currentProject.id },
+      params: { projectId: currentProject?.id ?? "" },
       query: { ...options },
     },
   });

@@ -21,12 +21,13 @@ import { useNavigate } from "@tanstack/react-router";
 import { indexRoute } from "../routes/index.routes";
 import { characterRoute } from "../routes/character/index.route";
 import { placeRoute } from "../routes/place/index.route";
+import { objectRoute } from "../routes/object/index.route";
 
 const menu = [
   { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
   { id: "characters", label: "Personnages", icon: Users, path: characterRoute },
   { id: "places", label: "Lieux", icon: MapPin, path: placeRoute },
-  { id: "objects", label: "Objets", icon: Package, path: characterRoute },
+  { id: "objects", label: "Objets", icon: Package, path: objectRoute },
   { id: "chapters", label: "Chapitres", icon: BookOpen, path: characterRoute },
   { id: "research", label: "Recherches", icon: Search, path: characterRoute },
   { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },

@@ -7,13 +7,14 @@ import { loginRoute, registerRoute } from "./authentification/index.route";
 import { projectHomeRoute } from "./project/index.route";
 import { characterRoute } from "./character/index.route";
 import { placeRoute } from "./place/index.route";
+import { objectRoute } from "./object/index.route";
 
 export const routeTree = rootRoute.addChildren([
   defaultLayoutRoute.addChildren([
     indexRoute,
     loginRoute,
     registerRoute,
-    projectHomeRoute.addChildren([characterRoute, placeRoute]),
+    projectHomeRoute.addChildren([characterRoute, placeRoute, objectRoute]),
   ]),
 ]);
 

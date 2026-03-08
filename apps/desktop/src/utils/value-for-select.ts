@@ -70,6 +70,19 @@ export const typeOptions = [
   { id: "other", label: "Autre" },
 ];
 
+export const objectTypeOptions = [
+  { id: "weapon", label: "Arme" },
+  { id: "vehicle", label: "Véhicule" },
+  { id: "artifact", label: "Artefact" },
+  { id: "tool", label: "Outil" },
+  { id: "clothing", label: "Vêtement" },
+  { id: "jewelry", label: "Bijou" },
+  { id: "furniture", label: "Meuble" },
+  { id: "technology", label: "Technologie" },
+  { id: "paper", label: "Documents" },
+  { id: "equipment", label: "Equipement" },
+];
+
 export type TypeOption = {
   id: string;
   label: string;

@@ -22,8 +22,8 @@ export class ObjectEntity {
   @Property({ type: "string" })
   public name: string;
 
-  @Property({ type: "string", nullable: true })
-  public importance: "high" | "medium" | "low" | null = null;
+  @Property({ type: "string" })
+  public importance: "high" | "medium" | "low";
 
   @Property({ type: "text", nullable: true })
   public description: string | null = null;
@@ -61,7 +61,7 @@ export class ObjectEntity {
   public constructor(parameters: {
     name: string;
     type: string | null;
-    importance: "high" | "medium" | "low" | null;
+    importance: "high" | "medium" | "low";
     description: string | null;
     appearance: string | null;
     significance: string | null;

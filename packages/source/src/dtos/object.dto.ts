@@ -4,7 +4,7 @@ import { filterSchema } from "./filter.dto";
 
 export const createObjectSchema = z.object({
   name: z.string().min(1).max(100),
-  importance: z.enum(["low", "medium", "high"]).nullable(),
+  importance: z.enum(["low", "medium", "high"]),
   description: z.string().min(1).max(1000).nullable(),
   appearance: z.string().min(1).max(1000).nullable(),
   significance: z.string().min(1).max(1000).nullable(),

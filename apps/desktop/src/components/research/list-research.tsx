@@ -1,0 +1,150 @@
+import { client } from "../../utils/client/client";
+import { useProject } from "../../context/project-provider";
+import { queryKeys, ResearchDto } from "@papyrus/source";
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { Plus, Search as SearchIcon } from "lucide-react";
+import { Input } from "../ui/input";
+import { ResearchCard } from "./research-card";
+import { CreateResearchForm } from "./actions/create-form";
+import { UpdateResearchForm } from "./actions/update-form";
+import { ResearchDeleteActions } from "./actions/delete-research";
+import { Dialog } from "../ui/dialogs/dialog";
+import { useFilterResearchDto } from "../../utils/filters/use-filter-research";
+
+const categories = [
+  { id: "all", label: "Tout" },
+  { id: "articles", label: "Articles" },
+  { id: "links", label: "Liens web" },
+  { id: "images", label: "Images" },
+  { id: "videos", label: "Vidéos" },
+  { id: "books", label: "Livres" },
+];
+
+// eslint-disable-next-line complexity
+export function ListResearch() {
+  const { currentProject } = useProject();
+
+  const [isCreating, setIsCreating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState<ResearchDto | null>(null);
+  const [isDeleting, setIsDeleting] = useState<ResearchDto | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+
+  const { options, setSearch, setType } = useFilterResearchDto({
+    itemsPerPage: 20,
+    page: 1,
+    orderBy: { createdAt: "desc" },
+  });
+
+  if (!currentProject) {
+    return (
+      <div className="min-h-[300px] flex items-center justify-center text-gray-500">
+        Chargement du projet...
+      </div>
+    );
+  }
+
+  const { data } = client.research.getAll.useQuery({
+    queryKey: queryKeys.research.getAll({
+      pathParams: { projectId: currentProject.id },
+      query: { ...options },
+    }),
+    queryData: {
+      params: { projectId: currentProject.id },
+      query: { ...options },
+    },
+  });
+
+  const emptyResearchClassName =
+    "col-span-full rounded-xl border border-dashed border-gray-300 p-8 text-center text-gray-500";
+
+  return (
+    <div className="p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">Recherches documentaires</h2>
+          <p className="text-sm text-muted-foreground">Organisez vos sources et références</p>
+        </div>
+        <Button variant="blue" onClick={() => setIsCreating(true)}>
+          <Plus className="w-4 h-4 mr-2" />
+          Nouvelle recherche
+        </Button>
+      </div>
+
+      <div className="rounded-xl border border-gray-200 bg-white p-4 mb-6">
+        <div className="grid gap-3 sm:grid-cols-[1fr_auto] items-center">
+          <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2">
+            <SearchIcon className="w-4 h-4 text-gray-400" />
+            <Input
+              type="search"
+              placeholder="Rechercher dans vos recherches..."
+              onChange={(event) => setSearch(event.target.value)}
+              value={options.search ?? ""}
+              className="border-none focus:ring-0"
+            />
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              type="button"
+              onClick={() => {
+                setActiveCategory(category.id);
+                setType(
+                  category.id === "all"
+                    ? undefined
+                    : (category.id as "articles" | "links" | "images" | "videos" | "books")
+                );
+              }}
+              className={`px-4 py-2 rounded-lg border text-sm transition ${
+                activeCategory === category.id
+                  ? "bg-blue-600 text-white border-blue-600"
+                  : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
+              }`}
+            >
+              {category.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {data?.body?.data.length === 0 ? (
+          <div className={emptyResearchClassName}>Aucune recherche trouvée.</div>
+        ) : (
+          data?.body?.data.map((research) => (
+            <ResearchCard
+              key={research.id}
+              research={research}
+              openEditModal={(item) => setIsUpdating(item)}
+              openDeleteModal={(item) => setIsDeleting(item)}
+            />
+          ))
+        )}
+      </div>
+
+      {isCreating && (
+        <Dialog open={isCreating} onOpenChange={setIsCreating}>
+          <CreateResearchForm setOpen={setIsCreating} />
+        </Dialog>
+      )}
+
+      {isUpdating && (
+        <Dialog open={Boolean(isUpdating)} onOpenChange={() => setIsUpdating(null)}>
+          <UpdateResearchForm setOpen={() => setIsUpdating(null)} research={isUpdating} />
+        </Dialog>
+      )}
+
+      {isDeleting && (
+        <ResearchDeleteActions
+          open={Boolean(isDeleting)}
+          setOpen={(open) => (open ? null : setIsDeleting(null))}
+          research={isDeleting}
+          clearSelection={() => setIsDeleting(null)}
+        />
+      )}
+    </div>
+  );
+}

@@ -5,7 +5,8 @@ import { cn } from "../../../lib/utils";
 import { buttonVariants, Button } from "../button";
 
 interface PaginationLinkProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
   isActive?: boolean;
   disabled?: boolean;
 }

@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { ZonedDateTime } from "@internationalized/date";
+import { now, ZonedDateTime } from "@internationalized/date";
 import {
   Entity,
   ManyToOne,
@@ -37,17 +37,20 @@ export class ResearchEntity {
   @Property({ type: "string", nullable: true })
   public note: string | null = null;
 
-  @Property({ type: "string", nullable: true })
+  @Property({ type: "text", nullable: true })
   public link: string | null = null;
 
-  @Property({ type: ZonedDateTimeType })
+  @Property({ type: "string", nullable: true })
+  public description: string | null = null;
+
+  @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
 
   @Property({ type: ZonedDateTimeType, nullable: true })
-  public updatedAt: ZonedDateTime | null = null;
+  public updatedAt?: ZonedDateTime | null;
 
   @Property({ type: ZonedDateTimeType, nullable: true })
-  public deletedAt: ZonedDateTime | null = null;
+  public deletedAt?: ZonedDateTime | null;
 
   @ManyToOne(() => ProjectEntity, { ref: true })
   public project: Ref<ProjectEntity>;
@@ -58,6 +61,7 @@ export class ResearchEntity {
     sources: string | null;
     tag: string[] | null;
     note: string | null;
+    description: string | null;
     link: string | null;
     project: ProjectEntity;
   }) {
@@ -66,6 +70,7 @@ export class ResearchEntity {
     this.sources = parameters.sources;
     this.tag = parameters.tag;
     this.note = parameters.note;
+    this.description = parameters.description;
     this.link = parameters.link;
     this.project = ref(parameters.project);
   }

@@ -16,6 +16,7 @@ import { RelationshipModule } from "./modules/relationships/relationship.module"
 import { ResearchModule } from "./modules/research/research.module";
 import { SettingModule } from "./modules/settings/settings.module";
 import { UsersModule } from "./modules/users/users.module";
+import { S3Module } from "./modules/s3/s3.module";
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { UsersModule } from "./modules/users/users.module";
     ResearchModule,
     SettingModule,
     UsersModule,
+    S3Module,
   ],
 })
 export class AppModule {}

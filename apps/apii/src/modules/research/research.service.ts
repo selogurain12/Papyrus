@@ -3,7 +3,7 @@ import { HttpStatus, Injectable } from "@nestjs/common";
 import { TsRestException } from "@ts-rest/nest";
 import {
   CreateResearchDto,
-  FilterDto,
+  FilterResearchDto,
   ListResult,
   researchContract,
   ResearchDto,
@@ -11,6 +11,7 @@ import {
 } from "@papyrus/source";
 import { fromDate } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
+import { S3Service } from "../s3/s3.service";
 import { ResearchMapper } from "./research.mapper";
 import { ResearchEntity } from "./research.entity";
 
@@ -18,10 +19,13 @@ import { ResearchEntity } from "./research.entity";
 export class ResearchService {
   private readonly orm: MikroORM;
 
+  private readonly s3Service: S3Service;
+
   private readonly researchMapper: ResearchMapper;
 
-  public constructor(orm: MikroORM, researchMapper: ResearchMapper) {
+  public constructor(orm: MikroORM, s3Service: S3Service, researchMapper: ResearchMapper) {
     this.orm = orm;
+    this.s3Service = s3Service;
     this.researchMapper = researchMapper;
   }
 
@@ -42,7 +46,10 @@ export class ResearchService {
     return await this.researchMapper.entityToDto(item, projectId, em);
   }
 
-  public async getAll(filter: FilterDto, projectId: string): Promise<ListResult<ResearchDto>> {
+  public async getAll(
+    filter: FilterResearchDto,
+    projectId: string
+  ): Promise<ListResult<ResearchDto>> {
     const em = this.orm.em.fork();
 
     let limit: number | undefined = undefined;
@@ -57,7 +64,18 @@ export class ResearchService {
       createdAt: "DESC",
     };
 
-    const qb = em.qb(ResearchEntity).where({ project: { id: projectId } });
+    let qb = em.qb(ResearchEntity).where({ project: { id: projectId }, deletedAt: { $eq: null } });
+    if (filter.type) {
+      qb = qb.andWhere({ type: filter.type });
+    }
+    if (filter.search !== undefined) {
+      qb = qb.andWhere({
+        $or: [
+          { title: { $ilike: `%${filter.search}%` } },
+          { description: { $ilike: `%${filter.search}%` } },
+        ],
+      });
+    }
     const [items, total] = await qb
       .orderBy(orderBy)
       .limit(limit)
@@ -86,8 +104,9 @@ export class ResearchService {
           },
         });
       }
+
       const item = await this.researchMapper.createDtoToEntity(parameters, projectId, em);
-      await em.persist(item).flush();
+      em.persist(item);
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.researchMapper.entityToDto(item, projectId, em);

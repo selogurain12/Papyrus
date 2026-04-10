@@ -18,7 +18,7 @@ export class ResearchMapper {
     projectId: string,
     em: EntityManager
   ): Promise<ResearchDto> {
-    const projectEntity = await em.getRepository(ProjectEntity).findOne({ id: entity.id });
+    const projectEntity = await em.getRepository(ProjectEntity).findOne({ id: projectId });
     if (!projectEntity) {
       throw new NotFoundError(`ProjectEntity with id ${projectId} not found`);
     }
@@ -30,6 +30,7 @@ export class ResearchMapper {
       tag: entity.tag,
       note: entity.note,
       link: entity.link,
+      description: entity.description,
       project: await this.projectMapper.entityToDto(projectEntity, em),
     };
   }
@@ -60,6 +61,7 @@ export class ResearchMapper {
       tag: createDto.tag,
       note: createDto.note,
       link: createDto.link,
+      description: createDto.description,
       project: projectEntity,
     });
   }
@@ -79,6 +81,7 @@ export class ResearchMapper {
       sources: updateDto.sources,
       tag: updateDto.tag,
       note: updateDto.note,
+      description: updateDto.description,
       link: updateDto.link,
     });
   }

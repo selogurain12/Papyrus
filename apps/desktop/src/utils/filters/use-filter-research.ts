@@ -1,38 +1,28 @@
 /* eslint-disable no-unused-vars */
+import { FilterResearchDto } from "@papyrus/source";
 import { useCallback, useState } from "react";
 
-type OrderDirection = "asc" | "desc";
+export type OrderDirection = "asc" | "desc";
 
-interface NestedOrderBy {
+export interface NestedOrderBy {
   [key: string]: NestedOrderBy | OrderDirection;
 }
 
-class FilterDto {
-  public search?: string;
-
-  public disablePagination?: boolean;
-
-  public page?: number;
-
-  public itemsPerPage?: number;
-
-  public orderBy?: { [key: string]: NestedOrderBy | OrderDirection };
-}
-
 type FilterDtoSetter = {
-  [Data in keyof FilterDto as `set${Capitalize<Data>}`]-?: (
-    name: Required<FilterDto>[Data] | undefined
+  [Data in keyof FilterResearchDto as `set${Capitalize<Data>}`]-?: (
+    name: Required<FilterResearchDto>[Data] | undefined
   ) => void;
 };
 
-export interface UseFilterDtoType<FilterDtoType extends FilterDto = FilterDto>
-  extends FilterDtoSetter {
+export interface UseFilterResearchDtoType<
+  FilterDtoType extends FilterResearchDto = FilterResearchDto,
+> extends FilterDtoSetter {
   options: FilterDtoType;
-  reset: () => void;
+  setOptions: (options: FilterDtoType) => void;
 }
 
-export function useFilterDto(filter?: FilterDto): UseFilterDtoType {
-  const [options, setOptions] = useState(filter ?? new FilterDto());
+export function useFilterResearchDto(filter?: FilterResearchDto): UseFilterResearchDtoType {
+  const [options, setOptions] = useState(filter ?? {});
 
   const setSearch = useCallback(
     (search: string | undefined) => {
@@ -63,23 +53,32 @@ export function useFilterDto(filter?: FilterDto): UseFilterDtoType {
   );
 
   const setOrderBy = useCallback(
-    (orderBy: { [key: string]: NestedOrderBy | OrderDirection } | undefined) => {
+    (
+      orderBy:
+        | { [key: string]: NestedOrderBy | OrderDirection }[]
+        | { [key: string]: NestedOrderBy | OrderDirection }
+        | undefined
+    ) => {
       setOptions({ ...options, orderBy });
     },
     [options]
   );
 
-  const reset = useCallback(() => {
-    setOptions(new FilterDto());
-  }, []);
+  const setType = useCallback(
+    (type: ("articles" | "links" | "images" | "videos" | "books") | undefined) => {
+      setOptions({ ...options, page: 1, type });
+    },
+    [options]
+  );
 
   return {
     options,
+    setOptions,
     setSearch,
     setDisablePagination,
     setPage,
     setItemsPerPage,
     setOrderBy,
-    reset,
+    setType,
   };
 }

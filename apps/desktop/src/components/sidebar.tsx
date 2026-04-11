@@ -22,6 +22,7 @@ import { indexRoute } from "../routes/index.routes";
 import { characterRoute } from "../routes/character/index.route";
 import { placeRoute } from "../routes/place/index.route";
 import { objectRoute } from "../routes/object/index.route";
+import { researchRoute } from "../routes/research/index.route";
 
 const menu = [
   { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
@@ -29,7 +30,7 @@ const menu = [
   { id: "places", label: "Lieux", icon: MapPin, path: placeRoute },
   { id: "objects", label: "Objets", icon: Package, path: objectRoute },
   { id: "chapters", label: "Chapitres", icon: BookOpen, path: characterRoute },
-  { id: "research", label: "Recherches", icon: Search, path: characterRoute },
+  { id: "research", label: "Recherches", icon: Search, path: researchRoute },
   { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
   { id: "timeline", label: "Chronologie", icon: Calendar, path: characterRoute },
   { id: "structure", label: "Structure", icon: Layers, path: characterRoute },

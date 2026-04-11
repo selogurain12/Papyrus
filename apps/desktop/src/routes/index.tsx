@@ -8,13 +8,14 @@ import { projectHomeRoute } from "./project/index.route";
 import { characterRoute } from "./character/index.route";
 import { placeRoute } from "./place/index.route";
 import { objectRoute } from "./object/index.route";
+import { researchRoute } from "./research/index.route";
 
 export const routeTree = rootRoute.addChildren([
   defaultLayoutRoute.addChildren([
     indexRoute,
     loginRoute,
     registerRoute,
-    projectHomeRoute.addChildren([characterRoute, placeRoute, objectRoute]),
+    projectHomeRoute.addChildren([characterRoute, placeRoute, objectRoute, researchRoute]),
   ]),
 ]);
 

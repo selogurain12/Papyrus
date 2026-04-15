@@ -14,6 +14,7 @@ import { relationshipContract } from "./relationship.contract";
 import { researchContract } from "./research.contract";
 import { settingContract } from "./setting.contract";
 import { userContract } from "./user.contract";
+import { s3Contract } from "./s3.contract";
 
 const contract = initContract();
 export const papyrusContract = contract.router({
@@ -30,6 +31,7 @@ export const papyrusContract = contract.router({
   project: projectContract,
   relationship: relationshipContract,
   research: researchContract,
+  s3: s3Contract,
   setting: settingContract,
   user: userContract,
 });

@@ -1,5 +1,6 @@
 import z from "zod";
 import { projectSchema } from "./project.dto";
+import { filterSchema } from "./filter.dto";
 
 export const createResearchSchema = z.object({
   title: z.string().min(1).max(100),
@@ -7,6 +8,7 @@ export const createResearchSchema = z.object({
   sources: z.string().min(1).max(1000).nullable(),
   tag: z.string().array().nullable(),
   note: z.string().min(1).max(1000).nullable(),
+  description: z.string().min(1).max(1000).nullable(),
   link: z.string().min(1).max(1000).nullable(),
   project: z.lazy(() => projectSchema),
 });
@@ -17,6 +19,11 @@ export const researchSchema = createResearchSchema.extend({
 
 export const updateResearchSchema = createResearchSchema.partial();
 
+export const filterResearchSchema = filterSchema.extend({
+  type: z.enum(["articles", "links", "images", "videos", "books"]).optional(),
+});
+
 export type CreateResearchDto = z.infer<typeof createResearchSchema>;
 export type ResearchDto = z.infer<typeof researchSchema>;
 export type UpdateResearchDto = z.infer<typeof updateResearchSchema>;
+export type FilterResearchDto = z.infer<typeof filterResearchSchema>;

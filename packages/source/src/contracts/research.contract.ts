@@ -1,7 +1,11 @@
 import { initContract } from "@ts-rest/core";
 import z from "zod";
-import { filterSchema } from "../dtos/filter.dto";
-import { researchSchema, createResearchSchema, updateResearchSchema } from "../dtos/research.dto";
+import {
+  researchSchema,
+  createResearchSchema,
+  updateResearchSchema,
+  filterResearchSchema,
+} from "../dtos/research.dto";
 import { neverDtoSchema } from "../dtos/delete-request.dto";
 import { idSchema } from "../dtos/id.dto";
 import { ListResultSchema } from "../dtos/list-result.dto";
@@ -33,7 +37,7 @@ export const researchContract = contrat.router(
       pathParams: z.object({
         projectId: z.string().uuid(),
       }),
-      query: filterSchema,
+      query: filterResearchSchema,
 
       responses: {
         200: ListResultSchema(researchSchema),
@@ -100,6 +104,6 @@ export const researchContract = contrat.router(
     },
   },
   {
-    pathPrefix: "/researchs",
+    pathPrefix: "/:projectId/researchs",
   }
 );

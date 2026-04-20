@@ -23,6 +23,7 @@ import { characterRoute } from "../routes/character/index.route";
 import { placeRoute } from "../routes/place/index.route";
 import { objectRoute } from "../routes/object/index.route";
 import { researchRoute } from "../routes/research/index.route";
+import { eventRoute } from "../routes/event/index.route";
 
 const menu = [
   { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
@@ -32,7 +33,7 @@ const menu = [
   { id: "chapters", label: "Chapitres", icon: BookOpen, path: characterRoute },
   { id: "research", label: "Recherches", icon: Search, path: researchRoute },
   { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
-  { id: "timeline", label: "Chronologie", icon: Calendar, path: characterRoute },
+  { id: "timeline", label: "Chronologie", icon: Calendar, path: eventRoute },
   { id: "structure", label: "Structure", icon: Layers, path: characterRoute },
   { id: "mind-maps", label: "Cartes mentales", icon: GitBranch, path: characterRoute },
   { id: "notes", label: "Notes", icon: StickyNote, path: characterRoute },

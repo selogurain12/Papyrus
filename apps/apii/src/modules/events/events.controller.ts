@@ -1,7 +1,7 @@
 import { Controller, UseGuards } from "@nestjs/common";
-import { AuthGuard } from "@nestjs/passport";
 import { tsRestHandler, TsRestHandler } from "@ts-rest/nest";
 import { eventContract } from "@papyrus/source";
+import { AuthGuard } from "../authentification/authentification.guard";
 import { EventService } from "./events.service";
 
 @Controller()

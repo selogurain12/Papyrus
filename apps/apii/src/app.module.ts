@@ -17,6 +17,7 @@ import { ResearchModule } from "./modules/research/research.module";
 import { SettingModule } from "./modules/settings/settings.module";
 import { UsersModule } from "./modules/users/users.module";
 import { S3Module } from "./modules/s3/s3.module";
+import { EventModule } from "./modules/events/events.module";
 
 @Module({
   imports: [
@@ -37,7 +38,7 @@ import { S3Module } from "./modules/s3/s3.module";
     AuthentificationModule,
     ChapterModule,
     CharacterModule,
-    // EventModule,
+    EventModule,
     MindmapModule,
     NoteModule,
     ObjectModule,

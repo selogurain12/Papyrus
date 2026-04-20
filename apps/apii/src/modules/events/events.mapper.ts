@@ -61,6 +61,7 @@ export class EventMapper {
       eventDate: parseZonedDateTime(createDto.eventDate).set({ second: 0, millisecond: 0 }),
       location: createDto.location,
       additionalDetails: createDto.additionalDetails,
+      importance: createDto.importance,
       project: projectEntity,
     });
     return result;
@@ -83,6 +84,7 @@ export class EventMapper {
           ? entity.eventDate
           : parseZonedDateTime(updateDto.eventDate).set({ second: 0, millisecond: 0 }),
       location: updateDto.location,
+      importance: updateDto.importance,
       additionalDetails: updateDto.additionalDetails,
     });
     return entity;

@@ -1,21 +1,12 @@
-import React, { type FC, type ReactNode } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 
 import { cn } from "../../../lib/utils";
 
-import { TimelineDot } from "./timeline-dot";
-import { TimelineContent } from "./timeline-content";
-
-interface TimelineItemProps {
-  children: ReactNode;
-  className?: string;
-}
-
-const timelineItem: FC<TimelineItemProps> = ({ children, className }) => (
-  <div className={cn("flex items-center", className)}>
-    <TimelineDot />
-    <TimelineContent>{children}</TimelineContent>
-  </div>
+const timelineItem = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, reference) => (
+    <div className={cn("flex", className)} ref={reference} {...props} />
+  )
 );
-timelineItem.displayName = "TimelineItem";
 
+timelineItem.displayName = "TimelineItem";
 export { timelineItem as TimelineItem };

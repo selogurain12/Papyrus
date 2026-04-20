@@ -1,14 +1,18 @@
-import React, { type FC, type ReactNode } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 
 import { cn } from "../../../lib/utils";
 
-interface TimelineContentProps {
-  children: ReactNode;
-}
-
-const timelineContent: FC<TimelineContentProps> = ({ children }) => (
-  <div className={cn("ml-4")}>{children}</div>
+const timelineContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, reference) => (
+    <div
+      className={cn(
+        "flex flex-col gap-1 md:gap-zoom-1 pb-6 md:pb-zoom-6 pl-4 md:pl-zoom-4",
+        className
+      )}
+      ref={reference}
+      {...props}
+    />
+  )
 );
 timelineContent.displayName = "TimelineContent";
-
 export { timelineContent as TimelineContent };

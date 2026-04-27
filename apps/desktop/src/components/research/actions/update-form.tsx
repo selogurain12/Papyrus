@@ -75,7 +75,6 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
         fileUrl = res.body.url;
       }
 
-      // if user removed existingLink and didn't provide a new file or link, ensure null
       if (!file && data.link === undefined && existingLink === null) {
         fileUrl = null;
       }

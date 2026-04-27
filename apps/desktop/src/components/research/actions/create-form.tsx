@@ -21,8 +21,6 @@ import { Book, BookOpen, FileText, Globe, Target, Video, Image } from "lucide-re
 import { CreateResearchDto, createResearchSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
 import { useProject } from "../../../context/project-provider";
-// RadioGroup and Label are not required; we use custom styled radio buttons.
-
 import { Textarea } from "../../ui/textarea";
 import { Separator } from "../../ui/separator";
 import { FileUpload } from "../../ui/file-attachment";

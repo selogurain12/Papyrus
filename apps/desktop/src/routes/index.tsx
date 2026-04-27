@@ -10,6 +10,7 @@ import { placeRoute } from "./place/index.route";
 import { objectRoute } from "./object/index.route";
 import { researchRoute } from "./research/index.route";
 import { eventRoute } from "./event/index.route";
+import { noteRoute } from "./note/index.route";
 
 export const routeTree = rootRoute.addChildren([
   defaultLayoutRoute.addChildren([
@@ -22,6 +23,7 @@ export const routeTree = rootRoute.addChildren([
       objectRoute,
       researchRoute,
       eventRoute,
+      noteRoute,
     ]),
   ]),
 ]);

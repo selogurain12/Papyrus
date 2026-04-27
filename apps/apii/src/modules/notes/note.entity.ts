@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { ZonedDateTime } from "@internationalized/date";
+import { now, ZonedDateTime } from "@internationalized/date";
 import {
   Entity,
   ManyToOne,
@@ -28,10 +28,16 @@ export class NoteEntity {
   @Property({ type: "array", nullable: true })
   public tags: string[] | null = null;
 
-  @Property({ type: ZonedDateTimeType })
+  @Property({ type: "text", nullable: true })
+  public linkFile: string | null = null;
+
+  @Property({ type: "string" })
+  public color: string;
+
+  @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
 
-  @Property({ type: ZonedDateTimeType, nullable: true })
+  @Property({ type: ZonedDateTimeType, nullable: true, onUpdate: () => now("UTC") })
   public updatedAt: ZonedDateTime | null = null;
 
   @Property({ type: ZonedDateTimeType, nullable: true })
@@ -43,11 +49,15 @@ export class NoteEntity {
   public constructor(parameters: {
     title: string;
     content: string | null;
+    linkFile: string | null;
+    color: string;
     project: ProjectEntity;
     tags: string[] | null;
   }) {
     this.title = parameters.title;
     this.content = parameters.content;
+    this.linkFile = parameters.linkFile;
+    this.color = parameters.color;
     this.project = ref(parameters.project);
     this.tags = parameters.tags;
   }

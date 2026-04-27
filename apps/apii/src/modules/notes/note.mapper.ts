@@ -18,7 +18,7 @@ export class NoteMapper {
     projectId: string,
     em: EntityManager
   ): Promise<NoteDto> {
-    const projectEntity = await em.getRepository(ProjectEntity).findOne({ id: entity.id });
+    const projectEntity = await em.getRepository(ProjectEntity).findOne({ id: projectId });
     if (!projectEntity) {
       throw new NotFoundError(`ProjectEntity with id ${projectId} not found`);
     }
@@ -27,6 +27,8 @@ export class NoteMapper {
       title: entity.title,
       content: entity.content,
       tags: entity.tags,
+      linkFile: entity.linkFile,
+      color: entity.color,
       project: await this.projectMapper.entityToDto(projectEntity, em),
     };
   }
@@ -54,6 +56,8 @@ export class NoteMapper {
       title: createDto.title,
       content: createDto.content,
       tags: createDto.tags,
+      linkFile: createDto.linkFile,
+      color: createDto.color,
       project: projectEntity,
     });
   }
@@ -70,6 +74,8 @@ export class NoteMapper {
     return em.assign(entity, {
       title: updateDto.title,
       content: updateDto.content,
+      linkFile: updateDto.linkFile,
+      color: updateDto.color,
       tags: updateDto.tags,
     });
   }

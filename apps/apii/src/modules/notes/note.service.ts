@@ -57,7 +57,7 @@ export class NoteService {
       createdAt: "DESC",
     };
 
-    const qb = em.qb(NoteEntity).where({ project: { id: projectId } });
+    const qb = em.qb(NoteEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
     const [items, total] = await qb
       .orderBy(orderBy)
       .limit(limit)
@@ -87,7 +87,7 @@ export class NoteService {
         });
       }
       const item = await this.noteMapper.createDtoToEntity(parameters, projectId, em);
-      await em.persist(item).flush();
+      em.persist(item);
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.noteMapper.entityToDto(item, projectId, em);
@@ -161,10 +161,10 @@ export class NoteService {
     try {
       const repository = em.getRepository(NoteEntity);
       const existingEntity = await repository.findOne({
-        $and: [{ id: id }, { project: { id: { $eq: projectId } } }, { deletedAt: null }],
+        $and: [{ id }, { deletedAt: { $eq: null }, project: { id: projectId } }],
       });
       if (!existingEntity) {
-        throw new TsRestException(noteContract.delete, {
+        throw new TsRestException(noteContract.softDelete, {
           status: 404,
 
           body: {
@@ -174,7 +174,7 @@ export class NoteService {
         });
       }
       existingEntity.deletedAt = fromDate(new Date(), "UTC");
-      em.persist(existingEntity);
+      await em.persist(existingEntity).flush();
       await em.commit();
     } catch (error) {
       await em.rollback();

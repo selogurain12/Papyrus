@@ -6,6 +6,8 @@ export const createNoteSchema = z.object({
   content: z.string().min(1).max(1000).nullable(),
   tags: z.string().array().nullable(),
   project: projectSchema,
+  color: z.string().min(1).max(20),
+  linkFile: z.string().nullable(),
 });
 
 export const noteSchema = createNoteSchema.extend({

@@ -2,7 +2,6 @@ import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { ArchitectureModule } from "./modules/architecture/architecture.module";
 import { AuthentificationModule } from "./modules/authentification/authentification.module";
 import { ChapterModule } from "./modules/chapters/chapters.module";
 import { CharacterModule } from "./modules/characters/characters.module";
@@ -18,6 +17,7 @@ import { SettingModule } from "./modules/settings/settings.module";
 import { UsersModule } from "./modules/users/users.module";
 import { S3Module } from "./modules/s3/s3.module";
 import { EventModule } from "./modules/events/events.module";
+import { StructureModule } from "./modules/structure/structure.module";
 
 @Module({
   imports: [
@@ -34,7 +34,6 @@ import { EventModule } from "./modules/events/events.module";
       driver: PostgreSqlDriver,
       allowGlobalContext: true,
     }),
-    ArchitectureModule,
     AuthentificationModule,
     ChapterModule,
     CharacterModule,
@@ -50,6 +49,7 @@ import { EventModule } from "./modules/events/events.module";
     SettingModule,
     UsersModule,
     S3Module,
+    StructureModule,
   ],
 })
 export class AppModule {}

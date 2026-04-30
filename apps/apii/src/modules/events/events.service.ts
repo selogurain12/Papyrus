@@ -96,7 +96,7 @@ export class EventService {
         });
       }
       const item = await this.eventsMapper.createDtoToEntity(parameters, projectId, em);
-      await em.persist(item).flush();
+      em.persist(item);
       await em.commit();
       return await this.eventsMapper.entityToDto(item, projectId, em);
     } catch (error) {

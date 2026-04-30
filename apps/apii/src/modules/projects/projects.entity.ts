@@ -23,8 +23,8 @@ import { EventEntity } from "../events/events.entity";
 import { ResearchEntity } from "../research/research.entity";
 import { NoteEntity } from "../notes/note.entity";
 import { MindmapEntity } from "../mindmaps/mindmap.entity";
-import { ArchitectureEntity } from "../architecture/architecture.entity";
 import { PartEntity } from "../part/part.entity";
+import { StructureEntity } from "../structure/structure.entity";
 
 @Entity()
 export class ProjectEntity {
@@ -63,6 +63,9 @@ export class ProjectEntity {
   @ManyToOne(() => SettingEntity, { ref: true, deleteRule: "cascade" })
   public settings: Ref<SettingEntity>;
 
+  @ManyToOne(() => StructureEntity, { ref: true, deleteRule: "cascade" })
+  public structure: Ref<StructureEntity>;
+
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
 
@@ -74,9 +77,6 @@ export class ProjectEntity {
 
   @ManyToOne(() => UserEntity, { ref: true })
   public user!: Ref<UserEntity>;
-
-  @OneToMany(() => ArchitectureEntity, (architecture) => architecture.project)
-  public architectures = new Collection<ArchitectureEntity>(this);
 
   @OneToMany(() => ChapterEntity, (chapter) => chapter.project)
   public chapters = new Collection<ChapterEntity>(this);
@@ -116,6 +116,7 @@ export class ProjectEntity {
     language: LanguageType;
     deadline: ZonedDateTime | null;
     settings: SettingEntity;
+    structure: StructureEntity;
     user: UserEntity;
   }) {
     this.title = parameters.title;
@@ -128,6 +129,7 @@ export class ProjectEntity {
     this.language = parameters.language;
     this.deadline = parameters.deadline;
     this.settings = ref(parameters.settings);
+    this.structure = ref(parameters.structure);
     this.user = ref(parameters.user);
   }
 }

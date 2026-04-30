@@ -6,6 +6,8 @@ import { UserEntity } from "../users/users.entity";
 import { UserMapper } from "../users/users.mapper";
 import { SettingEntity } from "../settings/settings.entity";
 import { SettingMapper } from "../settings/settings.mapper";
+import { StructureMapper } from "../structure/structure.mapper";
+import { StructureEntity } from "../structure/structure.entity";
 import { ProjectEntity } from "./projects.entity";
 
 @Injectable()
@@ -14,9 +16,16 @@ export class ProjectMapper {
 
   private readonly settingsMapper: SettingMapper;
 
-  public constructor(userMapper: UserMapper, settingsMapper: SettingMapper) {
+  private readonly structureMapper: StructureMapper;
+
+  public constructor(
+    userMapper: UserMapper,
+    settingsMapper: SettingMapper,
+    structureMapper: StructureMapper
+  ) {
     this.userMapper = userMapper;
     this.settingsMapper = settingsMapper;
+    this.structureMapper = structureMapper;
   }
 
   public async entityToDto(entity: ProjectEntity, em: EntityManager): Promise<ProjectDto> {
@@ -32,6 +41,14 @@ export class ProjectMapper {
     }
     const settingsDto = this.settingsMapper.entityToDto(settingEntity);
 
+    const structureEntity = await em
+      .getRepository(StructureEntity)
+      .findOne({ id: entity.structure.id });
+    if (!structureEntity) {
+      throw new NotFoundError(`StructureEntity with id ${entity.structure.id} not found`);
+    }
+    const structureDto = this.structureMapper.entityToDto(structureEntity);
+
     return {
       id: entity.id,
       title: entity.title,
@@ -45,6 +62,7 @@ export class ProjectMapper {
       deadline: entity.deadline ? entity.deadline.toString() : null,
       settings: settingsDto,
       user: userDto,
+      structure: structureDto,
     };
   }
 
@@ -70,6 +88,7 @@ export class ProjectMapper {
         ? parseZonedDateTime(createDto.deadline).set({ second: 0, millisecond: 0 })
         : null,
       settings: this.settingsMapper.createDtoToEntity(),
+      structure: this.structureMapper.createDtoToEntity(),
       user: userEntity,
     });
   }

@@ -4,6 +4,7 @@ import { isZonedIso8601 } from "../utils/zoned-iso";
 import { settingSchema } from "./setting.dto";
 import { userSchema } from "./user.dto";
 import { filterSchema } from "./filter.dto";
+import { structureSchema } from "./structure.dto";
 
 export const createProjectSchema = z.object({
   title: z
@@ -41,6 +42,7 @@ export const createProjectSchema = z.object({
 export const projectSchema = createProjectSchema.extend({
   id: z.string().uuid("Le format de l'id du projet est invalide"),
   settings: z.lazy(() => settingSchema),
+  structure: z.lazy(() => structureSchema),
 });
 
 export const updateProjectSchema = createProjectSchema.partial();

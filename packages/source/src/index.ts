@@ -3,7 +3,6 @@ import "reflect-metadata";
 export * from "./utils/languages.enum";
 export * from "./utils/zoned-iso";
 export * from "./dtos/api-response.dto";
-export * from "./dtos/architecture.dto";
 export * from "./dtos/chapter.dto";
 export * from "./dtos/character.dto";
 export * from "./dtos/event.dto";
@@ -20,8 +19,8 @@ export * from "./dtos/setting.dto";
 export * from "./dtos/user.dto";
 export * from "./dtos/list-result.dto";
 export * from "./dtos/filter.dto";
+export * from "./dtos/structure.dto";
 
-export * from "./contracts/architecture.contract";
 export * from "./contracts/chapter.contract";
 export * from "./contracts/character.contract";
 export * from "./contracts/event.contract";
@@ -38,5 +37,6 @@ export * from "./contracts/auth.contract";
 export * from "./contracts/user.contract";
 export * from "./contracts/index.contract";
 export * from "./contracts/s3.contract";
+export * from "./contracts/structure.contract";
 
 export * from "./query-client";

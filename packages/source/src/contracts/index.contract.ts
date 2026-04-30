@@ -1,5 +1,4 @@
 import { initContract } from "@ts-rest/core";
-import { architectureContract } from "./architecture.contract";
 import { authContract } from "./auth.contract";
 import { chapterContract } from "./chapter.contract";
 import { characterContract } from "./character.contract";
@@ -15,10 +14,10 @@ import { researchContract } from "./research.contract";
 import { settingContract } from "./setting.contract";
 import { userContract } from "./user.contract";
 import { s3Contract } from "./s3.contract";
+import { structureContract } from "./structure.contract";
 
 const contract = initContract();
 export const papyrusContract = contract.router({
-  architecture: architectureContract,
   authentification: authContract,
   chapter: chapterContract,
   character: characterContract,
@@ -33,5 +32,6 @@ export const papyrusContract = contract.router({
   research: researchContract,
   s3: s3Contract,
   setting: settingContract,
+  structure: structureContract,
   user: userContract,
 });

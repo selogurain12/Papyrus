@@ -25,6 +25,7 @@ import { objectRoute } from "../routes/object/index.route";
 import { researchRoute } from "../routes/research/index.route";
 import { eventRoute } from "../routes/event/index.route";
 import { noteRoute } from "../routes/note/index.route";
+import { structureRoute } from "../routes/structure/index.routes";
 
 const menu = [
   { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
@@ -35,7 +36,7 @@ const menu = [
   { id: "research", label: "Recherches", icon: Search, path: researchRoute },
   { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
   { id: "timeline", label: "Chronologie", icon: Calendar, path: eventRoute },
-  { id: "structure", label: "Structure", icon: Layers, path: characterRoute },
+  { id: "structure", label: "Structure", icon: Layers, path: structureRoute },
   { id: "mind-maps", label: "Cartes mentales", icon: GitBranch, path: characterRoute },
   { id: "notes", label: "Notes", icon: StickyNote, path: noteRoute },
   { id: "export", label: "Export", icon: Download, path: characterRoute },

@@ -15,8 +15,16 @@
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["electron", "node", "vite/client"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "electron",
+      "node",
+      "vite/client"
+    ],
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -33,5 +41,6 @@
     "node_modules",
     "dist",
     ".vite"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

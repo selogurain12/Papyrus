@@ -27,6 +27,12 @@
       "options": {
         "command": "yarn mikro-orm migration:up --config apps/apii/src/mikro-orm.config.ts"
       }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit -p apps/apii/tsconfig.app.json"
+      }
     }
   }
 }

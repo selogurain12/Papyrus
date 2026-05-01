@@ -9740,6 +9740,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/datetimepicker@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "@react-native-community/datetimepicker@npm:9.1.0"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    expo: ">=52.0.0"
+    react: "*"
+    react-native: "*"
+    react-native-windows: "*"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+    react-native-windows:
+      optional: true
+  checksum: 10c0/3f31baec58c1245204a9b4057809027019aa1abb4b8caea4cb4d44ab70f5a97dfe5114a8aa315299aa47ad31971059181c355aa056d9c3a14b7892582da9f4cb
+  languageName: node
+  linkType: hard
+
 "@react-native-community/eslint-config@npm:^3.2.0":
   version: 3.2.0
   resolution: "@react-native-community/eslint-config@npm:3.2.0"
@@ -10241,32 +10260,6 @@ __metadata:
     react-redux:
       optional: true
   checksum: 10c0/4d388b96dc4b12a577af23607c252b3647c1b3b5136dbb0212e1dbbef9bb309e93d3ba6a95795ee165e87e4286453025cd67a98b5b3bb6d244b93ea487dd1ac0
-  languageName: node
-  linkType: hard
-
-"@rneui/base@npm:^4.0.0-rc.8":
-  version: 4.0.0-rc.8
-  resolution: "@rneui/base@npm:4.0.0-rc.8"
-  dependencies:
-    "@types/react-native-vector-icons": "npm:^6.4.10"
-    color: "npm:^3.2.1"
-    deepmerge: "npm:^4.2.2"
-    hoist-non-react-statics: "npm:^3.3.2"
-    react-native-ratings: "npm:^8.1.0"
-    react-native-size-matters: "npm:^0.4.0"
-  peerDependencies:
-    react-native-safe-area-context: ">= 3.0.0"
-    react-native-vector-icons: ">7.0.0"
-  checksum: 10c0/9b1bcaf98bb93b85c3112aadeef261b50cb8ffcf18f321897d53735a69648eb1b8074cf19fa42b0a821af00b3161e5282f811e8fc66a8f2a1b1fb3ee2e7857d0
-  languageName: node
-  linkType: hard
-
-"@rneui/themed@npm:^4.0.0-rc.8":
-  version: 4.0.0-rc.8
-  resolution: "@rneui/themed@npm:4.0.0-rc.8"
-  peerDependencies:
-    "@rneui/base": 4.0.0-rc.7
-  checksum: 10c0/3842767c96d1bbbfd4e34b8d204aa2f110dda300d85f22a836d584e94daed49c056b674209fd8b2ad600fd9c55967ea08e6976819e1708a7748449dfaa26ebfa
   languageName: node
   linkType: hard
 
@@ -12835,40 +12828,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-native-vector-icons@npm:^6.4.10":
-  version: 6.4.18
-  resolution: "@types/react-native-vector-icons@npm:6.4.18"
-  dependencies:
-    "@types/react": "npm:*"
-    "@types/react-native": "npm:^0.70"
-  checksum: 10c0/b27f2295c5baaba9ce2ff9ade6e505e4d1fe4f40a628df13dc26d0e1b3ccee9775846f3613a443d91cfe86844703b81e9e64a10cc4b7fac1edfde96cb82c893b
-  languageName: node
-  linkType: hard
-
-"@types/react-native@npm:^0.70":
-  version: 0.70.19
-  resolution: "@types/react-native@npm:0.70.19"
-  dependencies:
-    "@types/react": "npm:*"
-  checksum: 10c0/09a5191dd0f3b85abfa8939df585860ba11a666d888846c7fd7d8d5d1cd72a39224e154403f90a5b82f1dc6c896fa3447e4f5061b2d3e102d0ce798e559d7f13
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:*, @types/react@npm:^19.1.0, @types/react@npm:^19.1.9":
+"@types/react@npm:^19.1.0, @types/react@npm:^19.1.9":
   version: 19.2.14
   resolution: "@types/react@npm:19.2.14"
   dependencies:
     csstype: "npm:^3.2.2"
   checksum: 10c0/7d25bf41b57719452d86d2ac0570b659210402707313a36ee612666bf11275a1c69824f8c3ee1fdca077ccfe15452f6da8f1224529b917050eb2d861e52b59b7
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:~19.1.0":
-  version: 19.1.17
-  resolution: "@types/react@npm:19.1.17"
-  dependencies:
-    csstype: "npm:^3.0.2"
-  checksum: 10c0/8a8369ea00fc961f0884be4d1da4a039b2b6445de9c8b690ed0ebe15acfb0b1f27005278fef1fe39a1722a30f4415778b790d0089e2b30019371c61355ea316f
   languageName: node
   linkType: hard
 
@@ -15827,7 +15792,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-convert@npm:^1.9.0, color-convert@npm:^1.9.3":
+"color-convert@npm:^1.9.0":
   version: 1.9.3
   resolution: "color-convert@npm:1.9.3"
   dependencies:
@@ -15859,7 +15824,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-string@npm:^1.6.0, color-string@npm:^1.9.0":
+"color-string@npm:^1.9.0":
   version: 1.9.1
   resolution: "color-string@npm:1.9.1"
   dependencies:
@@ -15875,16 +15840,6 @@ __metadata:
   bin:
     color-support: bin.js
   checksum: 10c0/8ffeaa270a784dc382f62d9be0a98581db43e11eee301af14734a6d089bd456478b1a8b3e7db7ca7dc5b18a75f828f775c44074020b51c05fc00e6d0992b1cc6
-  languageName: node
-  linkType: hard
-
-"color@npm:^3.2.1":
-  version: 3.2.1
-  resolution: "color@npm:3.2.1"
-  dependencies:
-    color-convert: "npm:^1.9.3"
-    color-string: "npm:^1.6.0"
-  checksum: 10c0/39345d55825884c32a88b95127d417a2c24681d8b57069413596d9fcbb721459ef9d9ec24ce3e65527b5373ce171b73e38dbcd9c830a52a6487e7f37bf00e83c
   languageName: node
   linkType: hard
 
@@ -16860,7 +16815,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2, csstype@npm:^3.2.2":
+"csstype@npm:^3.2.2":
   version: 3.2.3
   resolution: "csstype@npm:3.2.3"
   checksum: 10c0/cd29c51e70fa822f1cecd8641a1445bed7063697469d35633b516e60fe8c1bde04b08f6c5b6022136bb669b64c63d4173af54864510fbb4ee23281801841a3ce
@@ -17364,7 +17319,9 @@ __metadata:
     eslint-plugin-import: "npm:^2.32.0"
     globals: "npm:^16.3.0"
     lucide-react: "npm:^0.539.0"
+    mind-elixir: "npm:^5.11.0"
     motion: "npm:^12.23.12"
+    postcss: "npm:^8.4.35"
     react: "npm:^19.2.4"
     react-day-picker: "npm:^9.8.1"
     react-dom: "npm:^19.1.1"
@@ -19221,6 +19178,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-secure-store@npm:^55.0.13":
+  version: 55.0.13
+  resolution: "expo-secure-store@npm:55.0.13"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/0f51e54070cab2e02094ade6b343c59c19a82d59fc637e9c3a40e9362eb0e8f2bdba80345b81fc7c337c43d766bbda6a0ea07ad2dd800e3f7da2ab1e6d6fb98e
+  languageName: node
+  linkType: hard
+
 "expo-server@npm:^1.0.5":
   version: 1.0.5
   resolution: "expo-server@npm:1.0.5"
@@ -19269,7 +19235,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-status-bar@npm:~3.0.8, expo-status-bar@npm:~3.0.9":
+"expo-status-bar@npm:~3.0.8":
   version: 3.0.9
   resolution: "expo-status-bar@npm:3.0.9"
   dependencies:
@@ -19363,7 +19329,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo@npm:~54.0.0, expo@npm:~54.0.31":
+"expo@npm:~54.0.0":
   version: 54.0.33
   resolution: "expo@npm:54.0.33"
   dependencies:
@@ -20983,15 +20949,6 @@ __metadata:
   dependencies:
     hermes-estree: "npm:0.33.3"
   checksum: 10c0/f7d69de54c77321d8481e37a323bbac01d180ec982275ef8925ceaaf7e501fc3062593e84cf5da50852f36daffb34d0f5d6cbbef079fd0125a7b91c1fe84f225
-  languageName: node
-  linkType: hard
-
-"hoist-non-react-statics@npm:^3.3.2":
-  version: 3.3.2
-  resolution: "hoist-non-react-statics@npm:3.3.2"
-  dependencies:
-    react-is: "npm:^16.7.0"
-  checksum: 10c0/fe0889169e845d738b59b64badf5e55fa3cf20454f9203d1eb088df322d49d4318df774828e789898dcb280e8a5521bb59b3203385662ca5e9218a6ca5820e74
   languageName: node
   linkType: hard
 
@@ -24111,14 +24068,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react-native@npm:^1.8.0":
-  version: 1.8.0
-  resolution: "lucide-react-native@npm:1.8.0"
+"lucide-react-native@npm:^1.14.0":
+  version: 1.14.0
+  resolution: "lucide-react-native@npm:1.14.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-native: "*"
     react-native-svg: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
-  checksum: 10c0/3a04b9c2d8bf91c23a4c5ff64be4b27dbbc82df093e1a9c363d9ea7936e417a780a1226c84365ff2da32b90a9ecf73aaa1d7631421c66ba79299ffec6631f996
+  checksum: 10c0/3786a33be5c6c8e01935a5e28a6e6ec86bbb92595c6873c8caccc7e3f4bc7c74d5c987127e0435054df4374236eb330fec8315443af1bb5cc741ad803106069a
   languageName: node
   linkType: hard
 
@@ -25249,6 +25206,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mind-elixir@npm:^5.11.0":
+  version: 5.11.0
+  resolution: "mind-elixir@npm:5.11.0"
+  checksum: 10c0/2e3540ea2898d1ea9aea0db7e9624b97cdb761e1c75c5cac9e5e76c79711874aef9632a52aeb4bc550d2d6b9761e22879347e6bbf6ae6436316a092c406cff92
+  languageName: node
+  linkType: hard
+
 "mini-css-extract-plugin@npm:~2.4.7":
   version: 2.4.7
   resolution: "mini-css-extract-plugin@npm:2.4.7"
@@ -25480,19 +25444,21 @@ __metadata:
   dependencies:
     "@expo/metro-config": "npm:*"
     "@react-native-async-storage/async-storage": "npm:^3.0.2"
+    "@react-native-community/datetimepicker": "npm:^9.1.0"
     "@react-navigation/native": "npm:^7.2.2"
     "@react-navigation/native-stack": "npm:^7.14.10"
     "@testing-library/react-native": "npm:*"
     "@types/node": "npm:^25.5.2"
     expo: "npm:*"
+    expo-secure-store: "npm:^55.0.13"
     expo-splash-screen: "npm:*"
     expo-status-bar: "npm:*"
     expo-system-ui: "npm:*"
     jest-expo: "npm:*"
-    lucide-react-native: "npm:^1.8.0"
+    lucide-react-native: "npm:^1.14.0"
     metro-config: "npm:*"
     metro-resolver: "npm:*"
-    react: "npm:19.2.0"
+    react: "npm:19.2.4"
     react-native: "npm:0.83.4"
     react-native-safe-area-context: "npm:^5.7.0"
     react-native-screens: "npm:^4.24.0"
@@ -28345,6 +28311,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss@npm:^8.4.35":
+  version: 8.5.13
+  resolution: "postcss@npm:8.5.13"
+  dependencies:
+    nanoid: "npm:^3.3.11"
+    picocolors: "npm:^1.1.1"
+    source-map-js: "npm:^1.2.1"
+  checksum: 10c0/3aa7c8cbdfbfd99b34406a433cef56d164dd135fc9cb9e63d487cc363291f877a55ec7b8ff6ec15348c17c2d98a43be46bfad671e6340403041a3e79f70c2f2f
+  languageName: node
+  linkType: hard
+
 "postcss@npm:~8.4.32":
   version: 8.4.49
   resolution: "postcss@npm:8.4.49"
@@ -28870,7 +28847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.13.1, react-is@npm:^16.7.0":
+"react-is@npm:^16.13.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
@@ -28908,18 +28885,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-ratings@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "react-native-ratings@npm:8.1.0"
-  dependencies:
-    lodash: "npm:^4.17.15"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 10c0/e1b3d20a92025705cc5a3cc47e04e74c71ba0ab1621398b87334a9d6fa4714a051f0d05f7358e1dab81c3a0c6501f255ac345af17df952c458238e7e6b5de233
-  languageName: node
-  linkType: hard
-
 "react-native-safe-area-context@npm:^5.7.0":
   version: 5.7.0
   resolution: "react-native-safe-area-context@npm:5.7.0"
@@ -28940,15 +28905,6 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/49299e694ed20cf5a8c0f86702eb77df03f5b7353d9b73e7415bb593ac5ff3aa4dfe76b1e9d8efb0fd926917e507f02f13e0a8791c8833910080454b66d99943
-  languageName: node
-  linkType: hard
-
-"react-native-size-matters@npm:^0.4.0":
-  version: 0.4.2
-  resolution: "react-native-size-matters@npm:0.4.2"
-  peerDependencies:
-    react-native: "*"
-  checksum: 10c0/56715d33d02f10d4ca358761420cc9a971b3872c11b9fa403afd4f0b2bbf74148fd3c4c799959727fb61c576a474e3e1155ffadc247c12d70fadcb562b4a9f29
   languageName: node
   linkType: hard
 
@@ -29249,21 +29205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.1.0":
-  version: 19.1.0
-  resolution: "react@npm:19.1.0"
-  checksum: 10c0/530fb9a62237d54137a13d2cfb67a7db6a2156faed43eecc423f4713d9b20c6f2728b026b45e28fcd72e8eadb9e9ed4b089e99f5e295d2f0ad3134251bdd3698
-  languageName: node
-  linkType: hard
-
-"react@npm:19.2.0":
-  version: 19.2.0
-  resolution: "react@npm:19.2.0"
-  checksum: 10c0/1b6d64eacb9324725bfe1e7860cb7a6b8a34bc89a482920765ebff5c10578eb487e6b46b2f0df263bd27a25edbdae2c45e5ea5d81ae61404301c1a7192c38330
-  languageName: node
-  linkType: hard
-
-"react@npm:^19.1.0, react@npm:^19.2.4":
+"react@npm:19.2.4, react@npm:^19.1.0, react@npm:^19.2.4":
   version: 19.2.4
   resolution: "react@npm:19.2.4"
   checksum: 10c0/cd2c9ff67a720799cc3b38a516009986f7fc4cb8d3e15716c6211cf098d1357ee3e348ab05ad0600042bbb0fd888530ba92e329198c92eafa0994f5213396596
@@ -33588,21 +33530,6 @@ __metadata:
   checksum: 10c0/bbc8c233388a0eb8a40786ee2e30d35935cacbfe26ab188b3e020987e85d519c2009fe07cfc37b7f718b85afdba7e54654c9153e6697301f72561bfe429177e0
   languageName: node
   linkType: hard
-
-"webui_mobile@workspace:apps/webui_mobile":
-  version: 0.0.0-use.local
-  resolution: "webui_mobile@workspace:apps/webui_mobile"
-  dependencies:
-    "@rneui/base": "npm:^4.0.0-rc.8"
-    "@rneui/themed": "npm:^4.0.0-rc.8"
-    "@types/react": "npm:~19.1.0"
-    expo: "npm:~54.0.31"
-    expo-status-bar: "npm:~3.0.9"
-    react: "npm:19.1.0"
-    react-native: "npm:0.81.5"
-    typescript: "npm:~5.9.2"
-  languageName: unknown
-  linkType: soft
 
 "whatwg-encoding@npm:^2.0.0":
   version: 2.0.0

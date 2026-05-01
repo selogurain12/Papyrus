@@ -30,7 +30,7 @@
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5",
     "@types/multer": "^2",
-    "@types/node": "~18.16.9",
+    "@types/node": "20.12.7",
     "@types/react": "^19.1.0",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
@@ -52,14 +52,15 @@
     "metro-resolver": "~0.83.0",
     "nx": "21.3.11",
     "prettier": "~3.6.2",
+    "react-refresh": "^0.14.0",
     "ts-node": "^10.9.2",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
     "typescript-eslint": "^8.39.1",
-    "webpack-cli": "^5.1.4",
     "vite": "^5.2.0",
     "vitest": "^1.5.0",
-    "webpack": "^5.90.0"
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4"
   },
   "engines": {
     "node": "22.21.1"
@@ -113,5 +114,9 @@
     "react-native-web": "~0.21.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
+  },
+  "resolutions": {
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   }
 }

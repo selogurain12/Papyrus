@@ -2,26 +2,31 @@
   "name": "apii",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/apii/src",
+  "root": "apps/apii",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/nest:build",
       "options": {
-        "command": "nest build apii"
+        "outputPath": "dist/apps/apii",
+        "main": "apps/apii/src/main.ts",
+        "tsConfig": "apps/apii/tsconfig.app.json",
+        "assets": ["apps/apii/src/assets"]
       }
     },
     "serve": {
-      "executor": "nx:run-commands",
+      "executor": "@nx/nest:serve",
       "options": {
-        "command": "nest start apii --watch"
+        "buildTarget": "apii:build",
+        "watch": true
       }
     },
     "migration": {
-    "executor": "nx:run-commands",
-    "options": {
-      "command": "yarn mikro-orm migration:create --config apps/apii/src/mikro-orm.config.ts"
-    }
-  },
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn mikro-orm migration:create --config apps/apii/src/mikro-orm.config.ts"
+      }
+    },
     "migrate:up": {
       "executor": "nx:run-commands",
       "options": {

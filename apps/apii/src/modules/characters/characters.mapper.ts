@@ -144,6 +144,8 @@ export class CharacterMapper {
       throw new NotFoundError(`CharacterEntity with id ${id} not found`);
     }
     return em.assign(entity, {
+      roleStar: updateDto.roleStar,
+      role: updateDto.role,
       firstName: updateDto.firstName,
       lastName: updateDto.lastName,
       nickName: updateDto.nickName,

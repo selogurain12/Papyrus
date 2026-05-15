@@ -54,8 +54,8 @@ export class ProjectEntity {
   @Property({ type: "string" })
   public author: string;
 
-  @Property({ type: "array" })
-  public tags: string[];
+  @Property({ type: "array", nullable: true })
+  public tags: string[] | null;
 
   @Property({ default: "fr", type: "string" })
   public language: LanguageType;
@@ -121,7 +121,7 @@ export class ProjectEntity {
     settings: SettingEntity;
     structure: StructureEntity;
     user: UserEntity;
-    tags: string[];
+    tags: string[] | null;
   }) {
     this.title = parameters.title;
     this.description = parameters.description;
@@ -135,6 +135,6 @@ export class ProjectEntity {
     this.settings = ref(parameters.settings);
     this.structure = ref(parameters.structure);
     this.user = ref(parameters.user);
-    this.tags = parameters.tags;
+    this.tags = parameters.tags ?? [];
   }
 }

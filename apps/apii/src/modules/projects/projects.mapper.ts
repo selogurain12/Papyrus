@@ -63,7 +63,7 @@ export class ProjectMapper {
       settings: settingsDto,
       user: userDto,
       structure: structureDto,
-      tags: entity.tags,
+      tags: entity.tags ?? [],
     };
   }
 

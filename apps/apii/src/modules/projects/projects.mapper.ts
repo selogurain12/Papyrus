@@ -63,6 +63,7 @@ export class ProjectMapper {
       settings: settingsDto,
       user: userDto,
       structure: structureDto,
+      tags: entity.tags,
     };
   }
 
@@ -90,6 +91,7 @@ export class ProjectMapper {
       settings: this.settingsMapper.createDtoToEntity(),
       structure: this.structureMapper.createDtoToEntity(),
       user: userEntity,
+      tags: createDto.tags ?? [],
     });
   }
 
@@ -107,6 +109,7 @@ export class ProjectMapper {
       status,
       language,
       deadline,
+      tags,
     } = updateDto;
 
     return em.assign(entity, {
@@ -117,6 +120,7 @@ export class ProjectMapper {
       currentWordCount,
       status,
       language,
+      tags,
       deadline:
         deadline === null || deadline === undefined
           ? deadline

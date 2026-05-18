@@ -16,15 +16,26 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
+  const allowedOrigins = [
+    "http://localhost:5173/",
+    "http://localhost:8081/",
+    "http://127.0.0.1:8081/",
+  ];
+
   app.enableCors({
-    origin: ["http://localhost:5173", "http://localhost:8081"],
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   });
 
   app.use((req: Request, res: Response, next: NextFunction) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+    const origin = req.headers.origin;
+
+    if (origin && allowedOrigins.includes(origin)) {
+      res.header("Access-Control-Allow-Origin", origin);
+    }
+
     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,PATCH");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 

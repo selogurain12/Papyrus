@@ -3,7 +3,6 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
 import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
-import { Request, Response, NextFunction } from "express";
 import { AppModule } from "./app.module";
 
 dotenv.config();
@@ -17,9 +16,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const allowedOrigins = [
-    "http://localhost:5173/",
-    "http://localhost:8081/",
-    "http://127.0.0.1:8081/",
+    "http://localhost:5173",
+    "http://localhost:8081",
+    "http://127.0.0.1:8081",
+    "https://papyrus-xxdv.onrender.com",
   ];
 
   app.enableCors({
@@ -27,23 +27,6 @@ async function bootstrap() {
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
-  });
-
-  app.use((req: Request, res: Response, next: NextFunction) => {
-    const origin = req.headers.origin;
-
-    if (origin && allowedOrigins.includes(origin)) {
-      res.header("Access-Control-Allow-Origin", origin);
-    }
-
-    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS,PATCH");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-    if (req.method === "OPTIONS") {
-      return res.sendStatus(204);
-    }
-
-    next();
   });
 
   const config = new DocumentBuilder()

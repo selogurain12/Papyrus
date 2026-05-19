@@ -40,6 +40,20 @@ export const chapterContract = contrat.router(
         404: errorSchema,
       },
     },
+    getByPart: {
+      path: "/parts/:partId",
+      method: "GET",
+      summary: "Find chapters by part id",
+      description: "Find chapters by part id",
+      pathParams: z.object({
+        projectId: z.string().uuid(),
+        partId: z.string().uuid(),
+      }),
+      responses: {
+        200: ListResultSchema(chapterSchema),
+        404: errorSchema,
+      },
+    },
     get: {
       path: "/:id",
       method: "GET",

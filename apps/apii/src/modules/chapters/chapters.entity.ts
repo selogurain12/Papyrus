@@ -45,10 +45,10 @@ export class ChapterEntity {
   public createdAt!: ZonedDateTime;
 
   @Property({ type: ZonedDateTimeType, nullable: true, onUpdate: () => now("UTC") })
-  public updatedAt: ZonedDateTime | null = null;
+  public updatedAt?: ZonedDateTime | null = null;
 
   @Property({ type: ZonedDateTimeType, nullable: true })
-  public deletedAt: ZonedDateTime | null = null;
+  public deletedAt?: ZonedDateTime | null = null;
 
   @ManyToOne(() => ProjectEntity, { ref: true })
   public project: Ref<ProjectEntity>;

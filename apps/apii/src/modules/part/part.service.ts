@@ -64,8 +64,6 @@ export class PartService {
       .offset(offset)
       .getResultAndCount();
 
-    await em.populate(items, ["chapters"]);
-
     return {
       data: await this.partMapper.entitiesToDtos(items, projectId, em),
       total,

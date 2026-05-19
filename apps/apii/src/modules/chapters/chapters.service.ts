@@ -56,7 +56,33 @@ export class ChapterService {
       createdAt: "DESC",
     };
 
-    const qb = em.qb(ChapterEntity).where({ project: { id: projectId } });
+    const qb = em.qb(ChapterEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
+    const [items, total] = await qb
+      .orderBy(orderBy)
+      .limit(limit)
+      .offset(offset)
+      .getResultAndCount();
+
+    await em.populate(items, ["project"]);
+
+    return {
+      data: await this.chapterMapper.entitiesToDtos(items, projectId, em),
+      total,
+    };
+  }
+
+  public async getByPart(partId: string, projectId: string): Promise<ListResult<ChapterDto>> {
+    const em = this.orm.em.fork();
+
+    const limit: number | undefined = undefined;
+    const offset: number | undefined = undefined;
+    const orderBy = {
+      chapterNumber: "DESC",
+    };
+
+    const qb = em
+      .qb(ChapterEntity)
+      .where({ deletedAt: { $eq: null }, project: { id: projectId }, part: { id: partId } });
     const [items, total] = await qb
       .orderBy(orderBy)
       .limit(limit)

@@ -24,6 +24,10 @@ export class ChapterController {
         const chapters = await this.service.getAll(query, parameters.projectId);
         return { status: 200, body: chapters };
       },
+      getByPart: async ({ params: parameters }) => {
+        const chapters = await this.service.getByPart(parameters.partId, parameters.projectId);
+        return { status: 200, body: chapters };
+      },
       get: async ({ params: parameters }) => {
         const chapters = await this.service.get(parameters.id, parameters.projectId);
         return { status: 200, body: chapters };

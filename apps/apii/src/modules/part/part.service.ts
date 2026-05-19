@@ -57,12 +57,14 @@ export class PartService {
       createdAt: "DESC",
     };
 
-    const qb = em.qb(PartEntity).where({ project: { id: projectId } });
+    const qb = em.qb(PartEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
     const [items, total] = await qb
       .orderBy(orderBy)
       .limit(limit)
       .offset(offset)
       .getResultAndCount();
+
+    await em.populate(items, ["chapters"]);
 
     return {
       data: await this.partMapper.entitiesToDtos(items, projectId, em),

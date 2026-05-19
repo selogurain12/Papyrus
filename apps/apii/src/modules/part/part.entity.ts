@@ -38,10 +38,10 @@ export class PartEntity {
   public createdAt!: ZonedDateTime;
 
   @Property({ type: ZonedDateTimeType, nullable: true, onUpdate: () => now("UTC") })
-  public updatedAt: ZonedDateTime | null = null;
+  public updatedAt?: ZonedDateTime | null = null;
 
   @Property({ type: ZonedDateTimeType, nullable: true })
-  public deletedAt: ZonedDateTime | null = null;
+  public deletedAt?: ZonedDateTime | null = null;
 
   public constructor(parameters: {
     title: string;

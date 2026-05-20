@@ -241,7 +241,21 @@ export class ChapterService {
         });
       }
       entity.deletedAt = fromDate(new Date(), "UTC");
-      await em.persist(entity).flush();
+      await em.persist(entity);
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(chapterContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
+      project.currentWordCount = (project.currentWordCount ?? 0) - (entity.wordCount ?? 0);
+      em.persist(project);
       await em.commit();
     } catch (error) {
       await em.rollback();

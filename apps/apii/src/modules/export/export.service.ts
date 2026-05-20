@@ -21,7 +21,9 @@ export class ExportService {
     private readonly chapterService: ChapterService
   ) {
     if (!fs.existsSync(this.outputDir)) {
-      fs.mkdirSync(this.outputDir, { recursive: true });
+      fs.mkdirSync(this.outputDir, {
+        recursive: true,
+      });
     }
   }
 
@@ -41,9 +43,9 @@ export class ExportService {
 
     for (const part of parts.data) {
       content.push({
-        title: part.title ?? "Partie",
+        title: part.title,
         data: `
-          <h1>${part.title ?? "Partie"}</h1>
+          <h1>${part.title}</h1>
         `,
       });
 
@@ -51,9 +53,10 @@ export class ExportService {
 
       for (const chapter of chapters.data) {
         content.push({
-          title: chapter.title ?? "Chapitre",
+          title: chapter.title,
           data: `
-            <h2>${chapter.title ?? ""}</h2>
+            <h2>${chapter.title}</h2>
+
             <div>
               ${chapter.content ?? ""}
             </div>
@@ -62,23 +65,21 @@ export class ExportService {
       }
     }
 
-    const safeTitle = (project.title ?? "book").replace(/[^a-zA-Z0-9]/g, "_");
+    const safeTitle = project.title.replace(/[^a-zA-Z0-9]/g, "_");
 
     const fileName = `${safeTitle}.epub`;
 
     const outputPath = path.join(this.outputDir, fileName);
 
-    const options = {
-      title: project.title ?? "Untitled",
-      author: project.author ?? "Unknown",
+    await new Epub({
+      title: project.title,
+      author: project.author,
       output: outputPath,
       content,
-    };
-
-    await new Epub(options).promise;
+    });
 
     return {
-      url: outputPath,
+      url: `${process.env.API_URL}/exports/${fileName}`,
     };
   }
 }

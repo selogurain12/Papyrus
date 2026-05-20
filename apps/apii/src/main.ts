@@ -1,14 +1,17 @@
+import * as path from "path";
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
 import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
+import * as express from "express";
 import { AppModule } from "./app.module";
 
 dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use("/exports", express.static(path.join(process.cwd(), "exports")));
 
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));

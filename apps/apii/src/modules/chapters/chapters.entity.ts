@@ -50,10 +50,10 @@ export class ChapterEntity {
   @Property({ type: ZonedDateTimeType, nullable: true })
   public deletedAt?: ZonedDateTime | null = null;
 
-  @ManyToOne(() => ProjectEntity, { ref: true })
+  @ManyToOne(() => ProjectEntity, { ref: true, deleteRule: "cascade" })
   public project: Ref<ProjectEntity>;
 
-  @ManyToOne(() => PartEntity, { ref: true })
+  @ManyToOne(() => PartEntity, { ref: true, deleteRule: "cascade" })
   public part: Ref<PartEntity>;
 
   public constructor(parameters: {

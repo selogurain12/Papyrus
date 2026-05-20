@@ -31,7 +31,7 @@ export class PartEntity {
   @OneToMany(() => ChapterEntity, (chapter) => chapter.part)
   public chapters = new Collection<ChapterEntity>(this);
 
-  @ManyToOne(() => ProjectEntity, { ref: true })
+  @ManyToOne(() => ProjectEntity, { ref: true, deleteRule: "cascade" })
   public project: Ref<ProjectEntity>;
 
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })

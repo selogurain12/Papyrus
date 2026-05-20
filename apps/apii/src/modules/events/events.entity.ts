@@ -46,7 +46,7 @@ export class EventEntity {
   @Property({ type: ZonedDateTimeType, nullable: true })
   public deletedAt: ZonedDateTime | null = null;
 
-  @ManyToOne(() => ProjectEntity, { ref: true })
+  @ManyToOne(() => ProjectEntity, { ref: true, deleteRule: "cascade" })
   public project: Ref<ProjectEntity>;
 
   public constructor(parameters: {

@@ -155,7 +155,7 @@ export class CharacterEntity {
   @Property({ type: ZonedDateTimeType, nullable: true })
   public deletedAt?: ZonedDateTime | null;
 
-  @ManyToOne(() => ProjectEntity, { ref: true })
+  @ManyToOne(() => ProjectEntity, { ref: true, deleteRule: "cascade" })
   public project: Ref<ProjectEntity>;
 
   @OneToMany(() => RelationshipEntity, (relationship) => relationship.parentRelation)

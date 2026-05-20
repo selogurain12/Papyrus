@@ -78,7 +78,7 @@ export class ProjectEntity {
   @Property({ type: ZonedDateTimeType, nullable: true })
   public deletedAt?: ZonedDateTime | null;
 
-  @ManyToOne(() => UserEntity, { ref: true })
+  @ManyToOne(() => UserEntity, { ref: true, deleteRule: "cascade" })
   public user!: Ref<UserEntity>;
 
   @OneToMany(() => ChapterEntity, (chapter) => chapter.project)

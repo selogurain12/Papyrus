@@ -194,8 +194,7 @@ export class ChapterService {
 
       project.currentWordCount =
         (project.currentWordCount ?? 0) + delta;
-      const projectItem = await this.projectService.update(projectId, project, em);
-      em.persist(projectItem);
+      em.persist(project);
 
       await em.commit();
       await em.populate(item, ["project"]);

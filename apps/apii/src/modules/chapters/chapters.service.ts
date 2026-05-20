@@ -189,23 +189,17 @@ export class ChapterService {
         });
       }
 
-      em.assign(existingEntity, updateDto);
+      const item = await this.chapterMapper.updateDtoToEntity(id, updateDto, em);
+      em.persist(item);
 
       project.currentWordCount =
         (project.currentWordCount ?? 0) + delta;
-
-      em.persist(existingEntity);
-      em.persist(project);
+      const projectItem = await this.projectService.update(projectId, project, em);
+      em.persist(projectItem);
 
       await em.commit();
-
-      await em.populate(existingEntity, ["project"]);
-
-      return await this.chapterMapper.entityToDto(
-        existingEntity,
-        projectId,
-        em
-      );
+      await em.populate(item, ["project"]);
+      return await this.chapterMapper.entityToDto(item, projectId, em);
     } catch (error) {
       await em.rollback();
 

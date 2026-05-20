@@ -4,7 +4,7 @@ import * as fs from "fs";
 import { MikroORM } from "@mikro-orm/postgresql";
 import { Injectable } from "@nestjs/common";
 
-import Epub from "epub-gen";
+import EpubCreator from "epub-gen-memory";
 
 import { PartService } from "../part/part.service";
 import { ChapterService } from "../chapters/chapters.service";
@@ -21,9 +21,7 @@ export class ExportService {
     private readonly chapterService: ChapterService
   ) {
     if (!fs.existsSync(this.outputDir)) {
-      fs.mkdirSync(this.outputDir, {
-        recursive: true,
-      });
+      fs.mkdirSync(this.outputDir, { recursive: true });
     }
   }
 
@@ -36,17 +34,12 @@ export class ExportService {
 
     const parts = await this.partService.getAll({ disablePagination: true }, projectId);
 
-    const content: {
-      title: string;
-      data: string;
-    }[] = [];
+    const content: { title: string; content: string }[] = [];
 
     for (const part of parts.data) {
       content.push({
         title: part.title,
-        data: `
-          <h1>${part.title}</h1>
-        `,
+        content: `<h1>${part.title}</h1>`,
       });
 
       const chapters = await this.chapterService.getByPart(part.id, projectId);
@@ -54,29 +47,29 @@ export class ExportService {
       for (const chapter of chapters.data) {
         content.push({
           title: chapter.title,
-          data: `
+          content: `
             <h2>${chapter.title}</h2>
-
-            <div>
-              ${chapter.content ?? ""}
-            </div>
+            <div>${chapter.content ?? ""}</div>
           `,
         });
       }
     }
 
     const safeTitle = project.title.replace(/[^a-zA-Z0-9]/g, "_");
-
     const fileName = `${safeTitle}.epub`;
-
     const outputPath = path.join(this.outputDir, fileName);
 
-    await new Epub({
-      title: project.title,
-      author: project.author,
-      output: outputPath,
-      content,
-    });
+    const epubBuffer = await EpubCreator(
+      {
+        title: project.title,
+        author: project.author,
+      },
+      content
+    );
+
+    const uint8 = new Uint8Array(epubBuffer);
+
+    fs.writeFileSync(outputPath, uint8);
 
     return {
       url: `${process.env.API_URL}/exports/${fileName}`,

@@ -38,5 +38,6 @@ export * from "./contracts/user.contract";
 export * from "./contracts/index.contract";
 export * from "./contracts/s3.contract";
 export * from "./contracts/structure.contract";
+export * from "./contracts/export.contract";
 
 export * from "./query-client";

@@ -13,6 +13,7 @@ import { fromDate } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
 import { ChapterMapper } from "./chapters.mapper";
 import { ChapterEntity } from "./chapters.entity";
+import { ProjectService } from "../projects/projects.service";
 
 @Injectable()
 export class ChapterService {
@@ -20,9 +21,12 @@ export class ChapterService {
 
   private readonly chapterMapper: ChapterMapper;
 
-  public constructor(orm: MikroORM, chapterMapper: ChapterMapper) {
+  private readonly projectService: ProjectService;
+
+  public constructor(orm: MikroORM, chapterMapper: ChapterMapper, projectService: ProjectService) {
     this.orm = orm;
     this.chapterMapper = chapterMapper;
+    this.projectService = projectService;
   }
 
   public async get(id: string, projectId: string): Promise<ChapterDto> {
@@ -149,12 +153,15 @@ export class ChapterService {
   ): Promise<ChapterDto> {
     const em = this.orm.em.fork();
     await em.begin();
+
     try {
       const repository = em.getRepository(ChapterEntity);
+
       const existingEntity = await repository.findOne(
         { id, project: { id: projectId } },
         { populate: ["project"] }
       );
+
       if (!existingEntity) {
         throw new TsRestException(chapterContract.update, {
           status: 404,
@@ -164,11 +171,41 @@ export class ChapterService {
           },
         });
       }
-      const item = await this.chapterMapper.updateDtoToEntity(id, updateDto, em);
-      em.persist(item);
+
+      const oldWordCount = existingEntity.wordCount ?? 0;
+      const newWordCount = updateDto.wordCount ?? oldWordCount;
+      const delta = newWordCount - oldWordCount;
+
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(chapterContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
+
+      em.assign(existingEntity, updateDto);
+
+      project.currentWordCount =
+        (project.currentWordCount ?? 0) + delta;
+
+      em.persist(existingEntity);
+      em.persist(project);
+
       await em.commit();
-      await em.populate(item, ["project"]);
-      return await this.chapterMapper.entityToDto(item, projectId, em);
+
+      await em.populate(existingEntity, ["project"]);
+
+      return await this.chapterMapper.entityToDto(
+        existingEntity,
+        projectId,
+        em
+      );
     } catch (error) {
       await em.rollback();
 
@@ -189,7 +226,7 @@ export class ChapterService {
               message: "ChapterEntity update failed",
             },
           });
-    }
+        }
   }
 
   public async softDelete(id: string, projectId: string): Promise<void> {

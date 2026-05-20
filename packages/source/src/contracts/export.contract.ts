@@ -1,6 +1,7 @@
 import { initContract } from "@ts-rest/core";
 import { z } from "zod";
 import { errorSchema } from "../error";
+import { neverDtoSchema } from "../dtos/delete-request.dto";
 
 const contract = initContract();
 export const exportContract = contract.router(
@@ -14,6 +15,7 @@ export const exportContract = contract.router(
         userId: z.string().uuid(),
         projectId: z.string().uuid(),
       }),
+      body: neverDtoSchema,
 
       responses: {
         200: z.object({

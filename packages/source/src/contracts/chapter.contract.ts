@@ -88,7 +88,7 @@ export const chapterContract = contrat.router(
       description: "Soft delete chapter",
       pathParams: z.object({
         id: z.string().uuid(),
-        userId: z.string().uuid(),
+        projectId: z.string().uuid(),
       }),
       body: z.object({}),
 

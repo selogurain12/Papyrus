@@ -18,6 +18,7 @@ import { UsersModule } from "./modules/users/users.module";
 import { S3Module } from "./modules/s3/s3.module";
 import { EventModule } from "./modules/events/events.module";
 import { StructureModule } from "./modules/structure/structure.module";
+import { ExportModule } from "./modules/export/export.module";
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { StructureModule } from "./modules/structure/structure.module";
     UsersModule,
     S3Module,
     StructureModule,
+    ExportModule,
   ],
 })
 export class AppModule {}

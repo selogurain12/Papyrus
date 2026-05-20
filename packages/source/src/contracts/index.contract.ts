@@ -15,6 +15,7 @@ import { settingContract } from "./setting.contract";
 import { userContract } from "./user.contract";
 import { s3Contract } from "./s3.contract";
 import { structureContract } from "./structure.contract";
+import { exportContract } from "./export.contract";
 
 const contract = initContract();
 export const papyrusContract = contract.router({
@@ -22,6 +23,7 @@ export const papyrusContract = contract.router({
   chapter: chapterContract,
   character: characterContract,
   event: eventContract,
+  export: exportContract,
   mindmap: mindmapContract,
   note: noteContract,
   object: objectContract,

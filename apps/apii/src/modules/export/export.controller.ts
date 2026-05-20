@@ -2,6 +2,7 @@ import { Controller, UseGuards } from "@nestjs/common";
 import { tsRestHandler, TsRestHandler } from "@ts-rest/nest";
 import { exportContract } from "@papyrus/source";
 import { AuthGuard } from "../authentification/authentification.guard";
+import { ExportService } from "./export.service";
 
 @Controller()
 @UseGuards(AuthGuard)

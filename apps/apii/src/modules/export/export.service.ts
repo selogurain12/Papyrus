@@ -35,7 +35,7 @@ export class ExportService {
       throw new Error("Project not found");
     }
 
-    const parts = await this.partService.getAll(projectId);
+    const parts = await this.partService.getAll({ disablePagination: true }, projectId);
 
     const content: { title: string; data: string }[] = [];
     for (const part of parts.data) {

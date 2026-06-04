@@ -56,7 +56,7 @@ export class MindmapService {
     };
     let qb = em.qb(MindmapEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
     if (filter.search !== undefined) {
-      qb = qb.andWhere({ name: { $like: `%${filter.search}%` } });
+      qb = qb.andWhere({ title: { $like: `%${filter.search}%` } });
     }
 
     const [items, total] = await qb

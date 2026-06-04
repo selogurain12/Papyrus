@@ -24,7 +24,7 @@ export class MindmapMapper {
     return {
       id: entity.id,
       title: entity.title,
-      type: entity.type,
+      data: entity.data,
       project: await this.projectMapper.entityToDto(projectEntity, em),
     };
   }
@@ -50,7 +50,7 @@ export class MindmapMapper {
     }
     return new MindmapEntity({
       title: createDto.title,
-      type: createDto.type,
+      data: createDto.data,
       project: projectEntity,
     });
   }
@@ -66,7 +66,7 @@ export class MindmapMapper {
     }
     return em.assign(entity, {
       title: updateDto.title,
-      type: updateDto.type,
+      data: updateDto.data,
     });
   }
 }

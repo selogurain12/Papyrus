@@ -9,21 +9,20 @@ import {
   UuidType,
 } from "@mikro-orm/postgresql";
 import { now, ZonedDateTime } from "@internationalized/date";
+import type { MindElixirData } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 
 @Entity()
 export class MindmapEntity {
-  @PrimaryKey({
-    type: UuidType,
-  })
+  @PrimaryKey({ type: UuidType })
   public id: string = randomUUID();
 
   @Property({ type: "string" })
   public title: string;
 
-  @Property({ type: "text" })
-  public type: "character" | "location" | "object" | "event";
+  @Property({ type: "json" })
+  public data: MindElixirData;
 
   @ManyToOne(() => ProjectEntity, { ref: true })
   public project: Ref<ProjectEntity>;
@@ -37,13 +36,9 @@ export class MindmapEntity {
   @Property({ type: ZonedDateTimeType, nullable: true })
   public deletedAt: ZonedDateTime | null = null;
 
-  public constructor(parameters: {
-    title: string;
-    type: "character" | "location" | "object" | "event";
-    project: ProjectEntity;
-  }) {
+  public constructor(parameters: { title: string; data: MindElixirData; project: ProjectEntity }) {
     this.title = parameters.title;
-    this.type = parameters.type;
+    this.data = parameters.data;
     this.project = ref(parameters.project);
   }
 }

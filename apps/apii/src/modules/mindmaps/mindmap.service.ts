@@ -52,7 +52,7 @@ export class MindmapService {
       offset = ((filter.page ?? 1) - 1) * limit;
     }
     const orderBy = filter.orderBy ?? {
-      name: "ASC",
+      title: "ASC",
     };
     let qb = em.qb(MindmapEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
     if (filter.search !== undefined) {

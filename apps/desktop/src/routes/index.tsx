@@ -12,7 +12,12 @@ import { researchRoute } from "./research/index.route";
 import { eventRoute } from "./event/index.route";
 import { noteRoute } from "./note/index.route";
 import { structureRoute } from "./structure/index.routes";
-import { createMindmapRoute, mindmapRoute, updateMindmapRoute, viewMindmapRoute } from "./mindmap/index.route";
+import {
+  createMindmapRoute,
+  mindmapRoute,
+  updateMindmapRoute,
+  viewMindmapRoute,
+} from "./mindmap/index.route";
 
 export const routeTree = rootRoute.addChildren([
   defaultLayoutRoute.addChildren([

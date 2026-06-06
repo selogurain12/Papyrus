@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useEffect, useRef } from "react";
 import MindElixir, { MindElixirData } from "mind-elixir";
 import "mind-elixir/style.css";
@@ -5,7 +6,7 @@ import { client } from "../../../utils/client/client";
 import { queryKeys, updateMindMapSchema } from "@papyrus/source";
 import { useProject } from "../../../context/project-provider";
 import { useNavigate } from "@tanstack/react-router";
-import { mindmapRoute, updateMindmapRoute, viewMindmapRoute } from "../../../routes/mindmap/index.route";
+import { mindmapRoute, updateMindmapRoute } from "../../../routes/mindmap/index.route";
 import { Button } from "../../ui/button";
 import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
@@ -17,12 +18,12 @@ export function UpdateMindMap() {
   const { id } = updateMindmapRoute.useParams();
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
 
-  const { data } = client.mindmap.get.useQuery({ 
-    queryKey: queryKeys.mindmap.get({pathParams: { id, projectId: currentProject?.id ?? "" }}),
+  const { data } = client.mindmap.get.useQuery({
+    queryKey: queryKeys.mindmap.get({ pathParams: { id, projectId: currentProject?.id ?? "" } }),
     queryData: {
       params: { projectId: currentProject?.id ?? "", id },
     },
-   });
+  });
 
   const mindmap = data?.body;
 
@@ -43,16 +44,18 @@ export function UpdateMindMap() {
     mindRef.current = instance;
   }, [mindmap]);
 
-   const { mutate } = client.mindmap.update.useMutation({
+  const { mutate } = client.mindmap.update.useMutation({
     onSuccess: (data) => {
       toast.success("Carte mentale modifiée avec succès !");
-      void queryClient.invalidateQueries({ queryKey: queryKeys.mindmap.getAll({pathParams: { projectId: currentProject?.id ?? "" }}) });
+      void queryClient.invalidateQueries({
+        queryKey: queryKeys.mindmap.getAll({ pathParams: { projectId: currentProject?.id ?? "" } }),
+      });
       void queryClient.invalidateQueries({
         queryKey: queryKeys.mindmap.get({
           pathParams: { projectId: currentProject?.id ?? "", id: data.body.id },
         }),
       });
-      void navigate({to: mindmapRoute.to, params: { name: currentProject?.title ?? "" }});
+      void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } });
     },
     onError: (error) => {
       if (isFetchError(error)) {
@@ -64,37 +67,37 @@ export function UpdateMindMap() {
     },
   });
 
-    async function handleSubmit() {
-      if (!mindRef.current) {
-        toast.error("MindElixir n'est pas initialisé.");
-        return;
-      }
-      if (!currentProject) {
-        toast.error("Aucun projet sélectionné.");
-        return;
-      }
-  
-      const data = mindRef.current.getData();
-      const parsed = updateMindMapSchema.safeParse({
-        title: "Nouvelle carte mentale",
-        project: currentProject,
-        data,
-      });
-  
-      if (!parsed.success) {
-        toast.error("Veuillez remplir correctement les champs.");
-        return;
-      }
-  
-      mutate({
-        body: {
-          title: data.nodeData.topic,
-          data,
-          project: currentProject,
-        },
-        params: {projectId: currentProject.id, id},
-      });
+  async function handleSubmit() {
+    if (!mindRef.current) {
+      toast.error("MindElixir n'est pas initialisé.");
+      return;
     }
+    if (!currentProject) {
+      toast.error("Aucun projet sélectionné.");
+      return;
+    }
+
+    const data = mindRef.current.getData();
+    const parsed = updateMindMapSchema.safeParse({
+      title: "Nouvelle carte mentale",
+      project: currentProject,
+      data,
+    });
+
+    if (!parsed.success) {
+      toast.error("Veuillez remplir correctement les champs.");
+      return;
+    }
+
+    mutate({
+      body: {
+        title: data.nodeData.topic,
+        data,
+        project: currentProject,
+      },
+      params: { projectId: currentProject.id, id },
+    });
+  }
 
   if (!mindmap) return <div>Loading...</div>;
 
@@ -104,7 +107,9 @@ export function UpdateMindMap() {
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold">{mindmap.title}</h2>
           <Button
-            onClick={() => void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })}
+            onClick={() =>
+              void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })
+            }
             className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
           >
             Fermer
@@ -115,13 +120,13 @@ export function UpdateMindMap() {
           <div id="viewer-map" style={{ height: "500px", width: "100%" }} />
         </div>
         <div className="mt-6 flex w-full">
-    <Button
-          onClick={handleSubmit}
-          className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Modifier la carte mentale
-        </Button>
-      </div>
+          <Button
+            onClick={handleSubmit}
+            className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          >
+            Modifier la carte mentale
+          </Button>
+        </div>
       </div>
     </div>
   );

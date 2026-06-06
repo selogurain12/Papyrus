@@ -13,13 +13,22 @@ import { ProjectService } from "../projects/projects.service";
 @Injectable()
 export class ExportService {
   private readonly outputDir = path.join(process.cwd(), "exports");
+  private readonly orm: MikroORM;
+  private readonly projectService: ProjectService;
+  private readonly partService: PartService;
+  private readonly chapterService: ChapterService;
 
   public constructor(
-    private readonly orm: MikroORM,
-    private readonly projectService: ProjectService,
-    private readonly partService: PartService,
-    private readonly chapterService: ChapterService
+    orm: MikroORM,
+    projectService: ProjectService,
+    partService: PartService,
+    chapterService: ChapterService
   ) {
+    this.orm = orm;
+    this.projectService = projectService;
+    this.partService = partService;
+    this.chapterService = chapterService;
+
     if (!fs.existsSync(this.outputDir)) {
       fs.mkdirSync(this.outputDir, { recursive: true });
     }
@@ -27,10 +36,6 @@ export class ExportService {
 
   public async exportEpub(projectId: string, userId: string): Promise<{ url: string }> {
     const project = await this.projectService.get(projectId, userId);
-
-    if (!project) {
-      throw new Error("Project not found");
-    }
 
     const parts = await this.partService.getAll({ disablePagination: true }, projectId);
 

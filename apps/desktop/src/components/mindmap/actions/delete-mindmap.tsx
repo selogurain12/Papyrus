@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { MindMapDto, NoteDto } from "@papyrus/source";
+import { MindMapDto } from "@papyrus/source";
 import { useQueryClient } from "@tanstack/react-query";
 import { client } from "../../../utils/client/client";
 import { toast } from "sonner";

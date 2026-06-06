@@ -7,25 +7,28 @@ import { client } from "../../utils/client/client";
 import { MindMapDto, queryKeys } from "@papyrus/source";
 import { useFilterDto } from "../../utils/filters/use-filter-dto";
 import { useNavigate } from "@tanstack/react-router";
-import { createMindmapRoute, updateMindmapRoute, viewMindmapRoute } from "../../routes/mindmap/index.route";
+import {
+  createMindmapRoute,
+  updateMindmapRoute,
+  viewMindmapRoute,
+} from "../../routes/mindmap/index.route";
 import { MindMapDeleteActions } from "./actions/delete-mindmap";
 
 export function MindMapPage() {
   const { currentProject } = useProject();
   const navigate = useNavigate();
-  const [showCreator, setShowCreator] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [mindmapsSelected, setMindmapsSelected] = useState<MindMapDto | undefined>(undefined);
 
   const { options } = useFilterDto({
-      itemsPerPage: 20,
-  
-      orderBy: {
-        title: "desc",
-      },
-  
-      page: 1,
-    });
+    itemsPerPage: 20,
+
+    orderBy: {
+      title: "desc",
+    },
+
+    page: 1,
+  });
 
   const { data } = client.mindmap.getAll.useQuery({
     queryKey: queryKeys.mindmap.getAll({
@@ -37,9 +40,6 @@ export function MindMapPage() {
     },
   });
 
-  const mindmaps = data?.body?.data ?? [];
-  const totalMindmaps = data?.body?.total ?? 0;
-
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Cartes mentales</h2>
@@ -47,29 +47,27 @@ export function MindMapPage() {
         Créez et organisez vos idées visuellement avec des cartes mentales.
       </p>
 
-      {!showCreator && (
-        <div className="mt-6 bg-blue-100 p-4 rounded-lg text-center items-center justify-center flex flex-col border border-blue-300">
-          <GitBranch className="w-10 h-10 text-blue-600 mb-2" />
-          <p className="font-bold">Canvas interactif</p>
-          <p className="text-sm text-gray-500 mt-1">
-            Créez vos cartes mentales sur un canvas blanc où vous pouvez librement organiser vos idées.
-          </p>
+      <div className="mt-6 bg-blue-100 p-4 rounded-lg text-center items-center justify-center flex flex-col border border-blue-300">
+        <GitBranch className="w-10 h-10 text-blue-600 mb-2" />
+        <p className="font-bold">Canvas interactif</p>
+        <p className="text-sm text-gray-500 mt-1">
+          Créez vos cartes mentales sur un canvas blanc où vous pouvez librement organiser vos
+          idées.
+        </p>
 
-          <Button
-            className="mt-4"
-            variant="blue"
-            onClick={() => {
-                void navigate({
-                  to: createMindmapRoute.to,
-                  params: { name: currentProject?.title ?? "" },
-                });
-              }
-            }
-          >
-            <Plus /> Créer une nouvelle carte mentale
-          </Button>
-        </div>
-      )}
+        <Button
+          className="mt-4"
+          variant="blue"
+          onClick={() => {
+            void navigate({
+              to: createMindmapRoute.to,
+              params: { name: currentProject?.title ?? "" },
+            });
+          }}
+        >
+          <Plus /> Créer une nouvelle carte mentale
+        </Button>
+      </div>
 
       {data?.body.total !== 0 && (
         <div className="mt-6 space-y-4">
@@ -84,16 +82,38 @@ export function MindMapPage() {
                 <p className="font-bold">{mindmap.title}</p>
               </div>
               <div className="flex items-center space-x-2">
-                <Button variant="outline" className="hover:bg-gray-300" onClick={() => void navigate({ to: viewMindmapRoute.to, params: { name: currentProject?.title ?? "", id: mindmap.id } })}>
+                <Button
+                  variant="outline"
+                  className="hover:bg-gray-300"
+                  onClick={() =>
+                    void navigate({
+                      to: viewMindmapRoute.to,
+                      params: { name: currentProject?.title ?? "", id: mindmap.id },
+                    })
+                  }
+                >
                   <span className="h-4 leading-4">Ouvrir</span>
                 </Button>
-                <Button variant="outline" className="hover:bg-gray-300" onClick={() => void navigate({ to: updateMindmapRoute.to, params: { name: currentProject?.title ?? "", id: mindmap.id } })}>
+                <Button
+                  variant="outline"
+                  className="hover:bg-gray-300"
+                  onClick={() =>
+                    void navigate({
+                      to: updateMindmapRoute.to,
+                      params: { name: currentProject?.title ?? "", id: mindmap.id },
+                    })
+                  }
+                >
                   <Pencil className="w-4 h-4" />
                 </Button>
-                <Button variant="outline" className="hover:bg-gray-300" onClick={() => {
-                  setMindmapsSelected(mindmap);
-                  setIsDeleting(true);
-                }}>
+                <Button
+                  variant="outline"
+                  className="hover:bg-gray-300"
+                  onClick={() => {
+                    setMindmapsSelected(mindmap);
+                    setIsDeleting(true);
+                  }}
+                >
                   <Trash2 className="w-4 h-4 text-red-500" />
                 </Button>
               </div>

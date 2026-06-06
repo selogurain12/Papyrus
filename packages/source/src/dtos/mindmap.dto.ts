@@ -28,7 +28,7 @@ export interface MindTheme {
     "--panel-border-color": string;
     "--map-padding": string;
   };
-};
+}
 
 export interface NodeObj<M = unknown> {
   topic: string;
@@ -46,7 +46,14 @@ export interface NodeObj<M = unknown> {
   children?: NodeObj[];
   expanded?: boolean;
   direction?: 0 | 1 | 2;
-  tags?: (string | { text: string; style?: Partial<CSSStyleDeclaration> | Record<string, string>; className?: string })[];
+  tags?: (
+    | string
+    | {
+        text: string;
+        style?: Partial<CSSStyleDeclaration> | Record<string, string>;
+        className?: string;
+      }
+  )[];
   icons?: string[];
   hyperLink?: string;
   image?: {

@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+/* eslint-disable max-len */
+import { useEffect, useRef } from "react";
 import MindElixir from "mind-elixir";
 import { createMindMapSchema } from "@papyrus/source";
 import "mind-elixir/style.css";
@@ -32,10 +33,10 @@ export function CreateMindMap() {
   }, []);
 
   const { mutate } = client.mindmap.create.useMutation({
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Carte mentale créée avec succès !");
       void queryClient.invalidateQueries({ queryKey: ["mindmap.getAll"] });
-      void navigate({to: mindmapRoute.to, params: { name: currentProject?.title ?? "" }});
+      void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } });
     },
     onError: (error) => {
       if (isFetchError(error)) {
@@ -63,7 +64,6 @@ export function CreateMindMap() {
       project: currentProject,
       data,
     });
-    console.log("Parsed data:", parsed);
 
     if (!parsed.success) {
       toast.error("Veuillez remplir correctement les champs.");
@@ -76,7 +76,7 @@ export function CreateMindMap() {
         data,
         project: currentProject,
       },
-      params: {projectId: currentProject.id},
+      params: { projectId: currentProject.id },
     });
   }
 
@@ -84,25 +84,25 @@ export function CreateMindMap() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-3">
         <form onSubmit={handleSubmit} className="rounded-xl">
-        <h2 className="text-2xl font-semibold">Créer une carte mentale</h2>
-      </form>
-      <Button
-          onClick={() => navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })}
+          <h2 className="text-2xl font-semibold">Créer une carte mentale</h2>
+        </form>
+        <Button
+          onClick={() =>
+            navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })
+          }
           className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
         >
           Retour
         </Button>
-        
-        </div>
-    <div className="space-y-2">
-
-      <div className="bg-white shadow rounded-xl p-4">
-        <h3 className="text-xl font-semibold mb-4">Canvas interactif</h3>
-        <div id="map" style={{ height: "500px", width: "100%" }} />
       </div>
-    </div>
-    <div className="mt-6 flex w-full">
-    <Button
+      <div className="space-y-2">
+        <div className="bg-white shadow rounded-xl p-4">
+          <h3 className="text-xl font-semibold mb-4">Canvas interactif</h3>
+          <div id="map" style={{ height: "500px", width: "100%" }} />
+        </div>
+      </div>
+      <div className="mt-6 flex w-full">
+        <Button
           onClick={handleSubmit}
           className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
         >

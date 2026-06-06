@@ -14,12 +14,12 @@ export function MindMapViewer() {
   const { id } = viewMindmapRoute.useParams();
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
 
-  const { data } = client.mindmap.get.useQuery({ 
-    queryKey: queryKeys.mindmap.get({pathParams: { id, projectId: currentProject?.id ?? "" }}),
+  const { data } = client.mindmap.get.useQuery({
+    queryKey: queryKeys.mindmap.get({ pathParams: { id, projectId: currentProject?.id ?? "" } }),
     queryData: {
       params: { projectId: currentProject?.id ?? "", id },
     },
-   });
+  });
 
   const mindmap = data?.body;
 
@@ -48,7 +48,9 @@ export function MindMapViewer() {
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold">{mindmap.title}</h2>
           <Button
-            onClick={() => void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })}
+            onClick={() =>
+              void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })
+            }
             className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
           >
             Fermer

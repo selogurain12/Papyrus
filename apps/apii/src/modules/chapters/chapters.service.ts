@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { MikroORM } from "@mikro-orm/postgresql";
 import { HttpStatus, Injectable } from "@nestjs/common";
 import {
@@ -11,9 +12,9 @@ import {
 import { TsRestException } from "@ts-rest/nest";
 import { fromDate } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
+import { ProjectService } from "../projects/projects.service";
 import { ChapterMapper } from "./chapters.mapper";
 import { ChapterEntity } from "./chapters.entity";
-import { ProjectService } from "../projects/projects.service";
 
 @Injectable()
 export class ChapterService {
@@ -172,7 +173,7 @@ export class ChapterService {
         });
       }
 
-      const oldWordCount = existingEntity.wordCount ?? 0;
+      const oldWordCount = existingEntity.wordCount;
       const newWordCount = updateDto.wordCount ?? oldWordCount;
       const delta = newWordCount - oldWordCount;
 
@@ -192,8 +193,7 @@ export class ChapterService {
       const item = await this.chapterMapper.updateDtoToEntity(id, updateDto, em);
       em.persist(item);
 
-      project.currentWordCount =
-        (project.currentWordCount ?? 0) + delta;
+      project.currentWordCount = project.currentWordCount + delta;
       em.persist(project);
 
       await em.commit();
@@ -219,7 +219,7 @@ export class ChapterService {
               message: "ChapterEntity update failed",
             },
           });
-        }
+    }
   }
 
   public async softDelete(id: string, projectId: string): Promise<void> {
@@ -241,7 +241,7 @@ export class ChapterService {
         });
       }
       entity.deletedAt = fromDate(new Date(), "UTC");
-      await em.persist(entity);
+      em.persist(entity);
       const projectRepo = em.getRepository(ProjectEntity);
       const project = await projectRepo.findOne({ id: projectId });
 
@@ -254,7 +254,7 @@ export class ChapterService {
           },
         });
       }
-      project.currentWordCount = (project.currentWordCount ?? 0) - (entity.wordCount ?? 0);
+      project.currentWordCount = project.currentWordCount - entity.wordCount;
       em.persist(project);
       await em.commit();
     } catch (error) {

@@ -11,7 +11,10 @@ import { ExportService } from "./export.service";
 @Controller()
 @UseGuards(AuthGuard)
 export class ExportController {
-  public constructor(private readonly service: ExportService) {}
+  private readonly service: ExportService;
+  public constructor(service: ExportService) {
+    this.service = service;
+  }
 
   @TsRestHandler(exportContract)
   public handle() {

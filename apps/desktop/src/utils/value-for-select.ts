@@ -83,6 +83,12 @@ export const objectTypeOptions = [
   { id: "equipment", label: "Equipement" },
 ];
 
+export const statusPartOptions = [
+  { id: "toStart", label: "À commencer" },
+  { id: "inProgress", label: "En cours" },
+  { id: "completed", label: "Terminé" },
+];
+
 export type TypeOption = {
   id: string;
   label: string;

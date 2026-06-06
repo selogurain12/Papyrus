@@ -15,7 +15,7 @@ const buttonVariants = cva(
 
         blue: "bg-blue-600 text-white hover:bg-blue-700/90",
 
-        green: "bg-success-600 text-white hover:bg-success-700/90",
+        green: "bg-green-600 text-white hover:bg-green-700/90",
 
         red: "bg-red-600 text-white hover:bg-red-700/90",
 

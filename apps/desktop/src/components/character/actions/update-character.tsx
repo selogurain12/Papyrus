@@ -362,7 +362,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="age"
                             type="number"
                             value={field.value ?? 0}
-                            onChange={(event) => field.onChange(event.target.value || null)}
+                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
                         <FormMessage />
@@ -462,7 +462,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="height"
                             type="number"
                             value={field.value ?? 0}
-                            onChange={(event) => field.onChange(event.target.value || null)}
+                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
                         <FormMessage />
@@ -481,7 +481,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="weight"
                             type="number"
                             value={field.value ?? 0}
-                            onChange={(event) => field.onChange(event.target.value || null)}
+                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
                         <FormMessage />

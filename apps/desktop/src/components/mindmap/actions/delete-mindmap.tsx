@@ -54,7 +54,7 @@ export function MindMapDeleteActions({
 
   return (
     <AlertDialog onOpenChange={setOpen} open={open}>
-      <AlertDialogContent className="sm:max-w-[800px] sm:max-h-[80%] bg-white rounded-lg p-8">
+      <AlertDialogContent className="sm:max-w-200 sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
           <AlertDialogTitle>Supprimer la carte mentale</AlertDialogTitle>
           <AlertDialogDescription>

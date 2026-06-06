@@ -121,7 +121,6 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
       currentFlaws.filter((_, i) => i !== index)
     );
   };
-
   const { mutate } = client.character.create.useMutation({
     onSuccess: () => {
       toast.success("Personnage créé avec succès !");
@@ -359,7 +358,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                             id="age"
                             type="number"
                             value={field.value ?? 0}
-                            onChange={(event) => field.onChange(event.target.value || null)}
+                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
                         <FormMessage />
@@ -459,7 +458,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                             id="height"
                             type="number"
                             value={field.value ?? 0}
-                            onChange={(event) => field.onChange(event.target.value || null)}
+                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
                         <FormMessage />
@@ -478,7 +477,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                             id="weight"
                             type="number"
                             value={field.value ?? 0}
-                            onChange={(event) => field.onChange(event.target.value || null)}
+                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
                         <FormMessage />

@@ -18,6 +18,7 @@ import {
   updateMindmapRoute,
   viewMindmapRoute,
 } from "./mindmap/index.route";
+import { chapterRoute } from "./chapter/index.route";
 
 export const routeTree = rootRoute.addChildren([
   defaultLayoutRoute.addChildren([
@@ -36,6 +37,7 @@ export const routeTree = rootRoute.addChildren([
       createMindmapRoute,
       updateMindmapRoute,
       viewMindmapRoute,
+      chapterRoute,
     ]),
   ]),
 ]);

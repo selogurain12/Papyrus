@@ -27,13 +27,14 @@ import { eventRoute } from "../routes/event/index.route";
 import { noteRoute } from "../routes/note/index.route";
 import { structureRoute } from "../routes/structure/index.routes";
 import { mindmapRoute } from "../routes/mindmap/index.route";
+import { chapterRoute } from "../routes/chapter/index.route";
 
 const menu = [
   { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
   { id: "characters", label: "Personnages", icon: Users, path: characterRoute },
   { id: "places", label: "Lieux", icon: MapPin, path: placeRoute },
   { id: "objects", label: "Objets", icon: Package, path: objectRoute },
-  { id: "chapters", label: "Chapitres", icon: BookOpen, path: characterRoute },
+  { id: "chapters", label: "Chapitres", icon: BookOpen, path: chapterRoute },
   { id: "research", label: "Recherches", icon: Search, path: researchRoute },
   { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
   { id: "timeline", label: "Chronologie", icon: Calendar, path: eventRoute },

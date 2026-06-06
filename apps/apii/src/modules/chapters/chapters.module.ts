@@ -1,5 +1,5 @@
 import { MikroOrmModule } from "@mikro-orm/nestjs";
-import { Module } from "@nestjs/common";
+import { forwardRef, Module } from "@nestjs/common";
 import { ProjectModule } from "../projects/projects.module";
 import { PartModule } from "../part/part.module";
 import { ChapterController } from "./chapters.controller";
@@ -8,7 +8,11 @@ import { ChapterMapper } from "./chapters.mapper";
 import { ChapterService } from "./chapters.service";
 
 @Module({
-  imports: [MikroOrmModule.forFeature([ChapterEntity]), ProjectModule, PartModule],
+  imports: [
+    MikroOrmModule.forFeature([ChapterEntity]),
+    ProjectModule,
+    forwardRef(() => PartModule),
+  ],
   controllers: [ChapterController],
   providers: [ChapterService, ChapterMapper],
   exports: [ChapterService, ChapterMapper],

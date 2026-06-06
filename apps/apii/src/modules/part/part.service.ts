@@ -11,6 +11,7 @@ import {
 } from "@papyrus/source";
 import { fromDate } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
+import { ChapterService } from "../chapters/chapters.service";
 import { PartMapper } from "./part.mapper";
 import { PartEntity } from "./part.entity";
 
@@ -20,9 +21,12 @@ export class PartService {
 
   private readonly partMapper: PartMapper;
 
-  public constructor(orm: MikroORM, partMapper: PartMapper) {
+  private readonly chapterService: ChapterService;
+
+  public constructor(orm: MikroORM, partMapper: PartMapper, chapterService: ChapterService) {
     this.orm = orm;
     this.partMapper = partMapper;
+    this.chapterService = chapterService;
   }
 
   public async get(id: string, projectId: string) {
@@ -172,6 +176,11 @@ export class PartService {
             message: `PartEntity with id ${id} not found`,
           },
         });
+      }
+
+      const chapters = await this.chapterService.getByPart(id, projectId);
+      for (const chapter of chapters.data) {
+        await this.chapterService.softDelete(chapter.id, projectId);
       }
       existingEntity.deletedAt = fromDate(new Date(), "UTC");
       em.persist(existingEntity);

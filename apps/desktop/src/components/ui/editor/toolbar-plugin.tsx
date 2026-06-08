@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -29,7 +30,7 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react";
 
 function Divider() {
-  return <div className="divider" />;
+  return <div className="w-px bg-gray-200 mx-1" />;
 }
 
 export default function ToolbarPlugin() {
@@ -90,100 +91,130 @@ export default function ToolbarPlugin() {
   }, [editor, $updateToolbar]);
 
   return (
-    <div className="toolbar" ref={toolbarRef}>
+    <div className="flex mb-0.5 bg-white p-1 rounded-t-[10px] items-center" ref={toolbarRef}>
       <button
         disabled={!canUndo}
         onClick={() => {
           editor.dispatchCommand(UNDO_COMMAND, undefined);
         }}
-        className="toolbar-item spaced"
+        className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 disabled:opacity-20"
         aria-label="Undo"
       >
-        <Undo size={18} className="format" />
+        <Undo
+          size={18}
+          className="inline-flex h-4.5 w-4.5 mt-0.5 align-middle opacity-60 bg-contain"
+        />
       </button>
       <button
         disabled={!canRedo}
         onClick={() => {
           editor.dispatchCommand(REDO_COMMAND, undefined);
         }}
-        className="toolbar-item"
+        className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-20"
         aria-label="Redo"
       >
-        <Redo size={18} className="format" />
+        <Redo
+          size={18}
+          className="inline-flex h-4.5 w-4.5 mt-0.5 align-middle opacity-60 bg-contain"
+        />
       </button>
       <Divider />
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
         }}
-        className={"toolbar-item spaced " + (isBold ? "active" : "")}
+        className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isBold ? "bg-blue-100/30" : ""}`}
         aria-label="Format Bold"
       >
-        <Bold size={18} className="format" />
+        <Bold
+          size={18}
+          className={`inline-flex h-4.5 w-4.5 mt-0.5 align-middle bg-contain ${isBold ? "opacity-100" : "opacity-60"}`}
+        />
       </button>
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
         }}
-        className={"toolbar-item spaced " + (isItalic ? "active" : "")}
+        className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isItalic ? "bg-blue-100/30" : ""}`}
         aria-label="Format Italics"
       >
-        <Italic size={18} className="format" />
+        <Italic
+          size={18}
+          className={`inline-flex h-4.5 w-4.5 mt-0.5 align-middle bg-contain ${isItalic ? "opacity-100" : "opacity-60"}`}
+        />
       </button>
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
         }}
-        className={"toolbar-item spaced " + (isUnderline ? "active" : "")}
+        className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isUnderline ? "bg-blue-100/30" : ""}`}
         aria-label="Format Underline"
       >
-        <Underline size={18} className="format" />
+        <Underline
+          size={18}
+          className={`inline-flex h-4.5 w-4.5 mt-0.5 align-middle bg-contain ${isUnderline ? "opacity-100" : "opacity-60"}`}
+        />
       </button>
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough");
         }}
-        className={"toolbar-item spaced " + (isStrikethrough ? "active" : "")}
+        className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isStrikethrough ? "bg-blue-100/30" : ""}`}
         aria-label="Format Strikethrough"
       >
-        <Strikethrough size={18} className="format" />
+        <Strikethrough
+          size={18}
+          className={`inline-flex h-4.5 w-4.5 mt-0.5 align-middle bg-contain ${isStrikethrough ? "opacity-100" : "opacity-60"}`}
+        />
       </button>
       <Divider />
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left");
         }}
-        className="toolbar-item spaced"
+        className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5"
         aria-label="Left Align"
       >
-        <AlignLeft size={18} className="format" />
+        <AlignLeft
+          size={18}
+          className="inline-flex h-4.5 w-4.5 mt-0.5 align-middle opacity-60 bg-contain"
+        />
       </button>
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center");
         }}
-        className="toolbar-item spaced"
+        className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5"
         aria-label="Center Align"
       >
-        <AlignCenter size={18} className="format" />
+        <AlignCenter
+          size={18}
+          className="inline-flex h-4.5 w-4.5 mt-0.5 align-middle opacity-60 bg-contain"
+        />
       </button>
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right");
         }}
-        className="toolbar-item spaced"
+        className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5"
         aria-label="Right Align"
       >
-        <AlignRight size={18} className="format" />
+        <AlignRight
+          size={18}
+          className="inline-flex h-4.5 w-4.5 mt-0.5 align-middle opacity-60 bg-contain"
+        />
       </button>
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "justify");
         }}
-        className="toolbar-item"
+        className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed"
         aria-label="Justify Align"
       >
-        <AlignJustify size={18} className="format" />
+        <AlignJustify
+          size={18}
+          className="inline-flex h-4.5 w-4.5 mt-0.5 align-middle opacity-60 bg-contain"
+        />
       </button>
     </div>
   );

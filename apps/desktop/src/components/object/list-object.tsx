@@ -44,8 +44,8 @@ export function ObjectsList() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="">
-          <h2 className="text-2xl font-bold text-foreground">Lieux</h2>
-          <p className="text-md">Créez et gérez les lieux de votre univers</p>
+          <h2 className="text-2xl font-bold text-foreground">Objets</h2>
+          <p className="text-md">Gérez les objets importants de votre histoire</p>
         </div>
         <Button variant="blue" onClick={() => setIsCreating(true)}>
           <Plus className="w-4 h-4 mr-2" />

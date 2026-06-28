@@ -2,11 +2,27 @@ import { Module } from "@nestjs/common";
 import { ProjectModule } from "../projects/projects.module";
 import { ChapterModule } from "../chapters/chapters.module";
 import { PartModule } from "../part/part.module";
-import { ExportController } from "./export.controller";
+import { CharacterModule } from "../characters/characters.module";
+import { ObjectModule } from "../objects/objects.module";
+import { PlaceModule } from "../places/place.module";
+import { NoteModule } from "../notes/note.module";
+import { ResearchModule } from "../research/research.module";
+import { EventModule } from "../events/events.module";
 import { ExportService } from "./export.service";
+import { ExportController } from "./export.controller";
 
 @Module({
-  imports: [ProjectModule, ChapterModule, PartModule],
+  imports: [
+    ProjectModule,
+    ChapterModule,
+    PartModule,
+    CharacterModule,
+    ObjectModule,
+    PlaceModule,
+    NoteModule,
+    ResearchModule,
+    EventModule,
+  ],
   controllers: [ExportController],
   providers: [ExportService],
   exports: [ExportService],

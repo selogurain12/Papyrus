@@ -20,6 +20,7 @@ export * from "./dtos/user.dto";
 export * from "./dtos/list-result.dto";
 export * from "./dtos/filter.dto";
 export * from "./dtos/structure.dto";
+export * from "./dtos/export.dto";
 
 export * from "./contracts/chapter.contract";
 export * from "./contracts/character.contract";

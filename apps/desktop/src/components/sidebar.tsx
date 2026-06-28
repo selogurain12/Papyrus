@@ -6,7 +6,6 @@ import {
   Package,
   BookOpen,
   Search,
-  PenTool,
   Calendar,
   Layers,
   GitBranch,
@@ -28,6 +27,7 @@ import { noteRoute } from "../routes/note/index.route";
 import { structureRoute } from "../routes/structure/index.routes";
 import { mindmapRoute } from "../routes/mindmap/index.route";
 import { chapterRoute } from "../routes/chapter/index.route";
+import { exportRoute } from "../routes/export/index.route";
 
 const menu = [
   { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
@@ -36,12 +36,12 @@ const menu = [
   { id: "objects", label: "Objets", icon: Package, path: objectRoute },
   { id: "chapters", label: "Chapitres", icon: BookOpen, path: chapterRoute },
   { id: "research", label: "Recherches", icon: Search, path: researchRoute },
-  { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
+  // { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
   { id: "timeline", label: "Chronologie", icon: Calendar, path: eventRoute },
   { id: "structure", label: "Structure", icon: Layers, path: structureRoute },
   { id: "mind-maps", label: "Cartes mentales", icon: GitBranch, path: mindmapRoute },
   { id: "notes", label: "Notes", icon: StickyNote, path: noteRoute },
-  { id: "export", label: "Export", icon: Download, path: characterRoute },
+  { id: "export", label: "Export", icon: Download, path: exportRoute },
 ];
 
 interface SidebarProps {

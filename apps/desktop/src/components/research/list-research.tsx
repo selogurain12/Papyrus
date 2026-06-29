@@ -11,18 +11,13 @@ import { UpdateResearchForm } from "./actions/update-form";
 import { ResearchDeleteActions } from "./actions/delete-research";
 import { Dialog } from "../ui/dialogs/dialog";
 import { useFilterResearchDto } from "../../utils/filters/use-filter-research";
+import { useTranslation } from "react-i18next";
 
-const categories = [
-  { id: "all", label: "Tout" },
-  { id: "articles", label: "Articles" },
-  { id: "links", label: "Liens web" },
-  { id: "images", label: "Images" },
-  { id: "videos", label: "Vidéos" },
-  { id: "books", label: "Livres" },
-];
+const categories = ["all", "articles", "links", "images", "videos", "books"];
 
 // eslint-disable-next-line complexity
 export function ListResearch() {
+  const { t } = useTranslation(["research/list-research", "common"]);
   const { currentProject } = useProject();
 
   const [isCreating, setIsCreating] = useState(false);
@@ -39,7 +34,7 @@ export function ListResearch() {
   if (!currentProject) {
     return (
       <div className="min-h-[300px] flex items-center justify-center text-gray-500">
-        Chargement du projet...
+        {t("common:loading")}
       </div>
     );
   }
@@ -62,12 +57,12 @@ export function ListResearch() {
     <div className="p-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">Recherches documentaires</h2>
-          <p className="text-sm text-muted-foreground">Organisez vos sources et références</p>
+          <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
+          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
         <Button variant="blue" onClick={() => setIsCreating(true)}>
           <Plus className="w-4 h-4 mr-2" />
-          Nouvelle recherche
+          {t("new")}
         </Button>
       </div>
 
@@ -77,7 +72,7 @@ export function ListResearch() {
             <SearchIcon className="w-4 h-4 text-gray-400" />
             <Input
               type="search"
-              placeholder="Rechercher dans vos recherches..."
+              placeholder={t("searchPlaceholder")}
               onChange={(event) => setSearch(event.target.value)}
               value={options.search ?? ""}
               className="border-none focus:ring-0"
@@ -88,23 +83,23 @@ export function ListResearch() {
         <div className="mt-4 flex flex-wrap gap-2">
           {categories.map((category) => (
             <button
-              key={category.id}
+              key={category}
               type="button"
               onClick={() => {
-                setActiveCategory(category.id);
+                setActiveCategory(category);
                 setType(
-                  category.id === "all"
+                  category === "all"
                     ? undefined
-                    : (category.id as "articles" | "links" | "images" | "videos" | "books")
+                    : (category as "articles" | "links" | "images" | "videos" | "books")
                 );
               }}
               className={`px-4 py-2 rounded-lg border text-sm transition ${
-                activeCategory === category.id
+                activeCategory === category
                   ? "bg-blue-600 text-white border-blue-600"
                   : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200"
               }`}
             >
-              {category.label}
+              {t(`categories.${category}`)}
             </button>
           ))}
         </div>
@@ -112,7 +107,7 @@ export function ListResearch() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {data?.body?.data.length === 0 ? (
-          <div className={emptyResearchClassName}>Aucune recherche trouvée.</div>
+          <div className={emptyResearchClassName}>{t("empty")}</div>
         ) : (
           data?.body?.data.map((research) => (
             <ResearchCard

@@ -1,0 +1,9 @@
+{
+  "invalidFields": "Vyplňte prosím pole správně.",
+  "newTitle": "Nová myšlenková mapa",
+  "notInitialized": "MindElixir není inicializován.",
+  "update": {
+    "submit": "Aktualizujte myšlenkovou mapu",
+    "success": "Myšlenková mapa byla úspěšně aktualizována!"
+  }
+}

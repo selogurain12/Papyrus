@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Opravdu chcete tento projekt smazat?",
+    "success": "Projekt byl úspěšně smazán",
+    "title": "Smazat projekt"
+  }
+}

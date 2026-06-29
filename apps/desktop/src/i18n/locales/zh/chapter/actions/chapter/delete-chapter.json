@@ -1,0 +1,9 @@
+{
+  "description": "确定要删除“{{title}}”吗？此操作无法撤销。",
+  "projectNotSelected": "未选择项目",
+  "title": "删除章节",
+  "toasts": {
+    "error": "发生错误",
+    "success": "章节已成功删除"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Opravdu chcete smazat tuto událost?",
+    "success": "Událost byla úspěšně smazána",
+    "title": "Smazat událost"
+  }
+}

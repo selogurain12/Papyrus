@@ -1,0 +1,21 @@
+{
+  "actions": {
+    "loading": "Speichern...",
+    "submit": "Teil aktualisieren"
+  },
+  "fields": {
+    "status": "Status",
+    "statusOptions": {
+      "completed": "Abgeschlossen",
+      "inProgress": "In Arbeit",
+      "toStart": "Zu beginnen"
+    },
+    "statusPlaceholder": "Status auswählen",
+    "title": "Titel",
+    "titlePlaceholder": "z. B. Teil 1: Einführung"
+  },
+  "title": "Teil bearbeiten",
+  "toasts": {
+    "success": "Teil erfolgreich aktualisiert!"
+  }
+}

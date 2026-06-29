@@ -1,0 +1,14 @@
+{
+  "email": "Email",
+  "emailPlaceholder": "Email",
+  "error": "An error occurred",
+  "loginSuccess": "You are now signed in",
+  "noAccount": "Don't have an account yet?",
+  "password": "Password",
+  "passwordPlaceholder": "Password",
+  "register": "Sign up",
+  "submit": "Sign in",
+  "subtitle": "Sign in to continue",
+  "title": "Login",
+  "welcome": "Welcome to Papyrus"
+}

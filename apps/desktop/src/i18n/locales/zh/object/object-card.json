@@ -1,0 +1,10 @@
+{
+  "importance": {
+    "high": "高的",
+    "low": "低的",
+    "medium": "中等的"
+  },
+  "labels": {
+    "importance": "重要性：{{importance}}"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "additionalDetails": "追加の詳細",
+    "description": "説明",
+    "location": "位置"
+  },
+  "importance": {
+    "action": "アクション",
+    "critical": "致命的",
+    "important": "重要",
+    "normal": "普通"
+  },
+  "select": {
+    "description": "リストからイベントを選択して詳細を表示します",
+    "title": "イベントを選択してください"
+  }
+}

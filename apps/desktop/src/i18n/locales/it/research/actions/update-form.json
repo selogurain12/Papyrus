@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "Descrizione",
+    "link": "Collegamento",
+    "note": "Nota",
+    "sources": "Fonti)",
+    "tags": "Tag",
+    "title": "Titolo",
+    "type": "Tipo"
+  },
+  "placeholders": {
+    "description": "Riepilogo o nota incorniciata",
+    "note": "Nota interna",
+    "tag": "Aggiungi un tag",
+    "title": "Esempio: studio di mercato Parigi 2026"
+  },
+  "sections": {
+    "details": "Dettagli",
+    "info": "Informazioni"
+  },
+  "types": {
+    "article": "Articolo",
+    "book": "Libro",
+    "image": "Immagine",
+    "link": "Collegamento",
+    "video": "Video"
+  },
+  "update": {
+    "submit": "Aggiornamento",
+    "subtitle": "Modifica le informazioni e il file allegato.",
+    "success": "Ricerca aggiornata con successo",
+    "title": "Modifica ricerca"
+  }
+}

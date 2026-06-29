@@ -1,0 +1,16 @@
+{
+  "alreadyAccount": "Already have an account?",
+  "email": "Email",
+  "emailPlaceholder": "Email",
+  "error": "An error occurred",
+  "firstName": "First name",
+  "firstNamePlaceholder": "First name",
+  "lastName": "Last name",
+  "lastNamePlaceholder": "Last name",
+  "login": "Sign in",
+  "registerSuccess": "You are now registered",
+  "submit": "Sign up",
+  "subtitle": "Create an account to continue",
+  "title": "Sign up",
+  "welcome": "Welcome to Papyrus"
+}

@@ -1,0 +1,19 @@
+{
+  "importance": {
+    "high": "高い",
+    "low": "低い",
+    "medium": "中くらい"
+  },
+  "labels": {
+    "importance": "重要: {{importance}}"
+  },
+  "types": {
+    "city": "市",
+    "continent": "大陸",
+    "country": "国",
+    "other": "他の",
+    "planet": "惑星",
+    "space station": "宇宙ステーション",
+    "village": "村"
+  }
+}

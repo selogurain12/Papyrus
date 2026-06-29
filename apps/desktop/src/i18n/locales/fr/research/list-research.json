@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "Tout",
+    "articles": "Articles",
+    "books": "Livres",
+    "images": "Images",
+    "links": "Liens web",
+    "videos": "Vidéos"
+  },
+  "empty": "Aucune recherche trouvée.",
+  "new": "Nouvelle recherche",
+  "searchPlaceholder": "Rechercher dans vos recherches...",
+  "subtitle": "Organisez vos sources et références",
+  "title": "Recherches documentaires"
+}

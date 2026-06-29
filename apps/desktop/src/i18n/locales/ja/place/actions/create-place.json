@@ -1,0 +1,49 @@
+{
+  "create": {
+    "submit": "場所を作成する",
+    "success": "場所が正常に作成されました。",
+    "title": "新しい場所を作成する"
+  },
+  "fields": {
+    "atmosphere": "雰囲気",
+    "color": "色",
+    "government": "政府",
+    "history": "歴史",
+    "importance": "物語の重要性",
+    "languages": "言語",
+    "localisation": "位置",
+    "name": "地名 *",
+    "nickname": "ニックネーム",
+    "physicalDescription": "説明 *",
+    "population": "登場キャラクター",
+    "ressources": "リソース",
+    "type": "置き型※",
+    "visualDetails": "視覚的な詳細"
+  },
+  "importance": {
+    "high": "高い",
+    "low": "低い",
+    "medium": "中くらい"
+  },
+  "placeholders": {
+    "atmosphere": "気分、感覚…",
+    "government": "政府の種類、指導者...",
+    "history": "過去、原点…",
+    "importance": "重要度を選択してください",
+    "language": "話し言葉...",
+    "name": "例えば。カフェ ル メトロポリタン",
+    "physicalDescription": "一般的な説明...",
+    "ressources": "自然、経済、戦略的資源...",
+    "type": "タイプを選択してください",
+    "usages": "建築、装飾…"
+  },
+  "types": {
+    "city": "市",
+    "continent": "大陸",
+    "country": "国",
+    "other": "他の",
+    "planet": "惑星",
+    "space station": "宇宙ステーション",
+    "village": "村"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "alreadyAccount": "Sie haben bereits ein Konto?",
+  "email": "E-Mail",
+  "emailPlaceholder": "E-Mail",
+  "error": "Ein Fehler ist aufgetreten",
+  "firstName": "Vorname",
+  "firstNamePlaceholder": "Vorname",
+  "lastName": "Nachname",
+  "lastNamePlaceholder": "Nachname",
+  "login": "Anmelden",
+  "registerSuccess": "Sie sind jetzt registriert",
+  "submit": "Registrieren",
+  "subtitle": "Erstellen Sie ein Konto, um fortzufahren",
+  "title": "Registrieren",
+  "welcome": "Willkommen bei Papyrus"
+}

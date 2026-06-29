@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "cancel": "Cancelar",
+    "loading": "Guardando...",
+    "submit": "Crear la parte"
+  },
+  "fields": {
+    "status": "Estado",
+    "statusPlaceholder": "Seleccionar un estado",
+    "title": "Título",
+    "titlePlaceholder": "Ej.: Parte 1: Introducción",
+    "statusOptions": {
+      "toStart": "Por empezar",
+      "inProgress": "En curso",
+      "completed": "Terminado"
+    }
+  },
+  "projectNotFound": "Proyecto no encontrado",
+  "title": "Añadir una parte",
+  "toasts": {
+    "success": "¡Parte creada correctamente!"
+  }
+}

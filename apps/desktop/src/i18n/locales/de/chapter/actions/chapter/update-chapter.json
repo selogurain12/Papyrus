@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "Abbrechen",
+    "loading": "Speichern...",
+    "submit": "Kapitel aktualisieren"
+  },
+  "fields": {
+    "chapterNumber": "Kapitelnummer",
+    "part": "Teil",
+    "partPlaceholder": "Teil auswählen",
+    "resume": "Zusammenfassung",
+    "status": "Status",
+    "statusOptions": {
+      "completed": "Abgeschlossen",
+      "inProgress": "In Arbeit",
+      "toStart": "Zu beginnen"
+    },
+    "statusPlaceholder": "Status auswählen",
+    "titlePlaceholder": "z. B. Kapitel 1",
+    "wordGoal": "Wortziel"
+  },
+  "projectNotFound": "Projekt nicht gefunden",
+  "title": "Kapitel bearbeiten",
+  "toasts": {
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Kapitel erfolgreich aktualisiert!"
+  }
+}

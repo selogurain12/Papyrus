@@ -1,0 +1,44 @@
+{
+  "create": {
+    "submit": "Criar objeto",
+    "success": "Objeto criado com sucesso!",
+    "title": "Crie um novo objeto"
+  },
+  "fields": {
+    "appearance": "Aparência",
+    "color": "Cor",
+    "description": "Descrição",
+    "history": "História",
+    "importance": "Importância narrativa",
+    "location": "Localização",
+    "name": "Nome *",
+    "significance": "Importância na história",
+    "type": "Tipo"
+  },
+  "importance": {
+    "high": "Alto",
+    "low": "Baixo",
+    "medium": "Médio"
+  },
+  "placeholders": {
+    "appearance": "Olhar, material, detalhes visuais...",
+    "description": "Descrição geral do objeto",
+    "history": "Origem, acontecimentos passados...",
+    "importance": "Selecione uma importância",
+    "name": "Por exemplo Bússola antiga",
+    "significance": "Por que esse objeto é importante",
+    "type": "Selecione um tipo"
+  },
+  "types": {
+    "artifact": "Artefato",
+    "clothing": "Roupas",
+    "equipment": "Equipamento",
+    "furniture": "Mobília",
+    "jewelry": "Joia",
+    "paper": "Documentos",
+    "technology": "Tecnologia",
+    "tool": "Ferramenta",
+    "vehicle": "Veículo",
+    "weapon": "Arma"
+  }
+}

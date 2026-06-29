@@ -1,0 +1,35 @@
+{
+  "create": {
+    "submit": "Créer la recherche",
+    "subtitle": "Complète les informations pour enregistrer la ressource.",
+    "success": "Recherche créée avec succès",
+    "title": "Ajouter une recherche"
+  },
+  "fields": {
+    "description": "Description",
+    "link": "Lien",
+    "note": "Note",
+    "sources": "Source(s)",
+    "tags": "Étiquettes",
+    "title": "Titre",
+    "type": "Type"
+  },
+  "placeholders": {
+    "description": "Résumé ou note de cadrage",
+    "note": "Note interne",
+    "sources": "Ex: Le Monde, Wikipédia",
+    "tag": "Ajouter un tag",
+    "title": "Ex: Étude de marché Paris 2026"
+  },
+  "sections": {
+    "details": "Détails",
+    "info": "Informations"
+  },
+  "types": {
+    "article": "Article",
+    "book": "Livre",
+    "image": "Image",
+    "link": "Lien",
+    "video": "Vidéo"
+  }
+}

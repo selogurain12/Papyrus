@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "Annuler",
+    "loading": "Enregistrement...",
+    "submit": "Créer le chapitre"
+  },
+  "fields": {
+    "chapterNumber": "Numéro du chapitre",
+    "part": "Partie",
+    "partPlaceholder": "Sélectionner une partie",
+    "resume": "Résumé",
+    "status": "Statut",
+    "statusOptions": {
+      "completed": "Terminé",
+      "inProgress": "En cours",
+      "toStart": "À commencer"
+    },
+    "statusPlaceholder": "Sélectionner un statut",
+    "titlePlaceholder": "Ex: Chapitre 1",
+    "wordGoal": "Objectif en mots"
+  },
+  "projectNotFound": "Projet non trouvé",
+  "title": "Ajouter un chapitre",
+  "toasts": {
+    "error": "Une erreur est survenue",
+    "success": "Chapitre créé avec succès !"
+  }
+}

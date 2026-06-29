@@ -1,0 +1,11 @@
+{
+  "categories": {
+    "all": "Tout",
+    "articles": "Articles",
+    "books": "Livres",
+    "images": "Images",
+    "links": "Liens web",
+    "videos": "Vidéos"
+  },
+  "noFile": "Pas de fichier"
+}

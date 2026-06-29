@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}}岁，出生于{{place}}",
+  "fields": {
+    "accessoryShort": "配饰",
+    "beliefShort": "信仰",
+    "birthDate": "出生日期",
+    "characterFlawsShort": "缺陷",
+    "characterQualitiesShort": "品质",
+    "corpulence": "建造",
+    "descriptionShort": "描述",
+    "education": "教育",
+    "eyesShort": "眼睛",
+    "fearsShort": "恐惧",
+    "firstName": "名",
+    "future": "未来",
+    "genderDetail": "性别",
+    "goals": "目标/目的",
+    "hairShort": "头发",
+    "heightShort": "高度",
+    "lastNameShort": "姓",
+    "nationality": "国籍",
+    "nickName": "昵称",
+    "notablePlaces": "著名的地方",
+    "notesShort": "笔记",
+    "occupation": "职业",
+    "outfitShort": "全套服装",
+    "past": "过去的",
+    "present": "展示",
+    "pronouns": "代词",
+    "residencePlace": "居住地",
+    "richesses": "财富",
+    "secrets": "秘密",
+    "tastes": "口味",
+    "tics": "抽动、习惯、惯例和成瘾",
+    "typicalExpressionShort": "典型表达",
+    "voice": "嗓音",
+    "weightShort": "重量"
+  },
+  "gender": {
+    "female": "女性",
+    "male": "男性",
+    "other": "其他"
+  },
+  "notSpecified": "未指定",
+  "role": "角色：",
+  "sections": {
+    "development": "发展",
+    "maritalStatus": "公民身份",
+    "other": "其他",
+    "physical": "身体的",
+    "profile": "轮廓",
+    "trait": "特质"
+  },
+  "select": {
+    "description": "从列表中选择一个角色以查看其详细信息",
+    "title": "选择一个字符"
+  }
+}

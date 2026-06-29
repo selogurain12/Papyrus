@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "Popis",
+    "link": "Odkaz",
+    "note": "Poznámka",
+    "sources": "Zdroj(e)",
+    "tags": "Tagy",
+    "title": "Titul",
+    "type": "Typ"
+  },
+  "placeholders": {
+    "description": "Souhrn nebo rámcová poznámka",
+    "note": "Interní poznámka",
+    "tag": "Přidat štítek",
+    "title": "Příklad: studie trhu v Paříži 2026"
+  },
+  "sections": {
+    "details": "Podrobnosti",
+    "info": "Informace"
+  },
+  "types": {
+    "article": "Článek",
+    "book": "Rezervovat",
+    "image": "Obraz",
+    "link": "Odkaz",
+    "video": "Video"
+  },
+  "update": {
+    "submit": "Aktualizovat",
+    "subtitle": "Upravte informace a přiložený soubor.",
+    "success": "Výzkum byl úspěšně aktualizován",
+    "title": "Upravit výzkum"
+  }
+}

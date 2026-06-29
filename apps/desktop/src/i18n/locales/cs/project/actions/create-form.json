@@ -1,0 +1,65 @@
+{
+  "create": {
+    "submit": "Vytvořit projekt",
+    "success": "Projekt byl úspěšně vytvořen",
+    "title": "Vytvořte projekt"
+  },
+  "fields": {
+    "author": "Autor projektu",
+    "deadline": "Termín projektu",
+    "description": "Popis projektu",
+    "genre": "Žánr projektu",
+    "language": "Jazyk projektu",
+    "targetWordCount": "Cílový počet slov",
+    "title": "Název projektu"
+  },
+  "genres": {
+    "biography": "Životopis",
+    "children": "Děti",
+    "essay": "Esej",
+    "fantasy": "Fantazie",
+    "guide": "Průvodce",
+    "health": "Zdraví",
+    "historical": "Historický",
+    "history": "Dějiny",
+    "horror": "Hrůza",
+    "mystery": "Tajemství",
+    "non-fiction": "Literatura faktu",
+    "other": "Ostatní",
+    "poetry": "Poezie",
+    "police": "Zločin",
+    "religion": "Náboženství",
+    "roman": "Román",
+    "romance": "Romantika",
+    "science": "Věda",
+    "science-fiction": "Sci-fi",
+    "self-help": "Svépomocí",
+    "theater": "Divadlo",
+    "thriller": "Thriller",
+    "travel": "Cestovat",
+    "young-adult": "Mladý dospělý"
+  },
+  "languages": {
+    "cs": "čeština",
+    "de": "Němec",
+    "en": "angličtina",
+    "es": "španělština",
+    "fr": "francouzština",
+    "it": "italština",
+    "ja": "japonský",
+    "ko": "korejština",
+    "pt": "portugalština",
+    "ru": "ruština",
+    "zh": "čínština"
+  },
+  "placeholders": {
+    "date": "Vyberte datum",
+    "genre": "Vyberte žánr",
+    "language": "Vyberte jazyk",
+    "tag": "Přidejte značku"
+  },
+  "sections": {
+    "goals": "Cíle a nastavení",
+    "info": "Informace o projektu"
+  }
+}

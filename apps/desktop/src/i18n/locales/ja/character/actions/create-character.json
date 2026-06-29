@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "青",
+    "cyan": "シアン",
+    "gray": "グレー",
+    "green": "緑",
+    "pink": "ピンク",
+    "purple": "紫",
+    "red": "赤",
+    "yellow": "黄色"
+  },
+  "create": {
+    "submit": "キャラクターの作成",
+    "success": "キャラクターが無事作成されました！",
+    "title": "新しいキャラクターを作成する"
+  },
+  "fields": {
+    "accessory": "付属品",
+    "age": "年",
+    "belief": "信念とイデオロギー",
+    "birthDate": "生年月日",
+    "birthPlace": "出生地",
+    "characterFlaws": "性格上の欠陥",
+    "characterQualities": "性格の性質",
+    "color": "識別色",
+    "corpulence": "建てる",
+    "description": "概要",
+    "education": "教育",
+    "eyesColor": "目の色",
+    "fears": "恐怖と疑い",
+    "firstName": "ファーストネーム",
+    "future": "未来",
+    "gender": "セックス",
+    "goals": "目標/目的",
+    "hairColor": "髪の色",
+    "height": "身長(cm)",
+    "lastName": "苗字",
+    "nationality": "国籍",
+    "nickName": "ニックネーム",
+    "notablePlaces": "注目の場所",
+    "notes": "追加の注意事項",
+    "occupation": "職業",
+    "outfit": "服装",
+    "past": "過去",
+    "present": "現在",
+    "pronouns": "代名詞",
+    "residencePlace": "居住地",
+    "richesses": "富",
+    "secrets": "秘密",
+    "tastes": "味",
+    "tics": "チック、習慣、日常生活、依存症",
+    "typicalExpression": "典型的なフレーズや表現",
+    "voice": "声",
+    "weight": "重量(kg)"
+  },
+  "gender": {
+    "female": "女性",
+    "male": "男",
+    "other": "他の"
+  },
+  "placeholders": {
+    "date": "日付を選択してください",
+    "flaw": "欠陥を追加...",
+    "quality": "品質を追加...",
+    "role": "役割を選択してください"
+  },
+  "role": "役割：",
+  "roles": {
+    "ally": "アリー",
+    "antagonist": "アンタゴニスト",
+    "mentor": "メンター",
+    "protagonist": "主人公",
+    "secondary character": "サブキャラクター"
+  },
+  "sections": {
+    "development": "発達",
+    "maritalStatus": "民事上の地位",
+    "notes": "注意事項",
+    "physical": "物理的な",
+    "profile": "プロフィール",
+    "trait": "特性"
+  }
+}

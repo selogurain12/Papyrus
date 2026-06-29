@@ -1,0 +1,21 @@
+{
+  "actions": {
+    "loading": "Guardando...",
+    "submit": "Modificar la parte"
+  },
+  "fields": {
+    "status": "Estado",
+    "statusOptions": {
+      "completed": "Terminado",
+      "inProgress": "En curso",
+      "toStart": "Por empezar"
+    },
+    "statusPlaceholder": "Seleccionar un estado",
+    "title": "Título",
+    "titlePlaceholder": "Ej.: Parte 1: Introducción"
+  },
+  "title": "Modificar una parte",
+  "toasts": {
+    "success": "¡Parte modificada correctamente!"
+  }
+}

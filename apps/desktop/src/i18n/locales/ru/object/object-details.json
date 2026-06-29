@@ -1,0 +1,37 @@
+{
+  "fields": {
+    "appearance": "Появление",
+    "description": "Описание",
+    "location": "Расположение",
+    "significance": "Важность в истории"
+  },
+  "importance": {
+    "high": "Высокий",
+    "low": "Низкий",
+    "medium": "Середина"
+  },
+  "labels": {
+    "importance": "Важность: ВВАР0В"
+  },
+  "notSpecified": "Не указан",
+  "sections": {
+    "description": "ОПИСАНИЕ",
+    "history": "ИСТОРИЯ"
+  },
+  "select": {
+    "description": "Выберите объект из списка, чтобы просмотреть его детали",
+    "title": "Выберите объект"
+  },
+  "types": {
+    "artifact": "Артефакт",
+    "clothing": "Одежда",
+    "equipment": "Оборудование",
+    "furniture": "Мебель",
+    "jewelry": "Ювелирные изделия",
+    "paper": "Документы",
+    "technology": "Технология",
+    "tool": "Инструмент",
+    "vehicle": "Транспортное средство",
+    "weapon": "Оружие"
+  }
+}

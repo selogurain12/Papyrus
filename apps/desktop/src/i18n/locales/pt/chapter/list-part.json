@@ -1,0 +1,11 @@
+{
+  "title": "Capítulos",
+  "subtitle": "Organize as partes e capítulos do seu projeto",
+  "addPart": "Adicionar parte",
+  "addChapter": "Adicionar capítulo",
+  "overview": "Visão geral",
+  "parts": "Partes",
+  "chapters": "Capítulos",
+  "words": "Palavras",
+  "chapterCount": "{{count}} capítulo(s)"
+}

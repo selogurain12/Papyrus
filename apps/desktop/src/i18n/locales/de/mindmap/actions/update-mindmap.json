@@ -1,0 +1,9 @@
+{
+  "invalidFields": "Bitte füllen Sie die Felder korrekt aus.",
+  "newTitle": "Neue Mindmap",
+  "notInitialized": "MindElixir ist nicht initialisiert.",
+  "update": {
+    "submit": "Mindmap aktualisieren",
+    "success": "Mindmap erfolgreich aktualisiert!"
+  }
+}

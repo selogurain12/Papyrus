@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "説明",
+    "link": "リンク",
+    "note": "注記",
+    "sources": "情報源",
+    "tags": "タグ",
+    "title": "タイトル",
+    "type": "タイプ"
+  },
+  "placeholders": {
+    "description": "要約または構成メモ",
+    "note": "内部メモ",
+    "tag": "タグを追加",
+    "title": "例: 2026 年のパリ市場調査"
+  },
+  "sections": {
+    "details": "詳細",
+    "info": "情報"
+  },
+  "types": {
+    "article": "記事",
+    "book": "本",
+    "image": "画像",
+    "link": "リンク",
+    "video": "ビデオ"
+  },
+  "update": {
+    "submit": "アップデート",
+    "subtitle": "情報と添付ファイルを編集します。",
+    "success": "研究が正常に更新されました",
+    "title": "研究の編集"
+  }
+}

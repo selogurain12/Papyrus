@@ -21,15 +21,17 @@ import { SingleSelector } from "../../../ui/single-select";
 import { statusPartOptions, TypeOption } from "../../../../utils/value-for-select";
 import { Form } from "../../../ui/forms/form";
 import { Textarea } from "../../../ui/textarea";
+import { useTranslation } from "react-i18next";
 
 interface CreateChapterProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export function CreateChapter({ setOpen }: CreateChapterProps) {
+  const { t } = useTranslation("chapter/actions/chapter/create-chapter");
   const { currentProject } = useProject();
   if (!currentProject) {
-    return <div>Projet non trouvé</div>;
+    return <div>{t("projectNotFound")}</div>;
   }
   const form = useForm({
     resolver: zodResolver(createChapterSchema),
@@ -55,7 +57,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
   });
   const { mutate, isPending: loading } = client.chapter.create.useMutation({
     onSuccess: (response) => {
-      toast.success("Chapitre créé avec succès !");
+      toast.success(t("toasts.success"));
       void queryClient.invalidateQueries({
         queryKey: queryKeys.chapter.getAll({
           pathParams: { projectId: currentProject?.id ?? "" },
@@ -74,7 +76,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
         console.error("Fetch error:", error);
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("toasts.error"));
       }
     },
   });
@@ -95,7 +97,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
       }}
     >
       <DialogHeader>
-        <DialogTitle className="text-3xl font-bold tracking-tight">Ajouter un chapitre</DialogTitle>
+        <DialogTitle className="text-3xl font-bold tracking-tight">{t("title")}</DialogTitle>
       </DialogHeader>
 
       <Form {...form}>
@@ -105,9 +107,9 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Titre</FormLabel>
+                <FormLabel>{t("title")}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Ex: Chapitre 1" />
+                  <Input {...field} placeholder={t("fields.titlePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -118,7 +120,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
             name="part"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Partie</FormLabel>
+                <FormLabel>{t("fields.part")}</FormLabel>
                 <FormControl>
                   <SingleSelector<PartDto>
                     {...field}
@@ -128,7 +130,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
                     customLabel={(item: PartDto) => (
                       <span className="font-medium">{item.title}</span>
                     )}
-                    placeholder="Sélectionner une partie"
+                    placeholder={t("fields.partPlaceholder")}
                     data={parts?.body?.data ?? []}
                   />
                 </FormControl>
@@ -141,17 +143,17 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
             name="status"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Statut</FormLabel>
+                <FormLabel>{t("fields.status")}</FormLabel>
                 <FormControl>
                   <SingleSelector
                     {...field}
-                    customDisplay={(item: TypeOption) => item.label}
+                    customDisplay={(item: TypeOption) => t(`fields.statusOptions.${item.id}`)}
                     customLabel={(item: TypeOption) => (
-                      <span className="font-medium">{item.label}</span>
+                      <span className="font-medium">{t(`fields.statusOptions.${item.id}`)}</span>
                     )}
                     value={statusPartOptions.find((t) => t.id === field.value)}
                     onChange={(value) => field.onChange(value?.id ?? null)}
-                    placeholder="Sélectionner un statut"
+                    placeholder={t("fields.statusPlaceholder")}
                     data={statusPartOptions}
                   />
                 </FormControl>
@@ -164,7 +166,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
             name="chapterNumber"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Numéro du chapitre</FormLabel>
+                <FormLabel>{t("fields.chapterNumber")}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -183,7 +185,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
             name="wordGoal"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Objectif en mots</FormLabel>
+                <FormLabel>{t("fields.wordGoal")}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -202,7 +204,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
             name="resume"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Résumé</FormLabel>
+                <FormLabel>{t("fields.resume")}</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
@@ -225,10 +227,10 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
                 form.reset();
               }}
             >
-              Annuler
+              {t("actions.cancel")}
             </Button>
             <Button variant="blue" disabled={loading} className="min-w-45">
-              {loading ? "Enregistrement..." : "Créer le chapitre"}
+              {loading ? t("actions.loading") : t("actions.submit")}
             </Button>
           </div>
         </form>

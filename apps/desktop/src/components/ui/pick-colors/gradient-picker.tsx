@@ -9,6 +9,7 @@ import { Tabs } from "../tabs/tabs";
 import { TabsList } from "../tabs/tab-list";
 import { TabsTrigger } from "../tabs/tab-trigger";
 import { TabsContent } from "../tabs/tab-content";
+import { useTranslation } from "react-i18next";
 
 export function GradientPicker({
   background,
@@ -20,6 +21,7 @@ export function GradientPicker({
   setBackground: (background: string) => void;
   className?: string;
 }) {
+  const { t } = useTranslation();
   const solids: string[] = [
     "#E2E2E2",
     "#ff75c3",
@@ -103,7 +105,7 @@ export function GradientPicker({
             ) : (
               <LuPaintbrush className="h-4 w-4" />
             )}
-            <div className="truncate flex-1">{background || "Pick a color"}</div>
+            <div className="truncate flex-1">{background || t("pickColor")}</div>
           </div>
         </Button>
       </PopoverTrigger>
@@ -111,10 +113,10 @@ export function GradientPicker({
         <Tabs className="w-full" defaultValue={defaultTab}>
           <TabsList className="w-full mb-4">
             <TabsTrigger className="flex-1" value="solid">
-              Uni
+              {t("solid")}
             </TabsTrigger>
             <TabsTrigger className="flex-1" value="gradient">
-              Dégradé
+              {t("gradient")}
             </TabsTrigger>
           </TabsList>
 

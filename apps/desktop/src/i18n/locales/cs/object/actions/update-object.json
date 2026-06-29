@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "appearance": "Vzhled",
+    "color": "Barva",
+    "description": "Popis",
+    "history": "Dějiny",
+    "importance": "Narativní význam",
+    "location": "Umístění",
+    "name": "jméno *",
+    "significance": "Důležitost v příběhu",
+    "type": "Typ"
+  },
+  "importance": {
+    "high": "Vysoký",
+    "low": "Nízký",
+    "medium": "Střední"
+  },
+  "placeholders": {
+    "importance": "Vyberte důležitost",
+    "name": "Např. Starověký kompas",
+    "type": "Vyberte typ"
+  },
+  "types": {
+    "artifact": "Artefakt",
+    "clothing": "Oblečení",
+    "equipment": "Zařízení",
+    "furniture": "Nábytek",
+    "jewelry": "Šperky",
+    "paper": "Dokumenty",
+    "technology": "Technologie",
+    "tool": "Nástroj",
+    "vehicle": "Vozidlo",
+    "weapon": "Zbraň"
+  },
+  "update": {
+    "submit": "Aktualizovat objekt",
+    "success": "Objekt byl úspěšně aktualizován!",
+    "title": "Upravit objekt"
+  }
+}

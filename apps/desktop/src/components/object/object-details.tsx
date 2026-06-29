@@ -3,6 +3,7 @@ import { Card } from "../ui/card";
 import { MapPin, Package } from "lucide-react";
 import { ObjectDto } from "@papyrus/source";
 import { Badge } from "../ui/badge";
+import { useTranslation } from "react-i18next";
 
 interface ObjectDetailProps {
   object: ObjectDto | undefined;
@@ -10,6 +11,7 @@ interface ObjectDetailProps {
 
 // eslint-disable-next-line complexity
 export function ObjectDetail({ object }: ObjectDetailProps) {
+  const { t } = useTranslation("object/object-details");
   const colorMap: Record<string, string> = {
     green: "bg-green-500",
     blue: "bg-blue-500",
@@ -21,39 +23,18 @@ export function ObjectDetail({ object }: ObjectDetailProps) {
     gray: "bg-gray-500",
   };
 
-  const importanceMap: Record<string, string> = {
-    high: "Élevée",
-    medium: "Moyenne",
-    low: "Basse",
-  };
-
   const importanceColorMap: Record<string, string> = {
     high: "bg-red-200",
     medium: "bg-yellow-200",
     low: "bg-green-200",
   };
 
-  const typeMap: Record<string, string> = {
-    weapon: "Arme",
-    vehicle: "Véhicule",
-    artifact: "Artefact",
-    tool: "Outil",
-    clothing: "Vêtement",
-    jewelry: "Bijou",
-    furniture: "Meuble",
-    technology: "Technologie",
-    paper: "Documents",
-    equipment: "Equipement",
-  };
-
   if (!object) {
     return (
       <Card className="rounded-lg p-6 w-full flex flex-col items-center justify-center text-muted-foreground">
         <MapPin className="w-16 h-16 text-gray-300" />
-        <p className="text-md text-gray-600">Sélectionnez un objet</p>
-        <p className="text-sm text-gray-400">
-          Choisissez un objet dans la liste pour voir ses détails
-        </p>
+        <p className="text-md text-gray-600">{t("select.title")}</p>
+        <p className="text-sm text-gray-400">{t("select.description")}</p>
       </Card>
     );
   }
@@ -74,12 +55,18 @@ export function ObjectDetail({ object }: ObjectDetailProps) {
           <h3 className="text-2xl font-semibold text-card-foreground">{object.name}</h3>
 
           {object.type && (
-            <p className="text-sm text-muted-foreground">{typeMap[object.type] ?? object.type}</p>
+            <p className="text-sm text-muted-foreground">
+              {t(`types.${object.type}`, { defaultValue: object.type })}
+            </p>
           )}
 
           {object.importance && (
             <Badge className={importanceColorMap[object.importance] ?? "bg-gray-500"}>
-              Importance {importanceMap[object.importance] ?? object.importance}
+              {t("labels.importance", {
+                importance: t(`importance.${object.importance}`, {
+                  defaultValue: object.importance,
+                }),
+              })}
             </Badge>
           )}
         </div>
@@ -87,31 +74,37 @@ export function ObjectDetail({ object }: ObjectDetailProps) {
 
       {/* DESCRIPTION */}
       <section className="space-y-3">
-        <h4 className="text-lg font-semibold tracking-wide text-card-foreground">DESCRIPTION</h4>
+        <h4 className="text-lg font-semibold tracking-wide text-card-foreground">
+          {t("sections.description")}
+        </h4>
 
         <p>
-          <span className="font-semibold">Description :</span>{" "}
-          {object.description ?? "Non spécifié"}
+          <span className="font-semibold">{t("fields.description")} :</span>{" "}
+          {object.description ?? t("notSpecified")}
         </p>
 
         <p>
-          <span className="font-semibold">Apparence :</span> {object.appearance ?? "Non spécifié"}
+          <span className="font-semibold">{t("fields.appearance")} :</span>{" "}
+          {object.appearance ?? t("notSpecified")}
         </p>
 
         <p>
-          <span className="font-semibold">Signification :</span>{" "}
-          {object.significance ?? "Non spécifié"}
+          <span className="font-semibold">{t("fields.significance")} :</span>{" "}
+          {object.significance ?? t("notSpecified")}
         </p>
 
         <p>
-          <span className="font-semibold">Localisation :</span> {object.location ?? "Non spécifié"}
+          <span className="font-semibold">{t("fields.location")} :</span>{" "}
+          {object.location ?? t("notSpecified")}
         </p>
       </section>
 
       {/* HISTOIRE */}
       <section className="space-y-3">
-        <h4 className="text-lg font-semibold tracking-wide text-card-foreground">HISTOIRE</h4>
-        <p>{object.history ?? "Non spécifié"}</p>
+        <h4 className="text-lg font-semibold tracking-wide text-card-foreground">
+          {t("sections.history")}
+        </h4>
+        <p>{object.history ?? t("notSpecified")}</p>
       </section>
     </Card>
   );

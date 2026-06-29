@@ -1,0 +1,11 @@
+{
+  "title": "챕터",
+  "subtitle": "프로젝트의 파트와 챕터를 정리하세요",
+  "addPart": "파트 추가",
+  "addChapter": "챕터 추가",
+  "overview": "개요",
+  "parts": "파트",
+  "chapters": "챕터",
+  "words": "단어",
+  "chapterCount": "챕터 {{count}}개"
+}

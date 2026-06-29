@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "additionalDetails": "其他细节",
+    "description": "描述",
+    "location": "地点"
+  },
+  "importance": {
+    "action": "行动",
+    "critical": "批判的",
+    "important": "重要的",
+    "normal": "普通的"
+  },
+  "select": {
+    "description": "从列表中选择一个事件以查看其详细信息",
+    "title": "选择一个事件"
+  }
+}

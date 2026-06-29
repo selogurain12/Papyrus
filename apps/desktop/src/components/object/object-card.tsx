@@ -3,6 +3,7 @@ import { PencilLine, Trash2, Package } from "lucide-react";
 import { Card } from "../ui/card";
 import { ObjectDto } from "@papyrus/source";
 import { Badge } from "../ui/badge";
+import { useTranslation } from "react-i18next";
 
 export function ObjectCard({
   object,
@@ -16,11 +17,7 @@ export function ObjectCard({
   onEdit: () => void;
   onDelete: () => void;
 }) {
-  const importanceMap: Record<string, string> = {
-    high: "Élevée",
-    medium: "Moyenne",
-    low: "Faible",
-  };
+  const { t } = useTranslation("object/object-card");
 
   const importanceColorMap: Record<string, string> = {
     high: "bg-red-200",
@@ -52,7 +49,11 @@ export function ObjectCard({
           <Badge
             className={`mt-1 px-2 py-0.5 text-xs font-medium ${importanceColorMap[object.importance] || "bg-gray-500"}`}
           >
-            Importance : {importanceMap[object.importance] || object.importance}
+            {t("labels.importance", {
+              importance: t(`importance.${object.importance}`, {
+                defaultValue: object.importance,
+              }),
+            })}
           </Badge>
         </div>
 

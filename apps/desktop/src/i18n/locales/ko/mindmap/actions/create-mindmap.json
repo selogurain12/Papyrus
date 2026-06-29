@@ -1,0 +1,12 @@
+{
+  "canvas": "대화형 캔버스",
+  "create": {
+    "submit": "마인드맵 만들기",
+    "success": "마인드맵이 성공적으로 생성되었습니다!",
+    "title": "마인드맵을 만들어 보세요"
+  },
+  "invalidFields": "해당 필드를 올바르게 입력하십시오.",
+  "newTitle": "새로운 마인드맵",
+  "newTopic": "새로운 주제",
+  "notInitialized": "MindElixir가 초기화되지 않았습니다."
+}

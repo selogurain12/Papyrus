@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "모두",
+    "articles": "조항",
+    "books": "서적",
+    "images": "이미지",
+    "links": "웹 링크",
+    "videos": "비디오"
+  },
+  "empty": "연구 결과가 없습니다.",
+  "new": "새로운 연구",
+  "searchPlaceholder": "연구를 검색해 보세요...",
+  "subtitle": "출처와 참고자료를 정리하세요",
+  "title": "연구"
+}

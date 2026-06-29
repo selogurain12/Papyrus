@@ -20,15 +20,17 @@ import { Button } from "../../../ui/button";
 import { SingleSelector } from "../../../ui/single-select";
 import { statusPartOptions, TypeOption } from "../../../../utils/value-for-select";
 import { Form } from "../../../ui/forms/form";
+import { useTranslation } from "react-i18next";
 
 interface CreatePartProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export function CreatePart({ setOpen }: CreatePartProps) {
+  const { t } = useTranslation("chapter/actions/part/create-part");
   const { currentProject } = useProject();
   if (!currentProject) {
-    return <div>Projet non trouvé</div>;
+    return <div>{t("projectNotFound")}</div>;
   }
   const form = useForm({
     resolver: zodResolver(createPartSchema),
@@ -38,7 +40,7 @@ export function CreatePart({ setOpen }: CreatePartProps) {
   });
   const { mutate, isPending: loading } = client.part.create.useMutation({
     onSuccess: () => {
-      toast.success("Partie créée avec succès !");
+      toast.success(t("toasts.success"));
       void queryClient.invalidateQueries({ queryKey: ["part.getAll"] });
       form.reset();
       setOpen(false);
@@ -48,7 +50,7 @@ export function CreatePart({ setOpen }: CreatePartProps) {
         console.error("Fetch error:", error);
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.success(t("toasts.success"));
       }
     },
   });
@@ -59,7 +61,7 @@ export function CreatePart({ setOpen }: CreatePartProps) {
   return (
     <DialogContent
       className={
-        "sm:max-w-[850px] sm:max-h-[90vh] bg-white p-6 sm:p-8 rounded-2xl " +
+        "sm:max-w-212.5 sm:max-h-[90vh] bg-white p-6 sm:p-8 rounded-2xl " +
         "shadow-2xl border border-slate-200 overflow-y-auto"
       }
       onInteractOutside={(event) => {
@@ -69,7 +71,7 @@ export function CreatePart({ setOpen }: CreatePartProps) {
       }}
     >
       <DialogHeader>
-        <DialogTitle className="text-3xl font-bold tracking-tight">Ajouter une partie</DialogTitle>
+        <DialogTitle className="text-3xl font-bold tracking-tight">{t("title")}</DialogTitle>
       </DialogHeader>
 
       <Form {...form}>
@@ -79,9 +81,9 @@ export function CreatePart({ setOpen }: CreatePartProps) {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Titre</FormLabel>
+                <FormLabel>{t("fields.title")}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Ex: Partie 1: Introduction" />
+                  <Input {...field} placeholder={t("fields.titlePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,16 +94,16 @@ export function CreatePart({ setOpen }: CreatePartProps) {
             name="status"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Statut</FormLabel>
+                <FormLabel>{t("fields.status")}</FormLabel>
                 <FormControl>
                   <SingleSelector
-                    customDisplay={(item: TypeOption) => item.label}
+                    customDisplay={(item: TypeOption) => t(`fields.statusOptions.${item.id}`)}
                     customLabel={(item: TypeOption) => (
-                      <span className="font-medium">{item.label}</span>
+                      <span className="font-medium">{t(`fields.statusOptions.${item.id}`)}</span>
                     )}
                     value={statusPartOptions.find((t) => t.id === field.value)}
                     onChange={(value) => field.onChange(value?.id ?? null)}
-                    placeholder="Sélectionner un statut"
+                    placeholder={t("fields.statusPlaceholder")}
                     data={statusPartOptions}
                   />
                 </FormControl>
@@ -119,10 +121,10 @@ export function CreatePart({ setOpen }: CreatePartProps) {
                 form.reset();
               }}
             >
-              Annuler
+              {t("actions.cancel")}
             </Button>
-            <Button variant="blue" disabled={loading} className="min-w-[180px]">
-              {loading ? "Enregistrement..." : "Créer la partie"}
+            <Button variant="blue" disabled={loading} className="min-w-45">
+              {loading ? t("actions.loading") : t("actions.submit")}
             </Button>
           </div>
         </form>

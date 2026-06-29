@@ -22,6 +22,7 @@ import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import { eventRoute } from "../../../routes/event/index.route";
 import { useNavigate } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 interface UpdateEventProps {
   event: EventDto;
@@ -30,6 +31,7 @@ interface UpdateEventProps {
 
 // eslint-disable-next-line complexity
 export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
+  const { t } = useTranslation(["event/actions/update-event", "common"]);
   const user = useAuth();
   const { currentProject } = useProject();
   const navigate = useNavigate();
@@ -48,7 +50,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
 
   const { mutate } = client.event.update.useMutation({
     onSuccess: () => {
-      toast.success("Événement mis à jour !");
+      toast.success(t("update.success"));
       void queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
       form.reset();
       onCancel?.();
@@ -57,21 +59,21 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
 
-  if (!currentProject) return <div>Loading...</div>;
-  if (!event) return <div>Séléctionner un évènement</div>;
+  if (!currentProject) return <div>{t("common:loading")}</div>;
+  if (!event) return <div>{t("select.title")}</div>;
 
   function handleSubmit(data: UpdateEventDto) {
     if (user === null) {
-      toast.error("User is null");
+      toast.error(t("common:notConnected"));
       return;
     }
     if (currentProject === null) {
-      toast.error("Current project is null");
+      toast.error(t("common:currentProjectMissing"));
       return;
     }
     mutate({ body: data, params: { projectId: currentProject.id, id: event.id } });
@@ -87,7 +89,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
           }}
           className="flex flex-col flex-1 overflow-y-auto p-6"
         >
-          <h2 className="text-2xl font-bold mb-6">Modifier l'événement</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("update.title")}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div className="space-y-4">
@@ -96,7 +98,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Titre de l'événement</FormLabel>
+                    <FormLabel>{t("fields.title")}</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -111,7 +113,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                   name="eventDate"
                   render={({ field }) => (
                     <FormItem className="flex-1">
-                      <FormLabel>Date</FormLabel>
+                      <FormLabel>{t("fields.date")}</FormLabel>
                       <FormControl>
                         <DatePicker
                           value={field.value ?? undefined}
@@ -130,7 +132,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                 name="importance"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Type d'événement</FormLabel>
+                    <FormLabel>{t("fields.type")}</FormLabel>
                     <FormControl>
                       <RadioGroup
                         value={field.value ?? ""}
@@ -139,19 +141,19 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                       >
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="critical" id="critical" />
-                          <Label htmlFor="critical">Critique</Label>
+                          <Label htmlFor="critical">{t("importance.critical")}</Label>
                         </div>
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="important" id="important" />
-                          <Label htmlFor="important">Important</Label>
+                          <Label htmlFor="important">{t("importance.important")}</Label>
                         </div>
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="action" id="action" />
-                          <Label htmlFor="action">Action</Label>
+                          <Label htmlFor="action">{t("importance.action")}</Label>
                         </div>
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="normal" id="normal" />
-                          <Label htmlFor="normal">Normal</Label>
+                          <Label htmlFor="normal">{t("importance.normal")}</Label>
                         </div>
                       </RadioGroup>
                     </FormControl>
@@ -165,7 +167,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                 name="additionalDetails"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Détails supplémentaires</FormLabel>
+                    <FormLabel>{t("fields.additionalDetails")}</FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
@@ -185,7 +187,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>{t("fields.description")}</FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
@@ -203,7 +205,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Lieu</FormLabel>
+                    <FormLabel>{t("fields.location")}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -234,10 +236,10 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                 }
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
 
-            <Button type="submit">Modifier l'événement</Button>
+            <Button type="submit">{t("update.submit")}</Button>
           </div>
         </form>
       </Form>

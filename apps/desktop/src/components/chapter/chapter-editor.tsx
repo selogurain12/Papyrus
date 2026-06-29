@@ -9,6 +9,7 @@ import Editor from "../ui/editor/editor";
 import { Button } from "../ui/button";
 import { useProject } from "../../context/project-provider";
 import { queryClient } from "../../context/query-client";
+import { useTranslation } from "react-i18next";
 
 interface ChapterEditorProps {
   chapter: ChapterDto;
@@ -18,6 +19,7 @@ interface ChapterEditorProps {
 }
 
 export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorProps) {
+  const { t } = useTranslation(["chapter/chapter-editor", "common"]);
   const [content, setContent] = useState(chapter.content ?? "");
   const { setCurrentProject, currentProject } = useProject();
 
@@ -27,7 +29,7 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
 
   const { mutate } = client.chapter.update.useMutation({
     onSuccess: (response) => {
-      toast.success("Contenu du chapitre mis à jour");
+      toast.success(t("success"));
       void queryClient.invalidateQueries({
         queryKey: queryKeys.chapter.get({
           pathParams: { projectId: currentProject?.id ?? "", id: chapter.id },
@@ -57,7 +59,7 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
@@ -95,7 +97,7 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
         }}
       />
       <Button variant="blue" onClick={handleSave}>
-        Enregister
+        {t("save")}
       </Button>
     </DialogContent>
   );

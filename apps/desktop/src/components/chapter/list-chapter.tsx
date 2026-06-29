@@ -4,6 +4,7 @@ import { ChapterDto, queryKeys } from "@papyrus/source";
 import { client } from "../../utils/client/client";
 import { useProject } from "../../context/project-provider";
 import { FileText } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ChapterListProps {
   id: string;
@@ -13,6 +14,7 @@ interface ChapterListProps {
 }
 
 export function ChapterList({ id, setSelectedChapter, selectedChapter }: ChapterListProps) {
+  const { t } = useTranslation(["chapter/list-chapter", "common"]);
   const { currentProject } = useProject();
   const { data: chaptersData, isLoading } = client.chapter.getByPart.useQuery({
     queryKey: queryKeys.chapter.getByPart({
@@ -39,17 +41,17 @@ export function ChapterList({ id, setSelectedChapter, selectedChapter }: Chapter
   };
 
   const statusTextMap: Record<string, string> = {
-    toStart: "À commencer",
-    inProgress: "En cours",
-    completed: "Terminé",
+    toStart: t("common:status.toStart"),
+    inProgress: t("common:status.inProgress"),
+    completed: t("common:status.completed"),
   };
 
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>{t("common:loading")}</p>
       ) : chapters.length === 0 ? (
-        <p className="text-gray-500">Aucun chapitre pour cette partie.</p>
+        <p className="text-gray-500">{t("empty")}</p>
       ) : (
         chapters.map((ch) => (
           <div
@@ -62,7 +64,9 @@ export function ChapterList({ id, setSelectedChapter, selectedChapter }: Chapter
               <div className="flex flex-col">
                 <p className="font-medium">{ch.title}</p>
 
-                <p className="mt-2 text-sm text-gray-500">{ch.wordCount} mots</p>
+                <p className="mt-2 text-sm text-gray-500">
+                  {t("common:words", { count: ch.wordCount })}
+                </p>
               </div>
             </div>
             <div className="flex flex-row items-center gap-2">

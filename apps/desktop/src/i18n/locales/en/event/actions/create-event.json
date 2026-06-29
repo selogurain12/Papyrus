@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "Create event",
+    "success": "Event created successfully!",
+    "title": "Create a new event"
+  },
+  "fields": {
+    "additionalDetails": "Additional details",
+    "date": "Date",
+    "description": "Description",
+    "location": "Location",
+    "title": "Event title",
+    "type": "Event type"
+  },
+  "importance": {
+    "action": "Action",
+    "critical": "Critical",
+    "important": "Important",
+    "normal": "Normal"
+  }
+}

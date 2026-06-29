@@ -1,0 +1,49 @@
+{
+  "create": {
+    "submit": "Créer le lieu",
+    "success": "Lieu créé avec succès !",
+    "title": "Créer un nouveau lieu"
+  },
+  "fields": {
+    "atmosphere": "Atmosphère",
+    "color": "Couleur",
+    "government": "Gouvernement",
+    "history": "Histoire",
+    "importance": "Importance narrative",
+    "languages": "Langues",
+    "localisation": "Localisation",
+    "name": "Nom du lieu *",
+    "nickname": "Surnom",
+    "physicalDescription": "Description *",
+    "population": "Personnages présents",
+    "ressources": "Ressources",
+    "type": "Type de lieu *",
+    "visualDetails": "Détails visuels"
+  },
+  "importance": {
+    "high": "Élevée",
+    "low": "Faible",
+    "medium": "Moyenne"
+  },
+  "placeholders": {
+    "atmosphere": "Ambiance, sensations...",
+    "government": "Type de gouvernement, dirigeants...",
+    "history": "Passé, origine...",
+    "importance": "Sélectionner une importance",
+    "language": "Langues parlées...",
+    "name": "Ex : Café Le Métropolitain",
+    "physicalDescription": "Description générale...",
+    "ressources": "Ressources naturelles, économiques, stratégiques...",
+    "type": "Sélectionner un type",
+    "usages": "Architecture, décor..."
+  },
+  "types": {
+    "city": "Ville",
+    "continent": "Continent",
+    "country": "Pays",
+    "other": "Autre",
+    "planet": "Planète",
+    "space station": "Station spatiale",
+    "village": "Village"
+  }
+}

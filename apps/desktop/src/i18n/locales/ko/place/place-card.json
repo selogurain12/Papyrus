@@ -1,0 +1,19 @@
+{
+  "importance": {
+    "high": "높은",
+    "low": "낮은",
+    "medium": "중간"
+  },
+  "labels": {
+    "importance": "중요도: {{importance}}"
+  },
+  "types": {
+    "city": "도시",
+    "continent": "대륙",
+    "country": "국가",
+    "other": "다른",
+    "planet": "행성",
+    "space station": "우주 정거장",
+    "village": "마을"
+  }
+}

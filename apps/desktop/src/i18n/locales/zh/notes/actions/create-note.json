@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "创建笔记",
+    "success": "笔记创建成功",
+    "title": "添加注释"
+  },
+  "fields": {
+    "color": "颜色",
+    "content": "内容",
+    "tags": "标签",
+    "title": "标题"
+  },
+  "placeholders": {
+    "content": "示例：马库斯是一个复杂的角色，有着神秘的过去……",
+    "tag": "添加标签",
+    "title": "示例：马库斯角色发展"
+  },
+  "sections": {
+    "info": "备注信息"
+  }
+}

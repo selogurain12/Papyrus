@@ -1,0 +1,44 @@
+{
+  "create": {
+    "submit": "Create object",
+    "success": "Object created successfully!",
+    "title": "Create a new object"
+  },
+  "fields": {
+    "appearance": "Appearance",
+    "color": "Color",
+    "description": "Description",
+    "history": "History",
+    "importance": "Narrative importance",
+    "location": "Location",
+    "name": "Name *",
+    "significance": "Importance in the story",
+    "type": "Type"
+  },
+  "importance": {
+    "high": "High",
+    "low": "Low",
+    "medium": "Medium"
+  },
+  "placeholders": {
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, past events...",
+    "importance": "Select an importance",
+    "name": "E.g. Ancient compass",
+    "significance": "Why this object matters",
+    "type": "Select a type"
+  },
+  "types": {
+    "artifact": "Artifact",
+    "clothing": "Clothing",
+    "equipment": "Equipment",
+    "furniture": "Furniture",
+    "jewelry": "Jewelry",
+    "paper": "Documents",
+    "technology": "Technology",
+    "tool": "Tool",
+    "vehicle": "Vehicle",
+    "weapon": "Weapon"
+  }
+}

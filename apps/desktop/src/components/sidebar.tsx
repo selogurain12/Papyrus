@@ -28,20 +28,21 @@ import { structureRoute } from "../routes/structure/index.routes";
 import { mindmapRoute } from "../routes/mindmap/index.route";
 import { chapterRoute } from "../routes/chapter/index.route";
 import { exportRoute } from "../routes/export/index.route";
+import { useTranslation } from "react-i18next";
 
 const menu = [
-  { id: "dashboard", label: "Tableau de bord", icon: Home, path: characterRoute },
-  { id: "characters", label: "Personnages", icon: Users, path: characterRoute },
-  { id: "places", label: "Lieux", icon: MapPin, path: placeRoute },
-  { id: "objects", label: "Objets", icon: Package, path: objectRoute },
-  { id: "chapters", label: "Chapitres", icon: BookOpen, path: chapterRoute },
-  { id: "research", label: "Recherches", icon: Search, path: researchRoute },
+  { id: "dashboard", labelKey: "menu.dashboard", icon: Home, path: characterRoute },
+  { id: "characters", labelKey: "menu.characters", icon: Users, path: characterRoute },
+  { id: "places", labelKey: "menu.places", icon: MapPin, path: placeRoute },
+  { id: "objects", labelKey: "menu.objects", icon: Package, path: objectRoute },
+  { id: "chapters", labelKey: "menu.chapters", icon: BookOpen, path: chapterRoute },
+  { id: "research", labelKey: "menu.research", icon: Search, path: researchRoute },
   // { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
-  { id: "timeline", label: "Chronologie", icon: Calendar, path: eventRoute },
-  { id: "structure", label: "Structure", icon: Layers, path: structureRoute },
-  { id: "mind-maps", label: "Cartes mentales", icon: GitBranch, path: mindmapRoute },
-  { id: "notes", label: "Notes", icon: StickyNote, path: noteRoute },
-  { id: "export", label: "Export", icon: Download, path: exportRoute },
+  { id: "timeline", labelKey: "menu.timeline", icon: Calendar, path: eventRoute },
+  { id: "structure", labelKey: "menu.structure", icon: Layers, path: structureRoute },
+  { id: "mind-maps", labelKey: "menu.mindMaps", icon: GitBranch, path: mindmapRoute },
+  { id: "notes", labelKey: "menu.notes", icon: StickyNote, path: noteRoute },
+  { id: "export", labelKey: "menu.export", icon: Download, path: exportRoute },
 ];
 
 interface SidebarProps {
@@ -51,6 +52,8 @@ interface SidebarProps {
 export function Sidebar({ name }: SidebarProps) {
   const [activeView, setActiveView] = useState("dashboard");
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   return (
     <div className="w-64 bg-background shadow-lg border-r border-gray-300 h-full">
       <div className="p-6 border-b border-gray-300">
@@ -60,12 +63,12 @@ export function Sidebar({ name }: SidebarProps) {
           </div>
           <div>
             <h1 className="text-xl font-bold text-secondary-900">Papyrus</h1>
-            <p className="text-sm text-secondary-500">Studio d'écriture</p>
+            <p className="text-sm text-secondary-500">{t("app.tagline")}</p>
           </div>
         </div>
         <div className="flex items-center justify-between mt-3 bg-blue-200 rounded-xl p-2">
           <div>
-            <p className="text-sm text-blue-600">Projet actuel</p>
+            <p className="text-sm text-blue-600">{t("currentProject")}</p>
             <p className="text-sm text-blue-900">{name}</p>
           </div>
           <div className="w-5 h-5 flex items-center justify-center">
@@ -80,7 +83,7 @@ export function Sidebar({ name }: SidebarProps) {
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Retour aux projets</p>
+                <p>{t("backToProjects")}</p>
               </TooltipContent>
             </Tooltip>
           </div>
@@ -109,7 +112,7 @@ export function Sidebar({ name }: SidebarProps) {
                   <Icon
                     className={`w-5 h-5 ${isActive ? "text-primary-600" : "text-secondary-400"}`}
                   />
-                  <span className="font-medium">{item.label}</span>
+                  <span className="font-medium">{t(item.labelKey)}</span>
                 </button>
               </li>
             );

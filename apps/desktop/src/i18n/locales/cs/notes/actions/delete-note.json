@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Opravdu chcete smazat \"{{title}}\"? Tuto akci nelze vrátit zpět.",
+    "success": "Poznámka byla úspěšně smazána",
+    "title": "Smazat poznámku"
+  }
+}

@@ -11,8 +11,10 @@ import { Button } from "../../ui/button";
 import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
 import { isFetchError } from "@ts-rest/react-query/v5";
+import { useTranslation } from "react-i18next";
 
 export function UpdateMindMap() {
+  const { t } = useTranslation(["mindmap/actions/update-mindmap", "common"]);
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const { id } = updateMindmapRoute.useParams();
@@ -46,7 +48,7 @@ export function UpdateMindMap() {
 
   const { mutate } = client.mindmap.update.useMutation({
     onSuccess: (data) => {
-      toast.success("Carte mentale modifiée avec succès !");
+      toast.success(t("update.success"));
       void queryClient.invalidateQueries({
         queryKey: queryKeys.mindmap.getAll({ pathParams: { projectId: currentProject?.id ?? "" } }),
       });
@@ -62,30 +64,30 @@ export function UpdateMindMap() {
         console.error("Fetch error:", error);
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
 
   async function handleSubmit() {
     if (!mindRef.current) {
-      toast.error("MindElixir n'est pas initialisé.");
+      toast.error(t("notInitialized"));
       return;
     }
     if (!currentProject) {
-      toast.error("Aucun projet sélectionné.");
+      toast.error(t("common:projectNotSelected"));
       return;
     }
 
     const data = mindRef.current.getData();
     const parsed = updateMindMapSchema.safeParse({
-      title: "Nouvelle carte mentale",
+      title: t("newTitle"),
       project: currentProject,
       data,
     });
 
     if (!parsed.success) {
-      toast.error("Veuillez remplir correctement les champs.");
+      toast.error(t("invalidFields"));
       return;
     }
 
@@ -99,7 +101,7 @@ export function UpdateMindMap() {
     });
   }
 
-  if (!mindmap) return <div>Loading...</div>;
+  if (!mindmap) return <div>{t("common:loading")}</div>;
 
   return (
     <div className="p-6">
@@ -112,7 +114,7 @@ export function UpdateMindMap() {
             }
             className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
           >
-            Fermer
+            {t("common:close")}
           </Button>
         </div>
 
@@ -124,7 +126,7 @@ export function UpdateMindMap() {
             onClick={handleSubmit}
             className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
-            Modifier la carte mentale
+            {t("update.submit")}
           </Button>
         </div>
       </div>

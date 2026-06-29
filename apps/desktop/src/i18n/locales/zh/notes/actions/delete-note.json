@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "您确定要删除“{{title}}”吗？此操作无法撤消。",
+    "success": "备注已成功删除",
+    "title": "删除注释"
+  }
+}

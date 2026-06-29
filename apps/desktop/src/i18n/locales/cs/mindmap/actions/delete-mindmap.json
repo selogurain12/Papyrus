@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Opravdu chcete smazat \"{{title}}\"? Tuto akci nelze vrátit zpět.",
+    "success": "Myšlenková mapa byla úspěšně smazána",
+    "title": "Smazat myšlenkovou mapu"
+  }
+}

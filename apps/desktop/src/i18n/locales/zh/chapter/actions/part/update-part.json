@@ -1,0 +1,21 @@
+{
+  "actions": {
+    "loading": "正在保存...",
+    "submit": "更新部分"
+  },
+  "fields": {
+    "status": "状态",
+    "statusOptions": {
+      "completed": "已完成",
+      "inProgress": "进行中",
+      "toStart": "待开始"
+    },
+    "statusPlaceholder": "选择状态",
+    "title": "标题",
+    "titlePlaceholder": "例如：第 1 部分：介绍"
+  },
+  "title": "编辑部分",
+  "toasts": {
+    "success": "部分更新成功！"
+  }
+}

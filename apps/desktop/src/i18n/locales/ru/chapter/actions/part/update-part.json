@@ -1,0 +1,21 @@
+{
+  "actions": {
+    "loading": "Сохранение...",
+    "submit": "Обновить часть"
+  },
+  "fields": {
+    "status": "Статус",
+    "statusOptions": {
+      "completed": "Завершено",
+      "inProgress": "В процессе",
+      "toStart": "Начать"
+    },
+    "statusPlaceholder": "Выберите статус",
+    "title": "Название",
+    "titlePlaceholder": "Напр.: Часть 1: Введение"
+  },
+  "title": "Редактировать часть",
+  "toasts": {
+    "success": "Часть успешно обновлена!"
+  }
+}

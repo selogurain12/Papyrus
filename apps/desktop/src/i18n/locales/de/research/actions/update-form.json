@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "Beschreibung",
+    "link": "Link",
+    "note": "Notiz",
+    "sources": "Quelle(n)",
+    "tags": "Schlagworte",
+    "title": "Titel",
+    "type": "Typ"
+  },
+  "placeholders": {
+    "description": "Zusammenfassung oder Rahmennotiz",
+    "note": "Interner Hinweis",
+    "tag": "Tag hinzufügen",
+    "title": "Beispiel: Marktstudie Paris 2026"
+  },
+  "sections": {
+    "details": "Einzelheiten",
+    "info": "Informationen"
+  },
+  "types": {
+    "article": "Artikel",
+    "book": "Buch",
+    "image": "Bild",
+    "link": "Link",
+    "video": "Video"
+  },
+  "update": {
+    "submit": "Aktualisieren",
+    "subtitle": "Bearbeiten Sie die Informationen und die angehängte Datei.",
+    "success": "Forschung erfolgreich aktualisiert",
+    "title": "Recherche bearbeiten"
+  }
+}

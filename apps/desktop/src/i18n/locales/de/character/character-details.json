@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}} Jahre alt, geboren in {{place}}",
+  "fields": {
+    "accessoryShort": "Zubehör",
+    "beliefShort": "Überzeugungen",
+    "birthDate": "Geburtsdatum",
+    "characterFlawsShort": "Mängel",
+    "characterQualitiesShort": "Qualitäten",
+    "corpulence": "Bauen",
+    "descriptionShort": "Beschreibung",
+    "education": "Ausbildung",
+    "eyesShort": "Augen",
+    "fearsShort": "Ängste",
+    "firstName": "Vorname",
+    "future": "Zukunft",
+    "genderDetail": "Geschlecht",
+    "goals": "Ziele / Ziele",
+    "hairShort": "Haar",
+    "heightShort": "Höhe",
+    "lastNameShort": "Nachname",
+    "nationality": "Nationalität",
+    "nickName": "Spitzname",
+    "notablePlaces": "Bemerkenswerte Orte",
+    "notesShort": "Notizen",
+    "occupation": "Beruf",
+    "outfitShort": "Kleidung",
+    "past": "Vergangenheit",
+    "present": "Gegenwärtig",
+    "pronouns": "Pronomen",
+    "residencePlace": "Wohnort",
+    "richesses": "Reichtum",
+    "secrets": "Geheimnisse",
+    "tastes": "Schmeckt",
+    "tics": "Tics, Gewohnheiten, Routinen und Süchte",
+    "typicalExpressionShort": "Typischer Ausdruck",
+    "voice": "Stimme",
+    "weightShort": "Gewicht"
+  },
+  "gender": {
+    "female": "Weiblich",
+    "male": "Männlich",
+    "other": "Andere"
+  },
+  "notSpecified": "Nicht angegeben",
+  "role": "Rolle:",
+  "sections": {
+    "development": "ENTWICKLUNG",
+    "maritalStatus": "ZIVILSTATUS",
+    "other": "ANDERE",
+    "physical": "PHYSISCH",
+    "profile": "PROFIL",
+    "trait": "EIGENSCHAFTEN"
+  },
+  "select": {
+    "description": "Wählen Sie einen Charakter aus der Liste aus, um seine Details anzuzeigen",
+    "title": "Wählen Sie einen Charakter aus"
+  }
+}

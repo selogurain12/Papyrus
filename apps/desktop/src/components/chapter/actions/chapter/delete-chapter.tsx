@@ -14,6 +14,7 @@ import { AlertDialog } from "../../../ui/alert-dialog/alert-dialog";
 import { AlertDialogContent } from "../../../ui/alert-dialog/alert-dialog-content";
 import { AlertDialogTitle } from "../../../ui/alert-dialog/alert-dialog-title";
 import { AlertDialogDescription } from "../../../ui/alert-dialog/alert-dialog-description";
+import { useTranslation } from "react-i18next";
 
 interface ChapterDeleteActionsProps {
   onClose?: () => void;
@@ -30,16 +31,17 @@ export function ChapterDeleteActions({
   onClose = undefined,
   clearSelection,
 }: ChapterDeleteActionsProps) {
+  const { t } = useTranslation("chapter/actions/chapter/delete-chapter");
   const queryClient = useQueryClient();
   const { currentProject } = useProject();
   if (currentProject === null) {
-    toast.error("Projet non sélectionné");
+    toast.error(t("projectNotSelected"));
     return null;
   }
 
   const { mutate } = client.chapter.softDelete.useMutation({
     onSuccess: () => {
-      toast.success("Le chapitre a été supprimé avec succès");
+      toast.error(t("toasts.success"));
       void queryClient.invalidateQueries({
         queryKey: queryKeys.chapter.getAll({
           pathParams: { projectId: currentProject?.id ?? "" },
@@ -57,7 +59,7 @@ export function ChapterDeleteActions({
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("toasts.error"));
       }
     },
   });
@@ -66,9 +68,9 @@ export function ChapterDeleteActions({
     <AlertDialog onOpenChange={setOpen} open={open}>
       <AlertDialogContent className="sm:max-w-200 sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
-          <AlertDialogTitle>Supprimer la chapterie</AlertDialogTitle>
+          <AlertDialogTitle>{t("title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            Êtes-vous sûr de vouloir supprimer « {chapter.title} » ? Cette action est irréversible.
+            {t("description", { title: chapter.title })}
           </AlertDialogDescription>
         </AlertDialogHeader>
 

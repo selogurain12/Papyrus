@@ -1,0 +1,9 @@
+{
+  "invalidFields": "フィールドに正しく入力してください。",
+  "newTitle": "新しいマインドマップ",
+  "notInitialized": "MindElixir が初期化されていません。",
+  "update": {
+    "submit": "マインドマップを更新する",
+    "success": "マインドマップが正常に更新されました。"
+  }
+}

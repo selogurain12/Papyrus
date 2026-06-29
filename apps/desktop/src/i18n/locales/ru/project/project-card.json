@@ -1,0 +1,32 @@
+{
+  "card": {
+    "open": "Открыть",
+    "progress": "Прогресс"
+  },
+  "genres": {
+    "biography": "Биография",
+    "children": "Дети",
+    "essay": "Эссе",
+    "fantasy": "Фантастика",
+    "guide": "Гид",
+    "health": "Здоровье",
+    "historical": "Исторический",
+    "history": "История",
+    "horror": "Ужас",
+    "mystery": "Тайна",
+    "non-fiction": "Научная литература",
+    "other": "Другой",
+    "poetry": "Поэзия",
+    "police": "Преступление",
+    "religion": "Религия",
+    "roman": "Роман",
+    "romance": "Романтика",
+    "science": "Наука",
+    "science-fiction": "научная фантастика",
+    "self-help": "Самопомощь",
+    "theater": "Театр",
+    "thriller": "Триллер",
+    "travel": "Путешествовать",
+    "young-adult": "Молодой взрослый"
+  }
+}

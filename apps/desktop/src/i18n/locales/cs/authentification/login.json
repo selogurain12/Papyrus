@@ -1,0 +1,14 @@
+{
+  "email": "E-mail",
+  "emailPlaceholder": "E-mail",
+  "error": "Došlo k chybě",
+  "loginSuccess": "Byli jste přihlášeni",
+  "noAccount": "Ještě nemáte účet?",
+  "password": "Heslo",
+  "passwordPlaceholder": "Heslo",
+  "register": "Registrovat se",
+  "submit": "Přihlásit se",
+  "subtitle": "Přihlaste se pro pokračování",
+  "title": "Přihlášení",
+  "welcome": "Vítejte v Papyrusu"
+}

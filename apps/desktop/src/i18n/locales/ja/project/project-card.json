@@ -1,0 +1,32 @@
+{
+  "card": {
+    "open": "開ける",
+    "progress": "進捗"
+  },
+  "genres": {
+    "biography": "バイオグラフィー",
+    "children": "子供たち",
+    "essay": "エッセイ",
+    "fantasy": "ファンタジー",
+    "guide": "ガイド",
+    "health": "健康",
+    "historical": "歴史的",
+    "history": "歴史",
+    "horror": "ホラー",
+    "mystery": "ミステリー",
+    "non-fiction": "ノンフィクション",
+    "other": "他の",
+    "poetry": "詩",
+    "police": "犯罪",
+    "religion": "宗教",
+    "roman": "小説",
+    "romance": "ロマンス",
+    "science": "科学",
+    "science-fiction": "SF",
+    "self-help": "自助努力",
+    "theater": "劇場",
+    "thriller": "スリラー",
+    "travel": "旅行",
+    "young-adult": "ヤングアダルト"
+  }
+}

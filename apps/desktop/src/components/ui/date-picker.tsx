@@ -10,6 +10,7 @@ import { format } from "../../utils/date/date-utils";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { useTranslation } from "react-i18next";
 
 interface DatePickerProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string | undefined;
@@ -32,6 +33,8 @@ export function DatePicker({
   fromYear = undefined,
   toYear = undefined,
 }: DatePickerProps) {
+  const { t } = useTranslation();
+
   function handleSelect(day: Date | undefined, selected: Date) {
     changeValue(fromDate(selected, getLocalTimeZone()).toString());
   }
@@ -47,7 +50,7 @@ export function DatePicker({
           <CalendarIcon className="mr-2 size-4" />
           <div className="normal-case">
             {value === undefined ? (
-              <span>{placeholder ?? "Sélectionner une date..."}</span>
+              <span>{placeholder ?? t("selectDateEllipsis")}</span>
             ) : (
               format(parseZonedDateTime(value), "dd MMMM yyyy")
             )}

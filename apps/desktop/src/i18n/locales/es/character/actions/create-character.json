@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "Azul",
+    "cyan": "Cian",
+    "gray": "Gris",
+    "green": "Verde",
+    "pink": "Rosa",
+    "purple": "Morado",
+    "red": "Rojo",
+    "yellow": "Amarillo"
+  },
+  "create": {
+    "submit": "Crear personaje",
+    "success": "¡Personaje creado correctamente!",
+    "title": "Crear un nuevo personaje"
+  },
+  "fields": {
+    "accessory": "Accesorios",
+    "age": "Edad",
+    "belief": "Creencias e ideologías",
+    "birthDate": "Fecha de nacimiento",
+    "birthPlace": "Lugar de nacimiento",
+    "characterFlaws": "Defectos del personaje",
+    "characterQualities": "Cualidades del personaje",
+    "color": "Color de identificación",
+    "corpulence": "Complexión",
+    "description": "Descripción general",
+    "education": "Educación",
+    "eyesColor": "Color de ojos",
+    "fears": "Miedos y dudas",
+    "firstName": "Nombre",
+    "future": "Futuro",
+    "gender": "Sexo",
+    "goals": "Metas / Objetivos",
+    "hairColor": "Color de pelo",
+    "height": "Altura (cm)",
+    "lastName": "Apellido",
+    "nationality": "Nacionalidad",
+    "nickName": "Apodo",
+    "notablePlaces": "Lugares destacados",
+    "notes": "Notas adicionales",
+    "occupation": "Ocupación",
+    "outfit": "Vestimenta",
+    "past": "Pasado",
+    "present": "Presente",
+    "pronouns": "Pronombres",
+    "residencePlace": "Lugar de residencia",
+    "richesses": "Riqueza",
+    "secrets": "Secretos",
+    "tastes": "Gustos",
+    "tics": "Tics, manías, hábitos y adicciones",
+    "typicalExpression": "Frases o expresiones típicas",
+    "voice": "Voz",
+    "weight": "Peso (kg)"
+  },
+  "gender": {
+    "female": "Mujer",
+    "male": "Hombre",
+    "other": "Otro"
+  },
+  "placeholders": {
+    "date": "Seleccionar una fecha",
+    "flaw": "Añadir un defecto...",
+    "quality": "Añadir una cualidad...",
+    "role": "Seleccionar un rol"
+  },
+  "role": "Rol:",
+  "roles": {
+    "ally": "Aliado",
+    "antagonist": "Antagonista",
+    "mentor": "Mentor",
+    "protagonist": "Protagonista",
+    "secondary character": "Personaje secundario"
+  },
+  "sections": {
+    "development": "EVOLUCIÓN",
+    "maritalStatus": "ESTADO CIVIL",
+    "notes": "NOTAS",
+    "physical": "FÍSICO",
+    "profile": "PERFIL",
+    "trait": "CARÁCTER"
+  }
+}

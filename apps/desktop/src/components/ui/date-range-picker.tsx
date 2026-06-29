@@ -10,6 +10,7 @@ import { format } from "../../utils/date/date-utils";
 import { Button } from "./button";
 import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { useTranslation } from "react-i18next";
 
 interface ZonedDateRange {
   from: string | undefined;
@@ -35,6 +36,8 @@ export function DateRangePicker({
   changeValue,
   disabledRange = undefined,
 }: DateRangePickerProps) {
+  const { t } = useTranslation();
+
   function handleSelect(range: DateRange | undefined) {
     if (range === undefined) {
       changeValue(null);
@@ -49,7 +52,7 @@ export function DateRangePicker({
 
   function handleDateFormat(range: ZonedDateRange) {
     if (range.from === undefined && range.to === undefined) {
-      return <span>Sélectionnez une date</span>;
+      return <span>{t("selectDate")}</span>;
     }
     if (range.from !== undefined && range.to === undefined) {
       return <span>{format(parseZonedDateTime(range.from), "dd MMMM yyyy")}</span>;
@@ -67,7 +70,7 @@ export function DateRangePicker({
       );
     }
 
-    return <span className="font-semibold text-destructive">Date incompatible</span>;
+    return <span className="font-semibold text-destructive">{t("incompatibleDate")}</span>;
   }
 
   return (
@@ -83,7 +86,7 @@ export function DateRangePicker({
         >
           <CalendarIcon className="mr-2 size-4" />
           {range?.from === undefined ? (
-            <p className="truncate">Sélectionnez une date</p>
+            <p className="truncate">{t("selectDate")}</p>
           ) : (
             <p className="truncate">{handleDateFormat(range)}</p>
           )}

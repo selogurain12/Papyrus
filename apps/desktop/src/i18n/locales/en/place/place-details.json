@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "atmosphere": "Atmosphere",
+    "government": "Government",
+    "language": "Language",
+    "physicalDescription": "Description *",
+    "population": "Characters present",
+    "ressources": "Resources",
+    "usages": "Uses"
+  },
+  "importance": {
+    "high": "High",
+    "low": "Low",
+    "medium": "Medium"
+  },
+  "labels": {
+    "importance": "Importance: {{importance}}"
+  },
+  "notSpecified": "Not specified",
+  "sections": {
+    "description": "DESCRIPTION",
+    "general": "GENERAL INFORMATION",
+    "history": "HISTORY"
+  },
+  "select": {
+    "description": "Choose a place from the list to view its details",
+    "title": "Select a place"
+  },
+  "types": {
+    "city": "City",
+    "continent": "Continent",
+    "country": "Country",
+    "other": "Other",
+    "planet": "Planet",
+    "space station": "Space station",
+    "village": "Village"
+  }
+}

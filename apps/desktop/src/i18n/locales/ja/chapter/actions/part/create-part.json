@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "cancel": "キャンセル",
+    "loading": "保存中...",
+    "submit": "部を作成"
+  },
+  "fields": {
+    "status": "ステータス",
+    "statusPlaceholder": "ステータスを選択",
+    "title": "タイトル",
+    "titlePlaceholder": "例：第1部：導入",
+    "statusOptions": {
+      "toStart": "未着手",
+      "inProgress": "進行中",
+      "completed": "完了"
+    }
+  },
+  "projectNotFound": "プロジェクトが見つかりません",
+  "title": "部を追加",
+  "toasts": {
+    "success": "部が正常に作成されました！"
+  }
+}

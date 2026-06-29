@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "Description",
+    "link": "Link",
+    "note": "Note",
+    "sources": "Source(s)",
+    "tags": "Tags",
+    "title": "Title",
+    "type": "Type"
+  },
+  "placeholders": {
+    "description": "Summary or framing note",
+    "note": "Internal note",
+    "tag": "Add a tag",
+    "title": "Example: Paris 2026 market study"
+  },
+  "sections": {
+    "details": "Details",
+    "info": "Information"
+  },
+  "types": {
+    "article": "Article",
+    "book": "Book",
+    "image": "Image",
+    "link": "Link",
+    "video": "Video"
+  },
+  "update": {
+    "submit": "Update",
+    "subtitle": "Edit the information and attached file.",
+    "success": "Research updated successfully",
+    "title": "Edit research"
+  }
+}

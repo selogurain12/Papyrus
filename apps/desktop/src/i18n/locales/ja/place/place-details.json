@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "atmosphere": "雰囲気",
+    "government": "政府",
+    "language": "言語",
+    "physicalDescription": "説明 *",
+    "population": "登場キャラクター",
+    "ressources": "リソース",
+    "usages": "用途"
+  },
+  "importance": {
+    "high": "高い",
+    "low": "低い",
+    "medium": "中くらい"
+  },
+  "labels": {
+    "importance": "重要: {{importance}}"
+  },
+  "notSpecified": "指定されていない",
+  "sections": {
+    "description": "説明",
+    "general": "一般情報",
+    "history": "歴史"
+  },
+  "select": {
+    "description": "リストから場所を選択すると、その詳細が表示されます",
+    "title": "場所を選択してください"
+  },
+  "types": {
+    "city": "市",
+    "continent": "大陸",
+    "country": "国",
+    "other": "他の",
+    "planet": "惑星",
+    "space station": "宇宙ステーション",
+    "village": "村"
+  }
+}

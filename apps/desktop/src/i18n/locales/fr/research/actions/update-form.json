@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "Description",
+    "link": "Lien",
+    "note": "Note",
+    "sources": "Source(s)",
+    "tags": "Étiquettes",
+    "title": "Titre",
+    "type": "Type"
+  },
+  "placeholders": {
+    "description": "Résumé ou note de cadrage",
+    "note": "Note interne",
+    "tag": "Ajouter un tag",
+    "title": "Ex: Étude de marché Paris 2026"
+  },
+  "sections": {
+    "details": "Détails",
+    "info": "Informations"
+  },
+  "types": {
+    "article": "Article",
+    "book": "Livre",
+    "image": "Image",
+    "link": "Lien",
+    "video": "Vidéo"
+  },
+  "update": {
+    "submit": "Mettre à jour",
+    "subtitle": "Modifie les informations et le fichier associé.",
+    "success": "Recherche modifiée avec succès",
+    "title": "Modifier la recherche"
+  }
+}

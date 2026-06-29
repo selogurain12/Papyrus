@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "cancel": "Zrušit",
+    "loading": "Ukládání...",
+    "submit": "Vytvořit část"
+  },
+  "fields": {
+    "status": "Stav",
+    "statusPlaceholder": "Vybrat stav",
+    "title": "Název",
+    "titlePlaceholder": "Např.: Část 1: Úvod",
+    "statusOptions": {
+      "toStart": "Začít",
+      "inProgress": "Probíhá",
+      "completed": "Dokončeno"
+    }
+  },
+  "projectNotFound": "Projekt nebyl nalezen",
+  "title": "Přidat část",
+  "toasts": {
+    "success": "Část byla úspěšně vytvořena!"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "Blau",
+    "cyan": "Cyan",
+    "gray": "Grau",
+    "green": "Grün",
+    "pink": "Rosa",
+    "purple": "Lila",
+    "red": "Rot",
+    "yellow": "Gelb"
+  },
+  "create": {
+    "submit": "Charakter erschaffen",
+    "success": "Charakter erfolgreich erstellt!",
+    "title": "Erstelle einen neuen Charakter"
+  },
+  "fields": {
+    "accessory": "Zubehör",
+    "age": "Alter",
+    "belief": "Überzeugungen und Ideologien",
+    "birthDate": "Geburtsdatum",
+    "birthPlace": "Geburtsort",
+    "characterFlaws": "Charakterfehler",
+    "characterQualities": "Charaktereigenschaften",
+    "color": "Identifikationsfarbe",
+    "corpulence": "Bauen",
+    "description": "Allgemeine Beschreibung",
+    "education": "Ausbildung",
+    "eyesColor": "Augenfarbe",
+    "fears": "Ängste und Zweifel",
+    "firstName": "Vorname",
+    "future": "Zukunft",
+    "gender": "Geschlecht",
+    "goals": "Ziele / Ziele",
+    "hairColor": "Haarfarbe",
+    "height": "Höhe (cm)",
+    "lastName": "Nachname",
+    "nationality": "Nationalität",
+    "nickName": "Spitzname",
+    "notablePlaces": "Bemerkenswerte Orte",
+    "notes": "Zusätzliche Hinweise",
+    "occupation": "Beruf",
+    "outfit": "Kleidung",
+    "past": "Vergangenheit",
+    "present": "Gegenwärtig",
+    "pronouns": "Pronomen",
+    "residencePlace": "Wohnort",
+    "richesses": "Reichtum",
+    "secrets": "Geheimnisse",
+    "tastes": "Schmeckt",
+    "tics": "Tics, Gewohnheiten, Routinen und Süchte",
+    "typicalExpression": "Typische Phrasen oder Ausdrücke",
+    "voice": "Stimme",
+    "weight": "Gewicht (kg)"
+  },
+  "gender": {
+    "female": "Weiblich",
+    "male": "Männlich",
+    "other": "Andere"
+  },
+  "placeholders": {
+    "date": "Wählen Sie ein Datum aus",
+    "flaw": "Einen Fehler hinzufügen...",
+    "quality": "Fügen Sie eine Qualität hinzu...",
+    "role": "Wählen Sie eine Rolle aus"
+  },
+  "role": "Rolle:",
+  "roles": {
+    "ally": "Verbündete",
+    "antagonist": "Gegenspieler",
+    "mentor": "Mentor",
+    "protagonist": "Hauptfigur",
+    "secondary character": "Nebenfigur"
+  },
+  "sections": {
+    "development": "ENTWICKLUNG",
+    "maritalStatus": "ZIVILSTATUS",
+    "notes": "HINWEISE",
+    "physical": "PHYSISCH",
+    "profile": "PROFIL",
+    "trait": "EIGENSCHAFTEN"
+  }
+}

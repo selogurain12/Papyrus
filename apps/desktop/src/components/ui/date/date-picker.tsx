@@ -8,6 +8,7 @@ import { Button } from "../button";
 import { cn } from "../../../lib/utils";
 import { format } from "../../../utils/date/date-utils";
 import { Calendar } from "../calendar";
+import { useTranslation } from "react-i18next";
 
 export interface DatePickerProps {
   // eslint-disable-next-line no-unused-vars
@@ -15,6 +16,7 @@ export interface DatePickerProps {
 }
 
 export function DatePicker({ setZonedDateTime }: DatePickerProps) {
+  const { t } = useTranslation();
   const [date, setDate] = useState<Date | undefined>(undefined);
 
   // const investigator = useAtomValue(connectedUserAtom);
@@ -45,7 +47,7 @@ export function DatePicker({ setZonedDateTime }: DatePickerProps) {
           {date ? (
             format(fromDate(date, getLocalTimeZone()), "dd MMMM yyyy")
           ) : (
-            <span>Sélectionnez une date</span>
+            <span>{t("selectDate")}</span>
           )}
         </Button>
       </PopoverTrigger>

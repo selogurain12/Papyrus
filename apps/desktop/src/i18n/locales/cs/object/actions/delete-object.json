@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Opravdu chcete tento objekt smazat?",
+    "success": "Objekt byl úspěšně odstraněn",
+    "title": "Smazat objekt"
+  }
+}

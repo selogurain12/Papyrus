@@ -1,0 +1,21 @@
+{
+  "actions": {
+    "loading": "保存中...",
+    "submit": "部を更新"
+  },
+  "fields": {
+    "status": "ステータス",
+    "statusOptions": {
+      "completed": "完了",
+      "inProgress": "進行中",
+      "toStart": "未着手"
+    },
+    "statusPlaceholder": "ステータスを選択",
+    "title": "タイトル",
+    "titlePlaceholder": "例：第1部：導入"
+  },
+  "title": "部を編集",
+  "toasts": {
+    "success": "部が正常に更新されました！"
+  }
+}

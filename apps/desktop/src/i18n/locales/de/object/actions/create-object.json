@@ -1,0 +1,44 @@
+{
+  "create": {
+    "submit": "Objekt erstellen",
+    "success": "Objekt erfolgreich erstellt!",
+    "title": "Erstellen Sie ein neues Objekt"
+  },
+  "fields": {
+    "appearance": "Aussehen",
+    "color": "Farbe",
+    "description": "Beschreibung",
+    "history": "Geschichte",
+    "importance": "Narrative Bedeutung",
+    "location": "Standort",
+    "name": "Name *",
+    "significance": "Bedeutung in der Geschichte",
+    "type": "Typ"
+  },
+  "importance": {
+    "high": "Hoch",
+    "low": "Niedrig",
+    "medium": "Mittel"
+  },
+  "placeholders": {
+    "appearance": "Optik, Material, optische Details...",
+    "description": "Allgemeine Beschreibung des Objekts",
+    "history": "Herkunft, vergangene Ereignisse...",
+    "importance": "Wählen Sie eine Wichtigkeit aus",
+    "name": "Z.B. Alter Kompass",
+    "significance": "Warum dieses Objekt wichtig ist",
+    "type": "Wählen Sie einen Typ aus"
+  },
+  "types": {
+    "artifact": "Artefakt",
+    "clothing": "Kleidung",
+    "equipment": "Ausrüstung",
+    "furniture": "Möbel",
+    "jewelry": "Schmuck",
+    "paper": "Unterlagen",
+    "technology": "Technologie",
+    "tool": "Werkzeug",
+    "vehicle": "Fahrzeug",
+    "weapon": "Waffe"
+  }
+}

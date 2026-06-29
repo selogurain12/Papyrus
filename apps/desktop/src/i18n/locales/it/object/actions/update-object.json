@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "appearance": "Aspetto",
+    "color": "Colore",
+    "description": "Descrizione",
+    "history": "Storia",
+    "importance": "Importanza narrativa",
+    "location": "Posizione",
+    "name": "Nome *",
+    "significance": "Importanza nella storia",
+    "type": "Tipo"
+  },
+  "importance": {
+    "high": "Alto",
+    "low": "Basso",
+    "medium": "Medio"
+  },
+  "placeholders": {
+    "importance": "Seleziona un'importanza",
+    "name": "Per esempio. Bussola antica",
+    "type": "Seleziona un tipo"
+  },
+  "types": {
+    "artifact": "Artefatto",
+    "clothing": "Vestiario",
+    "equipment": "Attrezzatura",
+    "furniture": "Mobilia",
+    "jewelry": "Gioielli",
+    "paper": "Documenti",
+    "technology": "Tecnologia",
+    "tool": "Attrezzo",
+    "vehicle": "Veicolo",
+    "weapon": "Arma"
+  },
+  "update": {
+    "submit": "Aggiorna oggetto",
+    "success": "Oggetto aggiornato con successo!",
+    "title": "Modifica oggetto"
+  }
+}

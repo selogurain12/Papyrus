@@ -1,0 +1,27 @@
+{
+  "addObjective": "Adicionar objetivo",
+  "emptyObjectives": "Ainda não há objetivo definido.",
+  "error": "Erro ao atualizar a estrutura: {{message}}",
+  "genre": "Gênero",
+  "mainConcept": "Conceito principal",
+  "notFound": "Estrutura não encontrada",
+  "objective": "Objetivo {{index}}",
+  "placeholders": {
+    "genre": "Exemplo: Suspense, ficção científica, romance, fantasia, etc.",
+    "premise": "Exemplo: Um detetive investiga uma série de assassinatos misteriosos em uma cidade escura...",
+    "structure": "Exemplo: Introdução, desenvolvimento, clímax, resolução...",
+    "theme": "Exemplo: A luta entre o bem e o mal, a redenção, a natureza humana..."
+  },
+  "premise": "Premissa",
+  "structure": "Estrutura",
+  "subtitle": "Defina os fundamentos da sua história organizando os elementos-chave da sua narrativa. Crie uma estrutura sólida para orientar sua escrita e capturar a essência do seu romance.",
+  "success": "Estrutura atualizada com sucesso",
+  "tabs": {
+    "concept": "Conceito",
+    "objectives": "Objetivos",
+    "plan": "Plano narrativo"
+  },
+  "theme": "Tema",
+  "title": "Estrutura nova",
+  "unknownError": "Ocorreu um erro desconhecido ao atualizar a estrutura"
+}

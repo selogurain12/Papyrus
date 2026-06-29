@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "color": "Cor",
+    "content": "Contente",
+    "tags": "Etiquetas",
+    "title": "Título"
+  },
+  "placeholders": {
+    "content": "Exemplo: Marcus é um personagem complexo com um passado misterioso...",
+    "tag": "Adicionar uma etiqueta",
+    "title": "Exemplo: desenvolvimento do personagem Marcus"
+  },
+  "sections": {
+    "info": "Informações de nota"
+  },
+  "update": {
+    "submit": "Nota de atualização",
+    "success": "Nota atualizada com sucesso",
+    "title": "Editar nota"
+  }
+}

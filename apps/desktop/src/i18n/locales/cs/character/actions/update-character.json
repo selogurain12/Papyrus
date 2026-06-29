@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "Modrý",
+    "cyan": "azurová",
+    "gray": "Šedá",
+    "green": "Zelený",
+    "pink": "Růžový",
+    "purple": "Fialová",
+    "red": "Červený",
+    "yellow": "Žluť"
+  },
+  "fields": {
+    "accessory": "Příslušenství",
+    "age": "Stáří",
+    "belief": "Víra a ideologie",
+    "birthDate": "Datum narození",
+    "birthPlace": "Místo narození",
+    "characterFlaws": "Charakterové vady",
+    "characterQualities": "Charakterové vlastnosti",
+    "color": "Identifikační barva",
+    "corpulence": "Vytvořit",
+    "description": "Obecný popis",
+    "education": "Školství",
+    "eyesColor": "Barva očí",
+    "fears": "Strach a pochybnosti",
+    "firstName": "Křestní jméno",
+    "future": "Budoucnost",
+    "gender": "Pohlaví",
+    "goals": "Cíle / Cíle",
+    "hairColor": "Barva vlasů",
+    "height": "výška (cm)",
+    "lastName": "Příjmení",
+    "nationality": "Státní příslušnost",
+    "nickName": "Přezdívka",
+    "notablePlaces": "Pozoruhodná místa",
+    "notes": "Další poznámky",
+    "occupation": "Povolání",
+    "outfit": "Výstroj",
+    "past": "Minulost",
+    "present": "Současnost",
+    "pronouns": "Zájmena",
+    "residencePlace": "Bydliště",
+    "richesses": "Bohatství",
+    "secrets": "Tajemství",
+    "tastes": "Chutná",
+    "tics": "Tiky, návyky, rutiny a závislosti",
+    "typicalExpression": "Typické fráze nebo výrazy",
+    "voice": "Hlas",
+    "weight": "Hmotnost (kg)"
+  },
+  "gender": {
+    "female": "Žena",
+    "male": "Samec",
+    "other": "Ostatní"
+  },
+  "placeholders": {
+    "date": "Vyberte datum",
+    "flaw": "Přidat chybu...",
+    "quality": "Přidejte kvalitní...",
+    "role": "Vyberte roli"
+  },
+  "role": "Úloha:",
+  "roles": {
+    "ally": "Spojenec",
+    "antagonist": "Antagonista",
+    "mentor": "Učitel",
+    "protagonist": "Protagonista",
+    "secondary character": "Sekundární postava"
+  },
+  "sections": {
+    "development": "ROZVOJ",
+    "maritalStatus": "OBČANSKÝ STAV",
+    "notes": "POZNÁMKY",
+    "physical": "FYZIKÁLNÍ",
+    "profile": "PROFIL",
+    "trait": "VLASTNOSTI"
+  },
+  "update": {
+    "submit": "Aktualizovat postavu",
+    "success": "Postava byla úspěšně aktualizována!",
+    "title": "Upravit postavu"
+  }
+}

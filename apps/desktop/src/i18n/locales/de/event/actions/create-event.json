@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "Veranstaltung erstellen",
+    "success": "Veranstaltung erfolgreich erstellt!",
+    "title": "Erstellen Sie ein neues Ereignis"
+  },
+  "fields": {
+    "additionalDetails": "Weitere Details",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "location": "Standort",
+    "title": "Veranstaltungstitel",
+    "type": "Ereignistyp"
+  },
+  "importance": {
+    "action": "Aktion",
+    "critical": "Kritisch",
+    "important": "Wichtig",
+    "normal": "Normal"
+  }
+}

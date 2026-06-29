@@ -1,0 +1,37 @@
+{
+  "fields": {
+    "appearance": "外貌",
+    "description": "描述",
+    "location": "地点",
+    "significance": "故事中的重要性"
+  },
+  "importance": {
+    "high": "高的",
+    "low": "低的",
+    "medium": "中等的"
+  },
+  "labels": {
+    "importance": "重要性：{{importance}}"
+  },
+  "notSpecified": "未指定",
+  "sections": {
+    "description": "描述",
+    "history": "历史"
+  },
+  "select": {
+    "description": "从列表中选择一个对象以查看其详细信息",
+    "title": "选择一个对象"
+  },
+  "types": {
+    "artifact": "人工制品",
+    "clothing": "衣服",
+    "equipment": "设备",
+    "furniture": "家具",
+    "jewelry": "珠宝",
+    "paper": "文件",
+    "technology": "技术",
+    "tool": "工具",
+    "vehicle": "车辆",
+    "weapon": "武器"
+  }
+}

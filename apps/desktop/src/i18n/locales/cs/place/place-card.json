@@ -1,0 +1,19 @@
+{
+  "importance": {
+    "high": "Vysoký",
+    "low": "Nízký",
+    "medium": "Střední"
+  },
+  "labels": {
+    "importance": "Důležitost: {{importance}}"
+  },
+  "types": {
+    "city": "Město",
+    "continent": "Kontinent",
+    "country": "Země",
+    "other": "Ostatní",
+    "planet": "Planeta",
+    "space station": "Vesmírná stanice",
+    "village": "Obec"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "additionalDetails": "Weitere Details",
+    "date": "Datum",
+    "description": "Beschreibung",
+    "location": "Standort",
+    "title": "Veranstaltungstitel",
+    "type": "Ereignistyp"
+  },
+  "importance": {
+    "action": "Aktion",
+    "critical": "Kritisch",
+    "important": "Wichtig",
+    "normal": "Normal"
+  },
+  "select": {
+    "title": "Wählen Sie ein Ereignis aus"
+  },
+  "update": {
+    "submit": "Ereignis aktualisieren",
+    "success": "Veranstaltung aktualisiert!",
+    "title": "Veranstaltung bearbeiten"
+  }
+}

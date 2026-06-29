@@ -1,0 +1,11 @@
+{
+  "categories": {
+    "all": "Vše",
+    "articles": "články",
+    "books": "knihy",
+    "images": "Obrázky",
+    "links": "Webové odkazy",
+    "videos": "videa"
+  },
+  "noFile": "Žádný soubor"
+}

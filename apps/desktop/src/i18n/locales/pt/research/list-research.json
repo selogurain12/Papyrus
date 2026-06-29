@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "Todos",
+    "articles": "Artigos",
+    "books": "Livros",
+    "images": "Imagens",
+    "links": "Links da web",
+    "videos": "Vídeos"
+  },
+  "empty": "Nenhuma pesquisa encontrada.",
+  "new": "Nova pesquisa",
+  "searchPlaceholder": "Pesquise sua pesquisa...",
+  "subtitle": "Organize suas fontes e referências",
+  "title": "Pesquisar"
+}

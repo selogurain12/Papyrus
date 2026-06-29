@@ -1,0 +1,10 @@
+{
+  "importance": {
+    "high": "Alto",
+    "low": "Basso",
+    "medium": "Medio"
+  },
+  "labels": {
+    "importance": "Importanza: {{importance}}"
+  }
+}

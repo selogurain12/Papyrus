@@ -1,16 +1,19 @@
 /* eslint-disable max-len */
 import React, { useMemo } from "react";
 import { BookOpen, PencilLine, Trash2, FileText } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
+  const { t } = useTranslation(["chapter/chapter-details", "common"]);
+
   if (!chapter) {
     return (
       <div className="bg-white border border-gray-300 rounded-2xl p-12 flex flex-col items-center text-center">
         <BookOpen size={60} color="#D1D5DB" />
 
-        <h2 className="mt-4 text-xl font-bold text-gray-900">Sélectionnez un chapitre</h2>
+        <h2 className="mt-4 text-xl font-bold text-gray-900">{t("selectTitle")}</h2>
 
-        <p className="mt-2 text-gray-500">Choisissez un chapitre pour voir ses détails</p>
+        <p className="mt-2 text-gray-500">{t("selectDescription")}</p>
       </div>
     );
   }
@@ -28,9 +31,9 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
   };
 
   const statusTextMap = {
-    toStart: "À commencer",
-    inProgress: "En cours",
-    completed: "Terminé",
+    toStart: t("common:status.toStart"),
+    inProgress: t("common:status.inProgress"),
+    completed: t("common:status.completed"),
   };
 
   const wordCount = useMemo(() => {
@@ -51,7 +54,9 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
               <h1 className="text-2xl font-bold text-gray-900 mb-3">{chapter.title}</h1>
 
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-sm font-medium text-gray-600">{wordCount} mots</span>
+                <span className="text-sm font-medium text-gray-600">
+                  {t("common:words", { count: wordCount })}
+                </span>
 
                 <span
                   className="px-3 py-1 rounded-full text-xs font-bold"
@@ -86,9 +91,9 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
         <div className="h-px bg-gray-200 my-6" />
 
         <div className="mb-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-3">Résumé</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-3">{t("summary")}</h2>
 
-          <p className="text-gray-600 leading-7">{chapter.resume ?? "Aucun résumé disponible"}</p>
+          <p className="text-gray-600 leading-7">{chapter.resume ?? t("noSummary")}</p>
         </div>
 
         <button
@@ -96,7 +101,7 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
           onClick={onEditor}
         >
           <PencilLine size={18} color="white" />
-          Ouvrir l’éditeur
+          {t("openEditor")}
         </button>
       </div>
     </div>

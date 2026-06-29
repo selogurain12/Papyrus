@@ -20,6 +20,7 @@ import { Button } from "../../../ui/button";
 import { SingleSelector } from "../../../ui/single-select";
 import { statusPartOptions, TypeOption } from "../../../../utils/value-for-select";
 import { Form } from "../../../ui/forms/form";
+import { useTranslation } from "react-i18next";
 
 interface UpdatePartProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -28,8 +29,9 @@ interface UpdatePartProps {
 
 export function UpdatePart({ setOpen, part }: UpdatePartProps) {
   const { currentProject } = useProject();
+  const { t } = useTranslation(["chapter/actions/part/update-part", "common"]);
   if (!currentProject) {
-    return <div>Projet non trouvé</div>;
+    return <div>{t("common:projectNotSelected")}</div>;
   }
   const form = useForm({
     resolver: zodResolver(updatePartSchema),
@@ -40,7 +42,7 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
   });
   const { mutate, isPending: loading } = client.part.update.useMutation({
     onSuccess: () => {
-      toast.success("Partie modifiée avec succès !");
+      toast.success(t("toasts.success"));
       void queryClient.invalidateQueries({ queryKey: ["part.getAll"] });
       form.reset();
       setOpen(false);
@@ -50,7 +52,7 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
         console.error("Fetch error:", error);
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:errors.generic"));
       }
     },
   });
@@ -71,7 +73,7 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
       }}
     >
       <DialogHeader>
-        <DialogTitle className="text-3xl font-bold tracking-tight">Ajouter une partie</DialogTitle>
+        <DialogTitle className="text-3xl font-bold tracking-tight">{t("title")}</DialogTitle>
       </DialogHeader>
 
       <Form {...form}>
@@ -81,9 +83,9 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Titre</FormLabel>
+                <FormLabel>{t("fields.title")}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Ex: Partie 1: Introduction" />
+                  <Input {...field} placeholder={t("fields.titlePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -94,16 +96,16 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
             name="status"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Statut</FormLabel>
+                <FormLabel>{t("fields.status")}</FormLabel>
                 <FormControl>
                   <SingleSelector
-                    customDisplay={(item: TypeOption) => item.label}
+                    customDisplay={(item: TypeOption) => t(`fields.statusOptions.${item.id}`)}
                     customLabel={(item: TypeOption) => (
-                      <span className="font-medium">{item.label}</span>
+                      <span className="font-medium">{t(`fields.statusOptions.${item.id}`)}</span>
                     )}
                     value={statusPartOptions.find((t) => t.id === field.value)}
                     onChange={(value) => field.onChange(value?.id ?? null)}
-                    placeholder="Sélectionner un statut"
+                    placeholder={t("fields.statusPlaceholder")}
                     data={statusPartOptions}
                   />
                 </FormControl>
@@ -121,10 +123,10 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
                 form.reset();
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
             <Button variant="blue" disabled={loading} className="min-w-45">
-              {loading ? "Enregistrement..." : "Modifier la partie"}
+              {loading ? t("actions.loading") : t("actions.submit")}
             </Button>
           </div>
         </form>

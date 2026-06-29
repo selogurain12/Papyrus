@@ -1,0 +1,35 @@
+{
+  "create": {
+    "submit": "연구 생성",
+    "subtitle": "자원을 저장하려면 정보를 완성하세요.",
+    "success": "연구가 성공적으로 생성되었습니다.",
+    "title": "연구 추가"
+  },
+  "fields": {
+    "description": "설명",
+    "link": "링크",
+    "note": "메모",
+    "sources": "소스",
+    "tags": "태그",
+    "title": "제목",
+    "type": "유형"
+  },
+  "placeholders": {
+    "description": "요약 또는 구성 메모",
+    "note": "내부 메모",
+    "sources": "예: 르몽드, 위키피디아",
+    "tag": "태그 추가",
+    "title": "예: 파리 2026 시장 조사"
+  },
+  "sections": {
+    "details": "세부",
+    "info": "정보"
+  },
+  "types": {
+    "article": "기사",
+    "book": "책",
+    "image": "영상",
+    "link": "링크",
+    "video": "동영상"
+  }
+}

@@ -13,6 +13,7 @@ import { SelectTrigger } from "../selects/select-trigger";
 import { SelectContent } from "../selects/select-content";
 import { SelectItem } from "../selects/select-item";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface DataTablePaginationProps<Tdata> {
   table: Table<Tdata>;
@@ -25,6 +26,8 @@ export function DataTablePagination<Tdata>({
   setItemsPerPage,
   setPage,
 }: DataTablePaginationProps<Tdata>) {
+  const { t } = useTranslation();
+
   function handlePageSizeChange(value: number | string) {
     const newPageSize = Number(value);
     table.setPageSize(newPageSize);
@@ -50,13 +53,15 @@ export function DataTablePagination<Tdata>({
     <div className="flex items-center justify-start">
       {table.getIsSomeRowsSelected() && (
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} sur{" "}
-          {table.getFilteredRowModel().rows.length} lignes(s) sélectionnée(s).
+          {t("table.selectedRows", {
+            selected: table.getFilteredSelectedRowModel().rows.length,
+            total: table.getFilteredRowModel().rows.length,
+          })}
         </div>
       )}
       <div className="flex ml-auto items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Lignes par page</p>
+          <p className="text-sm font-medium">{t("table.rowsPerPage")}</p>
           <Select
             onValueChange={handlePageSizeChange}
             value={String(table.getState().pagination.pageSize)}
@@ -74,7 +79,10 @@ export function DataTablePagination<Tdata>({
           </Select>
         </div>
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} sur {table.getPageCount()}
+          {t("table.page", {
+            page: table.getState().pagination.pageIndex + 1,
+            total: table.getPageCount(),
+          })}
         </div>
         <div className="flex items-center space-x-2">
           <Button
@@ -85,7 +93,7 @@ export function DataTablePagination<Tdata>({
             }}
             variant="outline"
           >
-            <span className="sr-only">Aller à la première page</span>
+            <span className="sr-only">{t("table.firstPage")}</span>
             <RxDoubleArrowLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -94,7 +102,7 @@ export function DataTablePagination<Tdata>({
             onClick={previousPage}
             variant="outline"
           >
-            <span className="sr-only">Aller à la page précédente</span>
+            <span className="sr-only">{t("table.previousPage")}</span>
             <RxChevronLeft className="h-4 w-4" />
           </Button>
           <Button
@@ -103,7 +111,7 @@ export function DataTablePagination<Tdata>({
             onClick={nextPage}
             variant="outline"
           >
-            <span className="sr-only">Aller à la page suivante</span>
+            <span className="sr-only">{t("table.nextPage")}</span>
             <RxChevronRight className="h-4 w-4" />
           </Button>
           <Button
@@ -114,7 +122,7 @@ export function DataTablePagination<Tdata>({
             }}
             variant="outline"
           >
-            <span className="sr-only">Aller à la dernière page</span>
+            <span className="sr-only">{t("table.lastPage")}</span>
             <RxDoubleArrowRight className="h-4 w-4" />
           </Button>
         </div>

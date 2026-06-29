@@ -1,0 +1,9 @@
+{
+  "description": "Tem a certeza de que pretende eliminar «{{title}}»? Esta ação é irreversível.",
+  "projectNotSelected": "Nenhum projeto selecionado",
+  "title": "Eliminar capítulo",
+  "toasts": {
+    "error": "Ocorreu um erro",
+    "success": "O capítulo foi eliminado com sucesso"
+  }
+}

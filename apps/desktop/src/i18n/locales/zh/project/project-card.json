@@ -1,0 +1,32 @@
+{
+  "card": {
+    "open": "打开",
+    "progress": "进步"
+  },
+  "genres": {
+    "biography": "传",
+    "children": "孩子们",
+    "essay": "散文",
+    "fantasy": "幻想",
+    "guide": "指导",
+    "health": "健康",
+    "historical": "历史",
+    "history": "历史",
+    "horror": "恐怖",
+    "mystery": "神秘",
+    "non-fiction": "非小说类",
+    "other": "其他",
+    "poetry": "诗",
+    "police": "犯罪",
+    "religion": "宗教",
+    "roman": "小说",
+    "romance": "浪漫",
+    "science": "科学",
+    "science-fiction": "科幻小说",
+    "self-help": "自助",
+    "theater": "剧院",
+    "thriller": "惊悚片",
+    "travel": "旅行",
+    "young-adult": "年轻成人"
+  }
+}

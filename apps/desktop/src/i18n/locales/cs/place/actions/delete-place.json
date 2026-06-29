@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Opravdu chcete toto místo smazat?",
+    "success": "Místo bylo úspěšně smazáno",
+    "title": "Smazat místo"
+  }
+}

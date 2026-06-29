@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "atmosphere": "Atmosféra",
+    "government": "Vláda",
+    "language": "Jazyk",
+    "physicalDescription": "Popis *",
+    "population": "Přítomné postavy",
+    "ressources": "Zdroje",
+    "usages": "Použití"
+  },
+  "importance": {
+    "high": "Vysoký",
+    "low": "Nízký",
+    "medium": "Střední"
+  },
+  "labels": {
+    "importance": "Důležitost: {{importance}}"
+  },
+  "notSpecified": "Neuvedeno",
+  "sections": {
+    "description": "POPIS",
+    "general": "OBECNÉ INFORMACE",
+    "history": "DĚJINY"
+  },
+  "select": {
+    "description": "Vyberte místo ze seznamu a zobrazte jeho podrobnosti",
+    "title": "Vyberte místo"
+  },
+  "types": {
+    "city": "Město",
+    "continent": "Kontinent",
+    "country": "Země",
+    "other": "Ostatní",
+    "planet": "Planeta",
+    "space station": "Vesmírná stanice",
+    "village": "Obec"
+  }
+}

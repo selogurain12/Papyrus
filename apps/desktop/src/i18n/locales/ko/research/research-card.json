@@ -1,0 +1,11 @@
+{
+  "categories": {
+    "all": "모두",
+    "articles": "조항",
+    "books": "서적",
+    "images": "이미지",
+    "links": "웹 링크",
+    "videos": "비디오"
+  },
+  "noFile": "파일 없음"
+}

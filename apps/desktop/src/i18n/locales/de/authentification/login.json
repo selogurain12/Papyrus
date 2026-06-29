@@ -1,0 +1,14 @@
+{
+  "email": "E-Mail",
+  "emailPlaceholder": "E-Mail",
+  "error": "Ein Fehler ist aufgetreten",
+  "loginSuccess": "Sie sind jetzt angemeldet",
+  "noAccount": "Noch kein Konto?",
+  "password": "Passwort",
+  "passwordPlaceholder": "Passwort",
+  "register": "Registrieren",
+  "submit": "Anmelden",
+  "subtitle": "Melden Sie sich an, um fortzufahren",
+  "title": "Anmelden",
+  "welcome": "Willkommen bei Papyrus"
+}

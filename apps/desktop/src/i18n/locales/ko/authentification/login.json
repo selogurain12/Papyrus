@@ -1,0 +1,14 @@
+{
+  "email": "이메일",
+  "emailPlaceholder": "이메일",
+  "error": "오류가 발생했습니다",
+  "loginSuccess": "로그인되었습니다",
+  "noAccount": "아직 계정이 없으신가요?",
+  "password": "비밀번호",
+  "passwordPlaceholder": "비밀번호",
+  "register": "회원가입",
+  "submit": "로그인",
+  "subtitle": "계속하려면 로그인하세요",
+  "title": "로그인",
+  "welcome": "Papyrus에 오신 것을 환영합니다"
+}

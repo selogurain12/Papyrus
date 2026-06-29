@@ -10,6 +10,7 @@ import { Button } from "../button";
 import { cn } from "../../../lib/utils";
 import { format } from "../../../utils/date/date-utils";
 import { Calendar } from "../calendar";
+import { useTranslation } from "react-i18next";
 
 import { TimePickerInput } from "./time-picker-input";
 
@@ -31,6 +32,7 @@ export function DateTimePicker({
   isError = false,
   disabledRange = undefined,
 }: DateTimePickerProps) {
+  const { t } = useTranslation();
   const hourReference = useRef<HTMLInputElement>(null);
   const minuteReference = useRef<HTMLInputElement>(null);
 
@@ -102,7 +104,7 @@ export function DateTimePicker({
         >
           <CalendarIcon className="mr-2 size-4" />
           {value === undefined ? (
-            <span>Sélectionnez une date</span>
+            <span>{t("selectDate")}</span>
           ) : (
             format(parseZonedDateTime(value), "dd MMMM yyyy à HH:mm")
           )}

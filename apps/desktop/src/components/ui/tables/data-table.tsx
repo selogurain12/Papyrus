@@ -30,6 +30,7 @@ import { TableCell } from "./table-cell";
 import { DataTablePagination } from "./table-pagination";
 import { TableHead } from "./table-head";
 import type { DataTableToolbarProps } from "./table-toolbar-props";
+import { useTranslation } from "react-i18next";
 
 type Toolbar<Tdata> = React.ComponentType<DataTableToolbarProps<Tdata>>;
 
@@ -64,6 +65,7 @@ export function DataTable<Tdata extends { [key: string]: unknown }, Value>({
 
   ToolbarComponent,
 }: TableProps<Tdata, Value>) {
+  const { t } = useTranslation();
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -186,7 +188,7 @@ export function DataTable<Tdata extends { [key: string]: unknown }, Value>({
             ) : (
               <TableRow>
                 <TableCell className="h-24 text-center" colSpan={columns.length}>
-                  Aucun résultat
+                  {t("table.noResults")}
                 </TableCell>
               </TableRow>
             )}

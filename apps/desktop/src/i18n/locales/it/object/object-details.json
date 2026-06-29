@@ -1,0 +1,37 @@
+{
+  "fields": {
+    "appearance": "Aspetto",
+    "description": "Descrizione",
+    "location": "Posizione",
+    "significance": "Importanza nella storia"
+  },
+  "importance": {
+    "high": "Alto",
+    "low": "Basso",
+    "medium": "Medio"
+  },
+  "labels": {
+    "importance": "Importanza: {{importance}}"
+  },
+  "notSpecified": "Non specificato",
+  "sections": {
+    "description": "DESCRIZIONE",
+    "history": "STORIA"
+  },
+  "select": {
+    "description": "Scegli un oggetto dall'elenco per visualizzarne i dettagli",
+    "title": "Seleziona un oggetto"
+  },
+  "types": {
+    "artifact": "Artefatto",
+    "clothing": "Vestiario",
+    "equipment": "Attrezzatura",
+    "furniture": "Mobilia",
+    "jewelry": "Gioielli",
+    "paper": "Documenti",
+    "technology": "Tecnologia",
+    "tool": "Attrezzo",
+    "vehicle": "Veicolo",
+    "weapon": "Arma"
+  }
+}

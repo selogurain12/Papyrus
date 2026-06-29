@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "Annulla",
+    "loading": "Salvataggio...",
+    "submit": "Modifica il capitolo"
+  },
+  "fields": {
+    "chapterNumber": "Numero del capitolo",
+    "part": "Parte",
+    "partPlaceholder": "Seleziona una parte",
+    "resume": "Riassunto",
+    "status": "Stato",
+    "statusPlaceholder": "Seleziona uno stato",
+    "titlePlaceholder": "Es: Capitolo 1",
+    "wordGoal": "Obiettivo di parole",
+    "statusOptions": {
+      "toStart": "Da iniziare",
+      "inProgress": "In corso",
+      "completed": "Completato"
+    }
+  },
+  "projectNotFound": "Progetto non trovato",
+  "title": "Modifica capitolo",
+  "toasts": {
+    "error": "Si è verificato un errore",
+    "success": "Capitolo modificato con successo!"
+  }
+}

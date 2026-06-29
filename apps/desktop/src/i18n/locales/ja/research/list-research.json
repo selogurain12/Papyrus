@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "全て",
+    "articles": "記事",
+    "books": "本",
+    "images": "画像",
+    "links": "ウェブリンク",
+    "videos": "動画"
+  },
+  "empty": "研究は見つかりませんでした。",
+  "new": "新しい研究",
+  "searchPlaceholder": "研究を検索してください...",
+  "subtitle": "ソースと参考文献を整理する",
+  "title": "研究"
+}

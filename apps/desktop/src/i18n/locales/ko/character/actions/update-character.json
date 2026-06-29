@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "파란색",
+    "cyan": "청록색",
+    "gray": "회색",
+    "green": "녹색",
+    "pink": "분홍색",
+    "purple": "보라",
+    "red": "빨간색",
+    "yellow": "노란색"
+  },
+  "fields": {
+    "accessory": "부속품",
+    "age": "나이",
+    "belief": "신념과 이념",
+    "birthDate": "생일",
+    "birthPlace": "출생지",
+    "characterFlaws": "성격 결함",
+    "characterQualities": "캐릭터 특성",
+    "color": "식별 색상",
+    "corpulence": "짓다",
+    "description": "일반 설명",
+    "education": "교육",
+    "eyesColor": "눈 색깔",
+    "fears": "두려움과 의심",
+    "firstName": "이름",
+    "future": "미래",
+    "gender": "섹스",
+    "goals": "목표 / 목적",
+    "hairColor": "머리 색깔",
+    "height": "높이(cm)",
+    "lastName": "성",
+    "nationality": "국적",
+    "nickName": "별명",
+    "notablePlaces": "주목할만한 장소",
+    "notes": "추가 참고 사항",
+    "occupation": "직업",
+    "outfit": "차림새",
+    "past": "과거",
+    "present": "현재의",
+    "pronouns": "대명사",
+    "residencePlace": "거주지",
+    "richesses": "재산",
+    "secrets": "기미",
+    "tastes": "취향",
+    "tics": "틱, 습관, 일상 및 중독",
+    "typicalExpression": "일반적인 문구 또는 표현",
+    "voice": "목소리",
+    "weight": "체중(kg)"
+  },
+  "gender": {
+    "female": "여성",
+    "male": "남성",
+    "other": "다른"
+  },
+  "placeholders": {
+    "date": "날짜를 선택하세요",
+    "flaw": "단점 추가...",
+    "quality": "품격을 더하다...",
+    "role": "역할 선택"
+  },
+  "role": "역할:",
+  "roles": {
+    "ally": "동맹국",
+    "antagonist": "길항근",
+    "mentor": "멘토르",
+    "protagonist": "주역",
+    "secondary character": "보조 문자"
+  },
+  "sections": {
+    "development": "개발",
+    "maritalStatus": "민사 신분",
+    "notes": "참고 사항",
+    "physical": "물리적",
+    "profile": "윤곽",
+    "trait": "특성"
+  },
+  "update": {
+    "submit": "캐릭터 업데이트",
+    "success": "캐릭터 업데이트가 완료되었습니다!",
+    "title": "캐릭터 편집"
+  }
+}

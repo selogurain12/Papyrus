@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "additionalDetails": "Additional details",
+    "date": "Date",
+    "description": "Description",
+    "location": "Location",
+    "title": "Event title",
+    "type": "Event type"
+  },
+  "importance": {
+    "action": "Action",
+    "critical": "Critical",
+    "important": "Important",
+    "normal": "Normal"
+  },
+  "select": {
+    "title": "Select an event"
+  },
+  "update": {
+    "submit": "Update event",
+    "success": "Event updated!",
+    "title": "Edit event"
+  }
+}

@@ -3,6 +3,7 @@ import { PencilLine, Trash2, MapPin } from "lucide-react";
 import { Card } from "../ui/card";
 import { PlaceDto } from "@papyrus/source";
 import { Badge } from "../ui/badge";
+import { useTranslation } from "react-i18next";
 
 export function PlaceCard({
   place,
@@ -16,11 +17,7 @@ export function PlaceCard({
   onEdit: () => void;
   onDelete: () => void;
 }) {
-  const importanceMap: Record<string, string> = {
-    high: "Élevée",
-    medium: "Moyenne",
-    low: "Faible",
-  };
+  const { t } = useTranslation("place/place-card");
 
   const importanceColorMap: Record<string, string> = {
     high: "bg-red-200",
@@ -44,13 +41,19 @@ export function PlaceCard({
           <h3 className="text-lg font-semibold text-card-foreground leading-tight">{place.name}</h3>
 
           <p className="text-sm text-muted-foreground">
-            {Array.isArray(place.type) ? place.type.join(" • ") : place.type}
+            {Array.isArray(place.type)
+              ? place.type.map((type) => t(`types.${type}`, { defaultValue: type })).join(" • ")
+              : t(`types.${place.type}`, { defaultValue: place.type })}
           </p>
 
           <Badge
             className={`mt-1 px-2 py-0.5 text-xs font-medium ${importanceColorMap[place.narrativeImportance] || "bg-gray-500"}`}
           >
-            Importance : {importanceMap[place.narrativeImportance] || place.narrativeImportance}
+            {t("labels.importance", {
+              importance: t(`importance.${place.narrativeImportance}`, {
+                defaultValue: place.narrativeImportance,
+              }),
+            })}
           </Badge>
         </div>
 

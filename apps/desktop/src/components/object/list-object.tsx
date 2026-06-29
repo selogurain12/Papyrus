@@ -12,9 +12,11 @@ import { UpdateObject } from "./actions/update-object";
 import { ObjectDeleteActions } from "./actions/delete-object";
 import { Input } from "../ui/input";
 import { useFilterDto } from "../../utils/filters/use-filter-dto";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line complexity
 export function ObjectsList() {
+  const { t } = useTranslation(["object/list-object", "common"]);
   const { currentProject } = useProject();
   const [objectSelected, setObjectSelected] = useState<ObjectDto | undefined>(undefined);
   const [isCreating, setIsCreating] = useState(false);
@@ -26,7 +28,7 @@ export function ObjectsList() {
     orderBy: { createdAt: "desc" },
   });
   if (!currentProject) {
-    <div>Loading...</div>;
+    <div>{t("common:loading")}</div>;
   }
 
   const { data } = client.object.getAll.useQuery({
@@ -44,20 +46,17 @@ export function ObjectsList() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="">
-          <h2 className="text-2xl font-bold text-foreground">Objets</h2>
-          <p className="text-md">Gérez les objets importants de votre histoire</p>
+          <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
+          <p className="text-md">{t("subtitle")}</p>
         </div>
         <Button variant="blue" onClick={() => setIsCreating(true)}>
           <Plus className="w-4 h-4 mr-2" />
-          Nouveau lieu
+          {t("new")}
         </Button>
       </div>
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3">
-          <Input
-            placeholder="Rechercher un lieu..."
-            onChange={(event) => setSearch(event.target.value)}
-          />
+          <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
           {data?.body?.data.map((object) => (
             <ObjectCard
               key={object.id}

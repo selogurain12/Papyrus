@@ -1,0 +1,16 @@
+{
+  "alreadyAccount": "Уже есть аккаунт?",
+  "email": "Электронная почта",
+  "emailPlaceholder": "Электронная почта",
+  "error": "Произошла ошибка",
+  "firstName": "Имя",
+  "firstNamePlaceholder": "Имя",
+  "lastName": "Фамилия",
+  "lastNamePlaceholder": "Фамилия",
+  "login": "Войти",
+  "registerSuccess": "Вы зарегистрированы",
+  "submit": "Зарегистрироваться",
+  "subtitle": "Создайте аккаунт, чтобы продолжить",
+  "title": "Регистрация",
+  "welcome": "Добро пожаловать в Papyrus"
+}

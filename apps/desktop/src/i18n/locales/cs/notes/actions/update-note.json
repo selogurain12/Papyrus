@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "color": "Barva",
+    "content": "Obsah",
+    "tags": "Tagy",
+    "title": "Titul"
+  },
+  "placeholders": {
+    "content": "Příklad: Marcus je složitá postava s tajemnou minulostí...",
+    "tag": "Přidat štítek",
+    "title": "Příklad: Vývoj postavy Marcuse"
+  },
+  "sections": {
+    "info": "Poznámka informace"
+  },
+  "update": {
+    "submit": "Aktualizovat poznámku",
+    "success": "Poznámka byla úspěšně aktualizována",
+    "title": "Upravit poznámku"
+  }
+}

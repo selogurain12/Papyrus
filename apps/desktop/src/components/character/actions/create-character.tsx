@@ -29,6 +29,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import { Slider } from "../../ui/slider";
+import { useTranslation } from "react-i18next";
 
 interface CreateCharacterProps {
   onCancel?: () => void;
@@ -38,8 +39,9 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
   const user = useAuth();
   const { currentProject } = useProject();
   const navigate = useNavigate();
+  const { t } = useTranslation(["character/actions/create-character", "common"]);
   if (!currentProject) {
-    return <div>Loading...</div>;
+    return <div>{t("common:loading")}</div>;
   }
   const form = useForm({
     resolver: zodResolver(createCharacterSchema),
@@ -123,7 +125,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
   };
   const { mutate } = client.character.create.useMutation({
     onSuccess: () => {
-      toast.success("Personnage créé avec succès !");
+      toast.success(t("create.success"));
       void queryClient.invalidateQueries({
         queryKey: ["character.getAll"],
       });
@@ -134,18 +136,18 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:errors.generic"));
       }
     },
   });
 
   function onSubmit(data: CreateCharacterDto) {
     if (user === null) {
-      toast.error("User is null");
+      toast.error(t("common:errors.unauthenticated"));
       return;
     }
     if (currentProject === null) {
-      toast.error("Current project is null");
+      toast.error(t("common:currentProjectMissing"));
       return;
     }
     mutate({
@@ -174,7 +176,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
           className="flex flex-col flex-1 overflow-y-auto p-6"
         >
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-foreground">Créer un nouveau personnage</h2>
+            <h2 className="text-2xl font-bold text-foreground">{t("create.title")}</h2>
           </div>
 
           <div className="flex gap-6 mb-8">
@@ -194,7 +196,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
               <div>
                 <div className="flex items-center gap-3">
                   <FormLabel htmlFor="role" className="font-semibold">
-                    Rôle :
+                    {t("role")}
                   </FormLabel>
                   <div className="flex gap-1">
                     {Array.from({ length: 5 }).map((_, index) => (
@@ -219,15 +221,15 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                       <FormControl>
                         <SingleSelector
                           {...field}
-                          customDisplay={(item: TypeOption) => item.label}
+                          customDisplay={(item: TypeOption) => t(`roles.${item.id}`)}
                           customLabel={(item: TypeOption) => (
-                            <span className="font-medium">{item.label}</span>
+                            <span className="font-medium">{t(`roles.${item.id}`)}</span>
                           )}
                           value={roleOptions.find((role) => role.id === field.value)}
                           onChange={(value) => {
                             field.onChange(value?.id ?? "");
                           }}
-                          placeholder="Sélectionner un rôle"
+                          placeholder={t("placeholders.role")}
                           data={roleOptions}
                         />
                       </FormControl>
@@ -243,7 +245,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
           <Accordion type="multiple" className="w-full">
             {/* ETAT CIVIL */}
             <AccordionItem value="maritalStatus">
-              <AccordionTrigger>ÉTAT CIVIL</AccordionTrigger>
+              <AccordionTrigger>{t("sections.maritalStatus")}</AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-2 gap-4">
                   <FormField
@@ -251,7 +253,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="firstName">Prénom</FormLabel>
+                        <FormLabel htmlFor="firstName">{t("fields.firstName")}</FormLabel>
                         <FormControl>
                           <Input {...field} id="firstName" />
                         </FormControl>
@@ -264,7 +266,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="lastName">Nom de famille</FormLabel>
+                        <FormLabel htmlFor="lastName">{t("fields.lastName")}</FormLabel>
                         <FormControl>
                           <Input {...field} id="lastName" />
                         </FormControl>
@@ -277,7 +279,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="nickName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="nickName">Surnom</FormLabel>
+                        <FormLabel htmlFor="nickName">{t("fields.nickName")}</FormLabel>
                         <FormControl>
                           <Input {...field} id="nickName" />
                         </FormControl>
@@ -290,7 +292,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="pronouns"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="pronouns">Pronoms</FormLabel>
+                        <FormLabel htmlFor="pronouns">{t("fields.pronouns")}</FormLabel>
                         <FormControl>
                           <Input {...field} id="pronouns" />
                         </FormControl>
@@ -303,7 +305,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="gender"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="gender">Sexe</FormLabel>
+                        <FormLabel htmlFor="gender">{t("fields.gender")}</FormLabel>
                         <FormControl>
                           <RadioGroup
                             value={field.value ?? ""}
@@ -312,15 +314,15 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                           >
                             <div className="flex items-center gap-3">
                               <RadioGroupItem value="female" id="female" />
-                              <Label htmlFor="female">Femme</Label>
+                              <Label htmlFor="female">{t("gender.female")}</Label>
                             </div>
                             <div className="flex items-center gap-3">
                               <RadioGroupItem value="male" id="male" />
-                              <Label htmlFor="male">Homme</Label>
+                              <Label htmlFor="male">{t("gender.male")}</Label>
                             </div>
                             <div className="flex items-center gap-3">
                               <RadioGroupItem value="other" id="other" />
-                              <Label htmlFor="other">Autre</Label>
+                              <Label htmlFor="other">{t("gender.other")}</Label>
                             </div>
                           </RadioGroup>
                         </FormControl>
@@ -333,7 +335,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="nationality"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="nationality">Nationalité</FormLabel>
+                        <FormLabel htmlFor="nationality">{t("fields.nationality")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -351,7 +353,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="age"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="age">Âge</FormLabel>
+                        <FormLabel htmlFor="age">{t("fields.age")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -370,12 +372,12 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="birthDate"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="birthDate">Date de naissance</FormLabel>
+                        <FormLabel htmlFor="birthDate">{t("fields.birthDate")}</FormLabel>
                         <FormControl>
                           <DatePicker
                             changeValue={(date) => field.onChange(date ?? null)}
                             disabledRange={undefined}
-                            placeholder="Sélectionner une date"
+                            placeholder={t("placeholders.date")}
                             value={field.value ?? undefined}
                           />
                         </FormControl>
@@ -388,7 +390,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="birthPlace"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="birthPlace">Lieu de naissance</FormLabel>
+                        <FormLabel htmlFor="birthPlace">{t("fields.birthPlace")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -406,7 +408,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="residencePlace"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="residencePlace">Lieu de résidence</FormLabel>
+                        <FormLabel htmlFor="residencePlace">{t("fields.residencePlace")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -424,7 +426,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="occupation"
                     render={({ field }) => (
                       <FormItem className="col-span-2">
-                        <FormLabel htmlFor="occupation">Occupation</FormLabel>
+                        <FormLabel htmlFor="occupation">{t("fields.occupation")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -443,7 +445,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
 
             {/* PHYSIQUE */}
             <AccordionItem value="physical">
-              <AccordionTrigger>PHYSIQUE</AccordionTrigger>
+              <AccordionTrigger>{t("sections.physical")}</AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-2 gap-4">
                   <FormField
@@ -451,7 +453,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="height"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="height">Taille (cm)</FormLabel>
+                        <FormLabel htmlFor="height">{t("fields.height")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -470,7 +472,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="weight"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="weight">Poids (kg)</FormLabel>
+                        <FormLabel htmlFor="weight">{t("fields.weight")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -489,7 +491,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="corpulence"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="corpulence">Corpulence</FormLabel>
+                        <FormLabel htmlFor="corpulence">{t("fields.corpulence")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -507,7 +509,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="hairColor"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="hairColor">Couleur de cheveux</FormLabel>
+                        <FormLabel htmlFor="hairColor">{t("fields.hairColor")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -525,7 +527,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="eyesColor"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="eyesColor">Couleur des yeux</FormLabel>
+                        <FormLabel htmlFor="eyesColor">{t("fields.eyesColor")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -543,7 +545,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="voice"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="voice">Voix</FormLabel>
+                        <FormLabel htmlFor="voice">{t("fields.voice")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -561,7 +563,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="outfit"
                     render={({ field }) => (
                       <FormItem className="col-span-2">
-                        <FormLabel htmlFor="outfit">Tenue vestimentaire</FormLabel>
+                        <FormLabel htmlFor="outfit">{t("fields.outfit")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -579,7 +581,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="accessory"
                     render={({ field }) => (
                       <FormItem className="col-span-2">
-                        <FormLabel htmlFor="accessory">Accessoires</FormLabel>
+                        <FormLabel htmlFor="accessory">{t("fields.accessory")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -597,7 +599,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="description"
                     render={({ field }) => (
                       <FormItem className="col-span-2">
-                        <FormLabel htmlFor="description">Description générale</FormLabel>
+                        <FormLabel htmlFor="description">{t("fields.description")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -616,7 +618,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
 
             {/* CARACTÈRE */}
             <AccordionItem value="character">
-              <AccordionTrigger>CARACTÈRE</AccordionTrigger>
+              <AccordionTrigger>{t("sections.trait")}</AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-1 gap-4">
                   <FormField
@@ -624,11 +626,11 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="characterQualities"
                     render={() => (
                       <FormItem>
-                        <FormLabel>Qualités caractéristiques</FormLabel>
+                        <FormLabel>{t("fields.characterQualities")}</FormLabel>
                         <FormControl>
                           <div className="flex gap-2 mb-2">
                             <Input
-                              placeholder="Ajouter une qualité..."
+                              placeholder={t("placeholders.quality")}
                               value={qualitiesInput}
                               onChange={(e) => setQualitiesInput(e.target.value)}
                               onKeyPress={(e) => {
@@ -674,11 +676,11 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="characterFlaws"
                     render={() => (
                       <FormItem>
-                        <FormLabel>Défauts caractéristiques</FormLabel>
+                        <FormLabel>{t("fields.characterFlaws")}</FormLabel>
                         <FormControl>
                           <div className="flex gap-2 mb-2">
                             <Input
-                              placeholder="Ajouter un défaut..."
+                              placeholder={t("placeholders.flaw")}
                               value={flawsInput}
                               onChange={(e) => setFlawsInput(e.target.value)}
                               onKeyPress={(e) => {
@@ -724,7 +726,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="tastes"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="tastes">Goûts</FormLabel>
+                        <FormLabel htmlFor="tastes">{t("fields.tastes")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -743,7 +745,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="tics"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="tics">Tics, manies, habitudes et addictions</FormLabel>
+                        <FormLabel htmlFor="tics">{t("fields.tics")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -762,7 +764,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="fears"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="fears">Peurs et doutes</FormLabel>
+                        <FormLabel htmlFor="fears">{t("fields.fears")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -782,7 +784,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel htmlFor="typicalExpression">
-                          Phrases ou expressions typiques
+                          {t("fields.typicalExpression")}
                         </FormLabel>
                         <FormControl>
                           <Textarea
@@ -802,7 +804,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
 
             {/* PROFIL */}
             <AccordionItem value="profile">
-              <AccordionTrigger>PROFIL</AccordionTrigger>
+              <AccordionTrigger>{t("sections.profile")}</AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-2 gap-4">
                   <FormField
@@ -810,7 +812,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="education"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="education">Éducation</FormLabel>
+                        <FormLabel htmlFor="education">{t("fields.education")}</FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -828,7 +830,9 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="richesses"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="richesses">Richesses : {field.value}</FormLabel>
+                        <FormLabel htmlFor="richesses">
+                          {t("fields.richesses")} : {field.value}
+                        </FormLabel>
 
                         <FormControl>
                           <Slider
@@ -849,7 +853,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="belief"
                     render={({ field }) => (
                       <FormItem className="col-span-2">
-                        <FormLabel htmlFor="belief">Croyances et idéologies</FormLabel>
+                        <FormLabel htmlFor="belief">{t("fields.belief")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -867,7 +871,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="secrets"
                     render={({ field }) => (
                       <FormItem className="col-span-2">
-                        <FormLabel htmlFor="secrets">Secrets</FormLabel>
+                        <FormLabel htmlFor="secrets">{t("fields.secrets")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -885,7 +889,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="notablePlaces"
                     render={({ field }) => (
                       <FormItem className="col-span-2">
-                        <FormLabel htmlFor="notablePlaces">Lieux marquants</FormLabel>
+                        <FormLabel htmlFor="notablePlaces">{t("fields.notablePlaces")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -904,7 +908,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
 
             {/* ÉVOLUTION */}
             <AccordionItem value="evolution">
-              <AccordionTrigger>ÉVOLUTION</AccordionTrigger>
+              <AccordionTrigger>{t("sections.development")}</AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-1 gap-4">
                   <FormField
@@ -912,7 +916,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="goals"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="goals">Buts / Objectifs</FormLabel>
+                        <FormLabel htmlFor="goals">{t("fields.goals")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -930,7 +934,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="past"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="past">Passé</FormLabel>
+                        <FormLabel htmlFor="past">{t("fields.past")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -948,7 +952,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="present"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="present">Présent</FormLabel>
+                        <FormLabel htmlFor="present">{t("fields.present")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -966,7 +970,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                     name="future"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="future">Futur</FormLabel>
+                        <FormLabel htmlFor="future">{t("fields.future")}</FormLabel>
                         <FormControl>
                           <Textarea
                             {...field}
@@ -985,14 +989,14 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
 
             {/* NOTES */}
             <AccordionItem value="notes">
-              <AccordionTrigger>NOTES</AccordionTrigger>
+              <AccordionTrigger>{t("sections.notes")}</AccordionTrigger>
               <AccordionContent>
                 <FormField
                   control={form.control}
                   name="notes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel htmlFor="notes">Notes supplémentaires</FormLabel>
+                      <FormLabel htmlFor="notes">{t("fields.notes")}</FormLabel>
                       <FormControl>
                         <Textarea
                           {...field}
@@ -1015,18 +1019,18 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
             name="color"
             render={({ field }) => (
               <FormItem className="my-6">
-                <FormLabel>Couleur d'identification</FormLabel>
+                <FormLabel>{t("fields.color")}</FormLabel>
                 <FormControl>
                   <div className="flex mt-3 gap-3 flex-wrap">
                     {[
-                      { value: "blue", label: "Bleu", bg: "bg-blue-500" },
-                      { value: "red", label: "Rouge", bg: "bg-red-500" },
-                      { value: "green", label: "Vert", bg: "bg-green-500" },
-                      { value: "purple", label: "Violet", bg: "bg-purple-500" },
-                      { value: "yellow", label: "Jaune", bg: "bg-yellow-500" },
-                      { value: "pink", label: "Rose", bg: "bg-pink-500" },
-                      { value: "cyan", label: "Cyan", bg: "bg-cyan-500" },
-                      { value: "gray", label: "Gris", bg: "bg-gray-500" },
+                      { value: "blue", label: t("colors.blue"), bg: "bg-blue-500" },
+                      { value: "red", label: t("colors.red"), bg: "bg-red-500" },
+                      { value: "green", label: t("colors.green"), bg: "bg-green-500" },
+                      { value: "purple", label: t("colors.purple"), bg: "bg-purple-500" },
+                      { value: "yellow", label: t("colors.yellow"), bg: "bg-yellow-500" },
+                      { value: "pink", label: t("colors.pink"), bg: "bg-pink-500" },
+                      { value: "cyan", label: t("colors.cyan"), bg: "bg-cyan-500" },
+                      { value: "gray", label: t("colors.gray"), bg: "bg-gray-500" },
                     ].map((color) => (
                       <button
                         key={color.value}
@@ -1061,10 +1065,10 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                 }
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
             <Button type="submit" variant="default">
-              Créer le personnage
+              {t("create.submit")}
             </Button>
           </div>
         </form>

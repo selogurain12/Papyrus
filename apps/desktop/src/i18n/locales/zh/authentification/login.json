@@ -1,0 +1,14 @@
+{
+  "email": "电子邮箱",
+  "emailPlaceholder": "电子邮箱",
+  "error": "发生错误",
+  "loginSuccess": "登录成功",
+  "noAccount": "还没有账户？",
+  "password": "密码",
+  "passwordPlaceholder": "密码",
+  "register": "注册",
+  "submit": "登录",
+  "subtitle": "请登录以继续",
+  "title": "登录",
+  "welcome": "欢迎使用 Papyrus"
+}

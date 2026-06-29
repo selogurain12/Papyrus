@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Tem certeza de que deseja excluir este personagem?",
+    "success": "O personagem foi excluído com sucesso",
+    "title": "Excluir personagem"
+  }
+}

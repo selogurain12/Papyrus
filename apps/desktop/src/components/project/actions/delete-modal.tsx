@@ -13,6 +13,7 @@ import { AlertDialogFooter } from "../../../components/ui/alert-dialog/alert-dia
 import { MotionAlertDialogCancelWrapper } from "../../../components/ui/alert-dialog/motion/cancel-wrapper.motion";
 import { MotionAlertDialogActionWrapper } from "../../../components/ui/alert-dialog/motion/action-wrapper.motion";
 import { useAuth } from "../../../context/auth-provider";
+import { useTranslation } from "react-i18next";
 
 interface ProjectDeleteActionsProps {
   onClose?: () => void;
@@ -28,16 +29,17 @@ export function ProjectDeleteActions({
   setOpen,
   onClose = undefined,
 }: ProjectDeleteActionsProps) {
+  const { t } = useTranslation(["project/actions/delete-modal", "common"]);
   const queryClient = useQueryClient();
   const { user } = useAuth();
   if (user === null) {
-    toast.error("Utilisateur non connecté");
+    toast.error(t("common:notConnected"));
     return null;
   }
 
   const { mutate } = client.project.delete.useMutation({
     onSuccess: () => {
-      toast.success("Le project a été supprimé avec succès");
+      toast.success(t("delete.success"));
       void queryClient.invalidateQueries({
         queryKey: ["project.getAll"],
       });
@@ -48,7 +50,7 @@ export function ProjectDeleteActions({
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
@@ -57,10 +59,8 @@ export function ProjectDeleteActions({
     <AlertDialog onOpenChange={setOpen} open={open}>
       <AlertDialogContent className="sm:max-w-[800px] sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
-          <AlertDialogTitle>Supprimer un projet</AlertDialogTitle>
-          <AlertDialogDescription>
-            Êtes-vous sûr de vouloir supprimer ce projet ?
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t("delete.title")}</AlertDialogTitle>
+          <AlertDialogDescription>{t("delete.description")}</AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>

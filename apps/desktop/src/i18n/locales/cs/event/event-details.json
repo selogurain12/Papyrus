@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "additionalDetails": "Další podrobnosti",
+    "description": "Popis",
+    "location": "Umístění"
+  },
+  "importance": {
+    "action": "Akce",
+    "critical": "Kritické",
+    "important": "Důležité",
+    "normal": "Normální"
+  },
+  "select": {
+    "description": "Vyberte událost ze seznamu a zobrazte její podrobnosti",
+    "title": "Vyberte událost"
+  }
+}

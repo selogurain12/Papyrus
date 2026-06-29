@@ -1,0 +1,11 @@
+{
+  "categories": {
+    "all": "全部",
+    "articles": "文章",
+    "books": "图书",
+    "images": "图片",
+    "links": "网页链接",
+    "videos": "视频"
+  },
+  "noFile": "没有文件"
+}

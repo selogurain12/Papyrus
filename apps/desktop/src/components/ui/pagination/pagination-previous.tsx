@@ -4,8 +4,11 @@ import { cn } from "../../../lib/utils";
 
 import { PaginationLink, type PaginationLinkProps } from "./pagination-link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 function paginationPrevious({ className, disabled, ...props }: PaginationLinkProps) {
+  const { t } = useTranslation();
+
   return (
     <PaginationLink
       aria-label="Go to previous page"
@@ -15,7 +18,7 @@ function paginationPrevious({ className, disabled, ...props }: PaginationLinkPro
       {...props}
     >
       <ChevronLeft className="h-4 w-4" />
-      <span>Précédent</span>
+      <span>{t("previous")}</span>
     </PaginationLink>
   );
 }

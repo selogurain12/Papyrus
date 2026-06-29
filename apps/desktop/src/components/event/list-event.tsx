@@ -8,8 +8,10 @@ import { EventDto } from "@papyrus/source";
 import { UpdateEvent } from "./actions/update-event";
 import { EventDeleteActions } from "./actions/delete-event";
 import { EventTimeline } from "./event-timeline";
+import { useTranslation } from "react-i18next";
 
 export function EventsList() {
+  const { t } = useTranslation("event/list-event");
   const [eventSelected, setEventSelected] = useState<EventDto | undefined>(undefined);
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -19,12 +21,12 @@ export function EventsList() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="">
-          <h2 className="text-2xl font-bold text-foreground">Chronologie</h2>
-          <p className="text-md">Gérez les événements de votre histoire</p>
+          <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
+          <p className="text-md">{t("subtitle")}</p>
         </div>
         <Button variant="blue" onClick={() => setIsCreating(true)}>
           <Plus className="w-4 h-4 mr-2" />
-          Nouvel événement
+          {t("new")}
         </Button>
       </div>
       <div className="flex w-full">

@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "您确定要删除此活动吗？",
+    "success": "活动删除成功",
+    "title": "删除事件"
+  }
+}

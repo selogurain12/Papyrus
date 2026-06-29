@@ -1,0 +1,49 @@
+{
+  "create": {
+    "submit": "Create place",
+    "success": "Place created successfully!",
+    "title": "Create a new place"
+  },
+  "fields": {
+    "atmosphere": "Atmosphere",
+    "color": "Color",
+    "government": "Government",
+    "history": "History",
+    "importance": "Narrative importance",
+    "languages": "Languages",
+    "localisation": "Location",
+    "name": "Place name *",
+    "nickname": "Nickname",
+    "physicalDescription": "Description *",
+    "population": "Characters present",
+    "ressources": "Resources",
+    "type": "Place type *",
+    "visualDetails": "Visual details"
+  },
+  "importance": {
+    "high": "High",
+    "low": "Low",
+    "medium": "Medium"
+  },
+  "placeholders": {
+    "atmosphere": "Mood, sensations...",
+    "government": "Type of government, leaders...",
+    "history": "Past, origin...",
+    "importance": "Select an importance",
+    "language": "Spoken languages...",
+    "name": "E.g. Cafe Le Metropolitain",
+    "physicalDescription": "General description...",
+    "ressources": "Natural, economic, strategic resources...",
+    "type": "Select a type",
+    "usages": "Architecture, decor..."
+  },
+  "types": {
+    "city": "City",
+    "continent": "Continent",
+    "country": "Country",
+    "other": "Other",
+    "planet": "Planet",
+    "space station": "Space station",
+    "village": "Village"
+  }
+}

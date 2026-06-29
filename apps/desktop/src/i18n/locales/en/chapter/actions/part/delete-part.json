@@ -1,0 +1,9 @@
+{
+  "description": "Are you sure you want to delete “{{title}}”? This action cannot be undone.",
+  "projectNotSelected": "No project selected",
+  "title": "Delete part",
+  "toasts": {
+    "error": "An error occurred",
+    "success": "The part has been deleted successfully"
+  }
+}

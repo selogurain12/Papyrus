@@ -1,0 +1,65 @@
+{
+  "fields": {
+    "author": "Auteur du projet",
+    "deadline": "Deadline du projet",
+    "description": "Description du projet",
+    "genre": "Genre du projet",
+    "language": "Langue du projet",
+    "targetWordCount": "Nombre de mots cible",
+    "title": "Titre du projet"
+  },
+  "genres": {
+    "biography": "Biographie",
+    "children": "Enfants",
+    "essay": "Essai",
+    "fantasy": "Fantastique",
+    "guide": "Guide",
+    "health": "Santé",
+    "historical": "Historique",
+    "history": "Histoire",
+    "horror": "Horreur",
+    "mystery": "Mystère",
+    "non-fiction": "Non-fiction",
+    "other": "Autre",
+    "poetry": "Poésie",
+    "police": "Policier",
+    "religion": "Religion",
+    "roman": "Roman",
+    "romance": "Romance",
+    "science": "Science",
+    "science-fiction": "Science-fiction",
+    "self-help": "Développement personnel",
+    "theater": "Théâtre",
+    "thriller": "Thriller",
+    "travel": "Voyage",
+    "young-adult": "Jeunesse"
+  },
+  "languages": {
+    "cs": "Tchèque",
+    "de": "Allemand",
+    "en": "Anglais",
+    "es": "Espagnol",
+    "fr": "Français",
+    "it": "Italien",
+    "ja": "Japonais",
+    "ko": "Coréen",
+    "pt": "Portugais",
+    "ru": "Russe",
+    "zh": "Chinois"
+  },
+  "placeholders": {
+    "date": "Sélectionner une date",
+    "genre": "Sélectionner un genre",
+    "language": "Sélectionner une langue",
+    "tag": "Ajouter un tag"
+  },
+  "sections": {
+    "goals": "Objectifs et paramètres",
+    "info": "Informations du projet"
+  },
+  "update": {
+    "submit": "Modifier le projet",
+    "success": "Projet modifié avec succès",
+    "title": "Modifier le projet"
+  }
+}

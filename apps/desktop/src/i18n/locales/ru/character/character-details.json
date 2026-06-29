@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}} лет, родился в {{place}}.",
+  "fields": {
+    "accessoryShort": "Аксессуар",
+    "beliefShort": "Убеждения",
+    "birthDate": "Дата рождения",
+    "characterFlawsShort": "Недостатки",
+    "characterQualitiesShort": "Качества",
+    "corpulence": "Строить",
+    "descriptionShort": "Описание",
+    "education": "Образование",
+    "eyesShort": "Глаза",
+    "fearsShort": "Страх(а)",
+    "firstName": "Имя",
+    "future": "Будущее",
+    "genderDetail": "Пол",
+    "goals": "Цели/задачи",
+    "hairShort": "Волосы",
+    "heightShort": "Высота",
+    "lastNameShort": "Фамилия",
+    "nationality": "Национальность",
+    "nickName": "Псевдоним",
+    "notablePlaces": "Известные места",
+    "notesShort": "Примечания",
+    "occupation": "Занятие",
+    "outfitShort": "Одежда",
+    "past": "Прошлое",
+    "present": "Подарок",
+    "pronouns": "Местоимения",
+    "residencePlace": "Место жительства",
+    "richesses": "Богатство",
+    "secrets": "Секреты",
+    "tastes": "Вкусы",
+    "tics": "Тики, привычки, распорядок дня и зависимости",
+    "typicalExpressionShort": "Типичное выражение",
+    "voice": "Голос",
+    "weightShort": "Масса"
+  },
+  "gender": {
+    "female": "Женский",
+    "male": "Мужской",
+    "other": "Другой"
+  },
+  "notSpecified": "Не указан",
+  "role": "Роль:",
+  "sections": {
+    "development": "РАЗРАБОТКА",
+    "maritalStatus": "ГРАЖДАНСКИЙ СТАТУС",
+    "other": "ДРУГОЙ",
+    "physical": "ФИЗИЧЕСКИЙ",
+    "profile": "ПРОФИЛЬ",
+    "trait": "ЧЕРТЫ"
+  },
+  "select": {
+    "description": "Выберите персонажа из списка, чтобы просмотреть его детали.",
+    "title": "Выберите персонажа"
+  }
+}

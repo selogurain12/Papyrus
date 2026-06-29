@@ -1,0 +1,12 @@
+{
+  "canvas": "Canvas interactif",
+  "create": {
+    "submit": "Créer la carte mentale",
+    "success": "Carte mentale créée avec succès !",
+    "title": "Créer une carte mentale"
+  },
+  "invalidFields": "Veuillez remplir correctement les champs.",
+  "newTitle": "Nouvelle carte mentale",
+  "newTopic": "nouveau sujet",
+  "notInitialized": "MindElixir n'est pas initialisé."
+}

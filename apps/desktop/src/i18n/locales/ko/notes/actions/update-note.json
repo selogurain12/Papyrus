@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "color": "색상",
+    "content": "콘텐츠",
+    "tags": "태그",
+    "title": "제목"
+  },
+  "placeholders": {
+    "content": "예: 마커스는 신비한 과거를 지닌 복잡한 캐릭터입니다...",
+    "tag": "태그 추가",
+    "title": "예: 마커스 캐릭터 개발"
+  },
+  "sections": {
+    "info": "참고 정보"
+  },
+  "update": {
+    "submit": "업데이트 메모",
+    "success": "메모가 성공적으로 업데이트되었습니다.",
+    "title": "메모 수정"
+  }
+}

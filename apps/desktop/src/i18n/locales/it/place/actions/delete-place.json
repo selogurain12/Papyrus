@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Sei sicuro di voler eliminare questo luogo?",
+    "success": "Il luogo è stato eliminato con successo",
+    "title": "Elimina luogo"
+  }
+}

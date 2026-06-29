@@ -25,6 +25,7 @@ import { Textarea } from "../../ui/textarea";
 import { Separator } from "../../ui/separator";
 import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
+import { useTranslation } from "react-i18next";
 
 interface UpdateResearchFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -32,6 +33,7 @@ interface UpdateResearchFormProps {
 }
 
 export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProps) {
+  const { t } = useTranslation(["research/actions/update-form", "common"]);
   const [tagInput, setTagInput] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -40,7 +42,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
   const { currentProject } = useProject();
 
   if (!currentProject) {
-    toast.error("Projet non sélectionné");
+    toast.error(t("common:projectNotSelected"));
     return null;
   }
 
@@ -84,7 +86,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
         params: { projectId: currentProject.id, id: research.id },
       });
 
-      toast.success("Recherche modifiée avec succès");
+      toast.success(t("update.success"));
 
       await queryClient.invalidateQueries({ queryKey: ["research.getAll"] });
 
@@ -95,7 +97,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     } finally {
       setLoading(false);
@@ -133,12 +135,8 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
       }}
     >
       <DialogHeader>
-        <DialogTitle className="text-3xl font-bold tracking-tight">
-          Modifier la recherche
-        </DialogTitle>
-        <p className="text-sm text-slate-500 mt-1">
-          Modifie les informations et le fichier associé.
-        </p>
+        <DialogTitle className="text-3xl font-bold tracking-tight">{t("update.title")}</DialogTitle>
+        <p className="text-sm text-slate-500 mt-1">{t("update.subtitle")}</p>
       </DialogHeader>
 
       <Form {...form}>
@@ -148,7 +146,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
         >
           <div className="flex flex-col gap-5">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <BookOpen className="w-5 h-5" /> Informations
+              <BookOpen className="w-5 h-5" /> {t("sections.info")}
             </h2>
 
             <FormField
@@ -156,9 +154,9 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Titre</FormLabel>
+                  <FormLabel>{t("fields.title")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Ex: Étude de marché Paris 2026" />
+                    <Input {...field} placeholder={t("placeholders.title")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -170,15 +168,15 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
               name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Type</FormLabel>
+                  <FormLabel>{t("fields.type")}</FormLabel>
                   <FormControl>
                     <div className="grid grid-cols-2 gap-2">
                       {[
-                        { value: "articles", icon: FileText, label: "Article" },
-                        { value: "links", icon: Globe, label: "Lien" },
-                        { value: "images", icon: Image, label: "Image" },
-                        { value: "videos", icon: Video, label: "Vidéo" },
-                        { value: "books", icon: BookOpen, label: "Livre" },
+                        { value: "articles", icon: FileText, label: t("types.article") },
+                        { value: "links", icon: Globe, label: t("types.link") },
+                        { value: "images", icon: Image, label: t("types.image") },
+                        { value: "videos", icon: Video, label: t("types.video") },
+                        { value: "books", icon: BookOpen, label: t("types.book") },
                       ].map((option) => {
                         const Icon = option.icon;
                         return (
@@ -215,7 +213,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
               name="link"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Lien</FormLabel>
+                  <FormLabel>{t("fields.link")}</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value ?? ""} placeholder="https://..." />
                   </FormControl>
@@ -229,7 +227,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
               name="sources"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Source(s)</FormLabel>
+                  <FormLabel>{t("fields.sources")}</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value ?? ""} placeholder="Ex: Le Monde" />
                   </FormControl>
@@ -242,7 +240,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
           {/* RIGHT */}
           <div className="flex flex-col gap-5">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <Target className="w-5 h-5" /> Détails
+              <Target className="w-5 h-5" /> {t("sections.details")}
             </h2>
 
             <FormField
@@ -250,9 +248,14 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>{t("fields.description")}</FormLabel>
                   <FormControl>
-                    <Textarea {...field} value={field.value ?? ""} placeholder="Résumé" rows={4} />
+                    <Textarea
+                      {...field}
+                      value={field.value ?? ""}
+                      placeholder={t("placeholders.description")}
+                      rows={4}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -260,12 +263,12 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
             />
 
             <div className="space-y-2">
-              <FormLabel>Tags</FormLabel>
+              <FormLabel>{t("fields.tags")}</FormLabel>
               <div className="flex gap-2 items-center">
                 <Input
                   value={tagInput}
                   onChange={(e) => setTagInput(e.target.value)}
-                  placeholder="Ajouter un tag"
+                  placeholder={t("placeholders.tag")}
                 />
                 <Button
                   type="button"
@@ -273,7 +276,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                   onClick={handleAddTag}
                   className="h-[42px]"
                 >
-                  Ajouter
+                  {t("common:add")}
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -303,12 +306,12 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
               name="note"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Note</FormLabel>
+                  <FormLabel>{t("fields.note")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
-                      placeholder="Note interne"
+                      placeholder={t("placeholders.note")}
                       rows={3}
                     />
                   </FormControl>
@@ -339,7 +342,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                     size="sm"
                     onClick={() => window.open(existingLink, "_blank")}
                   >
-                    Ouvrir
+                    {t("common:openExternal")}
                   </Button>
                   <Button
                     variant="ghost"
@@ -348,7 +351,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                       setExistingLink(null);
                     }}
                   >
-                    Supprimer
+                    {t("common:delete")}
                   </Button>
                 </div>
               </div>
@@ -366,10 +369,10 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                 form.reset();
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
             <Button variant="blue" disabled={loading} className="min-w-[180px]">
-              {loading ? "Enregistrement..." : "Mettre à jour"}
+              {loading ? t("common:saving") : t("update.submit")}
             </Button>
           </div>
         </form>

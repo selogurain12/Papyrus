@@ -1,0 +1,35 @@
+{
+  "create": {
+    "submit": "Crie pesquisas",
+    "subtitle": "Preencha as informações para salvar o recurso.",
+    "success": "Pesquisa criada com sucesso",
+    "title": "Adicionar pesquisa"
+  },
+  "fields": {
+    "description": "Descrição",
+    "link": "Link",
+    "note": "Observação",
+    "sources": "Fontes)",
+    "tags": "Etiquetas",
+    "title": "Título",
+    "type": "Tipo"
+  },
+  "placeholders": {
+    "description": "Resumo ou nota de enquadramento",
+    "note": "Nota interna",
+    "sources": "Exemplo: Le Monde, Wikipédia",
+    "tag": "Adicionar uma etiqueta",
+    "title": "Exemplo: estudo de mercado Paris 2026"
+  },
+  "sections": {
+    "details": "Detalhes",
+    "info": "Informação"
+  },
+  "types": {
+    "article": "Artigo",
+    "book": "Livro",
+    "image": "Imagem",
+    "link": "Link",
+    "video": "Vídeo"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "alreadyAccount": "Už máte účet?",
+  "email": "E-mail",
+  "emailPlaceholder": "E-mail",
+  "error": "Došlo k chybě",
+  "firstName": "Jméno",
+  "firstNamePlaceholder": "Jméno",
+  "lastName": "Příjmení",
+  "lastNamePlaceholder": "Příjmení",
+  "login": "Přihlásit se",
+  "registerSuccess": "Registrace proběhla úspěšně",
+  "submit": "Registrovat se",
+  "subtitle": "Vytvořte si účet pro pokračování",
+  "title": "Registrace",
+  "welcome": "Vítejte v Papyrusu"
+}

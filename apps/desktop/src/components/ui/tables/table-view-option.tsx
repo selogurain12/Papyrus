@@ -8,12 +8,15 @@ import { DropdownMenuLabel } from "../dropdown-menu/dropdown-menu-label";
 import { DropdownMenuSeparator } from "../dropdown-menu/dropdown-menu-separator";
 import { DropdownMenuCheckboxItem } from "../dropdown-menu/dropdown-menu-checkbox-item";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface TableViewOptionsProps<Tdata> {
   table: Table<Tdata>;
 }
 
 export function TableViewOptions<Tdata>({ table }: TableViewOptionsProps<Tdata>) {
+  const { t } = useTranslation();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -24,11 +27,11 @@ export function TableViewOptions<Tdata>({ table }: TableViewOptionsProps<Tdata>)
           variant="outline"
         >
           <RxMixerHorizontal className="mr-2 size-4" />
-          Vues
+          {t("table.views")}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
-        <DropdownMenuLabel>Affichage des colonnes</DropdownMenuLabel>
+        <DropdownMenuLabel>{t("table.columnDisplay")}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
@@ -42,7 +45,9 @@ export function TableViewOptions<Tdata>({ table }: TableViewOptionsProps<Tdata>)
                 event.preventDefault();
               }}
             >
-              <span className="truncate">{column.columnDef.meta?.toString() ?? "Non défini"}</span>
+              <span className="truncate">
+                {column.columnDef.meta?.toString() ?? t("undefined")}
+              </span>
             </DropdownMenuCheckboxItem>
           ))}
       </DropdownMenuContent>

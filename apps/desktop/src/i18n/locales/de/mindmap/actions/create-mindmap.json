@@ -1,0 +1,12 @@
+{
+  "canvas": "Interaktive Leinwand",
+  "create": {
+    "submit": "Erstellen Sie eine Mindmap",
+    "success": "Mindmap erfolgreich erstellt!",
+    "title": "Erstellen Sie eine Mindmap"
+  },
+  "invalidFields": "Bitte füllen Sie die Felder korrekt aus.",
+  "newTitle": "Neue Mindmap",
+  "newTopic": "neues Thema",
+  "notInitialized": "MindElixir ist nicht initialisiert."
+}

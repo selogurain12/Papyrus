@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "描述",
+    "link": "关联",
+    "note": "笔记",
+    "sources": "来源",
+    "tags": "标签",
+    "title": "标题",
+    "type": "类型"
+  },
+  "placeholders": {
+    "description": "摘要或框架说明",
+    "note": "内部注释",
+    "tag": "添加标签",
+    "title": "示例：巴黎 2026 年市场研究"
+  },
+  "sections": {
+    "details": "细节",
+    "info": "信息"
+  },
+  "types": {
+    "article": "文章",
+    "book": "书",
+    "image": "图像",
+    "link": "关联",
+    "video": "视频"
+  },
+  "update": {
+    "submit": "更新",
+    "subtitle": "编辑信息和附件。",
+    "success": "研究更新成功",
+    "title": "编辑研究"
+  }
+}

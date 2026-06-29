@@ -1,0 +1,35 @@
+{
+  "create": {
+    "submit": "Create research",
+    "subtitle": "Complete the information to save the resource.",
+    "success": "Research created successfully",
+    "title": "Add research"
+  },
+  "fields": {
+    "description": "Description",
+    "link": "Link",
+    "note": "Note",
+    "sources": "Source(s)",
+    "tags": "Tags",
+    "title": "Title",
+    "type": "Type"
+  },
+  "placeholders": {
+    "description": "Summary or framing note",
+    "note": "Internal note",
+    "sources": "Example: Le Monde, Wikipedia",
+    "tag": "Add a tag",
+    "title": "Example: Paris 2026 market study"
+  },
+  "sections": {
+    "details": "Details",
+    "info": "Information"
+  },
+  "types": {
+    "article": "Article",
+    "book": "Book",
+    "image": "Image",
+    "link": "Link",
+    "video": "Video"
+  }
+}

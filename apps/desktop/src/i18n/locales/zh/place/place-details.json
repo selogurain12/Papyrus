@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "atmosphere": "气氛",
+    "government": "政府",
+    "language": "语言",
+    "physicalDescription": "描述 *",
+    "population": "出场人物",
+    "ressources": "资源",
+    "usages": "用途"
+  },
+  "importance": {
+    "high": "高的",
+    "low": "低的",
+    "medium": "中等的"
+  },
+  "labels": {
+    "importance": "重要性：{{importance}}"
+  },
+  "notSpecified": "未指定",
+  "sections": {
+    "description": "描述",
+    "general": "一般信息",
+    "history": "历史"
+  },
+  "select": {
+    "description": "从列表中选择一个地点以查看其详细信息",
+    "title": "选择地点"
+  },
+  "types": {
+    "city": "城市",
+    "continent": "大陆",
+    "country": "国家",
+    "other": "其他",
+    "planet": "行星",
+    "space station": "空间站",
+    "village": "村庄"
+  }
+}

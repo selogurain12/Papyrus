@@ -23,14 +23,13 @@ import ToolbarPlugin from "./toolbar-plugin";
 import { parseAllowedColor, parseAllowedFontSize } from "./style-config";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 interface EditorProps {
   value?: string;
   // eslint-disable-next-line no-unused-vars
   onChange?: (content: string) => void;
 }
-
-const placeholder = "Commencez à écrire votre chapitre...";
 
 const removeStylesExportDOM = (editor: LexicalEditor, target: LexicalNode): DOMExportOutput => {
   const output = target.exportDOM(editor);
@@ -171,6 +170,8 @@ const editorConfig = {
 };
 
 export default function Editor({ onChange, value }: EditorProps) {
+  const { t } = useTranslation();
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div className="w-full rounded-xl border bg-white shadow-sm">
@@ -203,7 +204,7 @@ export default function Editor({ onChange, value }: EditorProps) {
                   select-none
                 "
               >
-                {placeholder}
+                {t("editor.placeholder")}
               </div>
             }
             ErrorBoundary={LexicalErrorBoundary}

@@ -1,0 +1,27 @@
+{
+  "addObjective": "Aggiungi obiettivo",
+  "emptyObjectives": "Nessun obiettivo ancora definito.",
+  "error": "Errore durante l'aggiornamento della struttura: {{message}}",
+  "genre": "Genere",
+  "mainConcept": "Concetto principale",
+  "notFound": "Struttura non trovata",
+  "objective": "Obiettivo {{index}}",
+  "placeholders": {
+    "genre": "Esempio: thriller, fantascienza, romanticismo, fantasy, ecc.",
+    "premise": "Esempio: un detective indaga su una serie di misteriosi omicidi in una città oscura...",
+    "structure": "Esempio: introduzione, sviluppo, climax, risoluzione...",
+    "theme": "Esempio: la lotta tra il bene e il male, la redenzione, la natura umana..."
+  },
+  "premise": "Premessa",
+  "structure": "Struttura",
+  "subtitle": "Definisci le basi della tua storia organizzando gli elementi chiave della tua narrazione. Crea una struttura solida per guidare la tua scrittura e catturare l'essenza del tuo romanzo.",
+  "success": "Struttura aggiornata con successo",
+  "tabs": {
+    "concept": "Concetto",
+    "objectives": "Obiettivi",
+    "plan": "Piano narrativo"
+  },
+  "theme": "Tema",
+  "title": "Struttura nuova",
+  "unknownError": "Si è verificato un errore sconosciuto durante l'aggiornamento della struttura"
+}

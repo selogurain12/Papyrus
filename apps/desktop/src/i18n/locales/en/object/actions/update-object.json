@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "appearance": "Appearance",
+    "color": "Color",
+    "description": "Description",
+    "history": "History",
+    "importance": "Narrative importance",
+    "location": "Location",
+    "name": "Name *",
+    "significance": "Importance in the story",
+    "type": "Type"
+  },
+  "importance": {
+    "high": "High",
+    "low": "Low",
+    "medium": "Medium"
+  },
+  "placeholders": {
+    "importance": "Select an importance",
+    "name": "E.g. Ancient compass",
+    "type": "Select a type"
+  },
+  "types": {
+    "artifact": "Artifact",
+    "clothing": "Clothing",
+    "equipment": "Equipment",
+    "furniture": "Furniture",
+    "jewelry": "Jewelry",
+    "paper": "Documents",
+    "technology": "Technology",
+    "tool": "Tool",
+    "vehicle": "Vehicle",
+    "weapon": "Weapon"
+  },
+  "update": {
+    "submit": "Update object",
+    "success": "Object updated successfully!",
+    "title": "Edit object"
+  }
+}

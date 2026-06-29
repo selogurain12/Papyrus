@@ -1,0 +1,21 @@
+{
+  "actions": {
+    "loading": "Salvataggio...",
+    "submit": "Modifica la parte"
+  },
+  "fields": {
+    "status": "Stato",
+    "statusOptions": {
+      "completed": "Completato",
+      "inProgress": "In corso",
+      "toStart": "Da iniziare"
+    },
+    "statusPlaceholder": "Seleziona uno stato",
+    "title": "Titolo",
+    "titlePlaceholder": "Es: Parte 1: Introduzione"
+  },
+  "title": "Modifica parte",
+  "toasts": {
+    "success": "Parte modificata con successo!"
+  }
+}

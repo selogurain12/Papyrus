@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}} 歳、{{place}} 生まれ",
+  "fields": {
+    "accessoryShort": "アクセサリー",
+    "beliefShort": "信念",
+    "birthDate": "生年月日",
+    "characterFlawsShort": "欠陥",
+    "characterQualitiesShort": "資質",
+    "corpulence": "建てる",
+    "descriptionShort": "説明",
+    "education": "教育",
+    "eyesShort": "目",
+    "fearsShort": "恐怖",
+    "firstName": "ファーストネーム",
+    "future": "未来",
+    "genderDetail": "性別",
+    "goals": "目標/目的",
+    "hairShort": "髪",
+    "heightShort": "身長",
+    "lastNameShort": "苗字",
+    "nationality": "国籍",
+    "nickName": "ニックネーム",
+    "notablePlaces": "注目の場所",
+    "notesShort": "注意事項",
+    "occupation": "職業",
+    "outfitShort": "服装",
+    "past": "過去",
+    "present": "現在",
+    "pronouns": "代名詞",
+    "residencePlace": "居住地",
+    "richesses": "富",
+    "secrets": "秘密",
+    "tastes": "味",
+    "tics": "チック、習慣、日常生活、依存症",
+    "typicalExpressionShort": "典型的な表現",
+    "voice": "声",
+    "weightShort": "重さ"
+  },
+  "gender": {
+    "female": "女性",
+    "male": "男",
+    "other": "他の"
+  },
+  "notSpecified": "指定されていない",
+  "role": "役割：",
+  "sections": {
+    "development": "発達",
+    "maritalStatus": "民事上の地位",
+    "other": "他の",
+    "physical": "物理的な",
+    "profile": "プロフィール",
+    "trait": "特性"
+  },
+  "select": {
+    "description": "リストからキャラクターを選択すると、その詳細が表示されます",
+    "title": "キャラクターを選択してください"
+  }
+}

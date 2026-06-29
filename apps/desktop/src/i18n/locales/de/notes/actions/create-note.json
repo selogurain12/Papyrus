@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "Notiz erstellen",
+    "success": "Notiz erfolgreich erstellt",
+    "title": "Fügen Sie eine Notiz hinzu"
+  },
+  "fields": {
+    "color": "Farbe",
+    "content": "Inhalt",
+    "tags": "Schlagworte",
+    "title": "Titel"
+  },
+  "placeholders": {
+    "content": "Beispiel: Marcus ist ein komplexer Charakter mit einer mysteriösen Vergangenheit ...",
+    "tag": "Tag hinzufügen",
+    "title": "Beispiel: Marcus-Charakterentwicklung"
+  },
+  "sections": {
+    "info": "Hinweise beachten"
+  }
+}

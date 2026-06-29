@@ -1,0 +1,49 @@
+{
+  "create": {
+    "submit": "Vytvořte místo",
+    "success": "Místo bylo úspěšně vytvořeno!",
+    "title": "Vytvořte nové místo"
+  },
+  "fields": {
+    "atmosphere": "Atmosféra",
+    "color": "Barva",
+    "government": "Vláda",
+    "history": "Dějiny",
+    "importance": "Narativní význam",
+    "languages": "Jazyky",
+    "localisation": "Umístění",
+    "name": "Název místa *",
+    "nickname": "Přezdívka",
+    "physicalDescription": "Popis *",
+    "population": "Přítomné postavy",
+    "ressources": "Zdroje",
+    "type": "Typ místa *",
+    "visualDetails": "Vizuální detaily"
+  },
+  "importance": {
+    "high": "Vysoký",
+    "low": "Nízký",
+    "medium": "Střední"
+  },
+  "placeholders": {
+    "atmosphere": "Nálada, pocity...",
+    "government": "Typ vlády, vůdci...",
+    "history": "Minulost, původ...",
+    "importance": "Vyberte důležitost",
+    "language": "Mluvené jazyky...",
+    "name": "Např. Kavárna Le Metropolitain",
+    "physicalDescription": "Obecný popis...",
+    "ressources": "Přírodní, ekonomické, strategické zdroje...",
+    "type": "Vyberte typ",
+    "usages": "Architektura, výzdoba..."
+  },
+  "types": {
+    "city": "Město",
+    "continent": "Kontinent",
+    "country": "Země",
+    "other": "Ostatní",
+    "planet": "Planeta",
+    "space station": "Vesmírná stanice",
+    "village": "Obec"
+  }
+}

@@ -25,12 +25,14 @@ import { Textarea } from "../../ui/textarea";
 import { Separator } from "../../ui/separator";
 import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
+import { useTranslation } from "react-i18next";
 
 interface CreateResearchFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
+  const { t } = useTranslation(["research/actions/create-form", "common"]);
   const [tagInput, setTagInput] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -38,7 +40,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
   const { currentProject } = useProject();
 
   if (!currentProject) {
-    toast.error("Projet non sélectionné");
+    toast.error(t("common:projectNotSelected"));
     return null;
   }
 
@@ -82,7 +84,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
         params: { projectId: currentProject.id },
       });
 
-      toast.success("Recherche créée avec succès");
+      toast.success(t("create.success"));
 
       await queryClient.invalidateQueries({
         queryKey: ["research.getAll"],
@@ -95,7 +97,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     } finally {
       setLoading(false);
@@ -131,12 +133,8 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
       }}
     >
       <DialogHeader>
-        <DialogTitle className="text-3xl font-bold tracking-tight">
-          Ajouter une recherche
-        </DialogTitle>
-        <p className="text-sm text-slate-500 mt-1">
-          Complète les informations pour enregistrer la ressource.
-        </p>
+        <DialogTitle className="text-3xl font-bold tracking-tight">{t("create.title")}</DialogTitle>
+        <p className="text-sm text-slate-500 mt-1">{t("create.subtitle")}</p>
       </DialogHeader>
 
       <Form {...form}>
@@ -146,7 +144,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
         >
           <div className="flex flex-col gap-5">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <BookOpen className="w-5 h-5" /> Informations
+              <BookOpen className="w-5 h-5" /> {t("sections.info")}
             </h2>
 
             <FormField
@@ -154,9 +152,9 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Titre</FormLabel>
+                  <FormLabel>{t("fields.title")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Ex: Étude de marché Paris 2026" />
+                    <Input {...field} placeholder={t("placeholders.title")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -168,15 +166,15 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
               name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Type</FormLabel>
+                  <FormLabel>{t("fields.type")}</FormLabel>
                   <FormControl>
                     <div className="grid grid-cols-2 gap-2">
                       {[
-                        { value: "articles", icon: FileText, label: "Article" },
-                        { value: "links", icon: Globe, label: "Lien" },
-                        { value: "images", icon: Image, label: "Image" },
-                        { value: "videos", icon: Video, label: "Vidéo" },
-                        { value: "books", icon: Book, label: "Livre" },
+                        { value: "articles", icon: FileText, label: t("types.article") },
+                        { value: "links", icon: Globe, label: t("types.link") },
+                        { value: "images", icon: Image, label: t("types.image") },
+                        { value: "videos", icon: Video, label: t("types.video") },
+                        { value: "books", icon: Book, label: t("types.book") },
                       ].map((option) => {
                         const Icon = option.icon;
                         return (
@@ -213,7 +211,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
               name="link"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Lien</FormLabel>
+                  <FormLabel>{t("fields.link")}</FormLabel>
                   <FormControl>
                     <Input {...field} value={field.value ?? ""} placeholder="https://..." />
                   </FormControl>
@@ -227,12 +225,12 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
               name="sources"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Source(s)</FormLabel>
+                  <FormLabel>{t("fields.sources")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       value={field.value ?? ""}
-                      placeholder="Ex: Le Monde, Wikipédia"
+                      placeholder={t("placeholders.sources")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -244,7 +242,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
           {/* RIGHT */}
           <div className="flex flex-col gap-5">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <Target className="w-5 h-5" /> Détails
+              <Target className="w-5 h-5" /> {t("sections.details")}
             </h2>
 
             <FormField
@@ -252,12 +250,12 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>{t("fields.description")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
-                      placeholder="Résumé ou note de cadrage"
+                      placeholder={t("placeholders.description")}
                       rows={4}
                     />
                   </FormControl>
@@ -267,12 +265,12 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
             />
 
             <div className="space-y-2">
-              <FormLabel>Tags</FormLabel>
+              <FormLabel>{t("fields.tags")}</FormLabel>
               <div className="flex gap-2 items-center">
                 <Input
                   value={tagInput}
                   onChange={(e) => setTagInput(e.target.value)}
-                  placeholder="Ajouter un tag"
+                  placeholder={t("placeholders.tag")}
                 />
                 <Button
                   type="button"
@@ -280,7 +278,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                   onClick={handleAddTag}
                   className="h-[42px]"
                 >
-                  Ajouter
+                  {t("common:add")}
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -310,12 +308,12 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
               name="note"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Note</FormLabel>
+                  <FormLabel>{t("fields.note")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
-                      placeholder="Note interne"
+                      placeholder={t("placeholders.note")}
                       rows={3}
                     />
                   </FormControl>
@@ -339,10 +337,10 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                 form.reset();
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
             <Button variant="blue" disabled={loading} className="min-w-[180px]">
-              {loading ? "Enregistrement..." : "Créer la recherche"}
+              {loading ? t("common:saving") : t("create.submit")}
             </Button>
           </div>
         </form>

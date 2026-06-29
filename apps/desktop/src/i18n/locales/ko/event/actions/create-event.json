@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "이벤트 만들기",
+    "success": "이벤트가 성공적으로 생성되었습니다!",
+    "title": "새 이벤트 만들기"
+  },
+  "fields": {
+    "additionalDetails": "추가 세부정보",
+    "date": "날짜",
+    "description": "설명",
+    "location": "위치",
+    "title": "이벤트 제목",
+    "type": "이벤트 유형"
+  },
+  "importance": {
+    "action": "행동",
+    "critical": "비판적인",
+    "important": "중요한",
+    "normal": "정상"
+  }
+}

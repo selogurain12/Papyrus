@@ -1,0 +1,65 @@
+{
+  "create": {
+    "submit": "Projekt erstellen",
+    "success": "Projekt erfolgreich erstellt",
+    "title": "Erstellen Sie ein Projekt"
+  },
+  "fields": {
+    "author": "Projektautor",
+    "deadline": "Projektfrist",
+    "description": "Projektbeschreibung",
+    "genre": "Projektgenre",
+    "language": "Projektsprache",
+    "targetWordCount": "Zielwortanzahl",
+    "title": "Projekttitel"
+  },
+  "genres": {
+    "biography": "Biographie",
+    "children": "Kinder",
+    "essay": "Aufsatz",
+    "fantasy": "Fantasie",
+    "guide": "Führung",
+    "health": "Gesundheit",
+    "historical": "Historisch",
+    "history": "Geschichte",
+    "horror": "Horror",
+    "mystery": "Geheimnis",
+    "non-fiction": "Sachbücher",
+    "other": "Andere",
+    "poetry": "Poesie",
+    "police": "Verbrechen",
+    "religion": "Religion",
+    "roman": "Roman",
+    "romance": "Romantik",
+    "science": "Wissenschaft",
+    "science-fiction": "Science-Fiction",
+    "self-help": "Selbsthilfe",
+    "theater": "Theaterstück",
+    "thriller": "Thriller",
+    "travel": "Reisen",
+    "young-adult": "Junger Erwachsener"
+  },
+  "languages": {
+    "cs": "tschechisch",
+    "de": "Deutsch",
+    "en": "Englisch",
+    "es": "Spanisch",
+    "fr": "Französisch",
+    "it": "Italienisch",
+    "ja": "japanisch",
+    "ko": "Koreanisch",
+    "pt": "Portugiesisch",
+    "ru": "Russisch",
+    "zh": "chinesisch"
+  },
+  "placeholders": {
+    "date": "Wählen Sie ein Datum aus",
+    "genre": "Wählen Sie ein Genre aus",
+    "language": "Wählen Sie eine Sprache aus",
+    "tag": "Fügen Sie ein Tag hinzu"
+  },
+  "sections": {
+    "goals": "Ziele und Einstellungen",
+    "info": "Projektinformationen"
+  }
+}

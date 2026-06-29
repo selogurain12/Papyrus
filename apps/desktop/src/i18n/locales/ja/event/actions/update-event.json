@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "additionalDetails": "追加の詳細",
+    "date": "日付",
+    "description": "説明",
+    "location": "位置",
+    "title": "イベントタイトル",
+    "type": "イベントの種類"
+  },
+  "importance": {
+    "action": "アクション",
+    "critical": "致命的",
+    "important": "重要",
+    "normal": "普通"
+  },
+  "select": {
+    "title": "イベントを選択してください"
+  },
+  "update": {
+    "submit": "アップデートイベント",
+    "success": "イベント更新しました！",
+    "title": "イベントの編集"
+  }
+}

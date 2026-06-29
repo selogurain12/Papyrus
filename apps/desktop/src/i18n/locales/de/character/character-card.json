@@ -1,0 +1,9 @@
+{
+  "roles": {
+    "ally": "Verbündete",
+    "antagonist": "Gegenspieler",
+    "mentor": "Mentor",
+    "protagonist": "Hauptfigur",
+    "secondary character": "Nebenfigur"
+  }
+}

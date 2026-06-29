@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "Vše",
+    "articles": "články",
+    "books": "knihy",
+    "images": "Obrázky",
+    "links": "Webové odkazy",
+    "videos": "videa"
+  },
+  "empty": "Nebyl nalezen žádný výzkum.",
+  "new": "Nový výzkum",
+  "searchPlaceholder": "Prohledejte svůj výzkum...",
+  "subtitle": "Uspořádejte si zdroje a reference",
+  "title": "Výzkum"
+}

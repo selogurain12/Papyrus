@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "Crea nota",
+    "success": "Nota creata con successo",
+    "title": "Aggiungi una nota"
+  },
+  "fields": {
+    "color": "Colore",
+    "content": "Contenuto",
+    "tags": "Tag",
+    "title": "Titolo"
+  },
+  "placeholders": {
+    "content": "Esempio: Marcus è un personaggio complesso con un passato misterioso...",
+    "tag": "Aggiungi un tag",
+    "title": "Esempio: sviluppo del personaggio di Marcus"
+  },
+  "sections": {
+    "info": "Notare le informazioni"
+  }
+}

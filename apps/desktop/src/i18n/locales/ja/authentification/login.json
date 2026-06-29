@@ -1,0 +1,14 @@
+{
+  "email": "メールアドレス",
+  "emailPlaceholder": "メールアドレス",
+  "error": "エラーが発生しました",
+  "loginSuccess": "ログインしました",
+  "noAccount": "まだアカウントをお持ちではありませんか？",
+  "password": "パスワード",
+  "passwordPlaceholder": "パスワード",
+  "register": "登録する",
+  "submit": "ログイン",
+  "subtitle": "続行するにはログインしてください",
+  "title": "ログイン",
+  "welcome": "Papyrusへようこそ"
+}

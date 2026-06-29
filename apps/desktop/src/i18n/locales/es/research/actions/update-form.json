@@ -1,0 +1,34 @@
+{
+  "fields": {
+    "description": "Descripción",
+    "link": "Enlace",
+    "note": "Nota",
+    "sources": "Fuente(s)",
+    "tags": "Etiquetas",
+    "title": "Título",
+    "type": "Tipo"
+  },
+  "placeholders": {
+    "description": "Resumen o nota de contexto",
+    "note": "Nota interna",
+    "tag": "Añadir una etiqueta",
+    "title": "Ejemplo: Estudio de mercado París 2026"
+  },
+  "sections": {
+    "details": "Detalles",
+    "info": "Información"
+  },
+  "types": {
+    "article": "Artículo",
+    "book": "Libro",
+    "image": "Imagen",
+    "link": "Enlace",
+    "video": "Vídeo"
+  },
+  "update": {
+    "submit": "Actualizar",
+    "subtitle": "Edita la información y el archivo adjunto.",
+    "success": "Investigación actualizada correctamente",
+    "title": "Editar investigación"
+  }
+}

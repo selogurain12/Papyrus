@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "Cancel",
+    "loading": "Saving...",
+    "submit": "Create chapter"
+  },
+  "fields": {
+    "chapterNumber": "Chapter number",
+    "part": "Part",
+    "partPlaceholder": "Select a part",
+    "resume": "Summary",
+    "status": "Status",
+    "statusOptions": {
+      "completed": "Completed",
+      "inProgress": "In progress",
+      "toStart": "To start"
+    },
+    "statusPlaceholder": "Select a status",
+    "titlePlaceholder": "e.g. Chapter 1",
+    "wordGoal": "Word goal"
+  },
+  "projectNotFound": "Project not found",
+  "title": "Add a chapter",
+  "toasts": {
+    "error": "An error occurred",
+    "success": "Chapter created successfully!"
+  }
+}

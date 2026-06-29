@@ -5,17 +5,19 @@ import { EventDto } from "@papyrus/source";
 import { Badge } from "../ui/badge";
 import { format } from "../../utils/date/date-utils";
 import { parseZonedDateTime } from "@internationalized/date";
+import { useTranslation } from "react-i18next";
 
 interface EventDetailProps {
   event: EventDto | undefined;
 }
 
 export function EventDetail({ event }: EventDetailProps) {
+  const { t } = useTranslation("event/event-details");
   const importanceMap: Record<string, string> = {
-    critical: "Critique",
-    important: "Importante",
-    action: "Action",
-    normal: "Normale",
+    critical: t("importance.critical"),
+    important: t("importance.important"),
+    action: t("importance.action"),
+    normal: t("importance.normal"),
   };
 
   const importanceColorMap: Record<string, string> = {
@@ -29,10 +31,8 @@ export function EventDetail({ event }: EventDetailProps) {
     return (
       <Card className="rounded-lg p-6 w-full flex flex-col items-center justify-center text-muted-foreground">
         <MapPin className="w-16 h-16 text-gray-300" />
-        <p className="text-md text-gray-600">Sélectionnez un évènement</p>
-        <p className="text-sm text-gray-400">
-          Choisissez un évènement dans la liste pour voir ses détails
-        </p>
+        <p className="text-md text-gray-600">{t("select.title")}</p>
+        <p className="text-sm text-gray-400">{t("select.description")}</p>
       </Card>
     );
   }
@@ -57,7 +57,7 @@ export function EventDetail({ event }: EventDetailProps) {
 
       {/* DESCRIPTION */}
       <div className="space-y-1">
-        <p className="text-sm font-medium text-muted-foreground">Description</p>
+        <p className="text-sm font-medium text-muted-foreground">{t("fields.description")}</p>
         <p className="text-sm text-card-foreground">{event.description || "—"}</p>
       </div>
 
@@ -65,14 +65,14 @@ export function EventDetail({ event }: EventDetailProps) {
       <div className="space-y-1">
         <div className="flex items-center gap-2">
           <MapPin className="w-5 h-5 text-muted-foreground" />
-          <p className="text-sm font-medium text-muted-foreground">Lieu</p>
+          <p className="text-sm font-medium text-muted-foreground">{t("fields.location")}</p>
         </div>
         <p className="text-sm text-card-foreground">{event.location || "—"}</p>
       </div>
 
       {/* NOTES SUPPLÉMENTAIRES */}
       <div className="space-y-1">
-        <p className="text-sm font-medium text-muted-foreground">Notes supplémentaires</p>
+        <p className="text-sm font-medium text-muted-foreground">{t("fields.additionalDetails")}</p>
         <p className="text-sm text-card-foreground whitespace-pre-line">
           {event.additionalDetails || "—"}
         </p>

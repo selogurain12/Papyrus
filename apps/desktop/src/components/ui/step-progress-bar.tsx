@@ -5,6 +5,7 @@ import { DialogDescription } from "./dialogs/dialog-description";
 import { Progress } from "./progress";
 import { DialogClose } from "./dialogs/dialog";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface StepProgressBarProps {
   stepsComponents: React.ReactNode[];
@@ -23,6 +24,7 @@ export function StepProgressBar({
   goToNextStep,
   resetAll,
 }: StepProgressBarProps) {
+  const { t } = useTranslation();
   const totalSteps = stepsComponents.length;
 
   function handleNextStep(event: React.MouseEvent<HTMLButtonElement>) {
@@ -58,18 +60,18 @@ export function StepProgressBar({
             type="button"
             variant="ghost"
           >
-            Précédemment
+            {t("previous")}
           </Button>
           {currentStep === totalSteps ? (
             <DialogClose>
-              <Button onClick={resetAll}>Terminer</Button>
+              <Button onClick={resetAll}>{t("finish")}</Button>
             </DialogClose>
           ) : (
             <Button
               onClick={handleNextStep}
               type={currentStep === totalSteps - 1 ? "submit" : "button"}
             >
-              {currentStep === totalSteps - 1 ? "Valider" : "Suivant"}
+              {currentStep === totalSteps - 1 ? t("validate") : t("next")}
             </Button>
           )}
         </div>

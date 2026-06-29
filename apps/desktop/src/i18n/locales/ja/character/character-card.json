@@ -1,0 +1,9 @@
+{
+  "roles": {
+    "ally": "アリー",
+    "antagonist": "アンタゴニスト",
+    "mentor": "メンター",
+    "protagonist": "主人公",
+    "secondary character": "サブキャラクター"
+  }
+}

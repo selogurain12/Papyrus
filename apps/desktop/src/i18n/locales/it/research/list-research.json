@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "Tutto",
+    "articles": "Articoli",
+    "books": "Libri",
+    "images": "Immagini",
+    "links": "Collegamenti Web",
+    "videos": "Video"
+  },
+  "empty": "Nessuna ricerca trovata.",
+  "new": "Nuova ricerca",
+  "searchPlaceholder": "Cerca la tua ricerca...",
+  "subtitle": "Organizza le tue fonti e i tuoi riferimenti",
+  "title": "Ricerca"
+}

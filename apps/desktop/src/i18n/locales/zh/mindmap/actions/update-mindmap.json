@@ -1,0 +1,9 @@
+{
+  "invalidFields": "请正确填写字段。",
+  "newTitle": "新思维导图",
+  "notInitialized": "MindElixir 未初始化。",
+  "update": {
+    "submit": "更新思维导图",
+    "success": "思维导图更新成功！"
+  }
+}

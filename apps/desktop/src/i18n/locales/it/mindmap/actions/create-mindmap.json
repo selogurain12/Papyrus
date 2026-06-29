@@ -1,0 +1,12 @@
+{
+  "canvas": "Tela interattiva",
+  "create": {
+    "submit": "Crea una mappa mentale",
+    "success": "Mappa mentale creata con successo!",
+    "title": "Crea una mappa mentale"
+  },
+  "invalidFields": "Si prega di compilare i campi correttamente.",
+  "newTitle": "Nuova mappa mentale",
+  "newTopic": "nuovo argomento",
+  "notInitialized": "MindElixir non è inizializzato."
+}

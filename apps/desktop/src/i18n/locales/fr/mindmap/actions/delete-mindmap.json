@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Êtes-vous sûr de vouloir supprimer « {{title}} » ? Cette action est irréversible.",
+    "success": "La carte mentale a été supprimée avec succès",
+    "title": "Supprimer la carte mentale"
+  }
+}

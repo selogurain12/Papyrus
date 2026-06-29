@@ -1,0 +1,19 @@
+{
+  "importance": {
+    "high": "Высокий",
+    "low": "Низкий",
+    "medium": "Середина"
+  },
+  "labels": {
+    "importance": "Важность: ВВАР0В"
+  },
+  "types": {
+    "city": "Город",
+    "continent": "Континент",
+    "country": "Страна",
+    "other": "Другой",
+    "planet": "Планета",
+    "space station": "Космическая станция",
+    "village": "Деревня"
+  }
+}

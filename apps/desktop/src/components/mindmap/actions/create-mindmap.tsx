@@ -11,8 +11,10 @@ import { isFetchError } from "@ts-rest/react-query/v5";
 import { useNavigate } from "@tanstack/react-router";
 import { mindmapRoute } from "../../../routes/mindmap/index.route";
 import { Button } from "../../ui/button";
+import { useTranslation } from "react-i18next";
 
 export function CreateMindMap() {
+  const { t } = useTranslation(["mindmap/actions/create-mindmap", "common"]);
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
   const navigate = useNavigate();
   const { currentProject } = useProject();
@@ -27,14 +29,14 @@ export function CreateMindMap() {
       keypress: true,
     });
 
-    instance.init(MindElixir.new("new topic"));
+    instance.init(MindElixir.new(t("newTopic")));
 
     mindRef.current = instance;
   }, []);
 
   const { mutate } = client.mindmap.create.useMutation({
     onSuccess: () => {
-      toast.success("Carte mentale créée avec succès !");
+      toast.success(t("create.success"));
       void queryClient.invalidateQueries({ queryKey: ["mindmap.getAll"] });
       void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } });
     },
@@ -43,30 +45,30 @@ export function CreateMindMap() {
         console.error("Fetch error:", error);
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
 
   async function handleSubmit() {
     if (!mindRef.current) {
-      toast.error("MindElixir n'est pas initialisé.");
+      toast.error(t("notInitialized"));
       return;
     }
     if (!currentProject) {
-      toast.error("Aucun projet sélectionné.");
+      toast.error(t("common:projectNotSelected"));
       return;
     }
 
     const data = mindRef.current.getData();
     const parsed = createMindMapSchema.safeParse({
-      title: "Nouvelle carte mentale",
+      title: t("newTitle"),
       project: currentProject,
       data,
     });
 
     if (!parsed.success) {
-      toast.error("Veuillez remplir correctement les champs.");
+      toast.error(t("invalidFields"));
       return;
     }
 
@@ -84,7 +86,7 @@ export function CreateMindMap() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-3">
         <form onSubmit={handleSubmit} className="rounded-xl">
-          <h2 className="text-2xl font-semibold">Créer une carte mentale</h2>
+          <h2 className="text-2xl font-semibold">{t("create.title")}</h2>
         </form>
         <Button
           onClick={() =>
@@ -92,12 +94,12 @@ export function CreateMindMap() {
           }
           className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
         >
-          Retour
+          {t("common:backToProjects")}
         </Button>
       </div>
       <div className="space-y-2">
         <div className="bg-white shadow rounded-xl p-4">
-          <h3 className="text-xl font-semibold mb-4">Canvas interactif</h3>
+          <h3 className="text-xl font-semibold mb-4">{t("canvas")}</h3>
           <div id="map" style={{ height: "500px", width: "100%" }} />
         </div>
       </div>
@@ -106,7 +108,7 @@ export function CreateMindMap() {
           onClick={handleSubmit}
           className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
         >
-          Créer la carte mentale
+          {t("create.submit")}
         </Button>
       </div>
     </div>

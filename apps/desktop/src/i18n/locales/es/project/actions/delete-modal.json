@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "¿Seguro que quieres eliminar este proyecto?",
+    "success": "El proyecto se eliminó correctamente",
+    "title": "Eliminar proyecto"
+  }
+}

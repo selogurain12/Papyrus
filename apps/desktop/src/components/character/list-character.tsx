@@ -12,9 +12,11 @@ import { UpdateCharacter } from "./actions/update-character";
 import { CharacterDeleteActions } from "./actions/delete-character";
 import { Input } from "../ui/input";
 import { useFilterCharacterDto } from "../../utils/filters/use-filter-character";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line complexity
 export function CharactersList() {
+  const { t } = useTranslation("character/list-character");
   const { currentProject } = useProject();
   const [characterSelected, setCharacterSelected] = useState<CharacterDto | undefined>(undefined);
   const [isCreating, setIsCreating] = useState(false);
@@ -41,20 +43,17 @@ export function CharactersList() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="">
-          <h2 className="text-2xl font-bold text-foreground">Personnages</h2>
-          <p className="text-md">Gérez les personnages de votre histoire</p>
+          <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
+          <p className="text-md">{t("subtitle")}</p>
         </div>
         <Button variant="blue" onClick={() => setIsCreating(true)}>
           <Plus className="w-4 h-4 mr-2" />
-          Nouveau personnage
+          {t("new")}
         </Button>
       </div>
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3">
-          <Input
-            placeholder="Rechercher un personnage..."
-            onChange={(event) => setSearch(event.target.value)}
-          />
+          <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
           {data?.body?.data.map((character) => (
             <CharacterCard
               key={character.id}

@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "取消",
+    "loading": "正在保存...",
+    "submit": "更新章节"
+  },
+  "fields": {
+    "chapterNumber": "章节编号",
+    "part": "部分",
+    "partPlaceholder": "选择一个部分",
+    "resume": "摘要",
+    "status": "状态",
+    "statusPlaceholder": "选择状态",
+    "titlePlaceholder": "例如：第 1 章",
+    "wordGoal": "字数目标",
+    "statusOptions": {
+      "toStart": "待开始",
+      "inProgress": "进行中",
+      "completed": "已完成"
+    }
+  },
+  "projectNotFound": "未找到项目",
+  "title": "编辑章节",
+  "toasts": {
+    "error": "发生错误",
+    "success": "章节更新成功！"
+  }
+}

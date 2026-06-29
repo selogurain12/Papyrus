@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "Create note",
+    "success": "Note created successfully",
+    "title": "Add a note"
+  },
+  "fields": {
+    "color": "Color",
+    "content": "Content",
+    "tags": "Tags",
+    "title": "Title"
+  },
+  "placeholders": {
+    "content": "Example: Marcus is a complex character with a mysterious past...",
+    "tag": "Add a tag",
+    "title": "Example: Marcus character development"
+  },
+  "sections": {
+    "info": "Note information"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "create": {
+    "submit": "研究の作成",
+    "subtitle": "情報を入力してリソースを保存します。",
+    "success": "研究が正常に作成されました",
+    "title": "研究を追加する"
+  },
+  "fields": {
+    "description": "説明",
+    "link": "リンク",
+    "note": "注記",
+    "sources": "情報源",
+    "tags": "タグ",
+    "title": "タイトル",
+    "type": "タイプ"
+  },
+  "placeholders": {
+    "description": "要約または構成メモ",
+    "note": "内部メモ",
+    "sources": "例: ルモンド、ウィキペディア",
+    "tag": "タグを追加",
+    "title": "例: 2026 年のパリ市場調査"
+  },
+  "sections": {
+    "details": "詳細",
+    "info": "情報"
+  },
+  "types": {
+    "article": "記事",
+    "book": "本",
+    "image": "画像",
+    "link": "リンク",
+    "video": "ビデオ"
+  }
+}

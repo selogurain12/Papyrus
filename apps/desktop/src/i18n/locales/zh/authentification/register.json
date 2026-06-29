@@ -1,0 +1,16 @@
+{
+  "alreadyAccount": "已经有账户？",
+  "email": "电子邮箱",
+  "emailPlaceholder": "电子邮箱",
+  "error": "发生错误",
+  "firstName": "名",
+  "firstNamePlaceholder": "名",
+  "lastName": "姓",
+  "lastNamePlaceholder": "姓",
+  "login": "登录",
+  "registerSuccess": "注册成功",
+  "submit": "注册",
+  "subtitle": "创建账户以继续",
+  "title": "注册",
+  "welcome": "欢迎使用 Papyrus"
+}

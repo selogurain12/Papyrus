@@ -1,0 +1,27 @@
+{
+  "addObjective": "添加目标",
+  "emptyObjectives": "尚未定义目标。",
+  "error": "更新结构时出错：{{message}}",
+  "genre": "类型",
+  "mainConcept": "主要概念",
+  "notFound": "未找到结构",
+  "objective": "目标{{index}}",
+  "placeholders": {
+    "genre": "例如：惊悚片、科幻片、浪漫片、奇幻片等。",
+    "premise": "示例：一名侦探调查一座黑暗城市中的一系列神秘谋杀案......",
+    "structure": "例如：引子、发展、高潮、结局……",
+    "theme": "例子：善与恶的斗争、救赎、人性……"
+  },
+  "premise": "前提",
+  "structure": "结构",
+  "subtitle": "通过组织叙述的关键元素来定义故事的基础。创建一个坚实的结构来指导您的写作并捕捉小说的精髓。",
+  "success": "结构更新成功",
+  "tabs": {
+    "concept": "概念",
+    "objectives": "目标",
+    "plan": "叙事计划"
+  },
+  "theme": "主题",
+  "title": "结构新颖",
+  "unknownError": "更新结构时发生未知错误"
+}

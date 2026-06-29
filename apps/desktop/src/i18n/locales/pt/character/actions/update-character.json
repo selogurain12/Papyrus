@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "Azul",
+    "cyan": "Ciano",
+    "gray": "Cinza",
+    "green": "Verde",
+    "pink": "Rosa",
+    "purple": "Roxo",
+    "red": "Vermelho",
+    "yellow": "Amarelo"
+  },
+  "fields": {
+    "accessory": "Acessórios",
+    "age": "Idade",
+    "belief": "Crenças e ideologias",
+    "birthDate": "Data de nascimento",
+    "birthPlace": "Local de nascimento",
+    "characterFlaws": "Falhas de personagem",
+    "characterQualities": "Qualidades de personagem",
+    "color": "Cor de identificação",
+    "corpulence": "Construir",
+    "description": "Descrição geral",
+    "education": "Educação",
+    "eyesColor": "Cor dos olhos",
+    "fears": "Medos e dúvidas",
+    "firstName": "Primeiro nome",
+    "future": "Futuro",
+    "gender": "Sexo",
+    "goals": "Metas/Objetivos",
+    "hairColor": "Cor do cabelo",
+    "height": "Altura (cm)",
+    "lastName": "Sobrenome",
+    "nationality": "Nacionalidade",
+    "nickName": "Apelido",
+    "notablePlaces": "Lugares notáveis",
+    "notes": "Notas adicionais",
+    "occupation": "Ocupação",
+    "outfit": "Roupa",
+    "past": "Passado",
+    "present": "Presente",
+    "pronouns": "Pronomes",
+    "residencePlace": "Local de residência",
+    "richesses": "Fortuna",
+    "secrets": "Segredos",
+    "tastes": "Gostos",
+    "tics": "Tiques, hábitos, rotinas e vícios",
+    "typicalExpression": "Frases ou expressões típicas",
+    "voice": "Voz",
+    "weight": "Peso (kg)"
+  },
+  "gender": {
+    "female": "Fêmea",
+    "male": "Macho",
+    "other": "Outro"
+  },
+  "placeholders": {
+    "date": "Selecione uma data",
+    "flaw": "Adicione uma falha...",
+    "quality": "Adicione uma qualidade...",
+    "role": "Selecione uma função"
+  },
+  "role": "Papel:",
+  "roles": {
+    "ally": "Aliado",
+    "antagonist": "Antagonista",
+    "mentor": "Mentor",
+    "protagonist": "Protagonista",
+    "secondary character": "Personagem secundário"
+  },
+  "sections": {
+    "development": "DESENVOLVIMENTO",
+    "maritalStatus": "ESTADO CIVIL",
+    "notes": "NOTAS",
+    "physical": "FÍSICO",
+    "profile": "PERFIL",
+    "trait": "CARACTERÍSTICAS"
+  },
+  "update": {
+    "submit": "Atualizar personagem",
+    "success": "Personagem atualizado com sucesso!",
+    "title": "Editar personagem"
+  }
+}

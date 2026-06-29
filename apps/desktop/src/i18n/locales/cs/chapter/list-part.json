@@ -1,0 +1,11 @@
+{
+  "title": "Kapitoly",
+  "subtitle": "Uspořádejte části a kapitoly projektu",
+  "addPart": "Přidat část",
+  "addChapter": "Přidat kapitolu",
+  "overview": "Přehled",
+  "parts": "Části",
+  "chapters": "Kapitoly",
+  "words": "Slova",
+  "chapterCount": "{{count}} kapitol"
+}

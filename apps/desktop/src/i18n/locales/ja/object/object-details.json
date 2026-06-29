@@ -1,0 +1,37 @@
+{
+  "fields": {
+    "appearance": "外観",
+    "description": "説明",
+    "location": "位置",
+    "significance": "物語の中での重要性"
+  },
+  "importance": {
+    "high": "高い",
+    "low": "低い",
+    "medium": "中くらい"
+  },
+  "labels": {
+    "importance": "重要: {{importance}}"
+  },
+  "notSpecified": "指定されていない",
+  "sections": {
+    "description": "説明",
+    "history": "歴史"
+  },
+  "select": {
+    "description": "リストからオブジェクトを選択すると、その詳細が表示されます",
+    "title": "オブジェクトを選択してください"
+  },
+  "types": {
+    "artifact": "アーチファクト",
+    "clothing": "衣類",
+    "equipment": "装置",
+    "furniture": "家具",
+    "jewelry": "ジュエリー",
+    "paper": "書類",
+    "technology": "テクノロジー",
+    "tool": "道具",
+    "vehicle": "車両",
+    "weapon": "武器"
+  }
+}

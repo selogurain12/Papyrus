@@ -2,6 +2,7 @@
 import { useState, useRef } from "react";
 import { Upload, File, X } from "lucide-react";
 import { Button } from "./button";
+import { useTranslation } from "react-i18next";
 
 type FileUploadProps = {
   name?: string;
@@ -13,11 +14,12 @@ type FileUploadProps = {
 
 export function FileUpload({
   name = "file",
-  label = "Fichier",
+  label,
   onFileSelected,
   accept,
   maxSize = 10,
 }: FileUploadProps) {
+  const { t } = useTranslation();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -29,7 +31,7 @@ export function FileUpload({
 
   const handleFileSelection = (file: File | null) => {
     if (file && maxSize && file.size > maxSize * 1024 * 1024) {
-      alert(`Le fichier est trop volumineux. Taille maximale : ${maxSize}MB`);
+      alert(t("fileTooLarge", { maxSize }));
       return;
     }
     setSelectedFile(file);
@@ -71,7 +73,7 @@ export function FileUpload({
 
   return (
     <div className="flex flex-col gap-3">
-      {label && <label className="text-sm font-medium text-gray-700">{label}</label>}
+      <label className="text-sm font-medium text-gray-700">{label ?? t("file.label")}</label>
 
       <div
         className={`
@@ -100,10 +102,9 @@ export function FileUpload({
         <div className="flex flex-col items-center justify-center text-center">
           <Upload className={`w-8 h-8 mb-3 ${isDragOver ? "text-blue-500" : "text-gray-400"}`} />
           <p className="text-sm text-gray-600 mb-1">
-            <span className="font-medium text-blue-600">Cliquez pour sélectionner</span> ou
-            glissez-déposez
+            <span className="font-medium text-blue-600">{t("file.select")}</span> {t("file.drop")}
           </p>
-          <p className="text-xs text-gray-500">Taille maximale : {maxSize}MB</p>
+          <p className="text-xs text-gray-500">{t("file.maxSize", { maxSize })}</p>
         </div>
       </div>
 

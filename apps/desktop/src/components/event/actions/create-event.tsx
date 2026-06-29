@@ -23,12 +23,14 @@ import { Label } from "../../ui/label";
 import { fromDate, getLocalTimeZone } from "@internationalized/date";
 import { eventRoute } from "../../../routes/event/index.route";
 import { useNavigate } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 interface CreateEventProps {
   onCancel?: () => void;
 }
 
 export function CreateEvent({ onCancel }: CreateEventProps) {
+  const { t } = useTranslation(["event/actions/create-event", "common"]);
   const user = useAuth();
   const { currentProject } = useProject();
   const defaultDate = fromDate(new Date(), getLocalTimeZone()).toString();
@@ -49,7 +51,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
 
   const { mutate } = client.event.create.useMutation({
     onSuccess: () => {
-      toast.success("Événement créé avec succès !");
+      toast.success(t("create.success"));
       void queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
       form.reset();
       onCancel?.();
@@ -58,20 +60,20 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
 
-  if (!currentProject) return <div>Loading...</div>;
+  if (!currentProject) return <div>{t("common:loading")}</div>;
 
   function handleSubmit(data: CreateEventDto) {
     if (user === null) {
-      toast.error("User is null");
+      toast.error(t("common:notConnected"));
       return;
     }
     if (currentProject === null) {
-      toast.error("Current project is null");
+      toast.error(t("common:currentProjectMissing"));
       return;
     }
     mutate({
@@ -92,7 +94,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
           }}
           className="flex flex-col flex-1 overflow-y-auto p-6"
         >
-          <h2 className="text-2xl font-bold mb-6">Créer un nouvel événement</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("create.title")}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div className="space-y-4">
@@ -101,7 +103,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Titre de l'événement</FormLabel>
+                    <FormLabel>{t("fields.title")}</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -116,7 +118,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                   name="eventDate"
                   render={({ field }) => (
                     <FormItem className="flex-1">
-                      <FormLabel>Date</FormLabel>
+                      <FormLabel>{t("fields.date")}</FormLabel>
                       <FormControl>
                         <DatePicker
                           value={field.value ?? undefined}
@@ -135,7 +137,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                 name="importance"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor="importance">Type d'événement</FormLabel>
+                    <FormLabel htmlFor="importance">{t("fields.type")}</FormLabel>
                     <FormControl>
                       <RadioGroup
                         value={field.value ?? ""}
@@ -144,19 +146,19 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                       >
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="critical" id="critical" />
-                          <Label htmlFor="critical">Critique</Label>
+                          <Label htmlFor="critical">{t("importance.critical")}</Label>
                         </div>
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="important" id="important" />
-                          <Label htmlFor="important">Important</Label>
+                          <Label htmlFor="important">{t("importance.important")}</Label>
                         </div>
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="action" id="action" />
-                          <Label htmlFor="action">Action</Label>
+                          <Label htmlFor="action">{t("importance.action")}</Label>
                         </div>
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="normal" id="normal" />
-                          <Label htmlFor="normal">Normal</Label>
+                          <Label htmlFor="normal">{t("importance.normal")}</Label>
                         </div>
                       </RadioGroup>
                     </FormControl>
@@ -170,7 +172,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                 name="additionalDetails"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Détails supplémentaires</FormLabel>
+                    <FormLabel>{t("fields.additionalDetails")}</FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
@@ -190,7 +192,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>{t("fields.description")}</FormLabel>
                     <FormControl>
                       <Textarea
                         {...field}
@@ -208,7 +210,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Lieu</FormLabel>
+                    <FormLabel>{t("fields.location")}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -239,10 +241,10 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                 }
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
 
-            <Button type="submit">Créer l'événement</Button>
+            <Button type="submit">{t("create.submit")}</Button>
           </div>
         </form>
       </Form>

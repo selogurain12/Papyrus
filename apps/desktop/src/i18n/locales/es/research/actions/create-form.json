@@ -1,0 +1,35 @@
+{
+  "create": {
+    "submit": "Crear investigación",
+    "subtitle": "Completa la información para guardar el recurso.",
+    "success": "Investigación creada correctamente",
+    "title": "Añadir investigación"
+  },
+  "fields": {
+    "description": "Descripción",
+    "link": "Enlace",
+    "note": "Nota",
+    "sources": "Fuente(s)",
+    "tags": "Etiquetas",
+    "title": "Título",
+    "type": "Tipo"
+  },
+  "placeholders": {
+    "description": "Resumen o nota de contexto",
+    "note": "Nota interna",
+    "sources": "Ejemplo: Le Monde, Wikipedia",
+    "tag": "Añadir una etiqueta",
+    "title": "Ejemplo: Estudio de mercado París 2026"
+  },
+  "sections": {
+    "details": "Detalles",
+    "info": "Información"
+  },
+  "types": {
+    "article": "Artículo",
+    "book": "Libro",
+    "image": "Imagen",
+    "link": "Enlace",
+    "video": "Vídeo"
+  }
+}

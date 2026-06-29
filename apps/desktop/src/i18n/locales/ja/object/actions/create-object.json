@@ -1,0 +1,44 @@
+{
+  "create": {
+    "submit": "オブジェクトの作成",
+    "success": "オブジェクトが正常に作成されました。",
+    "title": "新しいオブジェクトを作成する"
+  },
+  "fields": {
+    "appearance": "外観",
+    "color": "色",
+    "description": "説明",
+    "history": "歴史",
+    "importance": "物語の重要性",
+    "location": "位置",
+    "name": "名前 *",
+    "significance": "物語の中での重要性",
+    "type": "タイプ"
+  },
+  "importance": {
+    "high": "高い",
+    "low": "低い",
+    "medium": "中くらい"
+  },
+  "placeholders": {
+    "appearance": "見た目、素材、視覚的な詳細...",
+    "description": "オブジェクトの一般的な説明",
+    "history": "由来や過去の出来事など…",
+    "importance": "重要度を選択してください",
+    "name": "例えば。古代のコンパス",
+    "significance": "このオブジェクトが重要な理由",
+    "type": "タイプを選択してください"
+  },
+  "types": {
+    "artifact": "アーチファクト",
+    "clothing": "衣類",
+    "equipment": "装置",
+    "furniture": "家具",
+    "jewelry": "ジュエリー",
+    "paper": "書類",
+    "technology": "テクノロジー",
+    "tool": "道具",
+    "vehicle": "車両",
+    "weapon": "武器"
+  }
+}

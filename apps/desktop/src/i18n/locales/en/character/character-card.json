@@ -1,0 +1,9 @@
+{
+  "roles": {
+    "ally": "Ally",
+    "antagonist": "Antagonist",
+    "mentor": "Mentor",
+    "protagonist": "Protagonist",
+    "secondary character": "Secondary character"
+  }
+}

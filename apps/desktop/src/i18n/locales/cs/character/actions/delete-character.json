@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Opravdu chcete smazat tuto postavu?",
+    "success": "Postava byla úspěšně smazána",
+    "title": "Smazat znak"
+  }
+}

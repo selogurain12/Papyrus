@@ -5,9 +5,11 @@ import { NoteDto } from "@papyrus/source";
 import { Link } from "lucide-react";
 import { useState } from "react";
 import { PDFViewerModal } from "../ui/pdf-viewer";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line complexity
 export function NoteDetails({ note }: { note: NoteDto }) {
+  const { t } = useTranslation(["notes/note-details", "common"]);
   const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
   const colorMap: Record<string, string> = {
     blue: "border-l-blue-500 border-l-4",
@@ -36,7 +38,7 @@ export function NoteDetails({ note }: { note: NoteDto }) {
       <div className="flex items-start">
         <div className="flex-1">
           <h3 className="text-xl font-semibold text-card-foreground">
-            {note?.title ?? "Sans titre"}
+            {note?.title ?? t("untitled")}
           </h3>
           <button
             onClick={() => note.linkFile && setIsPDFModalOpen(true)}
@@ -48,7 +50,7 @@ export function NoteDetails({ note }: { note: NoteDto }) {
             }`}
           >
             <Link className="w-3 h-3" />
-            <span>{note.linkFile ? "Ouvrir" : "Pas de fichier"}</span>
+            <span>{note.linkFile ? t("common:openExternal") : t("noFile")}</span>
           </button>
 
           <div className="mt-3 flex flex-wrap gap-2">
@@ -68,7 +70,7 @@ export function NoteDetails({ note }: { note: NoteDto }) {
         <div
           className={`border-l-4 ${colorMap[note.color ?? "blue"]} ${colorBgMap[note.color ?? "blue"]} rounded-md p-4 text-sm text-card-foreground whitespace-pre-line`}
         >
-          {note?.content ?? "Aucun contenu"}
+          {note?.content ?? t("noContent")}
         </div>
       </div>
       <PDFViewerModal

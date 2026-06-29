@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "Отмена",
+    "loading": "Сохранение...",
+    "submit": "Создать главу"
+  },
+  "fields": {
+    "chapterNumber": "Номер главы",
+    "part": "Часть",
+    "partPlaceholder": "Выберите часть",
+    "resume": "Краткое содержание",
+    "status": "Статус",
+    "statusPlaceholder": "Выберите статус",
+    "titlePlaceholder": "Напр.: Глава 1",
+    "wordGoal": "Цель по словам",
+    "statusOptions": {
+      "toStart": "Начать",
+      "inProgress": "В процессе",
+      "completed": "Завершено"
+    }
+  },
+  "projectNotFound": "Проект не найден",
+  "title": "Добавить главу",
+  "toasts": {
+    "error": "Произошла ошибка",
+    "success": "Глава успешно создана!"
+  }
+}

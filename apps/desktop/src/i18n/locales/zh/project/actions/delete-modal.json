@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "您确定要删除该项目吗？",
+    "success": "项目删除成功",
+    "title": "删除项目"
+  }
+}

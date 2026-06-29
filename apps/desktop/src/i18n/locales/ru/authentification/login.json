@@ -1,0 +1,14 @@
+{
+  "email": "Электронная почта",
+  "emailPlaceholder": "Электронная почта",
+  "error": "Произошла ошибка",
+  "loginSuccess": "Вы вошли в систему",
+  "noAccount": "Ещё нет аккаунта?",
+  "password": "Пароль",
+  "passwordPlaceholder": "Пароль",
+  "register": "Зарегистрироваться",
+  "submit": "Войти",
+  "subtitle": "Войдите, чтобы продолжить",
+  "title": "Вход",
+  "welcome": "Добро пожаловать в Papyrus"
+}

@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "All",
+    "articles": "Articles",
+    "books": "Books",
+    "images": "Images",
+    "links": "Web links",
+    "videos": "Videos"
+  },
+  "empty": "No research found.",
+  "new": "New research",
+  "searchPlaceholder": "Search your research...",
+  "subtitle": "Organize your sources and references",
+  "title": "Research"
+}

@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Möchten Sie diesen Charakter wirklich löschen?",
+    "success": "Der Charakter wurde erfolgreich gelöscht",
+    "title": "Zeichen löschen"
+  }
+}

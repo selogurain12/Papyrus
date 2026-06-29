@@ -1,0 +1,9 @@
+{
+  "invalidFields": "해당 필드를 올바르게 입력하십시오.",
+  "newTitle": "새로운 마인드맵",
+  "notInitialized": "MindElixir가 초기화되지 않았습니다.",
+  "update": {
+    "submit": "마인드맵 업데이트",
+    "success": "마인드맵이 업데이트되었습니다!"
+  }
+}

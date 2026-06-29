@@ -1,0 +1,11 @@
+{
+  "categories": {
+    "all": "全て",
+    "articles": "記事",
+    "books": "本",
+    "images": "画像",
+    "links": "ウェブリンク",
+    "videos": "動画"
+  },
+  "noFile": "ファイルがありません"
+}

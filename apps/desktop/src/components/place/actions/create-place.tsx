@@ -22,6 +22,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { placeRoute } from "../../../routes/place/index.route";
 import { SingleSelector } from "../../ui/single-select";
 import { importanceOptions, TypeOption, typeOptions } from "../../../utils/value-for-select";
+import { useTranslation } from "react-i18next";
 
 interface CreatePlaceProps {
   onCancel?: () => void;
@@ -31,8 +32,9 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
   const user = useAuth();
   const { currentProject } = useProject();
   const navigate = useNavigate();
+  const { t } = useTranslation(["place/actions/create-place", "common"]);
   if (!currentProject) {
-    return <div>Loading...</div>;
+    return <div>{t("common:loading")}</div>;
   }
 
   const form = useForm({
@@ -58,7 +60,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
 
   const { mutate } = client.place.create.useMutation({
     onSuccess: () => {
-      toast.success("Lieu créé avec succès !");
+      toast.success(t("create.success"));
       void queryClient.invalidateQueries({
         queryKey: ["place.getAll"],
       });
@@ -69,19 +71,19 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:errors.generic"));
       }
     },
   });
 
   function onSubmit(data: CreatePlaceDto) {
     if (!user) {
-      toast.error("Utilisateur non authentifié");
+      toast.error(t("common:errors.unauthenticated"));
       return;
     }
 
     if (!currentProject) {
-      toast.error("Projet introuvable");
+      toast.error(t("common:currentProjectMissing"));
       return;
     }
 
@@ -91,7 +93,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
     });
   }
 
-  if (!currentProject) return <div>Loading...</div>;
+  if (!currentProject) return <div>{t("common:loading")}</div>;
 
   return (
     <Card className="rounded-lg w-full h-full flex flex-col">
@@ -103,7 +105,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
           }}
           className="flex flex-col flex-1 overflow-y-auto p-6"
         >
-          <h2 className="text-2xl font-bold mb-6">Créer un nouveau lieu</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("create.title")}</h2>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-6">
             {/* Colonne 1 */}
@@ -112,9 +114,9 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Nom du lieu *</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.name")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Ex: Café Le Métropolitain" />
+                    <Input {...field} placeholder={t("placeholders.name")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,7 +128,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="nickname"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Surnom</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.nickname")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -144,19 +146,19 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Type de lieu *</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.type")}</FormLabel>
                   <FormControl>
                     <SingleSelector
                       {...field}
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`types.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`types.${item.id}`)}</span>
                       )}
                       value={typeOptions.find((type) => type.id === field.value)}
                       onChange={(value) => {
                         field.onChange(value?.id ?? "");
                       }}
-                      placeholder="Sélectionner un type"
+                      placeholder={t("placeholders.type")}
                       data={typeOptions}
                     />
                   </FormControl>
@@ -170,7 +172,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="localisation"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Localisation</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.localisation")}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -184,7 +186,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="population"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Personnages présents</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.population")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -202,19 +204,19 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="narrativeImportance"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Importance narrative</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.importance")}</FormLabel>
                   <FormControl>
                     <SingleSelector
                       {...field}
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`importance.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`importance.${item.id}`)}</span>
                       )}
                       value={importanceOptions.find((type) => type.id === field.value)}
                       onChange={(value) => {
                         field.onChange(value?.id ?? "");
                       }}
-                      placeholder="Sélectionner une importance"
+                      placeholder={t("placeholders.importance")}
                       data={importanceOptions}
                     />
                   </FormControl>
@@ -229,7 +231,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="color"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Couleur</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.color")}</FormLabel>
                   <FormControl>
                     <div className="flex gap-3 mt-1">
                       {["green", "blue", "purple", "red", "yellow", "pink", "orange", "gray"].map(
@@ -260,13 +262,13 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="history"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">Histoire</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.history")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder="Passé, origine..."
+                      placeholder={t("placeholders.history")}
                       rows={4}
                     />
                   </FormControl>
@@ -280,13 +282,15 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="physicalDescription"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">Description *</FormLabel>
+                  <FormLabel className="font-semibold mb-1">
+                    {t("fields.physicalDescription")}
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder="Description générale..."
+                      placeholder={t("placeholders.physicalDescription")}
                       rows={4}
                     />
                   </FormControl>
@@ -300,13 +304,13 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="atmosphere"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">Atmosphère</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.atmosphere")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder="Ambiance, sensations..."
+                      placeholder={t("placeholders.atmosphere")}
                       rows={4}
                     />
                   </FormControl>
@@ -320,13 +324,13 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="language"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">Langues</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.languages")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder="Langues parlées..."
+                      placeholder={t("placeholders.language")}
                       rows={4}
                     />
                   </FormControl>
@@ -340,13 +344,13 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="usages"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">Détails visuels</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.visualDetails")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder="Architecture, décor..."
+                      placeholder={t("placeholders.usages")}
                       rows={4}
                     />
                   </FormControl>
@@ -360,13 +364,13 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="government"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">Gouvernement</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.government")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder="Type de gouvernement, dirigeants..."
+                      placeholder={t("placeholders.government")}
                       rows={4}
                     />
                   </FormControl>
@@ -380,13 +384,13 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               name="ressources"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">Ressources</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.ressources")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder="Ressources naturelles, économiques, stratégiques..."
+                      placeholder={t("placeholders.ressources")}
                       rows={4}
                     />
                   </FormControl>
@@ -412,10 +416,10 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                 }
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
 
-            <Button type="submit">Créer le lieu</Button>
+            <Button type="submit">{t("create.submit")}</Button>
           </div>
         </form>
       </Form>

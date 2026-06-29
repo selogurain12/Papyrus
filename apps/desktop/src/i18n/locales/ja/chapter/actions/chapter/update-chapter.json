@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "キャンセル",
+    "loading": "保存中...",
+    "submit": "章を更新"
+  },
+  "fields": {
+    "chapterNumber": "章番号",
+    "part": "部",
+    "partPlaceholder": "部を選択",
+    "resume": "概要",
+    "status": "ステータス",
+    "statusPlaceholder": "ステータスを選択",
+    "titlePlaceholder": "例：第1章",
+    "wordGoal": "目標文字数",
+    "statusOptions": {
+      "toStart": "未着手",
+      "inProgress": "進行中",
+      "completed": "完了"
+    }
+  },
+  "projectNotFound": "プロジェクトが見つかりません",
+  "title": "章を編集",
+  "toasts": {
+    "error": "エラーが発生しました",
+    "success": "章が正常に更新されました！"
+  }
+}

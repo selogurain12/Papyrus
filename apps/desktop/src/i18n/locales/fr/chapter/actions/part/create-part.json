@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "cancel": "Annuler",
+    "loading": "Enregistrement...",
+    "submit": "Créer la partie"
+  },
+  "fields": {
+    "status": "Statut",
+    "statusOptions": {
+      "completed": "Terminé",
+      "inProgress": "En cours",
+      "toStart": "À commencer"
+    },
+    "statusPlaceholder": "Sélectionner un statut",
+    "title": "Titre",
+    "titlePlaceholder": "Ex: Partie 1: Introduction"
+  },
+  "projectNotFound": "Projet non trouvé",
+  "title": "Ajouter une partie",
+  "toasts": {
+    "success": "Partie créée avec succès !"
+  }
+}

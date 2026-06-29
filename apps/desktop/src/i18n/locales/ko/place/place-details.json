@@ -1,0 +1,38 @@
+{
+  "fields": {
+    "atmosphere": "대기",
+    "government": "정부",
+    "language": "언어",
+    "physicalDescription": "설명 *",
+    "population": "캐릭터 존재",
+    "ressources": "자원",
+    "usages": "용도"
+  },
+  "importance": {
+    "high": "높은",
+    "low": "낮은",
+    "medium": "중간"
+  },
+  "labels": {
+    "importance": "중요도: {{importance}}"
+  },
+  "notSpecified": "지정되지 않음",
+  "sections": {
+    "description": "설명",
+    "general": "일반 정보",
+    "history": "역사"
+  },
+  "select": {
+    "description": "세부정보를 보려면 목록에서 장소를 선택하세요.",
+    "title": "장소를 선택하세요"
+  },
+  "types": {
+    "city": "도시",
+    "continent": "대륙",
+    "country": "국가",
+    "other": "다른",
+    "planet": "행성",
+    "space station": "우주 정거장",
+    "village": "마을"
+  }
+}

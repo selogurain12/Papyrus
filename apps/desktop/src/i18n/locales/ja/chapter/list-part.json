@@ -1,0 +1,11 @@
+{
+  "title": "章",
+  "subtitle": "プロジェクトの部と章を整理します",
+  "addPart": "部を追加",
+  "addChapter": "章を追加",
+  "overview": "概要",
+  "parts": "部",
+  "chapters": "章",
+  "words": "単語",
+  "chapterCount": "{{count}}章"
+}

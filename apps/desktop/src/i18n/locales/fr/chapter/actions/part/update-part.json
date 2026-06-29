@@ -1,0 +1,21 @@
+{
+  "actions": {
+    "loading": "Enregistrement...",
+    "submit": "Modifier la partie"
+  },
+  "fields": {
+    "status": "Statut",
+    "statusOptions": {
+      "completed": "Terminé",
+      "inProgress": "En cours",
+      "toStart": "À commencer"
+    },
+    "statusPlaceholder": "Sélectionner un statut",
+    "title": "Titre",
+    "titlePlaceholder": "Ex: Partie 1: Introduction"
+  },
+  "title": "Modifier une partie",
+  "toasts": {
+    "success": "Partie modifiée avec succès !"
+  }
+}

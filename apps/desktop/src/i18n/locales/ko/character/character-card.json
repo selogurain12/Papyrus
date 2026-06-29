@@ -1,0 +1,9 @@
+{
+  "roles": {
+    "ally": "동맹국",
+    "antagonist": "길항근",
+    "mentor": "멘토르",
+    "protagonist": "주역",
+    "secondary character": "보조 문자"
+  }
+}

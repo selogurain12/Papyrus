@@ -26,6 +26,7 @@ import { Checkbox } from "../ui/checkbox";
 import { Field, FieldContent, FieldDescription, FieldGroup, FieldLabel } from "../ui/field";
 import { useAuth } from "../../context/auth-provider";
 import { useFilterExportDto } from "../../utils/filters/use-filter-export";
+import { useTranslation } from "react-i18next";
 
 interface ExportFormat {
   id: "pdf" | "word" | "epub" | "txt";
@@ -33,14 +34,14 @@ interface ExportFormat {
   icon: LucideIcon;
   color: string;
   bgColor: string;
-  description: string;
+  descriptionKey: string;
 }
 
 type ExportOption = "characters" | "places" | "objects" | "events" | "notes" | "researchs";
 
 interface ExportParam {
   id: ExportOption;
-  label: string;
+  labelKey: string;
   icon: LucideIcon;
 }
 
@@ -51,7 +52,7 @@ const exportFormats: ExportFormat[] = [
     icon: FileText,
     color: "#DC2626",
     bgColor: "bg-red-100",
-    description: "Format universel pour lecture et impression",
+    descriptionKey: "formats.pdf.description",
   },
   {
     id: "word",
@@ -59,7 +60,7 @@ const exportFormats: ExportFormat[] = [
     icon: File,
     color: "#2563EB",
     bgColor: "bg-blue-100",
-    description: "Format éditable pour Microsoft Word",
+    descriptionKey: "formats.word.description",
   },
   {
     id: "epub",
@@ -67,47 +68,47 @@ const exportFormats: ExportFormat[] = [
     icon: Book,
     color: "#16A34A",
     bgColor: "bg-green-100",
-    description: "Format standard pour liseuses électroniques",
+    descriptionKey: "formats.epub.description",
   },
   {
     id: "txt",
-    label: "Texte (.txt)",
+    label: "TXT",
     icon: FileText,
     color: "#4B5563",
     bgColor: "bg-gray-100",
-    description: "Format texte simple sans formatage",
+    descriptionKey: "formats.txt.description",
   },
 ];
 
 const exportParams: ExportParam[] = [
   {
     id: "characters",
-    label: "Liste des personnages",
+    labelKey: "params.characters",
     icon: Users,
   },
   {
     id: "places",
-    label: "Liste des lieux",
+    labelKey: "params.places",
     icon: MapPin,
   },
   {
     id: "objects",
-    label: "Liste des objets",
+    labelKey: "params.objects",
     icon: Package,
   },
   {
     id: "events",
-    label: "Chronologie",
+    labelKey: "params.events",
     icon: Clock,
   },
   {
     id: "notes",
-    label: "Notes",
+    labelKey: "params.notes",
     icon: FileText,
   },
   {
     id: "researchs",
-    label: "Recherches",
+    labelKey: "params.researchs",
     icon: BookOpen,
   },
 ];
@@ -143,6 +144,7 @@ function getBlobFromBody(body: unknown, format: ExportFormat["id"]): Blob {
 }
 
 export function ExportPage() {
+  const { t } = useTranslation(["export/export-page", "common"]);
   const { currentProject } = useProject();
   const { user } = useAuth();
 
@@ -154,11 +156,11 @@ export function ExportPage() {
     useFilterExportDto();
 
   if (currentProject === null) {
-    return <div>Pas de projet</div>;
+    return <div>{t("noProject")}</div>;
   }
 
   if (user === null) {
-    return <div>Pas d'utilisateur connecté</div>;
+    return <div>{t("common:notConnected")}</div>;
   }
 
   const { data: chapters } = client.chapter.getAll.useQuery({
@@ -343,14 +345,14 @@ export function ExportPage() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="">
-          <h2 className="text-2xl font-bold text-foreground">Export Avancé</h2>
-          <p className="text-md">Exportez votre projet dans différents formats</p>
+          <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
+          <p className="text-md">{t("subtitle")}</p>
         </div>
       </div>
 
       <div className="flex justify-between space-x-4 space-y-4">
         <div className="w-2/3 bg-white h-fit rounded-lg border border-gray-200 p-4">
-          <p className="font-bold text-lg p-2">Format d'export</p>
+          <p className="font-bold text-lg p-2">{t("formatTitle")}</p>
 
           <div className="grid grid-cols-2 gap-4 auto-rows-fr">
             {exportFormats.map((format) => {
@@ -380,7 +382,7 @@ export function ExportPage() {
 
                   <div>
                     <p className="font-semibold">{format.label}</p>
-                    <p className="font-light text-gray-600">{format.description}</p>
+                    <p className="font-light text-gray-600">{t(format.descriptionKey)}</p>
                   </div>
                 </Card>
               );
@@ -389,26 +391,26 @@ export function ExportPage() {
         </div>
 
         <div className="w-1/3 bg-white h-fit rounded-lg border border-gray-200 p-4">
-          <p className="font-bold text-lg pb-2">Aperçu de l'export</p>
+          <p className="font-bold text-lg pb-2">{t("previewTitle")}</p>
 
           <div className="space-y-2 pb-3">
             <div className="flex justify-between">
-              <p className="font-medium">Format:</p>
-              <p>{selectedFormat ? selectedFormat.label : "Aucun format sélectionné"}</p>
+              <p className="font-medium">{t("format")}</p>
+              <p>{selectedFormat ? selectedFormat.label : t("noFormat")}</p>
             </div>
 
             <div className="flex justify-between">
-              <p className="font-medium">Chapitres:</p>
+              <p className="font-medium">{t("chapters")}</p>
               <p>{chapters?.body.total}</p>
             </div>
 
             <div className="flex justify-between">
-              <p className="font-medium">Mots totaux:</p>
+              <p className="font-medium">{t("totalWords")}</p>
               <p>{currentProject.currentWordCount}</p>
             </div>
 
             <div className="flex justify-between">
-              <p className="font-medium">Pages estimées:</p>
+              <p className="font-medium">{t("estimatedPages")}</p>
               <p>{Math.ceil((currentProject.currentWordCount ?? 0) / 300)}</p>
             </div>
           </div>
@@ -420,7 +422,7 @@ export function ExportPage() {
             onClick={handleExport}
           >
             <Download className="mr-2" />
-            Exporter le projet
+            {t("exportProject")}
           </Button>
         </div>
       </div>
@@ -428,11 +430,11 @@ export function ExportPage() {
       <div className="w-2/3 bg-white h-fit rounded-lg border border-gray-200 p-4">
         <div className="flex items-center">
           <Settings />
-          <p className="font-bold text-lg p-2">Options d'export</p>
+          <p className="font-bold text-lg p-2">{t("optionsTitle")}</p>
         </div>
 
         <div className="pt-2">
-          <p className="font-medium text-gray-600">Annexes</p>
+          <p className="font-medium text-gray-600">{t("annexes")}</p>
 
           <div className="grid grid-cols-2 gap-4 py-6">
             {exportParams.map((params) => {
@@ -454,7 +456,7 @@ export function ExportPage() {
                       <FieldContent>
                         <FieldDescription className="flex items-center space-x-2">
                           <Icon />
-                          <span>{params.label}</span>
+                          <span>{t(params.labelKey)}</span>
                         </FieldDescription>
                       </FieldContent>
                     </Field>

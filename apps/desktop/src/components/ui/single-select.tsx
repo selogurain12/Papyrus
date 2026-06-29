@@ -33,6 +33,7 @@ import { Button } from "./button";
 import { Spinner } from "./spinner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { ApiResponse, ListResult } from "@papyrus/source";
+import { useTranslation } from "react-i18next";
 
 interface SingleSelectorProps<Option extends { id: string }> {
   value?: Partial<Option>;
@@ -128,6 +129,7 @@ export function SingleSelector<Option extends { id: string }>({
   inputProps,
   hasTooltip = false,
 }: SingleSelectorProps<Option>) {
+  const { t } = useTranslation();
   const inputReference = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(isLoadingData);
@@ -256,7 +258,7 @@ export function SingleSelector<Option extends { id: string }>({
                     </div>
                   </div>
                 ) : (
-                  <p className="truncate ml-2">{placeholder ?? "Sélectionnez une option"}</p>
+                  <p className="truncate ml-2">{placeholder ?? t("selectOption")}</p>
                 )}
               </div>
               {errorIcon && isError && (disabled === undefined || !disabled) ? (
@@ -311,7 +313,7 @@ export function SingleSelector<Option extends { id: string }>({
             value={inputValue}
           />
           <CommandList className="max-h-56 overflow-y-auto w-full">
-            {!isLoading && <CommandEmpty>Aucun résultat.</CommandEmpty>}
+            {!isLoading && <CommandEmpty>{t("noResults")}</CommandEmpty>}
             <CommandGroup>
               {isLoading ? (
                 <div>{loadingIndicator ?? <Spinner />}</div>
@@ -320,7 +322,7 @@ export function SingleSelector<Option extends { id: string }>({
                   {!selectFirstItem && <CommandItem className="hidden" value="-" />}
                   {selectables.length === 0 ? (
                     <CommandItem className="cursor-not-allowed" value="-">
-                      <p className="truncate">Aucun résultat supplémentaire.</p>
+                      <p className="truncate">{t("noMoreResults")}</p>
                     </CommandItem>
                   ) : (
                     selectables.map((item, index) => (

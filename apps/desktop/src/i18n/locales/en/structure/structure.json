@@ -1,0 +1,27 @@
+{
+  "addObjective": "Add objective",
+  "emptyObjectives": "No objective defined yet.",
+  "error": "Error while updating the structure: {{message}}",
+  "genre": "Genre",
+  "mainConcept": "Main concept",
+  "notFound": "Structure not found",
+  "objective": "Objective {{index}}",
+  "placeholders": {
+    "genre": "Example: Thriller, science fiction, romance, fantasy, etc.",
+    "premise": "Example: A detective investigates a series of mysterious murders in a dark city...",
+    "structure": "Example: Introduction, development, climax, resolution...",
+    "theme": "Example: The struggle between good and evil, redemption, human nature..."
+  },
+  "premise": "Premise",
+  "structure": "Structure",
+  "subtitle": "Define the foundations of your story by organizing the key elements of your narrative. Create a solid structure to guide your writing and capture the essence of your novel.",
+  "success": "Structure updated successfully",
+  "tabs": {
+    "concept": "Concept",
+    "objectives": "Objectives",
+    "plan": "Narrative plan"
+  },
+  "theme": "Theme",
+  "title": "Novel structure",
+  "unknownError": "An unknown error occurred while updating the structure"
+}

@@ -22,6 +22,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { objectRoute } from "../../../routes/object/index.route";
 import { SingleSelector } from "../../ui/single-select";
 import { importanceOptions, TypeOption, objectTypeOptions } from "../../../utils/value-for-select";
+import { useTranslation } from "react-i18next";
 
 interface CreateObjectProps {
   onCancel?: () => void;
@@ -31,9 +32,10 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
   const user = useAuth();
   const { currentProject } = useProject();
   const navigate = useNavigate();
+  const { t } = useTranslation(["object/actions/create-object", "common"]);
 
   if (!currentProject) {
-    return <div>Loading...</div>;
+    return <div>{t("common:loading")}</div>;
   }
 
   const form = useForm({
@@ -54,7 +56,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
 
   const { mutate } = client.object.create.useMutation({
     onSuccess: () => {
-      toast.success("Objet créé avec succès !");
+      toast.success(t("create.success"));
       void queryClient.invalidateQueries({
         queryKey: ["object.getAll"],
       });
@@ -65,19 +67,19 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:errors.generic"));
       }
     },
   });
 
   function onSubmit(data: CreateObjectDto) {
     if (!user) {
-      toast.error("Utilisateur non authentifié");
+      toast.error(t("common:errors.unauthenticated"));
       return;
     }
 
     if (!currentProject) {
-      toast.error("Projet introuvable");
+      toast.error(t("common:currentProjectMissing"));
       return;
     }
 
@@ -97,7 +99,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
           }}
           className="flex flex-col flex-1 overflow-y-auto p-6"
         >
-          <h2 className="text-2xl font-bold mb-6">Créer un nouveau objet</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("create.title")}</h2>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-6">
             {/* Nom */}
@@ -106,9 +108,9 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nom *</FormLabel>
+                  <FormLabel>{t("fields.name")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Ex: Café Le Métropolitain" />
+                    <Input {...field} placeholder={t("placeholders.name")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -121,16 +123,16 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Type</FormLabel>
+                  <FormLabel>{t("fields.type")}</FormLabel>
                   <FormControl>
                     <SingleSelector
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`types.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`types.${item.id}`)}</span>
                       )}
                       value={objectTypeOptions.find((t) => t.id === field.value)}
                       onChange={(value) => field.onChange(value?.id ?? null)}
-                      placeholder="Sélectionner un type"
+                      placeholder={t("placeholders.type")}
                       data={objectTypeOptions}
                     />
                   </FormControl>
@@ -145,16 +147,16 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="importance"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Importance narrative</FormLabel>
+                  <FormLabel>{t("fields.importance")}</FormLabel>
                   <FormControl>
                     <SingleSelector
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`importance.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`importance.${item.id}`)}</span>
                       )}
                       value={importanceOptions.find((i) => i.id === field.value)}
                       onChange={(value) => field.onChange(value?.id)}
-                      placeholder="Sélectionner une importance"
+                      placeholder={t("placeholders.importance")}
                       data={importanceOptions}
                     />
                   </FormControl>
@@ -169,7 +171,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="location"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Localisation</FormLabel>
+                  <FormLabel>{t("fields.location")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -188,7 +190,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="color"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Couleur</FormLabel>
+                  <FormLabel>{t("fields.color")}</FormLabel>
                   <FormControl>
                     <div className="flex gap-3 mt-1">
                       {["green", "blue", "purple", "red", "yellow", "pink", "orange", "gray"].map(
@@ -218,14 +220,14 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="description"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>{t("fields.description")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
-                      placeholder="Description générale du lieu"
+                      placeholder={t("placeholders.description")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -239,14 +241,14 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="appearance"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel>Apparence</FormLabel>
+                  <FormLabel>{t("fields.appearance")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
-                      placeholder="Architecture, décor..."
+                      placeholder={t("placeholders.appearance")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -260,14 +262,14 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="significance"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel>Importance dans l'histoire</FormLabel>
+                  <FormLabel>{t("fields.significance")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
-                      placeholder="Pourquoi ce lieu est important"
+                      placeholder={t("placeholders.significance")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -281,14 +283,14 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               name="history"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel>Histoire</FormLabel>
+                  <FormLabel>{t("fields.history")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
-                      placeholder="Origine, événements passés..."
+                      placeholder={t("placeholders.history")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -313,10 +315,10 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
                 }
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
 
-            <Button type="submit">Créer l'objet</Button>
+            <Button type="submit">{t("create.submit")}</Button>
           </div>
         </form>
       </Form>

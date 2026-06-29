@@ -7,11 +7,13 @@ import { client } from "../../utils/client/client";
 import { UpdateProjectForm } from "./actions/update-form";
 import { ProjectDeleteActions } from "./actions/delete-modal";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 export function ListProject() {
+  const { t } = useTranslation("common");
   const { user } = useAuth();
   if (user === null) {
-    toast.error("Utilisateur non connecté");
+    toast.error(t("notConnected"));
     return null;
   }
 

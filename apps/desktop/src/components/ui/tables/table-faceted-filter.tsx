@@ -15,6 +15,7 @@ import { CommandGroup } from "../commands/command-group";
 import { CommandItem } from "../commands/command-item";
 import { CommandSeparator } from "../commands/command-separator";
 import { cn } from "../../../lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface DataTableFacetedFilterProps<Tdata, Tvalue> {
   column?: Column<Tdata, Tvalue>;
@@ -35,6 +36,7 @@ export function DataTableFacetedFilter<Tdata, Tvalue>({
   column = undefined,
   title = "",
 }: DataTableFacetedFilterProps<Tdata, Tvalue>) {
+  const { t } = useTranslation();
   const facets = column?.getFacetedUniqueValues();
 
   const filterValue = column?.getFilterValue();
@@ -72,7 +74,7 @@ export function DataTableFacetedFilter<Tdata, Tvalue>({
               <div className="hidden space-x-1 lg:flex">
                 {selectedValues.size > 2 ? (
                   <Badge className="rounded-sm px-1 font-normal" variant="secondary">
-                    {selectedValues.size} sélectionnés
+                    {t("selected", { count: selectedValues.size })}
                   </Badge>
                 ) : (
                   options
@@ -94,9 +96,9 @@ export function DataTableFacetedFilter<Tdata, Tvalue>({
       </PopoverTrigger>
       <PopoverContent align="start" className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder={`Rechercher ${title.toLowerCase()}`} />
+          <CommandInput placeholder={t("search", { title: title.toLowerCase() })} />
           <CommandList>
-            <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
+            <CommandEmpty>{t("noResultsFound")}</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
                 const isSelected = selectedValues.has(option.value);

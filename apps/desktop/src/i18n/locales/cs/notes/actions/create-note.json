@@ -1,0 +1,21 @@
+{
+  "create": {
+    "submit": "Vytvořte poznámku",
+    "success": "Poznámka byla úspěšně vytvořena",
+    "title": "Přidejte poznámku"
+  },
+  "fields": {
+    "color": "Barva",
+    "content": "Obsah",
+    "tags": "Tagy",
+    "title": "Titul"
+  },
+  "placeholders": {
+    "content": "Příklad: Marcus je složitá postava s tajemnou minulostí...",
+    "tag": "Přidat štítek",
+    "title": "Příklad: Vývoj postavy Marcuse"
+  },
+  "sections": {
+    "info": "Poznámka informace"
+  }
+}

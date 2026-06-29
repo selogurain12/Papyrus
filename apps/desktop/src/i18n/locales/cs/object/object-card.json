@@ -1,0 +1,10 @@
+{
+  "importance": {
+    "high": "Vysoký",
+    "low": "Nízký",
+    "medium": "Střední"
+  },
+  "labels": {
+    "importance": "Důležitost: {{importance}}"
+  }
+}

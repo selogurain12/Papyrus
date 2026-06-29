@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Tem certeza de que deseja excluir este evento?",
+    "success": "O evento foi excluído com sucesso",
+    "title": "Excluir evento"
+  }
+}

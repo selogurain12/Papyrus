@@ -13,6 +13,7 @@ import { AlertDialogFooter } from "../../ui/alert-dialog/alert-dialog-footer";
 import { MotionAlertDialogCancelWrapper } from "../../ui/alert-dialog/motion/cancel-wrapper.motion";
 import { MotionAlertDialogActionWrapper } from "../../ui/alert-dialog/motion/action-wrapper.motion";
 import { useProject } from "../../../context/project-provider";
+import { useTranslation } from "react-i18next";
 
 interface MindMapDeleteActionsProps {
   onClose?: () => void;
@@ -29,16 +30,17 @@ export function MindMapDeleteActions({
   onClose = undefined,
   clearSelection,
 }: MindMapDeleteActionsProps) {
+  const { t } = useTranslation(["mindmap/actions/delete-mindmap", "common"]);
   const queryClient = useQueryClient();
   const { currentProject } = useProject();
   if (currentProject === null) {
-    toast.error("Projet non sélectionné");
+    toast.error(t("common:projectNotSelected"));
     return null;
   }
 
   const { mutate } = client.mindmap.softDelete.useMutation({
     onSuccess: () => {
-      toast.success("La carte mentale a été supprimée avec succès");
+      toast.success(t("delete.success"));
       void queryClient.invalidateQueries({ queryKey: ["mindmap.getAll"] });
       clearSelection();
       onClose?.();
@@ -47,7 +49,7 @@ export function MindMapDeleteActions({
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
@@ -56,9 +58,9 @@ export function MindMapDeleteActions({
     <AlertDialog onOpenChange={setOpen} open={open}>
       <AlertDialogContent className="sm:max-w-200 sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
-          <AlertDialogTitle>Supprimer la carte mentale</AlertDialogTitle>
+          <AlertDialogTitle>{t("delete.title")}</AlertDialogTitle>
           <AlertDialogDescription>
-            Êtes-vous sûr de vouloir supprimer « {mindmap.title} » ? Cette action est irréversible.
+            {t("delete.description", { title: mindmap.title })}
           </AlertDialogDescription>
         </AlertDialogHeader>
 

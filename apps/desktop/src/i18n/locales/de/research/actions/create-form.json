@@ -1,0 +1,35 @@
+{
+  "create": {
+    "submit": "Erstellen Sie Forschung",
+    "subtitle": "Vervollständigen Sie die Informationen, um die Ressource zu speichern.",
+    "success": "Forschung erfolgreich erstellt",
+    "title": "Forschung hinzufügen"
+  },
+  "fields": {
+    "description": "Beschreibung",
+    "link": "Link",
+    "note": "Notiz",
+    "sources": "Quelle(n)",
+    "tags": "Schlagworte",
+    "title": "Titel",
+    "type": "Typ"
+  },
+  "placeholders": {
+    "description": "Zusammenfassung oder Rahmennotiz",
+    "note": "Interner Hinweis",
+    "sources": "Beispiel: Le Monde, Wikipedia",
+    "tag": "Tag hinzufügen",
+    "title": "Beispiel: Marktstudie Paris 2026"
+  },
+  "sections": {
+    "details": "Einzelheiten",
+    "info": "Informationen"
+  },
+  "types": {
+    "article": "Artikel",
+    "book": "Buch",
+    "image": "Bild",
+    "link": "Link",
+    "video": "Video"
+  }
+}

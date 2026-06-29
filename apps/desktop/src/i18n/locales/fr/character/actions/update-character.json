@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "Bleu",
+    "cyan": "Cyan",
+    "gray": "Gris",
+    "green": "Vert",
+    "pink": "Rose",
+    "purple": "Violet",
+    "red": "Rouge",
+    "yellow": "Jaune"
+  },
+  "fields": {
+    "accessory": "Accessoires",
+    "age": "Âge",
+    "belief": "Croyances et idéologies",
+    "birthDate": "Date de naissance",
+    "birthPlace": "Lieu de naissance",
+    "characterFlaws": "Défauts caractéristiques",
+    "characterQualities": "Qualités caractéristiques",
+    "color": "Couleur d'identification",
+    "corpulence": "Corpulence",
+    "description": "Description générale",
+    "education": "Éducation",
+    "eyesColor": "Couleur des yeux",
+    "fears": "Peurs et doutes",
+    "firstName": "Prénom",
+    "future": "Futur",
+    "gender": "Sexe",
+    "goals": "Buts / Objectifs",
+    "hairColor": "Couleur de cheveux",
+    "height": "Taille (cm)",
+    "lastName": "Nom de famille",
+    "nationality": "Nationalité",
+    "nickName": "Surnom",
+    "notablePlaces": "Lieux marquants",
+    "notes": "Notes supplémentaires",
+    "occupation": "Occupation",
+    "outfit": "Tenue vestimentaire",
+    "past": "Passé",
+    "present": "Présent",
+    "pronouns": "Pronoms",
+    "residencePlace": "Lieu de résidence",
+    "richesses": "Richesses",
+    "secrets": "Secrets",
+    "tastes": "Goûts",
+    "tics": "Tics, manies, habitudes et addictions",
+    "typicalExpression": "Phrases ou expressions typiques",
+    "voice": "Voix",
+    "weight": "Poids (kg)"
+  },
+  "gender": {
+    "female": "Femme",
+    "male": "Homme",
+    "other": "Autre"
+  },
+  "placeholders": {
+    "date": "Sélectionner une date",
+    "flaw": "Ajouter un défaut...",
+    "quality": "Ajouter une qualité...",
+    "role": "Sélectionner un rôle"
+  },
+  "role": "Rôle :",
+  "roles": {
+    "ally": "Allié",
+    "antagonist": "Antagoniste",
+    "mentor": "Mentor",
+    "protagonist": "Protagoniste",
+    "secondary character": "Personnage secondaire"
+  },
+  "sections": {
+    "development": "ÉVOLUTION",
+    "maritalStatus": "ÉTAT CIVIL",
+    "notes": "NOTES",
+    "physical": "PHYSIQUE",
+    "profile": "PROFIL",
+    "trait": "CARACTÈRE"
+  },
+  "update": {
+    "submit": "Modifier le personnage",
+    "success": "Personnage modifié avec succès !",
+    "title": "Modifier le personnage"
+  }
+}

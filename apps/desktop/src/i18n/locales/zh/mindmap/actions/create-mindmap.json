@@ -1,0 +1,12 @@
+{
+  "canvas": "互动画布",
+  "create": {
+    "submit": "创建思维导图",
+    "success": "思维导图创建成功！",
+    "title": "创建思维导图"
+  },
+  "invalidFields": "请正确填写字段。",
+  "newTitle": "新思维导图",
+  "newTopic": "新话题",
+  "notInitialized": "MindElixir 未初始化。"
+}

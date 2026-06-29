@@ -26,6 +26,7 @@ import { Textarea } from "../../ui/textarea";
 import { Separator } from "../../ui/separator";
 import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
+import { useTranslation } from "react-i18next";
 
 interface UpdateNoteFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -33,6 +34,7 @@ interface UpdateNoteFormProps {
 }
 
 export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
+  const { t } = useTranslation(["notes/actions/update-note", "common"]);
   const [tagInput, setTagInput] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -41,7 +43,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
   const { currentProject } = useProject();
 
   if (!currentProject) {
-    toast.error("Projet non sélectionné");
+    toast.error(t("common:projectNotSelected"));
     return null;
   }
 
@@ -90,7 +92,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
         params: { projectId: currentProject.id, id: note.id },
       });
 
-      toast.success("Note modifiée avec succès");
+      toast.success(t("update.success"));
 
       await queryClient.invalidateQueries({
         queryKey: ["note.getAll"],
@@ -103,7 +105,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     } finally {
       setLoading(false);
@@ -139,14 +141,14 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
       }}
     >
       <DialogHeader>
-        <DialogTitle className="text-3xl font-bold tracking-tight">Ajouter une note</DialogTitle>
+        <DialogTitle className="text-3xl font-bold tracking-tight">{t("update.title")}</DialogTitle>
       </DialogHeader>
 
       <Form {...form}>
         <form className="flex flex-col gap-6 mt-4" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-5">
             <h2 className="text-xl font-semibold flex items-center gap-2">
-              <File className="w-5 h-5" /> Informations de la note
+              <File className="w-5 h-5" /> {t("sections.info")}
             </h2>
 
             <FormField
@@ -154,9 +156,9 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Titre</FormLabel>
+                  <FormLabel>{t("fields.title")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="Ex: Développement du personnage de Marcus" />
+                    <Input {...field} placeholder={t("placeholders.title")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -167,13 +169,13 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Contenu</FormLabel>
+                  <FormLabel>{t("fields.content")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(note) => field.onChange(note.target.value || null)}
-                      placeholder="Ex: Marcus est un personnage complexe avec un passé mystérieux..."
+                      placeholder={t("placeholders.content")}
                       rows={10}
                     />
                   </FormControl>
@@ -183,12 +185,12 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
             />
 
             <div className="space-y-2">
-              <FormLabel>Tags</FormLabel>
+              <FormLabel>{t("fields.tags")}</FormLabel>
               <div className="flex gap-2 items-center">
                 <Input
                   value={tagInput}
                   onChange={(e) => setTagInput(e.target.value)}
-                  placeholder="Ajouter un tag"
+                  placeholder={t("placeholders.tag")}
                 />
                 <Button
                   type="button"
@@ -196,7 +198,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
                   onClick={handleAddTag}
                   className="h-[42px]"
                 >
-                  Ajouter
+                  {t("common:add")}
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -225,7 +227,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
               name="color"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">Couleur</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.color")}</FormLabel>
                   <FormControl>
                     <div className="flex gap-3 mt-1">
                       {["green", "blue", "purple", "red", "yellow", "pink", "orange", "gray"].map(
@@ -271,7 +273,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
                     size="sm"
                     onClick={() => window.open(existingLink, "_blank")}
                   >
-                    Ouvrir
+                    {t("common:openExternal")}
                   </Button>
                   <Button
                     variant="ghost"
@@ -280,7 +282,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
                       setExistingLink(null);
                     }}
                   >
-                    Supprimer
+                    {t("common:delete")}
                   </Button>
                 </div>
               </div>
@@ -297,10 +299,10 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
                 form.reset();
               }}
             >
-              Annuler
+              {t("common:cancel")}
             </Button>
             <Button variant="blue" disabled={loading} className="min-w-[180px]">
-              {loading ? "Enregistrement..." : "Créer la note"}
+              {loading ? t("common:saving") : t("update.submit")}
             </Button>
           </div>
         </form>

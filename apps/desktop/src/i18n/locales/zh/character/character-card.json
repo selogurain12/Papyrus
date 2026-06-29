@@ -1,0 +1,9 @@
+{
+  "roles": {
+    "ally": "盟友",
+    "antagonist": "拮抗剂",
+    "mentor": "导师",
+    "protagonist": "主角",
+    "secondary character": "次要角色"
+  }
+}

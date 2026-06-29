@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "atmosphere": "Atmosphäre",
+    "color": "Farbe",
+    "government": "Regierung",
+    "history": "Geschichte",
+    "importance": "Narrative Bedeutung",
+    "languages": "Sprachen",
+    "localisation": "Standort",
+    "name": "Ortsname *",
+    "nickname": "Spitzname",
+    "physicalDescription": "Beschreibung *",
+    "population": "Charaktere vorhanden",
+    "ressources": "Ressourcen",
+    "type": "Ortstyp *",
+    "visualDetails": "Visuelle Details"
+  },
+  "importance": {
+    "high": "Hoch",
+    "low": "Niedrig",
+    "medium": "Mittel"
+  },
+  "placeholders": {
+    "atmosphere": "Stimmung, Empfindungen...",
+    "government": "Art der Regierung, Führer...",
+    "history": "Vergangenheit, Herkunft...",
+    "importance": "Wählen Sie eine Wichtigkeit aus",
+    "language": "Gesprochene Sprachen...",
+    "name": "Z.B. Café Le Metropolitain",
+    "physicalDescription": "Allgemeine Beschreibung...",
+    "ressources": "Natürliche, wirtschaftliche, strategische Ressourcen...",
+    "type": "Wählen Sie einen Typ aus",
+    "usages": "Architektur, Dekor..."
+  },
+  "types": {
+    "city": "Stadt",
+    "continent": "Kontinent",
+    "country": "Land",
+    "other": "Andere",
+    "planet": "Planet",
+    "space station": "Raumstation",
+    "village": "Dorf"
+  },
+  "update": {
+    "submit": "Ort aktualisieren",
+    "success": "Ort erfolgreich aktualisiert!",
+    "title": "Ort bearbeiten"
+  }
+}

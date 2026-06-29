@@ -1,0 +1,37 @@
+{
+  "fields": {
+    "appearance": "Appearance",
+    "description": "Description",
+    "location": "Location",
+    "significance": "Importance in the story"
+  },
+  "importance": {
+    "high": "High",
+    "low": "Low",
+    "medium": "Medium"
+  },
+  "labels": {
+    "importance": "Importance: {{importance}}"
+  },
+  "notSpecified": "Not specified",
+  "sections": {
+    "description": "DESCRIPTION",
+    "history": "HISTORY"
+  },
+  "select": {
+    "description": "Choose an object from the list to view its details",
+    "title": "Select an object"
+  },
+  "types": {
+    "artifact": "Artifact",
+    "clothing": "Clothing",
+    "equipment": "Equipment",
+    "furniture": "Furniture",
+    "jewelry": "Jewelry",
+    "paper": "Documents",
+    "technology": "Technology",
+    "tool": "Tool",
+    "vehicle": "Vehicle",
+    "weapon": "Weapon"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "atmosphere": "Atmósfera",
+    "color": "Color",
+    "government": "Gobierno",
+    "history": "Historia",
+    "importance": "Importancia narrativa",
+    "languages": "Idiomas",
+    "localisation": "Ubicación",
+    "name": "Nombre del lugar *",
+    "nickname": "Apodo",
+    "physicalDescription": "Descripción *",
+    "population": "Personajes presentes",
+    "ressources": "Recursos",
+    "type": "Tipo de lugar *",
+    "visualDetails": "Detalles visuales"
+  },
+  "importance": {
+    "high": "Alta",
+    "low": "Baja",
+    "medium": "Media"
+  },
+  "placeholders": {
+    "atmosphere": "Ambiente, sensaciones...",
+    "government": "Tipo de gobierno, dirigentes...",
+    "history": "Pasado, origen...",
+    "importance": "Seleccionar una importancia",
+    "language": "Idiomas hablados...",
+    "name": "Ej.: Café Le Métropolitain",
+    "physicalDescription": "Descripción general...",
+    "ressources": "Recursos naturales, económicos, estratégicos...",
+    "type": "Seleccionar un tipo",
+    "usages": "Arquitectura, decoración..."
+  },
+  "types": {
+    "city": "Ciudad",
+    "continent": "Continente",
+    "country": "País",
+    "other": "Otro",
+    "planet": "Planeta",
+    "space station": "Estación espacial",
+    "village": "Pueblo"
+  },
+  "update": {
+    "submit": "Actualizar lugar",
+    "success": "¡Lugar actualizado correctamente!",
+    "title": "Editar lugar"
+  }
+}

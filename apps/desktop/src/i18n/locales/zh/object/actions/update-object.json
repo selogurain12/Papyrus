@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "appearance": "外貌",
+    "color": "颜色",
+    "description": "描述",
+    "history": "历史",
+    "importance": "叙事重要性",
+    "location": "地点",
+    "name": "姓名 *",
+    "significance": "故事中的重要性",
+    "type": "类型"
+  },
+  "importance": {
+    "high": "高的",
+    "low": "低的",
+    "medium": "中等的"
+  },
+  "placeholders": {
+    "importance": "选择重要性",
+    "name": "例如。古代指南针",
+    "type": "选择类型"
+  },
+  "types": {
+    "artifact": "人工制品",
+    "clothing": "衣服",
+    "equipment": "设备",
+    "furniture": "家具",
+    "jewelry": "珠宝",
+    "paper": "文件",
+    "technology": "技术",
+    "tool": "工具",
+    "vehicle": "车辆",
+    "weapon": "武器"
+  },
+  "update": {
+    "submit": "更新对象",
+    "success": "对象更新成功！",
+    "title": "编辑对象"
+  }
+}

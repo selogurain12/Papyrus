@@ -1,0 +1,12 @@
+{
+  "canvas": "インタラクティブキャンバス",
+  "create": {
+    "submit": "マインドマップを作成する",
+    "success": "マインドマップが無事に作成されました！",
+    "title": "マインドマップを作成する"
+  },
+  "invalidFields": "フィールドに正しく入力してください。",
+  "newTitle": "新しいマインドマップ",
+  "newTopic": "新しいトピック",
+  "notInitialized": "MindElixir が初期化されていません。"
+}

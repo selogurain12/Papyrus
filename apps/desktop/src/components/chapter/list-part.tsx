@@ -15,9 +15,11 @@ import { UpdatePart } from "./actions/part/update-part";
 import { UpdateChapter } from "./actions/chapter/update-chapter";
 import { PartDeleteActions } from "./actions/part/delete-part";
 import { ChapterDeleteActions } from "./actions/chapter/delete-chapter";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line complexity
 export function PartsList() {
+  const { t } = useTranslation("chapter/list-part");
   const { currentProject } = useProject();
   const [isCreatingPart, setIsCreatingPart] = useState(false);
   const [isUpdatingPart, setIsUpdatingPart] = useState(false);
@@ -57,23 +59,23 @@ export function PartsList() {
     <div className="p-6">
       <div className="flex justify-between gap-2 mb-4">
         <div>
-          <h2 className="text-2xl font-bold mb-4">Structure du livre</h2>
-          <p className="text-gray-600 mb-6">Organisez vos parties et chapitres.</p>
+          <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
+          <p className="text-gray-600 mb-6">{t("subtitle")}</p>
         </div>
         <div className="flex gap-2">
           <Button variant="blue" onClick={() => setIsCreatingPart(true)}>
             <Plus className="w-4 h-4 mr-2" />
-            Ajouter une partie
+            {t("addPart")}
           </Button>
           <Button variant="green" onClick={() => setIsCreatingChapter(true)}>
             <Plus className="w-4 h-4 mr-2" />
-            Ajouter un chapitre
+            {t("addChapter")}
           </Button>
         </div>
       </div>
       <div className="flex gap-6">
         <div className="w-1/2 gap-6 bg-white rounded-lg shadow p-4 border border-gray-200">
-          <p className="text-lg font-semibold">Vue d'ensemble</p>
+          <p className="text-lg font-semibold">{t("overview")}</p>
           <div className="mt-4 flex w-full gap-4 pb-4">
             <div
               className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm"
@@ -82,7 +84,7 @@ export function PartsList() {
               <span className="text-2xl font-bold" style={{ color: "#9D174D" }}>
                 {parts?.body.total ?? 0}
               </span>
-              <span className="text-sm font-medium text-gray-700">Parties</span>
+              <span className="text-sm font-medium text-gray-700">{t("parts")}</span>
             </div>
             <div
               className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm"
@@ -91,7 +93,7 @@ export function PartsList() {
               <span className="text-2xl font-bold" style={{ color: "#2563EB" }}>
                 {chaptersData?.body.total ?? 0}
               </span>
-              <span className="text-sm font-medium text-gray-700">Chapitres</span>
+              <span className="text-sm font-medium text-gray-700">{t("chapters")}</span>
             </div>
             <div
               className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm"
@@ -100,7 +102,7 @@ export function PartsList() {
               <span className="text-2xl font-bold" style={{ color: "#059669" }}>
                 {currentProject?.currentWordCount ?? 0}
               </span>
-              <span className="text-sm font-medium text-gray-700">Mots</span>
+              <span className="text-sm font-medium text-gray-700">{t("words")}</span>
             </div>
           </div>
           {parts?.body?.data.map((part) => {
@@ -119,7 +121,9 @@ export function PartsList() {
 
                   <div className="ml-8 flex flex-col" style={{ marginLeft: 8, flex: 1 }}>
                     <p className="font-medium ml-4">{part.title}</p>
-                    <p className="text-sm text-gray-500 ml-4">{chapterCount} chapitres</p>
+                    <p className="text-sm text-gray-500 ml-4">
+                      {t("chapterCount", { count: chapterCount })}
+                    </p>
                   </div>
 
                   <div className="flex flex-row">

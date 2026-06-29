@@ -1,0 +1,24 @@
+{
+  "fields": {
+    "additionalDetails": "Další podrobnosti",
+    "date": "Datum",
+    "description": "Popis",
+    "location": "Umístění",
+    "title": "Název události",
+    "type": "Typ události"
+  },
+  "importance": {
+    "action": "Akce",
+    "critical": "Kritické",
+    "important": "Důležité",
+    "normal": "Normální"
+  },
+  "select": {
+    "title": "Vyberte událost"
+  },
+  "update": {
+    "submit": "Aktualizovat událost",
+    "success": "Událost aktualizována!",
+    "title": "Upravit událost"
+  }
+}

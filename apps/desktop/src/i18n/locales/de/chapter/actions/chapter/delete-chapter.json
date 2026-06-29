@@ -1,0 +1,9 @@
+{
+  "description": "Möchten Sie „{{title}}“ wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "projectNotSelected": "Kein Projekt ausgewählt",
+  "title": "Kapitel löschen",
+  "toasts": {
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Das Kapitel wurde erfolgreich gelöscht"
+  }
+}

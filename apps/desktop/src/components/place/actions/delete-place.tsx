@@ -14,6 +14,7 @@ import { MotionAlertDialogActionWrapper } from "../../ui/alert-dialog/motion/act
 import { useProject } from "../../../context/project-provider";
 import { placeRoute } from "../../../routes/place/index.route";
 import { useNavigate } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 interface PlaceDeleteActionsProps {
   onClose?: () => void;
@@ -31,17 +32,18 @@ export function PlaceDeleteActions({
   onClose = undefined,
   clearSelection,
 }: PlaceDeleteActionsProps) {
+  const { t } = useTranslation(["place/actions/delete-place", "common"]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { currentProject } = useProject();
   if (currentProject === null) {
-    toast.error("Projet non sélectionné");
+    toast.error(t("common:projectNotSelected"));
     return null;
   }
 
   const { mutate } = client.place.softDelete.useMutation({
     onSuccess: () => {
-      toast.success("Le lieu a été supprimé avec succès");
+      toast.success(t("delete.success"));
       void queryClient.invalidateQueries({
         queryKey: ["place.getAll"],
       });
@@ -53,7 +55,7 @@ export function PlaceDeleteActions({
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
@@ -62,10 +64,8 @@ export function PlaceDeleteActions({
     <AlertDialog onOpenChange={setOpen} open={open}>
       <AlertDialogContent className="sm:max-w-[800px] sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
-          <AlertDialogTitle>Supprimer un lieu</AlertDialogTitle>
-          <AlertDialogDescription>
-            Êtes-vous sûr de vouloir supprimer ce lieu ?
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t("delete.title")}</AlertDialogTitle>
+          <AlertDialogDescription>{t("delete.description")}</AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>

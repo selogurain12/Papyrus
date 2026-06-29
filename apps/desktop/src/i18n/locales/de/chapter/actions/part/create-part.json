@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "cancel": "Abbrechen",
+    "loading": "Speichern...",
+    "submit": "Teil erstellen"
+  },
+  "fields": {
+    "status": "Status",
+    "statusOptions": {
+      "completed": "Abgeschlossen",
+      "inProgress": "In Arbeit",
+      "toStart": "Zu beginnen"
+    },
+    "statusPlaceholder": "Status auswählen",
+    "title": "Titel",
+    "titlePlaceholder": "z. B. Teil 1: Einführung"
+  },
+  "projectNotFound": "Projekt nicht gefunden",
+  "title": "Teil hinzufügen",
+  "toasts": {
+    "success": "Teil erfolgreich erstellt!"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "importance": {
+    "high": "높은",
+    "low": "낮은",
+    "medium": "중간"
+  },
+  "labels": {
+    "importance": "중요도: {{importance}}"
+  }
+}

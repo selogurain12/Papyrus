@@ -1,0 +1,12 @@
+{
+  "canvas": "Interaktivní plátno",
+  "create": {
+    "submit": "Vytvořte myšlenkovou mapu",
+    "success": "Myšlenková mapa byla úspěšně vytvořena!",
+    "title": "Vytvořte myšlenkovou mapu"
+  },
+  "invalidFields": "Vyplňte prosím pole správně.",
+  "newTitle": "Nová myšlenková mapa",
+  "newTopic": "nové téma",
+  "notInitialized": "MindElixir není inicializován."
+}

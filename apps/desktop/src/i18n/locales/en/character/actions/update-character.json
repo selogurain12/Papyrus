@@ -1,0 +1,83 @@
+{
+  "colors": {
+    "blue": "Blue",
+    "cyan": "Cyan",
+    "gray": "Gray",
+    "green": "Green",
+    "pink": "Pink",
+    "purple": "Purple",
+    "red": "Red",
+    "yellow": "Yellow"
+  },
+  "fields": {
+    "accessory": "Accessories",
+    "age": "Age",
+    "belief": "Beliefs and ideologies",
+    "birthDate": "Date of birth",
+    "birthPlace": "Place of birth",
+    "characterFlaws": "Character flaws",
+    "characterQualities": "Character qualities",
+    "color": "Identification color",
+    "corpulence": "Build",
+    "description": "General description",
+    "education": "Education",
+    "eyesColor": "Eye color",
+    "fears": "Fears and doubts",
+    "firstName": "First name",
+    "future": "Future",
+    "gender": "Sex",
+    "goals": "Goals / Objectives",
+    "hairColor": "Hair color",
+    "height": "Height (cm)",
+    "lastName": "Last name",
+    "nationality": "Nationality",
+    "nickName": "Nickname",
+    "notablePlaces": "Notable places",
+    "notes": "Additional notes",
+    "occupation": "Occupation",
+    "outfit": "Outfit",
+    "past": "Past",
+    "present": "Present",
+    "pronouns": "Pronouns",
+    "residencePlace": "Place of residence",
+    "richesses": "Wealth",
+    "secrets": "Secrets",
+    "tastes": "Tastes",
+    "tics": "Tics, habits, routines and addictions",
+    "typicalExpression": "Typical phrases or expressions",
+    "voice": "Voice",
+    "weight": "Weight (kg)"
+  },
+  "gender": {
+    "female": "Female",
+    "male": "Male",
+    "other": "Other"
+  },
+  "placeholders": {
+    "date": "Select a date",
+    "flaw": "Add a flaw...",
+    "quality": "Add a quality...",
+    "role": "Select a role"
+  },
+  "role": "Role:",
+  "roles": {
+    "ally": "Ally",
+    "antagonist": "Antagonist",
+    "mentor": "Mentor",
+    "protagonist": "Protagonist",
+    "secondary character": "Secondary character"
+  },
+  "sections": {
+    "development": "DEVELOPMENT",
+    "maritalStatus": "CIVIL STATUS",
+    "notes": "NOTES",
+    "physical": "PHYSICAL",
+    "profile": "PROFILE",
+    "trait": "TRAITS"
+  },
+  "update": {
+    "submit": "Update character",
+    "success": "Character updated successfully!",
+    "title": "Edit character"
+  }
+}

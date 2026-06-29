@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "additionalDetails": "Ulteriori dettagli",
+    "description": "Descrizione",
+    "location": "Posizione"
+  },
+  "importance": {
+    "action": "Azione",
+    "critical": "Critico",
+    "important": "Importante",
+    "normal": "Normale"
+  },
+  "select": {
+    "description": "Scegli un evento dall'elenco per visualizzarne i dettagli",
+    "title": "Seleziona un evento"
+  }
+}

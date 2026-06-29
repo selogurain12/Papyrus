@@ -1,0 +1,12 @@
+{
+  "canvas": "Interactive canvas",
+  "create": {
+    "submit": "Create mind map",
+    "success": "Mind map created successfully!",
+    "title": "Create a mind map"
+  },
+  "invalidFields": "Please fill in the fields correctly.",
+  "newTitle": "New mind map",
+  "newTopic": "new topic",
+  "notInitialized": "MindElixir is not initialized."
+}

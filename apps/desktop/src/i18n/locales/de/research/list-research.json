@@ -1,0 +1,15 @@
+{
+  "categories": {
+    "all": "Alle",
+    "articles": "Artikel",
+    "books": "Bücher",
+    "images": "Bilder",
+    "links": "Weblinks",
+    "videos": "Videos"
+  },
+  "empty": "Keine Forschung gefunden.",
+  "new": "Neue Forschung",
+  "searchPlaceholder": "Durchsuchen Sie Ihre Forschung...",
+  "subtitle": "Organisieren Sie Ihre Quellen und Referenzen",
+  "title": "Forschung"
+}

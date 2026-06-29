@@ -5,6 +5,7 @@ import { Edit3, Trash2, Link, BookOpen, FileText, Globe, Video, Search, Image } 
 import { Card } from "../ui/card";
 import { PDFViewerModal } from "../ui/pdf-viewer";
 import { ResearchDto } from "@papyrus/source";
+import { useTranslation } from "react-i18next";
 
 export function ResearchCard({
   research,
@@ -15,14 +16,15 @@ export function ResearchCard({
   openEditModal: (research: ResearchDto) => void;
   openDeleteModal: (research: ResearchDto) => void;
 }) {
+  const { t } = useTranslation(["research/research-card", "common"]);
   const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
   const categories = [
-    { id: "all", label: "Tout", icon: Search },
-    { id: "articles", label: "Articles", icon: FileText },
-    { id: "links", label: "Liens web", icon: Link },
-    { id: "images", label: "Images", icon: Image },
-    { id: "videos", label: "Vidéos", icon: Video },
-    { id: "books", label: "Livres", icon: BookOpen },
+    { id: "all", label: t("categories.all"), icon: Search },
+    { id: "articles", label: t("categories.articles"), icon: FileText },
+    { id: "links", label: t("categories.links"), icon: Link },
+    { id: "images", label: t("categories.images"), icon: Image },
+    { id: "videos", label: t("categories.videos"), icon: Video },
+    { id: "books", label: t("categories.books"), icon: BookOpen },
   ];
   const getTypeIcon = (type) => {
     switch (type) {
@@ -106,7 +108,7 @@ export function ResearchCard({
           }`}
         >
           <Link className="w-3 h-3" />
-          <span>{research.link ? "Ouvrir" : "Pas de fichier"}</span>
+          <span>{research.link ? t("common:openExternal") : t("noFile")}</span>
         </button>
         <div className="opacity-0 group-hover:opacity-100 transition-opacity flex space-x-1">
           <button

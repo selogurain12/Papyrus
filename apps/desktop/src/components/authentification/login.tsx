@@ -20,8 +20,10 @@ import { FormControl } from "../ui/forms/form-control";
 import { Input } from "../ui/input";
 import { FormMessage } from "../ui/forms/form-message";
 import { useAuth } from "../../context/auth-provider";
+import { useTranslation } from "react-i18next";
 
 export function Login() {
+  const { t } = useTranslation("authentification/login");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { setToken, setUser } = useAuth();
@@ -30,7 +32,7 @@ export function Login() {
   });
   const { mutate } = client.authentification.login.useMutation({
     onSuccess: async ({ body }) => {
-      toast.success("Vous êtes connecté");
+      toast.success(t("loginSuccess"));
       void queryClient.invalidateQueries({
         queryKey: ["auth.login"],
       });
@@ -42,7 +44,7 @@ export function Login() {
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("error"));
       }
     },
   });
@@ -53,14 +55,14 @@ export function Login() {
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <div className="mb-8 text-center items-center justify-items-center">
-        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
           <BookOpen className="w-6 h-6 text-white" />
         </div>
-        <h1 className="text-4xl font-bold text-secondary-900">Bienvenue sur Papyrus</h1>
-        <p className="text-secondary-500">Connectez-vous pour continuer</p>
+        <h1 className="text-4xl font-bold text-secondary-900">{t("welcome")}</h1>
+        <p className="text-secondary-500">{t("subtitle")}</p>
       </div>
       <Card className="w-96 p-6">
-        <h2 className="text-2xl font-bold mb-4 text-center">Connexion</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">{t("title")}</h2>
         <Form {...form}>
           <form onReset={() => form.reset()}>
             <FormField
@@ -69,10 +71,10 @@ export function Login() {
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
                   <FormLabel className="mb-2 font-normal" htmlFor="email">
-                    Email
+                    {t("email")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="Email" {...field} />
+                    <Input placeholder={t("emailPlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>
@@ -84,10 +86,10 @@ export function Login() {
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
                   <FormLabel className="mb-2 font-normal" htmlFor="password">
-                    Mot de passe
+                    {t("password")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="Mot de passe" type="password" {...field} />
+                    <Input placeholder={t("passwordPlaceholder")} type="password" {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>
@@ -102,15 +104,15 @@ export function Login() {
           type="submit"
           className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          Se connecter
+          {t("submit")}
         </Button>
         <div className="text-center">
-          Pas encore de compte ?{" "}
+          {t("noAccount")}{" "}
           <a
             onClick={() => navigate({ to: registerRoute.to })}
             className="text-blue-500 hover:underline"
           >
-            S'inscrire
+            {t("register")}
           </a>
         </div>
       </Card>

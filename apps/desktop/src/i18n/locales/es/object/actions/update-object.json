@@ -1,0 +1,40 @@
+{
+  "fields": {
+    "appearance": "Apariencia",
+    "color": "Color",
+    "description": "Descripción",
+    "history": "Historia",
+    "importance": "Importancia narrativa",
+    "location": "Ubicación",
+    "name": "Nombre *",
+    "significance": "Importancia en la historia",
+    "type": "Tipo"
+  },
+  "importance": {
+    "high": "Alta",
+    "low": "Baja",
+    "medium": "Media"
+  },
+  "placeholders": {
+    "importance": "Seleccionar una importancia",
+    "name": "Ej.: Brújula antigua",
+    "type": "Seleccionar un tipo"
+  },
+  "types": {
+    "artifact": "Artefacto",
+    "clothing": "Ropa",
+    "equipment": "Equipo",
+    "furniture": "Mueble",
+    "jewelry": "Joya",
+    "paper": "Documentos",
+    "technology": "Tecnología",
+    "tool": "Herramienta",
+    "vehicle": "Vehículo",
+    "weapon": "Arma"
+  },
+  "update": {
+    "submit": "Actualizar objeto",
+    "success": "¡Objeto actualizado correctamente!",
+    "title": "Editar objeto"
+  }
+}

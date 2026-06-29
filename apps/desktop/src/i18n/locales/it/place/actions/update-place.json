@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "atmosphere": "Atmosfera",
+    "color": "Colore",
+    "government": "Governo",
+    "history": "Storia",
+    "importance": "Importanza narrativa",
+    "languages": "Lingue",
+    "localisation": "Posizione",
+    "name": "Nome del luogo *",
+    "nickname": "Soprannome",
+    "physicalDescription": "Descrizione *",
+    "population": "Personaggi presenti",
+    "ressources": "Risorse",
+    "type": "Tipologia luogo *",
+    "visualDetails": "Dettagli visivi"
+  },
+  "importance": {
+    "high": "Alto",
+    "low": "Basso",
+    "medium": "Medio"
+  },
+  "placeholders": {
+    "atmosphere": "Umore, sensazioni...",
+    "government": "Tipo di governo, leader...",
+    "history": "Passato, origine...",
+    "importance": "Seleziona un'importanza",
+    "language": "Lingue parlate...",
+    "name": "Per esempio. Café Le Metropolitain",
+    "physicalDescription": "Descrizione generale...",
+    "ressources": "Risorse naturali, economiche, strategiche...",
+    "type": "Seleziona un tipo",
+    "usages": "Architettura, arredamento..."
+  },
+  "types": {
+    "city": "Città",
+    "continent": "Continente",
+    "country": "Paese",
+    "other": "Altro",
+    "planet": "Pianeta",
+    "space station": "Stazione spaziale",
+    "village": "Villaggio"
+  },
+  "update": {
+    "submit": "Aggiorna luogo",
+    "success": "Luogo aggiornato con successo!",
+    "title": "Modifica luogo"
+  }
+}

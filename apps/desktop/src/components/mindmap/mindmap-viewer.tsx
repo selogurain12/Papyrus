@@ -7,8 +7,10 @@ import { useProject } from "../../context/project-provider";
 import { useNavigate } from "@tanstack/react-router";
 import { mindmapRoute, viewMindmapRoute } from "../../routes/mindmap/index.route";
 import { Button } from "../ui/button";
+import { useTranslation } from "react-i18next";
 
 export function MindMapViewer() {
+  const { t } = useTranslation("common");
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const { id } = viewMindmapRoute.useParams();
@@ -40,7 +42,7 @@ export function MindMapViewer() {
     mindRef.current = instance;
   }, [mindmap]);
 
-  if (!mindmap) return <div>Loading...</div>;
+  if (!mindmap) return <div>{t("loading")}</div>;
 
   return (
     <div className="p-6">
@@ -53,7 +55,7 @@ export function MindMapViewer() {
             }
             className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
           >
-            Fermer
+            {t("close")}
           </Button>
         </div>
 

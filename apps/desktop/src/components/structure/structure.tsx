@@ -16,9 +16,11 @@ import { queryClient } from "../../context/query-client";
 import { isFetchError } from "@ts-rest/react-query/v5";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line complexity
 export function StructurePage() {
+  const { t } = useTranslation(["structure/structure", "common"]);
   const [isUpdating, setIsUpdating] = useState(false);
   const { currentProject } = useProject();
   const { data, isLoading } = client.structure.get.useQuery({
@@ -52,7 +54,7 @@ export function StructurePage() {
   }, [data, form]);
   const { mutate: updateStructure } = client.structure.update.useMutation({
     onSuccess: () => {
-      toast.success("Structure mise à jour avec succès");
+      toast.success(t("success"));
       void queryClient.invalidateQueries({
         queryKey: ["structure.get"],
       });
@@ -60,22 +62,22 @@ export function StructurePage() {
     },
     onError: (error) => {
       if (isFetchError(error)) {
-        toast.error(`Erreur lors de la mise à jour de la structure: ${error.message}`);
+        toast.error(t("error", { message: error.message }));
       } else {
-        toast.error("Une erreur inconnue est survenue lors de la mise à jour de la structure");
+        toast.error(t("unknownError"));
       }
     },
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>{t("common:loading")}</div>;
   }
   if (!data) {
-    return <div>Structure not found</div>;
+    return <div>{t("notFound")}</div>;
   }
   function onSubmit(data: UpdateStructureDto) {
     if (currentProject === null) {
-      toast.error("Current project is null");
+      toast.error(t("common:currentProjectMissing"));
       return;
     }
     updateStructure({
@@ -91,11 +93,8 @@ export function StructurePage() {
   }
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Structure du roman</h2>
-      <p className="text-gray-600">
-        Définissez les fondations de votre histoire en organisant les éléments clés de votre récit.
-        Créez une structure solide pour guider votre écriture et capturer l'essence de votre roman.
-      </p>
+      <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
+      <p className="text-gray-600">{t("subtitle")}</p>
       <div>
         <Tabs defaultValue="concept" className="w-full mt-6">
           <TabsList className="w-full gap-6 p-1">
@@ -105,7 +104,7 @@ export function StructurePage() {
               className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 w-1/3"
             >
               <Lightbulb />
-              Concept
+              {t("tabs.concept")}
             </TabsTrigger>
             <TabsTrigger
               value="plan"
@@ -113,7 +112,7 @@ export function StructurePage() {
               className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 w-1/3"
             >
               <Map />
-              Plan narratif
+              {t("tabs.plan")}
             </TabsTrigger>
             <TabsTrigger
               value="objectifs"
@@ -121,13 +120,13 @@ export function StructurePage() {
               className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 w-1/3"
             >
               <Target />
-              Objectifs
+              {t("tabs.objectives")}
             </TabsTrigger>
           </TabsList>
           <TabsContent value="concept" className="mt-4">
             <Card className="p-4 rounded-lg">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg mb-2">Concept principal</h3>
+                <h3 className="text-lg mb-2">{t("mainConcept")}</h3>
                 <Button
                   variant="transparent"
                   className={`border rounded-lg ${isUpdating ? "bg-green-600 hover:bg-green-700" : ""}`}
@@ -143,9 +142,9 @@ export function StructurePage() {
                   {isUpdating ? <Save className="text-white" /> : <Pencil />}
                 </Button>
               </div>
-              <p>Prémisse</p>
+              <p>{t("premise")}</p>
               <Input
-                placeholder="Ex: Un détective enquête sur une série de meurtres mystérieux dans une ville sombre..."
+                placeholder={t("placeholders.premise")}
                 className="mb-4"
                 value={form.watch("premise") ?? ""}
                 onChange={(event) => {
@@ -153,9 +152,9 @@ export function StructurePage() {
                 }}
                 disabled={!isUpdating}
               />
-              <p>Genre</p>
+              <p>{t("genre")}</p>
               <Input
-                placeholder="Ex: Thriller, science-fiction, romance, fantasy, etc."
+                placeholder={t("placeholders.genre")}
                 className="mb-4"
                 value={form.watch("genre") ?? ""}
                 onChange={(event) => {
@@ -163,9 +162,9 @@ export function StructurePage() {
                 }}
                 disabled={!isUpdating}
               />
-              <p>Thème</p>
+              <p>{t("theme")}</p>
               <Input
-                placeholder="Ex: La lutte entre le bien et le mal, la rédemption, la nature humaine..."
+                placeholder={t("placeholders.theme")}
                 value={form.watch("theme") ?? ""}
                 onChange={(event) => {
                   form.setValue("theme", event.target.value);
@@ -177,7 +176,7 @@ export function StructurePage() {
           <TabsContent value="plan" className="mt-4">
             <Card className="p-4 rounded-lg">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold mb-2">Plan narratif</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("tabs.plan")}</h3>
                 <Button
                   variant="transparent"
                   className={`border rounded-lg ${isUpdating ? "bg-green-600 hover:bg-green-700" : ""}`}
@@ -193,9 +192,9 @@ export function StructurePage() {
                   {isUpdating ? <Save /> : <Pencil />}
                 </Button>
               </div>
-              <p>Structure</p>
+              <p>{t("structure")}</p>
               <Input
-                placeholder="Ex: Introduction, développement, climax, résolution..."
+                placeholder={t("placeholders.structure")}
                 className="mb-4"
                 value={form.watch("structure") ?? ""}
                 onChange={(event) => {
@@ -208,7 +207,7 @@ export function StructurePage() {
           <TabsContent value="objectifs" className="mt-4">
             <Card className="p-4 rounded-lg">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold mb-2">Objectifs</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("tabs.objectives")}</h3>
                 <Button
                   variant="transparent"
                   className={`border rounded-lg ${isUpdating ? "bg-green-600 hover:bg-green-700" : ""}`}
@@ -229,7 +228,7 @@ export function StructurePage() {
                   {form.watch("objectives")?.map((objective, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <Input
-                        placeholder={`Objectif ${index + 1}`}
+                        placeholder={t("objective", { index: index + 1 })}
                         value={objective}
                         onChange={(event) => {
                           const newObjectives = [...(form.watch("objectives") ?? [])];
@@ -246,7 +245,7 @@ export function StructurePage() {
                           form.setValue("objectives", newObjectives);
                         }}
                       >
-                        Supprimer
+                        {t("common:delete")}
                       </Button>
                     </div>
                   ))}
@@ -258,7 +257,7 @@ export function StructurePage() {
                       form.setValue("objectives", newObjectives);
                     }}
                   >
-                    Ajouter un objectif
+                    {t("addObjective")}
                   </Button>
                 </div>
               ) : null}
@@ -271,7 +270,7 @@ export function StructurePage() {
               )}
               {!isUpdating &&
               (data.body.objectives === null || data.body.objectives.length === 0) ? (
-                <p>Aucun objectif défini pour le moment.</p>
+                <p>{t("emptyObjectives")}</p>
               ) : null}
             </Card>
           </TabsContent>

@@ -1,0 +1,9 @@
+{
+  "description": "Opravdu chcete smazat „{{title}}“? Tuto akci nelze vrátit zpět.",
+  "projectNotSelected": "Není vybrán žádný projekt",
+  "title": "Smazat kapitolu",
+  "toasts": {
+    "error": "Došlo k chybě",
+    "success": "Kapitola byla úspěšně smazána"
+  }
+}

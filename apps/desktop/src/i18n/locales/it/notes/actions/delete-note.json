@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Sei sicuro di voler eliminare \"{{title}}\"? Questa azione non può essere annullata.",
+    "success": "La nota è stata eliminata con successo",
+    "title": "Elimina nota"
+  }
+}

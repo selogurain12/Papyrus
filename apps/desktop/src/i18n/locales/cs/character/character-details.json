@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}} let, narozen ve {{place}}",
+  "fields": {
+    "accessoryShort": "Příslušenství",
+    "beliefShort": "Přesvědčení",
+    "birthDate": "Datum narození",
+    "characterFlawsShort": "Nedostatky",
+    "characterQualitiesShort": "kvality",
+    "corpulence": "Vytvořit",
+    "descriptionShort": "Popis",
+    "education": "Školství",
+    "eyesShort": "Oči",
+    "fearsShort": "strach(y)",
+    "firstName": "Křestní jméno",
+    "future": "Budoucnost",
+    "genderDetail": "Pohlaví",
+    "goals": "Cíle / Cíle",
+    "hairShort": "Vlasy",
+    "heightShort": "Výška",
+    "lastNameShort": "Příjmení",
+    "nationality": "Státní příslušnost",
+    "nickName": "Přezdívka",
+    "notablePlaces": "Pozoruhodná místa",
+    "notesShort": "Poznámky",
+    "occupation": "Povolání",
+    "outfitShort": "Výstroj",
+    "past": "Minulost",
+    "present": "Současnost",
+    "pronouns": "Zájmena",
+    "residencePlace": "Bydliště",
+    "richesses": "Bohatství",
+    "secrets": "Tajemství",
+    "tastes": "Chutná",
+    "tics": "Tiky, návyky, rutiny a závislosti",
+    "typicalExpressionShort": "Typický výraz",
+    "voice": "Hlas",
+    "weightShort": "Hmotnost"
+  },
+  "gender": {
+    "female": "Žena",
+    "male": "Samec",
+    "other": "Ostatní"
+  },
+  "notSpecified": "Neuvedeno",
+  "role": "Úloha:",
+  "sections": {
+    "development": "ROZVOJ",
+    "maritalStatus": "OBČANSKÝ STAV",
+    "other": "OSTATNÍ",
+    "physical": "FYZIKÁLNÍ",
+    "profile": "PROFIL",
+    "trait": "VLASTNOSTI"
+  },
+  "select": {
+    "description": "Vyberte postavu ze seznamu a zobrazte její podrobnosti",
+    "title": "Vyberte znak"
+  }
+}

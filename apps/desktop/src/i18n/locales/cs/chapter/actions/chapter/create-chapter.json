@@ -1,0 +1,28 @@
+{
+  "actions": {
+    "cancel": "Zrušit",
+    "loading": "Ukládání...",
+    "submit": "Vytvořit kapitolu"
+  },
+  "fields": {
+    "chapterNumber": "Číslo kapitoly",
+    "part": "Část",
+    "partPlaceholder": "Vybrat část",
+    "resume": "Shrnutí",
+    "status": "Stav",
+    "statusPlaceholder": "Vybrat stav",
+    "titlePlaceholder": "Např.: Kapitola 1",
+    "wordGoal": "Cíl počtu slov",
+    "statusOptions": {
+      "toStart": "Začít",
+      "inProgress": "Probíhá",
+      "completed": "Dokončeno"
+    }
+  },
+  "projectNotFound": "Projekt nebyl nalezen",
+  "title": "Přidat kapitolu",
+  "toasts": {
+    "error": "Došlo k chybě",
+    "success": "Kapitola byla úspěšně vytvořena!"
+  }
+}

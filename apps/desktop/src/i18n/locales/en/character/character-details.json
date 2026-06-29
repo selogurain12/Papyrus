@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}} years old, born in {{place}}",
+  "fields": {
+    "accessoryShort": "Accessory",
+    "beliefShort": "Beliefs",
+    "birthDate": "Date of birth",
+    "characterFlawsShort": "Flaws",
+    "characterQualitiesShort": "Qualities",
+    "corpulence": "Build",
+    "descriptionShort": "Description",
+    "education": "Education",
+    "eyesShort": "Eyes",
+    "fearsShort": "Fear(s)",
+    "firstName": "First name",
+    "future": "Future",
+    "genderDetail": "Gender",
+    "goals": "Goals / Objectives",
+    "hairShort": "Hair",
+    "heightShort": "Height",
+    "lastNameShort": "Last name",
+    "nationality": "Nationality",
+    "nickName": "Nickname",
+    "notablePlaces": "Notable places",
+    "notesShort": "Notes",
+    "occupation": "Occupation",
+    "outfitShort": "Outfit",
+    "past": "Past",
+    "present": "Present",
+    "pronouns": "Pronouns",
+    "residencePlace": "Place of residence",
+    "richesses": "Wealth",
+    "secrets": "Secrets",
+    "tastes": "Tastes",
+    "tics": "Tics, habits, routines and addictions",
+    "typicalExpressionShort": "Typical expression",
+    "voice": "Voice",
+    "weightShort": "Weight"
+  },
+  "gender": {
+    "female": "Female",
+    "male": "Male",
+    "other": "Other"
+  },
+  "notSpecified": "Not specified",
+  "role": "Role:",
+  "sections": {
+    "development": "DEVELOPMENT",
+    "maritalStatus": "CIVIL STATUS",
+    "other": "OTHER",
+    "physical": "PHYSICAL",
+    "profile": "PROFILE",
+    "trait": "TRAITS"
+  },
+  "select": {
+    "description": "Choose a character from the list to view its details",
+    "title": "Select a character"
+  }
+}

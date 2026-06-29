@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Are you sure you want to delete \"{{title}}\"? This action cannot be undone.",
+    "success": "The mind map was deleted successfully",
+    "title": "Delete mind map"
+  }
+}

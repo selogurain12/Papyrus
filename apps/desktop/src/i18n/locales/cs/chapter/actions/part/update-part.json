@@ -1,0 +1,21 @@
+{
+  "title": "Upravit část",
+  "fields": {
+    "title": "Název",
+    "titlePlaceholder": "Např.: Část 1: Úvod",
+    "status": "Stav",
+    "statusPlaceholder": "Vyberte stav",
+    "statusOptions": {
+      "toStart": "Začít",
+      "inProgress": "Probíhá",
+      "completed": "Dokončeno"
+    }
+  },
+  "actions": {
+    "loading": "Ukládání...",
+    "submit": "Upravit část"
+  },
+  "toasts": {
+    "success": "Část byla úspěšně upravena!"
+  }
+}

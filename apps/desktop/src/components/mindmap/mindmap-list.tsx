@@ -13,8 +13,10 @@ import {
   viewMindmapRoute,
 } from "../../routes/mindmap/index.route";
 import { MindMapDeleteActions } from "./actions/delete-mindmap";
+import { useTranslation } from "react-i18next";
 
 export function MindMapPage() {
+  const { t } = useTranslation(["mindmap/mindmap-list", "common"]);
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
@@ -42,18 +44,13 @@ export function MindMapPage() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Cartes mentales</h2>
-      <p className="text-gray-600">
-        Créez et organisez vos idées visuellement avec des cartes mentales.
-      </p>
+      <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
+      <p className="text-gray-600">{t("subtitle")}</p>
 
       <div className="mt-6 bg-blue-100 p-4 rounded-lg text-center items-center justify-center flex flex-col border border-blue-300">
         <GitBranch className="w-10 h-10 text-blue-600 mb-2" />
-        <p className="font-bold">Canvas interactif</p>
-        <p className="text-sm text-gray-500 mt-1">
-          Créez vos cartes mentales sur un canvas blanc où vous pouvez librement organiser vos
-          idées.
-        </p>
+        <p className="font-bold">{t("canvas")}</p>
+        <p className="text-sm text-gray-500 mt-1">{t("canvasDescription")}</p>
 
         <Button
           className="mt-4"
@@ -65,13 +62,13 @@ export function MindMapPage() {
             });
           }}
         >
-          <Plus /> Créer une nouvelle carte mentale
+          <Plus /> {t("createNew")}
         </Button>
       </div>
 
       {data?.body.total !== 0 && (
         <div className="mt-6 space-y-4">
-          <h3 className="text-xl font-semibold">Vos cartes mentales</h3>
+          <h3 className="text-xl font-semibold">{t("yourMaps")}</h3>
 
           {data?.body?.data?.map((mindmap) => (
             <div
@@ -92,7 +89,7 @@ export function MindMapPage() {
                     })
                   }
                 >
-                  <span className="h-4 leading-4">Ouvrir</span>
+                  <span className="h-4 leading-4">{t("common:openExternal")}</span>
                 </Button>
                 <Button
                   variant="outline"

@@ -7,8 +7,10 @@ import { useState } from "react";
 import { Dialog } from "../components/ui/dialogs/dialog";
 import { CreateProjectForm } from "../components/project/actions/create-form";
 import { ListProject } from "../components/project/list-project";
+import { useTranslation } from "react-i18next";
 
 export function ProjectPage() {
+  const { t } = useTranslation("pages/project");
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -22,10 +24,8 @@ export function ProjectPage() {
             </div>
 
             <div className="flex flex-col">
-              <h1 className="text-xl font-bold text-secondary-900">Projet Papyrus</h1>
-              <p className="text-secondary-500 text-sm">
-                Gérez vos documents efficacement avec Papyrus.
-              </p>
+              <h1 className="text-xl font-bold text-secondary-900">{t("page.title")}</h1>
+              <p className="text-secondary-500 text-sm">{t("page.subtitle")}</p>
             </div>
           </div>
 
@@ -36,7 +36,7 @@ export function ProjectPage() {
               onClick={() => setOpen(true)}
             >
               <Plus className="w-4 h-4 mr-2" />
-              Nouveau projet
+              {t("page.new")}
             </Button>
 
             <Button variant="ghost" onClick={() => navigate({ to: loginRoute.to })}>

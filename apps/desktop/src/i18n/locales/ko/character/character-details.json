@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}}세, {{place}} 출생",
+  "fields": {
+    "accessoryShort": "종범",
+    "beliefShort": "신념",
+    "birthDate": "생일",
+    "characterFlawsShort": "결함",
+    "characterQualitiesShort": "자질",
+    "corpulence": "짓다",
+    "descriptionShort": "설명",
+    "education": "교육",
+    "eyesShort": "눈",
+    "fearsShort": "두려움",
+    "firstName": "이름",
+    "future": "미래",
+    "genderDetail": "성별",
+    "goals": "목표 / 목적",
+    "hairShort": "머리카락",
+    "heightShort": "키",
+    "lastNameShort": "성",
+    "nationality": "국적",
+    "nickName": "별명",
+    "notablePlaces": "주목할만한 장소",
+    "notesShort": "메모",
+    "occupation": "직업",
+    "outfitShort": "차림새",
+    "past": "과거",
+    "present": "현재의",
+    "pronouns": "대명사",
+    "residencePlace": "거주지",
+    "richesses": "재산",
+    "secrets": "기미",
+    "tastes": "취향",
+    "tics": "틱, 습관, 일상 및 중독",
+    "typicalExpressionShort": "전형적인 표현",
+    "voice": "목소리",
+    "weightShort": "무게"
+  },
+  "gender": {
+    "female": "여성",
+    "male": "남성",
+    "other": "다른"
+  },
+  "notSpecified": "지정되지 않음",
+  "role": "역할:",
+  "sections": {
+    "development": "개발",
+    "maritalStatus": "민사 신분",
+    "other": "다른",
+    "physical": "물리적",
+    "profile": "윤곽",
+    "trait": "특성"
+  },
+  "select": {
+    "description": "목록에서 캐릭터를 선택하여 세부정보를 확인하세요.",
+    "title": "캐릭터를 선택하세요"
+  }
+}

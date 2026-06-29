@@ -1,0 +1,65 @@
+{
+  "create": {
+    "submit": "프로젝트 생성",
+    "success": "프로젝트가 성공적으로 생성되었습니다.",
+    "title": "프로젝트 만들기"
+  },
+  "fields": {
+    "author": "프로젝트 작성자",
+    "deadline": "프로젝트 마감",
+    "description": "프로젝트 설명",
+    "genre": "프로젝트 장르",
+    "language": "프로젝트 언어",
+    "targetWordCount": "목표 단어 수",
+    "title": "프로젝트 제목"
+  },
+  "genres": {
+    "biography": "전기",
+    "children": "어린이들",
+    "essay": "수필",
+    "fantasy": "공상",
+    "guide": "가이드",
+    "health": "건강",
+    "historical": "역사적인",
+    "history": "역사",
+    "horror": "공포",
+    "mystery": "신비",
+    "non-fiction": "논픽션",
+    "other": "다른",
+    "poetry": "시",
+    "police": "범죄",
+    "religion": "종교",
+    "roman": "소설",
+    "romance": "로맨스",
+    "science": "과학",
+    "science-fiction": "SF",
+    "self-help": "자조",
+    "theater": "극장",
+    "thriller": "스릴러",
+    "travel": "여행하다",
+    "young-adult": "젊은 성인"
+  },
+  "languages": {
+    "cs": "체코 사람",
+    "de": "독일 사람",
+    "en": "영어",
+    "es": "스페인 사람",
+    "fr": "프랑스 국민",
+    "it": "이탈리아 사람",
+    "ja": "일본어",
+    "ko": "한국인",
+    "pt": "포르투갈 인",
+    "ru": "러시아인",
+    "zh": "중국인"
+  },
+  "placeholders": {
+    "date": "날짜를 선택하세요",
+    "genre": "장르를 선택하세요",
+    "language": "언어를 선택하세요",
+    "tag": "태그 추가"
+  },
+  "sections": {
+    "goals": "목표 및 설정",
+    "info": "프로젝트 정보"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "fields": {
+    "atmosphere": "气氛",
+    "color": "颜色",
+    "government": "政府",
+    "history": "历史",
+    "importance": "叙事重要性",
+    "languages": "语言",
+    "localisation": "地点",
+    "name": "地名 *",
+    "nickname": "昵称",
+    "physicalDescription": "描述 *",
+    "population": "出场人物",
+    "ressources": "资源",
+    "type": "地点类型 *",
+    "visualDetails": "视觉细节"
+  },
+  "importance": {
+    "high": "高的",
+    "low": "低的",
+    "medium": "中等的"
+  },
+  "placeholders": {
+    "atmosphere": "心情、感觉...",
+    "government": "政府类型、领导人...",
+    "history": "过去、起源...",
+    "importance": "选择重要性",
+    "language": "口语...",
+    "name": "例如。大都会咖啡馆",
+    "physicalDescription": "一般描述...",
+    "ressources": "自然、经济、战略资源...",
+    "type": "选择类型",
+    "usages": "建筑、装饰..."
+  },
+  "types": {
+    "city": "城市",
+    "continent": "大陆",
+    "country": "国家",
+    "other": "其他",
+    "planet": "行星",
+    "space station": "空间站",
+    "village": "村庄"
+  },
+  "update": {
+    "submit": "更新地点",
+    "success": "地点更新成功！",
+    "title": "编辑地点"
+  }
+}

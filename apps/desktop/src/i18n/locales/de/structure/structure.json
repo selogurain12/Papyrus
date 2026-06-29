@@ -1,0 +1,27 @@
+{
+  "addObjective": "Ziel hinzufügen",
+  "emptyObjectives": "Noch kein Ziel definiert.",
+  "error": "Fehler beim Aktualisieren der Struktur: {{message}}",
+  "genre": "Genre",
+  "mainConcept": "Hauptkonzept",
+  "notFound": "Struktur nicht gefunden",
+  "objective": "Ziel {{index}}",
+  "placeholders": {
+    "genre": "Beispiel: Thriller, Science-Fiction, Liebesromane, Fantasy usw.",
+    "premise": "Beispiel: Ein Detektiv untersucht eine Reihe mysteriöser Morde in einer dunklen Stadt ...",
+    "structure": "Beispiel: Einleitung, Entwicklung, Höhepunkt, Auflösung...",
+    "theme": "Beispiel: Der Kampf zwischen Gut und Böse, Erlösung, menschliche Natur ..."
+  },
+  "premise": "Prämisse",
+  "structure": "Struktur",
+  "subtitle": "Definieren Sie die Grundlagen Ihrer Geschichte, indem Sie die Schlüsselelemente Ihrer Erzählung organisieren. Schaffen Sie eine solide Struktur, die Ihnen beim Schreiben hilft und die Essenz Ihres Romans festhält.",
+  "success": "Struktur erfolgreich aktualisiert",
+  "tabs": {
+    "concept": "Konzept",
+    "objectives": "Ziele",
+    "plan": "Erzählplan"
+  },
+  "theme": "Thema",
+  "title": "Neuartige Struktur",
+  "unknownError": "Beim Aktualisieren der Struktur ist ein unbekannter Fehler aufgetreten"
+}

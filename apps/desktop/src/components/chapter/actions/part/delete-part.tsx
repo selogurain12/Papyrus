@@ -14,6 +14,7 @@ import { AlertDialog } from "../../../ui/alert-dialog/alert-dialog";
 import { AlertDialogContent } from "../../../ui/alert-dialog/alert-dialog-content";
 import { AlertDialogTitle } from "../../../ui/alert-dialog/alert-dialog-title";
 import { AlertDialogDescription } from "../../../ui/alert-dialog/alert-dialog-description";
+import { useTranslation } from "react-i18next";
 
 interface PartDeleteActionsProps {
   onClose?: () => void;
@@ -30,16 +31,17 @@ export function PartDeleteActions({
   onClose = undefined,
   clearSelection,
 }: PartDeleteActionsProps) {
+  const { t } = useTranslation("chapter/actions/part/delete-part");
   const queryClient = useQueryClient();
   const { currentProject } = useProject();
   if (currentProject === null) {
-    toast.error("Projet non sélectionné");
+    toast.error(t("projectNotSelected"));
     return null;
   }
 
   const { mutate } = client.part.softDelete.useMutation({
     onSuccess: () => {
-      toast.success("La partie a été supprimée avec succès");
+      toast.error(t("toasts.success"));
       void queryClient.invalidateQueries({
         queryKey: queryKeys.part.getAll({
           pathParams: { projectId: part.project.id },
@@ -58,7 +60,7 @@ export function PartDeleteActions({
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("toasts.error"));
       }
     },
   });
@@ -67,10 +69,8 @@ export function PartDeleteActions({
     <AlertDialog onOpenChange={setOpen} open={open}>
       <AlertDialogContent className="sm:max-w-200 sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
-          <AlertDialogTitle>Supprimer la partie</AlertDialogTitle>
-          <AlertDialogDescription>
-            Êtes-vous sûr de vouloir supprimer « {part.title} » ? Cette action est irréversible.
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t("title")}</AlertDialogTitle>
+          <AlertDialogDescription>{t("description", { title: part.title })}</AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>

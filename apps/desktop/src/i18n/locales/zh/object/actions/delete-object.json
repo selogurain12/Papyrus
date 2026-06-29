@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "您确定要删除该对象吗？",
+    "success": "对象删除成功",
+    "title": "删除对象"
+  }
+}

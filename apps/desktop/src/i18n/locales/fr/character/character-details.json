@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}} ans, né à {{place}}",
+  "fields": {
+    "accessoryShort": "Accessoire",
+    "beliefShort": "Croyances",
+    "birthDate": "Date de naissance",
+    "characterFlawsShort": "Défauts",
+    "characterQualitiesShort": "Qualités",
+    "corpulence": "Corpulence",
+    "descriptionShort": "Description",
+    "education": "Éducation",
+    "eyesShort": "Yeux",
+    "fearsShort": "Peur(s)",
+    "firstName": "Prénom",
+    "future": "Futur",
+    "genderDetail": "Genre",
+    "goals": "Buts / Objectifs",
+    "hairShort": "Cheveux",
+    "heightShort": "Taille",
+    "lastNameShort": "Nom",
+    "nationality": "Nationalité",
+    "nickName": "Surnom",
+    "notablePlaces": "Lieux marquants",
+    "notesShort": "Notes",
+    "occupation": "Occupation",
+    "outfitShort": "Tenue",
+    "past": "Passé",
+    "present": "Présent",
+    "pronouns": "Pronoms",
+    "residencePlace": "Lieu de résidence",
+    "richesses": "Richesses",
+    "secrets": "Secrets",
+    "tastes": "Goûts",
+    "tics": "Tics, manies, habitudes et addictions",
+    "typicalExpressionShort": "Expression typique",
+    "voice": "Voix",
+    "weightShort": "Poids"
+  },
+  "gender": {
+    "female": "Femme",
+    "male": "Homme",
+    "other": "Autre"
+  },
+  "notSpecified": "Non spécifié",
+  "role": "Rôle :",
+  "sections": {
+    "development": "ÉVOLUTION",
+    "maritalStatus": "ÉTAT CIVIL",
+    "other": "AUTRE",
+    "physical": "PHYSIQUE",
+    "profile": "PROFIL",
+    "trait": "CARACTÈRE"
+  },
+  "select": {
+    "description": "Choisissez un personnage dans la liste pour voir ses détails",
+    "title": "Sélectionnez un personnage"
+  }
+}

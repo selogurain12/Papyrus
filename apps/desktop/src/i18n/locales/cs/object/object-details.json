@@ -1,0 +1,37 @@
+{
+  "fields": {
+    "appearance": "Vzhled",
+    "description": "Popis",
+    "location": "Umístění",
+    "significance": "Důležitost v příběhu"
+  },
+  "importance": {
+    "high": "Vysoký",
+    "low": "Nízký",
+    "medium": "Střední"
+  },
+  "labels": {
+    "importance": "Důležitost: {{importance}}"
+  },
+  "notSpecified": "Neuvedeno",
+  "sections": {
+    "description": "POPIS",
+    "history": "DĚJINY"
+  },
+  "select": {
+    "description": "Vyberte objekt ze seznamu a zobrazte jeho podrobnosti",
+    "title": "Vyberte objekt"
+  },
+  "types": {
+    "artifact": "Artefakt",
+    "clothing": "Oblečení",
+    "equipment": "Zařízení",
+    "furniture": "Nábytek",
+    "jewelry": "Šperky",
+    "paper": "Dokumenty",
+    "technology": "Technologie",
+    "tool": "Nástroj",
+    "vehicle": "Vozidlo",
+    "weapon": "Zbraň"
+  }
+}

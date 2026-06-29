@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface PDFViewerModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface PDFViewerModalProps {
 }
 
 export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalProps) {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,7 +32,7 @@ export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalPr
         <div className="flex items-center justify-between border-b border-gray-200 p-4">
           <div className="flex-1">
             <h2 className="text-lg font-semibold text-gray-900 truncate">
-              {title || "Visualiser PDF"}
+              {title || t("pdfViewer")}
             </h2>
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
@@ -48,7 +50,7 @@ export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalPr
                 className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
-                <span>Ouvrir dans une nouvelle fenêtre</span>
+                <span>{t("openExternal")}</span>
               </button>
             </div>
           ) : (
@@ -58,7 +60,7 @@ export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalPr
                 className="w-full h-full border-0"
                 title={title || "PDF Viewer"}
                 onError={() => {
-                  setError("Impossible de charger le PDF dans la fenêtre intégrée.");
+                  setError(t("pdfLoadError"));
                 }}
                 onLoad={() => {
                   setError(null);
@@ -70,16 +72,14 @@ export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalPr
 
         {/* Footer */}
         <div className="border-t border-gray-200 p-4 bg-white flex items-center justify-between">
-          <p className="text-sm text-gray-500">
-            💡 Conseil: Le PDF s'affiche mieux dans un onglet séparé
-          </p>
+          <p className="text-sm text-gray-500">{t("pdfTip")}</p>
           <button
             onClick={handleOpenExternal}
             disabled={isLoading}
             className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors"
           >
             <ExternalLink className="w-4 h-4" />
-            <span>{isLoading ? "Chargement..." : "Ouvrir dans une nouvelle fenêtre"}</span>
+            <span>{isLoading ? t("loading") : t("openExternal")}</span>
           </button>
         </div>
       </div>

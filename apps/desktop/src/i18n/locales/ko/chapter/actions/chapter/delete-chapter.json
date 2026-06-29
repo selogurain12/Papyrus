@@ -1,0 +1,9 @@
+{
+  "description": "“{{title}}”을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+  "projectNotSelected": "선택된 프로젝트가 없습니다",
+  "title": "챕터 삭제",
+  "toasts": {
+    "error": "오류가 발생했습니다",
+    "success": "챕터가 성공적으로 삭제되었습니다"
+  }
+}

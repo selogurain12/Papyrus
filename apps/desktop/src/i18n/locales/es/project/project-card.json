@@ -1,0 +1,32 @@
+{
+  "card": {
+    "open": "Abrir",
+    "progress": "Progreso"
+  },
+  "genres": {
+    "biography": "Biografía",
+    "children": "Niños",
+    "essay": "Ensayo",
+    "fantasy": "Fantasía",
+    "guide": "Guía",
+    "health": "Salud",
+    "historical": "Histórico",
+    "history": "Historia",
+    "horror": "Horror",
+    "mystery": "Misterio",
+    "non-fiction": "No ficción",
+    "other": "Otro",
+    "poetry": "Poesía",
+    "police": "Delito",
+    "religion": "Religión",
+    "roman": "Novedoso",
+    "romance": "romance",
+    "science": "Ciencia",
+    "science-fiction": "ciencia ficción",
+    "self-help": "autoayuda",
+    "theater": "Teatro",
+    "thriller": "Suspenso",
+    "travel": "Viajar",
+    "young-adult": "adulto joven"
+  }
+}

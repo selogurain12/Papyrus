@@ -1,0 +1,15 @@
+{
+  "annexes": "付録",
+  "chapters": "章:",
+  "estimatedPages": "推定ページ数:",
+  "exportProject": "プロジェクトのエクスポート",
+  "format": "形式：",
+  "formatTitle": "エクスポート形式",
+  "noFormat": "フォーマットが選択されていません",
+  "noProject": "プロジェクトがありません",
+  "optionsTitle": "エクスポートオプション",
+  "previewTitle": "プレビューのエクスポート",
+  "subtitle": "プロジェクトをさまざまな形式でエクスポートする",
+  "title": "高度なエクスポート",
+  "totalWords": "総単語数:"
+}

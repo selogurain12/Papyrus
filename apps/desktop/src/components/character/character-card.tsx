@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
-import React from "react";
 import { PencilLine, Trash2, User } from "lucide-react";
 import { Card } from "../ui/card";
 import { CharacterDto } from "@papyrus/source";
+import { useTranslation } from "react-i18next";
 
 export function CharacterCard({
   character,
@@ -16,19 +16,12 @@ export function CharacterCard({
   onEdit: () => void;
   onDelete: () => void;
 }) {
+  const { t } = useTranslation("character/character-card");
   const colorMap: Record<string, string> = {
     blue: "bg-blue-500",
     red: "bg-red-500",
     green: "bg-green-500",
     yellow: "bg-yellow-500",
-  };
-
-  const roleMap: Record<string, string> = {
-    protagonist: "Protagoniste",
-    antagonist: "Antagoniste",
-    ally: "Allié",
-    mentor: "Mentor",
-    "secondary character": "Personnage secondaire",
   };
 
   return (
@@ -45,7 +38,7 @@ export function CharacterCard({
             {character.firstName} {character.lastName}
           </h3>
           <p className="text-sm text-muted-foreground">
-            {roleMap[character.role] || character.role}
+            {t(`roles.${character.role}`, { defaultValue: character.role })}
           </p>
         </div>
         <div className="ml-auto flex items-center space-x-2">

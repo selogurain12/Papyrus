@@ -11,9 +11,11 @@ import { useFilterDto } from "../../utils/filters/use-filter-dto";
 import { useProject } from "../../context/project-provider";
 import { NoteCard } from "./note-card";
 import NoteDetails from "./note-details";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line complexity
 export function NotesList() {
+  const { t } = useTranslation("notes/list-notes");
   const [notesSelected, setNotesSelected] = useState<NoteDto | undefined>(undefined);
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -40,12 +42,12 @@ export function NotesList() {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="">
-          <h2 className="text-2xl font-bold text-foreground">Notes</h2>
-          <p className="text-md">Capturez vos idées et réflexions</p>
+          <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
+          <p className="text-md">{t("subtitle")}</p>
         </div>
         <Button variant="blue" onClick={() => setIsCreating(true)}>
           <Plus className="w-4 h-4 mr-2" />
-          Nouvelle note
+          {t("new")}
         </Button>
       </div>
       <div className="flex w-full">

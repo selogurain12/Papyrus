@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "您确定要删除该角色吗？",
+    "success": "角色删除成功",
+    "title": "删除字符"
+  }
+}

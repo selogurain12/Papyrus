@@ -1,0 +1,65 @@
+{
+  "fields": {
+    "author": "プロジェクト作成者",
+    "deadline": "プロジェクトの締め切り",
+    "description": "プロジェクトの説明",
+    "genre": "プロジェクトジャンル",
+    "language": "プロジェクト言語",
+    "targetWordCount": "目標単語数",
+    "title": "プロジェクトタイトル"
+  },
+  "genres": {
+    "biography": "バイオグラフィー",
+    "children": "子供たち",
+    "essay": "エッセイ",
+    "fantasy": "ファンタジー",
+    "guide": "ガイド",
+    "health": "健康",
+    "historical": "歴史的",
+    "history": "歴史",
+    "horror": "ホラー",
+    "mystery": "ミステリー",
+    "non-fiction": "ノンフィクション",
+    "other": "他の",
+    "poetry": "詩",
+    "police": "犯罪",
+    "religion": "宗教",
+    "roman": "小説",
+    "romance": "ロマンス",
+    "science": "科学",
+    "science-fiction": "SF",
+    "self-help": "自助努力",
+    "theater": "劇場",
+    "thriller": "スリラー",
+    "travel": "旅行",
+    "young-adult": "ヤングアダルト"
+  },
+  "languages": {
+    "cs": "チェコ語",
+    "de": "ドイツ語",
+    "en": "英語",
+    "es": "スペイン語",
+    "fr": "フランス語",
+    "it": "イタリア語",
+    "ja": "日本語",
+    "ko": "韓国人",
+    "pt": "ポルトガル語",
+    "ru": "ロシア",
+    "zh": "中国語"
+  },
+  "placeholders": {
+    "date": "日付を選択してください",
+    "genre": "ジャンルを選択してください",
+    "language": "言語を選択してください",
+    "tag": "タグを追加する"
+  },
+  "sections": {
+    "goals": "目標と設定",
+    "info": "プロジェクト情報"
+  },
+  "update": {
+    "submit": "プロジェクトを更新する",
+    "success": "プロジェクトが正常に更新されました",
+    "title": "プロジェクトの編集"
+  }
+}

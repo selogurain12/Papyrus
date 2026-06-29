@@ -1,0 +1,9 @@
+{
+  "invalidFields": "Veuillez remplir correctement les champs.",
+  "newTitle": "Nouvelle carte mentale",
+  "notInitialized": "MindElixir n'est pas initialisé.",
+  "update": {
+    "submit": "Modifier la carte mentale",
+    "success": "Carte mentale modifiée avec succès !"
+  }
+}

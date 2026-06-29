@@ -1,0 +1,65 @@
+{
+  "fields": {
+    "author": "Project author",
+    "deadline": "Project deadline",
+    "description": "Project description",
+    "genre": "Project genre",
+    "language": "Project language",
+    "targetWordCount": "Target word count",
+    "title": "Project title"
+  },
+  "genres": {
+    "biography": "Biography",
+    "children": "Children",
+    "essay": "Essay",
+    "fantasy": "Fantasy",
+    "guide": "Guide",
+    "health": "Health",
+    "historical": "Historical",
+    "history": "History",
+    "horror": "Horror",
+    "mystery": "Mystery",
+    "non-fiction": "Non-fiction",
+    "other": "Other",
+    "poetry": "Poetry",
+    "police": "Crime",
+    "religion": "Religion",
+    "roman": "Novel",
+    "romance": "Romance",
+    "science": "Science",
+    "science-fiction": "Science fiction",
+    "self-help": "Self-help",
+    "theater": "Theater",
+    "thriller": "Thriller",
+    "travel": "Travel",
+    "young-adult": "Young adult"
+  },
+  "languages": {
+    "cs": "Czech",
+    "de": "German",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "it": "Italian",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "pt": "Portuguese",
+    "ru": "Russian",
+    "zh": "Chinese"
+  },
+  "placeholders": {
+    "date": "Select a date",
+    "genre": "Select a genre",
+    "language": "Select a language",
+    "tag": "Add a tag"
+  },
+  "sections": {
+    "goals": "Goals and settings",
+    "info": "Project information"
+  },
+  "update": {
+    "submit": "Update project",
+    "success": "Project updated successfully",
+    "title": "Edit project"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Sind Sie sicher, dass Sie dieses Ereignis löschen möchten?",
+    "success": "Das Ereignis wurde erfolgreich gelöscht",
+    "title": "Veranstaltung löschen"
+  }
+}

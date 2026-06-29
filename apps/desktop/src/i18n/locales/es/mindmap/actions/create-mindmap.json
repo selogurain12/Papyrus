@@ -1,0 +1,12 @@
+{
+  "canvas": "Lienzo interactivo",
+  "create": {
+    "submit": "Crear mapa mental",
+    "success": "¡Mapa mental creado correctamente!",
+    "title": "Crear un mapa mental"
+  },
+  "invalidFields": "Completa los campos correctamente.",
+  "newTitle": "Nuevo mapa mental",
+  "newTopic": "nuevo tema",
+  "notInitialized": "MindElixir no está inicializado."
+}

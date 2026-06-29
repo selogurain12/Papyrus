@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "Are you sure you want to delete this character?",
+    "success": "The character was deleted successfully",
+    "title": "Delete character"
+  }
+}

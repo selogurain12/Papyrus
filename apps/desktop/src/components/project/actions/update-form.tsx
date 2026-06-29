@@ -25,6 +25,7 @@ import { BookOpen, Target } from "lucide-react";
 import { DatePicker } from "../../ui/date-picker";
 import { ProjectDto, UpdateProjectDto, updateProjectSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
+import { useTranslation } from "react-i18next";
 
 interface UpdateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -32,9 +33,10 @@ interface UpdateProjectFormProps {
 }
 
 export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) {
+  const { t } = useTranslation(["project/actions/update-form", "common"]);
   const { user } = useAuth();
   if (user === null) {
-    toast.error("Utilisateur non connecté");
+    toast.error(t("common:notConnected"));
     return null;
   }
   const form = useForm<UpdateProjectDto>({
@@ -55,7 +57,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
   });
   const { mutate } = client.project.update.useMutation({
     onSuccess: () => {
-      toast.success("Projet modifié avec succès");
+      toast.success(t("update.success"));
       void queryClient.invalidateQueries({
         queryKey: ["project.getAll"],
       });
@@ -66,7 +68,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
       if (isFetchError(error)) {
         toast.error(error.message);
       } else {
-        toast.error("Une erreur est survenue");
+        toast.error(t("common:error"));
       }
     },
   });
@@ -97,7 +99,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
       }}
     >
       <DialogHeader>
-        <DialogTitle className="text-2xl">Modifier le projet</DialogTitle>
+        <DialogTitle className="text-2xl">{t("update.title")}</DialogTitle>
       </DialogHeader>
       <Form {...form}>
         <form
@@ -112,7 +114,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
             <h2 className="text-lg font-semibold mb-2 flex items-center">
               {" "}
               <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
-              Informations du projet
+              {t("sections.info")}
             </h2>
 
             <FormField
@@ -120,12 +122,12 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               name="title"
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="title">Titre du projet</FormLabel>
+                  <FormLabel htmlFor="title">{t("fields.title")}</FormLabel>
                   <FormControl>
                     <Input
                       id="title"
                       className="border border-gray-300 rounded-md p-2"
-                      placeholder="Titre du projet"
+                      placeholder={t("fields.title")}
                       {...field}
                     />
                   </FormControl>
@@ -139,11 +141,11 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               name="description"
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="description">Description du projet</FormLabel>
+                  <FormLabel htmlFor="description">{t("fields.description")}</FormLabel>
                   <FormControl>
                     <Textarea
                       id="description"
-                      placeholder="Description du projet"
+                      placeholder={t("fields.description")}
                       {...field}
                       value={field.value ?? ""}
                     />
@@ -158,19 +160,19 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               name="genre"
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="genre">Genre du projet</FormLabel>
+                  <FormLabel htmlFor="genre">{t("fields.genre")}</FormLabel>
                   <FormControl>
                     <SingleSelector<TypeOption>
                       {...field}
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`genres.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`genres.${item.id}`)}</span>
                       )}
                       value={genre.find((genr) => genr.id === field.value)}
                       onChange={(value) => {
                         field.onChange(value?.id ?? "");
                       }}
-                      placeholder="Sélectionner un genre"
+                      placeholder={t("placeholders.genre")}
                       data={genre}
                     />
                   </FormControl>
@@ -183,11 +185,11 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               name="author"
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="author">Auteur du projet</FormLabel>
+                  <FormLabel htmlFor="author">{t("fields.author")}</FormLabel>
                   <FormControl>
                     <Input
                       id="author"
-                      placeholder="Auteur du projet"
+                      placeholder={t("fields.author")}
                       {...field}
                       value={field.value ?? ""}
                     />
@@ -202,7 +204,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
           <div className="flex flex-col gap-4">
             <h2 className="text-lg font-semibold mb-2 flex items-center">
               <Target className="w-5 h-5 mr-2 text-green-500" />
-              Objectifs et paramètres
+              {t("sections.goals")}
             </h2>
 
             <FormField
@@ -210,11 +212,11 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               name="targetWordCount"
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="targetWordCount">Nombre de mots cible</FormLabel>
+                  <FormLabel htmlFor="targetWordCount">{t("fields.targetWordCount")}</FormLabel>
                   <FormControl>
                     <Input
                       id="targetWordCount"
-                      placeholder="Nombre de mots cible"
+                      placeholder={t("fields.targetWordCount")}
                       {...field}
                       type="number"
                       onChange={(event) => {
@@ -232,19 +234,19 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               name="language"
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="language">Langue du projet</FormLabel>
+                  <FormLabel htmlFor="language">{t("fields.language")}</FormLabel>
                   <FormControl>
                     <SingleSelector<TypeOption>
                       {...field}
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`languages.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`languages.${item.id}`)}</span>
                       )}
                       value={languageOptions.find((lang) => lang.id === field.value)}
                       onChange={(value) => {
                         field.onChange(value?.id ?? "");
                       }}
-                      placeholder="Sélectionner une langue"
+                      placeholder={t("placeholders.language")}
                       data={languageOptions}
                     />
                   </FormControl>
@@ -258,13 +260,13 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
                   <FormLabel className="mb-2 font-normal" htmlFor="deadline">
-                    Deadline du projet
+                    {t("fields.deadline")}
                   </FormLabel>
                   <FormControl>
                     <DatePicker
                       changeValue={field.onChange}
                       disabledRange={undefined}
-                      placeholder="Séléctionner une date"
+                      placeholder={t("placeholders.date")}
                       value={field.value ?? undefined}
                     />
                   </FormControl>
@@ -282,7 +284,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
                   ))}
 
                   <Input
-                    placeholder="Ajouter un tag"
+                    placeholder={t("placeholders.tag")}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
                         e.preventDefault();
@@ -307,7 +309,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
         type="submit"
         className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        Modifier le projet
+        {t("update.submit")}
       </Button>
     </DialogContent>
   );

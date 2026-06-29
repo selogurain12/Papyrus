@@ -1,0 +1,19 @@
+{
+  "importance": {
+    "high": "高的",
+    "low": "低的",
+    "medium": "中等的"
+  },
+  "labels": {
+    "importance": "重要性：{{importance}}"
+  },
+  "types": {
+    "city": "城市",
+    "continent": "大陆",
+    "country": "国家",
+    "other": "其他",
+    "planet": "行星",
+    "space station": "空间站",
+    "village": "村庄"
+  }
+}

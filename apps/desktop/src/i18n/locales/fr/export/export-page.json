@@ -1,0 +1,15 @@
+{
+  "annexes": "Annexes",
+  "chapters": "Chapitres :",
+  "estimatedPages": "Pages estimées :",
+  "exportProject": "Exporter le projet",
+  "format": "Format :",
+  "formatTitle": "Format d'export",
+  "noFormat": "Aucun format sélectionné",
+  "noProject": "Pas de projet",
+  "optionsTitle": "Options d'export",
+  "previewTitle": "Aperçu de l'export",
+  "subtitle": "Exportez votre projet dans différents formats",
+  "title": "Export avancé",
+  "totalWords": "Mots totaux :"
+}

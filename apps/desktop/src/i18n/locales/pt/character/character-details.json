@@ -1,0 +1,58 @@
+{
+  "bornSummary": "{{age}} anos, nascido em {{place}}",
+  "fields": {
+    "accessoryShort": "Acessório",
+    "beliefShort": "Crenças",
+    "birthDate": "Data de nascimento",
+    "characterFlawsShort": "Imperfeições",
+    "characterQualitiesShort": "Qualidades",
+    "corpulence": "Construir",
+    "descriptionShort": "Descrição",
+    "education": "Educação",
+    "eyesShort": "Olhos",
+    "fearsShort": "Medo(s)",
+    "firstName": "Primeiro nome",
+    "future": "Futuro",
+    "genderDetail": "Gênero",
+    "goals": "Metas/Objetivos",
+    "hairShort": "Cabelo",
+    "heightShort": "Altura",
+    "lastNameShort": "Sobrenome",
+    "nationality": "Nacionalidade",
+    "nickName": "Apelido",
+    "notablePlaces": "Lugares notáveis",
+    "notesShort": "Notas",
+    "occupation": "Ocupação",
+    "outfitShort": "Roupa",
+    "past": "Passado",
+    "present": "Presente",
+    "pronouns": "Pronomes",
+    "residencePlace": "Local de residência",
+    "richesses": "Fortuna",
+    "secrets": "Segredos",
+    "tastes": "Gostos",
+    "tics": "Tiques, hábitos, rotinas e vícios",
+    "typicalExpressionShort": "Expressão típica",
+    "voice": "Voz",
+    "weightShort": "Peso"
+  },
+  "gender": {
+    "female": "Fêmea",
+    "male": "Macho",
+    "other": "Outro"
+  },
+  "notSpecified": "Não especificado",
+  "role": "Papel:",
+  "sections": {
+    "development": "DESENVOLVIMENTO",
+    "maritalStatus": "ESTADO CIVIL",
+    "other": "OUTRO",
+    "physical": "FÍSICO",
+    "profile": "PERFIL",
+    "trait": "CARACTERÍSTICAS"
+  },
+  "select": {
+    "description": "Escolha um personagem da lista para ver seus detalhes",
+    "title": "Selecione um personagem"
+  }
+}

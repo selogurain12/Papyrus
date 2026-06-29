@@ -1,0 +1,7 @@
+{
+  "delete": {
+    "description": "¿Seguro que quieres eliminar \"{{title}}\"? Esta acción no se puede deshacer.",
+    "success": "El mapa mental se eliminó correctamente",
+    "title": "Eliminar mapa mental"
+  }
+}

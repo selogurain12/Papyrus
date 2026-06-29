@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "cancel": "Отмена",
+    "loading": "Сохранение...",
+    "submit": "Создать часть"
+  },
+  "fields": {
+    "status": "Статус",
+    "statusPlaceholder": "Выберите статус",
+    "title": "Название",
+    "titlePlaceholder": "Напр.: Часть 1: Введение",
+    "statusOptions": {
+      "toStart": "Начать",
+      "inProgress": "В процессе",
+      "completed": "Завершено"
+    }
+  },
+  "projectNotFound": "Проект не найден",
+  "title": "Добавить часть",
+  "toasts": {
+    "success": "Часть успешно создана!"
+  }
+}

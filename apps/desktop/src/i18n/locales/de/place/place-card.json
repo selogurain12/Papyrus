@@ -1,0 +1,19 @@
+{
+  "importance": {
+    "high": "Hoch",
+    "low": "Niedrig",
+    "medium": "Mittel"
+  },
+  "labels": {
+    "importance": "Bedeutung: {{importance}}"
+  },
+  "types": {
+    "city": "Stadt",
+    "continent": "Kontinent",
+    "country": "Land",
+    "other": "Andere",
+    "planet": "Planet",
+    "space station": "Raumstation",
+    "village": "Dorf"
+  }
+}

@@ -7,7 +7,7 @@ import {
   Property,
   UuidType,
 } from "@mikro-orm/postgresql";
-import { LanguageType } from "@papyrus/source";
+import { LanguageType, SettingShortcutDto } from "@papyrus/source";
 import { ProjectEntity } from "../projects/projects.entity";
 
 @Entity()
@@ -32,11 +32,26 @@ export class SettingEntity {
   @Property({ type: "string", default: "light" })
   public theme: "light" | "dark" = "light";
 
+  @Property({ type: "boolean", default: false })
+  public compactMode: boolean = false;
+
   @Property({ type: "string", default: "medium" })
-  public fontSize: "small" | "medium" | "large" = "medium";
+  public fontSize: "small" | "medium" | "large" | "xlarge" = "medium";
 
   @Property({ type: "string", default: "system" })
-  public fontFamily: "system" | "serif" | "sans-serif" = "system";
+  public fontFamily: "system" | "lora" | "merriweather" | "source-serif-4" = "system";
+
+  @Property({ type: "boolean", default: false })
+  public showLineNumbers: boolean = false;
+
+  @Property({ type: "boolean", default: true })
+  public focusMode: boolean = true;
+
+  @Property({ type: "boolean", default: true })
+  public spellcheck: boolean = true;
+
+  @Property({ type: "json", default: [] })
+  public shortcuts: SettingShortcutDto[] = [];
 
   @Property({ type: "boolean", default: true })
   public enableNotifications: boolean = true;

@@ -12,6 +12,7 @@ import {
   StickyNote,
   Download,
   FolderOpen,
+  Settings,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
@@ -29,6 +30,7 @@ import { mindmapRoute } from "../routes/mindmap/index.route";
 import { chapterRoute } from "../routes/chapter/index.route";
 import { exportRoute } from "../routes/export/index.route";
 import { useTranslation } from "react-i18next";
+import { settingsRoute } from "../routes/settings/index.route";
 
 const menu = [
   { id: "dashboard", labelKey: "menu.dashboard", icon: Home, path: characterRoute },
@@ -43,6 +45,7 @@ const menu = [
   { id: "mind-maps", labelKey: "menu.mindMaps", icon: GitBranch, path: mindmapRoute },
   { id: "notes", labelKey: "menu.notes", icon: StickyNote, path: noteRoute },
   { id: "export", labelKey: "menu.export", icon: Download, path: exportRoute },
+  { id: "settings", labelKey: "menu.settings", icon: Settings, path: settingsRoute },
 ];
 
 interface SidebarProps {
@@ -58,7 +61,7 @@ export function Sidebar({ name }: SidebarProps) {
     <div className="w-64 bg-background shadow-lg border-r border-gray-300 h-full">
       <div className="p-6 border-b border-gray-300">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+          <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
             <BookOpen className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -66,10 +69,10 @@ export function Sidebar({ name }: SidebarProps) {
             <p className="text-sm text-secondary-500">{t("app.tagline")}</p>
           </div>
         </div>
-        <div className="flex items-center justify-between mt-3 bg-blue-200 rounded-xl p-2">
+        <div className="flex items-center justify-between mt-3 bg-blue-200 dark:bg-blue-950 rounded-xl p-2">
           <div>
-            <p className="text-sm text-blue-600">{t("currentProject")}</p>
-            <p className="text-sm text-blue-900">{name}</p>
+            <p className="text-sm text-blue-600 dark:text-blue-300">{t("currentProject")}</p>
+            <p className="text-sm text-blue-900 dark:text-blue-100">{name}</p>
           </div>
           <div className="w-5 h-5 flex items-center justify-center">
             <Tooltip>
@@ -105,8 +108,8 @@ export function Sidebar({ name }: SidebarProps) {
                   }}
                   className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 ${
                     isActive
-                      ? "bg-blue-50 text-blue-700 border-r-2 border-blue-600"
-                      : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                      ? "bg-blue-50 text-blue-700 border-r-2 border-blue-600 dark:bg-blue-950 dark:text-blue-200"
+                      : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-foreground"
                   }`}
                 >
                   <Icon

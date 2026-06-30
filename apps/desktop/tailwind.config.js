@@ -1,17 +1,33 @@
+const colorScale = (name) => ({
+  50: `rgb(var(--${name}-50))`,
+  100: `rgb(var(--${name}-100))`,
+  200: `rgb(var(--${name}-200))`,
+  300: `rgb(var(--${name}-300))`,
+  400: `rgb(var(--${name}-400))`,
+  500: `rgb(var(--${name}-500))`,
+  600: `rgb(var(--${name}-600))`,
+  700: `rgb(var(--${name}-700))`,
+  800: `rgb(var(--${name}-800))`,
+  900: `rgb(var(--${name}-900))`,
+  950: `rgb(var(--${name}-950))`,
+});
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Couleurs de base
+        transparent: "transparent",
+        current: "currentColor",
+        white: "rgb(var(--white))",
+        black: "rgb(var(--black))",
         border: "rgb(var(--border))",
         input: "rgb(var(--input))",
         ring: "rgb(var(--ring))",
         background: "rgb(var(--background))",
         foreground: "rgb(var(--foreground))",
 
-        // Couleurs primaires
         primary: {
           DEFAULT: "rgb(var(--primary))",
           foreground: "rgb(var(--primary-foreground))",
@@ -27,7 +43,6 @@ export default {
           900: "rgb(var(--primary-900))",
         },
 
-        // Couleurs secondaires
         secondary: {
           DEFAULT: "rgb(var(--secondary))",
           foreground: "rgb(var(--secondary-foreground))",
@@ -43,7 +58,6 @@ export default {
           900: "rgb(var(--secondary-900))",
         },
 
-        // Couleurs d'accent
         accent: {
           DEFAULT: "rgb(var(--accent))",
           foreground: "rgb(var(--accent-foreground))",
@@ -59,7 +73,6 @@ export default {
           900: "rgb(var(--accent-900))",
         },
 
-        // Couleurs de succès
         success: {
           DEFAULT: "rgb(var(--success))",
           foreground: "rgb(var(--success-foreground))",
@@ -75,7 +88,6 @@ export default {
           900: "rgb(var(--success-900))",
         },
 
-        // Couleurs d'avertissement
         warning: {
           DEFAULT: "rgb(var(--warning))",
           foreground: "rgb(var(--warning-foreground))",
@@ -91,7 +103,6 @@ export default {
           900: "rgb(var(--warning-900))",
         },
 
-        // Couleurs d'erreur/destructive
         destructive: {
           DEFAULT: "rgb(var(--destructive))",
           foreground: "rgb(var(--destructive-foreground))",
@@ -107,13 +118,12 @@ export default {
           900: "rgb(var(--destructive-900))",
         },
 
-        // Couleurs neutres
         muted: {
           DEFAULT: "rgb(var(--muted))",
           foreground: "rgb(var(--muted-foreground))",
+          200: "rgb(var(--muted-200))",
         },
 
-        // Couleurs pour les cartes et popovers
         popover: {
           DEFAULT: "rgb(var(--popover))",
           foreground: "rgb(var(--popover-foreground))",
@@ -123,7 +133,6 @@ export default {
           foreground: "rgb(var(--card-foreground))",
         },
 
-        // Couleurs spécifiques à l'application
         brand: {
           DEFAULT: "rgb(var(--brand))",
           foreground: "rgb(var(--brand-foreground))",
@@ -139,7 +148,12 @@ export default {
           900: "rgb(var(--brand-900))",
         },
 
-        // Couleurs pour les personnages
+        stepper: {
+          DEFAULT: "rgb(var(--stepper))",
+          foreground: "rgb(var(--stepper-foreground))",
+          muted: "rgb(var(--stepper-muted))",
+        },
+
         character: {
           red: "rgb(var(--character-red))",
           blue: "rgb(var(--character-blue))",
@@ -152,6 +166,21 @@ export default {
           amber: "rgb(var(--character-amber))",
           orange: "rgb(var(--character-orange))",
         },
+
+        slate: colorScale("slate"),
+        gray: colorScale("gray"),
+        neutral: colorScale("neutral"),
+        red: colorScale("red"),
+        orange: colorScale("orange"),
+        amber: colorScale("amber"),
+        yellow: colorScale("yellow"),
+        green: colorScale("green"),
+        emerald: colorScale("emerald"),
+        cyan: colorScale("cyan"),
+        blue: colorScale("blue"),
+        indigo: colorScale("indigo"),
+        purple: colorScale("purple"),
+        pink: colorScale("pink"),
       },
       borderRadius: {
         lg: "var(--radius)",

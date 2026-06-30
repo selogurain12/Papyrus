@@ -18,7 +18,7 @@ interface VerticalStepProps extends StepSharedProps {
 const verticalStepVariants = cva(
   [
     "flex flex-col relative transition-all duration-200",
-    "data-[completed=true]:[&:not(:last-child)]:after:bg-[#5CAFE7]",
+    "data-[completed=true]:[&:not(:last-child)]:after:bg-stepper",
     "data-[invalid=true]:[&:not(:last-child)]:after:bg-destructive",
   ],
   {
@@ -121,7 +121,7 @@ const verticalStep = forwardRef<HTMLDivElement, VerticalStepProps>(
           className={cn(
             "stepper__vertical-step-container",
             "flex items-center",
-            variant === "line" && "border-s-[3px] data-[active=true]:border-[#5CAFE7] py-2 ps-3",
+            variant === "line" && "border-s-[3px] data-[active=true]:border-stepper py-2 ps-3",
             styles?.["vertical-step-container"]
           )}
           data-active={active}

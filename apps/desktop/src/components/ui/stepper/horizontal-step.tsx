@@ -56,14 +56,14 @@ const horizontalStep = forwardRef<HTMLDivElement, StepSharedProps>((props, refer
         "flex items-center relative transition-all duration-200",
         "[&:not(:last-child)]:flex-1",
         "[&:not(:last-child)]:after:transition-all [&:not(:last-child)]:after:duration-200",
-        "[&:not(:last-child)]:after:content-[''] [&:not(:last-child)]:after:h-[2px] [&:not(:last-child)]:after:bg-[#F5F5F5]",
-        "data-[completed=true]:[&:not(:last-child)]:after:bg-[#5CAFE7]",
+        "[&:not(:last-child)]:after:content-[''] [&:not(:last-child)]:after:h-[2px] [&:not(:last-child)]:after:bg-stepper-muted",
+        "data-[completed=true]:[&:not(:last-child)]:after:bg-stepper",
         "data-[invalid=true]:[&:not(:last-child)]:after:bg-destructive",
         variant === "circle-alt" &&
           "justify-start flex-col flex-1 [&:not(:last-child)]:after:relative [&:not(:last-child)]:after:order-[-1] [&:not(:last-child)]:after:start-[50%] [&:not(:last-child)]:after:end-[50%] [&:not(:last-child)]:after:top-[calc(var(--step-icon-size)/2)] [&:not(:last-child)]:after:w-[calc((100%-var(--step-icon-size))-(var(--step-gap)))]",
         variant === "circle" &&
           "[&:not(:last-child)]:after:flex-1 [&:not(:last-child)]:after:ms-[var(--step-gap)] [&:not(:last-child)]:after:me-[var(--step-gap)]",
-        variant === "line" && "flex-col flex-1 border-t-[3px] data-[active=true]:border-[#5CAFE7]",
+        variant === "line" && "flex-col flex-1 border-t-[3px] data-[active=true]:border-stepper",
         styles?.["horizontal-step"]
       )}
       data-active={active}

@@ -279,7 +279,7 @@ export function SingleSelector<Option extends { id: string }>({
         sideOffset={4}
         collisionPadding={12}
         sticky="partial"
-        className="bg-white"
+        className="border-border bg-popover text-popover-foreground bg-white"
       >
         <Command
           className="w-full truncate"

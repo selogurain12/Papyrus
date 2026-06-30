@@ -39,8 +39,8 @@ function StepButtonContainer({
         "w-[var(--step-icon-size)] h-[var(--step-icon-size)]",
         "border-2 flex rounded-full justify-center items-center",
         "data-[clickable=true]:pointer-events-auto",
-        "data-[active=true]:bg-[#5CAFE7] data-[active=true]:border-[#5CAFE7] data-[active=true]:text-[#5CAFE7]-foreground",
-        "data-[current=true]:border-[#5CAFE7] data-[current=true]:bg-secondary",
+        "data-[active=true]:bg-stepper data-[active=true]:border-stepper data-[active=true]:text-stepper-foreground",
+        "data-[current=true]:border-stepper data-[current=true]:bg-secondary",
         "data-[invalid=true]:bg-destructive data-[invalid=true]:border-destructive data-[invalid=true]:text-destructive-foreground",
         styles?.["step-button-container"]
       )}

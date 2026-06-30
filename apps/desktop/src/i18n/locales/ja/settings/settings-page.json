@@ -1,0 +1,128 @@
+{
+  "title": "設定",
+  "subtitle": "設定とオプションを構成します",
+  "tabs": {
+    "general": "一般",
+    "appearance": "外観",
+    "editor": "エディター",
+    "shortcuts": "ショートカット",
+    "notifications": "通知"
+  },
+  "actions": {
+    "reset": "リセット",
+    "save": "保存",
+    "saving": "保存中...",
+    "add": "追加",
+    "restoreShortcuts": "ショートカットを復元"
+  },
+  "sections": {
+    "general": {
+      "title": "一般設定",
+      "description": "Papyrus の言語、目標、全体の動作を設定します。"
+    },
+    "appearance": {
+      "title": "外観と表示",
+      "description": "テーマとインターフェースの密度をカスタマイズします。"
+    },
+    "editor": {
+      "title": "エディター",
+      "description": "執筆スペースに影響するオプションを調整します。"
+    },
+    "shortcuts": {
+      "title": "キーボードショートカット",
+      "description": "アプリのクイック操作を手元に置きます。"
+    },
+    "notifications": {
+      "title": "通知",
+      "description": "Papyrus から送信できるリマインダーを選択します。"
+    }
+  },
+  "fields": {
+    "language": "インターフェース言語",
+    "autoSave": "自動保存",
+    "autoSaveInterval": "保存間隔",
+    "dailyWordGoal": "1日の単語目標",
+    "theme": "テーマ",
+    "fontSize": "フォントサイズ",
+    "fontFamily": "フォント",
+    "compactMode": "コンパクトモード",
+    "spellcheck": "スペルチェック",
+    "focusMode": "集中モード",
+    "showLineNumbers": "行番号",
+    "sessionWordGoal": "セッションごとの単語目標",
+    "shortcutAction": "アクション",
+    "shortcut": "ショートカット",
+    "enableNotifications": "通知を有効化",
+    "dailyReminder": "毎日のリマインダー",
+    "goalReminder": "目標リマインダー",
+    "backupReminder": "バックアップリマインダー"
+  },
+  "descriptions": {
+    "autoSave": "執筆中に作業を自動保存します。",
+    "compactMode": "間隔を詰めて画面により多くの情報を表示します。",
+    "spellcheck": "執筆中にスペルチェックを有効にします。",
+    "focusMode": "現在のテキスト周辺の気を散らす要素を減らします。",
+    "showLineNumbers": "長いテキストに目印を表示します。",
+    "enableNotifications": "リマインダーと進捗通知を許可します。",
+    "dailyReminder": "毎日執筆するよう促します。",
+    "goalReminder": "執筆目標が近づいたときに通知します。",
+    "backupReminder": "推奨されるバックアップやエクスポートを通知します。"
+  },
+  "placeholders": {
+    "language": "言語を選択",
+    "autoSaveInterval": "間隔を選択",
+    "fontSize": "サイズを選択",
+    "fontFamily": "フォントを選択",
+    "shortcutAction": "例: ノートを開く",
+    "shortcut": "クリックしてキーを押す"
+  },
+  "theme": {
+    "light": "ライト",
+    "dark": "ダーク"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1分",
+      "5": "5分",
+      "10": "10分",
+      "15": "15分",
+      "30": "30分"
+    },
+    "fontSize": {
+      "small": "小",
+      "medium": "中",
+      "large": "大",
+      "xlarge": "特大"
+    },
+    "fontFamily": {
+      "system": "システム (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "項目を作成",
+      "save": "保存",
+      "search": "検索",
+      "export": "エクスポートを開く",
+      "toggle-theme": "テーマを切り替え"
+    }
+  },
+  "languages": {
+    "fr": "フランス語",
+    "en": "英語",
+    "es": "スペイン語",
+    "de": "ドイツ語",
+    "it": "イタリア語",
+    "pt": "ポルトガル語",
+    "ru": "ロシア語",
+    "zh": "中国語",
+    "ja": "日本語",
+    "ko": "韓国語",
+    "cs": "チェコ語"
+  },
+  "toasts": {
+    "success": "設定を保存しました",
+    "error": "設定を保存できません",
+    "noProject": "設定を保存する現在のプロジェクトがありません"
+  }
+}

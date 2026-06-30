@@ -1,0 +1,128 @@
+{
+  "title": "Einstellungen",
+  "subtitle": "Konfigurieren Sie Ihre Präferenzen und Optionen",
+  "tabs": {
+    "general": "Allgemein",
+    "appearance": "Darstellung",
+    "editor": "Editor",
+    "shortcuts": "Tastenkürzel",
+    "notifications": "Benachrichtigungen"
+  },
+  "actions": {
+    "reset": "Zurücksetzen",
+    "save": "Speichern",
+    "saving": "Speichern...",
+    "add": "Hinzufügen",
+    "restoreShortcuts": "Tastenkürzel wiederherstellen"
+  },
+  "sections": {
+    "general": {
+      "title": "Allgemeine Einstellungen",
+      "description": "Legen Sie Sprache, Ziele und das globale Verhalten von Papyrus fest."
+    },
+    "appearance": {
+      "title": "Darstellung und Anzeige",
+      "description": "Passen Sie Theme und Dichte der Oberfläche an."
+    },
+    "editor": {
+      "title": "Editor",
+      "description": "Passen Sie die Optionen für Ihren Schreibbereich an."
+    },
+    "shortcuts": {
+      "title": "Tastenkürzel",
+      "description": "Behalten Sie schnelle Aktionen der Anwendung griffbereit."
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "description": "Wählen Sie aus, welche Erinnerungen Papyrus senden darf."
+    }
+  },
+  "fields": {
+    "language": "Sprache der Oberfläche",
+    "autoSave": "Automatisches Speichern",
+    "autoSaveInterval": "Speicherintervall",
+    "dailyWordGoal": "Tägliches Wortziel",
+    "theme": "Theme",
+    "fontSize": "Schriftgröße",
+    "fontFamily": "Schriftart",
+    "compactMode": "Kompakter Modus",
+    "spellcheck": "Rechtschreibprüfung",
+    "focusMode": "Fokusmodus",
+    "showLineNumbers": "Zeilennummern",
+    "sessionWordGoal": "Wortziel pro Sitzung",
+    "shortcutAction": "Aktion",
+    "shortcut": "Tastenkürzel",
+    "enableNotifications": "Benachrichtigungen aktivieren",
+    "dailyReminder": "Tägliche Erinnerung",
+    "goalReminder": "Zielerinnerung",
+    "backupReminder": "Sicherungserinnerung"
+  },
+  "descriptions": {
+    "autoSave": "Speichert Ihre Arbeit automatisch während des Schreibens.",
+    "compactMode": "Reduziert Abstände, um mehr Informationen auf dem Bildschirm anzuzeigen.",
+    "spellcheck": "Aktiviert die Rechtschreibprüfung beim Schreiben.",
+    "focusMode": "Reduziert Ablenkungen rund um den aktuellen Text.",
+    "showLineNumbers": "Zeigt Markierungen in langen Texten an.",
+    "enableNotifications": "Erlaubt Erinnerungen und Fortschrittsmeldungen.",
+    "dailyReminder": "Erinnert Sie daran, jeden Tag zu schreiben.",
+    "goalReminder": "Benachrichtigt Sie, wenn Ihr Schreibziel näher rückt.",
+    "backupReminder": "Weist auf empfohlene Sicherungen oder Exporte hin."
+  },
+  "placeholders": {
+    "language": "Sprache auswählen",
+    "autoSaveInterval": "Intervall auswählen",
+    "fontSize": "Größe auswählen",
+    "fontFamily": "Schrift auswählen",
+    "shortcutAction": "Z. B. Notizen öffnen",
+    "shortcut": "Klicken und Tasten drücken"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1 Minute",
+      "5": "5 Minuten",
+      "10": "10 Minuten",
+      "15": "15 Minuten",
+      "30": "30 Minuten"
+    },
+    "fontSize": {
+      "small": "Klein",
+      "medium": "Mittel",
+      "large": "Groß",
+      "xlarge": "Sehr groß"
+    },
+    "fontFamily": {
+      "system": "System (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "Element erstellen",
+      "save": "Speichern",
+      "search": "Suchen",
+      "export": "Export öffnen",
+      "toggle-theme": "Theme wechseln"
+    }
+  },
+  "languages": {
+    "fr": "Französisch",
+    "en": "Englisch",
+    "es": "Spanisch",
+    "de": "Deutsch",
+    "it": "Italienisch",
+    "pt": "Portugiesisch",
+    "ru": "Russisch",
+    "zh": "Chinesisch",
+    "ja": "Japanisch",
+    "ko": "Koreanisch",
+    "cs": "Tschechisch"
+  },
+  "toasts": {
+    "success": "Einstellungen gespeichert",
+    "error": "Einstellungen konnten nicht gespeichert werden",
+    "noProject": "Kein aktuelles Projekt zum Speichern der Einstellungen"
+  }
+}

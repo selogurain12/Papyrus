@@ -11,5 +11,27 @@
   "previewTitle": "Anteprima dell'esportazione",
   "subtitle": "Esporta il tuo progetto in diversi formati",
   "title": "Esportazione avanzata",
-  "totalWords": "Parole totali:"
+  "totalWords": "Parole totali:",
+  "formats": {
+    "pdf": {
+      "description": "Documento portatile, ideale per la stampa"
+    },
+    "word": {
+      "description": "Documento Word modificabile"
+    },
+    "epub": {
+      "description": "Formato e-book per lettori"
+    },
+    "txt": {
+      "description": "File di testo semplice"
+    }
+  },
+  "params": {
+    "characters": "Personaggi",
+    "places": "Luoghi",
+    "objects": "Oggetti",
+    "events": "Eventi",
+    "notes": "Note",
+    "researchs": "Ricerche"
+  }
 }

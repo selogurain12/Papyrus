@@ -85,5 +85,6 @@
   "update": "アップデート",
   "validate": "検証する",
   "wordGoal": "{{count}}目標",
-  "words": "{{count}}語"
+  "words": "{{count}}語",
+  "menu.settings": "設定"
 }

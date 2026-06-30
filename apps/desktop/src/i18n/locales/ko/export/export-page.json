@@ -11,5 +11,27 @@
   "previewTitle": "미리보기 내보내기",
   "subtitle": "프로젝트를 다양한 형식으로 내보내기",
   "title": "고급 내보내기",
-  "totalWords": "총 단어 수:"
+  "totalWords": "총 단어 수:",
+  "formats": {
+    "pdf": {
+      "description": "인쇄에 적합한 휴대용 문서"
+    },
+    "word": {
+      "description": "편집 가능한 Word 문서"
+    },
+    "epub": {
+      "description": "리더용 전자책 형식"
+    },
+    "txt": {
+      "description": "일반 텍스트 파일"
+    }
+  },
+  "params": {
+    "characters": "캐릭터",
+    "places": "장소",
+    "objects": "개체",
+    "events": "이벤트",
+    "notes": "노트",
+    "researchs": "조사"
+  }
 }

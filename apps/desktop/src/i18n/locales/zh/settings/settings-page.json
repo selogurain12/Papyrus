@@ -1,0 +1,128 @@
+{
+  "title": "设置",
+  "subtitle": "配置你的偏好和选项",
+  "tabs": {
+    "general": "常规",
+    "appearance": "外观",
+    "editor": "编辑器",
+    "shortcuts": "快捷键",
+    "notifications": "通知"
+  },
+  "actions": {
+    "reset": "重置",
+    "save": "保存",
+    "saving": "正在保存...",
+    "add": "添加",
+    "restoreShortcuts": "恢复快捷键"
+  },
+  "sections": {
+    "general": {
+      "title": "常规偏好",
+      "description": "设置 Papyrus 的语言、目标和整体行为。"
+    },
+    "appearance": {
+      "title": "外观与显示",
+      "description": "自定义主题和界面密度。"
+    },
+    "editor": {
+      "title": "编辑器",
+      "description": "调整影响写作空间的选项。"
+    },
+    "shortcuts": {
+      "title": "键盘快捷键",
+      "description": "随时使用应用的快速操作。"
+    },
+    "notifications": {
+      "title": "通知",
+      "description": "选择 Papyrus 可以发送的提醒。"
+    }
+  },
+  "fields": {
+    "language": "界面语言",
+    "autoSave": "自动保存",
+    "autoSaveInterval": "保存间隔",
+    "dailyWordGoal": "每日字数目标",
+    "theme": "主题",
+    "fontSize": "字体大小",
+    "fontFamily": "字体",
+    "compactMode": "紧凑模式",
+    "spellcheck": "拼写检查",
+    "focusMode": "专注模式",
+    "showLineNumbers": "行号",
+    "sessionWordGoal": "每次会话字数目标",
+    "shortcutAction": "操作",
+    "shortcut": "快捷键",
+    "enableNotifications": "启用通知",
+    "dailyReminder": "每日提醒",
+    "goalReminder": "目标提醒",
+    "backupReminder": "备份提醒"
+  },
+  "descriptions": {
+    "autoSave": "写作时自动保存你的工作。",
+    "compactMode": "减少间距，在屏幕上显示更多信息。",
+    "spellcheck": "写作时启用拼写检查。",
+    "focusMode": "减少当前文本周围的干扰。",
+    "showLineNumbers": "在长文本中显示定位标记。",
+    "enableNotifications": "允许提醒和进度通知。",
+    "dailyReminder": "提醒你每天写作。",
+    "goalReminder": "当写作目标接近时通知你。",
+    "backupReminder": "提示推荐的备份或导出。"
+  },
+  "placeholders": {
+    "language": "选择语言",
+    "autoSaveInterval": "选择间隔",
+    "fontSize": "选择大小",
+    "fontFamily": "选择字体",
+    "shortcutAction": "例如：打开笔记",
+    "shortcut": "点击后按下按键"
+  },
+  "theme": {
+    "light": "浅色",
+    "dark": "深色"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1 分钟",
+      "5": "5 分钟",
+      "10": "10 分钟",
+      "15": "15 分钟",
+      "30": "30 分钟"
+    },
+    "fontSize": {
+      "small": "小",
+      "medium": "中",
+      "large": "大",
+      "xlarge": "特大"
+    },
+    "fontFamily": {
+      "system": "系统 (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "创建项目",
+      "save": "保存",
+      "search": "搜索",
+      "export": "打开导出",
+      "toggle-theme": "切换主题"
+    }
+  },
+  "languages": {
+    "fr": "法语",
+    "en": "英语",
+    "es": "西班牙语",
+    "de": "德语",
+    "it": "意大利语",
+    "pt": "葡萄牙语",
+    "ru": "俄语",
+    "zh": "中文",
+    "ja": "日语",
+    "ko": "韩语",
+    "cs": "捷克语"
+  },
+  "toasts": {
+    "success": "设置已保存",
+    "error": "无法保存设置",
+    "noProject": "没有当前项目可用于保存设置"
+  }
+}

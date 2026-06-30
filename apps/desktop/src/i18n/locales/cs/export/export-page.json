@@ -11,5 +11,27 @@
   "previewTitle": "Exportovat náhled",
   "subtitle": "Exportujte svůj projekt v různých formátech",
   "title": "Pokročilý export",
-  "totalWords": "Celkem slov:"
+  "totalWords": "Celkem slov:",
+  "formats": {
+    "pdf": {
+      "description": "Přenosný dokument, ideální pro tisk"
+    },
+    "word": {
+      "description": "Upravitelný dokument Word"
+    },
+    "epub": {
+      "description": "Formát e-knihy pro čtečky"
+    },
+    "txt": {
+      "description": "Prostý textový soubor"
+    }
+  },
+  "params": {
+    "characters": "Postavy",
+    "places": "Místa",
+    "objects": "Objekty",
+    "events": "Události",
+    "notes": "Poznámky",
+    "researchs": "Výzkum"
+  }
 }

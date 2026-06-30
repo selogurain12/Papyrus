@@ -11,5 +11,27 @@
   "previewTitle": "Aperçu de l'export",
   "subtitle": "Exportez votre projet dans différents formats",
   "title": "Export avancé",
-  "totalWords": "Mots totaux :"
+  "totalWords": "Mots totaux :",
+  "formats": {
+    "pdf": {
+      "description": "Document portable, idéal pour l'impression"
+    },
+    "word": {
+      "description": "Document Word modifiable"
+    },
+    "epub": {
+      "description": "Format livre numérique pour liseuses"
+    },
+    "txt": {
+      "description": "Fichier texte brut"
+    }
+  },
+  "params": {
+    "characters": "Personnages",
+    "places": "Lieux",
+    "objects": "Objets",
+    "events": "Événements",
+    "notes": "Notes",
+    "researchs": "Recherches"
+  }
 }

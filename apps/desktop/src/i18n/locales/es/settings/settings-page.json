@@ -1,0 +1,128 @@
+{
+  "title": "Ajustes",
+  "subtitle": "Configura tus preferencias y opciones",
+  "tabs": {
+    "general": "General",
+    "appearance": "Apariencia",
+    "editor": "Editor",
+    "shortcuts": "Atajos",
+    "notifications": "Notificaciones"
+  },
+  "actions": {
+    "reset": "Restablecer",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "add": "Añadir",
+    "restoreShortcuts": "Restaurar atajos"
+  },
+  "sections": {
+    "general": {
+      "title": "Preferencias generales",
+      "description": "Define el idioma, los objetivos y el comportamiento global de Papyrus."
+    },
+    "appearance": {
+      "title": "Apariencia y visualización",
+      "description": "Personaliza el tema y la densidad de la interfaz."
+    },
+    "editor": {
+      "title": "Editor",
+      "description": "Ajusta las opciones que influyen en tu espacio de escritura."
+    },
+    "shortcuts": {
+      "title": "Atajos de teclado",
+      "description": "Mantén a mano las acciones rápidas de la aplicación."
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "description": "Elige los recordatorios que Papyrus puede enviarte."
+    }
+  },
+  "fields": {
+    "language": "Idioma de la interfaz",
+    "autoSave": "Guardado automático",
+    "autoSaveInterval": "Intervalo de guardado",
+    "dailyWordGoal": "Objetivo diario de palabras",
+    "theme": "Tema",
+    "fontSize": "Tamaño de fuente",
+    "fontFamily": "Fuente",
+    "compactMode": "Modo compacto",
+    "spellcheck": "Corrección ortográfica",
+    "focusMode": "Modo concentración",
+    "showLineNumbers": "Números de línea",
+    "sessionWordGoal": "Objetivo de palabras por sesión",
+    "shortcutAction": "Acción",
+    "shortcut": "Atajo",
+    "enableNotifications": "Activar notificaciones",
+    "dailyReminder": "Recordatorio diario",
+    "goalReminder": "Recordatorio de objetivo",
+    "backupReminder": "Recordatorio de copia de seguridad"
+  },
+  "descriptions": {
+    "autoSave": "Guarda automáticamente tu trabajo mientras escribes.",
+    "compactMode": "Reduce los espacios para mostrar más información en pantalla.",
+    "spellcheck": "Activa la revisión ortográfica durante la escritura.",
+    "focusMode": "Limita las distracciones alrededor del texto actual.",
+    "showLineNumbers": "Muestra referencias en textos largos.",
+    "enableNotifications": "Permite recordatorios y alertas de progreso.",
+    "dailyReminder": "Te invita a escribir cada día.",
+    "goalReminder": "Te avisa cuando tu objetivo de escritura se acerca.",
+    "backupReminder": "Te avisa de copias de seguridad o exportaciones recomendadas."
+  },
+  "placeholders": {
+    "language": "Seleccionar un idioma",
+    "autoSaveInterval": "Seleccionar un intervalo",
+    "fontSize": "Seleccionar un tamaño",
+    "fontFamily": "Seleccionar una fuente",
+    "shortcutAction": "Ej.: Abrir notas",
+    "shortcut": "Haz clic y pulsa teclas"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1 minuto",
+      "5": "5 minutos",
+      "10": "10 minutos",
+      "15": "15 minutos",
+      "30": "30 minutos"
+    },
+    "fontSize": {
+      "small": "Pequeña",
+      "medium": "Mediana",
+      "large": "Grande",
+      "xlarge": "Muy grande"
+    },
+    "fontFamily": {
+      "system": "Sistema (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "Crear elemento",
+      "save": "Guardar",
+      "search": "Buscar",
+      "export": "Abrir exportación",
+      "toggle-theme": "Cambiar tema"
+    }
+  },
+  "languages": {
+    "fr": "Francés",
+    "en": "Inglés",
+    "es": "Español",
+    "de": "Alemán",
+    "it": "Italiano",
+    "pt": "Portugués",
+    "ru": "Ruso",
+    "zh": "Chino",
+    "ja": "Japonés",
+    "ko": "Coreano",
+    "cs": "Checo"
+  },
+  "toasts": {
+    "success": "Configuración guardada",
+    "error": "No se pudo guardar la configuración",
+    "noProject": "No hay ningún proyecto actual para guardar la configuración"
+  }
+}

@@ -85,5 +85,6 @@
   "update": "Обновлять",
   "validate": "Подтвердить",
   "wordGoal": "{{count}} цель",
-  "words": "{{count}} слов"
+  "words": "{{count}} слов",
+  "menu.settings": "Настройки"
 }

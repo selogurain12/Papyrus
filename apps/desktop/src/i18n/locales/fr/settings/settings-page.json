@@ -1,0 +1,128 @@
+{
+  "title": "Paramètres",
+  "subtitle": "Configurez vos préférences et options",
+  "tabs": {
+    "general": "Général",
+    "appearance": "Apparence",
+    "editor": "Éditeur",
+    "shortcuts": "Raccourcis",
+    "notifications": "Notifications"
+  },
+  "actions": {
+    "reset": "Réinitialiser",
+    "save": "Sauvegarder",
+    "saving": "Sauvegarde...",
+    "add": "Ajouter",
+    "restoreShortcuts": "Restaurer les raccourcis"
+  },
+  "sections": {
+    "general": {
+      "title": "Préférences générales",
+      "description": "Définissez la langue, les objectifs et le comportement global de Papyrus."
+    },
+    "appearance": {
+      "title": "Apparence et affichage",
+      "description": "Personnalisez le thème et la densité de l'interface."
+    },
+    "editor": {
+      "title": "Éditeur",
+      "description": "Ajustez les options qui influencent votre espace d'écriture."
+    },
+    "shortcuts": {
+      "title": "Raccourcis clavier",
+      "description": "Gardez sous la main les actions rapides de l'application."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Choisissez les rappels que Papyrus peut vous envoyer."
+    }
+  },
+  "fields": {
+    "language": "Langue de l'interface",
+    "autoSave": "Sauvegarde automatique",
+    "autoSaveInterval": "Intervalle de sauvegarde",
+    "dailyWordGoal": "Objectif quotidien de mots",
+    "theme": "Thème",
+    "fontSize": "Taille de police",
+    "fontFamily": "Police de caractères",
+    "compactMode": "Mode compact",
+    "spellcheck": "Correction orthographique",
+    "focusMode": "Mode concentration",
+    "showLineNumbers": "Numéros de ligne",
+    "sessionWordGoal": "Objectif de mots par session",
+    "shortcutAction": "Action",
+    "shortcut": "Raccourci",
+    "enableNotifications": "Activer les notifications",
+    "dailyReminder": "Rappel quotidien",
+    "goalReminder": "Rappel d'objectif",
+    "backupReminder": "Rappel de sauvegarde"
+  },
+  "descriptions": {
+    "autoSave": "Sauvegarde automatiquement votre travail pendant l'écriture.",
+    "compactMode": "Réduit les espacements pour afficher plus d'informations à l'écran.",
+    "spellcheck": "Active la vérification orthographique pendant la rédaction.",
+    "focusMode": "Limite les distractions autour du texte en cours.",
+    "showLineNumbers": "Affiche des repères dans les textes longs.",
+    "enableNotifications": "Autorise les rappels et alertes de progression.",
+    "dailyReminder": "Vous invite à écrire chaque jour.",
+    "goalReminder": "Vous prévient quand votre objectif d'écriture approche.",
+    "backupReminder": "Vous signale les sauvegardes ou exports recommandés."
+  },
+  "placeholders": {
+    "language": "Sélectionner une langue",
+    "autoSaveInterval": "Sélectionner un intervalle",
+    "fontSize": "Sélectionner une taille",
+    "fontFamily": "Sélectionner une police",
+    "shortcutAction": "Ex: Ouvrir les notes",
+    "shortcut": "Cliquez puis appuyez"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1 minute",
+      "5": "5 minutes",
+      "10": "10 minutes",
+      "15": "15 minutes",
+      "30": "30 minutes"
+    },
+    "fontSize": {
+      "small": "Petite",
+      "medium": "Moyenne",
+      "large": "Grande",
+      "xlarge": "Très grande"
+    },
+    "fontFamily": {
+      "system": "Système (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "Créer un élément",
+      "save": "Sauvegarder",
+      "search": "Rechercher",
+      "export": "Ouvrir l'export",
+      "toggle-theme": "Basculer le thème"
+    }
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "Anglais",
+    "es": "Espagnol",
+    "de": "Allemand",
+    "it": "Italien",
+    "pt": "Portugais",
+    "ru": "Russe",
+    "zh": "Chinois",
+    "ja": "Japonais",
+    "ko": "Coréen",
+    "cs": "Tchèque"
+  },
+  "toasts": {
+    "success": "Paramètres sauvegardés",
+    "error": "Impossible de sauvegarder les paramètres",
+    "noProject": "Aucun projet courant pour sauvegarder les paramètres"
+  }
+}

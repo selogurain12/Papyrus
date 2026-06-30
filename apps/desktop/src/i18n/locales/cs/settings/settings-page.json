@@ -1,0 +1,128 @@
+{
+  "title": "Nastavení",
+  "subtitle": "Nastavte své předvolby a možnosti",
+  "tabs": {
+    "general": "Obecné",
+    "appearance": "Vzhled",
+    "editor": "Editor",
+    "shortcuts": "Zkratky",
+    "notifications": "Oznámení"
+  },
+  "actions": {
+    "reset": "Obnovit",
+    "save": "Uložit",
+    "saving": "Ukládání...",
+    "add": "Přidat",
+    "restoreShortcuts": "Obnovit zkratky"
+  },
+  "sections": {
+    "general": {
+      "title": "Obecné předvolby",
+      "description": "Nastavte jazyk, cíle a celkové chování Papyrusu."
+    },
+    "appearance": {
+      "title": "Vzhled a zobrazení",
+      "description": "Přizpůsobte motiv a hustotu rozhraní."
+    },
+    "editor": {
+      "title": "Editor",
+      "description": "Upravte možnosti, které ovlivňují váš prostor pro psaní."
+    },
+    "shortcuts": {
+      "title": "Klávesové zkratky",
+      "description": "Mějte rychlé akce aplikace po ruce."
+    },
+    "notifications": {
+      "title": "Oznámení",
+      "description": "Vyberte připomenutí, která vám může Papyrus posílat."
+    }
+  },
+  "fields": {
+    "language": "Jazyk rozhraní",
+    "autoSave": "Automatické ukládání",
+    "autoSaveInterval": "Interval ukládání",
+    "dailyWordGoal": "Denní cíl slov",
+    "theme": "Motiv",
+    "fontSize": "Velikost písma",
+    "fontFamily": "Písmo",
+    "compactMode": "Kompaktní režim",
+    "spellcheck": "Kontrola pravopisu",
+    "focusMode": "Režim soustředění",
+    "showLineNumbers": "Čísla řádků",
+    "sessionWordGoal": "Cíl slov na relaci",
+    "shortcutAction": "Akce",
+    "shortcut": "Zkratka",
+    "enableNotifications": "Povolit oznámení",
+    "dailyReminder": "Denní připomenutí",
+    "goalReminder": "Připomenutí cíle",
+    "backupReminder": "Připomenutí zálohy"
+  },
+  "descriptions": {
+    "autoSave": "Automaticky ukládá vaši práci během psaní.",
+    "compactMode": "Zmenší mezery, aby se na obrazovku vešlo více informací.",
+    "spellcheck": "Zapne kontrolu pravopisu při psaní.",
+    "focusMode": "Omezí rušivé prvky kolem aktuálního textu.",
+    "showLineNumbers": "Zobrazí značky v dlouhých textech.",
+    "enableNotifications": "Povolí připomenutí a upozornění na pokrok.",
+    "dailyReminder": "Připomene vám psát každý den.",
+    "goalReminder": "Upozorní vás, když se blíží váš cíl psaní.",
+    "backupReminder": "Upozorní na doporučené zálohy nebo exporty."
+  },
+  "placeholders": {
+    "language": "Vyberte jazyk",
+    "autoSaveInterval": "Vyberte interval",
+    "fontSize": "Vyberte velikost",
+    "fontFamily": "Vyberte písmo",
+    "shortcutAction": "Např.: Otevřít poznámky",
+    "shortcut": "Klikněte a stiskněte klávesy"
+  },
+  "theme": {
+    "light": "Světlý",
+    "dark": "Tmavý"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1 minuta",
+      "5": "5 minut",
+      "10": "10 minut",
+      "15": "15 minut",
+      "30": "30 minut"
+    },
+    "fontSize": {
+      "small": "Malá",
+      "medium": "Střední",
+      "large": "Velká",
+      "xlarge": "Velmi velká"
+    },
+    "fontFamily": {
+      "system": "Systém (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "Vytvořit položku",
+      "save": "Uložit",
+      "search": "Hledat",
+      "export": "Otevřít export",
+      "toggle-theme": "Přepnout motiv"
+    }
+  },
+  "languages": {
+    "fr": "Francouzština",
+    "en": "Angličtina",
+    "es": "Španělština",
+    "de": "Němčina",
+    "it": "Italština",
+    "pt": "Portugalština",
+    "ru": "Ruština",
+    "zh": "Čínština",
+    "ja": "Japonština",
+    "ko": "Korejština",
+    "cs": "Čeština"
+  },
+  "toasts": {
+    "success": "Nastavení uloženo",
+    "error": "Nastavení nelze uložit",
+    "noProject": "Žádný aktuální projekt pro uložení nastavení"
+  }
+}

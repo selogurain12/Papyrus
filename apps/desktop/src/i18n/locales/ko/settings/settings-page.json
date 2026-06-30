@@ -1,0 +1,128 @@
+{
+  "title": "설정",
+  "subtitle": "환경설정과 옵션을 구성하세요",
+  "tabs": {
+    "general": "일반",
+    "appearance": "모양",
+    "editor": "편집기",
+    "shortcuts": "단축키",
+    "notifications": "알림"
+  },
+  "actions": {
+    "reset": "초기화",
+    "save": "저장",
+    "saving": "저장 중...",
+    "add": "추가",
+    "restoreShortcuts": "단축키 복원"
+  },
+  "sections": {
+    "general": {
+      "title": "일반 환경설정",
+      "description": "Papyrus의 언어, 목표, 전체 동작을 설정합니다."
+    },
+    "appearance": {
+      "title": "모양 및 표시",
+      "description": "테마와 인터페이스 밀도를 사용자 지정합니다."
+    },
+    "editor": {
+      "title": "편집기",
+      "description": "글쓰기 공간에 영향을 주는 옵션을 조정합니다."
+    },
+    "shortcuts": {
+      "title": "키보드 단축키",
+      "description": "앱의 빠른 작업을 가까이에 둡니다."
+    },
+    "notifications": {
+      "title": "알림",
+      "description": "Papyrus가 보낼 수 있는 알림을 선택합니다."
+    }
+  },
+  "fields": {
+    "language": "인터페이스 언어",
+    "autoSave": "자동 저장",
+    "autoSaveInterval": "저장 간격",
+    "dailyWordGoal": "일일 단어 목표",
+    "theme": "테마",
+    "fontSize": "글꼴 크기",
+    "fontFamily": "글꼴",
+    "compactMode": "컴팩트 모드",
+    "spellcheck": "맞춤법 검사",
+    "focusMode": "집중 모드",
+    "showLineNumbers": "줄 번호",
+    "sessionWordGoal": "세션당 단어 목표",
+    "shortcutAction": "동작",
+    "shortcut": "단축키",
+    "enableNotifications": "알림 활성화",
+    "dailyReminder": "일일 알림",
+    "goalReminder": "목표 알림",
+    "backupReminder": "백업 알림"
+  },
+  "descriptions": {
+    "autoSave": "글을 쓰는 동안 작업을 자동으로 저장합니다.",
+    "compactMode": "간격을 줄여 화면에 더 많은 정보를 표시합니다.",
+    "spellcheck": "작성 중 맞춤법 검사를 활성화합니다.",
+    "focusMode": "현재 텍스트 주변의 방해 요소를 줄입니다.",
+    "showLineNumbers": "긴 텍스트에 표시 기준을 보여줍니다.",
+    "enableNotifications": "알림과 진행 상황 알림을 허용합니다.",
+    "dailyReminder": "매일 글쓰기를 권장합니다.",
+    "goalReminder": "글쓰기 목표에 가까워지면 알려줍니다.",
+    "backupReminder": "권장 백업 또는 내보내기를 알려줍니다."
+  },
+  "placeholders": {
+    "language": "언어 선택",
+    "autoSaveInterval": "간격 선택",
+    "fontSize": "크기 선택",
+    "fontFamily": "글꼴 선택",
+    "shortcutAction": "예: 노트 열기",
+    "shortcut": "클릭 후 키를 누르세요"
+  },
+  "theme": {
+    "light": "라이트",
+    "dark": "다크"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1분",
+      "5": "5분",
+      "10": "10분",
+      "15": "15분",
+      "30": "30분"
+    },
+    "fontSize": {
+      "small": "작게",
+      "medium": "보통",
+      "large": "크게",
+      "xlarge": "매우 크게"
+    },
+    "fontFamily": {
+      "system": "시스템 (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "항목 만들기",
+      "save": "저장",
+      "search": "검색",
+      "export": "내보내기 열기",
+      "toggle-theme": "테마 전환"
+    }
+  },
+  "languages": {
+    "fr": "프랑스어",
+    "en": "영어",
+    "es": "스페인어",
+    "de": "독일어",
+    "it": "이탈리아어",
+    "pt": "포르투갈어",
+    "ru": "러시아어",
+    "zh": "중국어",
+    "ja": "일본어",
+    "ko": "한국어",
+    "cs": "체코어"
+  },
+  "toasts": {
+    "success": "설정이 저장되었습니다",
+    "error": "설정을 저장할 수 없습니다",
+    "noProject": "설정을 저장할 현재 프로젝트가 없습니다"
+  }
+}

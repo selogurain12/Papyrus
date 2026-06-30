@@ -1,0 +1,128 @@
+{
+  "title": "Settings",
+  "subtitle": "Configure your preferences and options",
+  "tabs": {
+    "general": "General",
+    "appearance": "Appearance",
+    "editor": "Editor",
+    "shortcuts": "Shortcuts",
+    "notifications": "Notifications"
+  },
+  "actions": {
+    "reset": "Reset",
+    "save": "Save",
+    "saving": "Saving...",
+    "add": "Add",
+    "restoreShortcuts": "Restore shortcuts"
+  },
+  "sections": {
+    "general": {
+      "title": "General preferences",
+      "description": "Set the language, goals, and global behavior of Papyrus."
+    },
+    "appearance": {
+      "title": "Appearance and display",
+      "description": "Customize the theme and interface density."
+    },
+    "editor": {
+      "title": "Editor",
+      "description": "Adjust the options that shape your writing space."
+    },
+    "shortcuts": {
+      "title": "Keyboard shortcuts",
+      "description": "Keep quick application actions close at hand."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Choose the reminders Papyrus can send you."
+    }
+  },
+  "fields": {
+    "language": "Interface language",
+    "autoSave": "Auto save",
+    "autoSaveInterval": "Save interval",
+    "dailyWordGoal": "Daily word goal",
+    "theme": "Theme",
+    "fontSize": "Font size",
+    "fontFamily": "Font family",
+    "compactMode": "Compact mode",
+    "spellcheck": "Spell check",
+    "focusMode": "Focus mode",
+    "showLineNumbers": "Line numbers",
+    "sessionWordGoal": "Words per session goal",
+    "shortcutAction": "Action",
+    "shortcut": "Shortcut",
+    "enableNotifications": "Enable notifications",
+    "dailyReminder": "Daily reminder",
+    "goalReminder": "Goal reminder",
+    "backupReminder": "Backup reminder"
+  },
+  "descriptions": {
+    "autoSave": "Automatically saves your work while you write.",
+    "compactMode": "Reduces spacing to show more information on screen.",
+    "spellcheck": "Enables spell checking while writing.",
+    "focusMode": "Limits distractions around the current text.",
+    "showLineNumbers": "Shows markers in long texts.",
+    "enableNotifications": "Allows reminders and progress alerts.",
+    "dailyReminder": "Prompts you to write every day.",
+    "goalReminder": "Notifies you when your writing goal is getting close.",
+    "backupReminder": "Flags recommended backups or exports."
+  },
+  "placeholders": {
+    "language": "Select a language",
+    "autoSaveInterval": "Select an interval",
+    "fontSize": "Select a size",
+    "fontFamily": "Select a font",
+    "shortcutAction": "E.g. Open notes",
+    "shortcut": "Click then press keys"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "options": {
+    "autoSaveInterval": {
+      "1": "1 minute",
+      "5": "5 minutes",
+      "10": "10 minutes",
+      "15": "15 minutes",
+      "30": "30 minutes"
+    },
+    "fontSize": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "xlarge": "Very large"
+    },
+    "fontFamily": {
+      "system": "System (Inter)"
+    }
+  },
+  "shortcuts": {
+    "defaults": {
+      "create": "Create item",
+      "save": "Save",
+      "search": "Search",
+      "export": "Open export",
+      "toggle-theme": "Toggle theme"
+    }
+  },
+  "languages": {
+    "fr": "French",
+    "en": "English",
+    "es": "Spanish",
+    "de": "German",
+    "it": "Italian",
+    "pt": "Portuguese",
+    "ru": "Russian",
+    "zh": "Chinese",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "cs": "Czech"
+  },
+  "toasts": {
+    "success": "Settings saved",
+    "error": "Unable to save settings",
+    "noProject": "No current project to save settings"
+  }
+}

@@ -11,5 +11,27 @@
   "previewTitle": "プレビューのエクスポート",
   "subtitle": "プロジェクトをさまざまな形式でエクスポートする",
   "title": "高度なエクスポート",
-  "totalWords": "総単語数:"
+  "totalWords": "総単語数:",
+  "formats": {
+    "pdf": {
+      "description": "印刷に適したポータブル文書"
+    },
+    "word": {
+      "description": "編集可能な Word 文書"
+    },
+    "epub": {
+      "description": "リーダー向けの電子書籍形式"
+    },
+    "txt": {
+      "description": "プレーンテキストファイル"
+    }
+  },
+  "params": {
+    "characters": "登場人物",
+    "places": "場所",
+    "objects": "オブジェクト",
+    "events": "イベント",
+    "notes": "メモ",
+    "researchs": "リサーチ"
+  }
 }

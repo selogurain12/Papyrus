@@ -11,5 +11,27 @@
   "previewTitle": "Export preview",
   "subtitle": "Export your project in different formats",
   "title": "Advanced export",
-  "totalWords": "Total words:"
+  "totalWords": "Total words:",
+  "formats": {
+    "pdf": {
+      "description": "Portable document, ideal for printing"
+    },
+    "word": {
+      "description": "Editable Word document"
+    },
+    "epub": {
+      "description": "E-book format for readers"
+    },
+    "txt": {
+      "description": "Plain text file"
+    }
+  },
+  "params": {
+    "characters": "Characters",
+    "places": "Places",
+    "objects": "Objects",
+    "events": "Events",
+    "notes": "Notes",
+    "researchs": "Research"
+  }
 }

@@ -85,5 +85,6 @@
   "update": "Atualizar",
   "validate": "Validar",
   "wordGoal": "{{count}} meta",
-  "words": "{{count}} palavras"
+  "words": "{{count}} palavras",
+  "menu.settings": "Configurações"
 }

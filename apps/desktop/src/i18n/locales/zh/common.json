@@ -85,5 +85,6 @@
   "update": "更新",
   "validate": "证实",
   "wordGoal": "{{count}} 目标",
-  "words": "{{count}} 字"
+  "words": "{{count}} 字",
+  "menu.settings": "设置"
 }

@@ -85,5 +85,6 @@
   "update": "업데이트",
   "validate": "검증",
   "wordGoal": "{{count}} 목표",
-  "words": "{{count}} 단어"
+  "words": "{{count}} 단어",
+  "menu.settings": "설정"
 }

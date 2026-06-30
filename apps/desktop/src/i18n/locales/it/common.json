@@ -85,5 +85,6 @@
   "update": "Aggiornamento",
   "validate": "Convalidare",
   "wordGoal": "{{count}} obiettivo",
-  "words": "{{count}} parole"
+  "words": "{{count}} parole",
+  "menu.settings": "Impostazioni"
 }

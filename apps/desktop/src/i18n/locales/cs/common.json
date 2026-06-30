@@ -85,5 +85,6 @@
   "update": "Aktualizovat",
   "validate": "Ověřit",
   "wordGoal": "{{count}} cíl",
-  "words": "{{count}} slov"
+  "words": "{{count}} slov",
+  "menu.settings": "Nastavení"
 }

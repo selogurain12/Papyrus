@@ -60,7 +60,7 @@ export function ChapterList({ id, setSelectedChapter, selectedChapter }: Chapter
             onClick={() => setSelectedChapter && setSelectedChapter(ch)}
           >
             <div className="flex items-center gap-4">
-              <FileText size={16} color="#111827" />
+              <FileText className="text-gray-900" size={16} />
               <div className="flex flex-col">
                 <p className="font-medium">{ch.title}</p>
 

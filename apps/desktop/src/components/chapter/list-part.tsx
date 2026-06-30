@@ -77,29 +77,18 @@ export function PartsList() {
         <div className="w-1/2 gap-6 bg-white rounded-lg shadow p-4 border border-gray-200">
           <p className="text-lg font-semibold">{t("overview")}</p>
           <div className="mt-4 flex w-full gap-4 pb-4">
-            <div
-              className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm"
-              style={{ backgroundColor: "#FAF5FF" }}
-            >
-              <span className="text-2xl font-bold" style={{ color: "#9D174D" }}>
-                {parts?.body.total ?? 0}
-              </span>
+            <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-purple-50">
+              <span className="text-2xl font-bold text-pink-800">{parts?.body.total ?? 0}</span>
               <span className="text-sm font-medium text-gray-700">{t("parts")}</span>
             </div>
-            <div
-              className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm"
-              style={{ backgroundColor: "#EFF6FF" }}
-            >
-              <span className="text-2xl font-bold" style={{ color: "#2563EB" }}>
+            <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-blue-50">
+              <span className="text-2xl font-bold text-blue-600">
                 {chaptersData?.body.total ?? 0}
               </span>
               <span className="text-sm font-medium text-gray-700">{t("chapters")}</span>
             </div>
-            <div
-              className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm"
-              style={{ backgroundColor: "#ECFDF5" }}
-            >
-              <span className="text-2xl font-bold" style={{ color: "#059669" }}>
+            <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-emerald-50">
+              <span className="text-2xl font-bold text-emerald-600">
                 {currentProject?.currentWordCount ?? 0}
               </span>
               <span className="text-sm font-medium text-gray-700">{t("words")}</span>
@@ -117,7 +106,7 @@ export function PartsList() {
                   }}
                 >
                   {isOpen ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
-                  <BookOpen className="ml-4" color="#2563EB" size={20} />
+                  <BookOpen className="ml-4 text-blue-600" size={20} />
 
                   <div className="ml-8 flex flex-col" style={{ marginLeft: 8, flex: 1 }}>
                     <p className="font-medium ml-4">{part.title}</p>
@@ -134,7 +123,7 @@ export function PartsList() {
                         setSelectedPart(part);
                       }}
                     >
-                      <PencilLine size={18} color="#2563EB" />
+                      <PencilLine className="text-blue-600" size={18} />
                     </Button>
 
                     <Button
@@ -144,7 +133,7 @@ export function PartsList() {
                         setSelectedPart(part);
                       }}
                     >
-                      <Trash2 size={18} color="#DC2626" />
+                      <Trash2 className="text-red-600" size={18} />
                     </Button>
                   </div>
                 </div>

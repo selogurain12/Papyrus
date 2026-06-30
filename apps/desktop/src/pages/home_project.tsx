@@ -6,7 +6,7 @@ import { Outlet } from "@tanstack/react-router";
 export function HomeProject() {
   const { name } = projectHomeRoute.useParams();
   return (
-    <div className="flex h-full min-h-screen bg-gray-50">
+    <div className="flex h-full min-h-screen bg-background text-foreground">
       <div className="sticky top-0 h-screen overflow-hidden">
         <Sidebar name={name} />
       </div>

@@ -10,16 +10,16 @@ import { ListProject } from "../components/project/list-project";
 import { useTranslation } from "react-i18next";
 
 export function ProjectPage() {
-  const { t } = useTranslation("pages/project");
+  const { t } = useTranslation("pages/project-page");
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-gray-50">
-      <div className="w-full border-b border-gray-200 p-4 bg-gray-50">
+    <div className="flex flex-col w-full min-h-screen bg-background text-foreground">
+      <div className="w-full border-b border-border p-4 bg-background">
         <div className="max-w-6xl mx-auto flex items-center justify-between w-full px-4">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <BookOpen className="w-6 h-6 text-white" />
             </div>
 

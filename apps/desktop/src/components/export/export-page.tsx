@@ -50,7 +50,7 @@ const exportFormats: ExportFormat[] = [
     id: "pdf",
     label: "PDF",
     icon: FileText,
-    color: "#DC2626",
+    color: "text-red-600",
     bgColor: "bg-red-100",
     descriptionKey: "formats.pdf.description",
   },
@@ -58,7 +58,7 @@ const exportFormats: ExportFormat[] = [
     id: "word",
     label: "Word (.docx)",
     icon: File,
-    color: "#2563EB",
+    color: "text-blue-600",
     bgColor: "bg-blue-100",
     descriptionKey: "formats.word.description",
   },
@@ -66,7 +66,7 @@ const exportFormats: ExportFormat[] = [
     id: "epub",
     label: "EPUB",
     icon: Book,
-    color: "#16A34A",
+    color: "text-green-600",
     bgColor: "bg-green-100",
     descriptionKey: "formats.epub.description",
   },
@@ -74,7 +74,7 @@ const exportFormats: ExportFormat[] = [
     id: "txt",
     label: "TXT",
     icon: FileText,
-    color: "#4B5563",
+    color: "text-gray-600",
     bgColor: "bg-gray-100",
     descriptionKey: "formats.txt.description",
   },
@@ -370,12 +370,12 @@ export function ExportPage() {
                 >
                   <div className="flex justify-between">
                     <div className={`p-4 ${format.bgColor} w-fit rounded-lg`}>
-                      <FileIcon color={format.color} />
+                      <FileIcon className={format.color} />
                     </div>
 
                     {selectedFormat && selectedFormat.id === format.id ? (
                       <div className="bg-blue-500 rounded-full flex items-center justify-center w-8 h-8">
-                        <Check size={18} color="white" strokeWidth={3} />
+                        <Check className="text-white" size={18} strokeWidth={3} />
                       </div>
                     ) : null}
                   </div>

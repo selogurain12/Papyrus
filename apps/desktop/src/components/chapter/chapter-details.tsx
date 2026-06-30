@@ -6,10 +6,15 @@ import { useTranslation } from "react-i18next";
 export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
   const { t } = useTranslation(["chapter/chapter-details", "common"]);
 
+  const wordCount = useMemo(() => {
+    if (!chapter?.content) return chapter?.wordCount ?? 0;
+    return chapter.content.trim().split(/\s+/).filter(Boolean).length;
+  }, [chapter?.content, chapter?.wordCount]);
+
   if (!chapter) {
     return (
       <div className="bg-white border border-gray-300 rounded-2xl p-12 flex flex-col items-center text-center">
-        <BookOpen size={60} color="#D1D5DB" />
+        <BookOpen className="text-gray-300" size={60} />
 
         <h2 className="mt-4 text-xl font-bold text-gray-900">{t("selectTitle")}</h2>
 
@@ -18,16 +23,10 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
     );
   }
 
-  const statusColorMap = {
-    toStart: "#E5E7EB",
-    inProgress: "#FEF3C7",
-    completed: "#DCFCE7",
-  };
-
-  const statusTextColorMap = {
-    toStart: "#374151",
-    inProgress: "#92400E",
-    completed: "#166534",
+  const statusColorMap: Record<string, string> = {
+    toStart: "bg-gray-200 text-gray-700",
+    inProgress: "bg-amber-100 text-amber-800",
+    completed: "bg-green-100 text-green-800",
   };
 
   const statusTextMap = {
@@ -36,18 +35,13 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
     completed: t("common:status.completed"),
   };
 
-  const wordCount = useMemo(() => {
-    if (!chapter.content) return chapter.wordCount ?? 0;
-    return chapter.content.trim().split(/\s+/).filter(Boolean).length;
-  }, [chapter.content, chapter.wordCount]);
-
   return (
     <div className="overflow-y-auto max-h-[90vh] p-4">
       <div className="bg-white border border-gray-300 rounded-3xl p-6 shadow-sm">
         <div className="flex justify-between items-start">
           <div className="flex flex-1">
             <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mr-4">
-              <FileText size={22} color="#2563EB" />
+              <FileText className="text-blue-600" size={22} />
             </div>
 
             <div className="flex-1">
@@ -59,11 +53,7 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
                 </span>
 
                 <span
-                  className="px-3 py-1 rounded-full text-xs font-bold"
-                  style={{
-                    backgroundColor: statusColorMap[chapter.status],
-                    color: statusTextColorMap[chapter.status],
-                  }}
+                  className={`px-3 py-1 rounded-full text-xs font-bold ${statusColorMap[chapter.status]}`}
                 >
                   {statusTextMap[chapter.status] ?? chapter.status}
                 </span>
@@ -76,14 +66,14 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
               className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center"
               onClick={onEdit}
             >
-              <PencilLine size={18} color="#374151" />
+              <PencilLine className="text-gray-700" size={18} />
             </button>
 
             <button
               className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center"
               onClick={onDelete}
             >
-              <Trash2 size={18} color="#DC2626" />
+              <Trash2 className="text-red-600" size={18} />
             </button>
           </div>
         </div>
@@ -100,7 +90,7 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
           className="mt-4 w-full h-14 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center gap-2"
           onClick={onEditor}
         >
-          <PencilLine size={18} color="white" />
+          <PencilLine className="text-white" size={18} />
           {t("openEditor")}
         </button>
       </div>

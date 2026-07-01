@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { CharacterCard } from "./character-card";
 import { CharacterDetail } from "./character-details";
 import { CreateCharacter } from "./actions/create-character";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CharacterDto, queryKeys } from "@papyrus/source";
 import { client } from "../../utils/client/client";
 import { useProject } from "../../context/project-provider";
@@ -13,6 +13,11 @@ import { CharacterDeleteActions } from "./actions/delete-character";
 import { Input } from "../ui/input";
 import { useFilterCharacterDto } from "../../utils/filters/use-filter-character";
 import { useTranslation } from "react-i18next";
+import {
+  openCreateCharacterEvent,
+  openDeleteSelectedCharacterEvent,
+  openEditSelectedCharacterEvent,
+} from "../../utils/shortcut-events";
 
 // eslint-disable-next-line complexity
 export function CharactersList() {
@@ -38,6 +43,46 @@ export function CharactersList() {
       query: { ...options },
     },
   });
+
+  useEffect(() => {
+    function handleOpenCreateCharacter() {
+      setIsCreating(true);
+      setIsUpdating(false);
+      setCharacterSelected(undefined);
+    }
+
+    window.addEventListener(openCreateCharacterEvent, handleOpenCreateCharacter);
+
+    return () => {
+      window.removeEventListener(openCreateCharacterEvent, handleOpenCreateCharacter);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleOpenEditSelectedCharacter() {
+      if (characterSelected) {
+        setIsCreating(false);
+        setIsUpdating(true);
+      }
+    }
+
+    function handleOpenDeleteSelectedCharacter() {
+      if (characterSelected) {
+        setIsDeleting(true);
+      }
+    }
+
+    window.addEventListener(openEditSelectedCharacterEvent, handleOpenEditSelectedCharacter);
+    window.addEventListener(openDeleteSelectedCharacterEvent, handleOpenDeleteSelectedCharacter);
+
+    return () => {
+      window.removeEventListener(openEditSelectedCharacterEvent, handleOpenEditSelectedCharacter);
+      window.removeEventListener(
+        openDeleteSelectedCharacterEvent,
+        handleOpenDeleteSelectedCharacter
+      );
+    };
+  }, [characterSelected]);
 
   return (
     <div className="p-6">

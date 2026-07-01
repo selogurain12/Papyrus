@@ -17,6 +17,7 @@ import { isFetchError } from "@ts-rest/react-query/v5";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
+import { openEditStructureEvent } from "../../utils/shortcut-events";
 
 // eslint-disable-next-line complexity
 export function StructurePage() {
@@ -52,6 +53,19 @@ export function StructurePage() {
       objectives: data.body.objectives,
     });
   }, [data, form]);
+
+  useEffect(() => {
+    function handleOpenEditStructure() {
+      setIsUpdating(true);
+    }
+
+    window.addEventListener(openEditStructureEvent, handleOpenEditStructure);
+
+    return () => {
+      window.removeEventListener(openEditStructureEvent, handleOpenEditStructure);
+    };
+  }, []);
+
   const { mutate: updateStructure } = client.structure.update.useMutation({
     onSuccess: () => {
       toast.success(t("success"));

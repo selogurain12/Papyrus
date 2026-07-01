@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { PlaceCard } from "./place-card";
 import { PlaceDetail } from "./place-details";
 import { CreatePlace } from "./actions/create-place";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlaceDto, queryKeys } from "@papyrus/source";
 import { client } from "../../utils/client/client";
 import { useProject } from "../../context/project-provider";
@@ -13,6 +13,11 @@ import { PlaceDeleteActions } from "./actions/delete-place";
 import { Input } from "../ui/input";
 import { useFilterDto } from "../../utils/filters/use-filter-dto";
 import { useTranslation } from "react-i18next";
+import {
+  openCreatePlaceEvent,
+  openDeleteSelectedPlaceEvent,
+  openEditSelectedPlaceEvent,
+} from "../../utils/shortcut-events";
 
 // eslint-disable-next-line complexity
 export function PlacesList() {
@@ -41,6 +46,43 @@ export function PlacesList() {
       query: { ...options },
     },
   });
+
+  useEffect(() => {
+    function handleOpenCreatePlace() {
+      setIsCreating(true);
+      setIsUpdating(false);
+      setPlaceSelected(undefined);
+    }
+
+    window.addEventListener(openCreatePlaceEvent, handleOpenCreatePlace);
+
+    return () => {
+      window.removeEventListener(openCreatePlaceEvent, handleOpenCreatePlace);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleOpenEditSelectedPlace() {
+      if (placeSelected) {
+        setIsCreating(false);
+        setIsUpdating(true);
+      }
+    }
+
+    function handleOpenDeleteSelectedPlace() {
+      if (placeSelected) {
+        setIsDeleting(true);
+      }
+    }
+
+    window.addEventListener(openEditSelectedPlaceEvent, handleOpenEditSelectedPlace);
+    window.addEventListener(openDeleteSelectedPlaceEvent, handleOpenDeleteSelectedPlace);
+
+    return () => {
+      window.removeEventListener(openEditSelectedPlaceEvent, handleOpenEditSelectedPlace);
+      window.removeEventListener(openDeleteSelectedPlaceEvent, handleOpenDeleteSelectedPlace);
+    };
+  }, [placeSelected]);
 
   return (
     <div className="p-6">

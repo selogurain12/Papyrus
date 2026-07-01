@@ -1,7 +1,7 @@
 import { client } from "../../utils/client/client";
 import { useProject } from "../../context/project-provider";
 import { queryKeys, ResearchDto } from "@papyrus/source";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Plus, Search as SearchIcon } from "lucide-react";
 import { Input } from "../ui/input";
@@ -12,6 +12,7 @@ import { ResearchDeleteActions } from "./actions/delete-research";
 import { Dialog } from "../ui/dialogs/dialog";
 import { useFilterResearchDto } from "../../utils/filters/use-filter-research";
 import { useTranslation } from "react-i18next";
+import { openCreateResearchEvent } from "../../utils/shortcut-events";
 
 const categories = ["all", "articles", "links", "images", "videos", "books"];
 
@@ -31,6 +32,35 @@ export function ListResearch() {
     orderBy: { createdAt: "desc" },
   });
 
+  const { data } = client.research.getAll.useQuery({
+    queryKey: queryKeys.research.getAll({
+      pathParams: { projectId: currentProject?.id ?? "" },
+      query: { ...options },
+    }),
+    queryData: {
+      params: { projectId: currentProject?.id ?? "" },
+      query: { ...options },
+    },
+    enabled: Boolean(currentProject?.id),
+  });
+
+  useEffect(() => {
+    function handleOpenCreateResearch() {
+      setIsCreating(true);
+      setIsUpdating(null);
+      setIsDeleting(null);
+    }
+
+    window.addEventListener(openCreateResearchEvent, handleOpenCreateResearch);
+
+    return () => {
+      window.removeEventListener(openCreateResearchEvent, handleOpenCreateResearch);
+    };
+  }, []);
+
+  const emptyResearchClassName =
+    "col-span-full rounded-xl border border-dashed border-gray-300 p-8 text-center text-gray-500";
+
   if (!currentProject) {
     return (
       <div className="min-h-[300px] flex items-center justify-center text-gray-500">
@@ -38,20 +68,6 @@ export function ListResearch() {
       </div>
     );
   }
-
-  const { data } = client.research.getAll.useQuery({
-    queryKey: queryKeys.research.getAll({
-      pathParams: { projectId: currentProject.id },
-      query: { ...options },
-    }),
-    queryData: {
-      params: { projectId: currentProject.id },
-      query: { ...options },
-    },
-  });
-
-  const emptyResearchClassName =
-    "col-span-full rounded-xl border border-dashed border-gray-300 p-8 text-center text-gray-500";
 
   return (
     <div className="p-6">

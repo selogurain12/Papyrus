@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { ObjectCard } from "./object-card";
 import { ObjectDetail } from "./object-details";
 import { CreateObject } from "./actions/create-object";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ObjectDto, queryKeys } from "@papyrus/source";
 import { client } from "../../utils/client/client";
 import { useProject } from "../../context/project-provider";
@@ -13,6 +13,11 @@ import { ObjectDeleteActions } from "./actions/delete-object";
 import { Input } from "../ui/input";
 import { useFilterDto } from "../../utils/filters/use-filter-dto";
 import { useTranslation } from "react-i18next";
+import {
+  openCreateObjectEvent,
+  openDeleteSelectedObjectEvent,
+  openEditSelectedObjectEvent,
+} from "../../utils/shortcut-events";
 
 // eslint-disable-next-line complexity
 export function ObjectsList() {
@@ -41,6 +46,43 @@ export function ObjectsList() {
       query: { ...options },
     },
   });
+
+  useEffect(() => {
+    function handleOpenCreateObject() {
+      setIsCreating(true);
+      setIsUpdating(false);
+      setObjectSelected(undefined);
+    }
+
+    window.addEventListener(openCreateObjectEvent, handleOpenCreateObject);
+
+    return () => {
+      window.removeEventListener(openCreateObjectEvent, handleOpenCreateObject);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleOpenEditSelectedObject() {
+      if (objectSelected) {
+        setIsCreating(false);
+        setIsUpdating(true);
+      }
+    }
+
+    function handleOpenDeleteSelectedObject() {
+      if (objectSelected) {
+        setIsDeleting(true);
+      }
+    }
+
+    window.addEventListener(openEditSelectedObjectEvent, handleOpenEditSelectedObject);
+    window.addEventListener(openDeleteSelectedObjectEvent, handleOpenDeleteSelectedObject);
+
+    return () => {
+      window.removeEventListener(openEditSelectedObjectEvent, handleOpenEditSelectedObject);
+      window.removeEventListener(openDeleteSelectedObjectEvent, handleOpenDeleteSelectedObject);
+    };
+  }, [objectSelected]);
 
   return (
     <div className="p-6">

@@ -4,7 +4,7 @@ import { client } from "../../utils/client/client";
 import { useProject } from "../../context/project-provider";
 import { Button } from "../ui/button";
 import { BookOpen, ChevronDown, ChevronRight, PencilLine, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "../ui/dialogs/dialog";
 import { CreatePart } from "./actions/part/create-part";
 import { ChapterList } from "./list-chapter";
@@ -16,6 +16,14 @@ import { UpdateChapter } from "./actions/chapter/update-chapter";
 import { PartDeleteActions } from "./actions/part/delete-part";
 import { ChapterDeleteActions } from "./actions/chapter/delete-chapter";
 import { useTranslation } from "react-i18next";
+import {
+  openCreateChapterEvent,
+  openCreatePartEvent,
+  openDeleteSelectedChapterEvent,
+  openDeleteSelectedPartEvent,
+  openEditSelectedChapterEvent,
+  openEditSelectedPartEvent,
+} from "../../utils/shortcut-events";
 
 // eslint-disable-next-line complexity
 export function PartsList() {
@@ -53,6 +61,62 @@ export function PartsList() {
 
     enabled: !!currentProject?.id,
   });
+
+  useEffect(() => {
+    function handleOpenCreatePart() {
+      setIsCreatingPart(true);
+    }
+
+    function handleOpenCreateChapter() {
+      setIsCreatingChapter(true);
+    }
+
+    window.addEventListener(openCreatePartEvent, handleOpenCreatePart);
+    window.addEventListener(openCreateChapterEvent, handleOpenCreateChapter);
+
+    return () => {
+      window.removeEventListener(openCreatePartEvent, handleOpenCreatePart);
+      window.removeEventListener(openCreateChapterEvent, handleOpenCreateChapter);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleOpenEditSelectedPart() {
+      if (selectedPart) {
+        setIsUpdatingPart(true);
+      }
+    }
+
+    function handleOpenDeleteSelectedPart() {
+      if (selectedPart) {
+        setIsDeletingPart(true);
+      }
+    }
+
+    function handleOpenEditSelectedChapter() {
+      if (selectedChapter) {
+        setIsUpdatingChapter(true);
+      }
+    }
+
+    function handleOpenDeleteSelectedChapter() {
+      if (selectedChapter) {
+        setIsDeletingChapter(true);
+      }
+    }
+
+    window.addEventListener(openEditSelectedPartEvent, handleOpenEditSelectedPart);
+    window.addEventListener(openDeleteSelectedPartEvent, handleOpenDeleteSelectedPart);
+    window.addEventListener(openEditSelectedChapterEvent, handleOpenEditSelectedChapter);
+    window.addEventListener(openDeleteSelectedChapterEvent, handleOpenDeleteSelectedChapter);
+
+    return () => {
+      window.removeEventListener(openEditSelectedPartEvent, handleOpenEditSelectedPart);
+      window.removeEventListener(openDeleteSelectedPartEvent, handleOpenDeleteSelectedPart);
+      window.removeEventListener(openEditSelectedChapterEvent, handleOpenEditSelectedChapter);
+      window.removeEventListener(openDeleteSelectedChapterEvent, handleOpenDeleteSelectedChapter);
+    };
+  }, [selectedChapter, selectedPart]);
 
   const chapters = chaptersData?.body.data ?? [];
   return (
@@ -103,6 +167,7 @@ export function PartsList() {
                   className="flex items-center cursor-pointer"
                   onClick={() => {
                     setOpenPartId(isOpen ? null : part.id);
+                    setSelectedPart(part);
                   }}
                 >
                   {isOpen ? <ChevronDown size={18} /> : <ChevronRight size={18} />}

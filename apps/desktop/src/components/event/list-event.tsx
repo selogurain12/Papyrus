@@ -3,12 +3,17 @@ import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import { EventDetail } from "./event-details";
 import { CreateEvent } from "./actions/create-event";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EventDto } from "@papyrus/source";
 import { UpdateEvent } from "./actions/update-event";
 import { EventDeleteActions } from "./actions/delete-event";
 import { EventTimeline } from "./event-timeline";
 import { useTranslation } from "react-i18next";
+import {
+  openCreateEventEvent,
+  openDeleteSelectedEventEvent,
+  openEditSelectedEventEvent,
+} from "../../utils/shortcut-events";
 
 export function EventsList() {
   const { t } = useTranslation("event/list-event");
@@ -16,6 +21,43 @@ export function EventsList() {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    function handleOpenCreateEvent() {
+      setIsCreating(true);
+      setIsUpdating(false);
+      setEventSelected(undefined);
+    }
+
+    window.addEventListener(openCreateEventEvent, handleOpenCreateEvent);
+
+    return () => {
+      window.removeEventListener(openCreateEventEvent, handleOpenCreateEvent);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleOpenEditSelectedEvent() {
+      if (eventSelected) {
+        setIsCreating(false);
+        setIsUpdating(true);
+      }
+    }
+
+    function handleOpenDeleteSelectedEvent() {
+      if (eventSelected) {
+        setIsDeleting(true);
+      }
+    }
+
+    window.addEventListener(openEditSelectedEventEvent, handleOpenEditSelectedEvent);
+    window.addEventListener(openDeleteSelectedEventEvent, handleOpenDeleteSelectedEvent);
+
+    return () => {
+      window.removeEventListener(openEditSelectedEventEvent, handleOpenEditSelectedEvent);
+      window.removeEventListener(openDeleteSelectedEventEvent, handleOpenDeleteSelectedEvent);
+    };
+  }, [eventSelected]);
 
   return (
     <div className="p-6">

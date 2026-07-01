@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NoteDto, queryKeys } from "@papyrus/source";
 import { Dialog } from "../ui/dialogs/dialog";
 import { CreateNoteForm } from "./actions/create-note";
@@ -12,6 +12,11 @@ import { useProject } from "../../context/project-provider";
 import { NoteCard } from "./note-card";
 import NoteDetails from "./note-details";
 import { useTranslation } from "react-i18next";
+import {
+  openCreateNoteEvent,
+  openDeleteSelectedNoteEvent,
+  openEditSelectedNoteEvent,
+} from "../../utils/shortcut-events";
 
 // eslint-disable-next-line complexity
 export function NotesList() {
@@ -37,6 +42,43 @@ export function NotesList() {
       query: { ...options },
     },
   });
+
+  useEffect(() => {
+    function handleOpenCreateNote() {
+      setIsCreating(true);
+      setIsUpdating(false);
+      setNotesSelected(undefined);
+    }
+
+    window.addEventListener(openCreateNoteEvent, handleOpenCreateNote);
+
+    return () => {
+      window.removeEventListener(openCreateNoteEvent, handleOpenCreateNote);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleOpenEditSelectedNote() {
+      if (notesSelected) {
+        setIsCreating(false);
+        setIsUpdating(true);
+      }
+    }
+
+    function handleOpenDeleteSelectedNote() {
+      if (notesSelected) {
+        setIsDeleting(true);
+      }
+    }
+
+    window.addEventListener(openEditSelectedNoteEvent, handleOpenEditSelectedNote);
+    window.addEventListener(openDeleteSelectedNoteEvent, handleOpenDeleteSelectedNote);
+
+    return () => {
+      window.removeEventListener(openEditSelectedNoteEvent, handleOpenEditSelectedNote);
+      window.removeEventListener(openDeleteSelectedNoteEvent, handleOpenDeleteSelectedNote);
+    };
+  }, [notesSelected]);
 
   return (
     <div className="p-6">

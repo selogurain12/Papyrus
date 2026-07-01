@@ -37,8 +37,8 @@ export class SettingService {
     await em.begin();
     try {
       const repository = em.getRepository(SettingEntity);
-      const item = await repository.findOne({ id });
-      if (!item) {
+      const existingEntity = await repository.findOne({ id });
+      if (!existingEntity) {
         throw new TsRestException(settingContract.update, {
           status: 404,
 
@@ -48,7 +48,8 @@ export class SettingService {
           },
         });
       }
-      this.settingsMapper.updateDtoToEntity(item, updateDto, em);
+      const item = this.settingsMapper.updateDtoToEntity(existingEntity, updateDto, em);
+      em.persist(item);
       await em.commit();
       return this.settingsMapper.entityToDto(item);
     } catch (error) {

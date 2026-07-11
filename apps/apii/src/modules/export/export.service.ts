@@ -22,6 +22,7 @@ import {
 } from "docx";
 
 import { ExportParamsDto } from "packages/source/src/dtos/export.dto";
+import { now } from "@internationalized/date";
 import { PartService } from "../part/part.service";
 import { ChapterService } from "../chapters/chapters.service";
 import { ProjectService } from "../projects/projects.service";
@@ -31,10 +32,19 @@ import { PlaceService } from "../places/place.service";
 import { NoteService } from "../notes/note.service";
 import { ResearchService } from "../research/research.service";
 import { EventService } from "../events/events.service";
+import { HistoryService } from "../history/history.service";
 
 type PdfBlock = {
   type: "h1" | "h2" | "h3" | "p";
   text: string;
+};
+
+type ExportContentKind = "content" | "section-cover" | "manuscript-toc";
+
+type ExportContent = {
+  title: string;
+  content: string;
+  kind?: ExportContentKind;
 };
 
 @Injectable()
@@ -50,6 +60,7 @@ export class ExportService {
   private readonly notesService: NoteService;
   private readonly researchsService: ResearchService;
   private readonly eventsService: EventService;
+  private readonly historyService: HistoryService;
 
   public constructor(
     orm: MikroORM,
@@ -61,7 +72,8 @@ export class ExportService {
     placeService: PlaceService,
     noteService: NoteService,
     researchService: ResearchService,
-    eventService: EventService
+    eventService: EventService,
+    historyService: HistoryService
   ) {
     this.orm = orm;
     this.projectService = projectService;
@@ -73,6 +85,7 @@ export class ExportService {
     this.notesService = noteService;
     this.researchsService = researchService;
     this.eventsService = eventService;
+    this.historyService = historyService;
 
     if (!fs.existsSync(this.outputDir)) {
       fs.mkdirSync(this.outputDir, { recursive: true });
@@ -147,6 +160,56 @@ export class ExportService {
     `;
   }
 
+  private sectionCover(
+    title: string,
+    description: string,
+    count: number,
+    label = "éléments"
+  ): ExportContent {
+    return {
+      title,
+      kind: "section-cover",
+      content: `
+        ${this.exportStyle()}
+
+        <section class="section-cover">
+          <p class="section-kicker">Section</p>
+          <h1 class="section-title">${this.escapeHtml(title)}</h1>
+          <p class="section-description">${this.escapeHtml(description)}</p>
+          <p class="section-count">${count} ${this.escapeHtml(label)}</p>
+        </section>
+      `,
+    };
+  }
+
+  private async appendExportSection(
+    content: ExportContent[],
+    enabled: boolean,
+    config: {
+      title: string;
+      description: string;
+      singularLabel: string;
+      pluralLabel: string;
+      load: () => Promise<ExportContent[]>;
+    }
+  ): Promise<void> {
+    if (!enabled) {
+      return;
+    }
+
+    const items = await config.load();
+
+    content.push(
+      this.sectionCover(
+        config.title,
+        config.description,
+        items.length,
+        items.length > 1 ? config.pluralLabel : config.singularLabel
+      )
+    );
+    content.push(...items);
+  }
+
   private noteBox(value: unknown): string {
     const text = this.text(value);
 
@@ -154,7 +217,50 @@ export class ExportService {
       return "";
     }
 
-    return `<div class="note-box">${text}</div>`;
+    return `<div class="note-box"><p>${text}</p></div>`;
+  }
+
+  private tocEmpty(text: string): string {
+    return `<p class="toc-empty">${this.escapeHtml(text)}</p>`;
+  }
+
+  private async manuscriptTocInHtml(projectId: string): Promise<ExportContent> {
+    const parts = await this.partService.getAll({ disablePagination: true }, projectId);
+    const rows: string[] = [];
+    const emptyToc = this.tocEmpty("Aucune partie disponible");
+
+    for (const [partIndex, part] of parts.data.entries()) {
+      rows.push(`<p class="toc-part">${partIndex + 1}. ${this.text(part.title)}</p>`);
+
+      const chapters = await this.chapterService.getByPart(part.id, projectId);
+
+      if (chapters.data.length === 0) {
+        rows.push(`<p class="toc-empty">${partIndex + 1}.0 Aucun chapitre</p>`);
+      }
+
+      for (const [chapterIndex, chapter] of chapters.data.entries()) {
+        rows.push(
+          `<p class="toc-chapter">${partIndex + 1}.${chapterIndex + 1} ${this.text(chapter.title)}</p>`
+        );
+      }
+    }
+
+    return {
+      title: "Sommaire du manuscrit",
+      kind: "manuscript-toc",
+      content: `
+        ${this.exportStyle()}
+
+        <section class="manuscript-toc">
+          <p class="section-kicker">Sommaire</p>
+          <h1 class="section-title">Sommaire du manuscrit</h1>
+          <p class="section-description">Repères des parties et chapitres exportés.</p>
+          <div class="toc-list">
+            ${rows.length > 0 ? rows.join("") : emptyToc}
+          </div>
+        </section>
+      `,
+    };
   }
 
   private lexicalToPlainText(value: unknown): string {
@@ -191,9 +297,10 @@ export class ExportService {
     return `
       <style>
         body {
-          font-family: Georgia, serif;
-          color: #1f2937;
+          font-family: Georgia, "Times New Roman", serif;
+          color: #172033;
           line-height: 1.75;
+          background: #ffffff;
         }
 
         h1, h2, h3 {
@@ -207,25 +314,69 @@ export class ExportService {
           overflow-wrap: break-word;
         }
 
+        .section-cover {
+          min-height: 78vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          page-break-before: always;
+          break-before: page;
+          border-left: 8px solid #2563eb;
+          padding: 48px 0 48px 32px;
+        }
+
+        .section-kicker {
+          margin-bottom: 18px;
+          color: #2563eb;
+          font-size: 12px;
+          font-weight: bold;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+        }
+
+        .section-title {
+          margin: 0;
+          font-size: 42px;
+          line-height: 1.1;
+          color: #111827;
+        }
+
+        .section-description {
+          max-width: 620px;
+          margin-top: 18px;
+          color: #4b5563;
+          font-size: 16px;
+          font-style: italic;
+        }
+
+        .section-count {
+          margin-top: 28px;
+          color: #6b7280;
+          font-size: 13px;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+        }
+
         .export-card {
-          margin-bottom: 42px;
-          padding-bottom: 24px;
-          border-bottom: 1px solid #e5e7eb;
+          margin-bottom: 44px;
+          padding: 0 0 28px 0;
+          border-bottom: 1px solid #dbe3ef;
           page-break-inside: avoid;
           break-inside: avoid;
         }
 
         .export-title {
-          font-size: 30px;
+          font-size: 32px;
           margin: 0;
           color: #111827;
+          line-height: 1.15;
         }
 
         .export-subtitle {
           font-size: 14px;
-          color: #6b7280;
-          margin-top: 8px;
-          margin-bottom: 26px;
+          color: #526071;
+          margin-top: 10px;
+          margin-bottom: 28px;
           font-style: italic;
         }
 
@@ -239,10 +390,10 @@ export class ExportService {
           font-size: 16px;
           text-transform: uppercase;
           letter-spacing: 0.08em;
-          color: #111827;
+          color: #1d4ed8;
           margin-bottom: 14px;
           padding-bottom: 6px;
-          border-bottom: 1px solid #d1d5db;
+          border-bottom: 1px solid #bfdbfe;
         }
 
         .fields {
@@ -275,10 +426,57 @@ export class ExportService {
 
         .note-box {
           margin-top: 8px;
+          padding: 12px 14px;
+          border-left: 3px solid #93c5fd;
+          background: #f8fafc;
           color: #374151;
           white-space: pre-wrap;
           word-wrap: break-word;
           overflow-wrap: break-word;
+        }
+
+        .manuscript-toc {
+          min-height: 78vh;
+          page-break-before: always;
+          break-before: page;
+          padding: 48px 0;
+        }
+
+        .toc-list {
+          margin-top: 34px;
+          padding-top: 18px;
+          border-top: 1px solid #bfdbfe;
+        }
+
+        .toc-part {
+          margin-top: 18px;
+          color: #111827;
+          font-weight: bold;
+          font-size: 16px;
+        }
+
+        .toc-chapter {
+          margin-top: 7px;
+          margin-left: 24px;
+          color: #475569;
+          font-size: 13px;
+        }
+
+        .toc-empty {
+          margin-top: 7px;
+          margin-left: 24px;
+          color: #94a3b8;
+          font-style: italic;
+          font-size: 13px;
+        }
+
+        .part-cover {
+          min-height: 55vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border-left: 6px solid #7c3aed;
+          padding-left: 28px;
         }
 
         .chapter-content {
@@ -295,16 +493,19 @@ export class ExportService {
     `;
   }
 
-  public async chaptersInHtml(projectId: string): Promise<{ title: string; content: string }[]> {
+  public async chaptersInHtml(projectId: string): Promise<ExportContent[]> {
     const parts = await this.partService.getAll({ disablePagination: true }, projectId);
-    const content: { title: string; content: string }[] = [];
+    const content: ExportContent[] = [];
 
     for (const part of parts.data) {
       content.push({
         title: part.title,
         content: `
           ${this.exportStyle()}
-          <h1 class="page-break">${this.text(part.title)}</h1>
+          <section class="part-cover page-break">
+            <p class="section-kicker">Partie</p>
+            <h1 class="section-title">${this.text(part.title)}</h1>
+          </section>
         `,
       });
 
@@ -315,6 +516,7 @@ export class ExportService {
           title: chapter.title,
           content: `
             ${this.exportStyle()}
+            <p class="section-kicker">Chapitre</p>
             <h2>${this.text(chapter.title)}</h2>
             <div class="chapter-content">
               ${this.lexicalToPlainText(chapter.content ?? "")}
@@ -327,7 +529,7 @@ export class ExportService {
     return content;
   }
 
-  public async charactersInHtml(projectId: string): Promise<{ title: string; content: string }[]> {
+  public async charactersInHtml(projectId: string): Promise<ExportContent[]> {
     const characters = await this.charactersService.getAll({ disablePagination: true }, projectId);
 
     return characters.data.map((chara) => {
@@ -413,7 +615,7 @@ export class ExportService {
     });
   }
 
-  public async placeInHtml(projectId: string): Promise<{ title: string; content: string }[]> {
+  public async placeInHtml(projectId: string): Promise<ExportContent[]> {
     const places = await this.placesService.getAll({ disablePagination: true }, projectId);
 
     const typeMap: Record<string, string> = {
@@ -469,7 +671,7 @@ export class ExportService {
     }));
   }
 
-  public async objectsInHtml(projectId: string): Promise<{ title: string; content: string }[]> {
+  public async objectsInHtml(projectId: string): Promise<ExportContent[]> {
     const objects = await this.objectsService.getAll({ disablePagination: true }, projectId);
 
     const typeMap: Record<string, string> = {
@@ -524,7 +726,7 @@ export class ExportService {
     }));
   }
 
-  public async noteInHtml(projectId: string): Promise<{ title: string; content: string }[]> {
+  public async noteInHtml(projectId: string): Promise<ExportContent[]> {
     const notes = await this.notesService.getAll({ disablePagination: true }, projectId);
 
     return notes.data.map((note) => ({
@@ -543,7 +745,7 @@ export class ExportService {
     }));
   }
 
-  public async researchInHtml(projectId: string): Promise<{ title: string; content: string }[]> {
+  public async researchInHtml(projectId: string): Promise<ExportContent[]> {
     const researchs = await this.researchsService.getAll({ disablePagination: true }, projectId);
 
     const typeLabels: Record<string, string> = {
@@ -581,7 +783,7 @@ export class ExportService {
     }));
   }
 
-  public async eventInHtml(projectId: string): Promise<{ title: string; content: string }[]> {
+  public async eventInHtml(projectId: string): Promise<ExportContent[]> {
     const events = await this.eventsService.getAll({ disablePagination: true }, projectId);
 
     const importanceMap: Record<string, string> = {
@@ -629,34 +831,68 @@ export class ExportService {
   private async getExportContent(
     projectId: string,
     filter: ExportParamsDto
-  ): Promise<{ title: string; content: string }[]> {
-    const content: { title: string; content: string }[] = [];
+  ): Promise<ExportContent[]> {
+    const content: ExportContent[] = [];
+    const manuscript = await this.chaptersInHtml(projectId);
 
-    content.push(...(await this.chaptersInHtml(projectId)));
+    content.push(
+      this.sectionCover(
+        "Manuscrit",
+        "Les parties et chapitres du projet sont présentés dans leur ordre narratif.",
+        manuscript.length,
+        manuscript.length > 1 ? "entrées" : "entrée"
+      )
+    );
+    content.push(await this.manuscriptTocInHtml(projectId));
+    content.push(...manuscript);
 
-    if (filter.characters) {
-      content.push(...(await this.charactersInHtml(projectId)));
-    }
+    await this.appendExportSection(content, Boolean(filter.characters), {
+      title: "Personnages",
+      description: "Vous trouverez ensuite les fiches détaillées des personnages de l'export.",
+      singularLabel: "personnage",
+      pluralLabel: "personnages",
+      load: () => this.charactersInHtml(projectId),
+    });
 
-    if (filter.places) {
-      content.push(...(await this.placeInHtml(projectId)));
-    }
+    await this.appendExportSection(content, Boolean(filter.places), {
+      title: "Lieux",
+      description: "Cette partie rassemble les lieux, leur atmosphère et leur importance.",
+      singularLabel: "lieu",
+      pluralLabel: "lieux",
+      load: () => this.placeInHtml(projectId),
+    });
 
-    if (filter.objects) {
-      content.push(...(await this.objectsInHtml(projectId)));
-    }
+    await this.appendExportSection(content, Boolean(filter.objects), {
+      title: "Objets",
+      description: "Les objets importants du récit sont listés avec leur rôle et leur histoire.",
+      singularLabel: "objet",
+      pluralLabel: "objets",
+      load: () => this.objectsInHtml(projectId),
+    });
 
-    if (filter.events) {
-      content.push(...(await this.eventInHtml(projectId)));
-    }
+    await this.appendExportSection(content, Boolean(filter.events), {
+      title: "Chronologie",
+      description: "Les événements du projet sont présentés avec leurs dates, lieux et détails.",
+      singularLabel: "événement",
+      pluralLabel: "événements",
+      load: () => this.eventInHtml(projectId),
+    });
 
-    if (filter.notes) {
-      content.push(...(await this.noteInHtml(projectId)));
-    }
+    await this.appendExportSection(content, Boolean(filter.notes), {
+      title: "Notes",
+      description: "Cette section regroupe les notes de travail et les documents attachés.",
+      singularLabel: "note",
+      pluralLabel: "notes",
+      load: () => this.noteInHtml(projectId),
+    });
 
-    if (filter.researchs) {
-      content.push(...(await this.researchInHtml(projectId)));
-    }
+    await this.appendExportSection(content, Boolean(filter.researchs), {
+      title: "Recherches",
+      description: "Les sources, références et pistes documentaires sont regroupées ici.",
+      singularLabel: "recherche",
+      pluralLabel: "recherches",
+      load: () => this.researchInHtml(projectId),
+    });
 
     return content;
   }
@@ -678,6 +914,17 @@ export class ExportService {
         date: new Date().toISOString(),
       },
       content
+    );
+
+    await this.historyService.create(
+      {
+        type: "create",
+        entity: "export",
+        date: now("UTC").toString(),
+        title: "Généréation au format epub",
+        project,
+      },
+      projectId
     );
 
     return {
@@ -752,12 +999,154 @@ export class ExportService {
     doc.moveDown(0.8);
   }
 
+  private writePdfTitlePage(doc: PDFKit.PDFDocument, title: string): void {
+    const pageWidth = doc.page.width;
+    const pageHeight = doc.page.height;
+    const left = doc.page.margins.left;
+    const right = pageWidth - doc.page.margins.right;
+
+    doc.rect(0, 0, pageWidth, pageHeight).fill("#f8fafc");
+    doc.rect(left, 140, 8, 220).fill("#2563eb");
+    doc
+      .fillColor("#0f172a")
+      .font("Times-Bold")
+      .fontSize(34)
+      .text(title, left + 28, 160, {
+        width: right - left - 28,
+        align: "left",
+      });
+    doc
+      .moveDown(0.8)
+      .font("Times-Italic")
+      .fontSize(15)
+      .fillColor("#475569")
+      .text("Dossier exporté depuis Papyrus", {
+        width: right - left - 28,
+      });
+    doc
+      .font("Times-Roman")
+      .fontSize(11)
+      .fillColor("#64748b")
+      .text(new Date().toLocaleDateString("fr-FR"), left + 28, pageHeight - 120);
+  }
+
+  private writePdfPageNumbers(doc: PDFKit.PDFDocument): void {
+    const range = doc.bufferedPageRange();
+
+    for (let index = range.start; index < range.start + range.count; index += 1) {
+      doc.switchToPage(index);
+
+      const pageNumber = index + 1;
+      const y = doc.page.height - 36;
+
+      doc
+        .font("Times-Roman")
+        .fontSize(9)
+        .fillColor("#94a3b8")
+        .text(String(pageNumber), doc.page.margins.left, y, {
+          align: "center",
+          width: doc.page.width - doc.page.margins.left - doc.page.margins.right,
+        });
+    }
+  }
+
+  private writePdfSectionCover(doc: PDFKit.PDFDocument, item: ExportContent): void {
+    const blocks = this.getHtmlBlocks(item.content);
+    const title = blocks.find((block) => block.type === "h1")?.text ?? item.title;
+    const description = blocks.find(
+      (block) => block.text !== title && block.text !== "Section"
+    )?.text;
+    const count = blocks.at(-1)?.text;
+    const pageWidth = doc.page.width;
+    const pageHeight = doc.page.height;
+    const left = doc.page.margins.left;
+    const right = pageWidth - doc.page.margins.right;
+
+    doc.rect(0, 0, pageWidth, pageHeight).fill("#f8fafc");
+    doc.rect(left, 132, 8, 260).fill("#2563eb");
+    doc
+      .font("Times-Bold")
+      .fontSize(11)
+      .fillColor("#2563eb")
+      .text("SECTION", left + 28, 142, {
+        characterSpacing: 2,
+        width: right - left - 28,
+      });
+    doc
+      .font("Times-Bold")
+      .fontSize(34)
+      .fillColor("#0f172a")
+      .text(title, left + 28, 170, {
+        width: right - left - 28,
+        lineGap: 4,
+      });
+
+    if (description) {
+      doc
+        .moveDown(0.8)
+        .font("Times-Italic")
+        .fontSize(14)
+        .fillColor("#475569")
+        .text(description, {
+          width: right - left - 28,
+          lineGap: 3,
+        });
+    }
+
+    if (count && count !== description) {
+      doc
+        .font("Times-Bold")
+        .fontSize(10)
+        .fillColor("#64748b")
+        .text(count.toUpperCase(), left + 28, 382, {
+          characterSpacing: 1,
+          width: right - left - 28,
+        });
+    }
+  }
+
+  private writePdfTocBlock(doc: PDFKit.PDFDocument, block: PdfBlock): void {
+    const isPart = /^\d+\./u.test(block.text) && !/^\d+\.\d+/u.test(block.text);
+
+    this.ensureSpace(doc, 36);
+    doc
+      .font(isPart ? "Times-Bold" : "Times-Roman")
+      .fontSize(isPart ? 13 : 11)
+      .fillColor(isPart ? "#111827" : "#475569")
+      .text(block.text, {
+        indent: isPart ? 0 : 20,
+        lineGap: 2,
+      });
+    doc.moveDown(isPart ? 0.5 : 0.25);
+  }
+
+  private writePdfManuscriptToc(doc: PDFKit.PDFDocument, item: ExportContent): void {
+    const blocks = this.getHtmlBlocks(item.content);
+
+    for (const block of blocks) {
+      if (block.type === "h1") {
+        doc.font("Times-Bold").fontSize(28).fillColor("#0f172a").text(block.text);
+        doc.moveDown(0.4);
+      } else if (block.text === "Sommaire") {
+        doc.font("Times-Bold").fontSize(11).fillColor("#2563eb").text(block.text.toUpperCase(), {
+          characterSpacing: 2,
+        });
+        doc.moveDown(0.4);
+      } else if (block.text.startsWith("Repères")) {
+        doc.font("Times-Italic").fontSize(12).fillColor("#64748b").text(block.text);
+        doc.moveDown(1);
+      } else {
+        this.writePdfTocBlock(doc, block);
+      }
+    }
+  }
+
   private writeBlock(doc: PDFKit.PDFDocument, block: PdfBlock): void {
     if (block.type === "h1") {
       this.ensureSpace(doc, 120);
 
       doc.moveDown(1);
-      doc.font("Times-Bold").fontSize(24).fillColor("#111827").text(block.text, {
+      doc.font("Times-Bold").fontSize(28).fillColor("#111827").text(block.text, {
         align: "center",
       });
       doc.moveDown(1.2);
@@ -769,7 +1158,7 @@ export class ExportService {
       this.ensureSpace(doc, 90);
 
       doc.moveDown(0.8);
-      doc.font("Times-Bold").fontSize(19).fillColor("#111827").text(block.text);
+      doc.font("Times-Bold").fontSize(20).fillColor("#111827").text(block.text);
       doc.moveDown(0.6);
 
       return;
@@ -779,7 +1168,7 @@ export class ExportService {
       this.ensureSpace(doc, 80);
 
       doc.moveDown(1);
-      doc.font("Times-Bold").fontSize(12).fillColor("#111827").text(block.text.toUpperCase(), {
+      doc.font("Times-Bold").fontSize(12).fillColor("#1d4ed8").text(block.text.toUpperCase(), {
         characterSpacing: 1,
       });
       this.writeDivider(doc);
@@ -789,7 +1178,7 @@ export class ExportService {
 
     this.ensureSpace(doc, 50);
 
-    doc.font("Times-Roman").fontSize(12).fillColor("#374151").text(block.text, {
+    doc.font("Times-Roman").fontSize(12).fillColor("#334155").text(block.text, {
       align: "justify",
       lineGap: 4,
     });
@@ -805,10 +1194,21 @@ export class ExportService {
     }
   }
 
-  private async generatePdf(
-    title: string,
-    content: { title: string; content: string }[]
-  ): Promise<Buffer> {
+  private writeExportContentToPdf(doc: PDFKit.PDFDocument, item: ExportContent): void {
+    if (item.kind === "section-cover") {
+      this.writePdfSectionCover(doc, item);
+      return;
+    }
+
+    if (item.kind === "manuscript-toc") {
+      this.writePdfManuscriptToc(doc, item);
+      return;
+    }
+
+    this.writeHtmlToPdf(doc, item.content);
+  }
+
+  private async generatePdf(title: string, content: ExportContent[]): Promise<Buffer> {
     return new Promise((resolve) => {
       const doc = new PDFDocument({
         size: "A4",
@@ -821,20 +1221,15 @@ export class ExportService {
 
       doc.pipe(stream);
 
-      doc.font("Times-Bold").fontSize(28).fillColor("#111827").text(title, {
-        align: "center",
-      });
+      this.writePdfTitlePage(doc, title);
 
-      doc.moveDown(2);
+      for (const item of content) {
+        doc.addPage();
 
-      for (const [index, item] of content.entries()) {
-        if (index > 0) {
-          doc.addPage();
-        }
-
-        this.writeHtmlToPdf(doc, item.content);
+        this.writeExportContentToPdf(doc, item);
       }
 
+      this.writePdfPageNumbers(doc);
       doc.end();
 
       stream.on("data", (chunk: Uint8Array) => {
@@ -855,6 +1250,17 @@ export class ExportService {
     const project = await this.projectService.get(projectId, userId);
     const content = await this.getExportContent(projectId, query);
     const buffer = await this.generatePdf(project.title, content);
+
+    await this.historyService.create(
+      {
+        type: "create",
+        entity: "export",
+        date: now("UTC").toString(),
+        title: "Généréation au format pdf",
+        project,
+      },
+      projectId
+    );
 
     return {
       fileName: `${project.title}.pdf`,
@@ -911,16 +1317,72 @@ export class ExportService {
     });
   }
 
-  private generateDocx(
-    title: string,
-    content: { title: string; content: string }[]
-  ): Promise<Buffer> {
+  private sectionCoverToDocxParagraphs(item: ExportContent): Paragraph[] {
+    const blocks = this.getHtmlBlocks(item.content);
+    const title = blocks.find((block) => block.type === "h1")?.text ?? item.title;
+    const paragraphs = blocks.filter((block) => block.type === "p" && block.text !== "Section");
+
+    return [
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "SECTION",
+            bold: true,
+            color: "2563EB",
+            size: 22,
+          }),
+        ],
+        spacing: { before: 1200, after: 240 },
+      }),
+      new Paragraph({
+        text: title,
+        heading: HeadingLevel.HEADING_1,
+        spacing: { after: 300 },
+      }),
+      ...paragraphs.map(
+        (block) =>
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: block.text,
+                italics: block !== paragraphs.at(-1),
+                color: block === paragraphs.at(-1) ? "64748B" : "475569",
+                size: block === paragraphs.at(-1) ? 22 : 26,
+              }),
+            ],
+            spacing: { after: 180 },
+          })
+      ),
+    ];
+  }
+
+  private exportContentToDocxParagraphs(item: ExportContent): Paragraph[] {
+    if (item.kind === "section-cover") {
+      return this.sectionCoverToDocxParagraphs(item);
+    }
+
+    return this.htmlBlocksToDocxParagraphs(item.content);
+  }
+
+  private generateDocx(title: string, content: ExportContent[]): Promise<Buffer> {
     const children: Paragraph[] = [
       new Paragraph({
         text: title,
         heading: HeadingLevel.TITLE,
         alignment: AlignmentType.CENTER,
-        spacing: { after: 480 },
+        spacing: { before: 1200, after: 240 },
+      }),
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Dossier exporté depuis Papyrus",
+            italics: true,
+            color: "475569",
+            size: 26,
+          }),
+        ],
+        alignment: AlignmentType.CENTER,
+        spacing: { after: 720 },
       }),
     ];
 
@@ -933,7 +1395,7 @@ export class ExportService {
         );
       }
 
-      children.push(...this.htmlBlocksToDocxParagraphs(item.content));
+      children.push(...this.exportContentToDocxParagraphs(item));
     }
 
     const document = new WordDocument({
@@ -966,21 +1428,42 @@ export class ExportService {
     const content = await this.getExportContent(projectId, query);
     const buffer = await this.generateDocx(project.title, content);
 
+    await this.historyService.create(
+      {
+        type: "create",
+        entity: "export",
+        date: now("UTC").toString(),
+        title: "Généréation au format docx",
+        project,
+      },
+      projectId
+    );
+
     return {
       fileName: `${project.title}.docx`,
       buffer,
     };
   }
 
-  private generateTxt(title: string, content: { title: string; content: string }[]): Buffer {
+  private generateTxt(title: string, content: ExportContent[]): Buffer {
     const lines: string[] = [];
 
     lines.push(title.toUpperCase());
     lines.push("=".repeat(title.length));
+    lines.push("Dossier exporté depuis Papyrus");
+    lines.push(new Date().toLocaleDateString("fr-FR"));
     lines.push("");
 
     for (const item of content) {
       const blocks = this.getHtmlBlocks(item.content);
+
+      if (item.kind === "section-cover") {
+        lines.push("");
+        lines.push("##################################################");
+        lines.push(item.title.toUpperCase());
+        lines.push("##################################################");
+        lines.push("");
+      }
 
       for (const block of blocks) {
         if (block.type === "h1") {
@@ -1024,6 +1507,17 @@ export class ExportService {
     const project = await this.projectService.get(projectId, userId);
     const content = await this.getExportContent(projectId, query);
     const buffer = this.generateTxt(project.title, content);
+
+    await this.historyService.create(
+      {
+        type: "create",
+        entity: "export",
+        date: now("UTC").toString(),
+        title: "Généréation au format txt",
+        project,
+      },
+      projectId
+    );
 
     return {
       fileName: `${project.title}.txt`,

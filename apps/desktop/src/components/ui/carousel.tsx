@@ -2,6 +2,7 @@ import * as React from "react";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
+import { useTranslation } from "react-i18next";
 import { cn } from "../../lib/utils";
 import { Button } from "../../components/ui/button";
 
@@ -101,7 +102,7 @@ const Carousel = React.forwardRef<
     api.on("select", onSelect);
 
     return () => {
-      api?.off("select", onSelect);
+      api.off("select", onSelect);
     };
   }, [api, onSelect]);
 
@@ -111,7 +112,7 @@ const Carousel = React.forwardRef<
         carouselRef,
         api: api,
         opts,
-        orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+        orientation,
         scrollPrev,
         scrollNext,
         canScrollPrev,
@@ -177,6 +178,7 @@ CarouselItem.displayName = "CarouselItem";
 
 const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+    const { t } = useTranslation();
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
     return (
@@ -196,7 +198,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         {...props}
       >
         <ArrowLeft className="h-4 w-4" />
-        <span className="sr-only">Previous slide</span>
+        <span className="sr-only">{t("carousel.previousSlide")}</span>
       </Button>
     );
   }
@@ -205,6 +207,7 @@ CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
   ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+    const { t } = useTranslation();
     const { orientation, scrollNext, canScrollNext } = useCarousel();
 
     return (
@@ -224,7 +227,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         {...props}
       >
         <ArrowRight className="h-4 w-4" />
-        <span className="sr-only">Next slide</span>
+        <span className="sr-only">{t("carousel.nextSlide")}</span>
       </Button>
     );
   }

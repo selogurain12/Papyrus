@@ -1,9 +1,12 @@
 import React, { type ComponentProps } from "react";
 import { MoreHorizontal } from "lucide-react";
 
+import { useTranslation } from "react-i18next";
 import { cn } from "../../../lib/utils";
 
 function paginationEllipsis({ className, ...props }: ComponentProps<"span">) {
+  const { t } = useTranslation();
+
   return (
     <span
       aria-hidden
@@ -11,7 +14,7 @@ function paginationEllipsis({ className, ...props }: ComponentProps<"span">) {
       {...props}
     >
       <MoreHorizontal className="h-4 w-4" />
-      <span className="sr-only">More pages</span>
+      <span className="sr-only">{t("table.morePages")}</span>
     </span>
   );
 }

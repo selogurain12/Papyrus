@@ -44,8 +44,10 @@ export function DateRangeFilter({
   className,
   ...props
 }: DateRangePickerProps) {
+  void routePath;
+
   const popoverReference = useRef(null);
-  const navigate = useNavigate({ from: routePath });
+  const navigate = useNavigate();
 
   const [date, setDate] = useState<DateRange | undefined>(() => {
     let fromDay: Date | undefined = undefined;

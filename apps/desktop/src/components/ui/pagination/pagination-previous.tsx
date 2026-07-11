@@ -1,17 +1,17 @@
 import { ChevronLeft } from "lucide-react";
 
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "../../../lib/utils";
 
 import { PaginationLink, type PaginationLinkProps } from "./pagination-link";
-import React from "react";
-import { useTranslation } from "react-i18next";
 
 function paginationPrevious({ className, disabled, ...props }: PaginationLinkProps) {
   const { t } = useTranslation();
 
   return (
     <PaginationLink
-      aria-label="Go to previous page"
+      aria-label={t("table.previousPage")}
       className={cn("gap-1 pl-2.5", className)}
       disabled={disabled}
       size="default"

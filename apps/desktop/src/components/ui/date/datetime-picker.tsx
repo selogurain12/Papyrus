@@ -3,6 +3,7 @@ import { AlertCircle, Calendar as CalendarIcon, Clock } from "lucide-react";
 import React, { type InputHTMLAttributes, useRef } from "react";
 import { fr } from "date-fns/locale";
 import type { Matcher } from "react-day-picker";
+import { useTranslation } from "react-i18next";
 
 import { Label } from "../label";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
@@ -10,7 +11,6 @@ import { Button } from "../button";
 import { cn } from "../../../lib/utils";
 import { format } from "../../../utils/date/date-utils";
 import { Calendar } from "../calendar";
-import { useTranslation } from "react-i18next";
 
 import { TimePickerInput } from "./time-picker-input";
 
@@ -30,9 +30,9 @@ export function DateTimePicker({
   disabled,
   errorIcon = false,
   isError = false,
-  disabledRange = undefined,
+  disabledRange,
 }: DateTimePickerProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const hourReference = useRef<HTMLInputElement>(null);
   const minuteReference = useRef<HTMLInputElement>(null);
 
@@ -52,7 +52,7 @@ export function DateTimePicker({
     <div className="flex items-end gap-2">
       <div className="grid gap-1 text-center">
         <Label className="text-xs" htmlFor="hours">
-          Heures
+          {t("dateTime.hours")}
         </Label>
         <TimePickerInput
           date={value === undefined ? undefined : parseZonedDateTime(value).toDate()}
@@ -69,7 +69,7 @@ export function DateTimePicker({
       </div>
       <div className="grid gap-1 text-center">
         <Label className="text-xs" htmlFor="minutes">
-          Minutes
+          {t("dateTime.minutes")}
         </Label>
         <TimePickerInput
           date={value === undefined ? undefined : parseZonedDateTime(value).toDate()}
@@ -106,7 +106,7 @@ export function DateTimePicker({
           {value === undefined ? (
             <span>{t("selectDate")}</span>
           ) : (
-            format(parseZonedDateTime(value), "dd MMMM yyyy à HH:mm")
+            format(parseZonedDateTime(value), t("dateTime.format"))
           )}
           {errorIcon && isError && <AlertCircle className="size-6 text-destructive ml-auto" />}
         </Button>
@@ -115,8 +115,8 @@ export function DateTimePicker({
         <Calendar
           captionLayout="dropdown"
           disabled={disabledRange}
-          initialFocus
-          locale={fr}
+          autoFocus
+          locale={i18n.language.startsWith("fr") ? fr : undefined}
           mode="single"
           onSelect={(day, selectedDay) => {
             handleSelect(day, selectedDay);

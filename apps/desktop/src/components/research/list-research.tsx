@@ -63,7 +63,7 @@ export function ListResearch() {
 
   if (!currentProject) {
     return (
-      <div className="min-h-[300px] flex items-center justify-center text-gray-500">
+      <div className="min-h-75 flex items-center justify-center text-gray-500">
         {t("common:loading")}
       </div>
     );

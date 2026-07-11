@@ -1,0 +1,9 @@
+{
+  "title": "Smazat cíl",
+  "description": "Opravdu chcete smazat cíl „{{title}}“? Tuto akci nelze vrátit zpět.",
+  "toast": {
+    "projectNotSelected": "Není vybrán žádný projekt",
+    "deleteSuccess": "Cíl byl úspěšně smazán",
+    "error": "Došlo k chybě"
+  }
+}

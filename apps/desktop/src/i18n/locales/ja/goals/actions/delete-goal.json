@@ -1,0 +1,9 @@
+{
+  "title": "目標を削除",
+  "description": "目標「{{title}}」を削除してもよろしいですか？この操作は元に戻せません。",
+  "toast": {
+    "projectNotSelected": "プロジェクトが選択されていません",
+    "deleteSuccess": "目標を削除しました",
+    "error": "エラーが発生しました"
+  }
+}

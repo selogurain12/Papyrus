@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "{{count}} Tag überfällig",
+    "overdue_other": "{{count}} Tage überfällig",
+    "today": "Endet heute",
+    "tomorrow": "Endet morgen",
+    "warning_one": "{{count}} Tag verbleibend",
+    "warning_other": "{{count}} Tage verbleibend"
+  },
+  "types": {
+    "project": "Projekt",
+    "daily": "Täglich",
+    "weekly": "Wöchentlich",
+    "monthly": "Monatlich"
+  },
+  "units": {
+    "words_one": "Wort",
+    "words_other": "Wörter",
+    "pages_one": "Seite",
+    "pages_other": "Seiten",
+    "characters_one": "Zeichen",
+    "characters_other": "Zeichen"
+  },
+  "toast": {
+    "updateSuccess": "Ziel erfolgreich aktualisiert",
+    "error": "Ein Fehler ist aufgetreten",
+    "alreadyCompleted": "Dieses Ziel ist bereits abgeschlossen"
+  },
+  "actions": {
+    "markCompleted": "Als abgeschlossen markieren",
+    "update": "Bearbeiten",
+    "delete": "Löschen"
+  },
+  "progress": "Fortschritt",
+  "remaining": "{{value}} verbleibend",
+  "encouragement": {
+    "prefix": "Nur noch",
+    "suffix": "bis zu diesem Ziel!"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "title": "删除目标",
+  "description": "确定要删除目标“{{title}}”吗？此操作无法撤销。",
+  "toast": {
+    "projectNotSelected": "未选择项目",
+    "deleteSuccess": "目标删除成功",
+    "error": "发生错误"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Criar um objetivo",
+  "fields": {
+    "type": "Tipo",
+    "title": "Título",
+    "goals": "Objetivos",
+    "unit": "Unidade",
+    "deadline": "Prazo",
+    "description": "Descrição"
+  },
+  "types": {
+    "project": "Projeto",
+    "daily": "Diário",
+    "weekly": "Semanal",
+    "monthly": "Mensal"
+  },
+  "units": {
+    "words": "Palavras",
+    "chapters": "Capítulos",
+    "hours": "Horas"
+  },
+  "placeholders": {
+    "title": "Ex.: Escrever 500 palavras por dia",
+    "description": "Descreva o seu objetivo aqui..."
+  },
+  "toast": {
+    "projectNotSelected": "Nenhum projeto selecionado",
+    "createSuccess": "Objetivo criado com sucesso",
+    "error": "Ocorreu um erro"
+  },
+  "cancel": "Cancelar",
+  "submit": "Criar objetivo"
+}

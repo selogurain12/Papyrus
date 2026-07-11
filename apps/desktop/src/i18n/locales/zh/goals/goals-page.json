@@ -1,0 +1,34 @@
+{
+  "title": "目标与进度",
+  "subtitle": "定义并跟踪你的写作目标",
+  "newGoal": "新目标",
+  "filters": {
+    "all": "全部"
+  },
+  "types": {
+    "project": "项目",
+    "daily": "每日",
+    "weekly": "每周",
+    "monthly": "每月"
+  },
+  "stats": {
+    "activeGoals": "活跃目标",
+    "dailyGoals": "每日目标",
+    "averageProgress": "平均进度",
+    "completedGoals": "已完成目标"
+  },
+  "sections": {
+    "activeGoals": "活跃目标",
+    "completedGoals": "已完成目标"
+  },
+  "units": {
+    "words_one": "字",
+    "words_other": "字",
+    "pages_one": "页",
+    "pages_other": "页",
+    "characters_one": "字符",
+    "characters_other": "字符"
+  },
+  "emptyGoals": "未找到目标。",
+  "completedGoalProgress": "{{value}} {{unit}} 已完成"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Eliminar objetivo",
+  "description": "¿Seguro que quieres eliminar el objetivo \"{{title}}\"? Esta acción no se puede deshacer.",
+  "toast": {
+    "projectNotSelected": "No hay proyecto seleccionado",
+    "deleteSuccess": "Objetivo eliminado correctamente",
+    "error": "Ha ocurrido un error"
+  }
+}

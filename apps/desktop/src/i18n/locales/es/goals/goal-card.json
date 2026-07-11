@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "{{count}} día de retraso",
+    "overdue_other": "{{count}} días de retraso",
+    "today": "Termina hoy",
+    "tomorrow": "Termina mañana",
+    "warning_one": "Queda {{count}} día",
+    "warning_other": "Quedan {{count}} días"
+  },
+  "types": {
+    "project": "Proyecto",
+    "daily": "Diario",
+    "weekly": "Semanal",
+    "monthly": "Mensual"
+  },
+  "units": {
+    "words_one": "palabra",
+    "words_other": "palabras",
+    "pages_one": "página",
+    "pages_other": "páginas",
+    "characters_one": "carácter",
+    "characters_other": "caracteres"
+  },
+  "toast": {
+    "updateSuccess": "Objetivo actualizado correctamente",
+    "error": "Ha ocurrido un error",
+    "alreadyCompleted": "Este objetivo ya está completado"
+  },
+  "actions": {
+    "markCompleted": "Marcar como completado",
+    "update": "Modificar",
+    "delete": "Eliminar"
+  },
+  "progress": "Progreso",
+  "remaining": "{{value}} restantes",
+  "encouragement": {
+    "prefix": "Solo quedan",
+    "suffix": "para alcanzar este objetivo!"
+  }
+}

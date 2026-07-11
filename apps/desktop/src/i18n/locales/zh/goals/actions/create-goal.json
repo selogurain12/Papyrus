@@ -1,0 +1,33 @@
+{
+  "title": "创建目标",
+  "fields": {
+    "type": "类型",
+    "title": "标题",
+    "goals": "目标",
+    "unit": "单位",
+    "deadline": "截止日期",
+    "description": "描述"
+  },
+  "types": {
+    "project": "项目",
+    "daily": "每日",
+    "weekly": "每周",
+    "monthly": "每月"
+  },
+  "units": {
+    "words": "字数",
+    "chapters": "章节",
+    "hours": "小时"
+  },
+  "placeholders": {
+    "title": "例如：每天写 500 字",
+    "description": "在这里描述你的目标..."
+  },
+  "toast": {
+    "projectNotSelected": "未选择项目",
+    "createSuccess": "目标创建成功",
+    "error": "发生错误"
+  },
+  "cancel": "取消",
+  "submit": "创建目标"
+}

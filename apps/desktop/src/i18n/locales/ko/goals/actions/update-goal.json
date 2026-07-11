@@ -1,0 +1,33 @@
+{
+  "title": "목표 수정",
+  "fields": {
+    "type": "유형",
+    "title": "제목",
+    "goals": "목표",
+    "unit": "단위",
+    "deadline": "마감일",
+    "description": "설명"
+  },
+  "types": {
+    "project": "프로젝트",
+    "daily": "일일",
+    "weekly": "주간",
+    "monthly": "월간"
+  },
+  "units": {
+    "words": "단어",
+    "chapters": "챕터",
+    "hours": "시간"
+  },
+  "placeholders": {
+    "title": "예: 하루에 500단어 쓰기",
+    "description": "여기에 목표를 설명하세요..."
+  },
+  "toast": {
+    "projectNotSelected": "선택된 프로젝트가 없습니다",
+    "updateSuccess": "목표가 성공적으로 업데이트되었습니다",
+    "error": "오류가 발생했습니다"
+  },
+  "cancel": "취소",
+  "submit": "목표 업데이트"
+}

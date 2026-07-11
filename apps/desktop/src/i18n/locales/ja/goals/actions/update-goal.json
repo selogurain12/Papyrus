@@ -1,0 +1,33 @@
+{
+  "title": "目標を編集",
+  "fields": {
+    "type": "タイプ",
+    "title": "タイトル",
+    "goals": "目標",
+    "unit": "単位",
+    "deadline": "期限",
+    "description": "説明"
+  },
+  "types": {
+    "project": "プロジェクト",
+    "daily": "毎日",
+    "weekly": "毎週",
+    "monthly": "毎月"
+  },
+  "units": {
+    "words": "単語",
+    "chapters": "章",
+    "hours": "時間"
+  },
+  "placeholders": {
+    "title": "例：1日500語を書く",
+    "description": "ここに目標を説明してください..."
+  },
+  "toast": {
+    "projectNotSelected": "プロジェクトが選択されていません",
+    "updateSuccess": "目標を更新しました",
+    "error": "エラーが発生しました"
+  },
+  "cancel": "キャンセル",
+  "submit": "目標を更新"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Supprimer l'objectif",
+  "description": "Êtes-vous sûr de vouloir supprimer l'objectif \"{{title}}\" ? Cette action est irréversible.",
+  "toast": {
+    "projectNotSelected": "Pas de projet sélectionné",
+    "deleteSuccess": "Objectif supprimé avec succès",
+    "error": "Une erreur est survenue"
+  }
+}

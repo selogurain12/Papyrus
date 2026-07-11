@@ -1,0 +1,33 @@
+{
+  "title": "Vytvořit cíl",
+  "fields": {
+    "type": "Typ",
+    "title": "Název",
+    "goals": "Cíle",
+    "unit": "Jednotka",
+    "deadline": "Termín",
+    "description": "Popis"
+  },
+  "types": {
+    "project": "Projekt",
+    "daily": "Denní",
+    "weekly": "Týdenní",
+    "monthly": "Měsíční"
+  },
+  "units": {
+    "words": "Slova",
+    "chapters": "Kapitoly",
+    "hours": "Hodiny"
+  },
+  "placeholders": {
+    "title": "Např.: Napsat 500 slov denně",
+    "description": "Popište zde svůj cíl..."
+  },
+  "toast": {
+    "projectNotSelected": "Není vybrán žádný projekt",
+    "createSuccess": "Cíl byl úspěšně vytvořen",
+    "error": "Došlo k chybě"
+  },
+  "cancel": "Zrušit",
+  "submit": "Vytvořit cíl"
+}

@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "Просрочено на {{count}} день",
+    "overdue_other": "Просрочено на {{count}} дней",
+    "today": "Заканчивается сегодня",
+    "tomorrow": "Заканчивается завтра",
+    "warning_one": "Остался {{count}} день",
+    "warning_other": "Осталось {{count}} дней"
+  },
+  "types": {
+    "project": "Проект",
+    "daily": "Ежедневная",
+    "weekly": "Еженедельная",
+    "monthly": "Ежемесячная"
+  },
+  "units": {
+    "words_one": "слово",
+    "words_other": "слов",
+    "pages_one": "страница",
+    "pages_other": "страниц",
+    "characters_one": "символ",
+    "characters_other": "символов"
+  },
+  "toast": {
+    "updateSuccess": "Цель успешно обновлена",
+    "error": "Произошла ошибка",
+    "alreadyCompleted": "Эта цель уже завершена"
+  },
+  "actions": {
+    "markCompleted": "Отметить как завершённую",
+    "update": "Изменить",
+    "delete": "Удалить"
+  },
+  "progress": "Прогресс",
+  "remaining": "{{value}} осталось",
+  "encouragement": {
+    "prefix": "Осталось всего",
+    "suffix": "до достижения этой цели!"
+  }
+}

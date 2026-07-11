@@ -1,0 +1,33 @@
+{
+  "title": "Изменить цель",
+  "fields": {
+    "type": "Тип",
+    "title": "Название",
+    "goals": "Цели",
+    "unit": "Единица",
+    "deadline": "Срок",
+    "description": "Описание"
+  },
+  "types": {
+    "project": "Проект",
+    "daily": "Ежедневная",
+    "weekly": "Еженедельная",
+    "monthly": "Ежемесячная"
+  },
+  "units": {
+    "words": "Слова",
+    "chapters": "Главы",
+    "hours": "Часы"
+  },
+  "placeholders": {
+    "title": "Напр.: писать 500 слов в день",
+    "description": "Опишите свою цель здесь..."
+  },
+  "toast": {
+    "projectNotSelected": "Проект не выбран",
+    "updateSuccess": "Цель успешно обновлена",
+    "error": "Произошла ошибка"
+  },
+  "cancel": "Отмена",
+  "submit": "Обновить цель"
+}

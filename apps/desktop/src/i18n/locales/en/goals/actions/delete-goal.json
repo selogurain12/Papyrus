@@ -1,0 +1,9 @@
+{
+  "title": "Delete goal",
+  "description": "Are you sure you want to delete the goal \"{{title}}\"? This action cannot be undone.",
+  "toast": {
+    "projectNotSelected": "No project selected",
+    "deleteSuccess": "Goal deleted successfully",
+    "error": "An error occurred"
+  }
+}

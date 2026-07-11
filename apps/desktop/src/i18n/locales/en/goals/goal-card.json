@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "{{count}} day overdue",
+    "overdue_other": "{{count}} days overdue",
+    "today": "Ends today",
+    "tomorrow": "Ends tomorrow",
+    "warning_one": "{{count}} day left",
+    "warning_other": "{{count}} days left"
+  },
+  "types": {
+    "project": "Project",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly"
+  },
+  "units": {
+    "words_one": "word",
+    "words_other": "words",
+    "pages_one": "page",
+    "pages_other": "pages",
+    "characters_one": "character",
+    "characters_other": "characters"
+  },
+  "toast": {
+    "updateSuccess": "Goal updated successfully",
+    "error": "An error occurred",
+    "alreadyCompleted": "This goal is already completed"
+  },
+  "actions": {
+    "markCompleted": "Mark as completed",
+    "update": "Update",
+    "delete": "Delete"
+  },
+  "progress": "Progress",
+  "remaining": "{{value}} remaining",
+  "encouragement": {
+    "prefix": "Only",
+    "suffix": "left to reach this goal!"
+  }
+}

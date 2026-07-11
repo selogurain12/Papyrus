@@ -1,0 +1,34 @@
+{
+  "title": "Ziele und Fortschritt",
+  "subtitle": "Definiere und verfolge deine Schreibziele",
+  "newGoal": "Neues Ziel",
+  "filters": {
+    "all": "Alle"
+  },
+  "types": {
+    "project": "Projekt",
+    "daily": "Täglich",
+    "weekly": "Wöchentlich",
+    "monthly": "Monatlich"
+  },
+  "stats": {
+    "activeGoals": "Aktive Ziele",
+    "dailyGoals": "Tägliche Ziele",
+    "averageProgress": "Durchschnittlicher Fortschritt",
+    "completedGoals": "Erreichte Ziele"
+  },
+  "sections": {
+    "activeGoals": "Aktive Ziele",
+    "completedGoals": "Abgeschlossene Ziele"
+  },
+  "units": {
+    "words_one": "Wort",
+    "words_other": "Wörter",
+    "pages_one": "Seite",
+    "pages_other": "Seiten",
+    "characters_one": "Zeichen",
+    "characters_other": "Zeichen"
+  },
+  "emptyGoals": "Keine Ziele gefunden.",
+  "completedGoalProgress": "{{value}} {{unit}} abgeschlossen"
+}

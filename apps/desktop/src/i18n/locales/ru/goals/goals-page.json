@@ -1,0 +1,34 @@
+{
+  "title": "Цели и прогресс",
+  "subtitle": "Создавайте и отслеживайте свои писательские цели",
+  "newGoal": "Новая цель",
+  "filters": {
+    "all": "Все"
+  },
+  "types": {
+    "project": "Проект",
+    "daily": "Ежедневная",
+    "weekly": "Еженедельная",
+    "monthly": "Ежемесячная"
+  },
+  "stats": {
+    "activeGoals": "Активные цели",
+    "dailyGoals": "Ежедневные цели",
+    "averageProgress": "Средний прогресс",
+    "completedGoals": "Достигнутые цели"
+  },
+  "sections": {
+    "activeGoals": "Активные цели",
+    "completedGoals": "Завершённые цели"
+  },
+  "units": {
+    "words_one": "слово",
+    "words_other": "слов",
+    "pages_one": "страница",
+    "pages_other": "страниц",
+    "characters_one": "символ",
+    "characters_other": "символов"
+  },
+  "emptyGoals": "Цели не найдены.",
+  "completedGoalProgress": "{{value}} {{unit}} завершено"
+}

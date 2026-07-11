@@ -1,0 +1,34 @@
+{
+  "title": "Cíle a postup",
+  "subtitle": "Definujte a sledujte své spisovatelské cíle",
+  "newGoal": "Nový cíl",
+  "filters": {
+    "all": "Vše"
+  },
+  "types": {
+    "project": "Projekt",
+    "daily": "Denní",
+    "weekly": "Týdenní",
+    "monthly": "Měsíční"
+  },
+  "stats": {
+    "activeGoals": "Aktivní cíle",
+    "dailyGoals": "Denní cíle",
+    "averageProgress": "Průměrný postup",
+    "completedGoals": "Splněné cíle"
+  },
+  "sections": {
+    "activeGoals": "Aktivní cíle",
+    "completedGoals": "Dokončené cíle"
+  },
+  "units": {
+    "words_one": "slovo",
+    "words_other": "slov",
+    "pages_one": "strana",
+    "pages_other": "stran",
+    "characters_one": "znak",
+    "characters_other": "znaků"
+  },
+  "emptyGoals": "Nebyly nalezeny žádné cíle.",
+  "completedGoalProgress": "{{value}} {{unit}} dokončeno"
+}

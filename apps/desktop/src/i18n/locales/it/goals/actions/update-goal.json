@@ -1,0 +1,33 @@
+{
+  "title": "Modifica un obiettivo",
+  "fields": {
+    "type": "Tipo",
+    "title": "Titolo",
+    "goals": "Obiettivi",
+    "unit": "Unità",
+    "deadline": "Scadenza",
+    "description": "Descrizione"
+  },
+  "types": {
+    "project": "Progetto",
+    "daily": "Quotidiano",
+    "weekly": "Settimanale",
+    "monthly": "Mensile"
+  },
+  "units": {
+    "words": "Parole",
+    "chapters": "Capitoli",
+    "hours": "Ore"
+  },
+  "placeholders": {
+    "title": "Es.: Scrivere 500 parole al giorno",
+    "description": "Descrivi qui il tuo obiettivo..."
+  },
+  "toast": {
+    "projectNotSelected": "Nessun progetto selezionato",
+    "updateSuccess": "Obiettivo aggiornato con successo",
+    "error": "Si è verificato un errore"
+  },
+  "cancel": "Annulla",
+  "submit": "Aggiorna obiettivo"
+}

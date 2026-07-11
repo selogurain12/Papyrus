@@ -1,0 +1,33 @@
+{
+  "title": "Update a goal",
+  "fields": {
+    "type": "Type",
+    "title": "Title",
+    "goals": "Goals",
+    "unit": "Unit",
+    "deadline": "Deadline",
+    "description": "Description"
+  },
+  "types": {
+    "project": "Project",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly"
+  },
+  "units": {
+    "words": "Words",
+    "chapters": "Chapters",
+    "hours": "Hours"
+  },
+  "placeholders": {
+    "title": "Ex: Write 500 words per day",
+    "description": "Describe your goal here..."
+  },
+  "toast": {
+    "projectNotSelected": "No project selected",
+    "updateSuccess": "Goal updated successfully",
+    "error": "An error occurred"
+  },
+  "cancel": "Cancel",
+  "submit": "Update goal"
+}

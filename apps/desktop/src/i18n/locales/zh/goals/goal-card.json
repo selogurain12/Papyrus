@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "已逾期 {{count}} 天",
+    "overdue_other": "已逾期 {{count}} 天",
+    "today": "今天结束",
+    "tomorrow": "明天结束",
+    "warning_one": "还剩 {{count}} 天",
+    "warning_other": "还剩 {{count}} 天"
+  },
+  "types": {
+    "project": "项目",
+    "daily": "每日",
+    "weekly": "每周",
+    "monthly": "每月"
+  },
+  "units": {
+    "words_one": "字",
+    "words_other": "字",
+    "pages_one": "页",
+    "pages_other": "页",
+    "characters_one": "字符",
+    "characters_other": "字符"
+  },
+  "toast": {
+    "updateSuccess": "目标更新成功",
+    "error": "发生错误",
+    "alreadyCompleted": "此目标已经完成"
+  },
+  "actions": {
+    "markCompleted": "标记为完成",
+    "update": "编辑",
+    "delete": "删除"
+  },
+  "progress": "进度",
+  "remaining": "剩余 {{value}}",
+  "encouragement": {
+    "prefix": "只剩",
+    "suffix": "即可达成此目标！"
+  }
+}

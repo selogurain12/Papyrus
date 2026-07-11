@@ -1,0 +1,33 @@
+{
+  "title": "Ziel bearbeiten",
+  "fields": {
+    "type": "Typ",
+    "title": "Titel",
+    "goals": "Ziele",
+    "unit": "Einheit",
+    "deadline": "Frist",
+    "description": "Beschreibung"
+  },
+  "types": {
+    "project": "Projekt",
+    "daily": "Täglich",
+    "weekly": "Wöchentlich",
+    "monthly": "Monatlich"
+  },
+  "units": {
+    "words": "Wörter",
+    "chapters": "Kapitel",
+    "hours": "Stunden"
+  },
+  "placeholders": {
+    "title": "Z. B.: 500 Wörter pro Tag schreiben",
+    "description": "Beschreibe dein Ziel hier..."
+  },
+  "toast": {
+    "projectNotSelected": "Kein Projekt ausgewählt",
+    "updateSuccess": "Ziel erfolgreich aktualisiert",
+    "error": "Ein Fehler ist aufgetreten"
+  },
+  "cancel": "Abbrechen",
+  "submit": "Ziel aktualisieren"
+}

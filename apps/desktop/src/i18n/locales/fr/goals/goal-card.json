@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "En retard de {{count}} jour",
+    "overdue_other": "En retard de {{count}} jours",
+    "today": "Se termine aujourd'hui",
+    "tomorrow": "Se termine demain",
+    "warning_one": "Plus que {{count}} jour restant",
+    "warning_other": "Plus que {{count}} jours restants"
+  },
+  "types": {
+    "project": "Projet",
+    "daily": "Quotidien",
+    "weekly": "Hebdomadaire",
+    "monthly": "Mensuel"
+  },
+  "units": {
+    "words_one": "mot",
+    "words_other": "mots",
+    "pages_one": "page",
+    "pages_other": "pages",
+    "characters_one": "caractère",
+    "characters_other": "caractères"
+  },
+  "toast": {
+    "updateSuccess": "Objectif mis à jour avec succès",
+    "error": "Une erreur est survenue",
+    "alreadyCompleted": "Cet objectif est déjà terminé"
+  },
+  "actions": {
+    "markCompleted": "Marquer comme terminé",
+    "update": "Modifier",
+    "delete": "Supprimer"
+  },
+  "progress": "Progression",
+  "remaining": "{{value}} restants",
+  "encouragement": {
+    "prefix": "Plus que",
+    "suffix": "pour atteindre cet objectif !"
+  }
+}

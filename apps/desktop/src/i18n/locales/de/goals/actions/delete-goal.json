@@ -1,0 +1,9 @@
+{
+  "title": "Ziel löschen",
+  "description": "Möchtest du das Ziel \"{{title}}\" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "toast": {
+    "projectNotSelected": "Kein Projekt ausgewählt",
+    "deleteSuccess": "Ziel erfolgreich gelöscht",
+    "error": "Ein Fehler ist aufgetreten"
+  }
+}

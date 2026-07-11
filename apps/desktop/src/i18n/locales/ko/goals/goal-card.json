@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "{{count}}일 지연",
+    "overdue_other": "{{count}}일 지연",
+    "today": "오늘 종료",
+    "tomorrow": "내일 종료",
+    "warning_one": "{{count}}일 남음",
+    "warning_other": "{{count}}일 남음"
+  },
+  "types": {
+    "project": "프로젝트",
+    "daily": "일일",
+    "weekly": "주간",
+    "monthly": "월간"
+  },
+  "units": {
+    "words_one": "단어",
+    "words_other": "단어",
+    "pages_one": "페이지",
+    "pages_other": "페이지",
+    "characters_one": "문자",
+    "characters_other": "문자"
+  },
+  "toast": {
+    "updateSuccess": "목표가 성공적으로 업데이트되었습니다",
+    "error": "오류가 발생했습니다",
+    "alreadyCompleted": "이 목표는 이미 완료되었습니다"
+  },
+  "actions": {
+    "markCompleted": "완료로 표시",
+    "update": "수정",
+    "delete": "삭제"
+  },
+  "progress": "진행률",
+  "remaining": "{{value}} 남음",
+  "encouragement": {
+    "prefix": "이제",
+    "suffix": "만 더 하면 목표에 도달합니다!"
+  }
+}

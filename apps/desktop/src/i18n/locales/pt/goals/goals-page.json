@@ -1,0 +1,34 @@
+{
+  "title": "Objetivos e progressão",
+  "subtitle": "Defina e acompanhe os seus objetivos de escrita",
+  "newGoal": "Novo objetivo",
+  "filters": {
+    "all": "Todos"
+  },
+  "types": {
+    "project": "Projeto",
+    "daily": "Diário",
+    "weekly": "Semanal",
+    "monthly": "Mensal"
+  },
+  "stats": {
+    "activeGoals": "Objetivos ativos",
+    "dailyGoals": "Objetivos diários",
+    "averageProgress": "Progressão média",
+    "completedGoals": "Objetivos alcançados"
+  },
+  "sections": {
+    "activeGoals": "Objetivos ativos",
+    "completedGoals": "Objetivos concluídos"
+  },
+  "units": {
+    "words_one": "palavra",
+    "words_other": "palavras",
+    "pages_one": "página",
+    "pages_other": "páginas",
+    "characters_one": "caractere",
+    "characters_other": "caracteres"
+  },
+  "emptyGoals": "Nenhum objetivo encontrado.",
+  "completedGoalProgress": "{{value}} {{unit}} concluído"
+}

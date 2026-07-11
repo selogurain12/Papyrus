@@ -1,0 +1,34 @@
+{
+  "title": "目標と進捗",
+  "subtitle": "執筆目標を設定して追跡します",
+  "newGoal": "新しい目標",
+  "filters": {
+    "all": "すべて"
+  },
+  "types": {
+    "project": "プロジェクト",
+    "daily": "毎日",
+    "weekly": "毎週",
+    "monthly": "毎月"
+  },
+  "stats": {
+    "activeGoals": "有効な目標",
+    "dailyGoals": "毎日の目標",
+    "averageProgress": "平均進捗",
+    "completedGoals": "達成済み目標"
+  },
+  "sections": {
+    "activeGoals": "有効な目標",
+    "completedGoals": "完了した目標"
+  },
+  "units": {
+    "words_one": "単語",
+    "words_other": "単語",
+    "pages_one": "ページ",
+    "pages_other": "ページ",
+    "characters_one": "文字",
+    "characters_other": "文字"
+  },
+  "emptyGoals": "目標が見つかりません。",
+  "completedGoalProgress": "{{value}} {{unit}} 完了"
+}

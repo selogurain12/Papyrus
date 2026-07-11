@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "{{count}} 日遅れ",
+    "overdue_other": "{{count}} 日遅れ",
+    "today": "今日終了",
+    "tomorrow": "明日終了",
+    "warning_one": "残り {{count}} 日",
+    "warning_other": "残り {{count}} 日"
+  },
+  "types": {
+    "project": "プロジェクト",
+    "daily": "毎日",
+    "weekly": "毎週",
+    "monthly": "毎月"
+  },
+  "units": {
+    "words_one": "単語",
+    "words_other": "単語",
+    "pages_one": "ページ",
+    "pages_other": "ページ",
+    "characters_one": "文字",
+    "characters_other": "文字"
+  },
+  "toast": {
+    "updateSuccess": "目標を更新しました",
+    "error": "エラーが発生しました",
+    "alreadyCompleted": "この目標はすでに完了しています"
+  },
+  "actions": {
+    "markCompleted": "完了としてマーク",
+    "update": "編集",
+    "delete": "削除"
+  },
+  "progress": "進捗",
+  "remaining": "残り {{value}}",
+  "encouragement": {
+    "prefix": "あと",
+    "suffix": "でこの目標に到達します！"
+  }
+}

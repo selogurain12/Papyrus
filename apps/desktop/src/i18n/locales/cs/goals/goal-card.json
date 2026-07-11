@@ -1,0 +1,40 @@
+{
+  "deadline": {
+    "overdue_one": "{{count}} den po termínu",
+    "overdue_other": "{{count}} dní po termínu",
+    "today": "Končí dnes",
+    "tomorrow": "Končí zítra",
+    "warning_one": "Zbývá {{count}} den",
+    "warning_other": "Zbývá {{count}} dní"
+  },
+  "types": {
+    "project": "Projekt",
+    "daily": "Denní",
+    "weekly": "Týdenní",
+    "monthly": "Měsíční"
+  },
+  "units": {
+    "words_one": "slovo",
+    "words_other": "slov",
+    "pages_one": "strana",
+    "pages_other": "stran",
+    "characters_one": "znak",
+    "characters_other": "znaků"
+  },
+  "toast": {
+    "updateSuccess": "Cíl byl úspěšně aktualizován",
+    "error": "Došlo k chybě",
+    "alreadyCompleted": "Tento cíl je již dokončen"
+  },
+  "actions": {
+    "markCompleted": "Označit jako dokončené",
+    "update": "Upravit",
+    "delete": "Smazat"
+  },
+  "progress": "Postup",
+  "remaining": "{{value}} zbývá",
+  "encouragement": {
+    "prefix": "Už jen",
+    "suffix": "k dosažení tohoto cíle!"
+  }
+}

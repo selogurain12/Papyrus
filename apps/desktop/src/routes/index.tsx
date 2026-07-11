@@ -1,8 +1,8 @@
 import { createRouter } from "@tanstack/react-router";
+import { queryClient } from "../context/query-client";
 import { indexRoute } from "./index.routes";
 import { defaultLayoutRoute } from "./layout.routes";
 import { rootRoute } from "./root.routes";
-import { queryClient } from "../context/query-client";
 import { loginRoute, registerRoute } from "./authentification/index.route";
 import { projectHomeRoute } from "./project/index.route";
 import { characterRoute } from "./character/index.route";
@@ -21,6 +21,8 @@ import {
 import { chapterRoute } from "./chapter/index.route";
 import { exportRoute } from "./export/index.route";
 import { settingsRoute } from "./settings/index.route";
+import { dashboardRoute } from "./dashboard/index.route";
+import { goalsRoute } from "./goals/index.route";
 
 export const routeTree = rootRoute.addChildren([
   defaultLayoutRoute.addChildren([
@@ -28,6 +30,7 @@ export const routeTree = rootRoute.addChildren([
     loginRoute,
     registerRoute,
     projectHomeRoute.addChildren([
+      dashboardRoute,
       characterRoute,
       placeRoute,
       objectRoute,
@@ -42,6 +45,7 @@ export const routeTree = rootRoute.addChildren([
       chapterRoute,
       exportRoute,
       settingsRoute,
+      goalsRoute,
     ]),
   ]),
 ]);

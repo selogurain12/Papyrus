@@ -8,6 +8,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { mindmapRoute, viewMindmapRoute } from "../../routes/mindmap/index.route";
 import { Button } from "../ui/button";
 import { useTranslation } from "react-i18next";
+import { Download } from "lucide-react";
 
 export function MindMapViewer() {
   const { t } = useTranslation("common");
@@ -44,19 +45,41 @@ export function MindMapViewer() {
 
   if (!mindmap) return <div>{t("loading")}</div>;
 
+  async function download() {
+    const blob = await mindRef.current?.exportPng(false);
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${mindmap?.title}.png`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="p-6">
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-semibold">{mindmap.title}</h2>
-          <Button
-            onClick={() =>
-              void navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })
-            }
-            className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
-          >
-            {t("close")}
-          </Button>
+          <div className="gap-2 flex">
+            <Button
+              onClick={download}
+              className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
+            >
+              <Download />
+            </Button>
+            <Button
+              onClick={() =>
+                void navigate({
+                  to: mindmapRoute.to,
+                  params: { name: currentProject?.title ?? "" },
+                })
+              }
+              className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
+            >
+              {t("close")}
+            </Button>
+          </div>
         </div>
 
         <div className="bg-white shadow rounded-xl p-4">

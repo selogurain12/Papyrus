@@ -1,4 +1,5 @@
 import z from "zod";
+import { colorTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 
 export const createNoteSchema = z.object({
@@ -6,7 +7,7 @@ export const createNoteSchema = z.object({
   content: z.string().min(1).max(1000).nullable(),
   tags: z.string().array().nullable(),
   project: projectSchema,
-  color: z.string().min(1).max(20),
+  color: z.enum(colorTypes),
   linkFile: z.string().nullable(),
 });
 

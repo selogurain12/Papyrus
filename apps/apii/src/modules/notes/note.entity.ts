@@ -9,6 +9,7 @@ import {
   type Ref,
   UuidType,
 } from "@mikro-orm/postgresql";
+import { ColorType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 
@@ -32,7 +33,7 @@ export class NoteEntity {
   public linkFile: string | null = null;
 
   @Property({ type: "string" })
-  public color: string;
+  public color: ColorType;
 
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
@@ -50,7 +51,7 @@ export class NoteEntity {
     title: string;
     content: string | null;
     linkFile: string | null;
-    color: string;
+    color: ColorType;
     project: ProjectEntity;
     tags: string[] | null;
   }) {

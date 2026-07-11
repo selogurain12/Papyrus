@@ -16,8 +16,7 @@ const triggerVariants = cva(
         button:
           "text-xs rounded-lg py-2 px-3 text-secondary-foreground data-[state=active]:text-foreground data-[state=active]:bg-white",
 
-        orange:
-          "text-xs rounded-lg py-2 px-3 text-secondary-foreground data-[state=active]:text-foreground data-[state=active]:bg-orange-600 data-[state=active]:text-white",
+        blue: "text-xs rounded-lg py-2 px-3 text-secondary-foreground data-[state=active]:text-foreground data-[state=active]:bg-blue-600 data-[state=active]:text-white hover:bg-gray-200",
       },
     },
 

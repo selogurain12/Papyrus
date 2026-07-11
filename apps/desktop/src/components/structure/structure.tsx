@@ -114,7 +114,7 @@ export function StructurePage() {
           <TabsList className="w-full gap-6 p-1">
             <TabsTrigger
               value="concept"
-              variant="orange"
+              variant="blue"
               className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 w-1/3"
             >
               <Lightbulb />
@@ -122,7 +122,7 @@ export function StructurePage() {
             </TabsTrigger>
             <TabsTrigger
               value="plan"
-              variant="orange"
+              variant="blue"
               className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 w-1/3"
             >
               <Map />
@@ -130,7 +130,7 @@ export function StructurePage() {
             </TabsTrigger>
             <TabsTrigger
               value="objectifs"
-              variant="orange"
+              variant="blue"
               className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 w-1/3"
             >
               <Target />

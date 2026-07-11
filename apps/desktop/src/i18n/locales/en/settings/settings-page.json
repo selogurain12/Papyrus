@@ -159,7 +159,9 @@
   "toasts": {
     "success": "Settings saved",
     "error": "Unable to save settings",
-    "noProject": "No current project to save settings"
+    "noProject": "No current project to save settings",
+    "notificationsDenied": "Notifications are blocked by the system or browser",
+    "notificationsUnsupported": "Notifications are not available on this device"
   },
   "shortcutActions": {
     "create-part": "Create a part",

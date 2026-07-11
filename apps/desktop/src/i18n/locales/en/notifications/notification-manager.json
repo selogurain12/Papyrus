@@ -1,0 +1,16 @@
+{
+  "dailyWordGoal": {
+    "title": "Daily writing goal",
+    "body": "You have {{remaining}} words left to reach your {{target}} word goal today."
+  },
+  "activeGoals": {
+    "title_one": "Active goal",
+    "title_other": "{{count}} active goals",
+    "body": "Remember to make progress on \"{{title}}\".",
+    "fallbackTitle": "your goal"
+  },
+  "backup": {
+    "title": "Backup reminder",
+    "body": "Remember to save or export your project so you keep an up-to-date copy."
+  }
+}

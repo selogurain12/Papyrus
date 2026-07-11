@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "Projet actuel introuvable.",
+  "title": "Tableau de bord",
+  "subtitle": "Vue d'ensemble de votre projet \"{{projectTitle}}\"",
+  "summary": {
+    "wordsWritten": "Mots écrits",
+    "characters": "Personnages",
+    "placesCreated": "Lieux créés",
+    "chapters": "Chapitres"
+  },
+  "summaryChange": {
+    "today": "{{value}} aujourd'hui",
+    "thisWeek": "{{value}} cette semaine",
+    "recently": "{{value}} récemment",
+    "inProgress": "{{value}} en cours"
+  },
+  "sections": {
+    "currentGoals": "Objectifs en cours",
+    "progress": "Progression",
+    "dailyProgress": "Progression quotidienne",
+    "recentActivity": "Activité récente",
+    "quickActions": "Actions rapides",
+    "writingStreak": "Série d'écriture"
+  },
+  "progress": {
+    "wordsToday": "Mots aujourd'hui",
+    "chaptersThisWeek": "Chapitres cette semaine",
+    "developedCharacters": "Personnages développés",
+    "detailedPlaces": "Lieux détaillés"
+  },
+  "quickActions": {
+    "newCharacter": "Nouveau personnage",
+    "newChapter": "Nouveau chapitre",
+    "newPlace": "Nouveau lieu",
+    "newObject": "Nouvel objet",
+    "timelineEvent": "Événement chronologie",
+    "newNote": "Nouvelle note"
+  },
+  "emptyActivity": "Aucune activité pour le moment.",
+  "streakDays_one": "{{count}} jour",
+  "streakDays_other": "{{count}} jours",
+  "streakActive": "Vous avez avancé aujourd'hui. Continuez sur cette lancée.",
+  "streakInactive": "Ajoutez ou mettez à jour un chapitre pour lancer la série d'écriture.",
+  "words": "mots"
+}

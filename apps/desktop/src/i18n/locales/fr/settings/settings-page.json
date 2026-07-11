@@ -159,7 +159,9 @@
   "toasts": {
     "success": "Paramètres sauvegardés",
     "error": "Impossible de sauvegarder les paramètres",
-    "noProject": "Aucun projet courant pour sauvegarder les paramètres"
+    "noProject": "Aucun projet courant pour sauvegarder les paramètres",
+    "notificationsDenied": "Les notifications sont bloquées par le système ou le navigateur",
+    "notificationsUnsupported": "Les notifications ne sont pas disponibles sur cet appareil"
   },
   "shortcutActions": {
     "create-part": "Créer une partie",

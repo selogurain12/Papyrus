@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "현재 프로젝트를 찾을 수 없습니다.",
+  "title": "대시보드",
+  "subtitle": "프로젝트 \"{{projectTitle}}\" 개요",
+  "summary": {
+    "wordsWritten": "작성한 단어",
+    "characters": "인물",
+    "placesCreated": "생성한 장소",
+    "chapters": "챕터"
+  },
+  "summaryChange": {
+    "today": "오늘 {{value}}",
+    "thisWeek": "이번 주 {{value}}",
+    "recently": "최근 {{value}}",
+    "inProgress": "{{value}} 진행 중"
+  },
+  "sections": {
+    "currentGoals": "진행 중인 목표",
+    "progress": "진행률",
+    "dailyProgress": "일일 진행률",
+    "recentActivity": "최근 활동",
+    "quickActions": "빠른 작업",
+    "writingStreak": "쓰기 연속 기록"
+  },
+  "progress": {
+    "wordsToday": "오늘 단어 수",
+    "chaptersThisWeek": "이번 주 챕터",
+    "developedCharacters": "발전된 인물",
+    "detailedPlaces": "상세한 장소"
+  },
+  "quickActions": {
+    "newCharacter": "새 인물",
+    "newChapter": "새 챕터",
+    "newPlace": "새 장소",
+    "newObject": "새 오브젝트",
+    "timelineEvent": "타임라인 이벤트",
+    "newNote": "새 노트"
+  },
+  "emptyActivity": "아직 활동이 없습니다.",
+  "streakDays_one": "{{count}}일",
+  "streakDays_other": "{{count}}일",
+  "streakActive": "오늘 진전이 있었습니다. 이 흐름을 이어가세요.",
+  "streakInactive": "챕터를 추가하거나 업데이트해 쓰기 연속 기록을 시작하세요.",
+  "words": "단어"
+}

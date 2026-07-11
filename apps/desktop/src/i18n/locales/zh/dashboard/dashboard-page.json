@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "找不到当前项目。",
+  "title": "仪表盘",
+  "subtitle": "项目“{{projectTitle}}”概览",
+  "summary": {
+    "wordsWritten": "已写字数",
+    "characters": "角色",
+    "placesCreated": "已创建地点",
+    "chapters": "章节"
+  },
+  "summaryChange": {
+    "today": "今天 {{value}}",
+    "thisWeek": "本周 {{value}}",
+    "recently": "最近 {{value}}",
+    "inProgress": "{{value}} 进行中"
+  },
+  "sections": {
+    "currentGoals": "进行中的目标",
+    "progress": "进度",
+    "dailyProgress": "每日进度",
+    "recentActivity": "最近活动",
+    "quickActions": "快捷操作",
+    "writingStreak": "写作连续记录"
+  },
+  "progress": {
+    "wordsToday": "今日字数",
+    "chaptersThisWeek": "本周章节",
+    "developedCharacters": "已完善角色",
+    "detailedPlaces": "已详细设定地点"
+  },
+  "quickActions": {
+    "newCharacter": "新角色",
+    "newChapter": "新章节",
+    "newPlace": "新地点",
+    "newObject": "新物品",
+    "timelineEvent": "时间线事件",
+    "newNote": "新笔记"
+  },
+  "emptyActivity": "暂无活动。",
+  "streakDays_one": "{{count}} 天",
+  "streakDays_other": "{{count}} 天",
+  "streakActive": "你今天已经有进展了。继续保持。",
+  "streakInactive": "添加或更新一个章节来开始写作连续记录。",
+  "words": "字"
+}

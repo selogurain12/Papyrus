@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "Aktuelles Projekt nicht gefunden.",
+  "title": "Dashboard",
+  "subtitle": "Übersicht über dein Projekt \"{{projectTitle}}\"",
+  "summary": {
+    "wordsWritten": "Geschriebene Wörter",
+    "characters": "Figuren",
+    "placesCreated": "Erstellte Orte",
+    "chapters": "Kapitel"
+  },
+  "summaryChange": {
+    "today": "{{value}} heute",
+    "thisWeek": "{{value}} diese Woche",
+    "recently": "{{value}} kürzlich",
+    "inProgress": "{{value}} in Arbeit"
+  },
+  "sections": {
+    "currentGoals": "Laufende Ziele",
+    "progress": "Fortschritt",
+    "dailyProgress": "Täglicher Fortschritt",
+    "recentActivity": "Letzte Aktivität",
+    "quickActions": "Schnellaktionen",
+    "writingStreak": "Schreibserie"
+  },
+  "progress": {
+    "wordsToday": "Wörter heute",
+    "chaptersThisWeek": "Kapitel diese Woche",
+    "developedCharacters": "Ausgearbeitete Figuren",
+    "detailedPlaces": "Detaillierte Orte"
+  },
+  "quickActions": {
+    "newCharacter": "Neue Figur",
+    "newChapter": "Neues Kapitel",
+    "newPlace": "Neuer Ort",
+    "newObject": "Neues Objekt",
+    "timelineEvent": "Zeitleistenereignis",
+    "newNote": "Neue Notiz"
+  },
+  "emptyActivity": "Noch keine Aktivität.",
+  "streakDays_one": "{{count}} Tag",
+  "streakDays_other": "{{count}} Tage",
+  "streakActive": "Du bist heute vorangekommen. Mach so weiter.",
+  "streakInactive": "Füge ein Kapitel hinzu oder aktualisiere eines, um deine Schreibserie zu starten.",
+  "words": "Wörter"
+}

@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "Aktuální projekt nebyl nalezen.",
+  "title": "Přehled",
+  "subtitle": "Přehled projektu „{{projectTitle}}“",
+  "summary": {
+    "wordsWritten": "Napsaná slova",
+    "characters": "Postavy",
+    "placesCreated": "Vytvořená místa",
+    "chapters": "Kapitoly"
+  },
+  "summaryChange": {
+    "today": "{{value}} dnes",
+    "thisWeek": "{{value}} tento týden",
+    "recently": "{{value}} nedávno",
+    "inProgress": "{{value}} probíhá"
+  },
+  "sections": {
+    "currentGoals": "Probíhající cíle",
+    "progress": "Postup",
+    "dailyProgress": "Denní postup",
+    "recentActivity": "Nedávná aktivita",
+    "quickActions": "Rychlé akce",
+    "writingStreak": "Série psaní"
+  },
+  "progress": {
+    "wordsToday": "Slova dnes",
+    "chaptersThisWeek": "Kapitoly tento týden",
+    "developedCharacters": "Rozvinuté postavy",
+    "detailedPlaces": "Podrobná místa"
+  },
+  "quickActions": {
+    "newCharacter": "Nová postava",
+    "newChapter": "Nová kapitola",
+    "newPlace": "Nové místo",
+    "newObject": "Nový objekt",
+    "timelineEvent": "Událost časové osy",
+    "newNote": "Nová poznámka"
+  },
+  "emptyActivity": "Zatím žádná aktivita.",
+  "streakDays_one": "{{count}} den",
+  "streakDays_other": "{{count}} dní",
+  "streakActive": "Dnes jste pokročili. Pokračujte v tomto tempu.",
+  "streakInactive": "Přidejte nebo aktualizujte kapitolu a spusťte sérii psaní.",
+  "words": "slov"
+}

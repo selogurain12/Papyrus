@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "Progetto corrente non trovato.",
+  "title": "Dashboard",
+  "subtitle": "Panoramica del tuo progetto \"{{projectTitle}}\"",
+  "summary": {
+    "wordsWritten": "Parole scritte",
+    "characters": "Personaggi",
+    "placesCreated": "Luoghi creati",
+    "chapters": "Capitoli"
+  },
+  "summaryChange": {
+    "today": "{{value}} oggi",
+    "thisWeek": "{{value}} questa settimana",
+    "recently": "{{value}} di recente",
+    "inProgress": "{{value}} in corso"
+  },
+  "sections": {
+    "currentGoals": "Obiettivi in corso",
+    "progress": "Progressione",
+    "dailyProgress": "Progressione quotidiana",
+    "recentActivity": "Attività recente",
+    "quickActions": "Azioni rapide",
+    "writingStreak": "Serie di scrittura"
+  },
+  "progress": {
+    "wordsToday": "Parole oggi",
+    "chaptersThisWeek": "Capitoli questa settimana",
+    "developedCharacters": "Personaggi sviluppati",
+    "detailedPlaces": "Luoghi dettagliati"
+  },
+  "quickActions": {
+    "newCharacter": "Nuovo personaggio",
+    "newChapter": "Nuovo capitolo",
+    "newPlace": "Nuovo luogo",
+    "newObject": "Nuovo oggetto",
+    "timelineEvent": "Evento cronologico",
+    "newNote": "Nuova nota"
+  },
+  "emptyActivity": "Nessuna attività per ora.",
+  "streakDays_one": "{{count}} giorno",
+  "streakDays_other": "{{count}} giorni",
+  "streakActive": "Hai fatto progressi oggi. Continua così.",
+  "streakInactive": "Aggiungi o aggiorna un capitolo per avviare la tua serie di scrittura.",
+  "words": "parole"
+}

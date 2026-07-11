@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "Projeto atual não encontrado.",
+  "title": "Painel",
+  "subtitle": "Visão geral do seu projeto \"{{projectTitle}}\"",
+  "summary": {
+    "wordsWritten": "Palavras escritas",
+    "characters": "Personagens",
+    "placesCreated": "Lugares criados",
+    "chapters": "Capítulos"
+  },
+  "summaryChange": {
+    "today": "{{value}} hoje",
+    "thisWeek": "{{value}} esta semana",
+    "recently": "{{value}} recentemente",
+    "inProgress": "{{value}} em curso"
+  },
+  "sections": {
+    "currentGoals": "Objetivos em curso",
+    "progress": "Progressão",
+    "dailyProgress": "Progressão diária",
+    "recentActivity": "Atividade recente",
+    "quickActions": "Ações rápidas",
+    "writingStreak": "Sequência de escrita"
+  },
+  "progress": {
+    "wordsToday": "Palavras hoje",
+    "chaptersThisWeek": "Capítulos esta semana",
+    "developedCharacters": "Personagens desenvolvidos",
+    "detailedPlaces": "Lugares detalhados"
+  },
+  "quickActions": {
+    "newCharacter": "Nova personagem",
+    "newChapter": "Novo capítulo",
+    "newPlace": "Novo lugar",
+    "newObject": "Novo objeto",
+    "timelineEvent": "Evento da cronologia",
+    "newNote": "Nova nota"
+  },
+  "emptyActivity": "Ainda não há atividade.",
+  "streakDays_one": "{{count}} dia",
+  "streakDays_other": "{{count}} dias",
+  "streakActive": "Avançou hoje. Continue assim.",
+  "streakInactive": "Adicione ou atualize um capítulo para iniciar a sua sequência de escrita.",
+  "words": "palavras"
+}

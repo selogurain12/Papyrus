@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "Текущий проект не найден.",
+  "title": "Панель управления",
+  "subtitle": "Обзор проекта «{{projectTitle}}»",
+  "summary": {
+    "wordsWritten": "Написано слов",
+    "characters": "Персонажи",
+    "placesCreated": "Созданные места",
+    "chapters": "Главы"
+  },
+  "summaryChange": {
+    "today": "{{value}} сегодня",
+    "thisWeek": "{{value}} на этой неделе",
+    "recently": "{{value}} недавно",
+    "inProgress": "{{value}} в работе"
+  },
+  "sections": {
+    "currentGoals": "Текущие цели",
+    "progress": "Прогресс",
+    "dailyProgress": "Ежедневный прогресс",
+    "recentActivity": "Недавняя активность",
+    "quickActions": "Быстрые действия",
+    "writingStreak": "Серия письма"
+  },
+  "progress": {
+    "wordsToday": "Слов сегодня",
+    "chaptersThisWeek": "Главы на этой неделе",
+    "developedCharacters": "Развитые персонажи",
+    "detailedPlaces": "Подробные места"
+  },
+  "quickActions": {
+    "newCharacter": "Новый персонаж",
+    "newChapter": "Новая глава",
+    "newPlace": "Новое место",
+    "newObject": "Новый объект",
+    "timelineEvent": "Событие хронологии",
+    "newNote": "Новая заметка"
+  },
+  "emptyActivity": "Пока нет активности.",
+  "streakDays_one": "{{count}} день",
+  "streakDays_other": "{{count}} дней",
+  "streakActive": "Сегодня вы продвинулись. Продолжайте в том же духе.",
+  "streakInactive": "Добавьте или обновите главу, чтобы начать серию письма.",
+  "words": "слов"
+}

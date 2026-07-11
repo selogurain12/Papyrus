@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "現在のプロジェクトが見つかりません。",
+  "title": "ダッシュボード",
+  "subtitle": "プロジェクト「{{projectTitle}}」の概要",
+  "summary": {
+    "wordsWritten": "執筆済み単語数",
+    "characters": "登場人物",
+    "placesCreated": "作成した場所",
+    "chapters": "章"
+  },
+  "summaryChange": {
+    "today": "今日 {{value}}",
+    "thisWeek": "今週 {{value}}",
+    "recently": "最近 {{value}}",
+    "inProgress": "{{value}} 進行中"
+  },
+  "sections": {
+    "currentGoals": "進行中の目標",
+    "progress": "進捗",
+    "dailyProgress": "今日の進捗",
+    "recentActivity": "最近のアクティビティ",
+    "quickActions": "クイック操作",
+    "writingStreak": "執筆継続記録"
+  },
+  "progress": {
+    "wordsToday": "今日の単語数",
+    "chaptersThisWeek": "今週の章",
+    "developedCharacters": "掘り下げた登場人物",
+    "detailedPlaces": "詳細化した場所"
+  },
+  "quickActions": {
+    "newCharacter": "新しい登場人物",
+    "newChapter": "新しい章",
+    "newPlace": "新しい場所",
+    "newObject": "新しいオブジェクト",
+    "timelineEvent": "タイムラインイベント",
+    "newNote": "新しいメモ"
+  },
+  "emptyActivity": "まだアクティビティはありません。",
+  "streakDays_one": "{{count}} 日",
+  "streakDays_other": "{{count}} 日",
+  "streakActive": "今日は進捗があります。この調子で続けましょう。",
+  "streakInactive": "章を追加または更新して、執筆継続記録を始めましょう。",
+  "words": "単語"
+}

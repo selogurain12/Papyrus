@@ -1,0 +1,34 @@
+{
+  "title": "Goals and progress",
+  "subtitle": "Define and track your writing goals",
+  "newGoal": "New goal",
+  "filters": {
+    "all": "All"
+  },
+  "types": {
+    "project": "Project",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly"
+  },
+  "stats": {
+    "activeGoals": "Active goals",
+    "dailyGoals": "Daily goals",
+    "averageProgress": "Average progress",
+    "completedGoals": "Completed goals"
+  },
+  "sections": {
+    "activeGoals": "Active goals",
+    "completedGoals": "Completed goals"
+  },
+  "units": {
+    "words_one": "word",
+    "words_other": "words",
+    "pages_one": "page",
+    "pages_other": "pages",
+    "characters_one": "character",
+    "characters_other": "characters"
+  },
+  "emptyGoals": "No goals found.",
+  "completedGoalProgress": "{{value}} {{unit}} completed"
+}

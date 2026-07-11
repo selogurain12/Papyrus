@@ -1,0 +1,45 @@
+{
+  "currentProjectMissing": "Current project is missing.",
+  "title": "Dashboard",
+  "subtitle": "Overview of your project \"{{projectTitle}}\"",
+  "summary": {
+    "wordsWritten": "Words written",
+    "characters": "Characters",
+    "placesCreated": "Places created",
+    "chapters": "Chapters"
+  },
+  "summaryChange": {
+    "today": "{{value}} today",
+    "thisWeek": "{{value}} this week",
+    "recently": "{{value}} recently",
+    "inProgress": "{{value}} in progress"
+  },
+  "sections": {
+    "currentGoals": "Current goals",
+    "progress": "Progression",
+    "dailyProgress": "Daily progress",
+    "recentActivity": "Recent activity",
+    "quickActions": "Quick actions",
+    "writingStreak": "Writing streak"
+  },
+  "progress": {
+    "wordsToday": "Words today",
+    "chaptersThisWeek": "Chapters this week",
+    "developedCharacters": "Developed characters",
+    "detailedPlaces": "Detailed places"
+  },
+  "quickActions": {
+    "newCharacter": "New character",
+    "newChapter": "New chapter",
+    "newPlace": "New place",
+    "newObject": "New object",
+    "timelineEvent": "Timeline event",
+    "newNote": "New note"
+  },
+  "emptyActivity": "No activity yet.",
+  "streakDays_one": "{{count}} day",
+  "streakDays_other": "{{count}} days",
+  "streakActive": "You made progress today. Keep the momentum going.",
+  "streakInactive": "Add or update a chapter to start your writing streak.",
+  "words": "words"
+}

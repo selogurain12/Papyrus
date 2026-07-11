@@ -2,6 +2,7 @@ import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { ScheduleModule } from "@nestjs/schedule";
 import { AuthentificationModule } from "./modules/authentification/authentification.module";
 import { ChapterModule } from "./modules/chapters/chapters.module";
 import { CharacterModule } from "./modules/characters/characters.module";
@@ -19,10 +20,14 @@ import { S3Module } from "./modules/s3/s3.module";
 import { EventModule } from "./modules/events/events.module";
 import { StructureModule } from "./modules/structure/structure.module";
 import { ExportModule } from "./modules/export/export.module";
+import { DashboardModule } from "./modules/dashboard/dashboard.module";
+import { GoalModule } from "./modules/goals/goal.module";
+import { HistoryModule } from "./modules/history/history.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    ScheduleModule.forRoot(),
     MikroOrmModule.forRoot({
       entities: ["./dist/**/*.entity.js"],
       entitiesTs: ["./src/**/*.entity.ts"],
@@ -52,6 +57,9 @@ import { ExportModule } from "./modules/export/export.module";
     S3Module,
     StructureModule,
     ExportModule,
+    DashboardModule,
+    GoalModule,
+    HistoryModule,
   ],
 })
 export class AppModule {}

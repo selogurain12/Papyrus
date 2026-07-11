@@ -12,16 +12,17 @@ import {
   MapPin,
   Trash2,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useFilterDto } from "../../utils/filters/use-filter-dto";
 import { client } from "../../utils/client/client";
 import { useProject } from "../../context/project-provider";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Card, CardHeader, CardContent } from "../ui/card";
 import { Timeline } from "../ui/timeline/timeline";
 import { TimelineContent } from "../ui/timeline/timeline-content";
 import { TimelineDot } from "../ui/timeline/timeline-dot";
 import { TimelineItem } from "../ui/timeline/timeline-item";
 import { format } from "../../utils/date/date-utils";
+import { ScrollArea } from "../ui/scroll-area/scroll-area";
 
 function getStatusIcon(status: "critical" | "important" | "action" | "normal" | null) {
   switch (status) {
@@ -67,6 +68,7 @@ export function EventTimeline({
   setUpdating: (isUpdating: boolean) => void;
   setDeleting: (isDeleting: boolean) => void;
 }) {
+  const { t } = useTranslation("event/event-timeline");
   const { currentProject } = useProject();
   const { options } = useFilterDto({
     itemsPerPage: 20,
@@ -132,7 +134,7 @@ export function EventTimeline({
     <Card className="flex justify-between items-center bg-white h-fit">
       <div className="flex flex-col flex-auto">
         <CardHeader className="flex flex-col pb-0 items-center md:items-start">
-          <p className="font-bold mb-3">Ligne temporelle</p>
+          <p className="font-bold mb-3">{t("title")}</p>
         </CardHeader>
         <CardContent className="items-center md:items-start">
           <ScrollArea className="grow h-fit">

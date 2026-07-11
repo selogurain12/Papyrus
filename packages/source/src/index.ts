@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-export * from "./utils/languages.enum";
+export * from "./utils/enum";
 export * from "./utils/zoned-iso";
 export * from "./dtos/api-response.dto";
 export * from "./dtos/chapter.dto";
@@ -21,6 +21,9 @@ export * from "./dtos/list-result.dto";
 export * from "./dtos/filter.dto";
 export * from "./dtos/structure.dto";
 export * from "./dtos/export.dto";
+export * from "./dtos/dashboard.dto";
+export * from "./dtos/goal.dto";
+export * from "./dtos/history.dto";
 
 export * from "./contracts/chapter.contract";
 export * from "./contracts/character.contract";
@@ -40,5 +43,8 @@ export * from "./contracts/index.contract";
 export * from "./contracts/s3.contract";
 export * from "./contracts/structure.contract";
 export * from "./contracts/export.contract";
+export * from "./contracts/dashboard.contract";
+export * from "./contracts/goal.contract";
+export * from "./contracts/history.contract";
 
 export * from "./query-client";

@@ -39,6 +39,7 @@ const globalPreferenceKeys = new Set<keyof SettingsState>([
   "theme",
   "fontSize",
   "fontFamily",
+  "compactMode",
 ]);
 
 const defaultSettings: SettingsState = {
@@ -82,6 +83,7 @@ function toPreferences(settings: SettingsState): AppPreferences {
     theme: settings.theme,
     fontSize: settings.fontSize,
     fontFamily: settings.fontFamily,
+    compactMode: settings.compactMode,
   };
 }
 

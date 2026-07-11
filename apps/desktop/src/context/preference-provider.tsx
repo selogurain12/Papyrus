@@ -16,6 +16,7 @@ export type AppPreferences = {
   theme: "light" | "dark";
   fontSize: "small" | "medium" | "large" | "xlarge";
   fontFamily: "system" | "lora" | "merriweather" | "source-serif-4";
+  compactMode: boolean;
 };
 
 interface PreferencesContextValue {
@@ -29,6 +30,7 @@ export const defaultPreferences: AppPreferences = {
   theme: "light",
   fontSize: "medium",
   fontFamily: "system",
+  compactMode: false,
 };
 
 const PreferencesContext = createContext<PreferencesContextValue | null>(null);
@@ -82,6 +84,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", preferences.theme === "dark");
+    document.documentElement.dataset.density = preferences.compactMode ? "compact" : "comfortable";
     document.documentElement.style.setProperty(
       "--app-font-family",
       fontFamilies[preferences.fontFamily]
@@ -102,6 +105,7 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       theme: currentProject.settings.theme,
       fontSize: currentProject.settings.fontSize,
       fontFamily: currentProject.settings.fontFamily,
+      compactMode: currentProject.settings.compactMode,
     });
   }, [currentProject, updatePreferences]);
 

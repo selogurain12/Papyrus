@@ -11,7 +11,9 @@ export const s3Contract = contract.router(
       summary: "Upload a file to S3",
       description: "Upload a file to S3",
       contentType: "multipart/form-data",
-      body: contract.type<{ file: File }>(),
+      body: z.object({
+        file: z.instanceof(File),
+      }),
       responses: {
         200: z.object({
           url: z.string(),

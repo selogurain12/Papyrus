@@ -9,6 +9,7 @@ import {
   type Ref,
 } from "@mikro-orm/postgresql";
 import { ZonedDateTime } from "@internationalized/date";
+import { EntityType, HistoryType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 
@@ -22,23 +23,12 @@ export class HistoryEntity {
   @Property({
     type: "string",
   })
-  public type: "create" | "update" | "delete";
+  public type: HistoryType;
 
   @Property({
     type: "string",
   })
-  public entity:
-    | "mindmap"
-    | "character"
-    | "place"
-    | "chapter"
-    | "part"
-    | "goal"
-    | "event"
-    | "export"
-    | "note"
-    | "object"
-    | "research";
+  public entity: EntityType;
 
   @Property({
     type: ZonedDateTimeType,
@@ -54,19 +44,8 @@ export class HistoryEntity {
   public project: Ref<ProjectEntity>;
 
   public constructor(params: {
-    type: "create" | "update" | "delete";
-    entity:
-      | "mindmap"
-      | "character"
-      | "place"
-      | "chapter"
-      | "part"
-      | "goal"
-      | "event"
-      | "export"
-      | "note"
-      | "object"
-      | "research";
+    type: HistoryType;
+    entity: EntityType;
     date: ZonedDateTime;
     title: string;
     project: ProjectEntity;

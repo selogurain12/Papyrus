@@ -11,6 +11,7 @@ import {
   type Ref,
   UuidType,
 } from "@mikro-orm/postgresql";
+import { ColorType, GenderType, RoleType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 import { RelationshipEntity } from "../relationships/relationship.entity";
@@ -24,7 +25,7 @@ export class CharacterEntity {
   public id: string = randomUUID();
 
   @Property({ type: "string" })
-  public role: "protagonist" | "antagonist" | "ally" | "mentor" | "secondary character";
+  public role: RoleType;
 
   @Property({ type: "int" })
   public roleStar: number;
@@ -43,7 +44,7 @@ export class CharacterEntity {
   public pronouns: string;
 
   @Property({ type: "string" })
-  public gender: "female" | "male" | "other";
+  public gender: GenderType;
 
   @Property({ type: "string", nullable: true })
   public nationality: string | null;
@@ -144,7 +145,7 @@ export class CharacterEntity {
   public notes: string | null;
 
   @Property({ type: "string", nullable: true })
-  public color: string | null = null;
+  public color: ColorType | null = null;
 
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
@@ -166,12 +167,12 @@ export class CharacterEntity {
 
   public constructor(parameters: {
     roleStar: number;
-    role: "protagonist" | "antagonist" | "ally" | "mentor" | "secondary character";
+    role: RoleType;
     firstName: string;
     lastName: string;
     nickName: string;
     pronouns: string;
-    gender: "female" | "male" | "other";
+    gender: GenderType;
     nationality: string | null;
     age: number | null;
     birthDate: ZonedDateTime | null;
@@ -203,7 +204,7 @@ export class CharacterEntity {
     present: string | null;
     future: string | null;
     notes: string | null;
-    color: string | null;
+    color: ColorType | null;
     project: ProjectEntity;
   }) {
     this.roleStar = parameters.roleStar;

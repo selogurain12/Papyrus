@@ -1,17 +1,18 @@
 import z from "zod";
+import { colorTypes, importanceLevelTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
 
 export const createObjectSchema = z.object({
   name: z.string().min(1).max(100),
-  importance: z.enum(["low", "medium", "high"]),
+  importance: z.enum(importanceLevelTypes),
   description: z.string().min(1).max(1000).nullable(),
   appearance: z.string().min(1).max(1000).nullable(),
   significance: z.string().min(1).max(1000).nullable(),
   location: z.string().min(1).max(1000).nullable(),
   type: z.string().min(1).max(100).nullable(),
   history: z.string().min(1).max(1000).nullable(),
-  color: z.string().min(1).nullable(),
+  color: z.enum(colorTypes).nullable(),
   project: z.lazy(() => projectSchema),
 });
 

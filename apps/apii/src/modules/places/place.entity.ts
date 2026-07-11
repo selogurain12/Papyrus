@@ -9,7 +9,7 @@ import {
   type Ref,
   UuidType,
 } from "@mikro-orm/postgresql";
-import { LanguageType } from "@papyrus/source";
+import { ColorType, ImportanceLevelType, LanguageType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 
@@ -57,10 +57,10 @@ export class PlaceEntity {
   public ressources: string | null = null;
 
   @Property({ type: "string" })
-  public narrativeImportance: "high" | "medium" | "low";
+  public narrativeImportance: ImportanceLevelType;
 
   @Property({ type: "string" })
-  public color: string;
+  public color: ColorType;
 
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
@@ -87,8 +87,8 @@ export class PlaceEntity {
     language?: LanguageType | null;
     government?: string | null;
     ressources?: string | null;
-    narrativeImportance: "high" | "medium" | "low";
-    color: string;
+    narrativeImportance: ImportanceLevelType;
+    color: ColorType;
     project: ProjectEntity;
   }) {
     this.name = parameters.name;

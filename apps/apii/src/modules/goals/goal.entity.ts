@@ -9,6 +9,7 @@ import {
   UuidType,
 } from "@mikro-orm/postgresql";
 import { now, ZonedDateTime } from "@internationalized/date";
+import { GoalStatusType, GoalType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 
@@ -20,7 +21,7 @@ export class GoalEntity {
   public id: string = randomUUID();
 
   @Property({ type: "string" })
-  public type: "daily" | "weekly" | "monthly" | "project";
+  public type: GoalType;
 
   @Property({ type: "string" })
   public title: string;
@@ -44,7 +45,7 @@ export class GoalEntity {
   public description: string | null = null;
 
   @Property({ type: "string", nullable: true })
-  public status: "warning" | "urgent" | "overdue" | null = null;
+  public status: GoalStatusType | null = null;
 
   @Property({ type: "boolean" })
   public isOpen: boolean = true;
@@ -62,14 +63,14 @@ export class GoalEntity {
   public project: Ref<ProjectEntity>;
 
   public constructor(parameters: {
-    type: "daily" | "weekly" | "monthly" | "project";
+    type: GoalType;
     title: string;
     goals: number;
     unit: "words" | "hours" | "chapters";
     project: ProjectEntity;
     deadline?: ZonedDateTime | null;
     description?: string | null;
-    status?: "warning" | "urgent" | "overdue" | null;
+    status?: GoalStatusType | null;
     currentBaseline?: number;
   }) {
     this.type = parameters.type;

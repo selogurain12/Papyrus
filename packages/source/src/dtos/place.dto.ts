@@ -1,5 +1,5 @@
 import z from "zod";
-import { languagesTypes } from "../utils/languages.enum";
+import { colorTypes, importanceLevelTypes, languagesTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 
 export const createPlaceSchema = z.object({
@@ -15,8 +15,8 @@ export const createPlaceSchema = z.object({
   language: z.enum(languagesTypes).optional().nullable(),
   government: z.string().min(1).max(1000).optional().nullable(),
   ressources: z.string().min(1).max(1000).optional().nullable(),
-  narrativeImportance: z.enum(["high", "medium", "low"]),
-  color: z.string(),
+  narrativeImportance: z.enum(importanceLevelTypes),
+  color: z.enum(colorTypes),
   project: z.lazy(() => projectSchema),
 });
 

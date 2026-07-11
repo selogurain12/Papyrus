@@ -12,7 +12,6 @@ export * from "./dtos/object.dto";
 export * from "./dtos/part.dto";
 export * from "./dtos/place.dto";
 export * from "./dtos/research.dto";
-export * from "./dtos/reference.dto";
 export * from "./dtos/relationship.dto";
 export * from "./dtos/project.dto";
 export * from "./dtos/setting.dto";

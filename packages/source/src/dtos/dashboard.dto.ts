@@ -1,9 +1,10 @@
 import z from "zod";
+import { iconTypes } from "../utils/enum";
 
 export const dashboardSummaryCardSchema = z.object({
   label: z.string(),
   value: z.string(),
-  icon: z.enum(["bookOpen", "users", "mapPin", "calendar"]),
+  icon: z.enum(iconTypes),
   color: z.enum(["blue", "purple", "green", "orange"]),
   change: z.string(),
 });

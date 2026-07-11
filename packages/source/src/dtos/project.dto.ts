@@ -1,5 +1,5 @@
 import z from "zod";
-import { languagesTypes } from "../utils/languages.enum";
+import { languagesTypes, projectStatusTypes } from "../utils/enum";
 import { isZonedIso8601 } from "../utils/zoned-iso";
 import { settingSchema } from "./setting.dto";
 import { userSchema } from "./user.dto";
@@ -28,7 +28,7 @@ export const createProjectSchema = z.object({
     .min(0, "Le nombre de mots actuel doit être un entier positif")
     .default(0)
     .optional(),
-  status: z.enum(["planning", "writing", "editing", "completed"]).default("planning").optional(),
+  status: z.enum(projectStatusTypes).default("planning").optional(),
   author: z
     .string()
     .min(1, "L'auteur du projet est requis")

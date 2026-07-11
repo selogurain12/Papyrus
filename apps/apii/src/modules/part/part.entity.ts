@@ -11,6 +11,7 @@ import {
   UuidType,
 } from "@mikro-orm/postgresql";
 import { now, ZonedDateTime } from "@internationalized/date";
+import { StatusType } from "@papyrus/source";
 import { ChapterEntity } from "../../modules/chapters/chapters.entity";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
@@ -26,7 +27,7 @@ export class PartEntity {
   public title: string;
 
   @Property({ type: "string", default: "toStart " })
-  public status: "toStart" | "inProgress" | "completed";
+  public status: StatusType;
 
   @OneToMany(() => ChapterEntity, (chapter) => chapter.part)
   public chapters = new Collection<ChapterEntity>(this);
@@ -43,11 +44,7 @@ export class PartEntity {
   @Property({ type: ZonedDateTimeType, nullable: true })
   public deletedAt?: ZonedDateTime | null = null;
 
-  public constructor(parameters: {
-    title: string;
-    status: "toStart" | "inProgress" | "completed";
-    project: ProjectEntity;
-  }) {
+  public constructor(parameters: { title: string; status: StatusType; project: ProjectEntity }) {
     this.title = parameters.title;
     this.status = parameters.status;
     this.project = ref(parameters.project);

@@ -7,7 +7,7 @@ import {
   Property,
   UuidType,
 } from "@mikro-orm/postgresql";
-import { LanguageType, SettingShortcutDto } from "@papyrus/source";
+import { FontFamilyType, FontSizeType, LanguageType, SettingShortcutDto } from "@papyrus/source";
 import { ProjectEntity } from "../projects/projects.entity";
 
 @Entity()
@@ -36,10 +36,10 @@ export class SettingEntity {
   public compactMode: boolean = false;
 
   @Property({ type: "string", default: "medium" })
-  public fontSize: "small" | "medium" | "large" | "xlarge" = "medium";
+  public fontSize: FontSizeType = "medium";
 
   @Property({ type: "string", default: "system" })
-  public fontFamily: "system" | "lora" | "merriweather" | "source-serif-4" = "system";
+  public fontFamily: FontFamilyType = "system";
 
   @Property({ type: "boolean", default: false })
   public showLineNumbers: boolean = false;

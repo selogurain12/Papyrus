@@ -9,6 +9,7 @@ import {
   type Ref,
   UuidType,
 } from "@mikro-orm/postgresql";
+import { ResearchType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 
@@ -26,7 +27,7 @@ export class ResearchEntity {
   public content: string | null = null;
 
   @Property({ type: "string" })
-  public type: "articles" | "links" | "images" | "videos" | "books";
+  public type: ResearchType;
 
   @Property({ type: "string", nullable: true })
   public sources: string | null = null;
@@ -57,7 +58,7 @@ export class ResearchEntity {
 
   public constructor(parameters: {
     title: string;
-    type: "articles" | "links" | "images" | "videos" | "books";
+    type: ResearchType;
     sources: string | null;
     tag: string[] | null;
     note: string | null;

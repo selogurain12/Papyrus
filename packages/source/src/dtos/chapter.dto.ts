@@ -1,10 +1,11 @@
 import z from "zod";
+import { statusTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 import { partSchema } from "./part.dto";
 
 export const createChapterSchema = z.object({
   title: z.string().min(2).max(100),
-  status: z.enum(["toStart", "inProgress", "completed"]).default("toStart"),
+  status: z.enum(statusTypes).default("toStart"),
   content: z.string().nullable(),
   resume: z.string().nullable(),
   chapterNumber: z.number(),

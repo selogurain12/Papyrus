@@ -11,7 +11,7 @@ import {
   type Ref,
   UuidType,
 } from "@mikro-orm/postgresql";
-import { type LanguageType } from "@papyrus/source";
+import { ProjectStatusType, type LanguageType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { UserEntity } from "../users/users.entity";
 import { SettingEntity } from "../settings/settings.entity";
@@ -49,7 +49,7 @@ export class ProjectEntity {
   public currentWordCount: number;
 
   @Property({ default: "planning", type: "string" })
-  public status: "planning" | "writing" | "editing" | "completed";
+  public status: ProjectStatusType;
 
   @Property({ type: "string" })
   public author: string;
@@ -114,7 +114,7 @@ export class ProjectEntity {
     genre: string;
     targetWordCount: number;
     currentWordCount: number;
-    status: "planning" | "writing" | "editing" | "completed";
+    status: ProjectStatusType;
     author: string;
     language: LanguageType;
     deadline: ZonedDateTime | null;

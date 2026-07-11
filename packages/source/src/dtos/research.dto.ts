@@ -1,10 +1,11 @@
 import z from "zod";
+import { reasearchTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
 
 export const createResearchSchema = z.object({
   title: z.string().min(1).max(100),
-  type: z.enum(["articles", "links", "images", "videos", "books"]),
+  type: z.enum(reasearchTypes),
   sources: z.string().min(1).max(1000).nullable(),
   tag: z.string().array().nullable(),
   note: z.string().min(1).max(1000).nullable(),

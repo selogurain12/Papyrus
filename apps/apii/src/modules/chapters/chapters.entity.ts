@@ -9,6 +9,7 @@ import {
   type Ref,
   UuidType,
 } from "@mikro-orm/postgresql";
+import { StatusType } from "@papyrus/source";
 import { PartEntity } from "../part/part.entity";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
@@ -24,7 +25,7 @@ export class ChapterEntity {
   public title: string;
 
   @Property({ type: "string", default: "toStart " })
-  public status: "toStart" | "inProgress" | "completed";
+  public status: StatusType;
 
   @Property({ type: "text", nullable: true })
   public content: string | null = null;
@@ -58,7 +59,7 @@ export class ChapterEntity {
 
   public constructor(parameters: {
     title: string;
-    status: "toStart" | "inProgress" | "completed";
+    status: StatusType;
     content: string | null;
     resume: string | null;
     chapterNumber: number;

@@ -9,6 +9,7 @@ import {
   type Ref,
   UuidType,
 } from "@mikro-orm/postgresql";
+import { ImportanceType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
 
@@ -26,7 +27,7 @@ export class EventEntity {
   public description: string | null = null;
 
   @Property({ type: "string", nullable: true })
-  public importance: "critical" | "important" | "action" | "normal" | null = null;
+  public importance: ImportanceType | null = null;
 
   @Property({ type: "string", nullable: true })
   public location: string | null = null;
@@ -52,7 +53,7 @@ export class EventEntity {
   public constructor(parameters: {
     title: string;
     description?: string | null;
-    importance?: "critical" | "important" | "action" | "normal" | null;
+    importance?: ImportanceType | null;
     location?: string | null;
     additionalDetails?: string | null;
     eventDate: ZonedDateTime;

@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { isZonedIso8601 } from "../utils/zoned-iso";
+import { importanceTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
 
 export const createEventSchema = z.object({
   title: z.string().min(2).max(100),
   description: z.string().max(500).nullable(),
-  importance: z.enum(["critical", "important", "action", "normal"]).nullable(),
+  importance: z.enum(importanceTypes).nullable(),
   location: z.string().max(200).nullable(),
   additionalDetails: z.string().max(2000).nullable(),
   eventDate: z.string().refine(isZonedIso8601),
@@ -20,7 +21,7 @@ export const eventSchema = createEventSchema.extend({
 export const updateEventSchema = createEventSchema.partial();
 
 export const filterEventSchema = filterSchema.extend({
-  importance: z.enum(["critical", "important", "action", "normal"]).array().optional(),
+  importance: z.enum(importanceTypes).array().optional(),
   minDate: z.string().refine(isZonedIso8601).optional(),
   maxDate: z.string().refine(isZonedIso8601).optional(),
 });

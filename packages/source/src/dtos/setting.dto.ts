@@ -1,5 +1,5 @@
 import z from "zod";
-import { languagesTypes } from "../utils/languages.enum";
+import { fontFamilyTypes, fontSizeTypes, languagesTypes } from "../utils/enum";
 
 export const settingShortcutSchema = z.object({
   id: z.string(),
@@ -14,8 +14,8 @@ export const createSettingSchema = z.object({
   dailyWordCountGoal: z.number().default(1000),
   theme: z.enum(["light", "dark"]).default("light"),
   compactMode: z.boolean().default(false),
-  fontSize: z.enum(["small", "medium", "large", "xlarge"]).default("medium"),
-  fontFamily: z.enum(["system", "lora", "merriweather", "source-serif-4"]).default("system"),
+  fontSize: z.enum(fontSizeTypes).default("medium"),
+  fontFamily: z.enum(fontFamilyTypes).default("system"),
   showLineNumbers: z.boolean().default(false),
   focusMode: z.boolean().default(true),
   spellcheck: z.boolean().default(true),

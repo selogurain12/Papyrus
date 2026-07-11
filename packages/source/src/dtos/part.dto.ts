@@ -1,9 +1,10 @@
 import z from "zod";
+import { statusTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 
 export const createPartSchema = z.object({
   title: z.string().min(1).max(100),
-  status: z.enum(["toStart", "inProgress", "completed"]).default("toStart"),
+  status: z.enum(statusTypes).default("toStart"),
   project: z.lazy(() => projectSchema),
 });
 

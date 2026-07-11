@@ -1,16 +1,17 @@
 import z from "zod";
 import { isZonedIso8601 } from "../utils/zoned-iso";
+import { goalStatusTypes, goalTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
 
 export const createGoalSchema = z.object({
-  type: z.enum(["daily", "weekly", "monthly", "project"]),
+  type: z.enum(goalTypes),
   title: z.string().min(2).max(100),
   goals: z.number().min(1),
   unit: z.enum(["words", "hours", "chapters"]),
   deadline: z.string().refine(isZonedIso8601).nullable().optional(),
   description: z.string().max(500).nullable(),
-  status: z.enum(["warning", "urgent", "overdue"]).nullable().optional(),
+  status: z.enum(goalStatusTypes).nullable().optional(),
   project: z.lazy(() => projectSchema),
   isOpen: z.boolean().default(true),
   current: z.number().min(0).default(0),

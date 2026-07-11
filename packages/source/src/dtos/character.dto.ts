@@ -1,10 +1,11 @@
 import z from "zod";
 import { isZonedIso8601 } from "../utils/zoned-iso";
+import { colorTypes, genderTypes, roleTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
 
 export const createCharacterSchema = z.object({
-  role: z.enum(["protagonist", "antagonist", "ally", "mentor", "secondary character"]),
+  role: z.enum(roleTypes),
   roleStar: z.number().min(0),
 
   // état civil
@@ -12,7 +13,7 @@ export const createCharacterSchema = z.object({
   lastName: z.string().min(1).max(100),
   nickName: z.string().min(1).max(100),
   pronouns: z.string().min(1).max(50),
-  gender: z.enum(["female", "male", "other"]),
+  gender: z.enum(genderTypes),
   nationality: z.string().max(100).nullable(),
   age: z.number().min(0).nullable(),
   birthDate: z.string().refine(isZonedIso8601).nullable(),
@@ -54,7 +55,7 @@ export const createCharacterSchema = z.object({
 
   // autre
   notes: z.string().nullable(),
-  color: z.string().nullable(),
+  color: z.enum(colorTypes).nullable(),
 
   project: z.lazy(() => projectSchema),
 });
@@ -66,10 +67,7 @@ export const characterSchema = createCharacterSchema.extend({
 export const updateCharacterSchema = createCharacterSchema.partial();
 
 export const filterCharacterSchema = filterSchema.extend({
-  role: z
-    .enum(["protagonist", "antagonist", "ally", "mentor", "secondary character"])
-    .array()
-    .optional(),
+  role: z.enum(roleTypes).array().optional(),
   minAge: z.number().min(0).optional(),
   maxAge: z.number().min(0).optional(),
   objects: z.string().uuid("Le format de l'id de l'objet est invalide").array().optional(),

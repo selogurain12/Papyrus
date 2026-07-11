@@ -6,7 +6,12 @@ import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../ui/accordion";
 import { useState } from "react";
-import { CharacterDto, UpdateCharacterDto, updateCharacterSchema } from "@papyrus/source";
+import {
+  CharacterDto,
+  ColorType,
+  UpdateCharacterDto,
+  updateCharacterSchema,
+} from "@papyrus/source";
 import { SingleSelector } from "../../ui/single-select";
 import { FormField } from "../../ui/forms/form-field-context";
 import { TypeOption, roleOptions } from "../../../utils/value-for-select";
@@ -30,6 +35,7 @@ import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import { Slider } from "../../ui/slider";
 import { useTranslation } from "react-i18next";
+import { ColorPicker } from "../../ui/color-picker";
 
 interface UpdateCharacterProps {
   onCancel?: () => void;
@@ -1025,30 +1031,11 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
               <FormItem className="my-6">
                 <FormLabel>{t("fields.color")}</FormLabel>
                 <FormControl>
-                  <div className="flex mt-3 gap-3 flex-wrap">
-                    {[
-                      { value: "blue", label: t("colors.blue"), bg: "bg-blue-500" },
-                      { value: "red", label: t("colors.red"), bg: "bg-red-500" },
-                      { value: "green", label: t("colors.green"), bg: "bg-green-500" },
-                      { value: "purple", label: t("colors.purple"), bg: "bg-purple-500" },
-                      { value: "yellow", label: t("colors.yellow"), bg: "bg-yellow-500" },
-                      { value: "pink", label: t("colors.pink"), bg: "bg-pink-500" },
-                      { value: "cyan", label: t("colors.cyan"), bg: "bg-cyan-500" },
-                      { value: "gray", label: t("colors.gray"), bg: "bg-gray-500" },
-                    ].map((color) => (
-                      <button
-                        key={color.value}
-                        type="button"
-                        onClick={() => field.onChange(color.value)}
-                        className={`w-8 h-8 rounded-full ${color.bg} transition-transform ${
-                          field.value === color.value
-                            ? "ring-2 ring-offset-2 ring-foreground scale-110"
-                            : "hover:scale-105"
-                        }`}
-                        title={color.label}
-                      />
-                    ))}
-                  </div>
+                  <ColorPicker
+                    className="mt-3"
+                    value={field.value as ColorType | null | undefined}
+                    onChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

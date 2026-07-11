@@ -11,7 +11,7 @@ import { FormItem } from "../../ui/forms/form-item";
 import { FormControl } from "../../ui/forms/form-control";
 import { FormLabel } from "../../ui/forms/form-label";
 import { FormMessage } from "../../ui/forms/form-message";
-import { UpdateObjectDto, updateObjectSchema, ObjectDto } from "@papyrus/source";
+import { UpdateObjectDto, updateObjectSchema, ObjectDto, ColorType } from "@papyrus/source";
 import { client } from "../../../utils/client/client";
 import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
@@ -23,6 +23,7 @@ import { objectRoute } from "../../../routes/object/index.route";
 import { SingleSelector } from "../../ui/single-select";
 import { importanceOptions, objectTypeOptions, TypeOption } from "../../../utils/value-for-select";
 import { useTranslation } from "react-i18next";
+import { ColorPicker } from "../../ui/color-picker";
 
 interface UpdateObjectProps {
   onCancel?: () => void;
@@ -190,23 +191,11 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
                 <FormItem>
                   <FormLabel>{t("fields.color")}</FormLabel>
                   <FormControl>
-                    <div className="flex gap-3 mt-1">
-                      {["green", "blue", "purple", "red", "yellow", "pink", "orange", "gray"].map(
-                        (color) => (
-                          <button
-                            key={color}
-                            type="button"
-                            onClick={() => field.onChange(color)}
-                            className={`w-8 h-8 rounded-full border ${
-                              field.value === color
-                                ? "border-black ring-2 ring-offset-1 ring-black"
-                                : "border-gray-300"
-                            }`}
-                            style={{ backgroundColor: color }}
-                          />
-                        )
-                      )}
-                    </div>
+                    <ColorPicker
+                      className="mt-3"
+                      value={field.value as ColorType | null | undefined}
+                      onChange={field.onChange}
+                    />
                   </FormControl>
                 </FormItem>
               )}

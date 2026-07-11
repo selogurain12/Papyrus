@@ -18,7 +18,7 @@ import { FormControl } from "../../ui/forms/form-control";
 import { Input } from "../../ui/input";
 import { FormMessage } from "../../ui/forms/form-message";
 import { File } from "lucide-react";
-import { CreateNoteDto, createNoteSchema } from "@papyrus/source";
+import { ColorType, CreateNoteDto, createNoteSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
 import { useProject } from "../../../context/project-provider";
 import { Textarea } from "../../ui/textarea";
@@ -26,6 +26,7 @@ import { Separator } from "../../ui/separator";
 import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
 import { useTranslation } from "react-i18next";
+import { ColorPicker } from "../../ui/color-picker";
 
 interface CreateNoteFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -214,24 +215,11 @@ export function CreateNoteForm({ setOpen }: CreateNoteFormProps) {
               <FormItem>
                 <FormLabel className="font-semibold mb-1">{t("fields.color")}</FormLabel>
                 <FormControl>
-                  <div className="flex gap-3 mt-1">
-                    {["green", "blue", "purple", "red", "yellow", "pink", "orange", "gray"].map(
-                      (color) => (
-                        <button
-                          type="button"
-                          key={color}
-                          onClick={() => field.onChange(color)}
-                          className={`w-8 h-8 rounded-full border ${
-                            field.value === color
-                              ? "border-black ring-2 ring-offset-1 ring-black"
-                              : "border-gray-300"
-                          }`}
-                          style={{ backgroundColor: color }}
-                          aria-label={color}
-                        />
-                      )
-                    )}
-                  </div>
+                  <ColorPicker
+                    className="mt-3"
+                    value={field.value as ColorType | null | undefined}
+                    onChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

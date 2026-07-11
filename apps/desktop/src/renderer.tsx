@@ -11,6 +11,7 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import { AuthProvider } from "./context/auth-provider";
 import { ProjectProvider } from "./context/project-provider";
 import { PreferencesProvider } from "./context/preference-provider";
+import { NotificationManager } from "./components/notifications/notification-manager";
 import "@fontsource/inter";
 import "@fontsource/lora";
 import "@fontsource/merriweather";
@@ -18,7 +19,11 @@ import "@fontsource/source-serif-4";
 
 const container = document.querySelector("#root");
 
-const root = createRoot(container!);
+if (!container) {
+  throw new Error("Root container not found");
+}
+
+const root = createRoot(container);
 
 root.render(
   <StrictMode>
@@ -29,6 +34,7 @@ root.render(
             <main>
               <TooltipProvider>
                 <Toaster richColors />
+                <NotificationManager />
                 <RouterProvider basepath={import.meta.env.BASE_URL} router={router} />
               </TooltipProvider>
             </main>

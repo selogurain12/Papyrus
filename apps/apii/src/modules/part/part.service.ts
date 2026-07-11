@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { MikroORM } from "@mikro-orm/postgresql";
 import { HttpStatus, Injectable } from "@nestjs/common";
 import { TsRestException } from "@ts-rest/nest";
@@ -9,9 +10,11 @@ import {
   PartDto,
   UpdatePartDto,
 } from "@papyrus/source";
-import { fromDate } from "@internationalized/date";
+import { fromDate, now } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
 import { ChapterService } from "../chapters/chapters.service";
+import { HistoryService } from "../history/history.service";
+import { ProjectMapper } from "../projects/projects.mapper";
 import { PartMapper } from "./part.mapper";
 import { PartEntity } from "./part.entity";
 
@@ -23,10 +26,23 @@ export class PartService {
 
   private readonly chapterService: ChapterService;
 
-  public constructor(orm: MikroORM, partMapper: PartMapper, chapterService: ChapterService) {
+  private readonly projectMapper: ProjectMapper;
+
+  private readonly historyService: HistoryService;
+
+  // eslint-disable-next-line max-params
+  public constructor(
+    orm: MikroORM,
+    partMapper: PartMapper,
+    chapterService: ChapterService,
+    projectMapper: ProjectMapper,
+    historyService: HistoryService
+  ) {
     this.orm = orm;
     this.partMapper = partMapper;
     this.chapterService = chapterService;
+    this.projectMapper = projectMapper;
+    this.historyService = historyService;
   }
 
   public async get(id: string, projectId: string) {
@@ -92,6 +108,16 @@ export class PartService {
       }
       const item = await this.partMapper.createDtoToEntity(parameters, projectId, em);
       await em.persist(item).flush();
+      await this.historyService.create(
+        {
+          type: "create",
+          entity: "part",
+          date: now("UTC").toString(),
+          title: `Création de la partie ${parameters.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.partMapper.entityToDto(item, projectId, em);
@@ -134,8 +160,30 @@ export class PartService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(partContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       const item = await this.partMapper.updateDtoToEntity(id, updateDto, em);
       em.persist(item);
+      await this.historyService.create(
+        {
+          type: "update",
+          entity: "part",
+          date: now("UTC").toString(),
+          title: `Modification de la partie ${existingEntity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.partMapper.entityToDto(item, projectId, em);
@@ -182,8 +230,30 @@ export class PartService {
       for (const chapter of chapters.data) {
         await this.chapterService.softDelete(chapter.id, projectId);
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(partContract.delete, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       existingEntity.deletedAt = fromDate(new Date(), "UTC");
       em.persist(existingEntity);
+      await this.historyService.create(
+        {
+          type: "delete",
+          entity: "part",
+          date: now("UTC").toString(),
+          title: `Suppression de la partie ${existingEntity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
     } catch (error) {
       await em.rollback();

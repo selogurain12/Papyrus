@@ -10,9 +10,11 @@ import {
   UpdateChapterDto,
 } from "@papyrus/source";
 import { TsRestException } from "@ts-rest/nest";
-import { fromDate } from "@internationalized/date";
+import { fromDate, now } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
-import { ProjectService } from "../projects/projects.service";
+import { ProjectMapper } from "../projects/projects.mapper";
+import { GoalService } from "../goals/goal.service";
+import { HistoryService } from "../history/history.service";
 import { ChapterMapper } from "./chapters.mapper";
 import { ChapterEntity } from "./chapters.entity";
 
@@ -22,12 +24,25 @@ export class ChapterService {
 
   private readonly chapterMapper: ChapterMapper;
 
-  private readonly projectService: ProjectService;
+  private readonly projectMapper: ProjectMapper;
 
-  public constructor(orm: MikroORM, chapterMapper: ChapterMapper, projectService: ProjectService) {
+  private readonly goalService: GoalService;
+
+  private readonly historyService: HistoryService;
+
+  // eslint-disable-next-line max-params
+  public constructor(
+    orm: MikroORM,
+    chapterMapper: ChapterMapper,
+    projectMapper: ProjectMapper,
+    goalService: GoalService,
+    historyService: HistoryService
+  ) {
     this.orm = orm;
     this.chapterMapper = chapterMapper;
-    this.projectService = projectService;
+    this.projectMapper = projectMapper;
+    this.goalService = goalService;
+    this.historyService = historyService;
   }
 
   public async get(id: string, projectId: string): Promise<ChapterDto> {
@@ -121,6 +136,19 @@ export class ChapterService {
       }
       const item = await this.chapterMapper.createDtoToEntity(parameters, projectId, em);
       em.persist(item);
+      project.currentWordCount = project.currentWordCount + item.wordCount;
+      em.persist(project);
+      await this.historyService.create(
+        {
+          type: "create",
+          entity: "chapter",
+          date: now("UTC").toString(),
+          title: `Création du chapitre ${parameters.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
+      await this.goalService.syncProjectWordGoals(projectId, project.currentWordCount, em);
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.chapterMapper.entityToDto(item, projectId, em);
@@ -195,6 +223,17 @@ export class ChapterService {
 
       project.currentWordCount = project.currentWordCount + delta;
       em.persist(project);
+      await this.historyService.create(
+        {
+          type: "update",
+          entity: "chapter",
+          date: now("UTC").toString(),
+          title: `Modification du chapitre ${existingEntity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
+      await this.goalService.syncProjectWordGoals(projectId, project.currentWordCount, em);
 
       await em.commit();
       await em.populate(item, ["project"]);
@@ -254,8 +293,19 @@ export class ChapterService {
           },
         });
       }
-      project.currentWordCount = project.currentWordCount - entity.wordCount;
+      project.currentWordCount = Math.max(project.currentWordCount - entity.wordCount, 0);
       em.persist(project);
+      await this.historyService.create(
+        {
+          type: "delete",
+          entity: "chapter",
+          date: now("UTC").toString(),
+          title: `Suppression du chapitre ${entity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
+      await this.goalService.syncProjectWordGoals(projectId, project.currentWordCount, em);
       await em.commit();
     } catch (error) {
       await em.rollback();
@@ -299,6 +349,25 @@ export class ChapterService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(chapterContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
+
+      if (!entity.deletedAt) {
+        project.currentWordCount = Math.max(project.currentWordCount - entity.wordCount, 0);
+        em.persist(project);
+        await this.goalService.syncProjectWordGoals(projectId, project.currentWordCount, em);
+      }
+
       em.remove(entity);
       await em.commit();
     } catch (error) {

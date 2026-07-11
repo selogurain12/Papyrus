@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { MikroORM } from "@mikro-orm/postgresql";
 import { HttpStatus, Injectable } from "@nestjs/common";
 import {
@@ -9,8 +10,10 @@ import {
   UpdateEventDto,
 } from "@papyrus/source";
 import { TsRestException } from "@ts-rest/nest";
-import { fromDate } from "@internationalized/date";
+import { fromDate, now } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
+import { HistoryService } from "../history/history.service";
+import { ProjectMapper } from "../projects/projects.mapper";
 import { EventMapper } from "./events.mapper";
 import { EventEntity } from "./events.entity";
 
@@ -20,9 +23,20 @@ export class EventService {
 
   private readonly eventsMapper: EventMapper;
 
-  public constructor(orm: MikroORM, eventsMapper: EventMapper) {
+  private readonly projectMapper: ProjectMapper;
+
+  private readonly historyService: HistoryService;
+
+  public constructor(
+    orm: MikroORM,
+    eventsMapper: EventMapper,
+    projectMapper: ProjectMapper,
+    historyService: HistoryService
+  ) {
     this.orm = orm;
     this.eventsMapper = eventsMapper;
+    this.projectMapper = projectMapper;
+    this.historyService = historyService;
   }
 
   public async get(id: string, projectId: string): Promise<EventDto> {
@@ -97,6 +111,16 @@ export class EventService {
       }
       const item = await this.eventsMapper.createDtoToEntity(parameters, projectId, em);
       em.persist(item);
+      await this.historyService.create(
+        {
+          type: "create",
+          entity: "event",
+          date: now("UTC").toString(),
+          title: `Création de l'évènement ${parameters.title}`,
+          project: await this.projectMapper.entityToDto(existingProject, em),
+        },
+        projectId
+      );
       await em.commit();
       return await this.eventsMapper.entityToDto(item, projectId, em);
     } catch (error) {
@@ -141,8 +165,30 @@ export class EventService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(eventContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       const item = await this.eventsMapper.updateDtoToEntity(id, updateDto, em);
       await em.persist(item).flush();
+      await this.historyService.create(
+        {
+          type: "update",
+          entity: "event",
+          date: now("UTC").toString(),
+          title: `Modification de l'évènement ${existingEntity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
       return await this.eventsMapper.entityToDto(item, projectId, em);
     } catch (error) {
@@ -186,8 +232,30 @@ export class EventService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(eventContract.delete, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       entity.deletedAt = fromDate(new Date(), "UTC");
       await em.persist(entity).flush();
+      await this.historyService.create(
+        {
+          type: "delete",
+          entity: "event",
+          date: now("UTC").toString(),
+          title: `Suppression de l'évènement ${entity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
     } catch (error) {
       await em.rollback();

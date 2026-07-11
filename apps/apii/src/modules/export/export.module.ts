@@ -8,6 +8,7 @@ import { PlaceModule } from "../places/place.module";
 import { NoteModule } from "../notes/note.module";
 import { ResearchModule } from "../research/research.module";
 import { EventModule } from "../events/events.module";
+import { HistoryModule } from "../history/history.module";
 import { ExportService } from "./export.service";
 import { ExportController } from "./export.controller";
 
@@ -22,6 +23,7 @@ import { ExportController } from "./export.controller";
     NoteModule,
     ResearchModule,
     EventModule,
+    HistoryModule,
   ],
   controllers: [ExportController],
   providers: [ExportService],

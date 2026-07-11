@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { MikroORM } from "@mikro-orm/postgresql";
 import { HttpStatus, Injectable } from "@nestjs/common";
 import {
@@ -9,8 +10,10 @@ import {
   UpdateMindMapDto,
 } from "@papyrus/source";
 import { TsRestException } from "@ts-rest/nest";
-import { fromDate } from "@internationalized/date";
+import { fromDate, now } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
+import { ProjectMapper } from "../projects/projects.mapper";
+import { HistoryService } from "../history/history.service";
 import { MindmapMapper } from "./mindmap.mapper";
 import { MindmapEntity } from "./mindmap.entity";
 
@@ -20,9 +23,20 @@ export class MindmapService {
 
   private readonly mindMapMapper: MindmapMapper;
 
-  public constructor(orm: MikroORM, mindMapMapper: MindmapMapper) {
+  private readonly projectMapper: ProjectMapper;
+
+  private readonly historyService: HistoryService;
+
+  public constructor(
+    orm: MikroORM,
+    mindMapMapper: MindmapMapper,
+    projectMapper: ProjectMapper,
+    historyService: HistoryService
+  ) {
     this.orm = orm;
     this.mindMapMapper = mindMapMapper;
+    this.projectMapper = projectMapper;
+    this.historyService = historyService;
   }
 
   public async get(id: string, projectId: string): Promise<MindMapDto> {
@@ -92,6 +106,16 @@ export class MindmapService {
       }
       const item = await this.mindMapMapper.createDtoToEntity(parameters, projectId, em);
       await em.persist(item).flush();
+      await this.historyService.create(
+        {
+          type: "create",
+          entity: "mindmap",
+          date: now("UTC").toString(),
+          title: `Création de la carte mentale ${parameters.title}`,
+          project: await this.projectMapper.entityToDto(existingProject, em),
+        },
+        projectId
+      );
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.mindMapMapper.entityToDto(item, projectId, em);
@@ -137,8 +161,30 @@ export class MindmapService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(mindmapContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       const updatedItem = await this.mindMapMapper.updateDtoToEntity(id, updateDto, em);
       await em.persist(updatedItem).flush();
+      await this.historyService.create(
+        {
+          type: "update",
+          entity: "mindmap",
+          date: now("UTC").toString(),
+          title: `Modification de la carte mentale ${item.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
       await em.populate(updatedItem, ["project"]);
       return await this.mindMapMapper.entityToDto(updatedItem, projectId, em);
@@ -183,8 +229,30 @@ export class MindmapService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(mindmapContract.delete, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       entity.deletedAt = fromDate(new Date(), "UTC");
       await em.persist(entity).flush();
+      await this.historyService.create(
+        {
+          type: "delete",
+          entity: "mindmap",
+          date: now("UTC").toString(),
+          title: `Suppression de la carte mentale ${entity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
     } catch (error) {
       await em.rollback();

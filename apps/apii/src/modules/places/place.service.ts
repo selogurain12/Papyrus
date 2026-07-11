@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { MikroORM } from "@mikro-orm/postgresql";
 import { HttpStatus, Injectable } from "@nestjs/common";
 import { TsRestException } from "@ts-rest/nest";
@@ -9,8 +10,10 @@ import {
   PlaceDto,
   UpdatePlaceDto,
 } from "@papyrus/source";
-import { fromDate } from "@internationalized/date";
+import { fromDate, now } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
+import { HistoryService } from "../history/history.service";
+import { ProjectMapper } from "../projects/projects.mapper";
 import { PlaceMapper } from "./place.mapper";
 import { PlaceEntity } from "./place.entity";
 
@@ -20,9 +23,20 @@ export class PlaceService {
 
   private readonly placeMapper: PlaceMapper;
 
-  public constructor(orm: MikroORM, placeMapper: PlaceMapper) {
+  private readonly projectMapper: ProjectMapper;
+
+  private readonly historyService: HistoryService;
+
+  public constructor(
+    orm: MikroORM,
+    placeMapper: PlaceMapper,
+    projectMapper: ProjectMapper,
+    historyService: HistoryService
+  ) {
     this.orm = orm;
     this.placeMapper = placeMapper;
+    this.projectMapper = projectMapper;
+    this.historyService = historyService;
   }
 
   public async get(id: string, projectId: string) {
@@ -96,6 +110,16 @@ export class PlaceService {
       }
       const item = await this.placeMapper.createDtoToEntity(parameters, projectId, em);
       await em.persist(item).flush();
+      await this.historyService.create(
+        {
+          type: "create",
+          entity: "place",
+          date: now("UTC").toString(),
+          title: `Création du lieu ${parameters.name}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.placeMapper.entityToDto(item, projectId, em);
@@ -138,8 +162,30 @@ export class PlaceService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(placeContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       const item = await this.placeMapper.updateDtoToEntity(id, updateDto, em);
       em.persist(item);
+      await this.historyService.create(
+        {
+          type: "update",
+          entity: "place",
+          date: now("UTC").toString(),
+          title: `Modification du lieu ${existingEntity.name}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
       await em.populate(item, ["project"]);
       return await this.placeMapper.entityToDto(item, projectId, em);
@@ -181,8 +227,30 @@ export class PlaceService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(placeContract.delete, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       existingEntity.deletedAt = fromDate(new Date(), "UTC");
       await em.persist(existingEntity).flush();
+      await this.historyService.create(
+        {
+          type: "delete",
+          entity: "place",
+          date: now("UTC").toString(),
+          title: `Suppression du lieu ${existingEntity.name}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
     } catch (error) {
       await em.rollback();

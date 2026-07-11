@@ -1,13 +1,14 @@
 import { Module } from "@nestjs/common";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { ProjectModule } from "../projects/projects.module";
+import { HistoryModule } from "../history/history.module";
 import { ObjectController } from "./objects.controller";
 import { ObjectService } from "./objects.service";
 import { ObjectMapper } from "./objects.mapper";
 import { ObjectEntity } from "./objects.entity";
 
 @Module({
-  imports: [MikroOrmModule.forFeature([ObjectEntity]), ProjectModule],
+  imports: [MikroOrmModule.forFeature([ObjectEntity]), ProjectModule, HistoryModule],
   controllers: [ObjectController],
   providers: [ObjectService, ObjectMapper],
   exports: [ObjectService, ObjectMapper],

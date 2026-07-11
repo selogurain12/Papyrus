@@ -27,6 +27,7 @@ import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
+import { Tag } from "../../ui/tag";
 
 interface UpdateNoteFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -35,7 +36,6 @@ interface UpdateNoteFormProps {
 
 export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
   const { t } = useTranslation(["notes/actions/update-note", "common"]);
-  const [tagInput, setTagInput] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [existingLink, setExistingLink] = useState<string | null>(note.linkFile ?? null);
@@ -112,26 +112,10 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
     }
   }
 
-  const handleAddTag = () => {
-    if (tagInput.trim()) {
-      const currentTags = form.getValues("tags") || [];
-      form.setValue("tags", [...currentTags, tagInput.trim()]);
-      setTagInput("");
-    }
-  };
-
-  const handleRemoveTag = (index: number) => {
-    const currentTags = form.getValues("tags") || [];
-    form.setValue(
-      "tags",
-      currentTags.filter((_, i) => i !== index)
-    );
-  };
-
   return (
     <DialogContent
       className={
-        "sm:max-w-[850px] sm:max-h-[90vh] bg-white p-6 sm:p-8 rounded-2xl " +
+        "sm:max-w-212.5 sm:max-h-[90vh] bg-white p-6 sm:p-8 rounded-2xl " +
         "shadow-2xl border border-slate-200 overflow-y-auto"
       }
       onInteractOutside={(event) => {
@@ -186,41 +170,11 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
 
             <div className="space-y-2">
               <FormLabel>{t("fields.tags")}</FormLabel>
-              <div className="flex gap-2 items-center">
-                <Input
-                  value={tagInput}
-                  onChange={(e) => setTagInput(e.target.value)}
-                  placeholder={t("placeholders.tag")}
-                />
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={handleAddTag}
-                  className="h-[42px]"
-                >
-                  {t("common:add")}
-                </Button>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {(form.watch("tags") || []).map((tag, i) => (
-                  <span
-                    key={i}
-                    className={
-                      "flex items-center gap-1 px-2 py-1 rounded-full border border-slate-300 " +
-                      "bg-slate-100 text-xs"
-                    }
-                  >
-                    {tag}
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveTag(i)}
-                      className="w-4 h-4 flex items-center justify-center rounded-full hover:bg-slate-200"
-                    >
-                      ×
-                    </button>
-                  </span>
-                ))}
-              </div>
+              <Tag
+                value={form.watch("tags")}
+                onChange={(tags) => form.setValue("tags", tags)}
+                placeholder={t("placeholders.tag")}
+              />
             </div>
             <FormField
               control={form.control}
@@ -288,7 +242,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
             >
               {t("common:cancel")}
             </Button>
-            <Button variant="blue" disabled={loading} className="min-w-[180px]">
+            <Button variant="blue" disabled={loading} className="min-w-45">
               {loading ? t("common:saving") : t("update.submit")}
             </Button>
           </div>

@@ -26,6 +26,7 @@ import { DatePicker } from "../../ui/date-picker";
 import { ProjectDto, UpdateProjectDto, updateProjectSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
 import { useTranslation } from "react-i18next";
+import { Tag } from "../../ui/tag";
 
 interface UpdateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -87,7 +88,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
 
   return (
     <DialogContent
-      className="overscroll-none sm:max-w-[800px] sm:max-h-[80%] bg-white p-8 max-h-4/5"
+      className="overscroll-none sm:max-w-200 sm:max-h-[80%] bg-white p-8 max-h-4/5"
       onInteractOutside={(event) => {
         event.preventDefault();
         setOpen(false);
@@ -278,25 +279,18 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               control={form.control}
               name="tags"
               render={({ field }) => (
-                <div>
-                  {field.value?.map((tag, i) => (
-                    <span key={i}>{tag}</span>
-                  ))}
-
-                  <Input
-                    placeholder={t("placeholders.tag")}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        e.preventDefault();
-                        const newTag = e.currentTarget.value.trim();
-                        if (newTag) {
-                          field.onChange([...(field.value ?? []), newTag]);
-                          e.currentTarget.value = "";
-                        }
-                      }
-                    }}
-                  />
-                </div>
+                <FormItem>
+                  <FormLabel>{t("fields.tags")}</FormLabel>
+                  <FormControl>
+                    <Tag
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder={t("placeholders.tag")}
+                      maxTags={10}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
             />
           </div>

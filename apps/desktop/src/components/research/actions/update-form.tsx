@@ -26,6 +26,7 @@ import { Separator } from "../../ui/separator";
 import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
 import { useTranslation } from "react-i18next";
+import { Tag } from "../../ui/tag";
 
 interface UpdateResearchFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -34,7 +35,6 @@ interface UpdateResearchFormProps {
 
 export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProps) {
   const { t } = useTranslation(["research/actions/update-form", "common"]);
-  const [tagInput, setTagInput] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [existingLink, setExistingLink] = useState<string | null>(research.link ?? null);
@@ -104,28 +104,12 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
     }
   }
 
-  const handleAddTag = () => {
-    if (tagInput.trim()) {
-      const currentTags = form.getValues("tag") || [];
-      form.setValue("tag", [...currentTags, tagInput.trim()]);
-      setTagInput("");
-    }
-  };
-
-  const handleRemoveTag = (index: number) => {
-    const currentTags = form.getValues("tag") || [];
-    form.setValue(
-      "tag",
-      currentTags.filter((_, i) => i !== index)
-    );
-  };
-
   const type = form.watch("type");
 
   return (
     <DialogContent
       className={
-        "sm:max-w-[850px] sm:max-h-[90vh] bg-white p-6 sm:p-8 rounded-2xl " +
+        "sm:max-w-212.5 sm:max-h-[90vh] bg-white p-6 sm:p-8 rounded-2xl " +
         "shadow-2xl border border-slate-200 overflow-y-auto"
       }
       onInteractOutside={(event) => {
@@ -265,39 +249,11 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
             <div className="space-y-2">
               <FormLabel>{t("fields.tags")}</FormLabel>
               <div className="flex gap-2 items-center">
-                <Input
-                  value={tagInput}
-                  onChange={(e) => setTagInput(e.target.value)}
+                <Tag
+                  value={form.watch("tag")}
+                  onChange={(tags) => form.setValue("tag", tags)}
                   placeholder={t("placeholders.tag")}
                 />
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={handleAddTag}
-                  className="h-[42px]"
-                >
-                  {t("common:add")}
-                </Button>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {(form.watch("tag") || []).map((tag, i) => (
-                  <span
-                    key={i}
-                    className={
-                      "flex items-center gap-1 px-2 py-1 rounded-full border border-slate-300 " +
-                      "bg-slate-100 text-xs"
-                    }
-                  >
-                    {tag}
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveTag(i)}
-                      className="w-4 h-4 flex items-center justify-center rounded-full hover:bg-slate-200"
-                    >
-                      ×
-                    </button>
-                  </span>
-                ))}
               </div>
             </div>
 
@@ -371,7 +327,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
             >
               {t("common:cancel")}
             </Button>
-            <Button variant="blue" disabled={loading} className="min-w-[180px]">
+            <Button variant="blue" disabled={loading} className="min-w-45">
               {loading ? t("common:saving") : t("update.submit")}
             </Button>
           </div>

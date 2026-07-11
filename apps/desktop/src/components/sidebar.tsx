@@ -13,11 +13,11 @@ import {
   Download,
   FolderOpen,
   Settings,
+  Target,
 } from "lucide-react";
-import React, { useState } from "react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import { Button } from "./ui/button";
-import { useNavigate } from "@tanstack/react-router";
+import React from "react";
+import { useNavigate, useRouterState } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { indexRoute } from "../routes/index.routes";
 import { characterRoute } from "../routes/character/index.route";
 import { placeRoute } from "../routes/place/index.route";
@@ -29,23 +29,63 @@ import { structureRoute } from "../routes/structure/index.routes";
 import { mindmapRoute } from "../routes/mindmap/index.route";
 import { chapterRoute } from "../routes/chapter/index.route";
 import { exportRoute } from "../routes/export/index.route";
-import { useTranslation } from "react-i18next";
 import { settingsRoute } from "../routes/settings/index.route";
+import { dashboardRoute } from "../routes/dashboard/index.route";
+import { goalsRoute } from "../routes/goals/index.route";
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const menu = [
-  { id: "dashboard", labelKey: "menu.dashboard", icon: Home, path: characterRoute },
-  { id: "characters", labelKey: "menu.characters", icon: Users, path: characterRoute },
-  { id: "places", labelKey: "menu.places", icon: MapPin, path: placeRoute },
-  { id: "objects", labelKey: "menu.objects", icon: Package, path: objectRoute },
-  { id: "chapters", labelKey: "menu.chapters", icon: BookOpen, path: chapterRoute },
-  { id: "research", labelKey: "menu.research", icon: Search, path: researchRoute },
+  { id: "dashboard", labelKey: "menu.dashboard", icon: Home, path: dashboardRoute, segment: "" },
+  {
+    id: "characters",
+    labelKey: "menu.characters",
+    icon: Users,
+    path: characterRoute,
+    segment: "character",
+  },
+  { id: "places", labelKey: "menu.places", icon: MapPin, path: placeRoute, segment: "place" },
+  { id: "objects", labelKey: "menu.objects", icon: Package, path: objectRoute, segment: "object" },
+  {
+    id: "chapters",
+    labelKey: "menu.chapters",
+    icon: BookOpen,
+    path: chapterRoute,
+    segment: "chapter",
+  },
+  {
+    id: "research",
+    labelKey: "menu.research",
+    icon: Search,
+    path: researchRoute,
+    segment: "research",
+  },
   // { id: "writing-tools", label: "Outils d'écriture", icon: PenTool, path: characterRoute },
-  { id: "timeline", labelKey: "menu.timeline", icon: Calendar, path: eventRoute },
-  { id: "structure", labelKey: "menu.structure", icon: Layers, path: structureRoute },
-  { id: "mind-maps", labelKey: "menu.mindMaps", icon: GitBranch, path: mindmapRoute },
-  { id: "notes", labelKey: "menu.notes", icon: StickyNote, path: noteRoute },
-  { id: "export", labelKey: "menu.export", icon: Download, path: exportRoute },
-  { id: "settings", labelKey: "menu.settings", icon: Settings, path: settingsRoute },
+  { id: "timeline", labelKey: "menu.timeline", icon: Calendar, path: eventRoute, segment: "event" },
+  {
+    id: "structure",
+    labelKey: "menu.structure",
+    icon: Layers,
+    path: structureRoute,
+    segment: "structure",
+  },
+  {
+    id: "mind-maps",
+    labelKey: "menu.mindMaps",
+    icon: GitBranch,
+    path: mindmapRoute,
+    segment: "mindmap",
+  },
+  { id: "notes", labelKey: "menu.notes", icon: StickyNote, path: noteRoute, segment: "note" },
+  { id: "goals", labelKey: "menu.goals", icon: Target, path: goalsRoute, segment: "goals" },
+  { id: "export", labelKey: "menu.export", icon: Download, path: exportRoute, segment: "export" },
+  {
+    id: "settings",
+    labelKey: "menu.settings",
+    icon: Settings,
+    path: settingsRoute,
+    segment: "settings",
+  },
 ];
 
 interface SidebarProps {
@@ -53,9 +93,12 @@ interface SidebarProps {
 }
 
 export function Sidebar({ name }: SidebarProps) {
-  const [activeView, setActiveView] = useState("dashboard");
   const navigate = useNavigate();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const { t } = useTranslation();
+  const projectPath = pathname.split("/project/")[1] ?? "";
+  const activeSegment = projectPath.split("/").filter(Boolean)[1] ?? "";
+  const activeView = menu.find((item) => item.segment === activeSegment)?.id ?? "dashboard";
 
   return (
     <div className="w-64 bg-background shadow-lg border-r border-gray-300 h-full">
@@ -103,7 +146,6 @@ export function Sidebar({ name }: SidebarProps) {
               <li key={item.id}>
                 <button
                   onClick={() => {
-                    setActiveView(item.id);
                     void navigate({ to: item.path.to, params: { name: name } });
                   }}
                   className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 ${

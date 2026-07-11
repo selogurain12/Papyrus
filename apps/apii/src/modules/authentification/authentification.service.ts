@@ -12,9 +12,12 @@ import { AuthificationMapper } from "./authentification.mapper";
 export class AuthificationService {
   public readonly em: EntityManager;
 
+  private readonly configService: ConfigService;
+
   private readonly mapper: AuthificationMapper;
   constructor(em: EntityManager, configService: ConfigService, mapper: AuthificationMapper) {
     this.em = em;
+    this.configService = configService;
     this.mapper = mapper;
   }
 
@@ -31,18 +34,20 @@ export class AuthificationService {
         password: hashedPassword,
       });
 
-      await em.persist(newUser).flush();
-      await em.commit();
-
       const token = this.generateJwtToken(
         newUser.id,
         newUser.email,
         `${newUser.firstName} ${newUser.lastName}`
       );
 
+      await em.persist(newUser).flush();
+      await em.commit();
+
       return { token, user: this.mapper.entityToDto(newUser) };
     } catch (error: unknown) {
-      await em.rollback();
+      if (em.isInTransaction()) {
+        await em.rollback();
+      }
 
       if (error instanceof Error) {
         throw new TsRestException(authContract.register, {
@@ -114,10 +119,10 @@ export class AuthificationService {
 
   private generateJwtToken(userId: string, email: string, name: string): string {
     const payload = { sub: userId, email, name };
-    const secret = process.env.SECRET;
+    const secret = this.configService.get<string>("JWT_SECRET") ?? process.env.SECRET;
 
     if (!secret) {
-      throw new Error("JWT Secret is not defined");
+      throw new Error("JWT_SECRET is not defined");
     }
 
     return jwt.sign(payload, secret);

@@ -12,7 +12,7 @@ import { AuthentificationController } from "./authentification.controller";
     MikroOrmModule.forFeature([UserEntity]),
     JwtModule.register({
       global: true,
-      secret: process.env.SECRET,
+      secret: process.env.JWT_SECRET ?? process.env.SECRET,
     }),
   ],
   controllers: [AuthentificationController],

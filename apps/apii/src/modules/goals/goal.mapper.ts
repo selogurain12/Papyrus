@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { EntityManager, NotFoundError } from "@mikro-orm/postgresql";
 import { CreateGoalDto, GoalDto, UpdateGoalDto } from "@papyrus/source";
+import { parseZonedDateTime } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
 import { ProjectMapper } from "../projects/projects.mapper";
 import { GoalEntity } from "./goal.entity";
@@ -29,9 +30,12 @@ export class GoalMapper {
       description: entity.description,
       title: entity.title,
       unit: entity.unit,
-      deadline: entity.deadline,
+      deadline: entity.deadline ? entity.deadline.toString() : null,
       status: entity.status,
       project: projectDto,
+      goals: entity.goals,
+      isOpen: entity.isOpen,
+      current: entity.current,
     };
   }
 
@@ -55,12 +59,17 @@ export class GoalMapper {
       throw new NotFoundError(`ProjectEntity with id ${projectId} not found`);
     }
     const result = new GoalEntity({
-      deadline: createDto.deadline,
+      deadline: createDto.deadline
+        ? parseZonedDateTime(createDto.deadline).set({ second: 0, millisecond: 0 })
+        : null,
       description: createDto.description,
       title: createDto.title,
       unit: createDto.unit,
       goals: createDto.goals,
       project: projectEntity,
+      type: createDto.type,
+      status: createDto.status,
+      currentBaseline: createDto.unit === "words" ? projectEntity.currentWordCount : 0,
     });
     return result;
   }
@@ -79,8 +88,13 @@ export class GoalMapper {
       description: updateDto.description,
       unit: updateDto.unit,
       goals: updateDto.goals,
-      deadline: updateDto.deadline,
+      deadline: updateDto.deadline
+        ? parseZonedDateTime(updateDto.deadline).set({ second: 0, millisecond: 0 })
+        : null,
       status: updateDto.status,
+      type: updateDto.type,
+      isOpen: updateDto.isOpen,
+      current: updateDto.current,
     });
     return goalEntity;
   }

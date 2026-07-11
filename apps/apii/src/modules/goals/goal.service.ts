@@ -1,19 +1,21 @@
-import { MikroORM } from "@mikro-orm/postgresql";
+/* eslint-disable max-lines */
+import { EntityManager, MikroORM } from "@mikro-orm/postgresql";
 import { HttpStatus, Injectable } from "@nestjs/common";
 import {
   CreateGoalDto,
-  FilterDto,
   ListResult,
   goalContract,
   GoalDto,
   UpdateGoalDto,
+  FilterGoalDto,
 } from "@papyrus/source";
 import { TsRestException } from "@ts-rest/nest";
-import { fromDate } from "@internationalized/date";
+import { fromDate, now } from "@internationalized/date";
 import { ProjectEntity } from "../projects/projects.entity";
+import { HistoryService } from "../history/history.service";
+import { ProjectMapper } from "../projects/projects.mapper";
 import { GoalMapper } from "./goal.mapper";
 import { GoalEntity } from "./goal.entity";
-import { ObjectEntity } from "../objects/objects.entity";
 
 @Injectable()
 export class GoalService {
@@ -21,9 +23,46 @@ export class GoalService {
 
   private readonly goalsMapper: GoalMapper;
 
-  public constructor(orm: MikroORM, goalsMapper: GoalMapper) {
+  private readonly historyService: HistoryService;
+
+  private readonly projectMapper: ProjectMapper;
+
+  public constructor(
+    orm: MikroORM,
+    goalsMapper: GoalMapper,
+    historyService: HistoryService,
+    projectMapper: ProjectMapper
+  ) {
     this.orm = orm;
     this.goalsMapper = goalsMapper;
+    this.historyService = historyService;
+    this.projectMapper = projectMapper;
+  }
+
+  public syncGoalWithCurrentValue(goal: GoalEntity, currentValue: number): void {
+    goal.current = Math.max(currentValue - goal.currentBaseline, 0);
+
+    if (goal.current >= goal.goals) {
+      goal.isOpen = false;
+      goal.status = null;
+    }
+  }
+
+  public async syncProjectWordGoals(
+    projectId: string,
+    currentWordCount: number,
+    em: EntityManager = this.orm.em.fork()
+  ): Promise<void> {
+    const goals = await em.find(GoalEntity, {
+      deletedAt: { $eq: null },
+      isOpen: true,
+      project: { id: projectId },
+      unit: "words",
+    });
+
+    for (const goal of goals) {
+      this.syncGoalWithCurrentValue(goal, currentWordCount);
+    }
   }
 
   public async get(id: string, projectId: string): Promise<GoalDto> {
@@ -42,9 +81,7 @@ export class GoalService {
     }
     return await this.goalsMapper.entityToDto(item, projectId, em);
   }
-
-  // eslint-disable-next-line complexity
-  public async getAll(filter: FilterDto, projectId: string): Promise<ListResult<GoalDto>> {
+  public async getAll(filter: FilterGoalDto, projectId: string): Promise<ListResult<GoalDto>> {
     const em = this.orm.em.fork();
     let limit: number | undefined = undefined;
     let offset: number | undefined = undefined;
@@ -55,9 +92,12 @@ export class GoalService {
       offset = ((filter.page ?? 1) - 1) * limit;
     }
     const orderBy = filter.orderBy ?? {
-      name: "ASC",
+      title: "ASC",
     };
     let qb = em.qb(GoalEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
+    if (filter.type) {
+      qb = qb.andWhere({ type: filter.type });
+    }
     if (filter.search !== undefined) {
       qb = qb.andWhere({ name: { $like: `%${filter.search}%` } });
     }
@@ -93,6 +133,16 @@ export class GoalService {
       }
       const item = await this.goalsMapper.createDtoToEntity(parameters, projectId, em);
       await em.persist(item).flush();
+      await this.historyService.create(
+        {
+          type: "create",
+          entity: "goal",
+          date: now("UTC").toString(),
+          title: `Création de l'objectif ${parameters.title}`,
+          project: await this.projectMapper.entityToDto(existingProject, em),
+        },
+        projectId
+      );
       await em.commit();
       return await this.goalsMapper.entityToDto(item, projectId, em);
     } catch (error) {
@@ -118,11 +168,7 @@ export class GoalService {
     }
   }
 
-  public async update(
-    id: string,
-    updateDto: UpdateGoalDto,
-    projectId: string
-  ): Promise<GoalDto> {
+  public async update(id: string, updateDto: UpdateGoalDto, projectId: string): Promise<GoalDto> {
     const em = this.orm.em.fork();
     await em.begin();
     try {
@@ -137,8 +183,30 @@ export class GoalService {
           },
         });
       }
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(goalContract.update, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       const updatedItem = await this.goalsMapper.updateDtoToEntity(id, updateDto, em);
       await em.persist(updatedItem).flush();
+      await this.historyService.create(
+        {
+          type: "update",
+          entity: "goal",
+          date: now("UTC").toString(),
+          title: `Modification de l'objectif ${updateDto.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
       return await this.goalsMapper.entityToDto(updatedItem, projectId, em);
     } catch (error) {
@@ -183,7 +251,29 @@ export class GoalService {
         });
       }
       entity.deletedAt = fromDate(new Date(), "UTC");
+      const projectRepo = em.getRepository(ProjectEntity);
+      const project = await projectRepo.findOne({ id: projectId });
+
+      if (!project) {
+        throw new TsRestException(goalContract.softDelete, {
+          status: 404,
+          body: {
+            error: "ProjectNotFound",
+            message: `ProjectEntity with id ${projectId} not found`,
+          },
+        });
+      }
       await em.persist(entity).flush();
+      await this.historyService.create(
+        {
+          type: "delete",
+          entity: "goal",
+          date: now("UTC").toString(),
+          title: `Suppression de l'objectif ${entity.title}`,
+          project: await this.projectMapper.entityToDto(project, em),
+        },
+        projectId
+      );
       await em.commit();
     } catch (error) {
       await em.rollback();

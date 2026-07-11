@@ -1,5 +1,13 @@
 import { randomUUID } from "node:crypto";
-import { Entity, ManyToOne, PrimaryKey, Property, type Ref, UuidType } from "@mikro-orm/postgresql";
+import {
+  Entity,
+  ManyToOne,
+  PrimaryKey,
+  Property,
+  ref,
+  type Ref,
+  UuidType,
+} from "@mikro-orm/postgresql";
 import { now, ZonedDateTime } from "@internationalized/date";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
@@ -20,6 +28,12 @@ export class GoalEntity {
   @Property({ type: "number" })
   public goals: number;
 
+  @Property({ type: "number", default: 0 })
+  public current: number = 0;
+
+  @Property({ type: "number", default: 0 })
+  public currentBaseline: number = 0;
+
   @Property({ type: "string" })
   public unit: "words" | "hours" | "chapters";
 
@@ -31,6 +45,9 @@ export class GoalEntity {
 
   @Property({ type: "string", nullable: true })
   public status: "warning" | "urgent" | "overdue" | null = null;
+
+  @Property({ type: "boolean" })
+  public isOpen: boolean = true;
 
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
@@ -49,16 +66,18 @@ export class GoalEntity {
     title: string;
     goals: number;
     unit: "words" | "hours" | "chapters";
-    project: Ref<ProjectEntity>;
+    project: ProjectEntity;
     deadline?: ZonedDateTime | null;
     description?: string | null;
     status?: "warning" | "urgent" | "overdue" | null;
+    currentBaseline?: number;
   }) {
     this.type = parameters.type;
     this.title = parameters.title;
     this.goals = parameters.goals;
     this.unit = parameters.unit;
-    this.project = parameters.project;
+    this.currentBaseline = parameters.currentBaseline ?? 0;
+    this.project = ref(parameters.project);
     this.deadline = parameters.deadline ?? null;
     this.description = parameters.description ?? null;
     this.status = parameters.status ?? null;

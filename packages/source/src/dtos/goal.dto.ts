@@ -1,6 +1,7 @@
 import z from "zod";
 import { isZonedIso8601 } from "../utils/zoned-iso";
 import { projectSchema } from "./project.dto";
+import { filterSchema } from "./filter.dto";
 
 export const createGoalSchema = z.object({
   type: z.enum(["daily", "weekly", "monthly", "project"]),
@@ -11,6 +12,8 @@ export const createGoalSchema = z.object({
   description: z.string().max(500).nullable(),
   status: z.enum(["warning", "urgent", "overdue"]).nullable().optional(),
   project: z.lazy(() => projectSchema),
+  isOpen: z.boolean().default(true),
+  current: z.number().min(0).default(0),
 });
 
 export const goalSchema = createGoalSchema.extend({
@@ -19,6 +22,11 @@ export const goalSchema = createGoalSchema.extend({
 
 export const updateGoalSchema = createGoalSchema.partial();
 
+export const filterGoalSchema = filterSchema.extend({
+  type: z.enum(["daily", "weekly", "monthly", "project"]).optional(),
+});
+
 export type CreateGoalDto = z.infer<typeof createGoalSchema>;
 export type GoalDto = z.infer<typeof goalSchema>;
 export type UpdateGoalDto = z.infer<typeof updateGoalSchema>;
+export type FilterGoalDto = z.infer<typeof filterGoalSchema>;

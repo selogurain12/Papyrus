@@ -1,8 +1,7 @@
 import { initContract } from "@ts-rest/core";
 import z from "zod";
 import { neverDtoSchema } from "../dtos/delete-request.dto";
-import { filterSchema } from "../dtos/filter.dto";
-import { createGoalSchema, goalSchema, updateGoalSchema } from "../dtos/goal.dto";
+import { createGoalSchema, filterGoalSchema, goalSchema, updateGoalSchema } from "../dtos/goal.dto";
 import { idSchema } from "../dtos/id.dto";
 import { ListResultSchema } from "../dtos/list-result.dto";
 import { errorSchema } from "../error";
@@ -33,7 +32,7 @@ export const goalContract = contract.router(
       pathParams: z.object({
         projectId: z.string().uuid(),
       }),
-      query: filterSchema,
+      query: filterGoalSchema,
 
       responses: {
         200: ListResultSchema(goalSchema),

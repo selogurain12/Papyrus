@@ -89,6 +89,33 @@ export const statusPartOptions = [
   { id: "completed", label: "Terminé" },
 ];
 
+export const unitOptions = [
+  { id: "words", label: "Mots" },
+  { id: "chapters", label: "Chapitres" },
+];
+
+export const autoSaveIntervalOptions = [
+  { id: "1", label: "options.autoSaveInterval.1" },
+  { id: "5", label: "options.autoSaveInterval.5" },
+  { id: "10", label: "options.autoSaveInterval.10" },
+  { id: "15", label: "options.autoSaveInterval.15" },
+  { id: "30", label: "options.autoSaveInterval.30" },
+];
+
+export const fontSizeOptions = [
+  { id: "small", label: "options.fontSize.small" },
+  { id: "medium", label: "options.fontSize.medium" },
+  { id: "large", label: "options.fontSize.large" },
+  { id: "xlarge", label: "options.fontSize.xlarge" },
+];
+
+export const fontFamilyOptions = [
+  { id: "system", label: "options.fontFamily.system" },
+  { id: "lora", label: "Lora" },
+  { id: "merriweather", label: "Merriweather" },
+  { id: "source-serif-4", label: "Source Serif 4" },
+];
+
 export type TypeOption = {
   id: string;
   label: string;

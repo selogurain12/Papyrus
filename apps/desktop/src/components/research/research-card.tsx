@@ -1,11 +1,101 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import { useState } from "react";
-import { Edit3, Trash2, Link, BookOpen, FileText, Globe, Video, Search, Image } from "lucide-react";
+import {
+  BookOpen,
+  Edit3,
+  ExternalLink,
+  FileText,
+  Globe,
+  Image,
+  Link,
+  Search,
+  Trash2,
+  Video,
+  X,
+} from "lucide-react";
 import { Card } from "../ui/card";
 import { PDFViewerModal } from "../ui/pdf-viewer";
 import { ResearchDto } from "@papyrus/source";
 import { useTranslation } from "react-i18next";
+
+function getLinkExtension(link: string) {
+  try {
+    const pathname = new URL(link).pathname;
+    return pathname.split(".").pop()?.toLowerCase() ?? "";
+  } catch {
+    return link.split("?")[0].split(".").pop()?.toLowerCase() ?? "";
+  }
+}
+
+function isPdfLink(link: string) {
+  return getLinkExtension(link) === "pdf";
+}
+
+function isImageLink(link: string) {
+  return ["apng", "avif", "gif", "jpeg", "jpg", "png", "svg", "webp"].includes(
+    getLinkExtension(link)
+  );
+}
+
+function openResearchLink(link: string, openPdfViewer: () => void, openImageViewer: () => void) {
+  if (isPdfLink(link)) {
+    openPdfViewer();
+    return;
+  }
+
+  if (isImageLink(link)) {
+    openImageViewer();
+    return;
+  }
+
+  window.open(link, "_blank", "noopener,noreferrer");
+}
+
+function ImageViewerModal({
+  isOpen,
+  url,
+  title,
+  onClose,
+}: {
+  isOpen: boolean;
+  url: string | null;
+  title: string;
+  onClose: () => void;
+}) {
+  const { t } = useTranslation("common");
+
+  if (!isOpen || !url) {
+    return null;
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+      <div className="flex h-[90vh] max-h-[90vh] w-full max-w-[90vw] flex-col overflow-hidden rounded-lg bg-white shadow-lg">
+        <div className="flex items-center justify-between border-b border-gray-200 p-4">
+          <h2 className="truncate text-lg font-semibold text-gray-900">{title}</h2>
+          <button onClick={onClose} className="text-gray-400 transition-colors hover:text-gray-600">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="flex flex-1 items-center justify-center overflow-auto bg-gray-50 p-6">
+          <img src={url} alt={title} className="max-h-full max-w-full object-contain" />
+        </div>
+
+        <div className="flex items-center justify-end border-t border-gray-200 bg-white p-4">
+          <button
+            onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
+            className="flex items-center space-x-2 rounded-lg bg-indigo-600 px-4 py-2 text-white transition-colors hover:bg-indigo-700"
+          >
+            <ExternalLink className="h-4 w-4" />
+            <span>{t("openExternal")}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function ResearchCard({
   research,
@@ -18,6 +108,7 @@ export function ResearchCard({
 }) {
   const { t } = useTranslation(["research/research-card", "common"]);
   const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const categories = [
     { id: "all", label: t("categories.all"), icon: Search },
     { id: "articles", label: t("categories.articles"), icon: FileText },
@@ -99,7 +190,14 @@ export function ResearchCard({
 
       <div className="flex items-center justify-between">
         <button
-          onClick={() => research.link && setIsPDFModalOpen(true)}
+          onClick={() =>
+            research.link &&
+            openResearchLink(
+              research.link,
+              () => setIsPDFModalOpen(true),
+              () => setIsImageModalOpen(true)
+            )
+          }
           disabled={!research.link}
           className={`flex items-center space-x-1 text-sm ${
             research.link
@@ -131,6 +229,12 @@ export function ResearchCard({
         url={research.link}
         title={research.title}
         onClose={() => setIsPDFModalOpen(false)}
+      />
+      <ImageViewerModal
+        isOpen={isImageModalOpen}
+        url={research.link}
+        title={research.title}
+        onClose={() => setIsImageModalOpen(false)}
       />
     </Card>
   );

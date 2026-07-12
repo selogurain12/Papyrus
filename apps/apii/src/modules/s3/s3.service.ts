@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Express } from "express";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 @Injectable()
 export class S3Service {
@@ -23,12 +22,6 @@ export class S3Service {
     return this.s3;
   }
 
-  async getSignedUrl(bucket: string, key: string) {
-    const s3 = this.getClient();
-    const command = new GetObjectCommand({ Bucket: bucket, Key: key });
-    return await getSignedUrl(s3, command, { expiresIn: 3600 });
-  }
-
   async uploadFile(file: Express.Multer.File, bucket: string) {
     const key = `${Date.now()}-${file.originalname}`;
 
@@ -42,8 +35,8 @@ export class S3Service {
 
     await s3.send(command);
 
-    const signedUrl = await this.getSignedUrl(bucket, key);
+    const url = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
 
-    return { url: signedUrl };
+    return { url };
   }
 }

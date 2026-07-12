@@ -13,7 +13,7 @@ export function HorizontalContent({ children }: { children: ReactNode }) {
   return (
     <>
       {Children.map(childArray[activeStep], (node) => {
-        if (!isValidElement(node)) {
+        if (!isValidElement<{ children?: ReactNode }>(node)) {
           return null;
         }
         return Children.map(node.props.children, (childNode) => childNode);

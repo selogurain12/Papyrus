@@ -184,7 +184,7 @@ export default function Editor({ onChange, value }: EditorProps) {
             contentEditable={
               <ContentEditable
                 className="
-                  min-h-[600px]
+                  min-h-150
                   p-6
                   text-base
                   leading-7

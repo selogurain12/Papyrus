@@ -2,6 +2,13 @@ import React, { Children, cloneElement, isValidElement, type ReactNode } from "r
 
 import { useStepper } from "./stepper";
 
+interface StepElementProps {
+  index?: number;
+  isCompletedStep?: boolean;
+  isCurrentStep?: boolean;
+  isLastStep?: boolean;
+}
+
 export function VerticalContent({ children }: { children: ReactNode }) {
   const { activeStep } = useStepper();
 
@@ -12,7 +19,7 @@ export function VerticalContent({ children }: { children: ReactNode }) {
     <>
       {Children.map(children, (child, index) => {
         const isCompletedStep: boolean =
-          isValidElement(child) && (child.props.isCompletedStep as boolean)
+          isValidElement<StepElementProps>(child) && child.props.isCompletedStep === true
             ? true
             : index < activeStep;
         const isLastStep = index === stepCount - 1;
@@ -25,7 +32,7 @@ export function VerticalContent({ children }: { children: ReactNode }) {
           isLastStep,
         };
 
-        if (isValidElement(child)) {
+        if (isValidElement<StepElementProps>(child)) {
           return cloneElement(child, stepProps);
         }
         return null;

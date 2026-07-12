@@ -1,14 +1,28 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, { useMemo } from "react";
 import { BookOpen, PencilLine, Trash2, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { ChapterDto } from "@papyrus/source";
+import { countWordsFromContent, lexicalContentToPlainText } from "../../utils/lexical-content";
 
-export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
+interface ChapterDetailProps {
+  chapter: ChapterDto;
+  onEdit: () => void;
+  onEditor: () => void;
+  onDelete: () => void;
+}
+
+export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }: ChapterDetailProps) {
   const { t } = useTranslation(["chapter/chapter-details", "common"]);
+  const plainContent = useMemo(
+    () => lexicalContentToPlainText(chapter?.content),
+    [chapter?.content]
+  );
 
   const wordCount = useMemo(() => {
     if (!chapter?.content) return chapter?.wordCount ?? 0;
-    return chapter.content.trim().split(/\s+/).filter(Boolean).length;
+    return countWordsFromContent(chapter.content);
   }, [chapter?.content, chapter?.wordCount]);
 
   if (!chapter) {
@@ -37,7 +51,7 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
 
   return (
     <div className="overflow-y-auto max-h-[90vh] p-4">
-      <div className="bg-white border border-gray-300 rounded-3xl p-6 shadow-sm">
+      <div className="min-w-0 bg-white border border-gray-300 rounded-3xl p-6 shadow-sm">
         <div className="flex justify-between items-start">
           <div className="flex flex-1">
             <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mr-4">
@@ -83,7 +97,17 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }) {
         <div className="mb-6">
           <h2 className="text-lg font-bold text-gray-900 mb-3">{t("summary")}</h2>
 
-          <p className="text-gray-600 leading-7">{chapter.resume ?? t("noSummary")}</p>
+          <p className="whitespace-pre-wrap wrap-break-word text-gray-600 leading-7">
+            {chapter.resume ?? t("noSummary")}
+          </p>
+        </div>
+
+        <div className="mb-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-3">{t("content")}</h2>
+
+          <div className="max-w-full overflow-hidden whitespace-pre-wrap wrap-break-word text-gray-600 leading-7">
+            {plainContent || t("noContent")}
+          </div>
         </div>
 
         <button

@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { useProject } from "../../context/project-provider";
 import { queryClient } from "../../context/query-client";
 import { useTranslation } from "react-i18next";
+import { countWordsFromContent } from "../../utils/lexical-content";
 
 interface ChapterEditorProps {
   chapter: ChapterDto;
@@ -24,7 +25,7 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
   const { setCurrentProject, currentProject } = useProject();
 
   const wordCount = useMemo(() => {
-    return content.trim().split(/\s+/).filter(Boolean).length;
+    return countWordsFromContent(content);
   }, [content]);
 
   const { mutate } = client.chapter.update.useMutation({

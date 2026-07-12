@@ -27,6 +27,14 @@ import { eventRoute } from "../../routes/event/index.route";
 import { noteRoute } from "../../routes/note/index.route";
 import { format } from "../../utils/date/date-utils";
 import { formatDistanceToNow } from "../../utils/date/format-distance";
+import {
+  dispatchOpenCreateChapter,
+  dispatchOpenCreateCharacter,
+  dispatchOpenCreateEvent,
+  dispatchOpenCreateNote,
+  dispatchOpenCreateObject,
+  dispatchOpenCreatePlace,
+} from "../../utils/shortcut-events";
 
 const summaryIcons = {
   bookOpen: BookOpen,
@@ -54,36 +62,42 @@ const quickActions = [
     labelKey: "quickActions.newCharacter",
     icon: Users,
     route: characterRoute,
+    openCreateForm: dispatchOpenCreateCharacter,
     color: "hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700",
   },
   {
     labelKey: "quickActions.newChapter",
     icon: BookOpen,
     route: chapterRoute,
+    openCreateForm: dispatchOpenCreateChapter,
     color: "hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-700",
   },
   {
     labelKey: "quickActions.newPlace",
     icon: MapPin,
     route: placeRoute,
+    openCreateForm: dispatchOpenCreatePlace,
     color: "hover:border-violet-500 hover:bg-violet-50 hover:text-violet-700",
   },
   {
     labelKey: "quickActions.newObject",
     icon: Package,
     route: objectRoute,
+    openCreateForm: dispatchOpenCreateObject,
     color: "hover:border-amber-500 hover:bg-amber-50 hover:text-amber-700",
   },
   {
     labelKey: "quickActions.timelineEvent",
     icon: Calendar,
     route: eventRoute,
+    openCreateForm: dispatchOpenCreateEvent,
     color: "hover:border-yellow-500 hover:bg-yellow-50 hover:text-yellow-700",
   },
   {
     labelKey: "quickActions.newNote",
     icon: FileText,
     route: noteRoute,
+    openCreateForm: dispatchOpenCreateNote,
     color: "hover:border-indigo-500 hover:bg-indigo-50 hover:text-indigo-700",
   },
 ];
@@ -325,7 +339,11 @@ export function DashboardPage() {
                   className={`h-24 flex-col gap-2 border-dashed whitespace-normal
                     text-center ${action.color}`}
                   onClick={() => {
-                    void navigate({ to: action.route.to, params: { name: projectName } });
+                    void navigate({ to: action.route.to, params: { name: projectName } }).then(
+                      () => {
+                        window.setTimeout(action.openCreateForm, 0);
+                      }
+                    );
                   }}
                 >
                   <Icon className="w-7 h-7" />

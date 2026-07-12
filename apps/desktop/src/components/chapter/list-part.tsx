@@ -216,18 +216,20 @@ export function PartsList() {
           })}
         </div>
         <div className="w-1/2">
-          <ChapterDetail
-            chapter={selectedChapter}
-            onEdit={() => {
-              setIsUpdatingChapter(true);
-            }}
-            onEditor={() => {
-              setOpenEditor(true);
-            }}
-            onDelete={() => {
-              setIsDeletingChapter(true);
-            }}
-          />
+          {selectedChapter && (
+            <ChapterDetail
+              chapter={selectedChapter}
+              onEdit={() => {
+                setIsUpdatingChapter(true);
+              }}
+              onEditor={() => {
+                setOpenEditor(true);
+              }}
+              onDelete={() => {
+                setIsDeletingChapter(true);
+              }}
+            />
+          )}
         </div>
       </div>
       {openEditor && selectedChapter && (

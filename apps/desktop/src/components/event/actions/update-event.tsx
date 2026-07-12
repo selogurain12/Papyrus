@@ -17,12 +17,12 @@ import { client } from "../../../utils/client/client";
 import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
 import { isFetchError } from "@ts-rest/react-query/v5";
-import { DatePicker } from "../../ui/date-picker";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import { eventRoute } from "../../../routes/event/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { DateTimePicker } from "../../ui/date/datetime-picker";
 
 interface UpdateEventProps {
   event: EventDto;
@@ -115,7 +115,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                     <FormItem className="flex-1">
                       <FormLabel>{t("fields.date")}</FormLabel>
                       <FormControl>
-                        <DatePicker
+                        <DateTimePicker
                           value={field.value ?? undefined}
                           changeValue={(v) => field.onChange(v)}
                           disabledRange={undefined}
@@ -132,12 +132,12 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                 name="importance"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("fields.type")}</FormLabel>
+                    <FormLabel htmlFor="importance">{t("fields.type")}</FormLabel>
                     <FormControl>
                       <RadioGroup
                         value={field.value ?? ""}
                         onValueChange={(value) => field.onChange(value)}
-                        className="w-fit flex mt-3"
+                        className="w-fit mt-3"
                       >
                         <div className="flex items-center gap-3">
                           <RadioGroupItem value="critical" id="critical" />

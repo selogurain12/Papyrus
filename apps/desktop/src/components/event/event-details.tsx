@@ -51,7 +51,7 @@ export function EventDetail({ event }: EventDetailProps) {
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Calendar className="w-4 h-4" />
-          {format(parseZonedDateTime(event.eventDate), "dd MMMM yyyy")}
+          {format(parseZonedDateTime(event.eventDate), "HHhmm le dd MMMM yyyy")}
         </div>
       </div>
 

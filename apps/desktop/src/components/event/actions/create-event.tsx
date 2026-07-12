@@ -17,13 +17,13 @@ import { client } from "../../../utils/client/client";
 import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
 import { isFetchError } from "@ts-rest/react-query/v5";
-import { DatePicker } from "../../ui/date-picker";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import { fromDate, getLocalTimeZone } from "@internationalized/date";
 import { eventRoute } from "../../../routes/event/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { DateTimePicker } from "../../ui/date/datetime-picker";
 
 interface CreateEventProps {
   onCancel?: () => void;
@@ -120,7 +120,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                     <FormItem className="flex-1">
                       <FormLabel>{t("fields.date")}</FormLabel>
                       <FormControl>
-                        <DatePicker
+                        <DateTimePicker
                           value={field.value ?? undefined}
                           changeValue={(v) => field.onChange(v)}
                           disabledRange={undefined}

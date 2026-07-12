@@ -74,6 +74,7 @@ export function EventsList() {
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-2/4">
           <EventTimeline
+            selectedEvent={eventSelected}
             setSelectedEvent={setEventSelected}
             setUpdating={setIsUpdating}
             setDeleting={setIsDeleting}

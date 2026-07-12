@@ -60,10 +60,12 @@ function getStatusIcon(status: "critical" | "important" | "action" | "normal" | 
 }
 
 export function EventTimeline({
+  selectedEvent,
   setSelectedEvent,
   setUpdating,
   setDeleting,
 }: {
+  selectedEvent: EventDto | undefined;
   setSelectedEvent: (event: EventDto | undefined) => void;
   setUpdating: (isUpdating: boolean) => void;
   setDeleting: (isDeleting: boolean) => void;
@@ -103,7 +105,7 @@ export function EventTimeline({
         <div className="flex flex-col gap-2 md:gap-zoom-2 items-end">
           <p className="flex text-xs md:text-zoom-xs text-gray-500">
             <Calendar className="size-4" />{" "}
-            {format(parseZonedDateTime(currentEvent.eventDate), "dd MMMM yyyy")}
+            {format(parseZonedDateTime(currentEvent.eventDate), "HHhmm le dd MMMM yyyy")}
           </p>
         </div>
         <div
@@ -115,13 +117,23 @@ export function EventTimeline({
         >
           <button
             className="p-1 text-gray-400 hover:text-indigo-600 transition-colors"
-            onClick={() => setUpdating(true)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setSelectedEvent(currentEvent);
+              setUpdating(true);
+            }}
+            type="button"
           >
             <Edit3 className="w-4 h-4" />
           </button>
           <button
             className="p-1 text-gray-400 hover:text-red-600 transition-colors"
-            onClick={() => setDeleting(true)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setSelectedEvent(currentEvent);
+              setDeleting(true);
+            }}
+            type="button"
           >
             <Trash2 className="w-4 h-4" />
           </button>
@@ -141,6 +153,7 @@ export function EventTimeline({
             <Timeline>
               {eventTimeline.data?.body.data.map((event, index, array) => {
                 const isLast = index === array.length - 1;
+                const isSelected = selectedEvent?.id === event.id;
                 return (
                   <TimelineItem className="p-1" key={event.eventDate}>
                     <TimelineDot className={getStatusIcon(event.importance).color} isLast={isLast}>
@@ -153,7 +166,7 @@ export function EventTimeline({
                               w-full text-left px-4 py-2 rounded-md border border-gray-300
                               transition duration-150
                               ${
-                                index === 0
+                                isSelected
                                   ? // eslint-disable-next-line max-len
                                     "bg-blue-100 border-blue-400 shadow font-bold ring-2 ring-blue-200"
                                   : "bg-white/80"

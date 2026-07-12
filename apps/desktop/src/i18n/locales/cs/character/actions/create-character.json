@@ -12,7 +12,8 @@
   "create": {
     "submit": "Vytvořte postavu",
     "success": "Postava byla úspěšně vytvořena!",
-    "title": "Vytvořte novou postavu"
+    "title": "Vytvořte novou postavu",
+    "offlineSuccess": "Postava byla vytvořena offline. Synchronizuje se, až budete znovu online."
   },
   "fields": {
     "accessory": "Příslušenství",

@@ -44,7 +44,7 @@
   "noResults": "Nessun risultato.",
   "noResultsFound": "Nessun risultato trovato",
   "notConnected": "Utente non connesso",
-  "openExternal": "Apri in una nuova finestra",
+  "openExternal": "Apri",
   "openMenu": "Apri il menu",
   "pdfLoadError": "Impossibile caricare il PDF nella finestra integrata.",
   "pdfTip": "Suggerimento: il PDF si visualizza meglio in una scheda separata",
@@ -86,5 +86,8 @@
   "validate": "Convalidare",
   "wordGoal": "{{count}} obiettivo",
   "words": "{{count}} parole",
-  "menu.settings": "Impostazioni"
+  "menu.settings": "Impostazioni",
+  "connection.online": "Connesso",
+  "connection.offline": "Modalità offline",
+  "sync.savedToApi": "{{count}} elemento/i offline salvato/i nell'API"
 }

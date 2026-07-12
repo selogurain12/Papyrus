@@ -12,7 +12,8 @@
   "create": {
     "submit": "Charakter erschaffen",
     "success": "Charakter erfolgreich erstellt!",
-    "title": "Erstelle einen neuen Charakter"
+    "title": "Erstelle einen neuen Charakter",
+    "offlineSuccess": "Figur offline erstellt. Sie wird synchronisiert, sobald du wieder verbunden bist."
   },
   "fields": {
     "accessory": "Zubehör",

@@ -31,7 +31,7 @@
   "selected": "{{count}} sélectionnés",
   "search": "Rechercher {{title}}",
   "noResultsFound": "Aucun résultat trouvé.",
-  "openExternal": "Ouvrir dans une nouvelle fenêtre",
+  "openExternal": "Ouvrir",
   "pdfLoadError": "Impossible de charger le PDF dans la fenêtre intégrée.",
   "pdfTip": "Conseil : le PDF s'affiche mieux dans un onglet séparé",
   "fileTooLarge": "Le fichier est trop volumineux. Taille maximale : {{maxSize}}MB",
@@ -84,5 +84,8 @@
   "file.label": "Fichier",
   "file.select": "Cliquez pour sélectionner",
   "file.drop": "ou glissez-déposez",
-  "file.maxSize": "Taille maximale : {{maxSize}}MB"
+  "file.maxSize": "Taille maximale : {{maxSize}}MB",
+  "connection.online": "Connecté",
+  "connection.offline": "Mode hors ligne",
+  "sync.savedToApi": "{{count}} donnée(s) hors ligne synchronisée(s) avec l'API"
 }

@@ -1,4 +1,6 @@
 {
+  "content": "Contenido del capítulo",
+  "noContent": "Sin contenido",
   "selectTitle": "Selecciona un capítulo",
   "selectDescription": "Elige un capítulo de la lista para ver sus detalles",
   "summary": "Resumen",

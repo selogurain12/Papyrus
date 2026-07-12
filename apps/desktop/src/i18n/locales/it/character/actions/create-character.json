@@ -12,7 +12,8 @@
   "create": {
     "submit": "Crea personaggio",
     "success": "Personaggio creato con successo!",
-    "title": "Crea un nuovo personaggio"
+    "title": "Crea un nuovo personaggio",
+    "offlineSuccess": "Personaggio creato offline. Verrà sincronizzato quando sarai online."
   },
   "fields": {
     "accessory": "Accessori",

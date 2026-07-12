@@ -44,7 +44,7 @@
   "noResults": "結果はありません。",
   "noResultsFound": "結果が見つかりませんでした。",
   "notConnected": "ユーザーがログインしていません",
-  "openExternal": "新しいウィンドウで開く",
+  "openExternal": "開く",
   "openMenu": "メニューを開く",
   "pdfLoadError": "埋め込みウィンドウでPDFを読み込めませんでした。",
   "pdfTip": "ヒント: PDFは別タブの方が見やすく表示されます",
@@ -86,5 +86,8 @@
   "validate": "検証する",
   "wordGoal": "{{count}}目標",
   "words": "{{count}}語",
-  "menu.settings": "設定"
+  "menu.settings": "設定",
+  "connection.online": "オンライン",
+  "connection.offline": "オフラインモード",
+  "sync.savedToApi": "{{count}} 件のオフライン項目を API に保存しました"
 }

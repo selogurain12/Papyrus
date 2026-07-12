@@ -12,7 +12,8 @@
   "create": {
     "submit": "创建角色",
     "success": "角色创建成功！",
-    "title": "创建一个新角色"
+    "title": "创建一个新角色",
+    "offlineSuccess": "角色已离线创建。重新连接后会同步。"
   },
   "fields": {
     "accessory": "配件",

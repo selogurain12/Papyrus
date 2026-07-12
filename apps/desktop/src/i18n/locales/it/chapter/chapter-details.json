@@ -1,4 +1,6 @@
 {
+  "content": "Contenuto del capitolo",
+  "noContent": "Nessun contenuto",
   "selectTitle": "Seleziona un capitolo",
   "selectDescription": "Scegli un capitolo dall’elenco per vedere i dettagli",
   "summary": "Riassunto",

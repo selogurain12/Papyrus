@@ -12,7 +12,8 @@
   "create": {
     "submit": "Create character",
     "success": "Character created successfully!",
-    "title": "Create a new character"
+    "title": "Create a new character",
+    "offlineSuccess": "Character created offline. It will sync when you are online."
   },
   "fields": {
     "accessory": "Accessories",

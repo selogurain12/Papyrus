@@ -44,7 +44,7 @@
   "noResults": "没有结果。",
   "noResultsFound": "没有找到结果。",
   "notConnected": "用户未登录",
-  "openExternal": "在新窗口中打开",
+  "openExternal": "打开",
   "openMenu": "打开菜单",
   "pdfLoadError": "无法在嵌入窗口中加载 PDF。",
   "pdfTip": "提示：PDF 在单独标签页中显示效果更好",
@@ -86,5 +86,8 @@
   "validate": "证实",
   "wordGoal": "{{count}} 目标",
   "words": "{{count}} 字",
-  "menu.settings": "设置"
+  "menu.settings": "设置",
+  "connection.online": "已连接",
+  "connection.offline": "离线模式",
+  "sync.savedToApi": "{{count}} 个离线项目已保存到 API"
 }

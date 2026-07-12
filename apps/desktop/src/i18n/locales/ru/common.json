@@ -44,7 +44,7 @@
   "noResults": "Нет результатов.",
   "noResultsFound": "Результаты не найдены.",
   "notConnected": "Пользователь не вошел в систему",
-  "openExternal": "Открыть в новом окне",
+  "openExternal": "Открыть",
   "openMenu": "Открыть меню",
   "pdfLoadError": "Не удалось загрузить PDF во встроенном окне.",
   "pdfTip": "Совет: PDF лучше отображается в отдельной вкладке",
@@ -86,5 +86,8 @@
   "validate": "Подтвердить",
   "wordGoal": "{{count}} цель",
   "words": "{{count}} слов",
-  "menu.settings": "Настройки"
+  "menu.settings": "Настройки",
+  "connection.online": "Подключено",
+  "connection.offline": "Офлайн-режим",
+  "sync.savedToApi": "{{count}} офлайн-элемент(ов) сохранено в API"
 }

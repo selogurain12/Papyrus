@@ -1,4 +1,6 @@
 {
+  "content": "章の内容",
+  "noContent": "内容なし",
   "selectTitle": "章を選択",
   "selectDescription": "詳細を見るにはリストから章を選択してください",
   "summary": "概要",

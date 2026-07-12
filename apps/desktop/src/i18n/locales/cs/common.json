@@ -44,7 +44,7 @@
   "noResults": "Žádné výsledky.",
   "noResultsFound": "Nebyly nalezeny žádné výsledky.",
   "notConnected": "Uživatel není přihlášen",
-  "openExternal": "Otevřít v novém okně",
+  "openExternal": "Otevřít",
   "openMenu": "Otevřít nabídku",
   "pdfLoadError": "PDF se nepodařilo načíst ve vestavěném okně.",
   "pdfTip": "Tip: PDF se lépe zobrazuje na samostatné kartě",
@@ -86,5 +86,8 @@
   "validate": "Ověřit",
   "wordGoal": "{{count}} cíl",
   "words": "{{count}} slov",
-  "menu.settings": "Nastavení"
+  "menu.settings": "Nastavení",
+  "connection.online": "Připojeno",
+  "connection.offline": "Režim offline",
+  "sync.savedToApi": "{{count}} offline položek uloženo do API"
 }

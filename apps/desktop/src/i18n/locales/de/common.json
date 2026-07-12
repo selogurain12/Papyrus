@@ -44,7 +44,7 @@
   "noResults": "Keine Ergebnisse.",
   "noResultsFound": "Keine Ergebnisse gefunden.",
   "notConnected": "Benutzer ist nicht angemeldet",
-  "openExternal": "In neuem Fenster öffnen",
+  "openExternal": "Öffnen",
   "openMenu": "Menü öffnen",
   "pdfLoadError": "PDF konnte im eingebetteten Fenster nicht geladen werden.",
   "pdfTip": "Tipp: Das PDF wird in einem separaten Tab besser angezeigt",
@@ -86,5 +86,8 @@
   "validate": "Bestätigen",
   "wordGoal": "{{count}} Ziel",
   "words": "{{count}} Wörter",
-  "menu.settings": "Einstellungen"
+  "menu.settings": "Einstellungen",
+  "connection.online": "Verbunden",
+  "connection.offline": "Offline-Modus",
+  "sync.savedToApi": "{{count}} Offline-Element(e) in der API gespeichert"
 }

@@ -1,4 +1,6 @@
 {
+  "content": "챕터 내용",
+  "noContent": "내용 없음",
   "selectTitle": "챕터 선택",
   "selectDescription": "목록에서 챕터를 선택해 세부 정보를 확인하세요",
   "summary": "요약",

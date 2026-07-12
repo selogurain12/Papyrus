@@ -1,4 +1,6 @@
 {
+  "content": "章节内容",
+  "noContent": "无内容",
   "selectTitle": "选择章节",
   "selectDescription": "从列表中选择一个章节以查看详情",
   "summary": "摘要",

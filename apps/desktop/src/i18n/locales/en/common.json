@@ -31,7 +31,7 @@
   "selected": "{{count}} selected",
   "search": "Search {{title}}",
   "noResultsFound": "No results found.",
-  "openExternal": "Open in a new window",
+  "openExternal": "Open",
   "pdfLoadError": "Unable to load the PDF in the embedded window.",
   "pdfTip": "Tip: the PDF displays better in a separate tab",
   "fileTooLarge": "The file is too large. Maximum size: {{maxSize}}MB",
@@ -84,5 +84,8 @@
   "file.label": "File",
   "file.select": "Click to select",
   "file.drop": "or drag and drop",
-  "file.maxSize": "Maximum size: {{maxSize}}MB"
+  "file.maxSize": "Maximum size: {{maxSize}}MB",
+  "connection.online": "Online",
+  "connection.offline": "Offline mode",
+  "sync.savedToApi": "{{count}} offline item(s) saved to the API"
 }

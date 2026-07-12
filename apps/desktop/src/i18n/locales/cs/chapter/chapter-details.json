@@ -1,4 +1,6 @@
 {
+  "content": "Obsah kapitoly",
+  "noContent": "Zadny obsah",
   "selectTitle": "Vyberte kapitolu",
   "selectDescription": "Vyberte kapitolu ze seznamu pro zobrazení detailů",
   "summary": "Shrnutí",

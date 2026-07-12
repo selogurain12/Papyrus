@@ -89,5 +89,6 @@
   "menu.settings": "設定",
   "connection.online": "オンライン",
   "connection.offline": "オフラインモード",
+  "offline.savedLocally": "ローカルに保存しました。接続が戻ると同期されます。",
   "sync.savedToApi": "{{count}} 件のオフライン項目を API に保存しました"
 }

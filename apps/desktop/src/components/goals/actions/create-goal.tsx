@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { isFetchError } from "@ts-rest/react-query/v5";
-import { CreateGoalDto, createGoalSchema } from "@papyrus/source";
+import { CreateGoalDto, GoalDto, createGoalSchema } from "@papyrus/source";
 import { Calendar, Target } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { DialogContent } from "../../ui/dialogs/dialog-content";
@@ -25,6 +25,8 @@ import { SingleSelector } from "../../ui/single-select";
 import { Button } from "../../ui/button";
 import { useProject } from "../../../context/project-provider";
 import { DatePicker } from "../../ui/date-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface CreateGoalFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -33,6 +35,7 @@ interface CreateGoalFormProps {
 export function CreateGoalForm({ setOpen }: CreateGoalFormProps) {
   const { t } = useTranslation("goals/actions/create-goal");
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     toast.error(t("toast.projectNotSelected"));
     return null;
@@ -63,11 +66,20 @@ export function CreateGoalForm({ setOpen }: CreateGoalFormProps) {
       }
     },
   });
-  function onSubmit(data: CreateGoalDto) {
+  async function onSubmit(data: CreateGoalDto) {
     if (!currentProject) {
       toast.error(t("toast.projectNotSelected"));
       return;
     }
+    if (!isOnline) {
+      await createOfflineEntity<CreateGoalDto, GoalDto>("goals", currentProject.id, data);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["goal.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({
       body: {
         ...data,

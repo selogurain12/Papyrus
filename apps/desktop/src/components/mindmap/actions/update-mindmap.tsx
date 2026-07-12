@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import MindElixir, { MindElixirData } from "mind-elixir";
 import "mind-elixir/style.css";
 import { client } from "../../../utils/client/client";
-import { queryKeys, updateMindMapSchema } from "@papyrus/source";
+import { MindMapDto, queryKeys, updateMindMapSchema } from "@papyrus/source";
 import { useProject } from "../../../context/project-provider";
 import { useNavigate } from "@tanstack/react-router";
 import { mindmapRoute, updateMindmapRoute } from "../../../routes/mindmap/index.route";
@@ -12,6 +12,9 @@ import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
 import { isFetchError } from "@ts-rest/react-query/v5";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
+import { getLocalDatabaseApi } from "../../../local-db/renderer";
 
 export function UpdateMindMap() {
   const { t } = useTranslation(["mindmap/actions/update-mindmap", "common"]);
@@ -19,6 +22,8 @@ export function UpdateMindMap() {
   const navigate = useNavigate();
   const { id } = updateMindmapRoute.useParams();
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
+  const isOnline = useOnlineStatus();
+  const [cachedMindmap, setCachedMindmap] = useState<MindMapDto | null>(null);
 
   const { data } = client.mindmap.get.useQuery({
     queryKey: queryKeys.mindmap.get({ pathParams: { id, projectId: currentProject?.id ?? "" } }),
@@ -27,7 +32,40 @@ export function UpdateMindMap() {
     },
   });
 
-  const mindmap = data?.body;
+  const mindmap = cachedMindmap ?? data?.body;
+
+  useEffect(() => {
+    void getLocalDatabaseApi()
+      .getEntity("mindmaps", id)
+      .then((entity) => {
+        setCachedMindmap(entity ? (entity.payload as unknown as MindMapDto) : null);
+      })
+      .catch((error) => {
+        console.error("Unable to read cached mindmap", error);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    if (!currentProject?.id || !data?.body) {
+      return;
+    }
+
+    void getLocalDatabaseApi()
+      .saveEntity({
+        entityType: "mindmaps",
+        id: data.body.id,
+        serverId: data.body.id,
+        projectId: currentProject.id,
+        payload: JSON.parse(JSON.stringify(data.body)),
+        syncStatus: "synced",
+      })
+      .then((entity) => {
+        setCachedMindmap(entity.payload as unknown as MindMapDto);
+      })
+      .catch((error) => {
+        console.error("Unable to cache mindmap", error);
+      });
+  }, [currentProject?.id, data?.body]);
 
   useEffect(() => {
     if (!mindmap) return;
@@ -79,11 +117,11 @@ export function UpdateMindMap() {
       return;
     }
 
-    const data = mindRef.current.getData();
+    const mindmapData = mindRef.current.getData();
     const parsed = updateMindMapSchema.safeParse({
-      title: t("newTitle"),
+      title: mindmapData.nodeData.topic,
       project: currentProject,
-      data,
+      data: mindmapData,
     });
 
     if (!parsed.success) {
@@ -91,12 +129,25 @@ export function UpdateMindMap() {
       return;
     }
 
+    const body = parsed.data;
+
+    if (!isOnline && mindmap) {
+      await updateOfflineEntity<typeof body, MindMapDto>(
+        "mindmaps",
+        currentProject.id,
+        mindmap,
+        body
+      );
+      toast.success(t("update.success"));
+      await queryClient.invalidateQueries({
+        queryKey: queryKeys.mindmap.getAll({ pathParams: { projectId: currentProject.id } }),
+      });
+      void navigate({ to: mindmapRoute.to, params: { name: currentProject.title } });
+      return;
+    }
+
     mutate({
-      body: {
-        title: data.nodeData.topic,
-        data,
-        project: currentProject,
-      },
+      body,
       params: { projectId: currentProject.id, id },
     });
   }

@@ -87,5 +87,6 @@
   "file.maxSize": "Taille maximale : {{maxSize}}MB",
   "connection.online": "Connecté",
   "connection.offline": "Mode hors ligne",
+  "offline.savedLocally": "Enregistré localement. La synchronisation se fera au retour de la connexion.",
   "sync.savedToApi": "{{count}} donnée(s) hors ligne synchronisée(s) avec l'API"
 }

@@ -1,4 +1,4 @@
-import { fromDate, getLocalTimeZone, parseZonedDateTime } from "@internationalized/date";
+import { fromDate, getLocalTimeZone, now, parseZonedDateTime } from "@internationalized/date";
 import { AlertCircle, Calendar as CalendarIcon, Clock } from "lucide-react";
 import React, { type InputHTMLAttributes, useRef } from "react";
 import { fr } from "date-fns/locale";
@@ -21,6 +21,7 @@ interface DateTimePickerProps extends InputHTMLAttributes<HTMLInputElement> {
   errorIcon?: boolean;
   isError?: boolean;
   disabledRange: Matcher | Matcher[] | undefined;
+  toYear?: number;
 }
 
 // eslint-disable-next-line complexity
@@ -31,6 +32,7 @@ export function DateTimePicker({
   errorIcon = false,
   isError = false,
   disabledRange,
+  toYear = undefined,
 }: DateTimePickerProps) {
   const { t, i18n } = useTranslation();
   const hourReference = useRef<HTMLInputElement>(null);
@@ -111,7 +113,7 @@ export function DateTimePicker({
           {errorIcon && isError && <AlertCircle className="size-6 text-destructive ml-auto" />}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 bg-background">
+      <PopoverContent className="w-auto p-0 bg-background bg-white">
         <Calendar
           captionLayout="dropdown"
           disabled={disabledRange}
@@ -122,8 +124,9 @@ export function DateTimePicker({
             handleSelect(day, selectedDay);
           }}
           selected={value === undefined ? undefined : parseZonedDateTime(value).toDate()}
+          toYear={toYear ?? now(getLocalTimeZone()).year + 20}
         />
-        <div className="p-3 border-t border-border">{footer}</div>
+        <div className="p-3 border-t border-gray-100">{footer}</div>
       </PopoverContent>
     </Popover>
   );

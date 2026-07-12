@@ -89,5 +89,6 @@
   "menu.settings": "Nastavení",
   "connection.online": "Připojeno",
   "connection.offline": "Režim offline",
+  "offline.savedLocally": "Uloženo lokálně. Synchronizuje se po obnovení připojení.",
   "sync.savedToApi": "{{count}} offline položek uloženo do API"
 }

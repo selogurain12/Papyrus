@@ -10,6 +10,8 @@ import { client } from "../../utils/client/client";
 import { queryClient } from "../../context/query-client";
 import { format } from "../../utils/date/date-utils";
 import { Badge } from "../ui/badge";
+import { useOnlineStatus } from "../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../local-db/offline-entity-store";
 
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
@@ -62,6 +64,7 @@ export function GoalCard({
   setIsDeleting: (isDeleting: boolean) => void;
 }) {
   const { t } = useTranslation("goals/goal-card");
+  const isOnline = useOnlineStatus();
   const deadlineMessage = getDeadlineMessage(goal, t);
   const typeColorMap: Record<string, string> = {
     project: "bg-purple-100 text-purple-800",
@@ -126,11 +129,21 @@ export function GoalCard({
     },
   });
 
-  function markAsCompleted() {
+  async function markAsCompleted() {
     if (!goal.isOpen) {
       toast.error(t("toast.alreadyCompleted"));
       return;
     }
+    if (!isOnline) {
+      await updateOfflineEntity("goals", goal.project.id, goal, {
+        ...goal,
+        isOpen: false,
+      });
+      toast.success(t("toast.updateSuccess"));
+      await queryClient.invalidateQueries({ queryKey: ["goal.getAll"] });
+      return;
+    }
+
     mutate({
       body: {
         ...goal,

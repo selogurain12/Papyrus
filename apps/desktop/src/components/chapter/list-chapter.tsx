@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 /* eslint-disable no-nested-ternary */
-import { ChapterDto, queryKeys } from "@papyrus/source";
-import { client } from "../../utils/client/client";
+import { ChapterDto } from "@papyrus/source";
 import { useProject } from "../../context/project-provider";
 import { FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 interface ChapterListProps {
   id: string;
@@ -13,26 +13,15 @@ interface ChapterListProps {
   selectedChapter?: ChapterDto;
 }
 
+// eslint-disable-next-line complexity
 export function ChapterList({ id, setSelectedChapter, selectedChapter }: ChapterListProps) {
   const { t } = useTranslation(["chapter/list-chapter", "common"]);
   const { currentProject } = useProject();
-  const { data: chaptersData, isLoading } = client.chapter.getByPart.useQuery({
-    queryKey: queryKeys.chapter.getByPart({
-      pathParams: {
-        projectId: currentProject?.id ?? "",
-        partId: id,
-      },
-    }),
-
-    queryData: {
-      params: {
-        projectId: currentProject?.id ?? "",
-        partId: id,
-      },
-    },
+  const cachedChapters = useOfflineList<ChapterDto>({
+    entityType: "chapters",
+    projectId: currentProject?.id,
   });
-
-  const chapters = chaptersData?.body.data ?? [];
+  const chapters = (cachedChapters?.data ?? []).filter((chapter) => chapter.part.id === id);
 
   const statusColorMap: Record<string, string> = {
     toStart: "bg-slate-400",
@@ -48,9 +37,7 @@ export function ChapterList({ id, setSelectedChapter, selectedChapter }: Chapter
 
   return (
     <>
-      {isLoading ? (
-        <p>{t("common:loading")}</p>
-      ) : chapters.length === 0 ? (
+      {chapters.length === 0 ? (
         <p className="text-gray-500">{t("empty")}</p>
       ) : (
         chapters.map((ch) => (

@@ -14,6 +14,8 @@ import { MotionAlertDialogCancelWrapper } from "../../ui/alert-dialog/motion/can
 import { MotionAlertDialogActionWrapper } from "../../ui/alert-dialog/motion/action-wrapper.motion";
 import { useProject } from "../../../context/project-provider";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface ResearchDeleteActionsProps {
   onClose?: () => void;
@@ -33,6 +35,7 @@ export function ResearchDeleteActions({
   const { t } = useTranslation(["research/actions/delete-research", "common"]);
   const queryClient = useQueryClient();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (currentProject === null) {
     toast.error(t("common:projectNotSelected"));
     return null;
@@ -67,7 +70,16 @@ export function ResearchDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("research", research.id);
+                toast.success(t("delete.success"));
+                await queryClient.invalidateQueries({ queryKey: ["research.getAll"] });
+                clearSelection();
+                onClose?.();
+                return;
+              }
+
               mutate({ params: { id: research.id, projectId: currentProject.id } });
             }}
           />

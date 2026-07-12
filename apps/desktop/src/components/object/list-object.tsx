@@ -18,6 +18,7 @@ import {
   openDeleteSelectedObjectEvent,
   openEditSelectedObjectEvent,
 } from "../../utils/shortcut-events";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 // eslint-disable-next-line complexity
 export function ObjectsList() {
@@ -45,6 +46,12 @@ export function ObjectsList() {
       params: { projectId: currentProject?.id ?? "" },
       query: { ...options },
     },
+  });
+  const objects = useOfflineList({
+    entityType: "objects",
+    projectId: currentProject?.id,
+    onlineData: data?.body,
+    search: options.search,
   });
 
   useEffect(() => {
@@ -99,7 +106,7 @@ export function ObjectsList() {
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3">
           <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
-          {data?.body?.data.map((object) => (
+          {objects?.data.map((object) => (
             <ObjectCard
               key={object.id}
               object={object}

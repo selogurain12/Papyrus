@@ -14,7 +14,9 @@ import {
 } from "../../routes/mindmap/index.route";
 import { MindMapDeleteActions } from "./actions/delete-mindmap";
 import { useTranslation } from "react-i18next";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
+// eslint-disable-next-line complexity
 export function MindMapPage() {
   const { t } = useTranslation(["mindmap/mindmap-list", "common"]);
   const { currentProject } = useProject();
@@ -34,12 +36,19 @@ export function MindMapPage() {
 
   const { data } = client.mindmap.getAll.useQuery({
     queryKey: queryKeys.mindmap.getAll({
+      pathParams: { projectId: currentProject?.id ?? "" },
       query: { ...options },
     }),
     queryData: {
       query: options,
       params: { projectId: currentProject?.id ?? "" },
     },
+  });
+  const mindmaps = useOfflineList({
+    entityType: "mindmaps",
+    projectId: currentProject?.id,
+    onlineData: data?.body,
+    search: options.search,
   });
 
   return (
@@ -66,11 +75,11 @@ export function MindMapPage() {
         </Button>
       </div>
 
-      {data?.body.total !== 0 && (
+      {mindmaps?.total !== 0 && (
         <div className="mt-6 space-y-4">
           <h3 className="text-xl font-semibold">{t("yourMaps")}</h3>
 
-          {data?.body?.data?.map((mindmap) => (
+          {mindmaps?.data?.map((mindmap) => (
             <div
               key={mindmap.id}
               className="p-4 border border-gray-300 rounded-lg bg-white shadow flex justify-between items-center"

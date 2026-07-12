@@ -18,6 +18,7 @@ import {
   openDeleteSelectedCharacterEvent,
   openEditSelectedCharacterEvent,
 } from "../../utils/shortcut-events";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 // eslint-disable-next-line complexity
 export function CharactersList() {
@@ -42,6 +43,12 @@ export function CharactersList() {
       params: { projectId: currentProject?.id || "" },
       query: { ...options },
     },
+  });
+  const characters = useOfflineList({
+    entityType: "characters",
+    projectId: currentProject?.id,
+    onlineData: data?.body,
+    search: options.search,
   });
 
   useEffect(() => {
@@ -99,7 +106,7 @@ export function CharactersList() {
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3">
           <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
-          {data?.body?.data.map((character) => (
+          {characters?.data.map((character) => (
             <CharacterCard
               key={character.id}
               character={character}
@@ -121,7 +128,12 @@ export function CharactersList() {
 
         <div className="flex-1 ml-6">
           {isCreating ? (
-            <CreateCharacter onCancel={() => setIsCreating(false)} />
+            <CreateCharacter
+              onCancel={() => setIsCreating(false)}
+              onCreated={(character) => {
+                setCharacterSelected(character);
+              }}
+            />
           ) : isUpdating && characterSelected ? (
             <UpdateCharacter character={characterSelected} onCancel={() => setIsUpdating(false)} />
           ) : (
@@ -135,6 +147,11 @@ export function CharactersList() {
             setOpen={setIsDeleting}
             onClose={() => setIsDeleting(false)}
             clearSelection={() => setCharacterSelected(undefined)}
+            onDeleted={(characterId) => {
+              if (characterSelected?.id === characterId) {
+                setCharacterSelected(undefined);
+              }
+            }}
           />
         )}
       </div>

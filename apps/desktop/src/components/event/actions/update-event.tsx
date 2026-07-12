@@ -23,6 +23,8 @@ import { eventRoute } from "../../../routes/event/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { DateTimePicker } from "../../ui/date/datetime-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface UpdateEventProps {
   event: EventDto;
@@ -35,6 +37,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
   const user = useAuth();
   const { currentProject } = useProject();
   const navigate = useNavigate();
+  const isOnline = useOnlineStatus();
 
   const form = useForm({
     resolver: zodResolver(updateEventSchema),
@@ -67,7 +70,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
   if (!currentProject) return <div>{t("common:loading")}</div>;
   if (!event) return <div>{t("select.title")}</div>;
 
-  function handleSubmit(data: UpdateEventDto) {
+  async function handleSubmit(data: UpdateEventDto) {
     if (user === null) {
       toast.error(t("common:notConnected"));
       return;
@@ -76,6 +79,15 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+    if (!isOnline) {
+      await updateOfflineEntity<UpdateEventDto, EventDto>("events", currentProject.id, event, data);
+      toast.success(t("update.success"));
+      await queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
+      form.reset();
+      onCancel?.();
+      return;
+    }
+
     mutate({ body: data, params: { projectId: currentProject.id, id: event.id } });
   }
 

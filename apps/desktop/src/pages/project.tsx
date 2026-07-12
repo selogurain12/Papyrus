@@ -16,7 +16,7 @@ export function ProjectPage() {
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-background text-foreground">
-      <div className="w-full border-b border-border p-4 bg-background">
+      <div className="w-full border-b border-gray-300 p-4 bg-background">
         <div className="max-w-6xl mx-auto flex items-center justify-between w-full px-4">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">

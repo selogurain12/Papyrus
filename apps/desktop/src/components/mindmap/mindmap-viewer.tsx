@@ -1,14 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import MindElixir, { MindElixirData } from "mind-elixir";
 import "mind-elixir/style.css";
 import { client } from "../../utils/client/client";
-import { queryKeys } from "@papyrus/source";
+import { MindMapDto, queryKeys } from "@papyrus/source";
 import { useProject } from "../../context/project-provider";
 import { useNavigate } from "@tanstack/react-router";
 import { mindmapRoute, viewMindmapRoute } from "../../routes/mindmap/index.route";
 import { Button } from "../ui/button";
 import { useTranslation } from "react-i18next";
 import { Download } from "lucide-react";
+import { getLocalDatabaseApi } from "../../local-db/renderer";
 
 export function MindMapViewer() {
   const { t } = useTranslation("common");
@@ -16,6 +17,7 @@ export function MindMapViewer() {
   const navigate = useNavigate();
   const { id } = viewMindmapRoute.useParams();
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
+  const [cachedMindmap, setCachedMindmap] = useState<MindMapDto | null>(null);
 
   const { data } = client.mindmap.get.useQuery({
     queryKey: queryKeys.mindmap.get({ pathParams: { id, projectId: currentProject?.id ?? "" } }),
@@ -24,7 +26,40 @@ export function MindMapViewer() {
     },
   });
 
-  const mindmap = data?.body;
+  const mindmap = cachedMindmap ?? data?.body;
+
+  useEffect(() => {
+    void getLocalDatabaseApi()
+      .getEntity("mindmaps", id)
+      .then((entity) => {
+        setCachedMindmap(entity ? (entity.payload as unknown as MindMapDto) : null);
+      })
+      .catch((error) => {
+        console.error("Unable to read cached mindmap", error);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    if (!currentProject?.id || !data?.body) {
+      return;
+    }
+
+    void getLocalDatabaseApi()
+      .saveEntity({
+        entityType: "mindmaps",
+        id: data.body.id,
+        serverId: data.body.id,
+        projectId: currentProject.id,
+        payload: JSON.parse(JSON.stringify(data.body)),
+        syncStatus: "synced",
+      })
+      .then((entity) => {
+        setCachedMindmap(entity.payload as unknown as MindMapDto);
+      })
+      .catch((error) => {
+        console.error("Unable to cache mindmap", error);
+      });
+  }, [currentProject?.id, data?.body]);
 
   useEffect(() => {
     if (!mindmap) return;

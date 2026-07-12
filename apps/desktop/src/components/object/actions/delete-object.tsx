@@ -15,6 +15,8 @@ import { useProject } from "../../../context/project-provider";
 import { objectRoute } from "../../../routes/object/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface ObjectDeleteActionsProps {
   onClose?: () => void;
@@ -36,6 +38,7 @@ export function ObjectDeleteActions({
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (currentProject === null) {
     toast.error(t("common:projectNotSelected"));
     return null;
@@ -71,7 +74,20 @@ export function ObjectDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("objects", object.id);
+                toast.success(t("delete.success"));
+                await queryClient.invalidateQueries({ queryKey: ["object.getAll"] });
+                clearSelection();
+                onClose?.();
+                navigate({
+                  to: objectRoute.to,
+                  params: { name: currentProject.title },
+                });
+                return;
+              }
+
               mutate({ params: { id: object.id, projectId: currentProject.id } });
               navigate({
                 to: objectRoute.to,

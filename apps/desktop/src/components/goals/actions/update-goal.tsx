@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-len */
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
@@ -25,6 +26,8 @@ import { SingleSelector } from "../../ui/single-select";
 import { Button } from "../../ui/button";
 import { useProject } from "../../../context/project-provider";
 import { DatePicker } from "../../ui/date-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface UpdateGoalFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -34,6 +37,7 @@ interface UpdateGoalFormProps {
 export function UpdateGoalForm({ setOpen, goal }: UpdateGoalFormProps) {
   const { t } = useTranslation("goals/actions/update-goal");
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     toast.error(t("toast.projectNotSelected"));
     return null;
@@ -69,11 +73,20 @@ export function UpdateGoalForm({ setOpen, goal }: UpdateGoalFormProps) {
       }
     },
   });
-  function onSubmit(data: UpdateGoalDto) {
+  async function onSubmit(data: UpdateGoalDto) {
     if (!currentProject) {
       toast.error(t("toast.projectNotSelected"));
       return;
     }
+    if (!isOnline) {
+      await updateOfflineEntity<UpdateGoalDto, GoalDto>("goals", currentProject.id, goal, data);
+      toast.success(t("toast.updateSuccess"));
+      await queryClient.invalidateQueries({ queryKey: ["goal.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({
       body: {
         ...data,

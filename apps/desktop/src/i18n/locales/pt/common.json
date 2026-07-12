@@ -89,5 +89,6 @@
   "menu.settings": "Configurações",
   "connection.online": "Ligado",
   "connection.offline": "Modo offline",
+  "offline.savedLocally": "Salvo localmente. Será sincronizado quando a conexão voltar.",
   "sync.savedToApi": "{{count}} item(ns) offline salvo(s) na API"
 }

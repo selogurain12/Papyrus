@@ -15,6 +15,8 @@ import { AlertDialogContent } from "../../../ui/alert-dialog/alert-dialog-conten
 import { AlertDialogTitle } from "../../../ui/alert-dialog/alert-dialog-title";
 import { AlertDialogDescription } from "../../../ui/alert-dialog/alert-dialog-description";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../../local-db/offline-entity-store";
 
 interface PartDeleteActionsProps {
   onClose?: () => void;
@@ -34,6 +36,7 @@ export function PartDeleteActions({
   const { t } = useTranslation("chapter/actions/part/delete-part");
   const queryClient = useQueryClient();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (currentProject === null) {
     toast.error(t("projectNotSelected"));
     return null;
@@ -76,7 +79,17 @@ export function PartDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("parts", part.id);
+                toast.success(t("toasts.success"));
+                await queryClient.invalidateQueries({ queryKey: ["part.getAll"] });
+                await queryClient.invalidateQueries({ queryKey: ["chapter.getAll"] });
+                clearSelection();
+                onClose?.();
+                return;
+              }
+
               mutate({ params: { id: part.id, projectId: currentProject.id } });
             }}
           />

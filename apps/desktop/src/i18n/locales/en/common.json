@@ -87,5 +87,6 @@
   "file.maxSize": "Maximum size: {{maxSize}}MB",
   "connection.online": "Online",
   "connection.offline": "Offline mode",
+  "offline.savedLocally": "Saved locally. It will sync when the connection is back.",
   "sync.savedToApi": "{{count}} offline item(s) saved to the API"
 }

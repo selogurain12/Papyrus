@@ -15,6 +15,8 @@ import { AlertDialogContent } from "../../../ui/alert-dialog/alert-dialog-conten
 import { AlertDialogTitle } from "../../../ui/alert-dialog/alert-dialog-title";
 import { AlertDialogDescription } from "../../../ui/alert-dialog/alert-dialog-description";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../../local-db/offline-entity-store";
 
 interface ChapterDeleteActionsProps {
   onClose?: () => void;
@@ -34,6 +36,7 @@ export function ChapterDeleteActions({
   const { t } = useTranslation("chapter/actions/chapter/delete-chapter");
   const queryClient = useQueryClient();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (currentProject === null) {
     toast.error(t("projectNotSelected"));
     return null;
@@ -77,7 +80,16 @@ export function ChapterDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("chapters", chapter.id);
+                toast.success(t("toasts.success"));
+                await queryClient.invalidateQueries({ queryKey: ["chapter.getAll"] });
+                clearSelection();
+                onClose?.();
+                return;
+              }
+
               mutate({ params: { id: chapter.id, projectId: currentProject.id } });
             }}
           />

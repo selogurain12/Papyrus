@@ -1,7 +1,10 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 import { useState } from "react";
 import { X, ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { getPdfViewerSource } from "../../utils/files/file-link";
+import { useDisplayableFileUrl } from "../../hooks/use-displayable-file-url";
 
 interface PDFViewerModalProps {
   isOpen: boolean;
@@ -10,10 +13,12 @@ interface PDFViewerModalProps {
   onClose: () => void;
 }
 
+// eslint-disable-next-line complexity
 export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalProps) {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { displayUrl, error: displayError, isPreparing } = useDisplayableFileUrl(url);
 
   if (!isOpen || !url) return null;
 
@@ -42,9 +47,9 @@ export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalPr
 
         {/* Content */}
         <div className="flex-1 overflow-auto bg-gray-50 flex flex-col items-center justify-center p-8">
-          {error ? (
+          {error || displayError ? (
             <div className="text-center">
-              <p className="text-red-600 font-medium mb-4">{error}</p>
+              <p className="text-red-600 font-medium mb-4">{error ?? t("pdfLoadError")}</p>
               <button
                 onClick={handleOpenExternal}
                 className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
@@ -53,10 +58,12 @@ export function PDFViewerModal({ isOpen, url, title, onClose }: PDFViewerModalPr
                 <span>{t("openExternal")}</span>
               </button>
             </div>
+          ) : isPreparing || !displayUrl ? (
+            <p className="text-gray-500">{t("loading")}</p>
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center">
               <iframe
-                src={`${url}#toolbar=1&navpanes=0&scrollbar=1`}
+                src={getPdfViewerSource(displayUrl)}
                 className="w-full h-full border-0"
                 title={title || "PDF Viewer"}
                 onError={() => {

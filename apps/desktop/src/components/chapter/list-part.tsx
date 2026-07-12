@@ -24,6 +24,7 @@ import {
   openEditSelectedChapterEvent,
   openEditSelectedPartEvent,
 } from "../../utils/shortcut-events";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 // eslint-disable-next-line complexity
 export function PartsList() {
@@ -60,6 +61,16 @@ export function PartsList() {
     },
 
     enabled: !!currentProject?.id,
+  });
+  const cachedParts = useOfflineList({
+    entityType: "parts",
+    projectId: currentProject?.id,
+    onlineData: parts?.body,
+  });
+  const cachedChapters = useOfflineList({
+    entityType: "chapters",
+    projectId: currentProject?.id,
+    onlineData: chaptersData?.body,
   });
 
   useEffect(() => {
@@ -118,7 +129,7 @@ export function PartsList() {
     };
   }, [selectedChapter, selectedPart]);
 
-  const chapters = chaptersData?.body.data ?? [];
+  const chapters = cachedChapters?.data ?? [];
   return (
     <div className="p-6">
       <div className="flex justify-between gap-2 mb-4">
@@ -142,13 +153,11 @@ export function PartsList() {
           <p className="text-lg font-semibold">{t("overview")}</p>
           <div className="mt-4 flex w-full gap-4 pb-4">
             <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-purple-50">
-              <span className="text-2xl font-bold text-pink-800">{parts?.body.total ?? 0}</span>
+              <span className="text-2xl font-bold text-pink-800">{cachedParts?.total ?? 0}</span>
               <span className="text-sm font-medium text-gray-700">{t("parts")}</span>
             </div>
             <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-blue-50">
-              <span className="text-2xl font-bold text-blue-600">
-                {chaptersData?.body.total ?? 0}
-              </span>
+              <span className="text-2xl font-bold text-blue-600">{cachedChapters?.total ?? 0}</span>
               <span className="text-sm font-medium text-gray-700">{t("chapters")}</span>
             </div>
             <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-emerald-50">
@@ -158,7 +167,7 @@ export function PartsList() {
               <span className="text-sm font-medium text-gray-700">{t("words")}</span>
             </div>
           </div>
-          {parts?.body?.data.map((part) => {
+          {cachedParts?.data.map((part) => {
             const chapterCount = chapters.filter((ch) => ch.part.id === part.id).length;
             const isOpen = openPartId === part.id;
             return (

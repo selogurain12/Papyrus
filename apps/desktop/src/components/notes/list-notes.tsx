@@ -17,6 +17,7 @@ import {
   openDeleteSelectedNoteEvent,
   openEditSelectedNoteEvent,
 } from "../../utils/shortcut-events";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 // eslint-disable-next-line complexity
 export function NotesList() {
@@ -41,6 +42,12 @@ export function NotesList() {
       params: { projectId: currentProject?.id || "" },
       query: { ...options },
     },
+  });
+  const notes = useOfflineList({
+    entityType: "notes",
+    projectId: currentProject?.id,
+    onlineData: data?.body,
+    search: options.search,
   });
 
   useEffect(() => {
@@ -94,7 +101,7 @@ export function NotesList() {
       </div>
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3">
-          {data?.body?.data.map((note) => (
+          {notes?.data.map((note) => (
             <NoteCard
               key={note.id}
               note={note}

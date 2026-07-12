@@ -28,6 +28,9 @@ import { clientFile } from "../../../utils/client/client-file";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
 import { Tag } from "../../ui/tag";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface UpdateNoteFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -39,6 +42,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [existingLink, setExistingLink] = useState<string | null>(note.linkFile ?? null);
+  const isOnline = useOnlineStatus();
 
   const { currentProject } = useProject();
 
@@ -69,6 +73,23 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
 
     try {
       let fileUrl: string | null = existingLink ?? data.linkFile ?? note.linkFile ?? null;
+
+      if (!isOnline) {
+        if (file) {
+          fileUrl = await saveLocalAttachment(file);
+        }
+
+        await updateOfflineEntity<UpdateNoteDto, NoteDto>("notes", currentProject.id, note, {
+          ...data,
+          linkFile: fileUrl,
+        });
+        toast.success(t("update.success"));
+        await queryClient.invalidateQueries({ queryKey: ["note.getAll"] });
+        form.reset();
+        setFile(null);
+        setOpen(false);
+        return;
+      }
 
       if (file) {
         const formData = new FormData();

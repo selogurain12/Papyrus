@@ -23,6 +23,7 @@ import { TimelineDot } from "../ui/timeline/timeline-dot";
 import { TimelineItem } from "../ui/timeline/timeline-item";
 import { format } from "../../utils/date/date-utils";
 import { ScrollArea } from "../ui/scroll-area/scroll-area";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 function getStatusIcon(status: "critical" | "important" | "action" | "normal" | null) {
   switch (status) {
@@ -90,6 +91,12 @@ export function EventTimeline({
       params: { projectId: currentProject?.id ?? "" },
     },
   });
+  const events = useOfflineList({
+    entityType: "events",
+    projectId: currentProject?.id,
+    onlineData: eventTimeline.data?.body,
+    search: options.search,
+  });
 
   function content(currentEvent: EventDto) {
     return (
@@ -151,7 +158,7 @@ export function EventTimeline({
         <CardContent className="items-center md:items-start">
           <ScrollArea className="grow h-fit">
             <Timeline>
-              {eventTimeline.data?.body.data.map((event, index, array) => {
+              {events?.data.map((event, index, array) => {
                 const isLast = index === array.length - 1;
                 const isSelected = selectedEvent?.id === event.id;
                 return (

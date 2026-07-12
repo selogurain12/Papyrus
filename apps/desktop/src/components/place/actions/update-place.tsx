@@ -24,6 +24,8 @@ import { SingleSelector } from "../../ui/single-select";
 import { importanceOptions, TypeOption, typeOptions } from "../../../utils/value-for-select";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface UpdatePlaceProps {
   onCancel?: () => void;
@@ -35,6 +37,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const { t } = useTranslation(["place/actions/update-place", "common"]);
+  const isOnline = useOnlineStatus();
 
   const form = useForm({
     resolver: zodResolver(updatePlaceSchema),
@@ -74,7 +77,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
     },
   });
 
-  function onSubmit(data: UpdatePlaceDto) {
+  async function onSubmit(data: UpdatePlaceDto) {
     if (!user) {
       toast.error(t("common:errors.unauthenticated"));
       return;
@@ -82,6 +85,15 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
 
     if (!currentProject) {
       toast.error(t("common:currentProjectMissing"));
+      return;
+    }
+
+    if (!isOnline) {
+      await updateOfflineEntity<UpdatePlaceDto, PlaceDto>("places", currentProject.id, place, data);
+      toast.success(t("update.success"));
+      await queryClient.invalidateQueries({ queryKey: ["place.getAll"] });
+      form.reset();
+      onCancel?.();
       return;
     }
 

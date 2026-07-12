@@ -18,6 +18,7 @@ import {
   openDeleteSelectedPlaceEvent,
   openEditSelectedPlaceEvent,
 } from "../../utils/shortcut-events";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 // eslint-disable-next-line complexity
 export function PlacesList() {
@@ -45,6 +46,12 @@ export function PlacesList() {
       params: { projectId: currentProject?.id ?? "" },
       query: { ...options },
     },
+  });
+  const places = useOfflineList({
+    entityType: "places",
+    projectId: currentProject?.id,
+    onlineData: data?.body,
+    search: options.search,
   });
 
   useEffect(() => {
@@ -99,7 +106,7 @@ export function PlacesList() {
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3">
           <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
-          {data?.body?.data.map((place) => (
+          {places?.data.map((place) => (
             <PlaceCard
               key={place.id}
               place={place}

@@ -89,5 +89,6 @@
   "menu.settings": "Настройки",
   "connection.online": "Подключено",
   "connection.offline": "Офлайн-режим",
+  "offline.savedLocally": "Сохранено локально. Синхронизация выполнится после восстановления подключения.",
   "sync.savedToApi": "{{count}} офлайн-элемент(ов) сохранено в API"
 }

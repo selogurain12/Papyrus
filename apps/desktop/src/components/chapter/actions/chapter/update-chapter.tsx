@@ -28,6 +28,9 @@ import { statusPartOptions, TypeOption } from "../../../../utils/value-for-selec
 import { Form } from "../../../ui/forms/form";
 import { Textarea } from "../../../ui/textarea";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../../local-db/offline-entity-store";
+import { useOfflineList } from "../../../../hooks/use-offline-list";
 
 interface UpdateChapterProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -37,6 +40,7 @@ interface UpdateChapterProps {
 export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
   const { t } = useTranslation("chapter/actions/chapter/update-chapter");
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     return <div>{t("projectNotFound")}</div>;
   }
@@ -62,6 +66,11 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
     queryData: {
       params: { projectId: currentProject?.id ?? "" },
     },
+  });
+  const cachedParts = useOfflineList({
+    entityType: "parts",
+    projectId: currentProject?.id,
+    onlineData: parts?.body,
   });
   const { mutate, isPending: loading } = client.chapter.update.useMutation({
     onSuccess: (response) => {
@@ -94,7 +103,25 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
     },
   });
 
-  function onSubmit(data: UpdateChapterDto) {
+  async function onSubmit(data: UpdateChapterDto) {
+    if (!currentProject) {
+      return;
+    }
+
+    if (!isOnline) {
+      await updateOfflineEntity<UpdateChapterDto, ChapterDto>(
+        "chapters",
+        currentProject.id,
+        chapter,
+        data
+      );
+      toast.success(t("toasts.success"));
+      await queryClient.invalidateQueries({ queryKey: ["chapter.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({ body: data, params: { id: chapter.id, projectId: currentProject?.id ?? "" } });
   }
   return (
@@ -144,7 +171,7 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
                       <span className="font-medium">{item.title}</span>
                     )}
                     placeholder={t("fields.partPlaceholder")}
-                    data={parts?.body?.data ?? []}
+                    data={cachedParts?.data ?? []}
                   />
                 </FormControl>
                 <FormMessage />

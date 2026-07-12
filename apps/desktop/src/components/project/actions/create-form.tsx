@@ -23,10 +23,12 @@ import { genre, languageOptions, TypeOption } from "../../../utils/value-for-sel
 import { SingleSelector } from "../../ui/single-select";
 import { BookOpen, Target } from "lucide-react";
 import { DatePicker } from "../../ui/date-picker";
-import { CreateProjectDto, createProjectSchema } from "@papyrus/source";
+import { CreateProjectDto, ProjectDto, createProjectSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
 import { useTranslation } from "react-i18next";
 import { Tag } from "../../ui/tag";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface CreateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -35,6 +37,7 @@ interface CreateProjectFormProps {
 export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
   const { t } = useTranslation(["project/actions/create-form", "common"]);
   const { user } = useAuth();
+  const isOnline = useOnlineStatus();
   if (user === null) {
     toast.error(t("common:notConnected"));
     return null;
@@ -64,11 +67,20 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
       }
     },
   });
-  function onSubmit(data: CreateProjectDto) {
+  async function onSubmit(data: CreateProjectDto) {
     if (user === null) {
       toast.error("User is null");
       return;
     }
+    if (!isOnline) {
+      await createOfflineEntity<CreateProjectDto, ProjectDto>("projects", user.id, data);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["project.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({
       body: {
         ...data,

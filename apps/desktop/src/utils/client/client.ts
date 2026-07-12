@@ -2,7 +2,7 @@ import { initTsrReactQuery } from "@ts-rest/react-query/v5";
 import { type ApiFetcherArgs, type AppRouter, tsRestFetchApi } from "@ts-rest/core";
 import { papyrusContract } from "@papyrus/source";
 
-const apiUrl = "http://localhost:3000";
+export const apiUrl = "http://localhost:3000";
 
 function getIdTokenAsync(): string | null {
   try {

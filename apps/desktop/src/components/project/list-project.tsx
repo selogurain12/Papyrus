@@ -8,6 +8,7 @@ import { UpdateProjectForm } from "./actions/update-form";
 import { ProjectDeleteActions } from "./actions/delete-modal";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 export function ListProject() {
   const { t } = useTranslation("common");
@@ -16,6 +17,7 @@ export function ListProject() {
     toast.error(t("notConnected"));
     return null;
   }
+  const userId = user.id;
 
   const [open, setOpen] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
@@ -23,17 +25,22 @@ export function ListProject() {
 
   const { data } = client.project.getAll.useQuery({
     queryKey: queryKeys.project.getAll({
-      pathParams: { userId: user.id },
+      pathParams: { userId },
     }),
     queryData: {
-      params: { userId: user.id },
+      params: { userId },
     },
+  });
+  const projects = useOfflineList({
+    entityType: "projects",
+    projectId: userId,
+    onlineData: data?.body,
   });
 
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-3">
-        {data?.body?.data?.map((project) => (
+        {projects?.data.map((project) => (
           <ProjectCard
             key={project.id}
             project={project}

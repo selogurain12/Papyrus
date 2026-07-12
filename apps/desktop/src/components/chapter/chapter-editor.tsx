@@ -11,6 +11,8 @@ import { useProject } from "../../context/project-provider";
 import { queryClient } from "../../context/query-client";
 import { useTranslation } from "react-i18next";
 import { countWordsFromContent } from "../../utils/lexical-content";
+import { useOnlineStatus } from "../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../local-db/offline-entity-store";
 
 interface ChapterEditorProps {
   chapter: ChapterDto;
@@ -23,6 +25,7 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
   const { t } = useTranslation(["chapter/chapter-editor", "common"]);
   const [content, setContent] = useState(chapter.content ?? "");
   const { setCurrentProject, currentProject } = useProject();
+  const isOnline = useOnlineStatus();
 
   const wordCount = useMemo(() => {
     return countWordsFromContent(content);
@@ -65,7 +68,21 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
     },
   });
 
-  function handleSave() {
+  async function handleSave() {
+    if (!isOnline) {
+      const updatedChapter = await updateOfflineEntity("chapters", chapter.project.id, chapter, {
+        ...chapter,
+        content,
+        wordCount,
+      });
+
+      toast.success(t("success"));
+      await queryClient.invalidateQueries({ queryKey: ["chapter.getAll"] });
+      setChapter(updatedChapter);
+      setOpen(false);
+      return;
+    }
+
     mutate({
       params: {
         id: chapter.id,

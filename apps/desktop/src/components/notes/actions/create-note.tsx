@@ -16,7 +16,7 @@ import { FormControl } from "../../ui/forms/form-control";
 import { Input } from "../../ui/input";
 import { FormMessage } from "../../ui/forms/form-message";
 import { File } from "lucide-react";
-import { ColorType, CreateNoteDto, createNoteSchema } from "@papyrus/source";
+import { ColorType, CreateNoteDto, NoteDto, createNoteSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
 import { useProject } from "../../../context/project-provider";
 import { Textarea } from "../../ui/textarea";
@@ -26,6 +26,9 @@ import { clientFile } from "../../../utils/client/client-file";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
 import { Tag } from "../../ui/tag";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface CreateNoteFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -35,6 +38,7 @@ export function CreateNoteForm({ setOpen }: CreateNoteFormProps) {
   const { t } = useTranslation(["notes/actions/create-note", "common"]);
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const isOnline = useOnlineStatus();
 
   const { currentProject } = useProject();
 
@@ -62,6 +66,23 @@ export function CreateNoteForm({ setOpen }: CreateNoteFormProps) {
 
     try {
       let fileUrl = data.linkFile ?? null;
+
+      if (!isOnline) {
+        if (file) {
+          fileUrl = await saveLocalAttachment(file);
+        }
+
+        await createOfflineEntity<CreateNoteDto, NoteDto>("notes", currentProject.id, {
+          ...data,
+          linkFile: fileUrl,
+        });
+        toast.success(t("common:offline.savedLocally"));
+        await queryClient.invalidateQueries({ queryKey: ["note.getAll"] });
+        form.reset();
+        setFile(null);
+        setOpen(false);
+        return;
+      }
 
       if (file) {
         const formData = new FormData();

@@ -21,6 +21,8 @@ import { SingleSelector } from "../../../ui/single-select";
 import { statusPartOptions, TypeOption } from "../../../../utils/value-for-select";
 import { Form } from "../../../ui/forms/form";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../../local-db/offline-entity-store";
 
 interface UpdatePartProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -30,6 +32,7 @@ interface UpdatePartProps {
 export function UpdatePart({ setOpen, part }: UpdatePartProps) {
   const { currentProject } = useProject();
   const { t } = useTranslation(["chapter/actions/part/update-part", "common"]);
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     return <div>{t("common:projectNotSelected")}</div>;
   }
@@ -57,7 +60,20 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
     },
   });
 
-  function onSubmit(data: UpdatePartDto) {
+  async function onSubmit(data: UpdatePartDto) {
+    if (!currentProject) {
+      return;
+    }
+
+    if (!isOnline) {
+      await updateOfflineEntity<UpdatePartDto, PartDto>("parts", currentProject.id, part, data);
+      toast.success(t("toasts.success"));
+      await queryClient.invalidateQueries({ queryKey: ["part.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({ body: data, params: { id: part.id, projectId: currentProject?.id ?? "" } });
   }
   return (

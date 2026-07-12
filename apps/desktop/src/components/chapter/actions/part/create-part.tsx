@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreatePartDto, createPartSchema } from "@papyrus/source";
+import { CreatePartDto, PartDto, createPartSchema } from "@papyrus/source";
 import { useForm } from "react-hook-form";
 import { useProject } from "../../../../context/project-provider";
 import { isFetchError } from "@ts-rest/react-query/v5";
@@ -21,6 +21,8 @@ import { SingleSelector } from "../../../ui/single-select";
 import { statusPartOptions, TypeOption } from "../../../../utils/value-for-select";
 import { Form } from "../../../ui/forms/form";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../../local-db/offline-entity-store";
 
 interface CreatePartProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -29,6 +31,7 @@ interface CreatePartProps {
 export function CreatePart({ setOpen }: CreatePartProps) {
   const { t } = useTranslation("chapter/actions/part/create-part");
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     return <div>{t("projectNotFound")}</div>;
   }
@@ -55,7 +58,20 @@ export function CreatePart({ setOpen }: CreatePartProps) {
     },
   });
 
-  function onSubmit(data: CreatePartDto) {
+  async function onSubmit(data: CreatePartDto) {
+    if (!currentProject) {
+      return;
+    }
+
+    if (!isOnline) {
+      await createOfflineEntity<CreatePartDto, PartDto>("parts", currentProject.id, data);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["part.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({ body: data, params: { projectId: currentProject?.id ?? "" } });
   }
   return (

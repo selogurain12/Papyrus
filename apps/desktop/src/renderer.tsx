@@ -12,6 +12,7 @@ import { AuthProvider } from "./context/auth-provider";
 import { ProjectProvider } from "./context/project-provider";
 import { PreferencesProvider } from "./context/preference-provider";
 import { NotificationManager } from "./components/notifications/notification-manager";
+import { OfflineSyncManager } from "./components/offline-sync/offline-sync-manager";
 import "@fontsource/inter";
 import "@fontsource/lora";
 import "@fontsource/merriweather";
@@ -35,6 +36,7 @@ root.render(
               <TooltipProvider>
                 <Toaster richColors />
                 <NotificationManager />
+                <OfflineSyncManager />
                 <RouterProvider basepath={import.meta.env.BASE_URL} router={router} />
               </TooltipProvider>
             </main>

@@ -18,7 +18,7 @@ import { FormControl } from "../../ui/forms/form-control";
 import { Input } from "../../ui/input";
 import { FormMessage } from "../../ui/forms/form-message";
 import { Book, BookOpen, FileText, Globe, Target, Video, Image } from "lucide-react";
-import { CreateResearchDto, createResearchSchema } from "@papyrus/source";
+import { CreateResearchDto, ResearchDto, createResearchSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
 import { useProject } from "../../../context/project-provider";
 import { Textarea } from "../../ui/textarea";
@@ -27,6 +27,9 @@ import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
 import { useTranslation } from "react-i18next";
 import { Tag } from "../../ui/tag";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface CreateResearchFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -36,6 +39,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
   const { t } = useTranslation(["research/actions/create-form", "common"]);
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const isOnline = useOnlineStatus();
 
   const { currentProject } = useProject();
 
@@ -64,6 +68,23 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
 
     try {
       let fileUrl = data.link;
+
+      if (!isOnline) {
+        if (file) {
+          fileUrl = await saveLocalAttachment(file);
+        }
+
+        await createOfflineEntity<CreateResearchDto, ResearchDto>("research", currentProject.id, {
+          ...data,
+          link: fileUrl,
+        });
+        toast.success(t("common:offline.savedLocally"));
+        await queryClient.invalidateQueries({ queryKey: ["research.getAll"] });
+        form.reset();
+        setFile(null);
+        setOpen(false);
+        return;
+      }
 
       if (file) {
         const formData = new FormData();

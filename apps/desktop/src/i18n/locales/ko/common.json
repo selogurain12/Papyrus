@@ -89,5 +89,6 @@
   "menu.settings": "설정",
   "connection.online": "온라인",
   "connection.offline": "오프라인 모드",
+  "offline.savedLocally": "로컬에 저장되었습니다. 연결이 복구되면 동기화됩니다.",
   "sync.savedToApi": "{{count}}개의 오프라인 항목이 API에 저장되었습니다"
 }

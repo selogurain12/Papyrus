@@ -11,7 +11,7 @@ import { FormItem } from "../../ui/forms/form-item";
 import { FormControl } from "../../ui/forms/form-control";
 import { FormLabel } from "../../ui/forms/form-label";
 import { FormMessage } from "../../ui/forms/form-message";
-import { ColorType, CreateObjectDto, createObjectSchema } from "@papyrus/source";
+import { ColorType, CreateObjectDto, ObjectDto, createObjectSchema } from "@papyrus/source";
 import { client } from "../../../utils/client/client";
 import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
@@ -24,6 +24,8 @@ import { SingleSelector } from "../../ui/single-select";
 import { importanceOptions, TypeOption, objectTypeOptions } from "../../../utils/value-for-select";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface CreateObjectProps {
   onCancel?: () => void;
@@ -34,6 +36,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const { t } = useTranslation(["object/actions/create-object", "common"]);
+  const isOnline = useOnlineStatus();
 
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
@@ -73,7 +76,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
     },
   });
 
-  function onSubmit(data: CreateObjectDto) {
+  async function onSubmit(data: CreateObjectDto) {
     if (!user) {
       toast.error(t("common:errors.unauthenticated"));
       return;
@@ -81,6 +84,15 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
 
     if (!currentProject) {
       toast.error(t("common:currentProjectMissing"));
+      return;
+    }
+
+    if (!isOnline) {
+      await createOfflineEntity<CreateObjectDto, ObjectDto>("objects", currentProject.id, data);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["object.getAll"] });
+      form.reset();
+      onCancel?.();
       return;
     }
 

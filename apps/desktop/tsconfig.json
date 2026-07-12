@@ -34,12 +34,13 @@
   },
   "include": [
     "src/**/*",
-    "vite.*.config.ts"
+    "forge.config.ts",
+    "forge.env.d.ts",
+    "vite.*.config.mts"
   ],
   "exclude": [
     "node_modules",
     "dist",
     ".vite"
-  ],
-  "extends": "expo/tsconfig.base"
+  ]
 }

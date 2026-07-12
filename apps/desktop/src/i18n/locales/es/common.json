@@ -89,5 +89,6 @@
   "menu.settings": "Configuración",
   "connection.online": "Conectado",
   "connection.offline": "Modo sin conexión",
+  "offline.savedLocally": "Guardado localmente. Se sincronizará cuando vuelva la conexión.",
   "sync.savedToApi": "{{count}} elemento(s) sin conexión guardado(s) en la API"
 }

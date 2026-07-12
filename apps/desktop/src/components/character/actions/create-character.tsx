@@ -1,12 +1,15 @@
 /* eslint-disable max-lines */
-/* eslint-disable max-len */
 import { Card } from "../../ui/card";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../ui/accordion";
-import { useState } from "react";
-import { CreateCharacterDto, createCharacterSchema } from "@papyrus/source";
+import {
+  CharacterDto,
+  ColorType,
+  CreateCharacterDto,
+  createCharacterSchema,
+} from "@papyrus/source";
 import { SingleSelector } from "../../ui/single-select";
 import { FormField } from "../../ui/forms/form-field-context";
 import { TypeOption, roleOptions } from "../../../utils/value-for-select";
@@ -30,15 +33,22 @@ import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import { Slider } from "../../ui/slider";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { ColorPicker } from "../../ui/color-picker";
+import { Tag } from "../../ui/tag";
 
 interface CreateCharacterProps {
   onCancel?: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onCreated?: (character: CharacterDto) => void;
 }
 
-export function CreateCharacter({ onCancel }: CreateCharacterProps) {
+export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
   const user = useAuth();
   const { currentProject } = useProject();
   const navigate = useNavigate();
+  const isOnline = useOnlineStatus();
   const { t } = useTranslation(["character/actions/create-character", "common"]);
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
@@ -89,40 +99,6 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
     },
   });
 
-  const [qualitiesInput, setQualitiesInput] = useState("");
-  const [flawsInput, setFlawsInput] = useState("");
-
-  const handleAddQuality = () => {
-    if (qualitiesInput.trim()) {
-      const currentQualities = form.getValues("characterQualities") || [];
-      form.setValue("characterQualities", [...currentQualities, qualitiesInput.trim()]);
-      setQualitiesInput("");
-    }
-  };
-
-  const handleRemoveQuality = (index: number) => {
-    const currentQualities = form.getValues("characterQualities") || [];
-    form.setValue(
-      "characterQualities",
-      currentQualities.filter((_, i) => i !== index)
-    );
-  };
-
-  const handleAddFlaw = () => {
-    if (flawsInput.trim()) {
-      const currentFlaws = form.getValues("characterFlaws") || [];
-      form.setValue("characterFlaws", [...currentFlaws, flawsInput.trim()]);
-      setFlawsInput("");
-    }
-  };
-
-  const handleRemoveFlaw = (index: number) => {
-    const currentFlaws = form.getValues("characterFlaws") || [];
-    form.setValue(
-      "characterFlaws",
-      currentFlaws.filter((_, i) => i !== index)
-    );
-  };
   const { mutate } = client.character.create.useMutation({
     onSuccess: () => {
       toast.success(t("create.success"));
@@ -150,6 +126,26 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+
+    if (!isOnline) {
+      void createOfflineEntity<CreateCharacterDto, CharacterDto>(
+        "characters",
+        currentProject.id,
+        data
+      )
+        .then((character) => {
+          toast.success(t("create.offlineSuccess"));
+          onCreated?.(character);
+          form.reset();
+          onCancel?.();
+        })
+        .catch((error: unknown) => {
+          console.error("Offline character creation failed", error);
+          toast.error(t("common:error"));
+        });
+      return;
+    }
+
     mutate({
       body: {
         ...data,
@@ -180,7 +176,7 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
           </div>
 
           <div className="flex gap-6 mb-8">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div
                 className={`w-24 h-24 rounded-full ${
                   colorMap[form.watch("color") ?? "blue"]
@@ -629,43 +625,13 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                         <FormLabel>{t("fields.characterQualities")}</FormLabel>
                         <FormControl>
                           <div className="flex gap-2 mb-2">
-                            <Input
+                            <Tag
+                              value={form.watch("characterQualities")}
+                              onChange={(tags) => form.setValue("characterQualities", tags)}
                               placeholder={t("placeholders.quality")}
-                              value={qualitiesInput}
-                              onChange={(e) => setQualitiesInput(e.target.value)}
-                              onKeyPress={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  handleAddQuality();
-                                }
-                              }}
                             />
-                            <Button
-                              className="border border-gray-300 bg-blue-500 text-white"
-                              type="button"
-                              onClick={handleAddQuality}
-                            >
-                              +
-                            </Button>
                           </div>
                         </FormControl>
-                        <div className="flex flex-wrap gap-2">
-                          {(form.watch("characterQualities") || []).map((quality, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center gap-2"
-                            >
-                              {quality}
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveQuality(index)}
-                                className="text-blue-600 hover:text-blue-900"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          ))}
-                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -679,43 +645,13 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
                         <FormLabel>{t("fields.characterFlaws")}</FormLabel>
                         <FormControl>
                           <div className="flex gap-2 mb-2">
-                            <Input
+                            <Tag
+                              value={form.watch("characterFlaws")}
+                              onChange={(tags) => form.setValue("characterFlaws", tags)}
                               placeholder={t("placeholders.flaw")}
-                              value={flawsInput}
-                              onChange={(e) => setFlawsInput(e.target.value)}
-                              onKeyPress={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  handleAddFlaw();
-                                }
-                              }}
                             />
-                            <Button
-                              className="border border-gray-300 bg-red-500 text-white"
-                              type="button"
-                              onClick={handleAddFlaw}
-                            >
-                              +
-                            </Button>
                           </div>
                         </FormControl>
-                        <div className="flex flex-wrap gap-2">
-                          {(form.watch("characterFlaws") || []).map((flaw, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm flex items-center gap-2"
-                            >
-                              {flaw}
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveFlaw(index)}
-                                className="text-red-600 hover:text-red-900"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          ))}
-                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -1021,30 +957,11 @@ export function CreateCharacter({ onCancel }: CreateCharacterProps) {
               <FormItem className="my-6">
                 <FormLabel>{t("fields.color")}</FormLabel>
                 <FormControl>
-                  <div className="flex mt-3 gap-3 flex-wrap">
-                    {[
-                      { value: "blue", label: t("colors.blue"), bg: "bg-blue-500" },
-                      { value: "red", label: t("colors.red"), bg: "bg-red-500" },
-                      { value: "green", label: t("colors.green"), bg: "bg-green-500" },
-                      { value: "purple", label: t("colors.purple"), bg: "bg-purple-500" },
-                      { value: "yellow", label: t("colors.yellow"), bg: "bg-yellow-500" },
-                      { value: "pink", label: t("colors.pink"), bg: "bg-pink-500" },
-                      { value: "cyan", label: t("colors.cyan"), bg: "bg-cyan-500" },
-                      { value: "gray", label: t("colors.gray"), bg: "bg-gray-500" },
-                    ].map((color) => (
-                      <button
-                        key={color.value}
-                        type="button"
-                        onClick={() => field.onChange(color.value)}
-                        className={`w-8 h-8 rounded-full ${color.bg} transition-transform ${
-                          field.value === color.value
-                            ? "ring-2 ring-offset-2 ring-foreground scale-110"
-                            : "hover:scale-105"
-                        }`}
-                        title={color.label}
-                      />
-                    ))}
-                  </div>
+                  <ColorPicker
+                    className="mt-3"
+                    value={field.value as ColorType | null | undefined}
+                    onChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

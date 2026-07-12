@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 import { Card } from "../ui/card";
 import { Badge } from "../ui/badge";
@@ -6,33 +7,16 @@ import { ExternalLink, Link, X } from "lucide-react";
 import { useState } from "react";
 import { PDFViewerModal } from "../ui/pdf-viewer";
 import { useTranslation } from "react-i18next";
-
-function getLinkExtension(link: string) {
-  try {
-    const pathname = new URL(link).pathname;
-    return pathname.split(".").pop()?.toLowerCase() ?? "";
-  } catch {
-    return link.split("?")[0].split(".").pop()?.toLowerCase() ?? "";
-  }
-}
-
-function isPdfLink(link: string) {
-  return getLinkExtension(link) === "pdf";
-}
-
-function isImageLink(link: string) {
-  return ["apng", "avif", "gif", "jpeg", "jpg", "png", "svg", "webp"].includes(
-    getLinkExtension(link)
-  );
-}
+import { isImageFileLink, isPdfFileLink } from "../../utils/files/file-link";
+import { useDisplayableFileUrl } from "../../hooks/use-displayable-file-url";
 
 function openNoteFile(link: string, openPdfViewer: () => void, openImageViewer: () => void) {
-  if (isPdfLink(link)) {
+  if (isPdfFileLink(link)) {
     openPdfViewer();
     return;
   }
 
-  if (isImageLink(link)) {
+  if (isImageFileLink(link)) {
     openImageViewer();
     return;
   }
@@ -52,6 +36,7 @@ function ImageViewerModal({
   onClose: () => void;
 }) {
   const { t } = useTranslation("common");
+  const { displayUrl, isPreparing } = useDisplayableFileUrl(url);
 
   if (!isOpen || !url) {
     return null;
@@ -68,7 +53,13 @@ function ImageViewerModal({
         </div>
 
         <div className="flex flex-1 items-center justify-center overflow-auto bg-gray-50 p-6">
-          <img src={url} alt={title} className="max-h-full max-w-full object-contain" />
+          {isPreparing ? (
+            <p className="text-gray-500">{t("loading")}</p>
+          ) : displayUrl ? (
+            <img src={displayUrl} alt={title} className="max-h-full max-w-full object-contain" />
+          ) : (
+            <p className="text-red-600">{t("error")}</p>
+          )}
         </div>
 
         <div className="flex items-center justify-end border-t border-gray-200 bg-white p-4">

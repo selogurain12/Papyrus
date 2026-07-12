@@ -89,5 +89,6 @@
   "menu.settings": "设置",
   "connection.online": "已连接",
   "connection.offline": "离线模式",
+  "offline.savedLocally": "已保存到本地。连接恢复后会同步。",
   "sync.savedToApi": "{{count}} 个离线项目已保存到 API"
 }

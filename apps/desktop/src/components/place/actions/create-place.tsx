@@ -11,7 +11,7 @@ import { FormItem } from "../../ui/forms/form-item";
 import { FormControl } from "../../ui/forms/form-control";
 import { FormLabel } from "../../ui/forms/form-label";
 import { FormMessage } from "../../ui/forms/form-message";
-import { ColorType, CreatePlaceDto, createPlaceSchema } from "@papyrus/source";
+import { ColorType, CreatePlaceDto, PlaceDto, createPlaceSchema } from "@papyrus/source";
 import { client } from "../../../utils/client/client";
 import { toast } from "sonner";
 import { queryClient } from "../../../context/query-client";
@@ -24,6 +24,8 @@ import { SingleSelector } from "../../ui/single-select";
 import { importanceOptions, TypeOption, typeOptions } from "../../../utils/value-for-select";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface CreatePlaceProps {
   onCancel?: () => void;
@@ -34,6 +36,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const { t } = useTranslation(["place/actions/create-place", "common"]);
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
   }
@@ -77,7 +80,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
     },
   });
 
-  function onSubmit(data: CreatePlaceDto) {
+  async function onSubmit(data: CreatePlaceDto) {
     if (!user) {
       toast.error(t("common:errors.unauthenticated"));
       return;
@@ -85,6 +88,15 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
 
     if (!currentProject) {
       toast.error(t("common:currentProjectMissing"));
+      return;
+    }
+
+    if (!isOnline) {
+      await createOfflineEntity<CreatePlaceDto, PlaceDto>("places", currentProject.id, data);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["place.getAll"] });
+      form.reset();
+      onCancel?.();
       return;
     }
 

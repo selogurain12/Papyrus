@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { useEffect, useRef } from "react";
 import MindElixir from "mind-elixir";
-import { createMindMapSchema } from "@papyrus/source";
+import { CreateMindMapDto, MindMapDto, createMindMapSchema } from "@papyrus/source";
 import "mind-elixir/style.css";
 import { client } from "../../../utils/client/client";
 import { toast } from "sonner";
@@ -12,12 +12,15 @@ import { useNavigate } from "@tanstack/react-router";
 import { mindmapRoute } from "../../../routes/mindmap/index.route";
 import { Button } from "../../ui/button";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 
 export function CreateMindMap() {
   const { t } = useTranslation(["mindmap/actions/create-mindmap", "common"]);
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
   const navigate = useNavigate();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
 
   useEffect(() => {
     const instance = new MindElixir({
@@ -60,11 +63,11 @@ export function CreateMindMap() {
       return;
     }
 
-    const data = mindRef.current.getData();
+    const mindmapData = mindRef.current.getData();
     const parsed = createMindMapSchema.safeParse({
-      title: t("newTitle"),
+      title: mindmapData.nodeData.topic,
       project: currentProject,
-      data,
+      data: mindmapData,
     });
 
     if (!parsed.success) {
@@ -72,12 +75,18 @@ export function CreateMindMap() {
       return;
     }
 
+    const body: CreateMindMapDto = parsed.data;
+
+    if (!isOnline) {
+      await createOfflineEntity<CreateMindMapDto, MindMapDto>("mindmaps", currentProject.id, body);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["mindmap.getAll"] });
+      void navigate({ to: mindmapRoute.to, params: { name: currentProject.title } });
+      return;
+    }
+
     mutate({
-      body: {
-        title: data.nodeData.topic,
-        data,
-        project: currentProject,
-      },
+      body,
       params: { projectId: currentProject.id },
     });
   }

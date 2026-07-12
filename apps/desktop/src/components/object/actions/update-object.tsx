@@ -24,6 +24,8 @@ import { SingleSelector } from "../../ui/single-select";
 import { importanceOptions, objectTypeOptions, TypeOption } from "../../../utils/value-for-select";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface UpdateObjectProps {
   onCancel?: () => void;
@@ -35,6 +37,7 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const { t } = useTranslation(["object/actions/update-object", "common"]);
+  const isOnline = useOnlineStatus();
 
   const form = useForm({
     resolver: zodResolver(updateObjectSchema),
@@ -69,7 +72,7 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
     },
   });
 
-  function onSubmit(data: UpdateObjectDto) {
+  async function onSubmit(data: UpdateObjectDto) {
     if (!user) {
       toast.error(t("common:errors.unauthenticated"));
       return;
@@ -77,6 +80,20 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
 
     if (!currentProject) {
       toast.error(t("common:currentProjectMissing"));
+      return;
+    }
+
+    if (!isOnline) {
+      await updateOfflineEntity<UpdateObjectDto, ObjectDto>(
+        "objects",
+        currentProject.id,
+        object,
+        data
+      );
+      toast.success(t("update.success"));
+      await queryClient.invalidateQueries({ queryKey: ["object.getAll"] });
+      form.reset();
+      onCancel?.();
       return;
     }
 

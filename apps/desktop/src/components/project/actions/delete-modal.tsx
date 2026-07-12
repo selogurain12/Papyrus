@@ -14,6 +14,8 @@ import { MotionAlertDialogCancelWrapper } from "../../../components/ui/alert-dia
 import { MotionAlertDialogActionWrapper } from "../../../components/ui/alert-dialog/motion/action-wrapper.motion";
 import { useAuth } from "../../../context/auth-provider";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface ProjectDeleteActionsProps {
   onClose?: () => void;
@@ -32,6 +34,7 @@ export function ProjectDeleteActions({
   const { t } = useTranslation(["project/actions/delete-modal", "common"]);
   const queryClient = useQueryClient();
   const { user } = useAuth();
+  const isOnline = useOnlineStatus();
   if (user === null) {
     toast.error(t("common:notConnected"));
     return null;
@@ -66,7 +69,16 @@ export function ProjectDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => window.history.back()} />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("projects", project.id);
+                toast.success(t("delete.success"));
+                await queryClient.invalidateQueries({ queryKey: ["project.getAll"] });
+                onClose?.();
+                window.history.back();
+                return;
+              }
+
               mutate({ params: { id: project.id, userId: user.id } });
               window.history.back();
             }}

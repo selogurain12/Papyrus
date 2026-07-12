@@ -15,6 +15,7 @@ import { CreateGoalForm } from "./actions/create-goal";
 import { UpdateGoalForm } from "./actions/update-goal";
 import { GoalDeleteActions } from "./actions/delete-goal";
 import { GoalCard } from "./goal-card";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 const statCardColors = {
   blue: {
@@ -131,6 +132,11 @@ export function GoalPage() {
       query: { ...options },
     },
   });
+  const goalsList = useOfflineList({
+    entityType: "goals",
+    projectId: currentProject?.id,
+    onlineData: data?.body,
+  });
   const getTypeLabel = (type: string) => {
     switch (type) {
       case "project":
@@ -172,9 +178,9 @@ export function GoalPage() {
         return unit;
     }
   };
-  const completedGoals = data?.body.data.filter((goal) => !goal.isOpen);
-  const openGoals = data?.body.data.filter((goal) => goal.isOpen);
-  const statsGoals = getStatsGoals(data?.body.data ?? []);
+  const completedGoals = goalsList?.data.filter((goal) => !goal.isOpen);
+  const openGoals = goalsList?.data.filter((goal) => goal.isOpen);
+  const statsGoals = getStatsGoals(goalsList?.data ?? []);
 
   return (
     <div className="p-6">

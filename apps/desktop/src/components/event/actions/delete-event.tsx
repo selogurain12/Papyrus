@@ -15,6 +15,8 @@ import { useProject } from "../../../context/project-provider";
 import { eventRoute } from "../../../routes/event/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface EventDeleteActionsProps {
   onClose?: () => void;
@@ -36,6 +38,7 @@ export function EventDeleteActions({
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (currentProject === null) {
     toast.error(t("common:projectNotSelected"));
     return null;
@@ -62,7 +65,7 @@ export function EventDeleteActions({
 
   return (
     <AlertDialog onOpenChange={setOpen} open={open}>
-      <AlertDialogContent className="sm:max-w-[800px] sm:max-h-[80%] bg-white rounded-lg p-8">
+      <AlertDialogContent className="sm:max-w-200 sm:max-h-[80%] bg-white rounded-lg p-8">
         <AlertDialogHeader>
           <AlertDialogTitle>{t("delete.title")}</AlertDialogTitle>
           <AlertDialogDescription>{t("delete.description")}</AlertDialogDescription>
@@ -71,7 +74,20 @@ export function EventDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("events", event.id);
+                toast.success(t("delete.success"));
+                await queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
+                clearSelection();
+                onClose?.();
+                navigate({
+                  to: eventRoute.to,
+                  params: { name: currentProject.title },
+                });
+                return;
+              }
+
               mutate({ params: { id: event.id, projectId: currentProject.id } });
               navigate({
                 to: eventRoute.to,

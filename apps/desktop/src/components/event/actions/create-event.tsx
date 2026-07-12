@@ -10,7 +10,7 @@ import { FormMessage } from "../../ui/forms/form-message";
 import { FormLabel } from "../../ui/forms/form-label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createEventSchema, CreateEventDto } from "@papyrus/source";
+import { createEventSchema, CreateEventDto, EventDto } from "@papyrus/source";
 import { useAuth } from "../../../context/auth-provider";
 import { useProject } from "../../../context/project-provider";
 import { client } from "../../../utils/client/client";
@@ -24,6 +24,8 @@ import { eventRoute } from "../../../routes/event/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { DateTimePicker } from "../../ui/date/datetime-picker";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface CreateEventProps {
   onCancel?: () => void;
@@ -35,6 +37,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
   const { currentProject } = useProject();
   const defaultDate = fromDate(new Date(), getLocalTimeZone()).toString();
   const navigate = useNavigate();
+  const isOnline = useOnlineStatus();
 
   const form = useForm({
     resolver: zodResolver(createEventSchema),
@@ -67,7 +70,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
 
   if (!currentProject) return <div>{t("common:loading")}</div>;
 
-  function handleSubmit(data: CreateEventDto) {
+  async function handleSubmit(data: CreateEventDto) {
     if (user === null) {
       toast.error(t("common:notConnected"));
       return;
@@ -76,6 +79,15 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+    if (!isOnline) {
+      await createOfflineEntity<CreateEventDto, EventDto>("events", currentProject.id, data);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
+      form.reset();
+      onCancel?.();
+      return;
+    }
+
     mutate({
       body: {
         ...data,

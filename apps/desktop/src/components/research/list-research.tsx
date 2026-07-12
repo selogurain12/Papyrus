@@ -13,6 +13,7 @@ import { Dialog } from "../ui/dialogs/dialog";
 import { useFilterResearchDto } from "../../utils/filters/use-filter-research";
 import { useTranslation } from "react-i18next";
 import { openCreateResearchEvent } from "../../utils/shortcut-events";
+import { useOfflineList } from "../../hooks/use-offline-list";
 
 const categories = ["all", "articles", "links", "images", "videos", "books"];
 
@@ -42,6 +43,12 @@ export function ListResearch() {
       query: { ...options },
     },
     enabled: Boolean(currentProject?.id),
+  });
+  const researchList = useOfflineList({
+    entityType: "research",
+    projectId: currentProject?.id,
+    onlineData: data?.body,
+    search: options.search,
   });
 
   useEffect(() => {
@@ -122,10 +129,10 @@ export function ListResearch() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {data?.body?.data.length === 0 ? (
+        {researchList?.data.length === 0 ? (
           <div className={emptyResearchClassName}>{t("empty")}</div>
         ) : (
-          data?.body?.data.map((research) => (
+          researchList?.data.map((research) => (
             <ResearchCard
               key={research.id}
               research={research}

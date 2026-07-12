@@ -14,6 +14,8 @@ import { AlertDialogFooter } from "../../ui/alert-dialog/alert-dialog-footer";
 import { MotionAlertDialogCancelWrapper } from "../../ui/alert-dialog/motion/cancel-wrapper.motion";
 import { MotionAlertDialogActionWrapper } from "../../ui/alert-dialog/motion/action-wrapper.motion";
 import { useProject } from "../../../context/project-provider";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface GoalDeleteActionsProps {
   onClose?: () => void;
@@ -26,6 +28,7 @@ export function GoalDeleteActions({ goal, open, setOpen, onClose }: GoalDeleteAc
   const { t } = useTranslation("goals/actions/delete-goal");
   const queryClient = useQueryClient();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (currentProject === null) {
     toast.error(t("toast.projectNotSelected"));
     return null;
@@ -61,7 +64,15 @@ export function GoalDeleteActions({ goal, open, setOpen, onClose }: GoalDeleteAc
             }}
           />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("goals", goal.id);
+                toast.success(t("toast.deleteSuccess"));
+                await queryClient.invalidateQueries({ queryKey: ["goal.getAll"] });
+                onClose?.();
+                return;
+              }
+
               mutate({ params: { id: goal.id, projectId: currentProject.id } });
             }}
           />

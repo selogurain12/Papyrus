@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-len */
 import { Tabs } from "../ui/tabs/tabs";
 import { TabsContent } from "../ui/tabs/tab-content";
@@ -8,7 +9,12 @@ import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 import { useState, useEffect } from "react";
 import { client } from "../../utils/client/client";
-import { queryKeys, UpdateStructureDto, updateStructureSchema } from "@papyrus/source";
+import {
+  queryKeys,
+  StructureDto,
+  UpdateStructureDto,
+  updateStructureSchema,
+} from "@papyrus/source";
 import { useProject } from "../../context/project-provider";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
@@ -18,12 +24,28 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
 import { openEditStructureEvent } from "../../utils/shortcut-events";
+import { useOnlineStatus } from "../../hooks/use-online-status";
+import { getLocalDatabaseApi } from "../../local-db/renderer";
+import type { JsonValue } from "../../local-db/types";
+import { notifyLocalEntityChanged } from "../../local-db/offline-entity-store";
+
+const structureEntityType = "structures";
+
+function toJsonValue(value: unknown): JsonValue {
+  return JSON.parse(JSON.stringify(value)) as JsonValue;
+}
+
+function toStructure(value: JsonValue): StructureDto {
+  return value as unknown as StructureDto;
+}
 
 // eslint-disable-next-line complexity
 export function StructurePage() {
   const { t } = useTranslation(["structure/structure", "common"]);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [cachedStructure, setCachedStructure] = useState<StructureDto | null>(null);
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   const { data, isLoading } = client.structure.get.useQuery({
     queryKey: queryKeys.structure.get({
       pathParams: { projectId: currentProject?.id || "", id: currentProject?.structure.id || "" },
@@ -31,7 +53,9 @@ export function StructurePage() {
     queryData: {
       params: { projectId: currentProject?.id || "", id: currentProject?.structure.id || "" },
     },
+    enabled: Boolean(currentProject?.id && currentProject?.structure.id),
   });
+  const structure = cachedStructure ?? data?.body;
   const form = useForm<UpdateStructureDto>({
     resolver: zodResolver(updateStructureSchema),
     defaultValues: {
@@ -44,15 +68,50 @@ export function StructurePage() {
   });
 
   useEffect(() => {
-    if (!data) return;
+    if (!structure) return;
     form.reset({
-      premise: data.body.premise,
-      genre: data.body.genre,
-      theme: data.body.theme,
-      structure: data.body.structure,
-      objectives: data.body.objectives,
+      premise: structure.premise,
+      genre: structure.genre,
+      theme: structure.theme,
+      structure: structure.structure,
+      objectives: structure.objectives,
     });
-  }, [data, form]);
+  }, [form, structure]);
+
+  useEffect(() => {
+    if (!currentProject?.structure.id) {
+      return;
+    }
+
+    void getLocalDatabaseApi()
+      .getEntity(structureEntityType, currentProject.structure.id)
+      .then((entity) => {
+        setCachedStructure(entity ? toStructure(entity.payload) : null);
+      })
+      .catch((error) => {
+        console.error("Unable to read cached structure", error);
+      });
+  }, [currentProject?.structure.id]);
+
+  useEffect(() => {
+    if (!currentProject?.id || !data?.body) {
+      return;
+    }
+
+    void getLocalDatabaseApi()
+      .saveEntity({
+        entityType: structureEntityType,
+        id: data.body.id,
+        serverId: data.body.id,
+        projectId: currentProject.id,
+        payload: toJsonValue(data.body),
+        syncStatus: "synced",
+      })
+      .then((entity) => setCachedStructure(toStructure(entity.payload)))
+      .catch((error) => {
+        console.error("Unable to cache structure", error);
+      });
+  }, [currentProject?.id, data?.body]);
 
   useEffect(() => {
     function handleOpenEditStructure() {
@@ -83,17 +142,39 @@ export function StructurePage() {
     },
   });
 
-  if (isLoading) {
+  if (isLoading && !structure) {
     return <div>{t("common:loading")}</div>;
   }
-  if (!data) {
+  if (!structure) {
     return <div>{t("notFound")}</div>;
   }
-  function onSubmit(data: UpdateStructureDto) {
+  const currentStructure = structure;
+  async function onSubmit(data: UpdateStructureDto) {
     if (currentProject === null) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+    if (!isOnline) {
+      const nextStructure = {
+        ...currentStructure,
+        ...data,
+      };
+
+      await getLocalDatabaseApi().saveEntity({
+        entityType: structureEntityType,
+        id: currentStructure.id,
+        serverId: currentStructure.id,
+        projectId: currentProject.id,
+        payload: toJsonValue(nextStructure),
+        operation: "update",
+      });
+      setCachedStructure(nextStructure);
+      notifyLocalEntityChanged(structureEntityType);
+      toast.success(t("common:offline.savedLocally"));
+      setIsUpdating(false);
+      return;
+    }
+
     updateStructure({
       params: { projectId: currentProject.id, id: currentProject.structure.id },
       body: {
@@ -277,13 +358,13 @@ export function StructurePage() {
               ) : null}
               {!isUpdating && (
                 <ul className="list-disc list-inside mb-4">
-                  {data.body.objectives?.map((goal, index) => (
+                  {currentStructure.objectives?.map((goal, index) => (
                     <li key={index}>{goal}</li>
                   ))}
                 </ul>
               )}
               {!isUpdating &&
-              (data.body.objectives === null || data.body.objectives.length === 0) ? (
+              (currentStructure.objectives === null || currentStructure.objectives.length === 0) ? (
                 <p>{t("emptyObjectives")}</p>
               ) : null}
             </Card>

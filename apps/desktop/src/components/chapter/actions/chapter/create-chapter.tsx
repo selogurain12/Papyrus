@@ -1,5 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateChapterDto, createChapterSchema, PartDto, queryKeys } from "@papyrus/source";
+import {
+  ChapterDto,
+  CreateChapterDto,
+  createChapterSchema,
+  PartDto,
+  queryKeys,
+} from "@papyrus/source";
 import { useForm } from "react-hook-form";
 import { useProject } from "../../../../context/project-provider";
 import { isFetchError } from "@ts-rest/react-query/v5";
@@ -22,6 +28,9 @@ import { statusPartOptions, TypeOption } from "../../../../utils/value-for-selec
 import { Form } from "../../../ui/forms/form";
 import { Textarea } from "../../../ui/textarea";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../../hooks/use-online-status";
+import { createOfflineEntity } from "../../../../local-db/offline-entity-store";
+import { useOfflineList } from "../../../../hooks/use-offline-list";
 
 interface CreateChapterProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -30,6 +39,7 @@ interface CreateChapterProps {
 export function CreateChapter({ setOpen }: CreateChapterProps) {
   const { t } = useTranslation("chapter/actions/chapter/create-chapter");
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     return <div>{t("projectNotFound")}</div>;
   }
@@ -54,6 +64,11 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
     queryData: {
       params: { projectId: currentProject?.id ?? "" },
     },
+  });
+  const cachedParts = useOfflineList({
+    entityType: "parts",
+    projectId: currentProject.id,
+    onlineData: parts?.body,
   });
   const { mutate, isPending: loading } = client.chapter.create.useMutation({
     onSuccess: (response) => {
@@ -81,7 +96,20 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
     },
   });
 
-  function onSubmit(data: CreateChapterDto) {
+  async function onSubmit(data: CreateChapterDto) {
+    if (!currentProject) {
+      return;
+    }
+
+    if (!isOnline) {
+      await createOfflineEntity<CreateChapterDto, ChapterDto>("chapters", currentProject.id, data);
+      toast.success(t("common:offline.savedLocally"));
+      await queryClient.invalidateQueries({ queryKey: ["chapter.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({ body: data, params: { projectId: currentProject?.id ?? "" } });
   }
   return (
@@ -131,7 +159,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
                       <span className="font-medium">{item.title}</span>
                     )}
                     placeholder={t("fields.partPlaceholder")}
-                    data={parts?.body?.data ?? []}
+                    data={cachedParts?.data ?? []}
                   />
                 </FormControl>
                 <FormMessage />

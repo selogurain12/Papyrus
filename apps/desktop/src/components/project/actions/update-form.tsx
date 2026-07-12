@@ -27,6 +27,8 @@ import { ProjectDto, UpdateProjectDto, updateProjectSchema } from "@papyrus/sour
 import { Button } from "../../ui/button";
 import { useTranslation } from "react-i18next";
 import { Tag } from "../../ui/tag";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface UpdateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -36,6 +38,7 @@ interface UpdateProjectFormProps {
 export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) {
   const { t } = useTranslation(["project/actions/update-form", "common"]);
   const { user } = useAuth();
+  const isOnline = useOnlineStatus();
   if (user === null) {
     toast.error(t("common:notConnected"));
     return null;
@@ -73,11 +76,20 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
       }
     },
   });
-  function onSubmit(data: UpdateProjectDto) {
+  async function onSubmit(data: UpdateProjectDto) {
     if (user === null) {
       toast.error("User is null");
       return;
     }
+    if (!isOnline) {
+      await updateOfflineEntity<UpdateProjectDto, ProjectDto>("projects", user.id, project, data);
+      toast.success(t("update.success"));
+      await queryClient.invalidateQueries({ queryKey: ["project.getAll"] });
+      form.reset();
+      setOpen(false);
+      return;
+    }
+
     mutate({
       body: {
         ...data,

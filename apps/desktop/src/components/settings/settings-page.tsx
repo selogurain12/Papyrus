@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable complexity */
 
 /* eslint-disable max-len */
@@ -24,8 +25,13 @@ import { SettingsTabsGeneral } from "./settings-tabs/settings-tabs-general";
 import { SettingsTabsAppearance } from "./settings-tabs/settings-tabs-appearance";
 import { SettingsTabsShortcuts } from "./settings-tabs/settings-tabs-shortcuts";
 import { SettingsTabsNotifications } from "./settings-tabs/settings-tabs-notifications";
+import { useOnlineStatus } from "../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../local-db/offline-entity-store";
+import { getLocalDatabaseApi } from "../../local-db/renderer";
+import type { JsonValue } from "../../local-db/types";
 
 type SettingsState = Omit<SettingDto, "id">;
+const settingsEntityType = "settings";
 
 const tabs = [
   { id: "general", labelKey: "tabs.general", icon: SettingsIcon },
@@ -91,10 +97,19 @@ function areSettingsEqual(firstSettings: SettingsState, secondSettings: Settings
   return JSON.stringify(firstSettings) === JSON.stringify(secondSettings);
 }
 
+function toJsonValue(value: unknown): JsonValue {
+  return JSON.parse(JSON.stringify(value)) as JsonValue;
+}
+
+function fromJsonValue(value: JsonValue): SettingDto {
+  return value as unknown as SettingDto;
+}
+
 export function SettingsPage() {
   const { t } = useTranslation("settings/settings-page");
   const { currentProject, setCurrentProject } = useProject();
   const { updatePreferences } = usePreferences();
+  const isOnline = useOnlineStatus();
   const [activeView, setActiveView] = useState("general");
   const settingId = currentProject?.settings.id;
   const [settings, setSettings] = useState<SettingsState>(() =>
@@ -142,6 +157,47 @@ export function SettingsPage() {
     updatePreferences(toPreferences(nextSettings));
   }, [currentProject?.settings, query.data?.body, updatePreferences]);
 
+  useEffect(() => {
+    if (!settingId) {
+      return;
+    }
+
+    void getLocalDatabaseApi()
+      .getEntity(settingsEntityType, settingId)
+      .then((entity) => {
+        if (!entity) {
+          return;
+        }
+
+        const nextSettings = toSettingsState(fromJsonValue(entity.payload));
+        setSettings(nextSettings);
+        setInitialSettings(nextSettings);
+        updatePreferences(toPreferences(nextSettings));
+      })
+      .catch((error) => {
+        console.error("Unable to read cached settings", error);
+      });
+  }, [settingId, updatePreferences]);
+
+  useEffect(() => {
+    if (!currentProject?.id || !query.data?.body) {
+      return;
+    }
+
+    void getLocalDatabaseApi()
+      .saveEntity({
+        entityType: settingsEntityType,
+        id: query.data.body.id,
+        serverId: query.data.body.id,
+        projectId: currentProject.id,
+        payload: toJsonValue(query.data.body),
+        syncStatus: "synced",
+      })
+      .catch((error) => {
+        console.error("Unable to cache settings", error);
+      });
+  }, [currentProject?.id, query.data?.body]);
+
   const isDirty = useMemo(
     () => !areSettingsEqual(settings, initialSettings),
     [initialSettings, settings]
@@ -163,9 +219,31 @@ export function SettingsPage() {
     updatePreferences(toPreferences(initialSettings));
   }
 
-  function saveSettings() {
+  async function saveSettings() {
     if (!settingId) {
       toast.error(t("toasts.noProject"));
+      return;
+    }
+
+    if (!isOnline && currentProject) {
+      const nextSettings = {
+        ...currentProject.settings,
+        ...settings,
+      };
+
+      await updateOfflineEntity<UpdatedSettingDto, SettingDto>(
+        settingsEntityType,
+        currentProject.id,
+        currentProject.settings,
+        settings satisfies UpdatedSettingDto
+      );
+
+      const nextSettingsState = toSettingsState(nextSettings);
+      setSettings(nextSettingsState);
+      setInitialSettings(nextSettingsState);
+      updatePreferences(toPreferences(nextSettingsState));
+      setCurrentProject({ ...currentProject, settings: nextSettings });
+      toast.success(t("toasts.success"));
       return;
     }
 

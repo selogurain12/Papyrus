@@ -15,6 +15,8 @@ import { useProject } from "../../../context/project-provider";
 import { characterRoute } from "../../../routes/character/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { deleteOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface CharacterDeleteActionsProps {
   onClose?: () => void;
@@ -23,6 +25,8 @@ interface CharacterDeleteActionsProps {
   setOpen: (open: boolean) => void;
   character: CharacterDto;
   clearSelection: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onDeleted?: (characterId: string) => void;
 }
 
 export function CharacterDeleteActions({
@@ -31,11 +35,13 @@ export function CharacterDeleteActions({
   setOpen,
   onClose = undefined,
   clearSelection,
+  onDeleted,
 }: CharacterDeleteActionsProps) {
   const { t } = useTranslation(["character/actions/delete-character", "common"]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { currentProject } = useProject();
+  const isOnline = useOnlineStatus();
   if (currentProject === null) {
     toast.error(t("common:projectNotSelected"));
     return null;
@@ -47,6 +53,7 @@ export function CharacterDeleteActions({
       void queryClient.invalidateQueries({
         queryKey: ["character.getAll"],
       });
+      onDeleted?.(character.id);
       clearSelection();
       onClose?.();
     },
@@ -71,7 +78,20 @@ export function CharacterDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
-            onClick={() => {
+            onClick={async () => {
+              if (!isOnline) {
+                await deleteOfflineEntity("characters", character.id);
+                toast.success(t("delete.success"));
+                await queryClient.invalidateQueries({ queryKey: ["character.getAll"] });
+                clearSelection();
+                onClose?.();
+                navigate({
+                  to: characterRoute.to,
+                  params: { name: currentProject.title },
+                });
+                return;
+              }
+
               mutate({ params: { id: character.id, projectId: currentProject.id } });
               navigate({
                 to: characterRoute.to,

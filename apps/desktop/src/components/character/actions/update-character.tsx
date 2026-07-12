@@ -1,11 +1,10 @@
 /* eslint-disable max-lines */
-/* eslint-disable max-len */
+
 import { Card } from "../../ui/card";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../ui/accordion";
-import { useState } from "react";
 import {
   CharacterDto,
   ColorType,
@@ -36,6 +35,9 @@ import { Label } from "../../ui/label";
 import { Slider } from "../../ui/slider";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
+import { Tag } from "../../ui/tag";
+import { useOnlineStatus } from "../../../hooks/use-online-status";
+import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
 
 interface UpdateCharacterProps {
   onCancel?: () => void;
@@ -48,6 +50,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const { t } = useTranslation(["character/actions/update-character", "common"]);
+  const isOnline = useOnlineStatus();
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
   }
@@ -96,41 +99,6 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
     },
   });
 
-  const [qualitiesInput, setQualitiesInput] = useState("");
-  const [flawsInput, setFlawsInput] = useState("");
-
-  const handleAddQuality = () => {
-    if (qualitiesInput.trim()) {
-      const currentQualities = form.getValues("characterQualities") || [];
-      form.setValue("characterQualities", [...currentQualities, qualitiesInput.trim()]);
-      setQualitiesInput("");
-    }
-  };
-
-  const handleRemoveQuality = (index: number) => {
-    const currentQualities = form.getValues("characterQualities") || [];
-    form.setValue(
-      "characterQualities",
-      currentQualities.filter((_, i) => i !== index)
-    );
-  };
-
-  const handleAddFlaw = () => {
-    if (flawsInput.trim()) {
-      const currentFlaws = form.getValues("characterFlaws") || [];
-      form.setValue("characterFlaws", [...currentFlaws, flawsInput.trim()]);
-      setFlawsInput("");
-    }
-  };
-
-  const handleRemoveFlaw = (index: number) => {
-    const currentFlaws = form.getValues("characterFlaws") || [];
-    form.setValue(
-      "characterFlaws",
-      currentFlaws.filter((_, i) => i !== index)
-    );
-  };
-
   const { mutate } = client.character.update.useMutation({
     onSuccess: () => {
       toast.success(t("update.success"));
@@ -149,7 +117,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
     },
   });
 
-  function onSubmit(data: UpdateCharacterDto) {
+  async function onSubmit(data: UpdateCharacterDto) {
     if (user === null) {
       toast.error(t("common:errors.unauthenticated"));
       return;
@@ -158,6 +126,20 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+    if (!isOnline) {
+      await updateOfflineEntity<UpdateCharacterDto, CharacterDto>(
+        "characters",
+        currentProject.id,
+        character,
+        data
+      );
+      toast.success(t("update.success"));
+      await queryClient.invalidateQueries({ queryKey: ["character.getAll"] });
+      form.reset();
+      onCancel?.();
+      return;
+    }
+
     mutate({
       body: {
         ...data,
@@ -188,7 +170,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
           </div>
 
           <div className="flex gap-6 mb-8">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div
                 className={`w-24 h-24 rounded-full ${
                   colorMap[form.watch("color") ?? "blue"]
@@ -639,43 +621,13 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                         <FormLabel>{t("fields.characterQualities")}</FormLabel>
                         <FormControl>
                           <div className="flex gap-2 mb-2">
-                            <Input
+                            <Tag
+                              value={form.watch("characterQualities")}
+                              onChange={(tags) => form.setValue("characterQualities", tags)}
                               placeholder={t("placeholders.quality")}
-                              value={qualitiesInput}
-                              onChange={(e) => setQualitiesInput(e.target.value)}
-                              onKeyPress={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  handleAddQuality();
-                                }
-                              }}
                             />
-                            <Button
-                              className="border border-gray-300 bg-blue-500 text-white"
-                              type="button"
-                              onClick={handleAddQuality}
-                            >
-                              +
-                            </Button>
                           </div>
                         </FormControl>
-                        <div className="flex flex-wrap gap-2">
-                          {(form.watch("characterQualities") || []).map((quality, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center gap-2"
-                            >
-                              {quality}
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveQuality(index)}
-                                className="text-blue-600 hover:text-blue-900"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          ))}
-                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -689,43 +641,13 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                         <FormLabel>{t("fields.characterFlaws")}</FormLabel>
                         <FormControl>
                           <div className="flex gap-2 mb-2">
-                            <Input
+                            <Tag
+                              value={form.watch("characterFlaws")}
+                              onChange={(tags) => form.setValue("characterFlaws", tags)}
                               placeholder={t("placeholders.flaw")}
-                              value={flawsInput}
-                              onChange={(e) => setFlawsInput(e.target.value)}
-                              onKeyPress={(e) => {
-                                if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  handleAddFlaw();
-                                }
-                              }}
                             />
-                            <Button
-                              className="border border-gray-300 bg-red-500 text-white"
-                              type="button"
-                              onClick={handleAddFlaw}
-                            >
-                              +
-                            </Button>
                           </div>
                         </FormControl>
-                        <div className="flex flex-wrap gap-2">
-                          {(form.watch("characterFlaws") || []).map((flaw, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm flex items-center gap-2"
-                            >
-                              {flaw}
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveFlaw(index)}
-                                className="text-red-600 hover:text-red-900"
-                              >
-                                ✕
-                              </button>
-                            </span>
-                          ))}
-                        </div>
                         <FormMessage />
                       </FormItem>
                     )}

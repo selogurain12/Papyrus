@@ -14,8 +14,8 @@
     "localisation": "Localisation",
     "name": "Nom du lieu *",
     "nickname": "Surnom",
-    "physicalDescription": "Description *",
-    "population": "Personnages présents",
+    "physicalDescription": "Description",
+    "population": "Population",
     "ressources": "Ressources",
     "type": "Type de lieu *",
     "visualDetails": "Détails visuels"
@@ -35,7 +35,8 @@
     "physicalDescription": "Description générale...",
     "ressources": "Ressources naturelles, économiques, stratégiques...",
     "type": "Sélectionner un type",
-    "usages": "Architecture, décor..."
+    "usages": "Architecture, décor...",
+    "population": "Habitants, groupes, communautés..."
   },
   "types": {
     "city": "Ville",

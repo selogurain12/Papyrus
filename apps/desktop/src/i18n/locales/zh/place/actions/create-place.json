@@ -14,8 +14,8 @@
     "localisation": "地点",
     "name": "地名 *",
     "nickname": "昵称",
-    "physicalDescription": "描述 *",
-    "population": "出场人物",
+    "physicalDescription": "描述",
+    "population": "人口",
     "ressources": "资源",
     "type": "地点类型 *",
     "visualDetails": "视觉细节"
@@ -35,7 +35,8 @@
     "physicalDescription": "一般描述...",
     "ressources": "自然、经济、战略资源...",
     "type": "选择类型",
-    "usages": "建筑、装饰..."
+    "usages": "建筑、装饰...",
+    "population": "人口、群体、社区..."
   },
   "types": {
     "city": "城市",

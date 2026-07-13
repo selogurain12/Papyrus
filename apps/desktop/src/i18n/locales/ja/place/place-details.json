@@ -3,8 +3,8 @@
     "atmosphere": "雰囲気",
     "government": "政府",
     "language": "言語",
-    "physicalDescription": "説明 *",
-    "population": "登場キャラクター",
+    "physicalDescription": "説明",
+    "population": "人口",
     "ressources": "リソース",
     "usages": "用途"
   },

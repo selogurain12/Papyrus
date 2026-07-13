@@ -21,7 +21,12 @@ import { useProject } from "../../../context/project-provider";
 import { useNavigate } from "@tanstack/react-router";
 import { placeRoute } from "../../../routes/place/index.route";
 import { SingleSelector } from "../../ui/single-select";
-import { importanceOptions, TypeOption, typeOptions } from "../../../utils/value-for-select";
+import {
+  importanceOptions,
+  languageOptions,
+  TypeOption,
+  typeOptions,
+} from "../../../utils/value-for-select";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
@@ -196,15 +201,21 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
 
             <FormField
               control={form.control}
-              name="population"
+              name="language"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold mb-1">{t("fields.population")}</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.languages")}</FormLabel>
                   <FormControl>
-                    <Input
+                    <SingleSelector
                       {...field}
-                      value={field.value ?? ""}
-                      onChange={(e) => field.onChange(e.target.value || null)}
+                      customDisplay={(item: TypeOption) => item.label}
+                      customLabel={(item: TypeOption) => (
+                        <span className="font-medium">{item.label}</span>
+                      )}
+                      value={languageOptions.find((language) => language.id === field.value)}
+                      onChange={(value) => field.onChange(value?.id ?? null)}
+                      placeholder={t("placeholders.language")}
+                      data={languageOptions}
                     />
                   </FormControl>
                   <FormMessage />
@@ -238,12 +249,11 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               )}
             />
 
-            {/* Couleur (boutons ronds) */}
             <FormField
               control={form.control}
               name="color"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-span-2">
                   <FormLabel className="font-semibold mb-1">{t("fields.color")}</FormLabel>
                   <FormControl>
                     <ColorPicker
@@ -321,16 +331,16 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
 
             <FormField
               control={form.control}
-              name="language"
+              name="population"
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="font-semibold mb-1">{t("fields.languages")}</FormLabel>
+                  <FormLabel className="font-semibold mb-1">{t("fields.population")}</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
-                      placeholder={t("placeholders.language")}
+                      placeholder={t("placeholders.population")}
                       rows={4}
                     />
                   </FormControl>

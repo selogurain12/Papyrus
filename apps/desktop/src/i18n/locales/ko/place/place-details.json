@@ -3,8 +3,8 @@
     "atmosphere": "대기",
     "government": "정부",
     "language": "언어",
-    "physicalDescription": "설명 *",
-    "population": "캐릭터 존재",
+    "physicalDescription": "설명",
+    "population": "인구",
     "ressources": "자원",
     "usages": "용도"
   },

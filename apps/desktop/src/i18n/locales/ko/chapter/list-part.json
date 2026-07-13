@@ -7,5 +7,6 @@
   "parts": "파트",
   "chapters": "챕터",
   "words": "단어",
-  "chapterCount": "챕터 {{count}}개"
+  "chapterCount": "챕터 {{count}}개",
+  "withoutPart": "파트 없는 챕터"
 }

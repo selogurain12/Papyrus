@@ -71,7 +71,8 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
     if (!currentProject) return;
     setLoading(true);
     try {
-      let fileUrl: string | null = existingLink ?? data.link ?? research.link ?? null;
+      let fileUrl: string | null =
+        existingLink ?? (data.link?.trim() ? data.link : null) ?? research.link ?? null;
 
       if (!isOnline) {
         if (file) {

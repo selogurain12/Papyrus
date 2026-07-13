@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-len */
 import { ChapterDto, PartDto, queryKeys } from "@papyrus/source";
 import { client } from "../../utils/client/client";
@@ -130,6 +131,7 @@ export function PartsList() {
   }, [selectedChapter, selectedPart]);
 
   const chapters = cachedChapters?.data ?? [];
+  const chaptersWithoutPart = chapters.filter((chapter) => !chapter.part);
   return (
     <div className="p-6">
       <div className="flex justify-between gap-2 mb-4">
@@ -168,7 +170,7 @@ export function PartsList() {
             </div>
           </div>
           {cachedParts?.data.map((part) => {
-            const chapterCount = chapters.filter((ch) => ch.part.id === part.id).length;
+            const chapterCount = chapters.filter((ch) => ch.part?.id === part.id).length;
             const isOpen = openPartId === part.id;
             return (
               <div key={part.id} className="border rounded-lg border-gray-300 p-2 m-2">
@@ -223,6 +225,39 @@ export function PartsList() {
               </div>
             );
           })}
+          <div className="border rounded-lg border-dashed border-gray-300 p-2 m-2">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() => {
+                setOpenPartId(openPartId === "without-part" ? null : "without-part");
+                setSelectedPart(undefined);
+              }}
+            >
+              {openPartId === "without-part" ? (
+                <ChevronDown size={18} />
+              ) : (
+                <ChevronRight size={18} />
+              )}
+              <BookOpen className="ml-4 text-gray-500" size={20} />
+
+              <div className="ml-8 flex flex-col" style={{ marginLeft: 8, flex: 1 }}>
+                <p className="font-medium ml-4">{t("withoutPart")}</p>
+                <p className="text-sm text-gray-500 ml-4">
+                  {t("chapterCount", { count: chaptersWithoutPart.length })}
+                </p>
+              </div>
+            </div>
+
+            {openPartId === "without-part" && (
+              <div className="mt-3 flex flex-col w-full gap-3 p-2">
+                <ChapterList
+                  withoutPart
+                  setSelectedChapter={setSelectedChapter}
+                  selectedChapter={selectedChapter}
+                />
+              </div>
+            )}
+          </div>
         </div>
         <div className="w-1/2">
           {selectedChapter && (

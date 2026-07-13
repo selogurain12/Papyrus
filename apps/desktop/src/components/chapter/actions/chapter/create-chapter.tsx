@@ -54,7 +54,6 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
       wordGoal: 500,
     },
   });
-
   const { data: parts } = client.part.getAll.useQuery({
     queryKey: queryKeys.part.getAll({
       pathParams: {
@@ -78,11 +77,13 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
           pathParams: { projectId: currentProject?.id ?? "" },
         }),
       });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.chapter.getByPart({
-          pathParams: { projectId: currentProject?.id ?? "", partId: response.body.part.id },
-        }),
-      });
+      if (response.body.part) {
+        void queryClient.invalidateQueries({
+          queryKey: queryKeys.chapter.getByPart({
+            pathParams: { projectId: currentProject?.id ?? "", partId: response.body.part.id },
+          }),
+        });
+      }
       form.reset();
       setOpen(false);
     },

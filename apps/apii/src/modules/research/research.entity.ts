@@ -30,16 +30,16 @@ export class ResearchEntity {
   public type: ResearchType;
 
   @Property({ type: "string", nullable: true })
-  public sources: string | null = null;
+  public sources?: string | null = null;
 
   @Property({ type: "array", nullable: true })
   public tag: string[] | null = null;
 
   @Property({ type: "string", nullable: true })
-  public note: string | null = null;
+  public note?: string | null = null;
 
   @Property({ type: "text", nullable: true })
-  public link: string | null = null;
+  public link?: string | null = null;
 
   @Property({ type: "string", nullable: true })
   public description: string | null = null;
@@ -59,11 +59,11 @@ export class ResearchEntity {
   public constructor(parameters: {
     title: string;
     type: ResearchType;
-    sources: string | null;
+    sources?: string | null;
     tag: string[] | null;
-    note: string | null;
+    note?: string | null;
     description: string | null;
-    link: string | null;
+    link?: string | null;
     project: ProjectEntity;
   }) {
     this.title = parameters.title;

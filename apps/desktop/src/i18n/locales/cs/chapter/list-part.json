@@ -7,5 +7,6 @@
   "parts": "Části",
   "chapters": "Kapitoly",
   "words": "Slova",
-  "chapterCount": "{{count}} kapitol"
+  "chapterCount": "{{count}} kapitol",
+  "withoutPart": "Kapitoly bez části"
 }

@@ -26,10 +26,15 @@ export class ChapterMapper {
     if (!projectEntity) {
       throw new NotFoundError(`ProjectEntity with id ${projectId} not found`);
     }
-    const partEntity = await em.getRepository(PartEntity).findOne({ id: entity.part.id });
-    if (!partEntity) {
-      throw new NotFoundError(`PartEntity with id ${entity.part.id} not found`);
+    const partRef = entity.part;
+    const partEntity = partRef
+      ? await em.getRepository(PartEntity).findOne({ id: partRef.id })
+      : null;
+
+    if (partRef && !partEntity) {
+      throw new NotFoundError(`PartEntity with id ${partRef.id} not found`);
     }
+
     return {
       id: entity.id,
       title: entity.title,
@@ -40,7 +45,7 @@ export class ChapterMapper {
       wordCount: entity.wordCount,
       wordGoal: entity.wordGoal,
       project: await this.projectMapper.entityToDto(projectEntity, em),
-      part: await this.partMapper.entityToDto(partEntity, projectId, em),
+      part: partEntity ? await this.partMapper.entityToDto(partEntity, projectId, em) : undefined,
     };
   }
 
@@ -63,10 +68,14 @@ export class ChapterMapper {
     if (!projectEntity) {
       throw new NotFoundError(`ProjectEntity with id ${projectId} not found`);
     }
-    const partEntity = await em.getRepository(PartEntity).findOne({ id: createDto.part.id });
-    if (!partEntity) {
+    const partEntity = createDto.part
+      ? await em.getRepository(PartEntity).findOne({ id: createDto.part.id })
+      : null;
+
+    if (createDto.part && !partEntity) {
       throw new NotFoundError(`PartEntity with id ${createDto.part.id} not found`);
     }
+
     const result = new ChapterEntity({
       title: createDto.title,
       status: createDto.status,
@@ -76,7 +85,7 @@ export class ChapterMapper {
       wordCount: createDto.wordCount,
       wordGoal: createDto.wordGoal,
       project: projectEntity,
-      part: partEntity,
+      part: partEntity ?? null,
     });
     return result;
   }
@@ -90,20 +99,16 @@ export class ChapterMapper {
     if (!entity) {
       throw new NotFoundError(`ChapterEntity with id ${id} not found`);
     }
-    let part: PartEntity | null = null;
-
-    if (updateDto.part) {
-      part = await em.getRepository(PartEntity).findOne({
-        id: {
-          $eq: updateDto.part.id,
-        },
-      });
-
-      if (!part) {
-        throw new NotFoundError(`PartEntity with id ${id} not found`);
-      }
-    }
-    em.assign(entity, {
+    const updatePayload: Partial<{
+      title: UpdateChapterDto["title"];
+      status: UpdateChapterDto["status"];
+      content: UpdateChapterDto["content"];
+      resume: UpdateChapterDto["resume"];
+      chapterNumber: UpdateChapterDto["chapterNumber"];
+      wordCount: UpdateChapterDto["wordCount"];
+      wordGoal: UpdateChapterDto["wordGoal"];
+      part: PartEntity;
+    }> = {
       title: updateDto.title,
       status: updateDto.status,
       content: updateDto.content,
@@ -111,8 +116,22 @@ export class ChapterMapper {
       chapterNumber: updateDto.chapterNumber,
       wordCount: updateDto.wordCount,
       wordGoal: updateDto.wordGoal,
-      part,
-    });
+    };
+
+    if (updateDto.part) {
+      const part = await em.getRepository(PartEntity).findOne({
+        id: {
+          $eq: updateDto.part.id,
+        },
+      });
+
+      if (!part) {
+        throw new NotFoundError(`PartEntity with id ${updateDto.part.id} not found`);
+      }
+
+      updatePayload.part = part;
+    }
+    em.assign(entity, updatePayload);
     return entity;
   }
 }

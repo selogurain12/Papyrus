@@ -14,8 +14,8 @@
     "localisation": "Umístění",
     "name": "Název místa *",
     "nickname": "Přezdívka",
-    "physicalDescription": "Popis *",
-    "population": "Přítomné postavy",
+    "physicalDescription": "Popis",
+    "population": "Populace",
     "ressources": "Zdroje",
     "type": "Typ místa *",
     "visualDetails": "Vizuální detaily"
@@ -35,7 +35,8 @@
     "physicalDescription": "Obecný popis...",
     "ressources": "Přírodní, ekonomické, strategické zdroje...",
     "type": "Vyberte typ",
-    "usages": "Architektura, výzdoba..."
+    "usages": "Architektura, výzdoba...",
+    "population": "Obyvatelstvo, skupiny, komunity..."
   },
   "types": {
     "city": "Město",

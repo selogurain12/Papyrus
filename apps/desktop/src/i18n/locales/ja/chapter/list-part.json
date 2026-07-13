@@ -7,5 +7,6 @@
   "parts": "部",
   "chapters": "章",
   "words": "単語",
-  "chapterCount": "{{count}}章"
+  "chapterCount": "{{count}}章",
+  "withoutPart": "部に属さない章"
 }

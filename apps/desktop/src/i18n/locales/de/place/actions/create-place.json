@@ -14,8 +14,8 @@
     "localisation": "Standort",
     "name": "Ortsname *",
     "nickname": "Spitzname",
-    "physicalDescription": "Beschreibung *",
-    "population": "Charaktere vorhanden",
+    "physicalDescription": "Beschreibung",
+    "population": "Bevölkerung",
     "ressources": "Ressourcen",
     "type": "Ortstyp *",
     "visualDetails": "Visuelle Details"
@@ -35,7 +35,8 @@
     "physicalDescription": "Allgemeine Beschreibung...",
     "ressources": "Natürliche, wirtschaftliche, strategische Ressourcen...",
     "type": "Wählen Sie einen Typ aus",
-    "usages": "Architektur, Dekor..."
+    "usages": "Architektur, Dekor...",
+    "population": "Bevölkerung, Gruppen, Gemeinschaften..."
   },
   "types": {
     "city": "Stadt",

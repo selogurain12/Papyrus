@@ -9,8 +9,8 @@
     "localisation": "Localização",
     "name": "Nome do local *",
     "nickname": "Apelido",
-    "physicalDescription": "Descrição *",
-    "population": "Personagens presentes",
+    "physicalDescription": "Descrição",
+    "population": "População",
     "ressources": "Recursos",
     "type": "Tipo de local *",
     "visualDetails": "Detalhes visuais"
@@ -30,7 +30,8 @@
     "physicalDescription": "Descrição geral...",
     "ressources": "Recursos naturais, económicos, estratégicos...",
     "type": "Selecione um tipo",
-    "usages": "Arquitetura, decoração..."
+    "usages": "Arquitetura, decoração...",
+    "population": "População, grupos, comunidades..."
   },
   "types": {
     "city": "Cidade",

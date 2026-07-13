@@ -7,5 +7,6 @@
   "parts": "Teile",
   "chapters": "Kapitel",
   "words": "Wörter",
-  "chapterCount": "{{count}} Kapitel"
+  "chapterCount": "{{count}} Kapitel",
+  "withoutPart": "Kapitel ohne Teil"
 }

@@ -21,7 +21,12 @@ import { useProject } from "../../../context/project-provider";
 import { useNavigate } from "@tanstack/react-router";
 import { placeRoute } from "../../../routes/place/index.route";
 import { SingleSelector } from "../../ui/single-select";
-import { importanceOptions, TypeOption, typeOptions } from "../../../utils/value-for-select";
+import {
+  importanceOptions,
+  languageOptions,
+  TypeOption,
+  typeOptions,
+} from "../../../utils/value-for-select";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
@@ -199,13 +204,15 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
               control={form.control}
               name="population"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-span-2">
                   <FormLabel className="font-semibold mb-1">{t("fields.population")}</FormLabel>
                   <FormControl>
-                    <Input
+                    <Textarea
                       {...field}
                       value={field.value ?? ""}
-                      onChange={(e) => field.onChange(e.target.value || null)}
+                      onChange={(event) => field.onChange(event.target.value || null)}
+                      placeholder={t("placeholders.population")}
+                      rows={4}
                     />
                   </FormControl>
                   <FormMessage />
@@ -332,12 +339,16 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                 <FormItem className="col-span-2">
                   <FormLabel className="font-semibold mb-1">{t("fields.languages")}</FormLabel>
                   <FormControl>
-                    <Textarea
+                    <SingleSelector
                       {...field}
-                      value={field.value ?? ""}
-                      onChange={(event) => field.onChange(event.target.value || null)}
+                      customDisplay={(item: TypeOption) => item.label}
+                      customLabel={(item: TypeOption) => (
+                        <span className="font-medium">{item.label}</span>
+                      )}
+                      value={languageOptions.find((language) => language.id === field.value)}
+                      onChange={(value) => field.onChange(value?.id ?? null)}
                       placeholder={t("placeholders.language")}
-                      rows={4}
+                      data={languageOptions}
                     />
                   </FormControl>
                   <FormMessage />

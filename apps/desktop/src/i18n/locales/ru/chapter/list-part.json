@@ -7,5 +7,6 @@
   "parts": "Части",
   "chapters": "Главы",
   "words": "Слова",
-  "chapterCount": "{{count}} глав(ы)"
+  "chapterCount": "{{count}} глав(ы)",
+  "withoutPart": "Главы без части"
 }

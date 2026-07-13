@@ -54,8 +54,8 @@ export class ChapterEntity {
   @ManyToOne(() => ProjectEntity, { ref: true, deleteRule: "cascade" })
   public project: Ref<ProjectEntity>;
 
-  @ManyToOne(() => PartEntity, { ref: true, deleteRule: "cascade" })
-  public part: Ref<PartEntity>;
+  @ManyToOne(() => PartEntity, { ref: true, nullable: true, deleteRule: "set null" })
+  public part?: Ref<PartEntity> | null = null;
 
   public constructor(parameters: {
     title: string;
@@ -66,7 +66,7 @@ export class ChapterEntity {
     wordCount: number;
     wordGoal: number;
     project: ProjectEntity;
-    part: PartEntity;
+    part?: PartEntity | null;
   }) {
     this.title = parameters.title;
     this.status = parameters.status;
@@ -76,6 +76,6 @@ export class ChapterEntity {
     this.wordCount = parameters.wordCount;
     this.wordGoal = parameters.wordGoal;
     this.project = ref(parameters.project);
-    this.part = ref(parameters.part);
+    this.part = parameters.part ? ref(parameters.part) : null;
   }
 }

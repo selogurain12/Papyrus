@@ -45,11 +45,13 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
           pathParams: { projectId: currentProject?.id ?? "" },
         }),
       });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.chapter.getByPart({
-          pathParams: { projectId: currentProject?.id ?? "", partId: chapter.part.id },
-        }),
-      });
+      if (chapter.part) {
+        void queryClient.invalidateQueries({
+          queryKey: queryKeys.chapter.getByPart({
+            pathParams: { projectId: currentProject?.id ?? "", partId: chapter.part.id },
+          }),
+        });
+      }
 
       if (response.body.project) {
         setCurrentProject(response.body.project);

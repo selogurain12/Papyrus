@@ -67,7 +67,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
     setLoading(true);
 
     try {
-      let fileUrl = data.link;
+      let fileUrl = data.link?.trim() ? data.link : null;
 
       if (!isOnline) {
         if (file) {
@@ -218,7 +218,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                 <FormItem>
                   <FormLabel>{t("fields.link")}</FormLabel>
                   <FormControl>
-                    <Input {...field} value={field.value ?? ""} placeholder="https://..." />
+                    <Input {...field} value={field.value ?? undefined} placeholder="https://..." />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

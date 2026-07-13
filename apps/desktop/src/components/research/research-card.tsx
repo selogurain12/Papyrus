@@ -217,13 +217,13 @@ export function ResearchCard({
 
       <PDFViewerModal
         isOpen={isPDFModalOpen}
-        url={research.link}
+        url={research.link ?? null}
         title={research.title}
         onClose={() => setIsPDFModalOpen(false)}
       />
       <ImageViewerModal
         isOpen={isImageModalOpen}
-        url={research.link}
+        url={research.link ?? null}
         title={research.title}
         onClose={() => setIsImageModalOpen(false)}
       />

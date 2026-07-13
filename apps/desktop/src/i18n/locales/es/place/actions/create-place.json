@@ -14,8 +14,8 @@
     "localisation": "Ubicación",
     "name": "Nombre del lugar *",
     "nickname": "Apodo",
-    "physicalDescription": "Descripción *",
-    "population": "Personajes presentes",
+    "physicalDescription": "Descripción",
+    "population": "Población",
     "ressources": "Recursos",
     "type": "Tipo de lugar *",
     "visualDetails": "Detalles visuales"
@@ -35,7 +35,8 @@
     "physicalDescription": "Descripción general...",
     "ressources": "Recursos naturales, económicos, estratégicos...",
     "type": "Seleccionar un tipo",
-    "usages": "Arquitectura, decoración..."
+    "usages": "Arquitectura, decoración...",
+    "population": "Población, grupos, comunidades..."
   },
   "types": {
     "city": "Ciudad",

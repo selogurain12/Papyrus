@@ -80,16 +80,20 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
           pathParams: { projectId: currentProject?.id ?? "" },
         }),
       });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.chapter.getByPart({
-          pathParams: { projectId: currentProject?.id ?? "", partId: chapter.part.id },
-        }),
-      });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.chapter.getByPart({
-          pathParams: { projectId: currentProject?.id ?? "", partId: response.body.part.id },
-        }),
-      });
+      if (chapter.part) {
+        void queryClient.invalidateQueries({
+          queryKey: queryKeys.chapter.getByPart({
+            pathParams: { projectId: currentProject?.id ?? "", partId: chapter.part.id },
+          }),
+        });
+      }
+      if (response.body.part) {
+        void queryClient.invalidateQueries({
+          queryKey: queryKeys.chapter.getByPart({
+            pathParams: { projectId: currentProject?.id ?? "", partId: response.body.part.id },
+          }),
+        });
+      }
       form.reset();
       setOpen(false);
     },

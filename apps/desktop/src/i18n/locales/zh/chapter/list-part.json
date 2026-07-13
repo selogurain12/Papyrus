@@ -7,5 +7,6 @@
   "parts": "部分",
   "chapters": "章节",
   "words": "字数",
-  "chapterCount": "{{count}} 个章节"
+  "chapterCount": "{{count}} 个章节",
+  "withoutPart": "无部分章节"
 }

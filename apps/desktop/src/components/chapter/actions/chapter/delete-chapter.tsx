@@ -50,11 +50,13 @@ export function ChapterDeleteActions({
           pathParams: { projectId: currentProject?.id ?? "" },
         }),
       });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.chapter.getByPart({
-          pathParams: { projectId: currentProject?.id ?? "", partId: chapter.part.id },
-        }),
-      });
+      if (chapter.part) {
+        void queryClient.invalidateQueries({
+          queryKey: queryKeys.chapter.getByPart({
+            pathParams: { projectId: currentProject?.id ?? "", partId: chapter.part.id },
+          }),
+        });
+      }
       clearSelection();
       onClose?.();
     },

@@ -3,8 +3,8 @@
     "atmosphere": "Atmosphère",
     "government": "Gouvernement",
     "language": "Langue",
-    "physicalDescription": "Description *",
-    "population": "Personnages présents",
+    "physicalDescription": "Description",
+    "population": "Population",
     "ressources": "Ressources",
     "usages": "Usages"
   },

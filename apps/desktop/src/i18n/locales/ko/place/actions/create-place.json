@@ -14,8 +14,8 @@
     "localisation": "위치",
     "name": "장소 이름 *",
     "nickname": "별명",
-    "physicalDescription": "설명 *",
-    "population": "캐릭터 존재",
+    "physicalDescription": "설명",
+    "population": "인구",
     "ressources": "자원",
     "type": "장소 유형 *",
     "visualDetails": "시각적 세부정보"
@@ -35,7 +35,8 @@
     "physicalDescription": "일반적인 설명...",
     "ressources": "자연, 경제, 전략적 자원...",
     "type": "유형을 선택하세요",
-    "usages": "건축, 장식..."
+    "usages": "건축, 장식...",
+    "population": "인구, 집단, 공동체..."
   },
   "types": {
     "city": "도시",

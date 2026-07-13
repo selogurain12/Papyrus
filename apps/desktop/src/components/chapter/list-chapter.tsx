@@ -7,21 +7,29 @@ import { useTranslation } from "react-i18next";
 import { useOfflineList } from "../../hooks/use-offline-list";
 
 interface ChapterListProps {
-  id: string;
+  id?: string;
+  withoutPart?: boolean;
   // eslint-disable-next-line no-unused-vars
   setSelectedChapter?: (chapter: ChapterDto) => void;
   selectedChapter?: ChapterDto;
 }
 
 // eslint-disable-next-line complexity
-export function ChapterList({ id, setSelectedChapter, selectedChapter }: ChapterListProps) {
+export function ChapterList({
+  id,
+  withoutPart = false,
+  setSelectedChapter,
+  selectedChapter,
+}: ChapterListProps) {
   const { t } = useTranslation(["chapter/list-chapter", "common"]);
   const { currentProject } = useProject();
   const cachedChapters = useOfflineList<ChapterDto>({
     entityType: "chapters",
     projectId: currentProject?.id,
   });
-  const chapters = (cachedChapters?.data ?? []).filter((chapter) => chapter.part.id === id);
+  const chapters = (cachedChapters?.data ?? []).filter((chapter) =>
+    withoutPart ? !chapter.part : chapter.part?.id === id
+  );
 
   const statusColorMap: Record<string, string> = {
     toStart: "bg-slate-400",

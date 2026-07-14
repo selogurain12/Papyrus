@@ -159,7 +159,9 @@
   "toasts": {
     "success": "Einstellungen gespeichert",
     "error": "Einstellungen konnten nicht gespeichert werden",
-    "noProject": "Kein aktuelles Projekt zum Speichern der Einstellungen"
+    "noProject": "Kein aktuelles Projekt zum Speichern der Einstellungen",
+    "notificationsDenied": "Benachrichtigungen werden vom System oder Browser blockiert",
+    "notificationsUnsupported": "Benachrichtigungen sind auf diesem Gerät nicht verfügbar"
   },
   "shortcutActions": {
     "create-part": "Teil erstellen",

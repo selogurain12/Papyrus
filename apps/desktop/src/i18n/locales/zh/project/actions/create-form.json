@@ -11,7 +11,9 @@
     "genre": "项目类型",
     "language": "项目语言",
     "targetWordCount": "目标字数",
-    "title": "项目名称"
+    "title": "项目名称",
+    "status": "项目状态",
+    "tags": "标签"
   },
   "genres": {
     "biography": "传",
@@ -56,10 +58,17 @@
     "date": "选择日期",
     "genre": "选择类型",
     "language": "选择语言",
-    "tag": "添加标签"
+    "tag": "添加标签",
+    "status": "选择项目状态"
   },
   "sections": {
     "goals": "目标和设置",
     "info": "项目信息"
+  },
+  "status": {
+    "planning": "规划中",
+    "writing": "写作中",
+    "editing": "编辑中",
+    "completed": "已完成"
   }
 }

@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "Zusammenfassung oder Rahmennotiz",
     "note": "Interner Hinweis",
-    "sources": "Beispiel: Le Monde, Wikipedia",
+    "sources": "Z. B.: Le Monde",
     "tag": "Tag hinzufügen",
-    "title": "Beispiel: Marktstudie Paris 2026"
+    "title": "Beispiel: Marktstudie Paris 2026",
+    "link": "https://..."
   },
   "sections": {
     "details": "Einzelheiten",

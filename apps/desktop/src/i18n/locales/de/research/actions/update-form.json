@@ -12,7 +12,9 @@
     "description": "Zusammenfassung oder Rahmennotiz",
     "note": "Interner Hinweis",
     "tag": "Tag hinzufügen",
-    "title": "Beispiel: Marktstudie Paris 2026"
+    "title": "Beispiel: Marktstudie Paris 2026",
+    "link": "https://...",
+    "sources": "Z. B.: Le Monde"
   },
   "sections": {
     "details": "Einzelheiten",

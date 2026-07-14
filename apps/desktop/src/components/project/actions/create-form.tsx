@@ -216,19 +216,19 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
               name="status"
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="status">Status</FormLabel>
+                  <FormLabel htmlFor="status">{t("fields.status")}</FormLabel>
                   <FormControl>
                     <SingleSelector<TypeOption>
                       {...field}
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`status.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`status.${item.id}`)}</span>
                       )}
                       value={statusOptions.find((status) => status.id === field.value)}
                       onChange={(value) => {
                         field.onChange(value?.id ?? "");
                       }}
-                      placeholder="Status du projet"
+                      placeholder={t("placeholders.status")}
                       data={statusOptions}
                     />
                   </FormControl>

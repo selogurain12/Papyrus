@@ -12,7 +12,17 @@
   "delete": "Удалить",
   "edit": "Редактировать",
   "editor": {
-    "placeholder": "Начни писать главу..."
+    "placeholder": "Начни писать главу...",
+    "undo": "Отменить",
+    "redo": "Повторить",
+    "bold": "Жирный",
+    "italic": "Курсив",
+    "underline": "Подчеркнуть",
+    "strikethrough": "Зачеркнуть",
+    "alignLeft": "Выровнять по левому краю",
+    "alignCenter": "Выровнять по центру",
+    "alignRight": "Выровнять по правому краю",
+    "alignJustify": "По ширине"
   },
   "error": "Произошла ошибка",
   "file": {
@@ -79,7 +89,11 @@
     "previousPage": "Перейти на предыдущую страницу",
     "rowsPerPage": "Строк на странице",
     "selectedRows": "Выбрано {{selected}} из {{total}} строк.",
-    "views": "Виды"
+    "views": "Виды",
+    "toggleColumns": "Переключить столбцы",
+    "first": "Первая",
+    "last": "Последняя",
+    "morePages": "Еще страницы"
   },
   "undefined": "Не определено",
   "update": "Обновлять",
@@ -90,5 +104,27 @@
   "connection.online": "Подключено",
   "connection.offline": "Офлайн-режим",
   "offline.savedLocally": "Сохранено локально. Синхронизация выполнится после восстановления подключения.",
-  "sync.savedToApi": "{{count}} офлайн-элемент(ов) сохранено в API"
+  "sync.savedToApi": "{{count}} офлайн-элемент(ов) сохранено в API",
+  "stats": {
+    "totalProjects": "Всего проектов",
+    "writtenWords": "Написано слов"
+  },
+  "selectOptions": "Выберите параметры",
+  "breadcrumb": {
+    "label": "Хлебные крошки"
+  },
+  "pagination": {
+    "label": "Пагинация"
+  },
+  "more": "Еще",
+  "dateTime": {
+    "hours": "Часы",
+    "minutes": "Минуты",
+    "format": "dd MMMM yyyy в HH:mm"
+  },
+  "carousel": {
+    "previousSlide": "Предыдущий слайд",
+    "nextSlide": "Следующий слайд"
+  },
+  "menu.goals": "Цели"
 }

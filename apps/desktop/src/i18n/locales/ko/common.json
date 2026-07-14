@@ -12,7 +12,17 @@
   "delete": "삭제",
   "edit": "편집하다",
   "editor": {
-    "placeholder": "챕터 쓰기를 시작하세요..."
+    "placeholder": "챕터 쓰기를 시작하세요...",
+    "undo": "실행 취소",
+    "redo": "다시 실행",
+    "bold": "굵게",
+    "italic": "기울임",
+    "underline": "밑줄",
+    "strikethrough": "취소선",
+    "alignLeft": "왼쪽 정렬",
+    "alignCenter": "가운데 정렬",
+    "alignRight": "오른쪽 정렬",
+    "alignJustify": "양쪽 정렬"
   },
   "error": "오류가 발생했습니다",
   "file": {
@@ -79,7 +89,11 @@
     "previousPage": "이전 페이지로 이동",
     "rowsPerPage": "페이지당 행 수",
     "selectedRows": "{{total}}개 중 {{selected}}개 행 선택됨.",
-    "views": "보기"
+    "views": "보기",
+    "toggleColumns": "열 표시 전환",
+    "first": "처음",
+    "last": "마지막",
+    "morePages": "더 많은 페이지"
   },
   "undefined": "정의되지 않음",
   "update": "업데이트",
@@ -90,5 +104,27 @@
   "connection.online": "온라인",
   "connection.offline": "오프라인 모드",
   "offline.savedLocally": "로컬에 저장되었습니다. 연결이 복구되면 동기화됩니다.",
-  "sync.savedToApi": "{{count}}개의 오프라인 항목이 API에 저장되었습니다"
+  "sync.savedToApi": "{{count}}개의 오프라인 항목이 API에 저장되었습니다",
+  "stats": {
+    "totalProjects": "전체 프로젝트",
+    "writtenWords": "작성한 단어"
+  },
+  "selectOptions": "옵션 선택",
+  "breadcrumb": {
+    "label": "이동 경로"
+  },
+  "pagination": {
+    "label": "페이지네이션"
+  },
+  "more": "더 보기",
+  "dateTime": {
+    "hours": "시간",
+    "minutes": "분",
+    "format": "yyyy년 MM월 dd일 HH:mm"
+  },
+  "carousel": {
+    "previousSlide": "이전 슬라이드",
+    "nextSlide": "다음 슬라이드"
+  },
+  "menu.goals": "목표"
 }

@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "Souhrn nebo rámcová poznámka",
     "note": "Interní poznámka",
-    "sources": "Příklad: Le Monde, Wikipedia",
+    "sources": "Např.: Le Monde",
     "tag": "Přidat štítek",
-    "title": "Příklad: studie trhu v Paříži 2026"
+    "title": "Příklad: studie trhu v Paříži 2026",
+    "link": "https://..."
   },
   "sections": {
     "details": "Podrobnosti",

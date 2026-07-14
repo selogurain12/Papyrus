@@ -12,7 +12,17 @@
   "delete": "消去",
   "edit": "編集",
   "editor": {
-    "placeholder": "章を書き始めてください..."
+    "placeholder": "章を書き始めてください...",
+    "undo": "元に戻す",
+    "redo": "やり直す",
+    "bold": "太字",
+    "italic": "斜体",
+    "underline": "下線",
+    "strikethrough": "取り消し線",
+    "alignLeft": "左揃え",
+    "alignCenter": "中央揃え",
+    "alignRight": "右揃え",
+    "alignJustify": "両端揃え"
   },
   "error": "エラーが発生しました",
   "file": {
@@ -79,7 +89,11 @@
     "previousPage": "前のページへ",
     "rowsPerPage": "ページあたりの行数",
     "selectedRows": "{{total}}行中{{selected}}行を選択中。",
-    "views": "表示"
+    "views": "表示",
+    "toggleColumns": "列を切り替え",
+    "first": "最初",
+    "last": "最後",
+    "morePages": "その他のページ"
   },
   "undefined": "未定義",
   "update": "アップデート",
@@ -90,5 +104,27 @@
   "connection.online": "オンライン",
   "connection.offline": "オフラインモード",
   "offline.savedLocally": "ローカルに保存しました。接続が戻ると同期されます。",
-  "sync.savedToApi": "{{count}} 件のオフライン項目を API に保存しました"
+  "sync.savedToApi": "{{count}} 件のオフライン項目を API に保存しました",
+  "stats": {
+    "totalProjects": "プロジェクト合計",
+    "writtenWords": "執筆済み単語数"
+  },
+  "selectOptions": "オプションを選択",
+  "breadcrumb": {
+    "label": "パンくずリスト"
+  },
+  "pagination": {
+    "label": "ページネーション"
+  },
+  "more": "もっと見る",
+  "dateTime": {
+    "hours": "時",
+    "minutes": "分",
+    "format": "yyyy年MM月dd日 HH:mm"
+  },
+  "carousel": {
+    "previousSlide": "前のスライド",
+    "nextSlide": "次のスライド"
+  },
+  "menu.goals": "目標"
 }

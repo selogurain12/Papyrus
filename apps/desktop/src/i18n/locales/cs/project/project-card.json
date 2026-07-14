@@ -1,7 +1,8 @@
 {
   "card": {
     "open": "OTEVŘENO",
-    "progress": "Pokrok"
+    "progress": "Pokrok",
+    "coverAlt": "Obálka projektu"
   },
   "genres": {
     "biography": "Životopis",

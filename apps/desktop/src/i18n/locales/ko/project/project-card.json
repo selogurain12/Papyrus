@@ -1,7 +1,8 @@
 {
   "card": {
     "open": "열려 있는",
-    "progress": "진전"
+    "progress": "진전",
+    "coverAlt": "프로젝트 표지"
   },
   "genres": {
     "biography": "전기",

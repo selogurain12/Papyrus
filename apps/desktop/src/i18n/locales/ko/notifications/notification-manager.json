@@ -1,0 +1,16 @@
+{
+  "dailyWordGoal": {
+    "title": "일일 작성 목표",
+    "body": "오늘 {{target}}단어 목표까지 {{remaining}}단어가 남았습니다."
+  },
+  "activeGoals": {
+    "title_one": "진행 중인 목표",
+    "title_other": "진행 중인 목표 {{count}}개",
+    "body": "\"{{title}}\" 목표를 진행해 보세요.",
+    "fallbackTitle": "내 목표"
+  },
+  "backup": {
+    "title": "백업 알림",
+    "body": "최신 사본을 유지하려면 프로젝트를 저장하거나 내보내세요."
+  }
+}

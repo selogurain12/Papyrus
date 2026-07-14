@@ -159,7 +159,9 @@
   "toasts": {
     "success": "Nastavení uloženo",
     "error": "Nastavení nelze uložit",
-    "noProject": "Žádný aktuální projekt pro uložení nastavení"
+    "noProject": "Žádný aktuální projekt pro uložení nastavení",
+    "notificationsDenied": "Oznámení jsou blokována systémem nebo prohlížečem",
+    "notificationsUnsupported": "Oznámení nejsou na tomto zařízení dostupná"
   },
   "shortcutActions": {
     "create-part": "Vytvořit část",

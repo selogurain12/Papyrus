@@ -1,0 +1,16 @@
+{
+  "dailyWordGoal": {
+    "title": "Denní cíl psaní",
+    "body": "Dnes vám zbývá napsat {{remaining}} slov, abyste dosáhli cíle {{target}} slov."
+  },
+  "activeGoals": {
+    "title_one": "Aktivní cíl",
+    "title_other": "{{count}} aktivních cílů",
+    "body": "Nezapomeňte pokročit v cíli „{{title}}”.",
+    "fallbackTitle": "váš cíl"
+  },
+  "backup": {
+    "title": "Připomenutí zálohy",
+    "body": "Nezapomeňte projekt uložit nebo exportovat, abyste měli aktuální kopii."
+  }
+}

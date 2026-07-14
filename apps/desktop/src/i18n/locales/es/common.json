@@ -12,7 +12,17 @@
   "delete": "Borrar",
   "edit": "Editar",
   "editor": {
-    "placeholder": "Empieza a escribir tu capítulo..."
+    "placeholder": "Empieza a escribir tu capítulo...",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "bold": "Negrita",
+    "italic": "Cursiva",
+    "underline": "Subrayado",
+    "strikethrough": "Tachado",
+    "alignLeft": "Alinear a la izquierda",
+    "alignCenter": "Centrar",
+    "alignRight": "Alinear a la derecha",
+    "alignJustify": "Justificar"
   },
   "error": "Ha ocurrido un error",
   "file": {
@@ -79,7 +89,11 @@
     "previousPage": "Ir a la página anterior",
     "rowsPerPage": "Filas por página",
     "selectedRows": "{{selected}} de {{total}} fila(s) seleccionada(s).",
-    "views": "Vistas"
+    "views": "Vistas",
+    "toggleColumns": "Alternar columnas",
+    "first": "Primera",
+    "last": "Última",
+    "morePages": "Más páginas"
   },
   "undefined": "No definido",
   "update": "Actualizar",
@@ -90,5 +104,27 @@
   "connection.online": "Conectado",
   "connection.offline": "Modo sin conexión",
   "offline.savedLocally": "Guardado localmente. Se sincronizará cuando vuelva la conexión.",
-  "sync.savedToApi": "{{count}} elemento(s) sin conexión guardado(s) en la API"
+  "sync.savedToApi": "{{count}} elemento(s) sin conexión guardado(s) en la API",
+  "stats": {
+    "totalProjects": "Proyectos totales",
+    "writtenWords": "Palabras escritas"
+  },
+  "selectOptions": "Seleccionar opciones",
+  "breadcrumb": {
+    "label": "Ruta de navegación"
+  },
+  "pagination": {
+    "label": "Paginación"
+  },
+  "more": "Más",
+  "dateTime": {
+    "hours": "Horas",
+    "minutes": "Minutos",
+    "format": "dd 'de' MMMM 'de' yyyy 'a las' HH:mm"
+  },
+  "carousel": {
+    "previousSlide": "Diapositiva anterior",
+    "nextSlide": "Diapositiva siguiente"
+  },
+  "menu.goals": "Objetivos"
 }

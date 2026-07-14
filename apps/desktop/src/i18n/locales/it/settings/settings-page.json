@@ -159,7 +159,9 @@
   "toasts": {
     "success": "Impostazioni salvate",
     "error": "Impossibile salvare le impostazioni",
-    "noProject": "Nessun progetto corrente per salvare le impostazioni"
+    "noProject": "Nessun progetto corrente per salvare le impostazioni",
+    "notificationsDenied": "Le notifiche sono bloccate dal sistema o dal browser",
+    "notificationsUnsupported": "Le notifiche non sono disponibili su questo dispositivo"
   },
   "shortcutActions": {
     "create-part": "Crea una parte",

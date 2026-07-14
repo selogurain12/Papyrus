@@ -12,7 +12,9 @@
     "description": "摘要或框架说明",
     "note": "内部注释",
     "tag": "添加标签",
-    "title": "示例：巴黎 2026 年市场研究"
+    "title": "示例：巴黎 2026 年市场研究",
+    "link": "https://...",
+    "sources": "例如：Le Monde"
   },
   "sections": {
     "details": "细节",

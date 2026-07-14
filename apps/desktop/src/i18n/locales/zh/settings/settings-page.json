@@ -159,7 +159,9 @@
   "toasts": {
     "success": "设置已保存",
     "error": "无法保存设置",
-    "noProject": "没有当前项目可用于保存设置"
+    "noProject": "没有当前项目可用于保存设置",
+    "notificationsDenied": "通知已被系统或浏览器阻止",
+    "notificationsUnsupported": "此设备不支持通知"
   },
   "shortcutActions": {
     "create-part": "创建部分",

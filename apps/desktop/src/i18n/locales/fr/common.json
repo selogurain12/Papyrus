@@ -88,5 +88,31 @@
   "connection.online": "Connecté",
   "connection.offline": "Mode hors ligne",
   "offline.savedLocally": "Enregistré localement. La synchronisation se fera au retour de la connexion.",
-  "sync.savedToApi": "{{count}} donnée(s) hors ligne synchronisée(s) avec l'API"
+  "sync.savedToApi": "{{count}} donnée(s) hors ligne synchronisée(s) avec l'API",
+  "stats": {
+    "totalProjects": "Projets totaux",
+    "writtenWords": "Mots écrits"
+  },
+  "editor": {
+    "undo": "Annuler",
+    "redo": "Rétablir",
+    "bold": "Gras",
+    "italic": "Italique",
+    "underline": "Souligner",
+    "strikethrough": "Barré",
+    "alignLeft": "Aligner à gauche",
+    "alignCenter": "Centrer",
+    "alignRight": "Aligner à droite",
+    "alignJustify": "Justifier"
+  },
+  "selectOptions": "Sélectionnez des options",
+  "breadcrumb": {
+    "label": "Fil d’Ariane"
+  },
+  "pagination": {
+    "label": "Pagination"
+  },
+  "table": {
+    "toggleColumns": "Afficher les colonnes"
+  }
 }

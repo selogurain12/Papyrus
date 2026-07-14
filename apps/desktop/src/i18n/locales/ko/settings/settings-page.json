@@ -159,7 +159,9 @@
   "toasts": {
     "success": "설정이 저장되었습니다",
     "error": "설정을 저장할 수 없습니다",
-    "noProject": "설정을 저장할 현재 프로젝트가 없습니다"
+    "noProject": "설정을 저장할 현재 프로젝트가 없습니다",
+    "notificationsDenied": "알림이 시스템 또는 브라우저에서 차단되었습니다",
+    "notificationsUnsupported": "이 기기에서는 알림을 사용할 수 없습니다"
   },
   "shortcutActions": {
     "create-part": "파트 만들기",

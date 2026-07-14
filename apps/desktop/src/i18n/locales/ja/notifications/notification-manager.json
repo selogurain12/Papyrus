@@ -1,0 +1,16 @@
+{
+  "dailyWordGoal": {
+    "title": "毎日の執筆目標",
+    "body": "今日の{{target}}語の目標まで、あと{{remaining}}語です。"
+  },
+  "activeGoals": {
+    "title_one": "進行中の目標",
+    "title_other": "{{count}}件の進行中の目標",
+    "body": "「{{title}}」を進めましょう。",
+    "fallbackTitle": "あなたの目標"
+  },
+  "backup": {
+    "title": "バックアップのリマインダー",
+    "body": "最新のコピーを残すため、プロジェクトを保存またはエクスポートしてください。"
+  }
+}

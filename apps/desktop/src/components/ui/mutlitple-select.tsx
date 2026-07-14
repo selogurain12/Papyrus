@@ -28,6 +28,7 @@ import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from ".
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Spinner } from "./spinner";
 import { ApiResponse, ListResult } from "@papyrus/source";
+import { useTranslation } from "react-i18next";
 
 interface MultipleSelectorProps<Option extends { id: string }> {
   /** Props of `Command` */
@@ -110,6 +111,7 @@ export function MultipleSelector<Option extends { id: string }>({
   inputProps,
   contentClassName = "",
 }: MultipleSelectorProps<Option>) {
+  const { t } = useTranslation();
   const inputReference = useRef<HTMLInputElement>(null);
 
   const [open, setOpen] = useState(false);
@@ -271,7 +273,7 @@ export function MultipleSelector<Option extends { id: string }>({
               </div>
             )}
             {selected.length === 0 && value.length === 0 && (
-              <p className="truncate ml-2">{placeholder ?? "Sélectionnez des options"}</p>
+              <p className="truncate ml-2">{placeholder ?? t("selectOptions")}</p>
             )}
           </div>
 
@@ -325,7 +327,7 @@ export function MultipleSelector<Option extends { id: string }>({
             value={inputValue}
           />
 
-          {!isLoading && <CommandEmpty>Aucun résultat.</CommandEmpty>}
+          {!isLoading && <CommandEmpty>{t("noResults")}</CommandEmpty>}
           <CommandList>
             <CommandGroup className="overflow-y-auto h-full max-h-[20dvh]">
               {isLoading ? (
@@ -336,7 +338,7 @@ export function MultipleSelector<Option extends { id: string }>({
 
                   {selectables.length === 0 ? (
                     <CommandItem className="cursor-not-allowed" value="-">
-                      <p className="truncate">Aucun résultat supplémentaire.</p>
+                      <p className="truncate">{t("noMoreResults")}</p>
                     </CommandItem>
                   ) : (
                     selectables.map((item, index) => (

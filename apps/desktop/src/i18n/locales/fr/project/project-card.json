@@ -1,7 +1,8 @@
 {
   "card": {
     "open": "Ouvrir",
-    "progress": "Progression"
+    "progress": "Progression",
+    "coverAlt": "Couverture du projet"
   },
   "genres": {
     "biography": "Biographie",

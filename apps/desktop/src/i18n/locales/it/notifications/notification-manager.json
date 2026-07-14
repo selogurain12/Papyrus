@@ -1,0 +1,16 @@
+{
+  "dailyWordGoal": {
+    "title": "Obiettivo quotidiano di scrittura",
+    "body": "Ti restano {{remaining}} parole per raggiungere oggi il tuo obiettivo di {{target}} parole."
+  },
+  "activeGoals": {
+    "title_one": "Obiettivo attivo",
+    "title_other": "{{count}} obiettivi attivi",
+    "body": "Ricordati di avanzare su \"{{title}}\".",
+    "fallbackTitle": "il tuo obiettivo"
+  },
+  "backup": {
+    "title": "Promemoria backup",
+    "body": "Ricordati di salvare o esportare il progetto per mantenere una copia aggiornata."
+  }
+}

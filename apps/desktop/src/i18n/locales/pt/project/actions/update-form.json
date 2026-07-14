@@ -6,7 +6,9 @@
     "genre": "Gênero do projeto",
     "language": "Idioma do projeto",
     "targetWordCount": "Contagem de palavras alvo",
-    "title": "Título do projeto"
+    "title": "Título do projeto",
+    "status": "Estado do projeto",
+    "tags": "Tags"
   },
   "genres": {
     "biography": "Biografia",
@@ -51,7 +53,8 @@
     "date": "Selecione uma data",
     "genre": "Selecione um gênero",
     "language": "Selecione um idioma",
-    "tag": "Adicionar uma etiqueta"
+    "tag": "Adicionar uma etiqueta",
+    "status": "Selecionar um estado do projeto"
   },
   "sections": {
     "goals": "Metas e configurações",
@@ -61,5 +64,11 @@
     "submit": "Atualizar projeto",
     "success": "Projeto atualizado com sucesso",
     "title": "Editar projeto"
+  },
+  "status": {
+    "planning": "Planejamento",
+    "writing": "Escrita",
+    "editing": "Edição",
+    "completed": "Concluído"
   }
 }

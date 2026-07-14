@@ -12,7 +12,17 @@
   "delete": "删除",
   "edit": "编辑",
   "editor": {
-    "placeholder": "开始写你的章节..."
+    "placeholder": "开始写你的章节...",
+    "undo": "撤销",
+    "redo": "重做",
+    "bold": "加粗",
+    "italic": "斜体",
+    "underline": "下划线",
+    "strikethrough": "删除线",
+    "alignLeft": "左对齐",
+    "alignCenter": "居中对齐",
+    "alignRight": "右对齐",
+    "alignJustify": "两端对齐"
   },
   "error": "发生错误",
   "file": {
@@ -79,7 +89,11 @@
     "previousPage": "前往上一页",
     "rowsPerPage": "每页行数",
     "selectedRows": "已选择 {{selected}} / {{total}} 行。",
-    "views": "视图"
+    "views": "视图",
+    "toggleColumns": "切换列",
+    "first": "第一页",
+    "last": "最后一页",
+    "morePages": "更多页面"
   },
   "undefined": "未定义",
   "update": "更新",
@@ -90,5 +104,27 @@
   "connection.online": "已连接",
   "connection.offline": "离线模式",
   "offline.savedLocally": "已保存到本地。连接恢复后会同步。",
-  "sync.savedToApi": "{{count}} 个离线项目已保存到 API"
+  "sync.savedToApi": "{{count}} 个离线项目已保存到 API",
+  "stats": {
+    "totalProjects": "项目总数",
+    "writtenWords": "已写字数"
+  },
+  "selectOptions": "选择选项",
+  "breadcrumb": {
+    "label": "面包屑导航"
+  },
+  "pagination": {
+    "label": "分页"
+  },
+  "more": "更多",
+  "dateTime": {
+    "hours": "小时",
+    "minutes": "分钟",
+    "format": "yyyy年MM月dd日 HH:mm"
+  },
+  "carousel": {
+    "previousSlide": "上一张幻灯片",
+    "nextSlide": "下一张幻灯片"
+  },
+  "menu.goals": "目标"
 }

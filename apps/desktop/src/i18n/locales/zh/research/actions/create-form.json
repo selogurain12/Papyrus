@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "摘要或框架说明",
     "note": "内部注释",
-    "sources": "示例：《世界报》、维基百科",
+    "sources": "例如：Le Monde",
     "tag": "添加标签",
-    "title": "示例：巴黎 2026 年市场研究"
+    "title": "示例：巴黎 2026 年市场研究",
+    "link": "https://..."
   },
   "sections": {
     "details": "细节",

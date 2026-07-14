@@ -1,7 +1,8 @@
 {
   "card": {
     "open": "打开",
-    "progress": "进步"
+    "progress": "进步",
+    "coverAlt": "项目封面"
   },
   "genres": {
     "biography": "传",

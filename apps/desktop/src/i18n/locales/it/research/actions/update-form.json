@@ -12,7 +12,9 @@
     "description": "Riepilogo o nota incorniciata",
     "note": "Nota interna",
     "tag": "Aggiungi un tag",
-    "title": "Esempio: studio di mercato Parigi 2026"
+    "title": "Esempio: studio di mercato Parigi 2026",
+    "link": "https://...",
+    "sources": "Es.: Le Monde"
   },
   "sections": {
     "details": "Dettagli",

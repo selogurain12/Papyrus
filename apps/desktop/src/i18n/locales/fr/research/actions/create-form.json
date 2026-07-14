@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "Résumé ou note de cadrage",
     "note": "Note interne",
-    "sources": "Ex: Le Monde, Wikipédia",
+    "sources": "Ex : Le Monde",
     "tag": "Ajouter un tag",
-    "title": "Ex: Étude de marché Paris 2026"
+    "title": "Ex: Étude de marché Paris 2026",
+    "link": "https://..."
   },
   "sections": {
     "details": "Détails",

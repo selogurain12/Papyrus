@@ -12,7 +12,9 @@
     "description": "Souhrn nebo rámcová poznámka",
     "note": "Interní poznámka",
     "tag": "Přidat štítek",
-    "title": "Příklad: studie trhu v Paříži 2026"
+    "title": "Příklad: studie trhu v Paříži 2026",
+    "link": "https://...",
+    "sources": "Např.: Le Monde"
   },
   "sections": {
     "details": "Podrobnosti",

@@ -87,10 +87,10 @@ export function Register() {
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
                   <FormLabel className="mb-2 font-normal" htmlFor="lastName">
-                    Nom de famille
+                    {t("lastName")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="Nom de famille" {...field} />
+                    <Input placeholder={t("lastNamePlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>
@@ -102,10 +102,10 @@ export function Register() {
               render={({ field }) => (
                 <FormItem className="flex flex-col items-start">
                   <FormLabel className="mb-2 font-normal" htmlFor="email">
-                    {t("lastName")}
+                    {t("email")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t("lastNamePlaceholder")} {...field} />
+                    <Input placeholder={t("emailPlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>

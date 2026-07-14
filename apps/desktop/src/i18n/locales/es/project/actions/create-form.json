@@ -11,7 +11,9 @@
     "genre": "Género del proyecto",
     "language": "Idioma del proyecto",
     "targetWordCount": "Objetivo de palabras",
-    "title": "Título del proyecto"
+    "title": "Título del proyecto",
+    "status": "Estado del proyecto",
+    "tags": "Etiquetas"
   },
   "genres": {
     "biography": "Biografía",
@@ -56,10 +58,17 @@
     "date": "Seleccionar una fecha",
     "genre": "Seleccionar un género",
     "language": "Seleccionar un idioma",
-    "tag": "Añadir una etiqueta"
+    "tag": "Añadir una etiqueta",
+    "status": "Seleccionar un estado del proyecto"
   },
   "sections": {
     "goals": "Objetivos y ajustes",
     "info": "Información del proyecto"
+  },
+  "status": {
+    "planning": "Planificación",
+    "writing": "Escritura",
+    "editing": "Edición",
+    "completed": "Completado"
   }
 }

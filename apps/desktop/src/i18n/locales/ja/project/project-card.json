@@ -1,7 +1,8 @@
 {
   "card": {
     "open": "開ける",
-    "progress": "進捗"
+    "progress": "進捗",
+    "coverAlt": "プロジェクトのカバー"
   },
   "genres": {
     "biography": "バイオグラフィー",

@@ -11,7 +11,9 @@
     "genre": "Žánr projektu",
     "language": "Jazyk projektu",
     "targetWordCount": "Cílový počet slov",
-    "title": "Název projektu"
+    "title": "Název projektu",
+    "status": "Stav projektu",
+    "tags": "Štítky"
   },
   "genres": {
     "biography": "Životopis",
@@ -56,10 +58,17 @@
     "date": "Vyberte datum",
     "genre": "Vyberte žánr",
     "language": "Vyberte jazyk",
-    "tag": "Přidejte značku"
+    "tag": "Přidejte značku",
+    "status": "Vyberte stav projektu"
   },
   "sections": {
     "goals": "Cíle a nastavení",
     "info": "Informace o projektu"
+  },
+  "status": {
+    "planning": "Plánování",
+    "writing": "Psaní",
+    "editing": "Úpravy",
+    "completed": "Dokončeno"
   }
 }

@@ -54,7 +54,11 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
   return (
     <Card className="rounded-xl overflow-hidden">
       <div className="relative w-full h-48">
-        <img src="../../assets/book.jpg" alt="Event cover" className="w-full h-full object-cover" />
+        <img
+          src="../../assets/book.jpg"
+          alt={t("card.coverAlt")}
+          className="w-full h-full object-cover"
+        />
 
         {statusColor(project.status)}
 

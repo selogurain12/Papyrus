@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "Riepilogo o nota incorniciata",
     "note": "Nota interna",
-    "sources": "Esempio: Le Monde, Wikipedia",
+    "sources": "Es.: Le Monde",
     "tag": "Aggiungi un tag",
-    "title": "Esempio: studio di mercato Parigi 2026"
+    "title": "Esempio: studio di mercato Parigi 2026",
+    "link": "https://..."
   },
   "sections": {
     "details": "Dettagli",

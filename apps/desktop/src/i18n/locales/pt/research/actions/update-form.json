@@ -12,7 +12,9 @@
     "description": "Resumo ou nota de enquadramento",
     "note": "Nota interna",
     "tag": "Adicionar uma etiqueta",
-    "title": "Exemplo: estudo de mercado Paris 2026"
+    "title": "Exemplo: estudo de mercado Paris 2026",
+    "link": "https://...",
+    "sources": "Ex.: Le Monde"
   },
   "sections": {
     "details": "Detalhes",

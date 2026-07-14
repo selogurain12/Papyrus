@@ -12,7 +12,9 @@
     "description": "Summary or framing note",
     "note": "Internal note",
     "tag": "Add a tag",
-    "title": "Example: Paris 2026 market study"
+    "title": "Example: Paris 2026 market study",
+    "link": "https://...",
+    "sources": "E.g. Le Monde"
   },
   "sections": {
     "details": "Details",

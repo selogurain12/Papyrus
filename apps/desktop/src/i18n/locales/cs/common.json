@@ -12,7 +12,17 @@
   "delete": "Vymazat",
   "edit": "Upravit",
   "editor": {
-    "placeholder": "Začněte psát svou kapitolu..."
+    "placeholder": "Začněte psát svou kapitolu...",
+    "undo": "Zpět",
+    "redo": "Znovu",
+    "bold": "Tučné",
+    "italic": "Kurzíva",
+    "underline": "Podtržení",
+    "strikethrough": "Přeškrtnutí",
+    "alignLeft": "Zarovnat vlevo",
+    "alignCenter": "Zarovnat na střed",
+    "alignRight": "Zarovnat vpravo",
+    "alignJustify": "Zarovnat do bloku"
   },
   "error": "Došlo k chybě",
   "file": {
@@ -79,7 +89,11 @@
     "previousPage": "Přejít na předchozí stránku",
     "rowsPerPage": "Řádků na stránku",
     "selectedRows": "{{selected}} z {{total}} řádků vybráno.",
-    "views": "Zobrazení"
+    "views": "Zobrazení",
+    "toggleColumns": "Přepnout sloupce",
+    "first": "První",
+    "last": "Poslední",
+    "morePages": "Další stránky"
   },
   "undefined": "Nedefinováno",
   "update": "Aktualizovat",
@@ -90,5 +104,27 @@
   "connection.online": "Připojeno",
   "connection.offline": "Režim offline",
   "offline.savedLocally": "Uloženo lokálně. Synchronizuje se po obnovení připojení.",
-  "sync.savedToApi": "{{count}} offline položek uloženo do API"
+  "sync.savedToApi": "{{count}} offline položek uloženo do API",
+  "stats": {
+    "totalProjects": "Celkem projektů",
+    "writtenWords": "Napsaná slova"
+  },
+  "selectOptions": "Vyberte možnosti",
+  "breadcrumb": {
+    "label": "Drobečková navigace"
+  },
+  "pagination": {
+    "label": "Stránkování"
+  },
+  "more": "Více",
+  "dateTime": {
+    "hours": "Hodiny",
+    "minutes": "Minuty",
+    "format": "dd. MMMM yyyy HH:mm"
+  },
+  "carousel": {
+    "previousSlide": "Předchozí snímek",
+    "nextSlide": "Další snímek"
+  },
+  "menu.goals": "Cíle"
 }

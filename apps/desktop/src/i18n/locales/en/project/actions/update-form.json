@@ -6,7 +6,9 @@
     "genre": "Project genre",
     "language": "Project language",
     "targetWordCount": "Target word count",
-    "title": "Project title"
+    "title": "Project title",
+    "status": "Project status",
+    "tags": "Tags"
   },
   "genres": {
     "biography": "Biography",
@@ -51,7 +53,8 @@
     "date": "Select a date",
     "genre": "Select a genre",
     "language": "Select a language",
-    "tag": "Add a tag"
+    "tag": "Add a tag",
+    "status": "Select a project status"
   },
   "sections": {
     "goals": "Goals and settings",
@@ -61,5 +64,11 @@
     "submit": "Update project",
     "success": "Project updated successfully",
     "title": "Edit project"
+  },
+  "status": {
+    "planning": "Planning",
+    "writing": "Writing",
+    "editing": "Editing",
+    "completed": "Completed"
   }
 }

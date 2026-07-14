@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "Summary or framing note",
     "note": "Internal note",
-    "sources": "Example: Le Monde, Wikipedia",
+    "sources": "E.g. Le Monde",
     "tag": "Add a tag",
-    "title": "Example: Paris 2026 market study"
+    "title": "Example: Paris 2026 market study",
+    "link": "https://..."
   },
   "sections": {
     "details": "Details",

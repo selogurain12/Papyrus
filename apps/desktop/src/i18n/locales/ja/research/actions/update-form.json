@@ -12,7 +12,9 @@
     "description": "要約または構成メモ",
     "note": "内部メモ",
     "tag": "タグを追加",
-    "title": "例: 2026 年のパリ市場調査"
+    "title": "例: 2026 年のパリ市場調査",
+    "link": "https://...",
+    "sources": "例: Le Monde"
   },
   "sections": {
     "details": "詳細",

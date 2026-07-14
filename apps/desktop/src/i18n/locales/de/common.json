@@ -12,7 +12,17 @@
   "delete": "Löschen",
   "edit": "Bearbeiten",
   "editor": {
-    "placeholder": "Beginnen Sie mit dem Schreiben Ihres Kapitels ..."
+    "placeholder": "Beginnen Sie mit dem Schreiben Ihres Kapitels ...",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "bold": "Fett",
+    "italic": "Kursiv",
+    "underline": "Unterstrichen",
+    "strikethrough": "Durchgestrichen",
+    "alignLeft": "Linksbündig",
+    "alignCenter": "Zentriert",
+    "alignRight": "Rechtsbündig",
+    "alignJustify": "Blocksatz"
   },
   "error": "Ein Fehler ist aufgetreten",
   "file": {
@@ -79,7 +89,11 @@
     "previousPage": "Zur vorherigen Seite",
     "rowsPerPage": "Zeilen pro Seite",
     "selectedRows": "{{selected}} von {{total}} Zeile(n) ausgewählt.",
-    "views": "Ansichten"
+    "views": "Ansichten",
+    "toggleColumns": "Spalten umschalten",
+    "first": "Erste",
+    "last": "Letzte",
+    "morePages": "Weitere Seiten"
   },
   "undefined": "Nicht definiert",
   "update": "Aktualisieren",
@@ -90,5 +104,27 @@
   "connection.online": "Verbunden",
   "connection.offline": "Offline-Modus",
   "offline.savedLocally": "Lokal gespeichert. Die Synchronisierung erfolgt, wenn die Verbindung zurück ist.",
-  "sync.savedToApi": "{{count}} Offline-Element(e) in der API gespeichert"
+  "sync.savedToApi": "{{count}} Offline-Element(e) in der API gespeichert",
+  "stats": {
+    "totalProjects": "Projekte insgesamt",
+    "writtenWords": "Geschriebene Wörter"
+  },
+  "selectOptions": "Optionen auswählen",
+  "breadcrumb": {
+    "label": "Breadcrumb"
+  },
+  "pagination": {
+    "label": "Seitennavigation"
+  },
+  "more": "Mehr",
+  "dateTime": {
+    "hours": "Stunden",
+    "minutes": "Minuten",
+    "format": "dd. MMMM yyyy um HH:mm"
+  },
+  "carousel": {
+    "previousSlide": "Vorherige Folie",
+    "nextSlide": "Nächste Folie"
+  },
+  "menu.goals": "Ziele"
 }

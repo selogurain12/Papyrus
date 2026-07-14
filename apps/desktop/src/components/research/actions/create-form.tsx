@@ -218,7 +218,11 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                 <FormItem>
                   <FormLabel>{t("fields.link")}</FormLabel>
                   <FormControl>
-                    <Input {...field} value={field.value ?? undefined} placeholder="https://..." />
+                    <Input
+                      {...field}
+                      value={field.value ?? undefined}
+                      placeholder={t("placeholders.link")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

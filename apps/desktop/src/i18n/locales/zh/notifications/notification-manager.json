@@ -1,0 +1,16 @@
+{
+  "dailyWordGoal": {
+    "title": "每日写作目标",
+    "body": "今天还需写 {{remaining}} 个词即可达到 {{target}} 个词的目标。"
+  },
+  "activeGoals": {
+    "title_one": "进行中的目标",
+    "title_other": "{{count}} 个进行中的目标",
+    "body": "记得推进“{{title}}”。",
+    "fallbackTitle": "你的目标"
+  },
+  "backup": {
+    "title": "备份提醒",
+    "body": "记得保存或导出你的项目，以保留最新副本。"
+  }
+}

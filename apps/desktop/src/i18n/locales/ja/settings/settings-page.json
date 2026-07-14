@@ -159,7 +159,9 @@
   "toasts": {
     "success": "設定を保存しました",
     "error": "設定を保存できません",
-    "noProject": "設定を保存する現在のプロジェクトがありません"
+    "noProject": "設定を保存する現在のプロジェクトがありません",
+    "notificationsDenied": "通知はシステムまたはブラウザでブロックされています",
+    "notificationsUnsupported": "このデバイスでは通知を利用できません"
   },
   "shortcutActions": {
     "create-part": "パートを作成",

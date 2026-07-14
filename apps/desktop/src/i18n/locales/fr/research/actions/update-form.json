@@ -12,7 +12,9 @@
     "description": "Résumé ou note de cadrage",
     "note": "Note interne",
     "tag": "Ajouter un tag",
-    "title": "Ex: Étude de marché Paris 2026"
+    "title": "Ex: Étude de marché Paris 2026",
+    "link": "https://...",
+    "sources": "Ex : Le Monde"
   },
   "sections": {
     "details": "Détails",

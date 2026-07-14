@@ -88,5 +88,31 @@
   "connection.online": "Online",
   "connection.offline": "Offline mode",
   "offline.savedLocally": "Saved locally. It will sync when the connection is back.",
-  "sync.savedToApi": "{{count}} offline item(s) saved to the API"
+  "sync.savedToApi": "{{count}} offline item(s) saved to the API",
+  "stats": {
+    "totalProjects": "Total projects",
+    "writtenWords": "Written words"
+  },
+  "editor": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "bold": "Bold",
+    "italic": "Italic",
+    "underline": "Underline",
+    "strikethrough": "Strikethrough",
+    "alignLeft": "Align left",
+    "alignCenter": "Align center",
+    "alignRight": "Align right",
+    "alignJustify": "Justify"
+  },
+  "selectOptions": "Select options",
+  "breadcrumb": {
+    "label": "Breadcrumb"
+  },
+  "pagination": {
+    "label": "Pagination"
+  },
+  "table": {
+    "toggleColumns": "Toggle columns"
+  }
 }

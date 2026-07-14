@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "요약 또는 구성 메모",
     "note": "내부 메모",
-    "sources": "예: 르몽드, 위키피디아",
+    "sources": "예: Le Monde",
     "tag": "태그 추가",
-    "title": "예: 파리 2026 시장 조사"
+    "title": "예: 파리 2026 시장 조사",
+    "link": "https://..."
   },
   "sections": {
     "details": "세부",

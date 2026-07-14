@@ -28,12 +28,14 @@ import {
   Underline,
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Divider() {
   return <div className="w-px bg-gray-200 mx-1" />;
 }
 
 export default function ToolbarPlugin() {
+  const { t } = useTranslation();
   const [editor] = useLexicalComposerContext();
   const toolbarRef = useRef(null);
   const [canUndo, setCanUndo] = useState(false);
@@ -98,7 +100,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(UNDO_COMMAND, undefined);
         }}
         className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 disabled:opacity-20"
-        aria-label="Undo"
+        aria-label={t("editor.undo")}
       >
         <Undo
           size={18}
@@ -111,7 +113,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(REDO_COMMAND, undefined);
         }}
         className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-20"
-        aria-label="Redo"
+        aria-label={t("editor.redo")}
       >
         <Redo
           size={18}
@@ -124,7 +126,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
         }}
         className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isBold ? "bg-blue-100/30" : ""}`}
-        aria-label="Format Bold"
+        aria-label={t("editor.bold")}
       >
         <Bold
           size={18}
@@ -136,7 +138,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
         }}
         className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isItalic ? "bg-blue-100/30" : ""}`}
-        aria-label="Format Italics"
+        aria-label={t("editor.italic")}
       >
         <Italic
           size={18}
@@ -148,7 +150,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
         }}
         className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isUnderline ? "bg-blue-100/30" : ""}`}
-        aria-label="Format Underline"
+        aria-label={t("editor.underline")}
       >
         <Underline
           size={18}
@@ -160,7 +162,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, "strikethrough");
         }}
         className={`flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5 ${isStrikethrough ? "bg-blue-100/30" : ""}`}
-        aria-label="Format Strikethrough"
+        aria-label={t("editor.strikethrough")}
       >
         <Strikethrough
           size={18}
@@ -173,7 +175,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left");
         }}
         className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5"
-        aria-label="Left Align"
+        aria-label={t("editor.alignLeft")}
       >
         <AlignLeft
           size={18}
@@ -185,7 +187,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center");
         }}
         className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5"
-        aria-label="Center Align"
+        aria-label={t("editor.alignCenter")}
       >
         <AlignCenter
           size={18}
@@ -197,7 +199,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right");
         }}
         className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed mr-0.5"
-        aria-label="Right Align"
+        aria-label={t("editor.alignRight")}
       >
         <AlignRight
           size={18}
@@ -209,7 +211,7 @@ export default function ToolbarPlugin() {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "justify");
         }}
         className="flex border-0 bg-none rounded-[10px] p-2 cursor-pointer items-center hover:bg-gray-200 disabled:cursor-not-allowed"
-        aria-label="Justify Align"
+        aria-label={t("editor.alignJustify")}
       >
         <AlignJustify
           size={18}

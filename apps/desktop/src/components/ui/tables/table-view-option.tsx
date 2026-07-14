@@ -21,7 +21,7 @@ export function TableViewOptions<Tdata>({ table }: TableViewOptionsProps<Tdata>)
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          aria-label="Toggle columns"
+          aria-label={t("table.toggleColumns")}
           className="hidden h-8 lg:flex focus-visible:ring-0 focus-visible:ring-offset-0"
           size="sm"
           variant="outline"

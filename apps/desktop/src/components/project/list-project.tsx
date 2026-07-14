@@ -55,7 +55,7 @@ export function ListProject() {
         <Card className="p-3 flex w-1/4">
           <div className="justify-between w-full flex items-center">
             <div>
-              <p className="text-sm text-gray-600">Projets totaux</p>
+              <p className="text-sm text-gray-600">{t("stats.totalProjects")}</p>
               <p className="text-3xl font-bold text-gray-900">{data?.body.total}</p>
             </div>
             <FolderOpen className="w-8 h-8 text-blue-500" />
@@ -64,7 +64,7 @@ export function ListProject() {
         <Card className="p-3 flex w-1/4">
           <div className="justify-between w-full flex items-center">
             <div>
-              <p className="text-sm text-gray-600">Mots écrits</p>
+              <p className="text-sm text-gray-600">{t("stats.writtenWords")}</p>
               <p className="text-3xl font-bold text-gray-900">{totalWordCount}</p>
             </div>
             <BookOpen className="w-8 h-8 text-green-500" />
@@ -73,7 +73,7 @@ export function ListProject() {
         <Card className="p-3 flex w-1/4">
           <div className="justify-between w-full flex items-center">
             <div>
-              <p className="text-sm text-gray-600">En cours</p>
+              <p className="text-sm text-gray-600">{t("status.writing")}</p>
               <p className="text-3xl font-bold text-gray-900">{activeProjects}</p>
             </div>
             <Edit3 className="w-8 h-8 text-orange-500" />
@@ -82,7 +82,7 @@ export function ListProject() {
         <Card className="p-3 flex w-1/4">
           <div className="justify-between w-full flex items-center">
             <div>
-              <p className="text-sm text-gray-600">Terminés</p>
+              <p className="text-sm text-gray-600">{t("status.completed")}</p>
               <p className="text-3xl font-bold text-gray-900">{completedProjects}</p>
             </div>
             <Star className="w-8 h-8 text-purple-500" />

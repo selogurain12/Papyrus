@@ -223,7 +223,11 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                 <FormItem>
                   <FormLabel>{t("fields.link")}</FormLabel>
                   <FormControl>
-                    <Input {...field} value={field.value ?? ""} placeholder="https://..." />
+                    <Input
+                      {...field}
+                      value={field.value ?? ""}
+                      placeholder={t("placeholders.link")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -237,7 +241,11 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                 <FormItem>
                   <FormLabel>{t("fields.sources")}</FormLabel>
                   <FormControl>
-                    <Input {...field} value={field.value ?? ""} placeholder="Ex: Le Monde" />
+                    <Input
+                      {...field}
+                      value={field.value ?? ""}
+                      placeholder={t("placeholders.sources")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -17,9 +17,10 @@
   "placeholders": {
     "description": "Resumo ou nota de enquadramento",
     "note": "Nota interna",
-    "sources": "Exemplo: Le Monde, Wikipédia",
+    "sources": "Ex.: Le Monde",
     "tag": "Adicionar uma etiqueta",
-    "title": "Exemplo: estudo de mercado Paris 2026"
+    "title": "Exemplo: estudo de mercado Paris 2026",
+    "link": "https://..."
   },
   "sections": {
     "details": "Detalhes",

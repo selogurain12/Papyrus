@@ -1,8 +1,31 @@
-version: "3.1"
-
 services:
+    api:
+        build:
+            context: ../..
+            dockerfile: apps/apii/Dockerfile
+        restart: always
+        environment:
+            NODE_ENV: production
+            PORT: 3000
+            DBHOST: postgres
+            PGPORT: 5432
+            PGDATABASE: ${PGDATABASE}
+            PGUSER: ${PGUSER}
+            PGPASSWORD: ${PGPASSWORD}
+            JWT_SECRET: ${JWT_SECRET}
+            AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}
+            AWS_SECRET_KEY: ${AWS_SECRET_KEY}
+            AWS_REGION: ${AWS_REGION}
+            AWS_BUCKET: ${AWS_BUCKET}
+            DB_SCHEMA_MODE: sync
+        ports:
+            - "3000:3000"
+        depends_on:
+            postgres:
+                condition: service_healthy
+
     postgres:
-        image: postgres:latest
+        image: postgres:16
         restart: always
         environment:
             POSTGRES_DB: ${PGDATABASE}
@@ -11,7 +34,12 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            - ./data:/var/lib/postgresql/data
+            - postgres-data:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U ${PGUSER} -d ${PGDATABASE}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
 
     pgadmin:
         image: dpage/pgadmin4
@@ -23,3 +51,6 @@ services:
             - "5050:80"
         depends_on:
             - postgres
+
+volumes:
+    postgres-data:

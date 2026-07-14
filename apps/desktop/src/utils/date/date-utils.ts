@@ -87,14 +87,13 @@ export function format(
   format: string,
   options?: { locale?: Locale }
 ): string {
-  const date: Date = zonedDateTime.toDate();
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
-  const weekday = date.getDay();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
-  const second = date.getSeconds();
+  const year = zonedDateTime.year;
+  const month = zonedDateTime.month - 1;
+  const day = zonedDateTime.day;
+  const weekday = new Date(Date.UTC(year, month, day)).getUTCDay();
+  const hour = zonedDateTime.hour;
+  const minute = zonedDateTime.minute;
+  const second = zonedDateTime.second;
 
   const locale = options?.locale ?? localeFr;
 

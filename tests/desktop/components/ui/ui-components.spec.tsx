@@ -5,6 +5,18 @@ import type { ColorType } from "@papyrus/source";
 
 import { Button } from "../../../../apps/desktop/src/components/ui/button";
 import { ColorPicker } from "../../../../apps/desktop/src/components/ui/color-picker";
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+} from "../../../../apps/desktop/src/components/ui/field";
 import { Input } from "../../../../apps/desktop/src/components/ui/input";
 import { Select, SelectValue } from "../../../../apps/desktop/src/components/ui/selects/select";
 import { SelectContent } from "../../../../apps/desktop/src/components/ui/selects/select-content";
@@ -113,5 +125,54 @@ describe("UI components", () => {
     await user.click(await screen.findByRole("option", { name: "Heures" }));
 
     expect(screen.getByRole("combobox", { name: "Unite" })).toHaveTextContent("Heures");
+  });
+
+  it("renders grouped field content and separator labels", () => {
+    render(
+      <FieldSet>
+        <FieldLegend variant="label">Informations</FieldLegend>
+        <FieldGroup>
+          <Field orientation="horizontal">
+            <Input id="project-title" />
+            <FieldContent>
+              <FieldLabel htmlFor="project-title">Titre</FieldLabel>
+              <FieldTitle>Nom affiché</FieldTitle>
+              <FieldDescription>Visible dans la sidebar.</FieldDescription>
+            </FieldContent>
+          </Field>
+          <FieldSeparator>Ou</FieldSeparator>
+        </FieldGroup>
+      </FieldSet>
+    );
+
+    const field = screen.getAllByRole("group").find((element) => element.dataset.slot === "field");
+
+    expect(screen.getByText("Informations")).toHaveAttribute("data-variant", "label");
+    expect(field).toHaveAttribute("data-orientation", "horizontal");
+    expect(screen.getByText("Titre")).toHaveAttribute("data-slot", "field-label");
+    expect(screen.getByText("Nom affiché")).toHaveAttribute("data-slot", "field-label");
+    expect(screen.getByText("Visible dans la sidebar.")).toHaveAttribute(
+      "data-slot",
+      "field-description"
+    );
+    expect(screen.getByText("Ou")).toHaveAttribute("data-slot", "field-separator-content");
+  });
+
+  it("renders unique field validation errors and custom children", () => {
+    const errors = [
+      { message: "Titre requis" },
+      { message: "Titre requis" },
+      { message: "Trop court" },
+    ];
+
+    const { rerender } = render(<FieldError errors={errors} />);
+
+    expect(screen.getByRole("alert")).toHaveTextContent("Titre requis");
+    expect(screen.getByRole("alert")).toHaveTextContent("Trop court");
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
+
+    rerender(<FieldError>Message personnalisé</FieldError>);
+
+    expect(screen.getByRole("alert")).toHaveTextContent("Message personnalisé");
   });
 });

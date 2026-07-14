@@ -110,9 +110,9 @@ export function EventTimeline({
         </div>
 
         <div className="flex flex-col gap-2 md:gap-zoom-2 items-end">
-          <p className="flex text-xs md:text-zoom-xs text-gray-500">
-            <Calendar className="size-4" />{" "}
+          <p className="flex text-xs md:text-zoom-xs text-gray-500 gap-1 items-center">
             {format(parseZonedDateTime(currentEvent.eventDate), "HHhmm le dd MMMM yyyy")}
+            <Calendar className="size-4" />
           </p>
         </div>
         <div

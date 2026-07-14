@@ -19,7 +19,7 @@ import { FormControl } from "../../ui/forms/form-control";
 import { Input } from "../../ui/input";
 import { FormMessage } from "../../ui/forms/form-message";
 import { Textarea } from "../../ui/textarea";
-import { genre, languageOptions, TypeOption } from "../../../utils/value-for-select";
+import { genre, languageOptions, statusOptions, TypeOption } from "../../../utils/value-for-select";
 import { SingleSelector } from "../../ui/single-select";
 import { BookOpen, Target } from "lucide-react";
 import { DatePicker } from "../../ui/date-picker";
@@ -219,6 +219,32 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
               <Target className="w-5 h-5 mr-2 text-green-500" />
               {t("sections.goals")}
             </h2>
+
+            <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <FormItem className="flex flex-col items-start">
+                  <FormLabel htmlFor="status">Status</FormLabel>
+                  <FormControl>
+                    <SingleSelector<TypeOption>
+                      {...field}
+                      customDisplay={(item: TypeOption) => item.label}
+                      customLabel={(item: TypeOption) => (
+                        <span className="font-medium">{item.label}</span>
+                      )}
+                      value={statusOptions.find((status) => status.id === field.value)}
+                      onChange={(value) => {
+                        field.onChange(value?.id ?? "");
+                      }}
+                      placeholder="Status du projet"
+                      data={statusOptions}
+                    />
+                  </FormControl>
+                  <FormMessage className="mt-1" />
+                </FormItem>
+              )}
+            />
 
             <FormField
               control={form.control}

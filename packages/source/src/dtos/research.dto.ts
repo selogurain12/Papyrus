@@ -6,11 +6,11 @@ import { filterSchema } from "./filter.dto";
 export const createResearchSchema = z.object({
   title: z.string().min(1).max(100),
   type: z.enum(reasearchTypes),
-  sources: z.string().min(1).max(1000).nullable(),
+  sources: z.string().min(1).max(1000).nullable().optional(),
   tag: z.string().array().nullable(),
-  note: z.string().min(1).max(1000).nullable(),
+  note: z.string().min(1).max(1000).nullable().optional(),
   description: z.string().min(1).max(1000).nullable(),
-  link: z.string().min(1).max(1000).nullable(),
+  link: z.string().min(1).max(1000).nullable().optional(),
   project: z.lazy(() => projectSchema),
 });
 

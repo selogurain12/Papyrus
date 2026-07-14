@@ -12,7 +12,7 @@ export const createChapterSchema = z.object({
   wordCount: z.number().default(0),
   wordGoal: z.number().default(500),
   project: z.lazy(() => projectSchema),
-  part: z.lazy(() => partSchema),
+  part: z.lazy(() => partSchema).optional(),
 });
 
 export const chapterSchema = createChapterSchema.extend({

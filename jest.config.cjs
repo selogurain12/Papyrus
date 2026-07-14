@@ -1,0 +1,139 @@
+module.exports = {
+  collectCoverage: true,
+  coverageDirectory: "coverage",
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    ".*/apps/apii/src/modules/.*/.*\\.controller\\.ts$",
+    ".*/apps/apii/src/modules/.*/.*\\.entity\\.ts$",
+    ".*/apps/apii/src/modules/.*/.*\\.mapper\\.ts$",
+    ".*/apps/apii/src/modules/.*/.*\\.module\\.ts$",
+    ".*/apps/apii/src/modules/.*/.*\\.service\\.ts$",
+    "\\.controller\\.ts$",
+    "\\.entity\\.ts$",
+    "\\.mapper\\.ts$",
+    "\\.module\\.ts$",
+    ".*/apps/apii/src/utils/zoned-date-time\\.ts$",
+    ".*/packages/source/src/contracts/.*",
+    ".*/packages/source/src/index\\.ts$",
+    ".*/packages/source/src/query-client\\.ts$",
+    ".*/apps/desktop/src/local-db/renderer\\.ts$",
+    ".*/apps/desktop/src/test/.*",
+    ".*/tests/.*",
+    "apps/apii/src/utils/zoned-date-time\\.ts$",
+    "packages/source/src/contracts/.*",
+    "packages/source/src/index\\.ts$",
+    "packages/source/src/query-client\\.ts$",
+  ],
+  coverageReporters: ["text", "lcov"],
+  coverageThreshold: {
+    global: {
+      lines: 90,
+      statements: 90,
+    },
+  },
+  projects: [
+    {
+      displayName: "source",
+      coveragePathIgnorePatterns: [
+        "/node_modules/",
+        "packages/source/src/contracts/",
+        "packages/source/src/index.ts",
+        "packages/source/src/query-client.ts",
+      ],
+      moduleNameMapper: {
+        "^@papyrus/source$": "<rootDir>/packages/source/src/index.ts",
+      },
+      preset: "ts-jest",
+      roots: ["<rootDir>/packages/source/src", "<rootDir>/tests/source"],
+      testEnvironment: "node",
+      testMatch: ["<rootDir>/tests/source/**/*.spec.ts"],
+      transform: {
+        "^.+\\.ts$": ["ts-jest", { tsconfig: "<rootDir>/packages/source/tsconfig.spec.json" }],
+      },
+      collectCoverageFrom: [
+        "<rootDir>/packages/source/src/dtos/**/*.ts",
+        "<rootDir>/packages/source/src/utils/**/*.ts",
+        "!<rootDir>/tests/source/**/*.spec.ts",
+        "!<rootDir>/packages/source/src/dtos/api-response.dto.ts",
+        "!<rootDir>/packages/source/src/dtos/list-result.dto.ts",
+      ],
+    },
+    {
+      displayName: "apii",
+      coveragePathIgnorePatterns: [
+        "/node_modules/",
+        "\\.controller\\.ts$",
+        "\\.entity\\.ts$",
+        "\\.mapper\\.ts$",
+        "\\.module\\.ts$",
+        "\\.service\\.ts$",
+        "apps/apii/src/utils/zoned-date-time.ts",
+      ],
+      moduleNameMapper: {
+        "^@papyrus/source$": "<rootDir>/packages/source/src/index.ts",
+      },
+      preset: "ts-jest",
+      roots: ["<rootDir>/apps/apii/src", "<rootDir>/tests/apii"],
+      testEnvironment: "node",
+      testMatch: ["<rootDir>/tests/apii/**/*.spec.ts"],
+      transform: {
+        "^.+\\.ts$": [
+          "ts-jest",
+          {
+            diagnostics: {
+              ignoreCodes: [151002],
+            },
+            tsconfig: "<rootDir>/apps/apii/tsconfig.spec.json",
+          },
+        ],
+      },
+      collectCoverageFrom: [
+        "!<rootDir>/tests/apii/**/*.spec.ts",
+      ],
+    },
+    {
+      displayName: "desktop",
+      coveragePathIgnorePatterns: [
+        "/node_modules/",
+        "packages/source/src/contracts/",
+        "packages/source/src/index.ts",
+        "packages/source/src/query-client.ts",
+        "packages/source/src/",
+        ".*/packages/source/src/.*",
+      ],
+      moduleNameMapper: {
+        "^@papyrus/source$": "<rootDir>/tests/desktop/support/source-mock.ts",
+      },
+      moduleDirectories: ["node_modules", "<rootDir>/apps/desktop/node_modules"],
+      preset: "ts-jest",
+      roots: ["<rootDir>/apps/desktop/src", "<rootDir>/tests/desktop"],
+      setupFilesAfterEnv: ["<rootDir>/tests/desktop/support/setup.ts"],
+      testEnvironment: "jsdom",
+      testMatch: ["<rootDir>/tests/desktop/**/*.spec.ts", "<rootDir>/tests/desktop/**/*.spec.tsx"],
+      transform: {
+        "^.+\\.ts$": [
+          "ts-jest",
+          {
+            diagnostics: {
+              ignoreCodes: [151002],
+            },
+            tsconfig: "<rootDir>/apps/desktop/tsconfig.spec.json",
+          },
+        ],
+      },
+      collectCoverageFrom: [
+        "<rootDir>/apps/desktop/src/local-db/offline-entity-store.ts",
+        "<rootDir>/apps/desktop/src/utils/date/date-utils.ts",
+        "<rootDir>/apps/desktop/src/utils/files/file-link.ts",
+        "<rootDir>/apps/desktop/src/utils/lexical-content.ts",
+        "<rootDir>/apps/desktop/src/utils/local-storage-base-prefix-variable.ts",
+        "<rootDir>/apps/desktop/src/utils/shortcut-events.ts",
+        "<rootDir>/apps/desktop/src/utils/shortcut-key.ts",
+        "<rootDir>/apps/desktop/src/utils/time-picker-utils.ts",
+        "!<rootDir>/tests/desktop/**/*.spec.ts",
+        "!<rootDir>/tests/desktop/**/*.spec.tsx",
+        "!<rootDir>/tests/desktop/support/**",
+      ],
+    },
+  ],
+};

@@ -11,7 +11,13 @@ export function isZonedIso8601(dateString: string) {
 
 export function isFilterDateString(dateString: string) {
   try {
-    fromDate(new Date(dateString), "UTC");
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) {
+      return false;
+    }
+
+    fromDate(date, "UTC");
     return true;
   } catch {
     return false;

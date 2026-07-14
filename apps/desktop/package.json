@@ -11,7 +11,8 @@
     "publish": "electron-forge publish",
     "rebuild:natives": "node scripts/rebuild-electron-natives.cjs",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "jest --selectProjects desktop"
   },
   "keywords": [
     "electron",

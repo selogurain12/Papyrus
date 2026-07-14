@@ -82,9 +82,9 @@ export class ProjectMapper {
     }
     return new ProjectEntity({
       ...createDto,
-      targetWordCount: createDto.targetWordCount ?? 10000,
-      currentWordCount: createDto.currentWordCount ?? 0,
-      status: createDto.status ?? "planning",
+      targetWordCount: createDto.targetWordCount,
+      currentWordCount: createDto.currentWordCount,
+      status: createDto.status,
       deadline: createDto.deadline
         ? parseZonedDateTime(createDto.deadline).set({ second: 0, millisecond: 0 })
         : null,

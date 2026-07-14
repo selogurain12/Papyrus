@@ -20,15 +20,15 @@ export const createProjectSchema = z.object({
     .number()
     .int()
     .min(0, "Le nombre de mots cible doit être un entier positif")
-    .default(100000)
-    .optional(),
+    .optional()
+    .default(100000),
   currentWordCount: z
     .number()
     .int()
     .min(0, "Le nombre de mots actuel doit être un entier positif")
-    .default(0)
-    .optional(),
-  status: z.enum(projectStatusTypes).default("planning").optional(),
+    .optional()
+    .default(0),
+  status: z.enum(projectStatusTypes).optional().default("planning"),
   author: z
     .string()
     .min(1, "L'auteur du projet est requis")

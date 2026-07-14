@@ -41,6 +41,8 @@
   "exclude": [
     "node_modules",
     "dist",
-    ".vite"
+    ".vite",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
   ]
 }

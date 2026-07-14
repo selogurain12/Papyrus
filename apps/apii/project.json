@@ -17,15 +17,21 @@
       }
     },
     "migration": {
-    "executor": "nx:run-commands",
-    "options": {
-      "command": "yarn mikro-orm migration:create --config apps/apii/src/mikro-orm.config.ts"
-    }
-  },
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn mikro-orm migration:create --config apps/apii/src/mikro-orm.config.ts"
+      }
+    },
     "migrate:up": {
       "executor": "nx:run-commands",
       "options": {
         "command": "yarn mikro-orm migration:up --config apps/apii/src/mikro-orm.config.ts"
+      }
+    },
+    "goal-status:update": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/apii && TS_NODE_PROJECT=tsconfig.app.json yarn ts-node -r tsconfig-paths/register src/scripts/update-goal-statuses.ts"
       }
     },
     "typecheck": {
@@ -38,6 +44,12 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "eslint ./apps/apii"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --selectProjects apii"
       }
     }
   }

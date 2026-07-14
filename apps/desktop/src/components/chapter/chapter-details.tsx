@@ -50,8 +50,8 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }: ChapterDe
   };
 
   return (
-    <div className="overflow-y-auto max-h-[90vh] p-4">
-      <div className="min-w-0 bg-white border border-gray-300 rounded-3xl p-6 shadow-sm">
+    <div className="overflow-y-auto">
+      <div className="min-w-0 bg-white border border-gray-300 rounded-lg p-6 shadow-sm">
         <div className="flex justify-between items-start">
           <div className="flex flex-1">
             <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mr-4">
@@ -92,9 +92,7 @@ export function ChapterDetail({ chapter, onEdit, onEditor, onDelete }: ChapterDe
           </div>
         </div>
 
-        <div className="h-px bg-gray-200 my-6" />
-
-        <div className="mb-6">
+        <div className="mb-6 pt-4">
           <h2 className="text-lg font-bold text-gray-900 mb-3">{t("summary")}</h2>
 
           <p className="whitespace-pre-wrap wrap-break-word text-gray-600 leading-7">

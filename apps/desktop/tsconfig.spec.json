@@ -1,9 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "../..",
     "module": "Node16",
     "moduleResolution": "Node16",
     "noEmit": true,
+    "paths": {
+      "@papyrus/source": ["packages/source/src/index.ts"]
+    },
     "types": ["node", "jest"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "../../tests/desktop/**/*.ts", "../../tests/desktop/**/*.tsx"]

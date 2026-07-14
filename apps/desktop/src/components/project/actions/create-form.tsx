@@ -42,7 +42,7 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
     toast.error(t("common:notConnected"));
     return null;
   }
-  const form = useForm<CreateProjectDto>({
+  const form = useForm({
     resolver: zodResolver(createProjectSchema),
     defaultValues: {
       currentWordCount: 0,

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
 import { useNavigate } from "@tanstack/react-router";
@@ -52,6 +52,11 @@ export function Login() {
   function onSubmit(data: LoginDto) {
     mutate({ body: data });
   }
+
+  function handleBack() {
+    void navigate({ to: indexRoute.to });
+  }
+
   return (
     <div className="h-full flex flex-col items-center justify-center">
       <div className="mb-8 text-center items-center justify-items-center">
@@ -62,6 +67,15 @@ export function Login() {
         <p className="text-secondary-500">{t("subtitle")}</p>
       </div>
       <Card className="w-96 p-6">
+        <Button
+          type="button"
+          variant="ghost"
+          className="mb-4 px-0 text-secondary-600 hover:text-secondary-900"
+          onClick={handleBack}
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          {t("back")}
+        </Button>
         <h2 className="text-2xl font-bold mb-4 text-center">{t("title")}</h2>
         <Form {...form}>
           <form onReset={() => form.reset()}>

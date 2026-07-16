@@ -6,7 +6,7 @@
   },
   "fields": {
     "chapterNumber": "Chapter number",
-    "part": "Part",
+    "part": "Part (optional)",
     "partPlaceholder": "Select a part",
     "resume": "Summary",
     "status": "Status",

@@ -6,7 +6,7 @@
   },
   "fields": {
     "chapterNumber": "챕터 번호",
-    "part": "파트",
+    "part": "파트 (선택 사항)",
     "partPlaceholder": "파트 선택",
     "resume": "요약",
     "status": "상태",

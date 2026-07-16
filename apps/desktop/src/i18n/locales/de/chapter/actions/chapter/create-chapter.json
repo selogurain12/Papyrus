@@ -6,7 +6,7 @@
   },
   "fields": {
     "chapterNumber": "Kapitelnummer",
-    "part": "Teil",
+    "part": "Teil (optional)",
     "partPlaceholder": "Teil auswählen",
     "resume": "Zusammenfassung",
     "status": "Status",

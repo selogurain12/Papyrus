@@ -6,7 +6,7 @@
   },
   "fields": {
     "chapterNumber": "Číslo kapitoly",
-    "part": "Část",
+    "part": "Část (volitelné)",
     "partPlaceholder": "Vybrat část",
     "resume": "Shrnutí",
     "status": "Stav",

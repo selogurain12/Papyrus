@@ -6,7 +6,7 @@
   },
   "fields": {
     "chapterNumber": "章节编号",
-    "part": "部分",
+    "part": "部分（可选）",
     "partPlaceholder": "选择一个部分",
     "resume": "摘要",
     "status": "状态",

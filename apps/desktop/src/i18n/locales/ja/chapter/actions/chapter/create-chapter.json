@@ -6,7 +6,7 @@
   },
   "fields": {
     "chapterNumber": "章番号",
-    "part": "部",
+    "part": "部（任意）",
     "partPlaceholder": "部を選択",
     "resume": "概要",
     "status": "ステータス",

@@ -6,5 +6,17 @@
   },
   "labels": {
     "importance": "중요도: {{importance}}"
+  },
+  "types": {
+    "artifact": "인공물",
+    "clothing": "의류",
+    "equipment": "장비",
+    "furniture": "가구",
+    "jewelry": "보석류",
+    "paper": "서류",
+    "technology": "기술",
+    "tool": "도구",
+    "vehicle": "차량",
+    "weapon": "무기"
   }
 }

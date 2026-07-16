@@ -43,7 +43,7 @@ export function ObjectCard({
           </h3>
 
           <p className="text-sm text-muted-foreground">
-            {Array.isArray(object.type) ? object.type.join(" • ") : object.type}
+            {t(`types.${object.type}`, { defaultValue: object.type })}
           </p>
 
           <Badge

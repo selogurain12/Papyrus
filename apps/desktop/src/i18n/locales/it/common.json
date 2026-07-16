@@ -126,5 +126,7 @@
     "previousSlide": "Slide precedente",
     "nextSlide": "Slide successiva"
   },
-  "menu.goals": "Obiettivi"
+  "menu.goals": "Obiettivi",
+  "file.unsupportedType": "Formato file non supportato. Formati accettati: immagini, PDF, EPUB, video e PowerPoint.",
+  "file.acceptedFormats": "Formati accettati: immagini, PDF, EPUB, video, PowerPoint"
 }

@@ -126,5 +126,7 @@
     "previousSlide": "Předchozí snímek",
     "nextSlide": "Další snímek"
   },
-  "menu.goals": "Cíle"
+  "menu.goals": "Cíle",
+  "file.unsupportedType": "Nepodporovaný formát souboru. Povolené formáty: obrázky, PDF, EPUB, videa a PowerPoint.",
+  "file.acceptedFormats": "Povolené formáty: obrázky, PDF, EPUB, videa, PowerPoint"
 }

@@ -126,5 +126,7 @@
     "previousSlide": "前のスライド",
     "nextSlide": "次のスライド"
   },
-  "menu.goals": "目標"
+  "menu.goals": "目標",
+  "file.unsupportedType": "サポートされていないファイル形式です。対応形式: 画像、PDF、EPUB、動画、PowerPoint。",
+  "file.acceptedFormats": "対応形式: 画像、PDF、EPUB、動画、PowerPoint"
 }

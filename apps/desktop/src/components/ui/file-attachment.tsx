@@ -12,11 +12,42 @@ type FileUploadProps = {
   maxSize?: number;
 };
 
+const DEFAULT_ACCEPTED_FILE_TYPES = [
+  "image/*",
+  "application/pdf",
+  "application/epub+zip",
+  "video/*",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  ".epub",
+  ".ppt",
+  ".pptx",
+].join(",");
+
+const ACCEPTED_FILE_EXTENSIONS = [".epub", ".ppt", ".pptx"];
+const ACCEPTED_FILE_MIME_TYPES = [
+  "application/pdf",
+  "application/epub+zip",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+];
+
+function isAcceptedFile(file: File): boolean {
+  const fileName = file.name.toLowerCase();
+
+  return (
+    file.type.startsWith("image/") ||
+    file.type.startsWith("video/") ||
+    ACCEPTED_FILE_MIME_TYPES.includes(file.type) ||
+    ACCEPTED_FILE_EXTENSIONS.some((extension) => fileName.endsWith(extension))
+  );
+}
+
 export function FileUpload({
   name = "file",
   label,
   onFileSelected,
-  accept,
+  accept = DEFAULT_ACCEPTED_FILE_TYPES,
   maxSize = 10,
 }: FileUploadProps) {
   const { t } = useTranslation();
@@ -32,6 +63,10 @@ export function FileUpload({
   const handleFileSelection = (file: File | null) => {
     if (file && maxSize && file.size > maxSize * 1024 * 1024) {
       alert(t("fileTooLarge", { maxSize }));
+      return;
+    }
+    if (file && accept === DEFAULT_ACCEPTED_FILE_TYPES && !isAcceptedFile(file)) {
+      alert(t("file.unsupportedType"));
       return;
     }
     setSelectedFile(file);
@@ -105,6 +140,7 @@ export function FileUpload({
             <span className="font-medium text-blue-600">{t("file.select")}</span> {t("file.drop")}
           </p>
           <p className="text-xs text-gray-500">{t("file.maxSize", { maxSize })}</p>
+          <p className="text-xs text-gray-500">{t("file.acceptedFormats")}</p>
         </div>
       </div>
 

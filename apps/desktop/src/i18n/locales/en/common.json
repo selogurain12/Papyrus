@@ -114,5 +114,7 @@
   },
   "table": {
     "toggleColumns": "Toggle columns"
-  }
+  },
+  "file.unsupportedType": "Unsupported file type. Accepted formats: images, PDF, EPUB, videos and PowerPoint.",
+  "file.acceptedFormats": "Accepted formats: images, PDF, EPUB, videos, PowerPoint"
 }

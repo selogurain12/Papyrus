@@ -126,5 +126,7 @@
     "previousSlide": "이전 슬라이드",
     "nextSlide": "다음 슬라이드"
   },
-  "menu.goals": "목표"
+  "menu.goals": "목표",
+  "file.unsupportedType": "지원되지 않는 파일 형식입니다. 허용 형식: 이미지, PDF, EPUB, 동영상, PowerPoint.",
+  "file.acceptedFormats": "허용 형식: 이미지, PDF, EPUB, 동영상, PowerPoint"
 }

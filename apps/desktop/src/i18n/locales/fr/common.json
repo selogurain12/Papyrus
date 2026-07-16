@@ -114,5 +114,7 @@
   },
   "table": {
     "toggleColumns": "Afficher les colonnes"
-  }
+  },
+  "file.unsupportedType": "Format non pris en charge. Formats acceptés : images, PDF, EPUB, vidéos et PowerPoint.",
+  "file.acceptedFormats": "Formats acceptés : images, PDF, EPUB, vidéos, PowerPoint"
 }

@@ -126,5 +126,7 @@
     "previousSlide": "Предыдущий слайд",
     "nextSlide": "Следующий слайд"
   },
-  "menu.goals": "Цели"
+  "menu.goals": "Цели",
+  "file.unsupportedType": "Неподдерживаемый формат файла. Допустимые форматы: изображения, PDF, EPUB, видео и PowerPoint.",
+  "file.acceptedFormats": "Допустимые форматы: изображения, PDF, EPUB, видео, PowerPoint"
 }

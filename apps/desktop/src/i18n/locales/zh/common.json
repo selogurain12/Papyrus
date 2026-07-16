@@ -126,5 +126,7 @@
     "previousSlide": "上一张幻灯片",
     "nextSlide": "下一张幻灯片"
   },
-  "menu.goals": "目标"
+  "menu.goals": "目标",
+  "file.unsupportedType": "不支持的文件格式。接受的格式：图片、PDF、EPUB、视频和 PowerPoint。",
+  "file.acceptedFormats": "接受的格式：图片、PDF、EPUB、视频、PowerPoint"
 }

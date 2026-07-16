@@ -355,7 +355,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             {...field}
                             id="age"
                             type="number"
-                            value={field.value ?? 0}
+                            value={field.value ?? ""}
                             onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
@@ -455,7 +455,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             {...field}
                             id="height"
                             type="number"
-                            value={field.value ?? 0}
+                            value={field.value ?? ""}
                             onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
@@ -474,7 +474,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             {...field}
                             id="weight"
                             type="number"
-                            value={field.value ?? 0}
+                            value={field.value ?? ""}
                             onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>

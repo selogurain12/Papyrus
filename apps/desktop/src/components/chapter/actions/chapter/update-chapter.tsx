@@ -216,7 +216,7 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
                     {...field}
                     id="age"
                     type="number"
-                    value={field.value ?? 0}
+                    value={field.value}
                     onChange={(event) => field.onChange(Number(event.target.value) || null)}
                   />
                 </FormControl>
@@ -235,7 +235,7 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
                     {...field}
                     id="age"
                     type="number"
-                    value={field.value ?? 0}
+                    value={field.value}
                     onChange={(event) => field.onChange(Number(event.target.value) || null)}
                   />
                 </FormControl>

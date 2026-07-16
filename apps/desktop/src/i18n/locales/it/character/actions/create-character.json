@@ -77,7 +77,7 @@
     "development": "SVILUPPO",
     "maritalStatus": "STATO CIVILE",
     "notes": "NOTE",
-    "physical": "FISICO",
+    "physical": "DESCRIZIONE FISICA",
     "profile": "PROFILO",
     "trait": "TRATTI"
   }

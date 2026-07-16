@@ -47,7 +47,7 @@
     "development": "EVOLUCIÓN",
     "maritalStatus": "ESTADO CIVIL",
     "other": "OTRO",
-    "physical": "FÍSICO",
+    "physical": "DESCRIPCIÓN FÍSICA",
     "profile": "PERFIL",
     "trait": "CARÁCTER"
   },

@@ -47,7 +47,7 @@
     "development": "ROZVOJ",
     "maritalStatus": "OBČANSKÝ STAV",
     "other": "OSTATNÍ",
-    "physical": "FYZIKÁLNÍ",
+    "physical": "FYZICKÝ POPIS",
     "profile": "PROFIL",
     "trait": "VLASTNOSTI"
   },

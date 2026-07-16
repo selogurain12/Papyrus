@@ -238,25 +238,29 @@ export function DashboardPage() {
             <Target className="w-5 h-5 text-muted-foreground" />
           </CardHeader>
           <CardContent className="space-y-4">
-            {goals.map((goal) => (
-              <div key={goal.id}>
-                <div className="flex justify-between gap-3 text-sm mb-2">
-                  <span className="text-foreground font-medium">{goal.title}</span>
-                  <span className="text-muted-foreground">
-                    {Math.min((goal.current / goal.goals) * 100, 100)}%
-                  </span>
+            {goals?.length === 0 ? (
+              <p className="text-sm text-muted-foreground">Pas d'objectifs en cours</p>
+            ) : (
+              goals.map((goal) => (
+                <div key={goal.id}>
+                  <div className="flex justify-between gap-3 text-sm mb-2">
+                    <span className="text-foreground font-medium">{goal.title}</span>
+                    <span className="text-muted-foreground">
+                      {Math.min((goal.current / goal.goals) * 100, 100)}%
+                    </span>
+                  </div>
+                  <Progress
+                    value={Math.min((goal.current / goal.goals) * 100, 100)}
+                    className="mb-1"
+                  />
+                  {goal.deadline && (
+                    <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center">
+                      {format(parseZonedDateTime(goal.deadline), "dd MMMM yyyy")}
+                    </span>
+                  )}
                 </div>
-                <Progress
-                  value={Math.min((goal.current / goal.goals) * 100, 100)}
-                  className="mb-1"
-                />
-                {goal.deadline && (
-                  <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center">
-                    {format(parseZonedDateTime(goal.deadline), "dd MMMM yyyy")}
-                  </span>
-                )}
-              </div>
-            ))}
+              ))
+            )}
           </CardContent>
         </Card>
 

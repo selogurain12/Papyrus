@@ -41,5 +41,6 @@
   "streakDays_other": "{{count}} 日",
   "streakActive": "今日は進捗があります。この調子で続けましょう。",
   "streakInactive": "章を追加または更新して、執筆継続記録を始めましょう。",
-  "words": "単語"
+  "words": "単語",
+  "emptyGoals": "進行中の目標はありません"
 }

@@ -41,5 +41,6 @@
   "streakDays_other": "{{count}} dní",
   "streakActive": "Dnes jste pokročili. Pokračujte v tomto tempu.",
   "streakInactive": "Přidejte nebo aktualizujte kapitolu a spusťte sérii psaní.",
-  "words": "slov"
+  "words": "slov",
+  "emptyGoals": "Žádné probíhající cíle"
 }

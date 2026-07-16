@@ -239,7 +239,7 @@ export function DashboardPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             {goals?.length === 0 ? (
-              <p className="text-sm text-muted-foreground">Pas d'objectifs en cours</p>
+              <p className="text-sm text-muted-foreground">{t("emptyGoals")}</p>
             ) : (
               goals.map((goal) => (
                 <div key={goal.id}>

@@ -41,5 +41,6 @@
   "streakDays_other": "{{count}} 天",
   "streakActive": "你今天已经有进展了。继续保持。",
   "streakInactive": "添加或更新一个章节来开始写作连续记录。",
-  "words": "字"
+  "words": "字",
+  "emptyGoals": "暂无进行中的目标"
 }

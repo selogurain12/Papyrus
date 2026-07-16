@@ -41,5 +41,6 @@
   "streakDays_other": "{{count}}일",
   "streakActive": "오늘 진전이 있었습니다. 이 흐름을 이어가세요.",
   "streakInactive": "챕터를 추가하거나 업데이트해 쓰기 연속 기록을 시작하세요.",
-  "words": "단어"
+  "words": "단어",
+  "emptyGoals": "진행 중인 목표가 없습니다"
 }

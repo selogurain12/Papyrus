@@ -41,5 +41,6 @@
   "streakDays_other": "{{count}} dias",
   "streakActive": "Avançou hoje. Continue assim.",
   "streakInactive": "Adicione ou atualize um capítulo para iniciar a sua sequência de escrita.",
-  "words": "palavras"
+  "words": "palavras",
+  "emptyGoals": "Sem objetivos em curso"
 }

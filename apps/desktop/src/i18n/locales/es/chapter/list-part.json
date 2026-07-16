@@ -4,9 +4,13 @@
   "addPart": "Añadir parte",
   "addChapter": "Añadir capítulo",
   "overview": "Resumen",
-  "parts": "Partes",
-  "chapters": "Capítulos",
-  "words": "Palabras",
-  "chapterCount": "{{count}} capítulo(s)",
-  "withoutPart": "Capítulos sin parte"
+  "withoutPart": "Capítulos sin parte",
+  "parts_one": "Parte",
+  "parts_other": "Partes",
+  "chapters_one": "Capítulo",
+  "chapters_other": "Capítulos",
+  "chapterCount_one": "{{count}} capítulo",
+  "chapterCount_other": "{{count}} capítulos",
+  "words_one": "Palabra",
+  "words_other": "Palabras"
 }

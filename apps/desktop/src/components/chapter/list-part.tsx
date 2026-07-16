@@ -156,17 +156,23 @@ export function PartsList() {
           <div className="mt-4 flex w-full gap-4 pb-4">
             <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-purple-50">
               <span className="text-2xl font-bold text-pink-800">{cachedParts?.total ?? 0}</span>
-              <span className="text-sm font-medium text-gray-700">{t("parts")}</span>
+              <span className="text-sm font-medium text-gray-700">
+                {t("parts", { count: cachedParts?.total ?? 0 })}
+              </span>
             </div>
             <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-blue-50">
               <span className="text-2xl font-bold text-blue-600">{cachedChapters?.total ?? 0}</span>
-              <span className="text-sm font-medium text-gray-700">{t("chapters")}</span>
+              <span className="text-sm font-medium text-gray-700">
+                {t("chapters", { count: cachedChapters?.total ?? 0 })}
+              </span>
             </div>
             <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-emerald-50">
               <span className="text-2xl font-bold text-emerald-600">
                 {currentProject?.currentWordCount ?? 0}
               </span>
-              <span className="text-sm font-medium text-gray-700">{t("words")}</span>
+              <span className="text-sm font-medium text-gray-700">
+                {t("words", { count: currentProject?.currentWordCount ?? 0 })}
+              </span>
             </div>
           </div>
           {cachedParts?.data.map((part) => {

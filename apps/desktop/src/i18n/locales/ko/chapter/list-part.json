@@ -4,9 +4,13 @@
   "addPart": "파트 추가",
   "addChapter": "챕터 추가",
   "overview": "개요",
-  "parts": "파트",
-  "chapters": "챕터",
-  "words": "단어",
-  "chapterCount": "챕터 {{count}}개",
-  "withoutPart": "파트 없는 챕터"
+  "withoutPart": "파트 없는 챕터",
+  "parts_one": "파트",
+  "parts_other": "파트",
+  "chapters_one": "챕터",
+  "chapters_other": "챕터",
+  "chapterCount_one": "챕터 {{count}}개",
+  "chapterCount_other": "챕터 {{count}}개",
+  "words_one": "단어",
+  "words_other": "단어"
 }

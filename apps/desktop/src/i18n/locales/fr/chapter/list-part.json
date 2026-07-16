@@ -1,12 +1,16 @@
 {
   "addChapter": "Ajouter un chapitre",
   "addPart": "Ajouter une partie",
-  "chapterCount": "{{count}} chapitres",
-  "chapters": "Chapitres",
   "overview": "Vue d'ensemble",
-  "parts": "Parties",
   "subtitle": "Organisez vos parties et chapitres.",
   "title": "Structure du livre",
   "withoutPart": "Chapitres sans partie",
-  "words": "Mots"
+  "parts_one": "Partie",
+  "parts_other": "Parties",
+  "chapters_one": "Chapitre",
+  "chapters_other": "Chapitres",
+  "chapterCount_one": "{{count}} chapitre",
+  "chapterCount_other": "{{count}} chapitres",
+  "words_one": "Mot",
+  "words_other": "Mots"
 }

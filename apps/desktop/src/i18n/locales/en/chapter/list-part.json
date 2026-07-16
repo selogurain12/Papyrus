@@ -1,12 +1,16 @@
 {
   "addChapter": "Add a chapter",
   "addPart": "Add a part",
-  "chapterCount": "{{count}} chapters",
-  "chapters": "Chapters",
   "overview": "Overview",
-  "parts": "Parts",
   "subtitle": "Organize your parts and chapters.",
   "title": "Book structure",
   "withoutPart": "Chapters without a part",
-  "words": "Words"
+  "parts_one": "Part",
+  "parts_other": "Parts",
+  "chapters_one": "Chapter",
+  "chapters_other": "Chapters",
+  "chapterCount_one": "{{count}} chapter",
+  "chapterCount_other": "{{count}} chapters",
+  "words_one": "Word",
+  "words_other": "Words"
 }

@@ -4,9 +4,13 @@
   "addPart": "添加部分",
   "addChapter": "添加章节",
   "overview": "概览",
-  "parts": "部分",
-  "chapters": "章节",
-  "words": "字数",
-  "chapterCount": "{{count}} 个章节",
-  "withoutPart": "无部分章节"
+  "withoutPart": "无部分章节",
+  "parts_one": "部分",
+  "parts_other": "部分",
+  "chapters_one": "章节",
+  "chapters_other": "章节",
+  "chapterCount_one": "{{count}} 个章节",
+  "chapterCount_other": "{{count}} 个章节",
+  "words_one": "字数",
+  "words_other": "字数"
 }

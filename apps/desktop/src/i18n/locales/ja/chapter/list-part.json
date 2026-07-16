@@ -4,9 +4,13 @@
   "addPart": "部を追加",
   "addChapter": "章を追加",
   "overview": "概要",
-  "parts": "部",
-  "chapters": "章",
-  "words": "単語",
-  "chapterCount": "{{count}}章",
-  "withoutPart": "部に属さない章"
+  "withoutPart": "部に属さない章",
+  "parts_one": "部",
+  "parts_other": "部",
+  "chapters_one": "章",
+  "chapters_other": "章",
+  "chapterCount_one": "{{count}}章",
+  "chapterCount_other": "{{count}}章",
+  "words_one": "単語",
+  "words_other": "単語"
 }

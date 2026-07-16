@@ -4,9 +4,17 @@
   "addPart": "Přidat část",
   "addChapter": "Přidat kapitolu",
   "overview": "Přehled",
-  "parts": "Části",
-  "chapters": "Kapitoly",
-  "words": "Slova",
-  "chapterCount": "{{count}} kapitol",
-  "withoutPart": "Kapitoly bez části"
+  "withoutPart": "Kapitoly bez části",
+  "parts_one": "Část",
+  "parts_few": "Části",
+  "parts_other": "Částí",
+  "chapters_one": "Kapitola",
+  "chapters_few": "Kapitoly",
+  "chapters_other": "Kapitol",
+  "chapterCount_one": "{{count}} kapitola",
+  "chapterCount_few": "{{count}} kapitoly",
+  "chapterCount_other": "{{count}} kapitol",
+  "words_one": "Slovo",
+  "words_few": "Slova",
+  "words_other": "Slov"
 }

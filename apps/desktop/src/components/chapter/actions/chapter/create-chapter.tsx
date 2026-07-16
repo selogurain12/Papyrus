@@ -48,7 +48,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
     defaultValues: {
       project: currentProject,
       content: "",
-      resume: "",
+      resume: null,
       chapterNumber: 1,
       wordCount: 0,
       wordGoal: 500,

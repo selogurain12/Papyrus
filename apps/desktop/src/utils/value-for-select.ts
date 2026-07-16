@@ -72,15 +72,15 @@ export const typeOptions = [
 
 export const objectTypeOptions = [
   { id: "weapon", label: "Arme" },
-  { id: "vehicle", label: "Véhicule" },
   { id: "artifact", label: "Artefact" },
-  { id: "tool", label: "Outil" },
-  { id: "clothing", label: "Vêtement" },
   { id: "jewelry", label: "Bijou" },
-  { id: "furniture", label: "Meuble" },
-  { id: "technology", label: "Technologie" },
   { id: "paper", label: "Documents" },
   { id: "equipment", label: "Equipement" },
+  { id: "furniture", label: "Meuble" },
+  { id: "tool", label: "Outil" },
+  { id: "technology", label: "Technologie" },
+  { id: "vehicle", label: "Véhicule" },
+  { id: "clothing", label: "Vêtement" },
 ];
 
 export const statusPartOptions = [

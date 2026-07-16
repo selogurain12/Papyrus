@@ -1,4 +1,4 @@
-import { parseZonedDateTime } from "@internationalized/date";
+import { getLocalTimeZone, parseZonedDateTime } from "@internationalized/date";
 import {
   calculateDuration,
   convertZonedDateStringToSameLocalTimeInOtherTimeZone,
@@ -18,6 +18,7 @@ import {
   getDifferenceBetweenZonedDatesInSeconds,
   isHourPassed,
   isTimeBetween,
+  parseZonedDateTimeInLocalTimeZone,
 } from "../../../../apps/desktop/src/utils/date/date-utils";
 
 describe("date utils", () => {
@@ -69,6 +70,14 @@ describe("date utils", () => {
         "2026-07-14T10:15:00[Europe/Paris]"
       ).toString()
     ).toContain("2026-07-14T10:15:00");
+  });
+
+  it("converts a zoned date instant to the local timezone", () => {
+    const utcDate = parseZonedDateTime("2026-07-09T17:36:00[UTC]");
+    const localDate = parseZonedDateTimeInLocalTimeZone(utcDate.toString());
+
+    expect(localDate.timeZone).toBe(getLocalTimeZone());
+    expect(localDate.toDate().toISOString()).toBe(utcDate.toDate().toISOString());
   });
 
   it("converts days to weeks and computes age", () => {

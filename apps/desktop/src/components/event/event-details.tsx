@@ -3,8 +3,7 @@ import { Card } from "../ui/card";
 import { MapPin, Calendar } from "lucide-react";
 import { EventDto } from "@papyrus/source";
 import { Badge } from "../ui/badge";
-import { format } from "../../utils/date/date-utils";
-import { parseZonedDateTime } from "@internationalized/date";
+import { format, parseZonedDateTimeInLocalTimeZone } from "../../utils/date/date-utils";
 import { useTranslation } from "react-i18next";
 
 interface EventDetailProps {
@@ -51,7 +50,7 @@ export function EventDetail({ event }: EventDetailProps) {
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Calendar className="w-4 h-4" />
-          {format(parseZonedDateTime(event.eventDate), "HHhmm le dd MMMM yyyy")}
+          {format(parseZonedDateTimeInLocalTimeZone(event.eventDate), "HHhmm le dd MMMM yyyy")}
         </div>
       </div>
 

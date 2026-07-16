@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { parseZonedDateTime } from "@internationalized/date";
 import { EventDto, queryKeys } from "@papyrus/source";
 import {
   AlertCircle,
@@ -21,7 +20,7 @@ import { Timeline } from "../ui/timeline/timeline";
 import { TimelineContent } from "../ui/timeline/timeline-content";
 import { TimelineDot } from "../ui/timeline/timeline-dot";
 import { TimelineItem } from "../ui/timeline/timeline-item";
-import { format } from "../../utils/date/date-utils";
+import { format, parseZonedDateTimeInLocalTimeZone } from "../../utils/date/date-utils";
 import { ScrollArea } from "../ui/scroll-area/scroll-area";
 import { useOfflineList } from "../../hooks/use-offline-list";
 
@@ -111,7 +110,10 @@ export function EventTimeline({
 
         <div className="flex flex-col gap-2 md:gap-zoom-2 items-end">
           <p className="flex text-xs md:text-zoom-xs text-gray-500 gap-1 items-center">
-            {format(parseZonedDateTime(currentEvent.eventDate), "HHhmm le dd MMMM yyyy")}
+            {format(
+              parseZonedDateTimeInLocalTimeZone(currentEvent.eventDate),
+              "HHhmm le dd MMMM yyyy"
+            )}
             <Calendar className="size-4" />
           </p>
         </div>

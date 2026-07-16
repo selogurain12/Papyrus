@@ -289,6 +289,13 @@ export function convertAndParseZonedDateStringToSameLocalTimeInLocalTimeZone(
   return parseZonedDateTime(convertZonedDateStringToSameLocalTimeInOtherTimeZone(zonedDateString));
 }
 
+export function parseZonedDateTimeInLocalTimeZone(zonedDateString: string): ZonedDateTime {
+  return parseAbsolute(
+    parseZonedDateTime(zonedDateString).toDate().toISOString(),
+    getLocalTimeZone()
+  );
+}
+
 export function convertAndParseZonedDateStringToSameLocalTimeInOtherTimeZone(
   zonedDateString: string,
   otherTimeZone: string

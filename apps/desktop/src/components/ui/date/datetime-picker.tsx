@@ -9,7 +9,7 @@ import { Label } from "../label";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 import { Button } from "../button";
 import { cn } from "../../../lib/utils";
-import { format } from "../../../utils/date/date-utils";
+import { format, parseZonedDateTimeInLocalTimeZone } from "../../../utils/date/date-utils";
 import { Calendar } from "../calendar";
 
 import { TimePickerInput } from "./time-picker-input";
@@ -37,14 +37,14 @@ export function DateTimePicker({
   const { t, i18n } = useTranslation();
   const hourReference = useRef<HTMLInputElement>(null);
   const minuteReference = useRef<HTMLInputElement>(null);
+  const localValue = value === undefined ? undefined : parseZonedDateTimeInLocalTimeZone(value);
 
   function handleSelect(day: Date | undefined, selected: Date) {
-    const zonedValue = value === undefined ? undefined : parseZonedDateTime(value);
     changeValue(
       fromDate(selected, getLocalTimeZone())
         .add({
-          hours: zonedValue ? zonedValue.hour : 0,
-          minutes: zonedValue ? zonedValue.minute : 0,
+          hours: localValue ? localValue.hour : 0,
+          minutes: localValue ? localValue.minute : 0,
         })
         .toString()
     );
@@ -57,7 +57,7 @@ export function DateTimePicker({
           {t("dateTime.hours")}
         </Label>
         <TimePickerInput
-          date={value === undefined ? undefined : parseZonedDateTime(value).toDate()}
+          date={localValue?.toDate()}
           disabled={disabled}
           onRightFocus={() => minuteReference.current?.focus()}
           picker="hours"
@@ -74,7 +74,7 @@ export function DateTimePicker({
           {t("dateTime.minutes")}
         </Label>
         <TimePickerInput
-          date={value === undefined ? undefined : parseZonedDateTime(value).toDate()}
+          date={localValue?.toDate()}
           disabled={disabled}
           onLeftFocus={() => hourReference.current?.focus()}
           picker="minutes"
@@ -108,7 +108,7 @@ export function DateTimePicker({
           {value === undefined ? (
             <span>{t("selectDate")}</span>
           ) : (
-            format(parseZonedDateTime(value), t("dateTime.format"))
+            format(localValue ?? parseZonedDateTime(value), t("dateTime.format"))
           )}
           {errorIcon && isError && <AlertCircle className="size-6 text-destructive ml-auto" />}
         </Button>
@@ -123,7 +123,7 @@ export function DateTimePicker({
           onSelect={(day, selectedDay) => {
             handleSelect(day, selectedDay);
           }}
-          selected={value === undefined ? undefined : parseZonedDateTime(value).toDate()}
+          selected={localValue?.toDate()}
           toYear={toYear ?? now(getLocalTimeZone()).year + 20}
         />
         <div className="p-3 border-t border-gray-100">{footer}</div>

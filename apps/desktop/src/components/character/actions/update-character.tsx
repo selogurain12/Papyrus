@@ -980,7 +980,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
             >
               {t("common:cancel")}
             </Button>
-            <Button type="submit" variant="default">
+            <Button type="submit" variant="blue">
               {t("update.submit")}
             </Button>
           </div>

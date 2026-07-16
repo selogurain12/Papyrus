@@ -319,7 +319,9 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               {t("common:cancel")}
             </Button>
 
-            <Button type="submit">{t("create.submit")}</Button>
+            <Button type="submit" variant="blue">
+              {t("create.submit")}
+            </Button>
           </div>
         </form>
       </Form>

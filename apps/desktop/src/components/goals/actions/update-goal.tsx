@@ -282,6 +282,7 @@ export function UpdateGoalForm({ setOpen, goal }: UpdateGoalFormProps) {
           variant="outline"
           className="w-1/2"
           onClick={() => {
+            setOpen(false);
             form.reset();
           }}
         >

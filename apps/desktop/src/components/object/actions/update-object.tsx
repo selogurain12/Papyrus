@@ -317,7 +317,9 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
               {t("common:cancel")}
             </Button>
 
-            <Button type="submit">{t("update.submit")}</Button>
+            <Button type="submit" variant="blue">
+              {t("update.submit")}
+            </Button>
           </div>
         </form>
       </Form>

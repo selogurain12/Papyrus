@@ -274,6 +274,7 @@ export function CreateGoalForm({ setOpen }: CreateGoalFormProps) {
           variant="outline"
           className="w-1/2"
           onClick={() => {
+            setOpen(false);
             form.reset();
           }}
         >

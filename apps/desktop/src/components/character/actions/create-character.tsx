@@ -984,7 +984,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
             >
               {t("common:cancel")}
             </Button>
-            <Button type="submit" variant="default">
+            <Button type="submit" variant="blue">
               {t("create.submit")}
             </Button>
           </div>

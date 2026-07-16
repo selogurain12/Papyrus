@@ -429,7 +429,9 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               {t("common:cancel")}
             </Button>
 
-            <Button type="submit">{t("create.submit")}</Button>
+            <Button type="submit" variant="blue">
+              {t("create.submit")}
+            </Button>
           </div>
         </form>
       </Form>

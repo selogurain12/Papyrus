@@ -102,7 +102,7 @@ export function DateTimePicker({
             isError && "border-destructive"
           )}
           disabled={disabled}
-          variant="outline"
+          variant="input"
         >
           <CalendarIcon className="mr-2 size-4" />
           {value === undefined ? (

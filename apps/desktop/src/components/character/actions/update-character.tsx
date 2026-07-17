@@ -38,6 +38,8 @@ import { ColorPicker } from "../../ui/color-picker";
 import { Tag } from "../../ui/tag";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
+import { useEffect } from "react";
+import { getAgeOfZonedDate } from "../../../utils/date/date-utils";
 
 interface UpdateCharacterProps {
   onCancel?: () => void;
@@ -154,6 +156,17 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
     green: "bg-green-500",
     yellow: "bg-yellow-500",
   };
+
+  const birthDate = form.watch("birthDate");
+
+  useEffect(() => {
+    if (birthDate !== null && birthDate !== undefined) {
+      form.setValue("age", getAgeOfZonedDate(birthDate), {
+        shouldValidate: false,
+        shouldDirty: true,
+      });
+    }
+  }, [birthDate, form]);
 
   return (
     <Card className="rounded-lg w-full h-full flex flex-col">
@@ -352,7 +365,16 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="age"
                             type="number"
                             value={field.value ?? ""}
-                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
+                            onChange={(event) => {
+                              const age = Number(event.target.value) || null;
+                              if (birthDate !== null) {
+                                form.setValue("birthDate", null, {
+                                  shouldValidate: false,
+                                  shouldDirty: true,
+                                });
+                              }
+                              field.onChange(age);
+                            }}
                           />
                         </FormControl>
                         <FormMessage />

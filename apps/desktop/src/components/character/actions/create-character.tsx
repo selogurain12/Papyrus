@@ -16,6 +16,7 @@ import { TypeOption, roleOptions } from "../../../utils/value-for-select";
 import { FormControl } from "../../ui/forms/form-control";
 import { FormItem } from "../../ui/forms/form-item";
 import { FormMessage } from "../../ui/forms/form-message";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../../ui/forms/form";
@@ -37,6 +38,7 @@ import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 import { ColorPicker } from "../../ui/color-picker";
 import { Tag } from "../../ui/tag";
+import { getAgeOfZonedDate } from "../../../utils/date/date-utils";
 
 interface CreateCharacterProps {
   onCancel?: () => void;
@@ -161,6 +163,17 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
     yellow: "bg-yellow-500",
   };
 
+  const birthDate = form.watch("birthDate");
+
+  useEffect(() => {
+    if (birthDate !== null) {
+      form.setValue("age", getAgeOfZonedDate(birthDate), {
+        shouldValidate: false,
+        shouldDirty: true,
+      });
+    }
+  }, [birthDate, form]);
+
   return (
     <Card className="rounded-lg w-full h-full flex flex-col">
       <Form {...form}>
@@ -237,9 +250,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
             </div>
           </div>
 
-          {/* ACCORDIONS */}
           <Accordion type="multiple" className="w-full">
-            {/* ETAT CIVIL */}
             <AccordionItem value="maritalStatus">
               <AccordionTrigger>{t("sections.maritalStatus")}</AccordionTrigger>
               <AccordionContent>
@@ -356,7 +367,16 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             id="age"
                             type="number"
                             value={field.value ?? ""}
-                            onChange={(event) => field.onChange(Number(event.target.value) || null)}
+                            onChange={(event) => {
+                              const age = Number(event.target.value) || null;
+                              if (birthDate !== null) {
+                                form.setValue("birthDate", null, {
+                                  shouldValidate: false,
+                                  shouldDirty: true,
+                                });
+                              }
+                              field.onChange(age);
+                            }}
                           />
                         </FormControl>
                         <FormMessage />
@@ -371,7 +391,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                         <FormLabel htmlFor="birthDate">{t("fields.birthDate")}</FormLabel>
                         <FormControl>
                           <DatePicker
-                            changeValue={(date) => field.onChange(date ?? null)}
+                            changeValue={(date) => field.onChange(date)}
                             disabledRange={undefined}
                             placeholder={t("placeholders.date")}
                             value={field.value ?? undefined}

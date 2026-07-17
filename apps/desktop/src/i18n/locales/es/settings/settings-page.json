@@ -83,6 +83,7 @@
   "options": {
     "autoSaveInterval": {
       "1": "1 minuto",
+      "2": "2 minutos",
       "5": "5 minutos",
       "10": "10 minutos",
       "15": "15 minutos",

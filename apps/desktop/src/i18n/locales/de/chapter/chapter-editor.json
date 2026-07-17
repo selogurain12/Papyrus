@@ -1,4 +1,9 @@
 {
   "success": "Kapitel erfolgreich gespeichert",
-  "save": "Speichern"
+  "save": "Speichern",
+  "autoSave": {
+    "saving": "Automatisches Speichern...",
+    "saved": "Automatisch gespeichert",
+    "error": "Automatisches Speichern fehlgeschlagen"
+  }
 }

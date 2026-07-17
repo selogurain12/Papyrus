@@ -1,4 +1,9 @@
 {
   "save": "Save",
-  "success": "Chapter content updated"
+  "success": "Chapter content updated",
+  "autoSave": {
+    "saving": "Auto-saving...",
+    "saved": "Auto-saved",
+    "error": "Auto-save failed"
+  }
 }

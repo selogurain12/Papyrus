@@ -1,4 +1,9 @@
 {
   "success": "Capitolo salvato con successo",
-  "save": "Salva"
+  "save": "Salva",
+  "autoSave": {
+    "saving": "Salvataggio automatico...",
+    "saved": "Salvataggio automatico completato",
+    "error": "Salvataggio automatico non riuscito"
+  }
 }

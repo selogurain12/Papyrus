@@ -1,4 +1,9 @@
 {
   "success": "Capítulo guardado correctamente",
-  "save": "Guardar"
+  "save": "Guardar",
+  "autoSave": {
+    "saving": "Guardado automático...",
+    "saved": "Guardado automáticamente",
+    "error": "Error en el guardado automático"
+  }
 }

@@ -1,4 +1,9 @@
 {
   "success": "Capítulo salvo com sucesso",
-  "save": "Salvar"
+  "save": "Salvar",
+  "autoSave": {
+    "saving": "Gravação automática...",
+    "saved": "Gravado automaticamente",
+    "error": "Falha na gravação automática"
+  }
 }

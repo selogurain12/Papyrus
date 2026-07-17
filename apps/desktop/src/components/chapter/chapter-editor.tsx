@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { isFetchError } from "@ts-rest/react-query/v5";
 
@@ -21,82 +21,160 @@ interface ChapterEditorProps {
   setChapter: (chapter: ChapterDto) => void;
 }
 
+type AutoSaveStatus = "idle" | "saving" | "saved" | "error";
+
 export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorProps) {
   const { t } = useTranslation(["chapter/chapter-editor", "common"]);
   const [content, setContent] = useState(chapter.content ?? "");
+  const [autoSaveStatus, setAutoSaveStatus] = useState<AutoSaveStatus>("idle");
   const { setCurrentProject, currentProject } = useProject();
   const isOnline = useOnlineStatus();
+  const contentReference = useRef(content);
+  const lastSavedContentReference = useRef(chapter.content ?? "");
+  const isSavingReference = useRef(false);
 
-  const wordCount = useMemo(() => {
-    return countWordsFromContent(content);
+  const { mutateAsync: updateChapter } = client.chapter.update.useMutation();
+
+  useEffect(() => {
+    contentReference.current = content;
   }, [content]);
 
-  const { mutate } = client.chapter.update.useMutation({
-    onSuccess: (response) => {
-      toast.success(t("success"));
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.chapter.get({
-          pathParams: { projectId: currentProject?.id ?? "", id: chapter.id },
+  useEffect(() => {
+    const initialContent = chapter.content ?? "";
+    contentReference.current = initialContent;
+    lastSavedContentReference.current = initialContent;
+    setContent(initialContent);
+    setAutoSaveStatus("idle");
+  }, [chapter.content, chapter.id]);
+
+  const invalidateChapterQueries = useCallback(async (updatedChapter: ChapterDto) => {
+    await queryClient.invalidateQueries({
+      queryKey: queryKeys.chapter.get({
+        pathParams: { projectId: updatedChapter.project.id, id: updatedChapter.id },
+      }),
+    });
+
+    await queryClient.invalidateQueries({
+      queryKey: queryKeys.chapter.getAll({
+        pathParams: { projectId: updatedChapter.project.id },
+      }),
+    });
+
+    if (updatedChapter.part) {
+      await queryClient.invalidateQueries({
+        queryKey: queryKeys.chapter.getByPart({
+          pathParams: { projectId: updatedChapter.project.id, partId: updatedChapter.part.id },
         }),
       });
+    }
+  }, []);
 
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.chapter.getAll({
-          pathParams: { projectId: currentProject?.id ?? "" },
-        }),
-      });
-      if (chapter.part) {
-        void queryClient.invalidateQueries({
-          queryKey: queryKeys.chapter.getByPart({
-            pathParams: { projectId: currentProject?.id ?? "", partId: chapter.part.id },
-          }),
-        });
+  const saveChapter = useCallback(
+    // eslint-disable-next-line complexity
+    async ({ closeAfterSave, showToast }: { closeAfterSave: boolean; showToast: boolean }) => {
+      if (isSavingReference.current) {
+        return;
       }
 
-      if (response.body.project) {
-        setCurrentProject(response.body.project);
+      const currentContent = contentReference.current;
+      if (!closeAfterSave && currentContent === lastSavedContentReference.current) {
+        return;
       }
 
-      setChapter(response.body);
-      setOpen(false);
+      const nextWordCount = countWordsFromContent(currentContent);
+      isSavingReference.current = true;
+      setAutoSaveStatus("saving");
+
+      try {
+        const body = {
+          ...chapter,
+          content: currentContent,
+          wordCount: nextWordCount,
+        };
+
+        const updatedChapter = isOnline
+          ? (
+              await updateChapter({
+                params: {
+                  id: chapter.id,
+                  projectId: chapter.project.id,
+                },
+                body,
+              })
+            ).body
+          : await updateOfflineEntity("chapters", chapter.project.id, chapter, body);
+
+        await invalidateChapterQueries(updatedChapter);
+
+        if (updatedChapter.project) {
+          setCurrentProject(updatedChapter.project);
+        }
+
+        setChapter(updatedChapter);
+        lastSavedContentReference.current = currentContent;
+        setAutoSaveStatus("saved");
+
+        if (showToast) {
+          toast.success(t("success"));
+        }
+
+        if (closeAfterSave) {
+          setOpen(false);
+        }
+      } catch (error) {
+        setAutoSaveStatus("error");
+
+        if (showToast) {
+          if (isFetchError(error)) {
+            toast.error(error.message);
+          } else {
+            toast.error(t("common:error"));
+          }
+        }
+      } finally {
+        isSavingReference.current = false;
+      }
     },
+    [
+      chapter,
+      invalidateChapterQueries,
+      isOnline,
+      setChapter,
+      setCurrentProject,
+      setOpen,
+      t,
+      updateChapter,
+    ]
+  );
 
-    onError: (error) => {
-      if (isFetchError(error)) {
-        toast.error(error.message);
-      } else {
-        toast.error(t("common:error"));
-      }
-    },
-  });
+  useEffect(() => {
+    const autoSaveEnabled = currentProject?.settings.autoSave ?? true;
+    const autoSaveInterval = currentProject?.settings.autoSaveInterval ?? 5;
 
-  async function handleSave() {
-    if (!isOnline) {
-      const updatedChapter = await updateOfflineEntity("chapters", chapter.project.id, chapter, {
-        ...chapter,
-        content,
-        wordCount,
-      });
-
-      toast.success(t("success"));
-      await queryClient.invalidateQueries({ queryKey: ["chapter.getAll"] });
-      setChapter(updatedChapter);
-      setOpen(false);
-      return;
+    if (!autoSaveEnabled) {
+      return undefined;
     }
 
-    mutate({
-      params: {
-        id: chapter.id,
-        projectId: chapter.project.id,
+    const intervalId = window.setInterval(
+      () => {
+        void saveChapter({ closeAfterSave: false, showToast: false });
       },
+      Math.max(autoSaveInterval, 1) * 60 * 1000
+    );
 
-      body: {
-        ...chapter,
-        content,
-        wordCount,
-      },
-    });
+    return () => window.clearInterval(intervalId);
+  }, [currentProject?.settings.autoSave, currentProject?.settings.autoSaveInterval, saveChapter]);
+
+  async function handleSave() {
+    await saveChapter({ closeAfterSave: true, showToast: true });
+  }
+
+  async function handleClose() {
+    if (contentReference.current !== lastSavedContentReference.current) {
+      await saveChapter({ closeAfterSave: false, showToast: false });
+    }
+
+    setOpen(false);
   }
 
   return (
@@ -107,7 +185,7 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
       }
       onInteractOutside={(event) => {
         event.preventDefault();
-        setOpen(false);
+        void handleClose();
       }}
     >
       <Editor
@@ -116,9 +194,16 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
           setContent(value);
         }}
       />
-      <Button variant="blue" onClick={handleSave}>
-        {t("save")}
-      </Button>
+      <div className="flex items-center justify-between gap-4">
+        <p className="text-xs text-gray-500">
+          {autoSaveStatus === "saving" ? t("autoSave.saving") : null}
+          {autoSaveStatus === "saved" ? t("autoSave.saved") : null}
+          {autoSaveStatus === "error" ? t("autoSave.error") : null}
+        </p>
+        <Button variant="blue" onClick={() => void handleSave()}>
+          {t("save")}
+        </Button>
+      </div>
     </DialogContent>
   );
 }

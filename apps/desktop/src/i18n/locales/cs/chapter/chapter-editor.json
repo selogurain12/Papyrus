@@ -1,4 +1,9 @@
 {
   "success": "Kapitola byla úspěšně uložena",
-  "save": "Uložit"
+  "save": "Uložit",
+  "autoSave": {
+    "saving": "Automatické ukládání...",
+    "saved": "Automaticky uloženo",
+    "error": "Automatické uložení selhalo"
+  }
 }

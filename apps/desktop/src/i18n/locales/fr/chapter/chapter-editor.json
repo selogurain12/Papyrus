@@ -1,4 +1,9 @@
 {
   "save": "Enregistrer",
-  "success": "Contenu du chapitre mis à jour"
+  "success": "Contenu du chapitre mis à jour",
+  "autoSave": {
+    "saving": "Sauvegarde automatique...",
+    "saved": "Sauvegarde automatique effectuée",
+    "error": "Échec de la sauvegarde automatique"
+  }
 }

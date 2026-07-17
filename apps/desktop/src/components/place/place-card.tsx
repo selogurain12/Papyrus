@@ -25,6 +25,18 @@ export function PlaceCard({
     low: "bg-green-200",
   };
 
+  const colorMap: Record<string, string> = {
+    blue: "bg-blue-500",
+    red: "bg-red-500",
+    green: "bg-green-500",
+    purple: "bg-purple-500",
+    yellow: "bg-yellow-500",
+    pink: "bg-pink-500",
+    cyan: "bg-cyan-500",
+    gray: "bg-gray-500",
+    orange: "bg-orange-500",
+  };
+
   return (
     <Card
       className="rounded-lg p-4 w-full cursor-pointer hover:bg-accent transition-colors"
@@ -32,7 +44,9 @@ export function PlaceCard({
     >
       <div className="flex items-center space-x-4">
         {/* AVATAR */}
-        <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center shadow-md">
+        <div
+          className={`w-12 h-12 rounded-full ${colorMap[place.color ?? "blue"]} flex items-center justify-center shadow-md`}
+        >
           <MapPin className="w-6 h-6 text-white" />
         </div>
 

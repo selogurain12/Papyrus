@@ -3,8 +3,15 @@ import { colorTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 
 export const createNoteSchema = z.object({
-  title: z.string().min(1).max(100),
-  content: z.string().min(1).max(1000).nullable(),
+  title: z
+    .string()
+    .min(1, { message: "Titre trop petit, minimum 1 caractère" })
+    .max(100, { message: "Titre trop grand, maximum 100 caractères" }),
+  content: z
+    .string()
+    .min(1, { message: "Contenue trop petit, minimum 1 caractères" })
+    .max(1000, { message: "Contenue trop grand, maximum 1000 caractères" })
+    .nullable(),
   tags: z.string().array().nullable(),
   project: projectSchema,
   color: z.enum(colorTypes),

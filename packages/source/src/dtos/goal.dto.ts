@@ -6,11 +6,17 @@ import { filterSchema } from "./filter.dto";
 
 export const createGoalSchema = z.object({
   type: z.enum(goalTypes),
-  title: z.string().min(2).max(100),
-  goals: z.number().min(1),
+  title: z
+    .string()
+    .min(2, { message: "Titre trop petit, maximum 2 caractères" })
+    .max(100, { message: "Titre trop grand, maximum 100 caractères" }),
+  goals: z.number().min(1, { message: "Nombre trop petit, minimum 1" }),
   unit: z.enum(["words", "hours", "chapters"]),
   deadline: z.string().refine(isZonedIso8601).nullable().optional(),
-  description: z.string().max(500).nullable(),
+  description: z
+    .string()
+    .max(500, { message: "Description trop grande, maximum 500 caractères" })
+    .nullable(),
   status: z.enum(goalStatusTypes).nullable().optional(),
   project: z.lazy(() => projectSchema),
   isOpen: z.boolean().default(true),

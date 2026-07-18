@@ -6,10 +6,16 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  firstName: z.string().min(1).max(30),
-  lastName: z.string().min(1).max(30),
+  firstName: z
+    .string()
+    .min(1, { message: "Prénom trop petit, minimum 1 caractère" })
+    .max(30, { message: "Prénom trop grand, maximum 30 caractères" }),
+  lastName: z
+    .string()
+    .min(1, { message: "Nom de famille trop petit, minimum 1 caractère" })
+    .max(30, { message: "Nom de famille trop grand, maximum 30 caractères" }),
   email: z.string().email(),
-  password: z.string().min(8),
+  password: z.string().min(8, { message: "Minimum 8 caractères pour le mot de passe" }),
 });
 
 export const updateUserSchema = registerSchema.partial();

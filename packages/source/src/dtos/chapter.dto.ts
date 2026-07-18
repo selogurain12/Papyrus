@@ -4,7 +4,10 @@ import { projectSchema } from "./project.dto";
 import { partSchema } from "./part.dto";
 
 export const createChapterSchema = z.object({
-  title: z.string().min(2).max(100),
+  title: z
+    .string()
+    .min(2, { message: "Titre trop petit, minimum 2 caractères" })
+    .max(100, { message: "Titre trop grand, maximum 100 caractères" }),
   status: z.enum(statusTypes).default("toStart"),
   content: z.string().nullable(),
   resume: z.string().nullable(),

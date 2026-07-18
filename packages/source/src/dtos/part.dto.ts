@@ -3,7 +3,10 @@ import { statusTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 
 export const createPartSchema = z.object({
-  title: z.string().min(1).max(100),
+  title: z
+    .string()
+    .min(1, { message: "Titre trop petit, minimum 1 caractère" })
+    .max(100, { message: "Titre trop grand, maximum 100 caractères" }),
   status: z.enum(statusTypes).default("toStart"),
   project: z.lazy(() => projectSchema),
 });

@@ -5,11 +5,23 @@ import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
 
 export const createEventSchema = z.object({
-  title: z.string().min(2).max(100),
-  description: z.string().max(500).nullable(),
+  title: z
+    .string()
+    .min(2, { message: "Titre trop petit, minimun 2 caractères" })
+    .max(100, { message: "Titre trop grand, maximum 100 caractères" }),
+  description: z
+    .string()
+    .max(500, { message: "Description trop grande, maximum 500 caractères" })
+    .nullable(),
   importance: z.enum(importanceTypes).nullable(),
-  location: z.string().max(200).nullable(),
-  additionalDetails: z.string().max(2000).nullable(),
+  location: z
+    .string()
+    .max(200, { message: "Localisation trop grande, maximum 200 caractères" })
+    .nullable(),
+  additionalDetails: z
+    .string()
+    .max(2000, { message: "Détails additionnels trop grand, 2000 caractères maximum" })
+    .nullable(),
   eventDate: z.string().refine(isZonedIso8601),
   project: z.lazy(() => projectSchema),
 });

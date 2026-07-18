@@ -9,21 +9,45 @@ export const createCharacterSchema = z.object({
   roleStar: z.number().min(0),
 
   // état civil
-  firstName: z.string().min(1).max(100),
-  lastName: z.string().min(1).max(100),
-  nickName: z.string().min(1).max(100),
-  pronouns: z.string().min(1).max(50),
+  firstName: z
+    .string()
+    .min(1, { message: "Prénom trop petit, minimum 1 caractère" })
+    .max(100, { message: "Prénom trop grand, maximum 100 caractères" }),
+  lastName: z
+    .string()
+    .min(1, { message: "Nom de famille trop petit, minimum 1 caractère" })
+    .max(100, { message: "Nom de famille trop grand, maximum 100 caractères" }),
+  nickName: z
+    .string()
+    .min(1, { message: "Surnom trop petit, minimum 1 caractère" })
+    .max(100, { message: "Surnom trop grand, maximum 100 caractères" }),
+  pronouns: z
+    .string()
+    .min(1, { message: "Pronom trop petit, minimum 1 caractère" })
+    .max(50, { message: "Pronom trop grand, maximum 50 caractères" }),
   gender: z.enum(genderTypes),
-  nationality: z.string().max(100).nullable(),
-  age: z.number().min(0).nullable(),
+  nationality: z
+    .string()
+    .max(100, { message: "Nationalité trop grande, maximum 100 caractères" })
+    .nullable(),
+  age: z.number().min(0, { message: "Age minimum de 0" }).nullable(),
   birthDate: z.string().refine(isZonedIso8601).nullable(),
-  birthPlace: z.string().max(150).nullable(),
-  residencePlace: z.string().max(150).nullable(),
-  occupation: z.string().max(150).nullable(),
+  birthPlace: z
+    .string()
+    .max(150, { message: "Lieu de naissance trop grand, maximum 100 caractères" })
+    .nullable(),
+  residencePlace: z
+    .string()
+    .max(150, { message: "Lieu de résidence trop grand, maximum 150 caractères" })
+    .nullable(),
+  occupation: z
+    .string()
+    .max(150, { message: "Loisirs trop grand, maximum 150 caractères" })
+    .nullable(),
 
   // physique
-  height: z.number().min(0).nullable(),
-  weight: z.number().min(0).nullable(),
+  height: z.number().min(0, { message: "Taille trop petite, minimum 0" }).nullable(),
+  weight: z.number().min(0, { message: "Poids trop petit, minimum 0" }).nullable(),
   corpulence: z.string().nullable(),
   hairColor: z.string().nullable(),
   eyesColor: z.string().nullable(),

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-/* eslint-disable no-nested-ternary */
+
 import { ChapterDto } from "@papyrus/source";
 import { useProject } from "../../context/project-provider";
 import { FileText } from "lucide-react";
@@ -9,15 +9,16 @@ import { useOfflineList } from "../../hooks/use-offline-list";
 interface ChapterListProps {
   id?: string;
   withoutPart?: boolean;
+  chapters?: ChapterDto[];
   // eslint-disable-next-line no-unused-vars
   setSelectedChapter?: (chapter: ChapterDto) => void;
   selectedChapter?: ChapterDto;
 }
 
-// eslint-disable-next-line complexity
 export function ChapterList({
   id,
   withoutPart = false,
+  chapters: providedChapters,
   setSelectedChapter,
   selectedChapter,
 }: ChapterListProps) {
@@ -27,7 +28,7 @@ export function ChapterList({
     entityType: "chapters",
     projectId: currentProject?.id,
   });
-  const chapters = (cachedChapters?.data ?? []).filter((chapter) =>
+  const chapters = (providedChapters ?? cachedChapters?.data ?? []).filter((chapter) =>
     withoutPart ? !chapter.part : chapter.part?.id === id
   );
 

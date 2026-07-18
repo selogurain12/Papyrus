@@ -63,12 +63,12 @@ export function PartsList() {
 
     enabled: !!currentProject?.id,
   });
-  const cachedParts = useOfflineList({
+  const cachedParts = useOfflineList<PartDto>({
     entityType: "parts",
     projectId: currentProject?.id,
     onlineData: parts?.body,
   });
-  const cachedChapters = useOfflineList({
+  const cachedChapters = useOfflineList<ChapterDto>({
     entityType: "chapters",
     projectId: currentProject?.id,
     onlineData: chaptersData?.body,
@@ -130,8 +130,31 @@ export function PartsList() {
     };
   }, [selectedChapter, selectedPart]);
 
-  const chapters = cachedChapters?.data ?? [];
+  const chapters = (cachedChapters?.data ?? []) as ChapterDto[];
   const chaptersWithoutPart = chapters.filter((chapter) => !chapter.part);
+
+  useEffect(() => {
+    if (!selectedChapter) {
+      return;
+    }
+
+    const updatedSelectedChapter = chapters.find((chapter) => chapter.id === selectedChapter.id);
+
+    if (!updatedSelectedChapter) {
+      setSelectedChapter(undefined);
+      return;
+    }
+
+    if (updatedSelectedChapter !== selectedChapter) {
+      setSelectedChapter(updatedSelectedChapter);
+    }
+  }, [chapters, selectedChapter]);
+
+  function handleChapterUpdated(chapter: ChapterDto) {
+    setSelectedChapter(chapter);
+    setOpenPartId(chapter.part?.id ?? "without-part");
+  }
+
   return (
     <div className="p-6">
       <div className="flex justify-between gap-2 mb-4">
@@ -223,6 +246,7 @@ export function PartsList() {
                   <div className="mt-3 flex flex-col w-full gap-3 p-2">
                     <ChapterList
                       id={part.id}
+                      chapters={chapters}
                       setSelectedChapter={setSelectedChapter}
                       selectedChapter={selectedChapter}
                     />
@@ -258,6 +282,7 @@ export function PartsList() {
               <div className="mt-3 flex flex-col w-full gap-3 p-2">
                 <ChapterList
                   withoutPart
+                  chapters={chapters}
                   setSelectedChapter={setSelectedChapter}
                   selectedChapter={selectedChapter}
                 />
@@ -318,7 +343,11 @@ export function PartsList() {
       )}
       {isUpdatingChapter && selectedChapter && (
         <Dialog open={isUpdatingChapter} onOpenChange={setIsUpdatingChapter}>
-          <UpdateChapter setOpen={setIsUpdatingChapter} chapter={selectedChapter} />
+          <UpdateChapter
+            setOpen={setIsUpdatingChapter}
+            chapter={selectedChapter}
+            onUpdated={handleChapterUpdated}
+          />
         </Dialog>
       )}
       {isDeletingChapter && selectedChapter && (

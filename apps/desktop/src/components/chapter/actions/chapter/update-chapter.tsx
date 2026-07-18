@@ -35,9 +35,11 @@ import { useOfflineList } from "../../../../hooks/use-offline-list";
 interface UpdateChapterProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
   chapter: ChapterDto;
+  // eslint-disable-next-line no-unused-vars
+  onUpdated?: (chapter: ChapterDto) => void;
 }
 
-export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
+export function UpdateChapter({ setOpen, chapter, onUpdated }: UpdateChapterProps) {
   const { t } = useTranslation("chapter/actions/chapter/update-chapter");
   const { currentProject } = useProject();
   const isOnline = useOnlineStatus();
@@ -75,6 +77,7 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
   const { mutate, isPending: loading } = client.chapter.update.useMutation({
     onSuccess: (response) => {
       toast.success(t("toasts.success"));
+      onUpdated?.(response.body);
       void queryClient.invalidateQueries({
         queryKey: queryKeys.chapter.getAll({
           pathParams: { projectId: currentProject?.id ?? "" },
@@ -113,13 +116,14 @@ export function UpdateChapter({ setOpen, chapter }: UpdateChapterProps) {
     }
 
     if (!isOnline) {
-      await updateOfflineEntity<UpdateChapterDto, ChapterDto>(
+      const updatedChapter = await updateOfflineEntity<UpdateChapterDto, ChapterDto>(
         "chapters",
         currentProject.id,
         chapter,
         data
       );
       toast.success(t("toasts.success"));
+      onUpdated?.(updatedChapter);
       await queryClient.invalidateQueries({ queryKey: ["chapter.getAll"] });
       form.reset();
       setOpen(false);

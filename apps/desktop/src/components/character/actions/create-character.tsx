@@ -32,7 +32,6 @@ import { characterRoute } from "../../../routes/character/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
-import { Slider } from "../../ui/slider";
 import { useTranslation } from "react-i18next";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { createOfflineEntity } from "../../../local-db/offline-entity-store";
@@ -86,7 +85,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
       tics: null,
       fears: null,
       education: null,
-      richesses: 0,
+      class: null,
       belief: null,
       secrets: null,
       notablePlaces: null,
@@ -783,20 +782,19 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                   />
                   <FormField
                     control={form.control}
-                    name="richesses"
+                    name="class"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="richesses">
-                          {t("fields.richesses")} : {field.value}
+                        <FormLabel htmlFor="class">
+                          {t("fields.class")} : {field.value}
                         </FormLabel>
 
                         <FormControl>
-                          <Slider
-                            value={[field.value ?? 0]}
-                            max={100}
-                            step={1}
-                            className="w-full mt-3"
-                            onValueChange={(value) => field.onChange(value[0])}
+                          <Input
+                            {...field}
+                            value={field.value ?? ""}
+                            onChange={(event) => field.onChange(event.target.value || null)}
+                            id="class"
                           />
                         </FormControl>
 

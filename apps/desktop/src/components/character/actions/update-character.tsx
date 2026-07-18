@@ -32,7 +32,6 @@ import { characterRoute } from "../../../routes/character/index.route";
 import { useNavigate } from "@tanstack/react-router";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
-import { Slider } from "../../ui/slider";
 import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
 import { Tag } from "../../ui/tag";
@@ -87,7 +86,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
       tics: character.tics,
       fears: character.fears,
       education: character.education,
-      richesses: character.richesses ?? 0,
+      class: character.class,
       belief: character.belief,
       secrets: character.secrets,
       notablePlaces: character.notablePlaces,
@@ -781,20 +780,19 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                   />
                   <FormField
                     control={form.control}
-                    name="richesses"
+                    name="class"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel htmlFor="richesses">
-                          {t("fields.richesses")} : {field.value}
+                        <FormLabel htmlFor="class">
+                          {t("fields.class")} : {field.value}
                         </FormLabel>
 
                         <FormControl>
-                          <Slider
-                            value={[field.value ?? 0]}
-                            max={100}
-                            step={1}
-                            className="w-full mt-3"
-                            onValueChange={(value) => field.onChange(value[0])}
+                          <Input
+                            {...field}
+                            value={field.value ?? ""}
+                            onChange={(event) => field.onChange(event.target.value || null)}
+                            id="class"
                           />
                         </FormControl>
 

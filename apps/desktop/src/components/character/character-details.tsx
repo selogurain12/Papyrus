@@ -244,8 +244,8 @@ export function CharacterDetail({ character }: CharacterDetailProps) {
                 {character.education ?? t("notSpecified")}
               </p>
               <p>
-                <span className="font-semibold">{t("fields.richesses")} :</span>{" "}
-                {character.richesses ?? t("notSpecified")}
+                <span className="font-semibold">{t("fields.class")} :</span>{" "}
+                {character.class ?? t("notSpecified")}
               </p>
               <p>
                 <span className="font-semibold">{t("fields.beliefShort")} :</span>{" "}

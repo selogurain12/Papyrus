@@ -9,6 +9,7 @@ import { DropdownMenuContent } from "../dropdown-menu/dropdown-menu-content";
 import { DropdownMenuItem } from "../dropdown-menu/dropdown-menu-item";
 import { DropdownMenuSeparator } from "../dropdown-menu/dropdown-menu-separator";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface DataTableColumnHeaderProps<Tdata, Tvalue> extends React.HTMLAttributes<HTMLDivElement> {
   column: Column<Tdata, Tvalue>;
@@ -24,6 +25,8 @@ export function DataTableColumnHeader<Tdata, Tvalue>({
   enableHide = true,
   onSortChange,
 }: DataTableColumnHeaderProps<Tdata, Tvalue>) {
+  const { t } = useTranslation();
+
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>;
   }
@@ -61,7 +64,7 @@ export function DataTableColumnHeader<Tdata, Tvalue>({
             }}
           >
             <RxArrowUp className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-            Asc
+            {t("table.sortAsc")}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => {
@@ -72,7 +75,7 @@ export function DataTableColumnHeader<Tdata, Tvalue>({
             }}
           >
             <RxArrowDown className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-            Desc
+            {t("table.sortDesc")}
           </DropdownMenuItem>
 
           {enableHide && (
@@ -84,7 +87,7 @@ export function DataTableColumnHeader<Tdata, Tvalue>({
                 }}
               >
                 <RxEyeNone className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-                Hide
+                {t("table.hideColumn")}
               </DropdownMenuItem>
             </>
           )}

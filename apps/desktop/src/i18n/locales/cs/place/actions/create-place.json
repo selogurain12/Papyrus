@@ -46,5 +46,18 @@
     "planet": "Planeta",
     "space station": "Vesmírná stanice",
     "village": "Obec"
+  },
+  "languages": {
+    "cs": "Čeština",
+    "de": "Němčina",
+    "en": "Angličtina",
+    "es": "Španělština",
+    "fr": "Francouzština",
+    "it": "Italština",
+    "ja": "Japonština",
+    "ko": "Korejština",
+    "pt": "Portugalština",
+    "ru": "Ruština",
+    "zh": "Čínština"
   }
 }

@@ -5,7 +5,9 @@
     "description": "描述",
     "location": "地点",
     "title": "活动标题",
-    "type": "事件类型"
+    "type": "事件类型",
+    "chapterToggle": "在章节中描述的事件",
+    "chapterPlaceholder": "选择章节"
   },
   "importance": {
     "action": "行动",

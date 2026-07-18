@@ -13,5 +13,8 @@
   "select": {
     "description": "Wählen Sie ein Ereignis aus der Liste aus, um dessen Details anzuzeigen",
     "title": "Wählen Sie ein Ereignis aus"
+  },
+  "chapter": {
+    "assigned": "Kapitel zugewiesen: {{title}}"
   }
 }

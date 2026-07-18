@@ -5,7 +5,9 @@
     "description": "Описание",
     "location": "Расположение",
     "title": "Название мероприятия",
-    "type": "Тип события"
+    "type": "Тип события",
+    "chapterToggle": "Событие описано в главе",
+    "chapterPlaceholder": "Выберите главу"
   },
   "importance": {
     "action": "Действие",

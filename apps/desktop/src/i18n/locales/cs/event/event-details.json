@@ -13,5 +13,8 @@
   "select": {
     "description": "Vyberte událost ze seznamu a zobrazte její podrobnosti",
     "title": "Vyberte událost"
+  },
+  "chapter": {
+    "assigned": "Přiřazeno ke kapitole: {{title}}"
   }
 }

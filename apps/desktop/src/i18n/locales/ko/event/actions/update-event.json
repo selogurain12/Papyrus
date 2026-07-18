@@ -5,7 +5,9 @@
     "description": "설명",
     "location": "위치",
     "title": "이벤트 제목",
-    "type": "이벤트 유형"
+    "type": "이벤트 유형",
+    "chapterToggle": "장에 설명된 이벤트",
+    "chapterPlaceholder": "장 선택"
   },
   "importance": {
     "action": "행동",

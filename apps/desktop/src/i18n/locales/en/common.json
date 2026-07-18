@@ -113,8 +113,13 @@
     "label": "Pagination"
   },
   "table": {
-    "toggleColumns": "Toggle columns"
+    "toggleColumns": "Toggle columns",
+    "sortAsc": "Asc",
+    "sortDesc": "Desc",
+    "hideColumn": "Hide",
+    "clearFilters": "Clear filters"
   },
   "file.unsupportedType": "Unsupported file type. Accepted formats: images, PDF, EPUB, videos and PowerPoint.",
-  "file.acceptedFormats": "Accepted formats: images, PDF, EPUB, videos, PowerPoint"
+  "file.acceptedFormats": "Accepted formats: images, PDF, EPUB, videos, PowerPoint",
+  "confirm": "Confirm"
 }

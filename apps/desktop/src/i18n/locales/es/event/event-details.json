@@ -13,5 +13,8 @@
   "select": {
     "description": "Elige un evento de la lista para ver sus detalles",
     "title": "Selecciona un evento"
+  },
+  "chapter": {
+    "assigned": "Asignado al capítulo: {{title}}"
   }
 }

@@ -5,7 +5,9 @@
     "description": "Description",
     "location": "Location",
     "title": "Event title",
-    "type": "Event type"
+    "type": "Event type",
+    "chapterToggle": "Event described in a chapter",
+    "chapterPlaceholder": "Select a chapter"
   },
   "importance": {
     "action": "Action",

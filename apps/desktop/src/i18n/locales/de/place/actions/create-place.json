@@ -46,5 +46,18 @@
     "planet": "Planet",
     "space station": "Raumstation",
     "village": "Dorf"
+  },
+  "languages": {
+    "cs": "Tschechisch",
+    "de": "Deutsch",
+    "en": "Englisch",
+    "es": "Spanisch",
+    "fr": "Französisch",
+    "it": "Italienisch",
+    "ja": "Japanisch",
+    "ko": "Koreanisch",
+    "pt": "Portugiesisch",
+    "ru": "Russisch",
+    "zh": "Chinesisch"
   }
 }

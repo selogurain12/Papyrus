@@ -10,7 +10,9 @@
     "description": "Descrizione",
     "location": "Posizione",
     "title": "Titolo dell'evento",
-    "type": "Tipo di evento"
+    "type": "Tipo di evento",
+    "chapterToggle": "Evento descritto in un capitolo",
+    "chapterPlaceholder": "Seleziona un capitolo"
   },
   "importance": {
     "action": "Azione",

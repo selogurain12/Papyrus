@@ -51,6 +51,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
   const navigate = useNavigate();
   const isOnline = useOnlineStatus();
   const [selected, setSelected] = useState<boolean>(Boolean(event.chapter));
+  const [selectedChapter, setSelectedChapter] = useState<ChapterDto | null>(event.chapter ?? null);
 
   const form = useForm({
     resolver: zodResolver(updateEventSchema),
@@ -109,8 +110,12 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+    const body: UpdateEventDto = {
+      ...data,
+      chapter: selected ? selectedChapter : null,
+    };
     if (!isOnline) {
-      await updateOfflineEntity<UpdateEventDto, EventDto>("events", currentProject.id, event, data);
+      await updateOfflineEntity<UpdateEventDto, EventDto>("events", currentProject.id, event, body);
       toast.success(t("update.success"));
       await queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
       form.reset();
@@ -118,7 +123,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
       return;
     }
 
-    mutate({ body: data, params: { projectId: currentProject.id, id: event.id } });
+    mutate({ body, params: { projectId: currentProject.id, id: event.id } });
   }
 
   return (
@@ -274,23 +279,28 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                             const nextSelected = checked === true;
                             setSelected(nextSelected);
                             if (!nextSelected) {
+                              setSelectedChapter(null);
                               field.onChange(null);
                             }
                           }}
                         />
-                        <Label htmlFor="isInChapter">Évènement décrit dans un chapitre</Label>
+                        <Label htmlFor="isInChapter">{t("fields.chapterToggle")}</Label>
                       </Field>
                       {selected === true && (
                         <FormControl>
                           <SingleSelector<ChapterDto>
                             {...field}
-                            value={field.value as ChapterDto}
-                            onChange={field.onChange}
+                            value={(field.value ?? selectedChapter ?? undefined) as ChapterDto}
+                            onChange={(chapter) => {
+                              const nextChapter = chapter ?? null;
+                              setSelectedChapter(nextChapter);
+                              field.onChange(nextChapter);
+                            }}
                             customDisplay={(item: ChapterDto) => item.title}
                             customLabel={(item: ChapterDto) => (
                               <span className="font-medium">{item.title}</span>
                             )}
-                            placeholder={t("fields.partPlaceholder")}
+                            placeholder={t("fields.chapterPlaceholder")}
                             data={cachedChapters?.data ?? []}
                           />
                         </FormControl>

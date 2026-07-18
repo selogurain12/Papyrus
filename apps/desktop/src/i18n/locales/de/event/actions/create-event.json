@@ -10,7 +10,9 @@
     "description": "Beschreibung",
     "location": "Standort",
     "title": "Veranstaltungstitel",
-    "type": "Ereignistyp"
+    "type": "Ereignistyp",
+    "chapterToggle": "Ereignis in einem Kapitel beschrieben",
+    "chapterPlaceholder": "Kapitel auswählen"
   },
   "importance": {
     "action": "Aktion",

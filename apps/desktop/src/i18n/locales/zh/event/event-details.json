@@ -13,5 +13,8 @@
   "select": {
     "description": "从列表中选择一个事件以查看其详细信息",
     "title": "选择一个事件"
+  },
+  "chapter": {
+    "assigned": "已分配到章节：{{title}}"
   }
 }

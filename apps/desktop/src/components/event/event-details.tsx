@@ -52,7 +52,9 @@ export function EventDetail({ event }: EventDetailProps) {
           <Calendar className="w-4 h-4" />
           {format(parseZonedDateTimeInLocalTimeZone(event.eventDate), "HHhmm le dd MMMM yyyy")}
         </div>
-        <div>{event.chapter && <Badge>Assigné au chapitre: {event.chapter.title}</Badge>}</div>
+        <div>
+          {event.chapter && <Badge>{t("chapter.assigned", { title: event.chapter.title })}</Badge>}
+        </div>
       </div>
 
       {/* DESCRIPTION */}

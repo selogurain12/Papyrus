@@ -208,9 +208,9 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <SingleSelector
                       {...field}
-                      customDisplay={(item: TypeOption) => item.label}
+                      customDisplay={(item: TypeOption) => t(`languages.${item.id}`)}
                       customLabel={(item: TypeOption) => (
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">{t(`languages.${item.id}`)}</span>
                       )}
                       value={languageOptions.find((language) => language.id === field.value)}
                       onChange={(value) => field.onChange(value?.id ?? null)}

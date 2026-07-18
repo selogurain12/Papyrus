@@ -13,5 +13,8 @@
   "select": {
     "description": "세부정보를 보려면 목록에서 이벤트를 선택하세요.",
     "title": "이벤트를 선택하세요"
+  },
+  "chapter": {
+    "assigned": "장에 할당됨: {{title}}"
   }
 }

@@ -13,5 +13,8 @@
   "select": {
     "description": "リストからイベントを選択して詳細を表示します",
     "title": "イベントを選択してください"
+  },
+  "chapter": {
+    "assigned": "章に割り当て済み: {{title}}"
   }
 }

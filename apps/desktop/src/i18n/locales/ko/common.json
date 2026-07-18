@@ -93,7 +93,11 @@
     "toggleColumns": "열 표시 전환",
     "first": "처음",
     "last": "마지막",
-    "morePages": "더 많은 페이지"
+    "morePages": "더 많은 페이지",
+    "sortAsc": "오름차순",
+    "sortDesc": "내림차순",
+    "hideColumn": "숨기기",
+    "clearFilters": "필터 지우기"
   },
   "undefined": "정의되지 않음",
   "update": "업데이트",
@@ -128,5 +132,6 @@
   },
   "menu.goals": "목표",
   "file.unsupportedType": "지원되지 않는 파일 형식입니다. 허용 형식: 이미지, PDF, EPUB, 동영상, PowerPoint.",
-  "file.acceptedFormats": "허용 형식: 이미지, PDF, EPUB, 동영상, PowerPoint"
+  "file.acceptedFormats": "허용 형식: 이미지, PDF, EPUB, 동영상, PowerPoint",
+  "confirm": "확인"
 }

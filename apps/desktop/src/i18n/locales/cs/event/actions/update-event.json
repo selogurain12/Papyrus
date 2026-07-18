@@ -5,7 +5,9 @@
     "description": "Popis",
     "location": "Umístění",
     "title": "Název události",
-    "type": "Typ události"
+    "type": "Typ události",
+    "chapterToggle": "Událost popsaná v kapitole",
+    "chapterPlaceholder": "Vybrat kapitolu"
   },
   "importance": {
     "action": "Akce",

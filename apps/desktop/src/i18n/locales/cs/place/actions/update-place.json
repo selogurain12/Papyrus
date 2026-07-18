@@ -46,5 +46,18 @@
     "submit": "Aktualizovat místo",
     "success": "Místo bylo úspěšně aktualizováno!",
     "title": "Upravit místo"
+  },
+  "languages": {
+    "cs": "Čeština",
+    "de": "Němčina",
+    "en": "Angličtina",
+    "es": "Španělština",
+    "fr": "Francouzština",
+    "it": "Italština",
+    "ja": "Japonština",
+    "ko": "Korejština",
+    "pt": "Portugalština",
+    "ru": "Ruština",
+    "zh": "Čínština"
   }
 }

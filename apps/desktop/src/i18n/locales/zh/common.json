@@ -93,7 +93,11 @@
     "toggleColumns": "切换列",
     "first": "第一页",
     "last": "最后一页",
-    "morePages": "更多页面"
+    "morePages": "更多页面",
+    "sortAsc": "升序",
+    "sortDesc": "降序",
+    "hideColumn": "隐藏",
+    "clearFilters": "清除筛选"
   },
   "undefined": "未定义",
   "update": "更新",
@@ -128,5 +132,6 @@
   },
   "menu.goals": "目标",
   "file.unsupportedType": "不支持的文件格式。接受的格式：图片、PDF、EPUB、视频和 PowerPoint。",
-  "file.acceptedFormats": "接受的格式：图片、PDF、EPUB、视频、PowerPoint"
+  "file.acceptedFormats": "接受的格式：图片、PDF、EPUB、视频、PowerPoint",
+  "confirm": "确认"
 }

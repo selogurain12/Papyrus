@@ -93,7 +93,11 @@
     "toggleColumns": "Přepnout sloupce",
     "first": "První",
     "last": "Poslední",
-    "morePages": "Další stránky"
+    "morePages": "Další stránky",
+    "sortAsc": "Vzestupně",
+    "sortDesc": "Sestupně",
+    "hideColumn": "Skrýt",
+    "clearFilters": "Vymazat filtry"
   },
   "undefined": "Nedefinováno",
   "update": "Aktualizovat",
@@ -128,5 +132,6 @@
   },
   "menu.goals": "Cíle",
   "file.unsupportedType": "Nepodporovaný formát souboru. Povolené formáty: obrázky, PDF, EPUB, videa a PowerPoint.",
-  "file.acceptedFormats": "Povolené formáty: obrázky, PDF, EPUB, videa, PowerPoint"
+  "file.acceptedFormats": "Povolené formáty: obrázky, PDF, EPUB, videa, PowerPoint",
+  "confirm": "Potvrdit"
 }

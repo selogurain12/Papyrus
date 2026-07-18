@@ -46,5 +46,18 @@
     "submit": "Ort aktualisieren",
     "success": "Ort erfolgreich aktualisiert!",
     "title": "Ort bearbeiten"
+  },
+  "languages": {
+    "cs": "Tschechisch",
+    "de": "Deutsch",
+    "en": "Englisch",
+    "es": "Spanisch",
+    "fr": "Französisch",
+    "it": "Italienisch",
+    "ja": "Japanisch",
+    "ko": "Koreanisch",
+    "pt": "Portugiesisch",
+    "ru": "Russisch",
+    "zh": "Chinesisch"
   }
 }

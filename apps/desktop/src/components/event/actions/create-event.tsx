@@ -51,6 +51,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
   const navigate = useNavigate();
   const isOnline = useOnlineStatus();
   const [selected, setSelected] = useState<boolean>(false);
+  const [selectedChapter, setSelectedChapter] = useState<ChapterDto | null>(null);
   if (!currentProject) {
     return <div>{t("projectNotFound")}</div>;
   }
@@ -112,8 +113,13 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+    const body: CreateEventDto = {
+      ...data,
+      chapter: selected ? selectedChapter : null,
+    };
+
     if (!isOnline) {
-      await createOfflineEntity<CreateEventDto, EventDto>("events", currentProject.id, data);
+      await createOfflineEntity<CreateEventDto, EventDto>("events", currentProject.id, body);
       toast.success(t("common:offline.savedLocally"));
       await queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
       form.reset();
@@ -122,9 +128,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
     }
 
     mutate({
-      body: {
-        ...data,
-      },
+      body,
       params: { projectId: currentProject.id },
     });
   }
@@ -282,23 +286,28 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                             const nextSelected = checked === true;
                             setSelected(nextSelected);
                             if (!nextSelected) {
+                              setSelectedChapter(null);
                               field.onChange(null);
                             }
                           }}
                         />
-                        <Label htmlFor="isInChapter">Évènement décrit dans un chapitre</Label>
+                        <Label htmlFor="isInChapter">{t("fields.chapterToggle")}</Label>
                       </Field>
                       {selected === true && (
                         <FormControl>
                           <SingleSelector<ChapterDto>
                             {...field}
-                            value={field.value as ChapterDto}
-                            onChange={field.onChange}
+                            value={(field.value ?? selectedChapter ?? undefined) as ChapterDto}
+                            onChange={(chapter) => {
+                              const nextChapter = chapter ?? null;
+                              setSelectedChapter(nextChapter);
+                              field.onChange(nextChapter);
+                            }}
                             customDisplay={(item: ChapterDto) => item.title}
                             customLabel={(item: ChapterDto) => (
                               <span className="font-medium">{item.title}</span>
                             )}
-                            placeholder={t("fields.partPlaceholder")}
+                            placeholder={t("fields.chapterPlaceholder")}
                             data={cachedChapters?.data ?? []}
                           />
                         </FormControl>

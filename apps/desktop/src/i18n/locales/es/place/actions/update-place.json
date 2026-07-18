@@ -46,5 +46,18 @@
     "submit": "Actualizar lugar",
     "success": "¡Lugar actualizado correctamente!",
     "title": "Editar lugar"
+  },
+  "languages": {
+    "cs": "Checo",
+    "de": "Alemán",
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés",
+    "it": "Italiano",
+    "ja": "Japonés",
+    "ko": "Coreano",
+    "pt": "Portugués",
+    "ru": "Ruso",
+    "zh": "Chino"
   }
 }

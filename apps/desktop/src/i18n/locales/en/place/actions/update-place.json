@@ -46,5 +46,18 @@
     "submit": "Update place",
     "success": "Place updated successfully!",
     "title": "Edit place"
+  },
+  "languages": {
+    "cs": "Czech",
+    "de": "German",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "it": "Italian",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "pt": "Portuguese",
+    "ru": "Russian",
+    "zh": "Chinese"
   }
 }

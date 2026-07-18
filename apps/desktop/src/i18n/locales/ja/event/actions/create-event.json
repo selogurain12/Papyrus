@@ -10,7 +10,9 @@
     "description": "説明",
     "location": "位置",
     "title": "イベントタイトル",
-    "type": "イベントの種類"
+    "type": "イベントの種類",
+    "chapterToggle": "章で説明されるイベント",
+    "chapterPlaceholder": "章を選択"
   },
   "importance": {
     "action": "アクション",

@@ -93,7 +93,11 @@
     "toggleColumns": "Mostra/nascondi colonne",
     "first": "Prima",
     "last": "Ultima",
-    "morePages": "Altre pagine"
+    "morePages": "Altre pagine",
+    "sortAsc": "Crescente",
+    "sortDesc": "Decrescente",
+    "hideColumn": "Nascondi",
+    "clearFilters": "Cancella filtri"
   },
   "undefined": "Non definito",
   "update": "Aggiornamento",
@@ -128,5 +132,6 @@
   },
   "menu.goals": "Obiettivi",
   "file.unsupportedType": "Formato file non supportato. Formati accettati: immagini, PDF, EPUB, video e PowerPoint.",
-  "file.acceptedFormats": "Formati accettati: immagini, PDF, EPUB, video, PowerPoint"
+  "file.acceptedFormats": "Formati accettati: immagini, PDF, EPUB, video, PowerPoint",
+  "confirm": "Conferma"
 }

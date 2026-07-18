@@ -46,5 +46,18 @@
     "submit": "Atualizar local",
     "success": "Local atualizado com sucesso!",
     "title": "Editar lugar"
+  },
+  "languages": {
+    "cs": "Tcheco",
+    "de": "Alemão",
+    "en": "Inglês",
+    "es": "Espanhol",
+    "fr": "Francês",
+    "it": "Italiano",
+    "ja": "Japonês",
+    "ko": "Coreano",
+    "pt": "Português",
+    "ru": "Russo",
+    "zh": "Chinês"
   }
 }

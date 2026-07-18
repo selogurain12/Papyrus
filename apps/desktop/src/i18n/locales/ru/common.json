@@ -93,7 +93,11 @@
     "toggleColumns": "Переключить столбцы",
     "first": "Первая",
     "last": "Последняя",
-    "morePages": "Еще страницы"
+    "morePages": "Еще страницы",
+    "sortAsc": "По возрастанию",
+    "sortDesc": "По убыванию",
+    "hideColumn": "Скрыть",
+    "clearFilters": "Очистить фильтры"
   },
   "undefined": "Не определено",
   "update": "Обновлять",
@@ -128,5 +132,6 @@
   },
   "menu.goals": "Цели",
   "file.unsupportedType": "Неподдерживаемый формат файла. Допустимые форматы: изображения, PDF, EPUB, видео и PowerPoint.",
-  "file.acceptedFormats": "Допустимые форматы: изображения, PDF, EPUB, видео, PowerPoint"
+  "file.acceptedFormats": "Допустимые форматы: изображения, PDF, EPUB, видео, PowerPoint",
+  "confirm": "Подтвердить"
 }

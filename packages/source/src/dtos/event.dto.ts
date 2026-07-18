@@ -25,7 +25,10 @@ export const createEventSchema = z.object({
     .nullable(),
   eventDate: z.string().refine(isZonedIso8601),
   project: z.lazy(() => projectSchema),
-  chapter: z.lazy(() => chapterSchema).nullable(),
+  chapter: z
+    .lazy(() => chapterSchema)
+    .nullable()
+    .optional(),
 });
 
 export const eventSchema = createEventSchema.extend({

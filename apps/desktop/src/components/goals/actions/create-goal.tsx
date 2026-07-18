@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-len */
 import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
@@ -45,7 +46,12 @@ export function CreateGoalForm({ setOpen }: CreateGoalFormProps) {
     defaultValues: {
       isOpen: true,
       current: 0,
+      title: "",
+      description: "",
+      type: "daily",
+      goals: 0,
       unit: "words",
+      deadline: null,
       project: currentProject,
     },
   });
@@ -170,7 +176,7 @@ export function CreateGoalForm({ setOpen }: CreateGoalFormProps) {
                     id="title"
                     placeholder={t("placeholders.title")}
                     {...field}
-                    value={field.value}
+                    value={field.value ?? ""}
                   />
                 </FormControl>
                 <FormMessage className="mt-1" />
@@ -191,7 +197,7 @@ export function CreateGoalForm({ setOpen }: CreateGoalFormProps) {
                       type="number"
                       placeholder="500"
                       {...field}
-                      value={field.value}
+                      value={field.value ?? ""}
                       onChange={(event) => {
                         field.onChange(Number(event.target.value) || null);
                       }}

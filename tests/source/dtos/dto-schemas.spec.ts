@@ -97,7 +97,7 @@ const character = {
   tics: null,
   fears: null,
   education: null,
-  richesses: null,
+  class: null,
   belief: null,
   secrets: null,
   notablePlaces: null,

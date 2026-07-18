@@ -198,7 +198,7 @@ export function UpdateGoalForm({ setOpen, goal }: UpdateGoalFormProps) {
                       type="number"
                       placeholder="500"
                       {...field}
-                      value={field.value}
+                      value={field.value ?? ""}
                       onChange={(event) => {
                         field.onChange(Number(event.target.value) || null);
                       }}

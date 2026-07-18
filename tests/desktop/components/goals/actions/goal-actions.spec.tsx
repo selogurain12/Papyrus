@@ -1,5 +1,5 @@
 import type { GoalDto, ProjectDto } from "@papyrus/source";
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { toast } from "sonner";
 
@@ -346,7 +346,9 @@ describe("goal action forms", () => {
     const user = userEvent.setup();
     render(<CreateGoalForm setOpen={mockSetOpen} />);
 
-    mockCreateMutationConfig.onSuccess?.();
+    act(() => {
+      mockCreateMutationConfig.onSuccess?.();
+    });
 
     expect(mockInvalidateQueries).toHaveBeenCalledWith({ queryKey: ["goal.getAll"] });
     expect(mockSetOpen).toHaveBeenCalledWith(false);
@@ -419,7 +421,9 @@ describe("goal action forms", () => {
   it("handles update success and missing project states", () => {
     render(<UpdateGoalForm goal={goal} setOpen={mockSetOpen} />);
 
-    mockUpdateMutationConfig.onSuccess?.();
+    act(() => {
+      mockUpdateMutationConfig.onSuccess?.();
+    });
 
     expect(mockInvalidateQueries).toHaveBeenCalledWith({ queryKey: ["goal.getAll"] });
     expect(mockSetOpen).toHaveBeenCalledWith(false);
@@ -471,7 +475,9 @@ describe("goal action forms", () => {
       params: { id: goal.id, projectId: project.id },
     });
 
-    mockDeleteMutationConfig.onSuccess?.();
+    act(() => {
+      mockDeleteMutationConfig.onSuccess?.();
+    });
 
     expect(mockInvalidateQueries).toHaveBeenCalledWith({ queryKey: ["goal.getAll"] });
     expect(mockOnClose).toHaveBeenCalled();

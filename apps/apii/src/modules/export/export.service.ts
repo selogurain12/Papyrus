@@ -590,7 +590,7 @@ export class ExportService {
               "Profil",
               this.fields(`
                 ${this.field("Éducation", chara.education)}
-                ${this.field("Richesses", chara.class)}
+                ${this.field("Classe sociale", chara.class)}
                 ${this.field("Croyances", chara.belief)}
                 ${this.field("Secrets", chara.secrets)}
                 ${this.field("Lieux notables", chara.notablePlaces)}

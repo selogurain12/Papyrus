@@ -1178,6 +1178,22 @@
           "comment": null,
           "enumItems": [],
           "mappedType": "uuid"
+        },
+        "chapter_id": {
+          "name": "chapter_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "unique": false,
+          "length": null,
+          "precision": null,
+          "scale": null,
+          "default": null,
+          "comment": null,
+          "enumItems": [],
+          "mappedType": "uuid"
         }
       },
       "name": "event_entity",
@@ -1196,6 +1212,19 @@
       ],
       "checks": [],
       "foreignKeys": {
+        "event_entity_chapter_id_foreign": {
+          "columnNames": [
+            "chapter_id"
+          ],
+          "constraintName": "event_entity_chapter_id_foreign",
+          "localTableName": "public.event_entity",
+          "referencedTableName": "public.chapter_entity",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "updateRule": "cascade",
+          "deleteRule": "cascade"
+        },
         "event_entity_project_id_foreign": {
           "columnNames": [
             "project_id"

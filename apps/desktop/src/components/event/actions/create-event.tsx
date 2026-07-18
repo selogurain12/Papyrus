@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Card } from "../../ui/card";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
@@ -10,7 +11,13 @@ import { FormMessage } from "../../ui/forms/form-message";
 import { FormLabel } from "../../ui/forms/form-label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createEventSchema, CreateEventDto, EventDto } from "@papyrus/source";
+import {
+  createEventSchema,
+  CreateEventDto,
+  EventDto,
+  ChapterDto,
+  queryKeys,
+} from "@papyrus/source";
 import { useAuth } from "../../../context/auth-provider";
 import { useProject } from "../../../context/project-provider";
 import { client } from "../../../utils/client/client";
@@ -26,6 +33,11 @@ import { useTranslation } from "react-i18next";
 import { DateTimePicker } from "../../ui/date/datetime-picker";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { Checkbox } from "../../ui/checkbox";
+import { Field } from "../../ui/field";
+import { useState } from "react";
+import { SingleSelector } from "../../ui/single-select";
+import { useOfflineList } from "../../../hooks/use-offline-list";
 
 interface CreateEventProps {
   onCancel?: () => void;
@@ -38,6 +50,10 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
   const defaultDate = fromDate(new Date(), getLocalTimeZone()).toString();
   const navigate = useNavigate();
   const isOnline = useOnlineStatus();
+  const [selected, setSelected] = useState<boolean>(false);
+  if (!currentProject) {
+    return <div>{t("projectNotFound")}</div>;
+  }
 
   const form = useForm({
     resolver: zodResolver(createEventSchema),
@@ -49,7 +65,24 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
       additionalDetails: null,
       eventDate: defaultDate,
       project: currentProject!,
+      chapter: null,
     },
+  });
+
+  const { data: chapters } = client.chapter.getAll.useQuery({
+    queryKey: queryKeys.chapter.getAll({
+      pathParams: {
+        projectId: currentProject?.id ?? "",
+      },
+    }),
+    queryData: {
+      params: { projectId: currentProject?.id ?? "" },
+    },
+  });
+  const cachedChapters = useOfflineList({
+    entityType: "chapters",
+    projectId: currentProject.id,
+    onlineData: chapters?.body,
   });
 
   const { mutate } = client.event.create.useMutation({
@@ -230,6 +263,47 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                         onChange={(event) => field.onChange(event.target.value || null)}
                       />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="chapter"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex flex-col gap-3">
+                      <Field orientation="horizontal">
+                        <Checkbox
+                          checked={selected === true}
+                          id="isInChapter"
+                          name="isInChapter"
+                          onCheckedChange={(checked) => {
+                            const nextSelected = checked === true;
+                            setSelected(nextSelected);
+                            if (!nextSelected) {
+                              field.onChange(null);
+                            }
+                          }}
+                        />
+                        <Label htmlFor="isInChapter">Évènement décrit dans un chapitre</Label>
+                      </Field>
+                      {selected === true && (
+                        <FormControl>
+                          <SingleSelector<ChapterDto>
+                            {...field}
+                            value={field.value as ChapterDto}
+                            onChange={field.onChange}
+                            customDisplay={(item: ChapterDto) => item.title}
+                            customLabel={(item: ChapterDto) => (
+                              <span className="font-medium">{item.title}</span>
+                            )}
+                            placeholder={t("fields.partPlaceholder")}
+                            data={cachedChapters?.data ?? []}
+                          />
+                        </FormControl>
+                      )}
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}

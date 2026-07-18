@@ -112,8 +112,8 @@ export class CharacterEntity {
   @Property({ type: "string", nullable: true })
   public education: string | null;
 
-  @Property({ type: "int", nullable: true })
-  public richesses: number | null;
+  @Property({ type: "string", nullable: true })
+  public class: string | null;
 
   @Property({ type: "string", nullable: true })
   public belief: string | null;
@@ -194,7 +194,7 @@ export class CharacterEntity {
     tics: string | null;
     fears: string | null;
     education: string | null;
-    richesses: number | null;
+    class: string | null;
     belief: string | null;
     secrets: string | null;
     notablePlaces: string | null;
@@ -235,7 +235,7 @@ export class CharacterEntity {
     this.tics = parameters.tics;
     this.fears = parameters.fears;
     this.education = parameters.education;
-    this.richesses = parameters.richesses;
+    this.class = parameters.class;
     this.belief = parameters.belief;
     this.secrets = parameters.secrets;
     this.notablePlaces = parameters.notablePlaces;

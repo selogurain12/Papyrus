@@ -41,7 +41,7 @@ export const createCharacterSchema = z.object({
 
   // profil
   education: z.string().nullable(),
-  richesses: z.number().min(0).nullable(),
+  class: z.string().nullable(),
   belief: z.string().nullable(),
   secrets: z.string().nullable(),
   notablePlaces: z.string().nullable(),

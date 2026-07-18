@@ -3,6 +3,7 @@ import { isZonedIso8601 } from "../utils/zoned-iso";
 import { importanceTypes } from "../utils/enum";
 import { projectSchema } from "./project.dto";
 import { filterSchema } from "./filter.dto";
+import { chapterSchema } from "./chapter.dto";
 
 export const createEventSchema = z.object({
   title: z
@@ -24,6 +25,7 @@ export const createEventSchema = z.object({
     .nullable(),
   eventDate: z.string().refine(isZonedIso8601),
   project: z.lazy(() => projectSchema),
+  chapter: z.lazy(() => chapterSchema).nullable(),
 });
 
 export const eventSchema = createEventSchema.extend({

@@ -12,6 +12,7 @@ import {
 import { ImportanceType } from "@papyrus/source";
 import { ZonedDateTimeType } from "../../utils/zoned-date-time";
 import { ProjectEntity } from "../projects/projects.entity";
+import { ChapterEntity } from "../chapters/chapters.entity";
 
 @Entity()
 export class EventEntity {
@@ -50,6 +51,9 @@ export class EventEntity {
   @ManyToOne(() => ProjectEntity, { ref: true, deleteRule: "cascade" })
   public project: Ref<ProjectEntity>;
 
+  @ManyToOne(() => ChapterEntity, { ref: true, deleteRule: "cascade", nullable: true })
+  public chapter: Ref<ChapterEntity> | null = null;
+
   public constructor(parameters: {
     title: string;
     description?: string | null;
@@ -58,6 +62,7 @@ export class EventEntity {
     additionalDetails?: string | null;
     eventDate: ZonedDateTime;
     project: ProjectEntity;
+    chapter: ChapterEntity | null;
   }) {
     this.title = parameters.title;
     this.description = parameters.description ?? null;
@@ -66,5 +71,6 @@ export class EventEntity {
     this.additionalDetails = parameters.additionalDetails ?? null;
     this.eventDate = parameters.eventDate;
     this.project = ref(parameters.project);
+    this.chapter = ref(parameters.chapter) ?? null;
   }
 }

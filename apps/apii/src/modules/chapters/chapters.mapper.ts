@@ -99,16 +99,25 @@ export class ChapterMapper {
     if (!entity) {
       throw new NotFoundError(`ChapterEntity with id ${id} not found`);
     }
-    const updatePayload: Partial<{
-      title: UpdateChapterDto["title"];
-      status: UpdateChapterDto["status"];
-      content: UpdateChapterDto["content"];
-      resume: UpdateChapterDto["resume"];
-      chapterNumber: UpdateChapterDto["chapterNumber"];
-      wordCount: UpdateChapterDto["wordCount"];
-      wordGoal: UpdateChapterDto["wordGoal"];
-      part: PartEntity;
-    }> = {
+
+    let part: PartEntity | null | undefined = undefined;
+
+    if (updateDto.part !== undefined) {
+      if (updateDto.part === null) {
+        part = null;
+      } else {
+        part = await em.getRepository(PartEntity).findOne({
+          id: updateDto.part.id,
+          deletedAt: null,
+        });
+
+        if (!part) {
+          throw new NotFoundError(`PartEntity with id ${updateDto.part.id} not found`);
+        }
+      }
+    }
+
+    em.assign(entity, {
       title: updateDto.title,
       status: updateDto.status,
       content: updateDto.content,
@@ -116,22 +125,8 @@ export class ChapterMapper {
       chapterNumber: updateDto.chapterNumber,
       wordCount: updateDto.wordCount,
       wordGoal: updateDto.wordGoal,
-    };
-
-    if (updateDto.part) {
-      const part = await em.getRepository(PartEntity).findOne({
-        id: {
-          $eq: updateDto.part.id,
-        },
-      });
-
-      if (!part) {
-        throw new NotFoundError(`PartEntity with id ${updateDto.part.id} not found`);
-      }
-
-      updatePayload.part = part;
-    }
-    em.assign(entity, updatePayload);
+      part,
+    });
     return entity;
   }
 }

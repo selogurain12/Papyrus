@@ -71,6 +71,6 @@ export class EventEntity {
     this.additionalDetails = parameters.additionalDetails ?? null;
     this.eventDate = parameters.eventDate;
     this.project = ref(parameters.project);
-    this.chapter = ref(parameters.chapter) ?? null;
+    this.chapter = parameters.chapter ? ref(parameters.chapter) : null;
   }
 }

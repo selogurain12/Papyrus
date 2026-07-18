@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-SCHEMA_MODE="${DB_SCHEMA_MODE:-sync}"
+SCHEMA_MODE="${DB_SCHEMA_MODE:-migrate}"
 ORM_CONFIG="dist/apps/apii/apps/apii/src/mikro-orm.config.js"
 
 if [ "${RUN_MIGRATIONS:-true}" = "false" ] && [ -z "${DB_SCHEMA_MODE:-}" ]; then

@@ -7,7 +7,7 @@ export default defineConfig({
   entities: ["dist/apps/apii/**/*.entity.js"],
 
   migrations: {
-    path: "apps/apii/src/migrations",
+    path: "dist/apps/apii/apps/apii/src/migrations",
     pathTs: "apps/apii/src/migrations",
   },
 

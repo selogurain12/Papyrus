@@ -17,7 +17,7 @@ services:
             AWS_SECRET_KEY: ${AWS_SECRET_KEY}
             AWS_REGION: ${AWS_REGION}
             AWS_BUCKET: ${AWS_BUCKET}
-            DB_SCHEMA_MODE: sync
+            DB_SCHEMA_MODE: migrate
         ports:
             - "3000:3000"
         depends_on:

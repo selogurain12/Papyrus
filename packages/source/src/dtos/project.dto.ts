@@ -33,6 +33,7 @@ export const createProjectSchema = z.object({
     .string()
     .min(1, "L'auteur du projet est requis")
     .max(50, "Le nom de l'auteur ne peut pas dépasser 50 caractères"),
+  coverLink: z.string().nullable().optional(),
   language: z.enum(languagesTypes),
   deadline: z.string().refine(isZonedIso8601).nullable(),
   tags: z.array(z.string()).max(10, "Le nombre maximum de tags est 10").optional(),

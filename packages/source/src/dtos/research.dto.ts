@@ -29,8 +29,8 @@ export const createResearchSchema = z.object({
     .nullable(),
   link: z
     .string()
-    .min(1, { message: "Lien trop petite, minimum 1 caractère" })
-    .max(1000, { message: "Lien trop grande, maximum 1000 caractères" })
+    .min(1, { message: "Lien trop petit, minimum 1 caractère" })
+    .max(1000, { message: "Lien trop grand, maximum 1000 caractères" })
     .nullable()
     .optional(),
   project: z.lazy(() => projectSchema),

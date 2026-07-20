@@ -103,6 +103,7 @@ module.exports = {
       ],
       moduleNameMapper: {
         "^@papyrus/source$": "<rootDir>/tests/desktop/support/source-mock.ts",
+        "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/tests/desktop/support/file-mock.ts",
       },
       moduleDirectories: ["node_modules", "<rootDir>/apps/desktop/node_modules"],
       preset: "ts-jest",

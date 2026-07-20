@@ -13,7 +13,8 @@
     "targetWordCount": "Contagem de palavras alvo",
     "title": "Título do projeto",
     "status": "Estado do projeto",
-    "tags": "Tags"
+    "tags": "Tags",
+    "cover": "Capa do livro"
   },
   "genres": {
     "biography": "Biografia",

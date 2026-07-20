@@ -9,6 +9,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { projectHomeRoute } from "../../routes/project/index.route";
 import { useProject } from "../../context/project-provider";
 import { useTranslation } from "react-i18next";
+import bookCover from "../../../assets/book.jpg";
 
 interface ProjectCardProps {
   project: ProjectDto;
@@ -55,14 +56,14 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
     <Card className="rounded-xl overflow-hidden">
       <div className="relative w-full h-48">
         <img
-          src={`${project.coverLink}`}
+          src={project.coverLink ?? bookCover}
           alt={t("card.coverAlt")}
           className="w-full h-full object-cover"
         />
 
         {statusColor(project.status)}
 
-        <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black/60 to-transparent w-full">
+        <div className="absolute bottom-0 left-0 p-4 bg-linear-to-t from-black/60 to-transparent w-full">
           <CardTitle className="text-white">{project.title}</CardTitle>
           <CardDescription className="text-gray-200">
             {t(`genres.${project.genre}`, { defaultValue: project.genre })}

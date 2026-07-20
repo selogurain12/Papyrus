@@ -29,7 +29,14 @@
     "drop": "или перетащите",
     "label": "Файл",
     "maxSize": "Максимальный размер: {{maxSize}}MB",
-    "select": "Нажмите, чтобы выбрать"
+    "select": "Нажмите, чтобы выбрать",
+    "format": {
+      "images": "Изображения",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "Видео",
+      "powerPoint": "PowerPoint"
+    }
   },
   "fileTooLarge": "Файл слишком большой. Максимальный размер: {{maxSize}}MB",
   "finish": "Заканчивать",
@@ -132,6 +139,6 @@
   },
   "menu.goals": "Цели",
   "file.unsupportedType": "Неподдерживаемый формат файла. Допустимые форматы: изображения, PDF, EPUB, видео и PowerPoint.",
-  "file.acceptedFormats": "Допустимые форматы: изображения, PDF, EPUB, видео, PowerPoint",
+  "file.acceptedFormats": "Допустимые форматы: {{formats}}",
   "confirm": "Подтвердить"
 }

@@ -13,7 +13,8 @@
     "targetWordCount": "Nombre de mots cible",
     "title": "Titre du projet",
     "status": "Statut du projet",
-    "tags": "Tags"
+    "tags": "Tags",
+    "cover": "Couverture du livre"
   },
   "genres": {
     "biography": "Biographie",

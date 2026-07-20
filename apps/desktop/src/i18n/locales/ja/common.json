@@ -29,7 +29,14 @@
     "drop": "またはドラッグ＆ドロップ",
     "label": "ファイル",
     "maxSize": "最大サイズ: {{maxSize}}MB",
-    "select": "クリックして選択"
+    "select": "クリックして選択",
+    "format": {
+      "images": "画像",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "動画",
+      "powerPoint": "PowerPoint"
+    }
   },
   "fileTooLarge": "ファイルが大きすぎます。最大サイズ: {{maxSize}}MB",
   "finish": "仕上げる",
@@ -132,6 +139,6 @@
   },
   "menu.goals": "目標",
   "file.unsupportedType": "サポートされていないファイル形式です。対応形式: 画像、PDF、EPUB、動画、PowerPoint。",
-  "file.acceptedFormats": "対応形式: 画像、PDF、EPUB、動画、PowerPoint",
+  "file.acceptedFormats": "対応形式: {{formats}}",
   "confirm": "確認"
 }

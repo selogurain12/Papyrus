@@ -29,7 +29,14 @@
     "drop": "nebo přetáhněte sem",
     "label": "Soubor",
     "maxSize": "Maximální velikost: {{maxSize}}MB",
-    "select": "Kliknutím vyberte"
+    "select": "Kliknutím vyberte",
+    "format": {
+      "images": "Obrázky",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "Videa",
+      "powerPoint": "PowerPoint"
+    }
   },
   "fileTooLarge": "Soubor je příliš velký. Maximální velikost: {{maxSize}}MB",
   "finish": "Dokončit",
@@ -132,6 +139,6 @@
   },
   "menu.goals": "Cíle",
   "file.unsupportedType": "Nepodporovaný formát souboru. Povolené formáty: obrázky, PDF, EPUB, videa a PowerPoint.",
-  "file.acceptedFormats": "Povolené formáty: obrázky, PDF, EPUB, videa, PowerPoint",
+  "file.acceptedFormats": "Povolené formáty: {{formats}}",
   "confirm": "Potvrdit"
 }

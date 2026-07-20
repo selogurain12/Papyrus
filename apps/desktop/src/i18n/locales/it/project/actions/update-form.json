@@ -8,7 +8,8 @@
     "targetWordCount": "Conteggio parole target",
     "title": "Titolo del progetto",
     "status": "Stato del progetto",
-    "tags": "Tag"
+    "tags": "Tag",
+    "cover": "Copertina del libro"
   },
   "genres": {
     "biography": "Biografia",

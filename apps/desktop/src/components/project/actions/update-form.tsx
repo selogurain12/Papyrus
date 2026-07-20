@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-len */
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DialogContent } from "../../ui/dialogs/dialog-content";
 import { DialogHeader } from "../../ui/dialogs/dialog-header";
 import { DialogTitle } from "../../ui/dialogs/dialog-title";
@@ -21,7 +21,7 @@ import { FormMessage } from "../../ui/forms/form-message";
 import { Textarea } from "../../ui/textarea";
 import { genre, languageOptions, statusOptions, TypeOption } from "../../../utils/value-for-select";
 import { SingleSelector } from "../../ui/single-select";
-import { BookOpen, Target } from "lucide-react";
+import { BookOpen, FileIcon, Target } from "lucide-react";
 import { DatePicker } from "../../ui/date-picker";
 import { ProjectDto, UpdateProjectDto, updateProjectSchema } from "@papyrus/source";
 import { Button } from "../../ui/button";
@@ -29,6 +29,10 @@ import { useTranslation } from "react-i18next";
 import { Tag } from "../../ui/tag";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
+import { clientFile } from "../../../utils/client/client-file";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
+import { FileUpload } from "../../ui/file-attachment";
+import { Separator } from "../../ui/separator";
 
 interface UpdateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -39,6 +43,8 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
   const { t } = useTranslation(["project/actions/update-form", "common"]);
   const { user } = useAuth();
   const isOnline = useOnlineStatus();
+  const [file, setFile] = useState<File | null>(null);
+  const [existingLink, setExistingLink] = useState<string | null>(project.coverLink ?? null);
   if (user === null) {
     toast.error(t("common:notConnected"));
     return null;
@@ -59,6 +65,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
       user,
     },
   });
+  const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
   const { mutate } = client.project.update.useMutation({
     onSuccess: () => {
       toast.success(t("update.success"));
@@ -76,13 +83,23 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
       }
     },
   });
+  // eslint-disable-next-line complexity
   async function onSubmit(data: UpdateProjectDto) {
     if (user === null) {
       toast.error("User is null");
       return;
     }
+    let fileUrl: string | null =
+      existingLink ?? (data.coverLink?.trim() ? data.coverLink : null) ?? project.coverLink ?? null;
+
     if (!isOnline) {
-      await updateOfflineEntity<UpdateProjectDto, ProjectDto>("projects", user.id, project, data);
+      if (file) {
+        fileUrl = await saveLocalAttachment(file);
+      }
+      await updateOfflineEntity<UpdateProjectDto, ProjectDto>("projects", user.id, project, {
+        ...data,
+        coverLink: fileUrl,
+      });
       toast.success(t("update.success"));
       await queryClient.invalidateQueries({ queryKey: ["project.getAll"] });
       form.reset();
@@ -90,9 +107,22 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
       return;
     }
 
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await uploadFile({ body: formData });
+      fileUrl = res.body.url;
+    }
+
+    if (!file && data.coverLink === undefined && existingLink === null) {
+      fileUrl = null;
+    }
+
     mutate({
       body: {
         ...data,
+        coverLink: fileUrl,
       },
       params: { userId: user.id, id: project.id },
     });
@@ -100,7 +130,7 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
 
   return (
     <DialogContent
-      className="overscroll-none sm:max-w-200 sm:max-h-[80%] bg-white p-8 max-h-4/5"
+      className="overscroll-none sm:max-w-200 sm:max-h-[80%] bg-white p-8 max-h-4/5 overflow-y-scroll"
       onInteractOutside={(event) => {
         event.preventDefault();
         setOpen(false);
@@ -328,6 +358,57 @@ export function UpdateProjectForm({ setOpen, project }: UpdateProjectFormProps) 
                     />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="col-span-full">
+            <Separator className="my-2 bg-gray-300" />
+
+            <FormField
+              control={form.control}
+              name="author"
+              render={() => (
+                <FormItem>
+                  <FormLabel htmlFor="author">{t("fields.cover")}</FormLabel>
+                  <FormControl>
+                    <>
+                      {existingLink && !file && (
+                        <div className="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg mb-3">
+                          <div className="flex items-center gap-3">
+                            <FileIcon className="w-5 h-5 text-blue-600" />
+                            <div>
+                              <p className="text-sm font-medium text-gray-900 truncate max-w-xs">
+                                {decodeURIComponent(existingLink.split("/").pop() || existingLink)}
+                              </p>
+                              <p className="text-xs text-gray-500">{existingLink}</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => window.open(existingLink, "_blank")}
+                            >
+                              {t("common:openExternal")}
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                setExistingLink(null);
+                              }}
+                            >
+                              {t("common:delete")}
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+
+                      <FileUpload onFileSelected={(file) => setFile(file)} accept="image/*" />
+                    </>
+                  </FormControl>
+                  <FormMessage className="mt-1" />
                 </FormItem>
               )}
             />

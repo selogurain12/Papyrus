@@ -13,7 +13,8 @@
     "targetWordCount": "目标字数",
     "title": "项目名称",
     "status": "项目状态",
-    "tags": "标签"
+    "tags": "标签",
+    "cover": "书籍封面"
   },
   "genres": {
     "biography": "传",

@@ -32,6 +32,7 @@ import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 import { FileUpload } from "../../ui/file-attachment";
 import { clientFile } from "../../../utils/client/client-file";
 import { saveLocalAttachment } from "../../../local-db/local-file-store";
+import { Separator } from "../../ui/separator";
 
 interface CreateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -226,19 +227,6 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="coverLink"
-              render={() => (
-                <FormItem className="flex flex-col items-start">
-                  <FormLabel htmlFor="coverLink">Couverture du livre</FormLabel>
-                  <FormControl>
-                    <FileUpload onFileSelected={(file) => setFile(file)} accept="image/*" />
-                  </FormControl>
-                  <FormMessage className="mt-1" />
-                </FormItem>
-              )}
-            />
           </div>
 
           {/* --- Colonne 2 : Objectifs et paramètres --- */}
@@ -356,6 +344,22 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
                     />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="col-span-full">
+            <Separator className="my-2 bg-gray-300" />
+            <FormField
+              control={form.control}
+              name="coverLink"
+              render={() => (
+                <FormItem>
+                  <FormLabel htmlFor="coverLink">{t("fields.cover")}</FormLabel>
+                  <FormControl>
+                    <FileUpload onFileSelected={(file) => setFile(file)} accept="image/*" />
+                  </FormControl>
+                  <FormMessage className="mt-1" />
                 </FormItem>
               )}
             />

@@ -120,6 +120,15 @@
     "clearFilters": "Effacer les filtres"
   },
   "file.unsupportedType": "Format non pris en charge. Formats acceptés : images, PDF, EPUB, vidéos et PowerPoint.",
-  "file.acceptedFormats": "Formats acceptés : images, PDF, EPUB, vidéos, PowerPoint",
-  "confirm": "Confirmer"
+  "file.acceptedFormats": "Formats acceptés : {{formats}}",
+  "confirm": "Confirmer",
+  "file": {
+    "format": {
+      "images": "Images",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "Vidéos",
+      "powerPoint": "PowerPoint"
+    }
+  }
 }

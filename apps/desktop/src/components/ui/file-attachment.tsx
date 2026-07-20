@@ -32,6 +32,34 @@ const ACCEPTED_FILE_MIME_TYPES = [
   "application/vnd.openxmlformats-officedocument.presentationml.presentation",
 ];
 
+const ACCEPTED_FORMAT_LABEL_KEYS = [
+  {
+    labelKey: "file.format.images",
+    values: ["image/*"],
+  },
+  {
+    labelKey: "file.format.pdf",
+    values: ["application/pdf", ".pdf"],
+  },
+  {
+    labelKey: "file.format.epub",
+    values: ["application/epub+zip", ".epub"],
+  },
+  {
+    labelKey: "file.format.videos",
+    values: ["video/*"],
+  },
+  {
+    labelKey: "file.format.powerPoint",
+    values: [
+      "application/vnd.ms-powerpoint",
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      ".ppt",
+      ".pptx",
+    ],
+  },
+];
+
 function isAcceptedFile(file: File): boolean {
   const fileName = file.name.toLowerCase();
 
@@ -41,6 +69,21 @@ function isAcceptedFile(file: File): boolean {
     ACCEPTED_FILE_MIME_TYPES.includes(file.type) ||
     ACCEPTED_FILE_EXTENSIONS.some((extension) => fileName.endsWith(extension))
   );
+}
+
+function getAcceptedFormatLabelKeys(accept: string): string[] {
+  const acceptedValues = accept
+    .split(",")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
+
+  if (acceptedValues.length === 0) {
+    return ACCEPTED_FORMAT_LABEL_KEYS.map((format) => format.labelKey);
+  }
+
+  return ACCEPTED_FORMAT_LABEL_KEYS.filter((format) =>
+    format.values.some((value) => acceptedValues.includes(value.toLowerCase()))
+  ).map((format) => format.labelKey);
 }
 
 export function FileUpload({
@@ -54,6 +97,9 @@ export function FileUpload({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const acceptedFormatLabels = getAcceptedFormatLabelKeys(accept)
+    .map((key) => t(key))
+    .join(", ");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;
@@ -140,7 +186,9 @@ export function FileUpload({
             <span className="font-medium text-blue-600">{t("file.select")}</span> {t("file.drop")}
           </p>
           <p className="text-xs text-gray-500">{t("file.maxSize", { maxSize })}</p>
-          <p className="text-xs text-gray-500">{t("file.acceptedFormats")}</p>
+          <p className="text-xs text-gray-500">
+            {t("file.acceptedFormats", { formats: acceptedFormatLabels })}
+          </p>
         </div>
       </div>
 

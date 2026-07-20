@@ -8,7 +8,8 @@
     "targetWordCount": "Target word count",
     "title": "Project title",
     "status": "Project status",
-    "tags": "Tags"
+    "tags": "Tags",
+    "cover": "Book cover"
   },
   "genres": {
     "biography": "Biography",

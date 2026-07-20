@@ -29,7 +29,14 @@
     "drop": "oder per Drag-and-drop ablegen",
     "label": "Datei",
     "maxSize": "Maximale Größe: {{maxSize}}MB",
-    "select": "Zum Auswählen klicken"
+    "select": "Zum Auswählen klicken",
+    "format": {
+      "images": "Bilder",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "Videos",
+      "powerPoint": "PowerPoint"
+    }
   },
   "fileTooLarge": "Die Datei ist zu groß. Maximale Größe: {{maxSize}}MB",
   "finish": "Beenden",
@@ -132,6 +139,6 @@
   },
   "menu.goals": "Ziele",
   "file.unsupportedType": "Nicht unterstütztes Dateiformat. Akzeptierte Formate: Bilder, PDF, EPUB, Videos und PowerPoint.",
-  "file.acceptedFormats": "Akzeptierte Formate: Bilder, PDF, EPUB, Videos, PowerPoint",
+  "file.acceptedFormats": "Akzeptierte Formate: {{formats}}",
   "confirm": "Bestätigen"
 }

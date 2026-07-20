@@ -8,7 +8,8 @@
     "targetWordCount": "Cílový počet slov",
     "title": "Název projektu",
     "status": "Stav projektu",
-    "tags": "Štítky"
+    "tags": "Štítky",
+    "cover": "Obálka knihy"
   },
   "genres": {
     "biography": "Životopis",

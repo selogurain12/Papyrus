@@ -29,7 +29,14 @@
     "drop": "또는 끌어다 놓기",
     "label": "파일",
     "maxSize": "최대 크기: {{maxSize}}MB",
-    "select": "클릭하여 선택"
+    "select": "클릭하여 선택",
+    "format": {
+      "images": "이미지",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "동영상",
+      "powerPoint": "PowerPoint"
+    }
   },
   "fileTooLarge": "파일이 너무 큽니다. 최대 크기: {{maxSize}}MB",
   "finish": "마치다",
@@ -132,6 +139,6 @@
   },
   "menu.goals": "목표",
   "file.unsupportedType": "지원되지 않는 파일 형식입니다. 허용 형식: 이미지, PDF, EPUB, 동영상, PowerPoint.",
-  "file.acceptedFormats": "허용 형식: 이미지, PDF, EPUB, 동영상, PowerPoint",
+  "file.acceptedFormats": "허용 형식: {{formats}}",
   "confirm": "확인"
 }

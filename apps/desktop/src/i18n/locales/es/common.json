@@ -29,7 +29,14 @@
     "drop": "o arrastra y suelta",
     "label": "Archivo",
     "maxSize": "Tamaño máximo: {{maxSize}}MB",
-    "select": "Haz clic para seleccionar"
+    "select": "Haz clic para seleccionar",
+    "format": {
+      "images": "Imágenes",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "Vídeos",
+      "powerPoint": "PowerPoint"
+    }
   },
   "fileTooLarge": "El archivo es demasiado grande. Tamaño máximo: {{maxSize}}MB",
   "finish": "Finalizar",
@@ -132,6 +139,6 @@
   },
   "menu.goals": "Objetivos",
   "file.unsupportedType": "Formato de archivo no compatible. Formatos aceptados: imágenes, PDF, EPUB, vídeos y PowerPoint.",
-  "file.acceptedFormats": "Formatos aceptados: imágenes, PDF, EPUB, vídeos, PowerPoint",
+  "file.acceptedFormats": "Formatos aceptados: {{formats}}",
   "confirm": "Confirmar"
 }

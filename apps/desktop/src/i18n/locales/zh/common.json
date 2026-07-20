@@ -29,7 +29,14 @@
     "drop": "或拖放",
     "label": "文件",
     "maxSize": "最大大小：{{maxSize}}MB",
-    "select": "点击选择"
+    "select": "点击选择",
+    "format": {
+      "images": "图片",
+      "pdf": "PDF",
+      "epub": "EPUB",
+      "videos": "视频",
+      "powerPoint": "PowerPoint"
+    }
   },
   "fileTooLarge": "文件太大。最大大小：{{maxSize}}MB",
   "finish": "结束",
@@ -132,6 +139,6 @@
   },
   "menu.goals": "目标",
   "file.unsupportedType": "不支持的文件格式。接受的格式：图片、PDF、EPUB、视频和 PowerPoint。",
-  "file.acceptedFormats": "接受的格式：图片、PDF、EPUB、视频、PowerPoint",
+  "file.acceptedFormats": "接受的格式：{{formats}}",
   "confirm": "确认"
 }

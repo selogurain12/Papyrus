@@ -8,7 +8,8 @@
     "targetWordCount": "目標単語数",
     "title": "プロジェクトタイトル",
     "status": "プロジェクトのステータス",
-    "tags": "タグ"
+    "tags": "タグ",
+    "cover": "本の表紙"
   },
   "genres": {
     "biography": "バイオグラフィー",

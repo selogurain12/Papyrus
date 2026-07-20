@@ -46,7 +46,8 @@
     "tics": "抽动、习惯、惯例和成瘾",
     "typicalExpression": "典型的短语或表达方式",
     "voice": "嗓音",
-    "weight": "重量（公斤）"
+    "weight": "重量（公斤）",
+    "avatar": "头像"
   },
   "gender": {
     "female": "女性",

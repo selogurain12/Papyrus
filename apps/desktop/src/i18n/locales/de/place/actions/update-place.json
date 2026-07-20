@@ -13,7 +13,8 @@
     "population": "Bevölkerung",
     "ressources": "Ressourcen",
     "type": "Ortstyp *",
-    "visualDetails": "Visuelle Details"
+    "visualDetails": "Visuelle Details",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Hoch",

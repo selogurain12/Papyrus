@@ -52,7 +52,8 @@
     "tics": "Tics, habits, routines and addictions",
     "typicalExpression": "Typical phrases or expressions",
     "voice": "Voice",
-    "weight": "Weight (kg)"
+    "weight": "Weight (kg)",
+    "avatar": "Avatar"
   },
   "gender": {
     "female": "Female",

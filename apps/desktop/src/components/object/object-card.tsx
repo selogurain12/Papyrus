@@ -47,9 +47,13 @@ export function ObjectCard({
         <div
           className={`w-12 h-12 rounded-full ${
             colorMap[object.color ?? "blue"]
-          } flex items-center justify-center shadow-md`}
+          } flex items-center justify-center shadow-md overflow-hidden`}
         >
-          <Package className="w-6 h-6 text-white" />
+          {object.avatarLink ? (
+            <img src={object.avatarLink} alt={object.name} className="h-full w-full object-cover" />
+          ) : (
+            <Package className="w-6 h-6 text-white" />
+          )}
         </div>
 
         {/* INFORMATIONS */}

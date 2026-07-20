@@ -13,7 +13,8 @@
     "location": "Location",
     "name": "Name *",
     "significance": "Importance in the story",
-    "type": "Type"
+    "type": "Type",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "High",

@@ -13,7 +13,8 @@
     "population": "人口",
     "ressources": "资源",
     "type": "地点类型 *",
-    "visualDetails": "视觉细节"
+    "visualDetails": "视觉细节",
+    "avatar": "头像"
   },
   "importance": {
     "high": "高的",

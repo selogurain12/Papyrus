@@ -8,7 +8,8 @@
     "location": "地点",
     "name": "姓名 *",
     "significance": "故事中的重要性",
-    "type": "类型"
+    "type": "类型",
+    "avatar": "头像"
   },
   "importance": {
     "high": "高的",

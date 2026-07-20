@@ -13,7 +13,8 @@
     "location": "Ubicación",
     "name": "Nombre *",
     "significance": "Importancia en la historia",
-    "type": "Tipo"
+    "type": "Tipo",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Alta",

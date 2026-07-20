@@ -13,7 +13,8 @@
     "location": "位置",
     "name": "名前 *",
     "significance": "物語の中での重要性",
-    "type": "タイプ"
+    "type": "タイプ",
+    "avatar": "アバター"
   },
   "importance": {
     "high": "高い",

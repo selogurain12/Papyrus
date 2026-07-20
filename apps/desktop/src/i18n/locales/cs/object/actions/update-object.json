@@ -8,7 +8,8 @@
     "location": "Umístění",
     "name": "jméno *",
     "significance": "Důležitost v příběhu",
-    "type": "Typ"
+    "type": "Typ",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Vysoký",

@@ -29,6 +29,10 @@ function isEmptyAttachment(value: JsonValue | undefined) {
   return value === null || value === undefined || value === "";
 }
 
+function hasAvatarLink(entityType: string) {
+  return ["characters", "places", "objects"].includes(entityType);
+}
+
 // eslint-disable-next-line complexity
 function preserveLocalAttachments(
   entityType: string,
@@ -63,6 +67,14 @@ function preserveLocalAttachments(
     isLocalAttachment(localRecord.linkFile)
   ) {
     serverRecord.linkFile = localRecord.linkFile;
+  }
+
+  if (
+    hasAvatarLink(entityType) &&
+    isEmptyAttachment(serverRecord.avatarLink) &&
+    isLocalAttachment(localRecord.avatarLink)
+  ) {
+    serverRecord.avatarLink = localRecord.avatarLink;
   }
 
   return serverRecord;

@@ -47,9 +47,13 @@ export function ObjectDetail({ object }: ObjectDetailProps) {
         <div
           className={`w-16 h-16 rounded-full ${
             colorMap[object.color ?? "blue"]
-          } flex items-center justify-center`}
+          } flex items-center justify-center overflow-hidden`}
         >
-          <Package className="w-8 h-8 text-white" />
+          {object.avatarLink ? (
+            <img src={object.avatarLink} alt={object.name} className="h-full w-full object-cover" />
+          ) : (
+            <Package className="w-8 h-8 text-white" />
+          )}
         </div>
 
         <div className="space-y-1">

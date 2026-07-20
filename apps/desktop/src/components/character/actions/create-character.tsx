@@ -16,7 +16,7 @@ import { TypeOption, roleOptions } from "../../../utils/value-for-select";
 import { FormControl } from "../../ui/forms/form-control";
 import { FormItem } from "../../ui/forms/form-item";
 import { FormMessage } from "../../ui/forms/form-message";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../../ui/forms/form";
@@ -38,6 +38,9 @@ import { createOfflineEntity } from "../../../local-db/offline-entity-store";
 import { ColorPicker } from "../../ui/color-picker";
 import { Tag } from "../../ui/tag";
 import { getAgeOfZonedDate } from "../../../utils/date/date-utils";
+import { FileUpload } from "../../ui/file-attachment";
+import { clientFile } from "../../../utils/client/client-file";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface CreateCharacterProps {
   onCancel?: () => void;
@@ -50,6 +53,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
   const { currentProject } = useProject();
   const navigate = useNavigate();
   const isOnline = useOnlineStatus();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const { t } = useTranslation(["character/actions/create-character", "common"]);
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
@@ -96,9 +100,11 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
       future: null,
       notes: null,
       color: "blue",
+      avatarLink: null,
       project: currentProject,
     },
   });
+  const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
 
   const { mutate } = client.character.create.useMutation({
     onSuccess: () => {
@@ -107,6 +113,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
         queryKey: ["character.getAll"],
       });
       form.reset();
+      setAvatarFile(null);
       onCancel?.();
     },
     onError: (error) => {
@@ -118,7 +125,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
     },
   });
 
-  function onSubmit(data: CreateCharacterDto) {
+  async function onSubmit(data: CreateCharacterDto) {
     if (user === null) {
       toast.error(t("common:errors.unauthenticated"));
       return;
@@ -128,16 +135,35 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
       return;
     }
 
+    let avatarLink = data.avatarLink ?? null;
+
+    if (avatarFile) {
+      if (isOnline) {
+        const formData = new FormData();
+        formData.append("file", avatarFile);
+        const res = await uploadFile({ body: formData });
+        avatarLink = res.body.url;
+      } else {
+        avatarLink = await saveLocalAttachment(avatarFile);
+      }
+    }
+
+    const payload = {
+      ...data,
+      avatarLink,
+    };
+
     if (!isOnline) {
       void createOfflineEntity<CreateCharacterDto, CharacterDto>(
         "characters",
         currentProject.id,
-        data
+        payload
       )
         .then((character) => {
           toast.success(t("create.offlineSuccess"));
           onCreated?.(character);
           form.reset();
+          setAvatarFile(null);
           onCancel?.();
         })
         .catch((error: unknown) => {
@@ -148,9 +174,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
     }
 
     mutate({
-      body: {
-        ...data,
-      },
+      body: payload,
       params: { projectId: currentProject.id },
     });
   }
@@ -192,11 +216,19 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
               <div
                 className={`w-24 h-24 rounded-full ${
                   colorMap[form.watch("color") ?? "blue"]
-                } flex items-center justify-center`}
+                } flex items-center justify-center overflow-hidden`}
               >
-                <span className="text-white text-4xl font-bold">
-                  {form.watch("firstName").charAt(0) || "?"}
-                </span>
+                {form.watch("avatarLink") ? (
+                  <img
+                    src={form.watch("avatarLink") ?? ""}
+                    alt={t("fields.avatar")}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span className="text-white text-4xl font-bold">
+                    {form.watch("firstName").charAt(0) || "?"}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -247,6 +279,18 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                 />
               </div>
             </div>
+          </div>
+
+          <div className="mb-6">
+            <FileUpload
+              label={t("fields.avatar")}
+              accept="image/*"
+              maxSize={5}
+              onFileSelected={(file) => {
+                setAvatarFile(file);
+                form.setValue("avatarLink", file ? URL.createObjectURL(file) : null);
+              }}
+            />
           </div>
 
           <Accordion type="multiple" className="w-full">

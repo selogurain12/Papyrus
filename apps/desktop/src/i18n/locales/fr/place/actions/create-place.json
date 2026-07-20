@@ -18,7 +18,8 @@
     "population": "Population",
     "ressources": "Ressources",
     "type": "Type de lieu *",
-    "visualDetails": "Détails visuels"
+    "visualDetails": "Détails visuels",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Élevée",

@@ -52,7 +52,8 @@
     "tics": "チック、習慣、日常生活、依存症",
     "typicalExpression": "典型的なフレーズや表現",
     "voice": "声",
-    "weight": "重量(kg)"
+    "weight": "重量(kg)",
+    "avatar": "アバター"
   },
   "gender": {
     "female": "女性",

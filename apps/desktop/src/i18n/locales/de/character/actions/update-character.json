@@ -46,7 +46,8 @@
     "tics": "Tics, Gewohnheiten, Routinen und Süchte",
     "typicalExpression": "Typische Phrasen oder Ausdrücke",
     "voice": "Stimme",
-    "weight": "Gewicht (kg)"
+    "weight": "Gewicht (kg)",
+    "avatar": "Avatar"
   },
   "gender": {
     "female": "Weiblich",

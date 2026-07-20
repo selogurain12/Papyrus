@@ -13,7 +13,8 @@
     "location": "Standort",
     "name": "Name *",
     "significance": "Bedeutung in der Geschichte",
-    "type": "Typ"
+    "type": "Typ",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Hoch",

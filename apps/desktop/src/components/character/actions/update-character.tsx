@@ -37,8 +37,11 @@ import { ColorPicker } from "../../ui/color-picker";
 import { Tag } from "../../ui/tag";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { updateOfflineEntity } from "../../../local-db/offline-entity-store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAgeOfZonedDate } from "../../../utils/date/date-utils";
+import { FileUpload } from "../../ui/file-attachment";
+import { clientFile } from "../../../utils/client/client-file";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface UpdateCharacterProps {
   onCancel?: () => void;
@@ -52,6 +55,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
   const navigate = useNavigate();
   const { t } = useTranslation(["character/actions/update-character", "common"]);
   const isOnline = useOnlineStatus();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
   }
@@ -97,8 +101,10 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
       future: character.future,
       notes: character.notes,
       color: character.color ?? "blue",
+      avatarLink: character.avatarLink ?? null,
     },
   });
+  const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
 
   const { mutate } = client.character.update.useMutation({
     onSuccess: () => {
@@ -107,6 +113,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
         queryKey: ["character.getAll"],
       });
       form.reset();
+      setAvatarFile(null);
       onCancel?.();
     },
     onError: (error) => {
@@ -127,24 +134,42 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
       toast.error(t("common:currentProjectMissing"));
       return;
     }
+
+    let avatarLink = data.avatarLink ?? character.avatarLink ?? null;
+
+    if (avatarFile) {
+      if (isOnline) {
+        const formData = new FormData();
+        formData.append("file", avatarFile);
+        const res = await uploadFile({ body: formData });
+        avatarLink = res.body.url;
+      } else {
+        avatarLink = await saveLocalAttachment(avatarFile);
+      }
+    }
+
+    const payload = {
+      ...data,
+      avatarLink,
+    };
+
     if (!isOnline) {
       await updateOfflineEntity<UpdateCharacterDto, CharacterDto>(
         "characters",
         currentProject.id,
         character,
-        data
+        payload
       );
       toast.success(t("update.success"));
       await queryClient.invalidateQueries({ queryKey: ["character.getAll"] });
       form.reset();
+      setAvatarFile(null);
       onCancel?.();
       return;
     }
 
     mutate({
-      body: {
-        ...data,
-      },
+      body: payload,
       params: { projectId: currentProject.id, id: character.id },
     });
   }
@@ -186,11 +211,19 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
               <div
                 className={`w-24 h-24 rounded-full ${
                   colorMap[form.watch("color") ?? "blue"]
-                } flex items-center justify-center`}
+                } flex items-center justify-center overflow-hidden`}
               >
-                <span className="text-white text-4xl font-bold">
-                  {(form.watch("firstName") ?? "?").charAt(0)}
-                </span>
+                {form.watch("avatarLink") ? (
+                  <img
+                    src={form.watch("avatarLink") ?? ""}
+                    alt={t("fields.avatar")}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span className="text-white text-4xl font-bold">
+                    {(form.watch("firstName") ?? "?").charAt(0)}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -243,6 +276,21 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                 />
               </div>
             </div>
+          </div>
+
+          <div className="mb-6">
+            <FileUpload
+              label={t("fields.avatar")}
+              accept="image/*"
+              maxSize={5}
+              onFileSelected={(file) => {
+                setAvatarFile(file);
+                form.setValue(
+                  "avatarLink",
+                  file ? URL.createObjectURL(file) : (character.avatarLink ?? null)
+                );
+              }}
+            />
           </div>
 
           {/* ACCORDIONS */}

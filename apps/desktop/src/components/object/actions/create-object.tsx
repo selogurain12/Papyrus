@@ -4,6 +4,7 @@ import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../../ui/forms/form";
 import { FormField } from "../../ui/forms/form-field-context";
@@ -26,6 +27,9 @@ import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { FileUpload } from "../../ui/file-attachment";
+import { clientFile } from "../../../utils/client/client-file";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface CreateObjectProps {
   onCancel?: () => void;
@@ -37,6 +41,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
   const navigate = useNavigate();
   const { t } = useTranslation(["object/actions/create-object", "common"]);
   const isOnline = useOnlineStatus();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
@@ -54,9 +59,11 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
       type: null,
       history: null,
       color: "blue",
+      avatarLink: null,
       project: currentProject,
     },
   });
+  const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
 
   const { mutate } = client.object.create.useMutation({
     onSuccess: () => {
@@ -65,6 +72,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
         queryKey: ["object.getAll"],
       });
       form.reset();
+      setAvatarFile(null);
       onCancel?.();
     },
     onError: (error) => {
@@ -87,17 +95,36 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
       return;
     }
 
+    let avatarLink = data.avatarLink ?? null;
+
+    if (avatarFile) {
+      if (isOnline) {
+        const formData = new FormData();
+        formData.append("file", avatarFile);
+        const res = await uploadFile({ body: formData });
+        avatarLink = res.body.url;
+      } else {
+        avatarLink = await saveLocalAttachment(avatarFile);
+      }
+    }
+
+    const payload = {
+      ...data,
+      avatarLink,
+    };
+
     if (!isOnline) {
-      await createOfflineEntity<CreateObjectDto, ObjectDto>("objects", currentProject.id, data);
+      await createOfflineEntity<CreateObjectDto, ObjectDto>("objects", currentProject.id, payload);
       toast.success(t("common:offline.savedLocally"));
       await queryClient.invalidateQueries({ queryKey: ["object.getAll"] });
       form.reset();
+      setAvatarFile(null);
       onCancel?.();
       return;
     }
 
     mutate({
-      body: data,
+      body: payload,
       params: { projectId: currentProject.id },
     });
   }
@@ -115,6 +142,18 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
           <h2 className="text-2xl font-bold mb-6">{t("create.title")}</h2>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+            <div className="col-span-2">
+              <FileUpload
+                label={t("fields.avatar")}
+                accept="image/*"
+                maxSize={5}
+                onFileSelected={(file) => {
+                  setAvatarFile(file);
+                  form.setValue("avatarLink", file ? URL.createObjectURL(file) : null);
+                }}
+              />
+            </div>
+
             {/* Nom */}
             <FormField
               control={form.control}

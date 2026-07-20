@@ -8,7 +8,8 @@
     "location": "Расположение",
     "name": "Имя *",
     "significance": "Важность в истории",
-    "type": "Тип"
+    "type": "Тип",
+    "avatar": "Аватар"
   },
   "importance": {
     "high": "Высокий",

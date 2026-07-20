@@ -52,7 +52,8 @@
     "tics": "틱, 습관, 일상 및 중독",
     "typicalExpression": "일반적인 문구 또는 표현",
     "voice": "목소리",
-    "weight": "체중(kg)"
+    "weight": "체중(kg)",
+    "avatar": "아바타"
   },
   "gender": {
     "female": "여성",

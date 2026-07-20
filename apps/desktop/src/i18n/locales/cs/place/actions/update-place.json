@@ -13,7 +13,8 @@
     "population": "Populace",
     "ressources": "Zdroje",
     "type": "Typ místa *",
-    "visualDetails": "Vizuální detaily"
+    "visualDetails": "Vizuální detaily",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Vysoký",

@@ -13,7 +13,8 @@
     "population": "人口",
     "ressources": "リソース",
     "type": "置き型※",
-    "visualDetails": "視覚的な詳細"
+    "visualDetails": "視覚的な詳細",
+    "avatar": "アバター"
   },
   "importance": {
     "high": "高い",

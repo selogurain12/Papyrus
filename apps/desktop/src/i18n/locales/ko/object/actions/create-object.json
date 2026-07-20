@@ -13,7 +13,8 @@
     "location": "위치",
     "name": "이름 *",
     "significance": "이야기의 중요성",
-    "type": "유형"
+    "type": "유형",
+    "avatar": "아바타"
   },
   "importance": {
     "high": "높은",

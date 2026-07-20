@@ -18,7 +18,8 @@
     "population": "População",
     "ressources": "Recursos",
     "type": "Tipo de local *",
-    "visualDetails": "Detalhes visuais"
+    "visualDetails": "Detalhes visuais",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Alto",

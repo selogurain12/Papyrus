@@ -71,6 +71,10 @@ function isEmptyAttachment(value: JsonValue | undefined) {
   return value === null || value === undefined || value === "";
 }
 
+function hasAvatarLink(entityType: string) {
+  return ["characters", "places", "objects"].includes(entityType);
+}
+
 function preserveLocalAttachments(
   entityType: string,
   serverPayload: JsonValue,
@@ -106,7 +110,54 @@ function preserveLocalAttachments(
     serverRecord.linkFile = localRecord.linkFile;
   }
 
+  if (
+    hasAvatarLink(entityType) &&
+    isEmptyAttachment(serverRecord.avatarLink) &&
+    isLocalAttachment(localRecord.avatarLink)
+  ) {
+    serverRecord.avatarLink = localRecord.avatarLink;
+  }
+
   return serverRecord;
+}
+
+function dataUrlToBlob(dataUrl: string): Blob {
+  const [metadata, content] = dataUrl.split(",");
+  const mimeType = metadata.match(/^data:(.*);base64$/)?.[1] ?? "application/octet-stream";
+  const binary = atob(content);
+  const bytes = new Uint8Array(binary.length);
+
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+
+  return new Blob([bytes], { type: mimeType });
+}
+
+async function uploadLocalAttachment(value: JsonValue, token: string): Promise<string | null> {
+  if (typeof value !== "string" || !value.startsWith("data:")) {
+    return typeof value === "string" ? value : null;
+  }
+
+  const formData = new FormData();
+  formData.append("file", dataUrlToBlob(value), "avatar");
+
+  const response = await fetch(`${apiUrl}/s3/upload`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    throw new Error(`Attachment upload failed${errorText ? `: ${errorText}` : ""}`);
+  }
+
+  const body = (await response.json()) as { url?: string };
+
+  return body.url ?? null;
 }
 
 async function resolveReferenceId(
@@ -145,8 +196,13 @@ async function resolveReferenceId(
   return id;
 }
 
-async function prepareCreatePayload(entityType: string, payload: JsonValue): Promise<JsonValue> {
-  const body = removeId(payload);
+async function preparePayload(
+  entityType: string,
+  payload: JsonValue,
+  token: string,
+  removeLocalId = false
+): Promise<JsonValue> {
+  const body = removeLocalId ? removeId(payload) : payload;
 
   if (!body || typeof body !== "object" || Array.isArray(body)) {
     return body;
@@ -160,6 +216,10 @@ async function prepareCreatePayload(entityType: string, payload: JsonValue): Pro
 
   if (entityType === "notes" && isLocalAttachment(record.linkFile)) {
     record.linkFile = null;
+  }
+
+  if (hasAvatarLink(entityType) && isLocalAttachment(record.avatarLink)) {
+    record.avatarLink = await uploadLocalAttachment(record.avatarLink, token);
   }
 
   if (entityType === "chapters" && record.part && typeof record.part === "object") {
@@ -196,8 +256,8 @@ async function sendOperationToServer(
 
   const body =
     operation.operation === "create"
-      ? await prepareCreatePayload(operation.entityType, payload)
-      : payload;
+      ? await preparePayload(operation.entityType, payload, token, true)
+      : await preparePayload(operation.entityType, payload, token);
 
   const response = await fetch(url, {
     // eslint-disable-next-line no-nested-ternary

@@ -47,9 +47,13 @@ export function PlaceDetail({ place }: PlaceDetailProps) {
         <div
           className={`w-16 h-16 rounded-full ${
             colorMap[place.color ?? "blue"]
-          } flex items-center justify-center`}
+          } flex items-center justify-center overflow-hidden`}
         >
-          <MapPin className="w-8 h-8 text-white" />
+          {place.avatarLink ? (
+            <img src={place.avatarLink} alt={place.name} className="h-full w-full object-cover" />
+          ) : (
+            <MapPin className="w-8 h-8 text-white" />
+          )}
         </div>
 
         <div className="space-y-1">

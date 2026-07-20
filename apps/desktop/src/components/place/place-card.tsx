@@ -45,9 +45,13 @@ export function PlaceCard({
       <div className="flex items-center space-x-4">
         {/* AVATAR */}
         <div
-          className={`w-12 h-12 rounded-full ${colorMap[place.color ?? "blue"]} flex items-center justify-center shadow-md`}
+          className={`w-12 h-12 rounded-full ${colorMap[place.color ?? "blue"]} flex items-center justify-center shadow-md overflow-hidden`}
         >
-          <MapPin className="w-6 h-6 text-white" />
+          {place.avatarLink ? (
+            <img src={place.avatarLink} alt={place.name} className="h-full w-full object-cover" />
+          ) : (
+            <MapPin className="w-6 h-6 text-white" />
+          )}
         </div>
 
         {/* INFORMATIONS */}

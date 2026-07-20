@@ -35,7 +35,15 @@ export function CharacterCard({
         <div
           className={`w-12 h-12 rounded-full ${colorMap[character.color ?? "blue"]} flex items-center justify-center`}
         >
-          <User className="w-6 h-6 text-white" />
+          {character.avatarLink ? (
+            <img
+              src={character.avatarLink}
+              alt={`${character.firstName} ${character.lastName}`}
+              className="h-full w-full rounded-full object-cover"
+            />
+          ) : (
+            <User className="w-6 h-6 text-white" />
+          )}
         </div>
 
         <div>

@@ -8,7 +8,8 @@
     "location": "Localisation",
     "name": "Nom *",
     "significance": "Importance dans l'histoire",
-    "type": "Type"
+    "type": "Type",
+    "avatar": "Avatar"
   },
   "importance": {
     "high": "Élevée",

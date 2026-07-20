@@ -13,7 +13,8 @@
     "population": "Население",
     "ressources": "Ресурсы",
     "type": "Тип места *",
-    "visualDetails": "Визуальные детали"
+    "visualDetails": "Визуальные детали",
+    "avatar": "Аватар"
   },
   "importance": {
     "high": "Высокий",

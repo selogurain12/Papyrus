@@ -13,7 +13,8 @@
     "population": "인구",
     "ressources": "자원",
     "type": "장소 유형 *",
-    "visualDetails": "시각적 세부정보"
+    "visualDetails": "시각적 세부정보",
+    "avatar": "아바타"
   },
   "importance": {
     "high": "높은",

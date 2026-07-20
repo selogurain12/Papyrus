@@ -45,9 +45,17 @@ export function CharacterDetail({ character }: CharacterDetailProps) {
         <div
           className={`w-16 h-16 rounded-full ${
             colorMap[character.color ?? "blue"]
-          } flex items-center justify-center`}
+          } flex items-center justify-center overflow-hidden`}
         >
-          <User className="w-8 h-8 text-white" />
+          {character.avatarLink ? (
+            <img
+              src={character.avatarLink}
+              alt={`${character.firstName} ${character.lastName}`}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <User className="w-8 h-8 text-white" />
+          )}
         </div>
 
         <div>

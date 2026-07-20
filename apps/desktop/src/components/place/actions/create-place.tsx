@@ -4,6 +4,7 @@ import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "../../ui/forms/form";
 import { FormField } from "../../ui/forms/form-field-context";
@@ -31,6 +32,9 @@ import { useTranslation } from "react-i18next";
 import { ColorPicker } from "../../ui/color-picker";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { FileUpload } from "../../ui/file-attachment";
+import { clientFile } from "../../../utils/client/client-file";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface CreatePlaceProps {
   onCancel?: () => void;
@@ -42,6 +46,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
   const navigate = useNavigate();
   const { t } = useTranslation(["place/actions/create-place", "common"]);
   const isOnline = useOnlineStatus();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   if (!currentProject) {
     return <div>{t("common:loading")}</div>;
   }
@@ -64,8 +69,10 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
       narrativeImportance: undefined,
       project: currentProject,
       color: "blue",
+      avatarLink: null,
     },
   });
+  const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
 
   const { mutate } = client.place.create.useMutation({
     onSuccess: () => {
@@ -74,6 +81,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
         queryKey: ["place.getAll"],
       });
       form.reset();
+      setAvatarFile(null);
       onCancel?.();
     },
     onError: (error) => {
@@ -96,17 +104,36 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
       return;
     }
 
+    let avatarLink = data.avatarLink ?? null;
+
+    if (avatarFile) {
+      if (isOnline) {
+        const formData = new FormData();
+        formData.append("file", avatarFile);
+        const res = await uploadFile({ body: formData });
+        avatarLink = res.body.url;
+      } else {
+        avatarLink = await saveLocalAttachment(avatarFile);
+      }
+    }
+
+    const payload = {
+      ...data,
+      avatarLink,
+    };
+
     if (!isOnline) {
-      await createOfflineEntity<CreatePlaceDto, PlaceDto>("places", currentProject.id, data);
+      await createOfflineEntity<CreatePlaceDto, PlaceDto>("places", currentProject.id, payload);
       toast.success(t("common:offline.savedLocally"));
       await queryClient.invalidateQueries({ queryKey: ["place.getAll"] });
       form.reset();
+      setAvatarFile(null);
       onCancel?.();
       return;
     }
 
     mutate({
-      body: data,
+      body: payload,
       params: { projectId: currentProject.id },
     });
   }
@@ -126,6 +153,18 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
           <h2 className="text-2xl font-bold mb-6">{t("create.title")}</h2>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+            <div className="col-span-2">
+              <FileUpload
+                label={t("fields.avatar")}
+                accept="image/*"
+                maxSize={5}
+                onFileSelected={(file) => {
+                  setAvatarFile(file);
+                  form.setValue("avatarLink", file ? URL.createObjectURL(file) : null);
+                }}
+              />
+            </div>
+
             {/* Colonne 1 */}
             <FormField
               control={form.control}

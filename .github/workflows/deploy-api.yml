@@ -58,6 +58,9 @@ jobs:
             set -e
             cd "${{ secrets.VPS_APP_DIR }}"
             git pull --ff-only
-            docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env build api
+            docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env build --no-cache api
             docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env up -d --force-recreate api
+            docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env exec -T api \
+              node node_modules/@mikro-orm/cli/cli.js migration:up \
+              --config dist/apps/apii/apps/apii/src/mikro-orm.config.js
             docker image prune -f

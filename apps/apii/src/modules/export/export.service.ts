@@ -128,6 +128,16 @@ export class ExportService {
     return values.map((value) => `<span class="badge">${this.escapeHtml(value)}</span>`).join("");
   }
 
+  private meta(label: string, value: unknown): string {
+    const text = this.text(value);
+
+    if (text === "Non spécifié") {
+      return "";
+    }
+
+    return `<span class="export-meta">${this.escapeHtml(label)} : ${text}</span>`;
+  }
+
   private field(label: string, value: unknown): string {
     const text = this.text(value);
 
@@ -140,6 +150,19 @@ export class ExportService {
         <span class="field-label">${this.escapeHtml(label)} :</span>
         <span class="field-value">${text}</span>
       </p>
+    `;
+  }
+
+  private badgeField(label: string, values: string[] | null): string {
+    if (!values || values.length === 0) {
+      return "";
+    }
+
+    return `
+      <div class="field">
+        <span class="field-label">${this.escapeHtml(label)} :</span>
+        <span class="field-value">${this.badges(values)}</span>
+      </div>
     `;
   }
 
@@ -297,10 +320,12 @@ export class ExportService {
     return `
       <style>
         body {
-          font-family: Georgia, "Times New Roman", serif;
-          color: #172033;
-          line-height: 1.75;
+          font-family: Arial, Helvetica, sans-serif;
+          color: #1f2937;
+          line-height: 1.6;
           background: #ffffff;
+          max-width: 760px;
+          margin: 0 auto;
         }
 
         h1, h2, h3 {
@@ -314,15 +339,19 @@ export class ExportService {
           overflow-wrap: break-word;
         }
 
+        body > h1:first-child {
+          display: none;
+        }
+
         .section-cover {
-          min-height: 78vh;
+          min-height: 62vh;
           display: flex;
           flex-direction: column;
           justify-content: center;
           page-break-before: always;
           break-before: page;
-          border-left: 8px solid #2563eb;
-          padding: 48px 0 48px 32px;
+          border-left: 4px solid #2563eb;
+          padding: 40px 0 40px 28px;
         }
 
         .section-kicker {
@@ -336,9 +365,9 @@ export class ExportService {
 
         .section-title {
           margin: 0;
-          font-size: 42px;
-          line-height: 1.1;
-          color: #111827;
+          font-size: 38px;
+          line-height: 1.15;
+          color: #0f172a;
         }
 
         .section-description {
@@ -358,88 +387,107 @@ export class ExportService {
         }
 
         .export-card {
-          margin-bottom: 44px;
-          padding: 0 0 28px 0;
-          border-bottom: 1px solid #dbe3ef;
+          margin: 0 0 38px 0;
+          padding: 0 0 22px 0;
+          border-bottom: 1px solid #e5e7eb;
           page-break-inside: avoid;
           break-inside: avoid;
         }
 
         .export-title {
-          font-size: 32px;
+          font-size: 30px;
           margin: 0;
-          color: #111827;
-          line-height: 1.15;
+          color: #0f172a;
+          line-height: 1.2;
         }
 
         .export-subtitle {
-          font-size: 14px;
-          color: #526071;
-          margin-top: 10px;
-          margin-bottom: 28px;
-          font-style: italic;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 12px;
+          margin-bottom: 24px;
+          color: #64748b;
         }
 
         .export-section {
-          margin-top: 30px;
+          margin-top: 24px;
           page-break-inside: avoid;
           break-inside: avoid;
         }
 
         .export-section h3 {
-          font-size: 16px;
+          font-size: 13px;
           text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: #1d4ed8;
-          margin-bottom: 14px;
-          padding-bottom: 6px;
-          border-bottom: 1px solid #bfdbfe;
+          letter-spacing: 0.1em;
+          color: #334155;
+          margin-bottom: 12px;
+          padding-bottom: 7px;
+          border-bottom: 1px solid #e2e8f0;
         }
 
         .fields {
-          margin-left: 4px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+          gap: 10px 18px;
         }
 
         .field {
-          margin-bottom: 8px;
+          margin: 0;
         }
 
         .field-label {
+          display: block;
+          font-size: 11px;
           font-weight: bold;
-          color: #111827;
+          color: #64748b;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
         }
 
         .field-value {
-          color: #374151;
+          display: block;
+          margin-top: 2px;
+          color: #1f2937;
         }
 
         .badge {
           display: inline-block;
-          border: 1px solid #d1d5db;
+          border: 1px solid #cbd5e1;
           border-radius: 999px;
-          padding: 2px 9px;
-          margin-right: 5px;
-          margin-bottom: 4px;
+          padding: 2px 8px;
+          margin-right: 4px;
+          margin-bottom: 5px;
           font-size: 12px;
-          color: #374151;
+          color: #334155;
+          background: #f8fafc;
+        }
+
+        .export-meta {
+          display: inline-block;
+          border: 1px solid #e2e8f0;
+          border-radius: 999px;
+          padding: 3px 10px;
+          font-size: 12px;
+          background: #f8fafc;
         }
 
         .note-box {
           margin-top: 8px;
           padding: 12px 14px;
-          border-left: 3px solid #93c5fd;
-          background: #f8fafc;
-          color: #374151;
+          border-left: 3px solid #cbd5e1;
+          background: #f9fafb;
+          color: #1f2937;
           white-space: pre-wrap;
           word-wrap: break-word;
           overflow-wrap: break-word;
         }
 
         .manuscript-toc {
-          min-height: 78vh;
+          min-height: 62vh;
           page-break-before: always;
           break-before: page;
-          padding: 48px 0;
+          padding: 40px 0;
         }
 
         .toc-list {
@@ -471,18 +519,24 @@ export class ExportService {
         }
 
         .part-cover {
-          min-height: 55vh;
+          min-height: 45vh;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          border-left: 6px solid #7c3aed;
+          border-left: 4px solid #7c3aed;
           padding-left: 28px;
         }
 
         .chapter-content {
+          font-family: Georgia, "Times New Roman", serif;
+          font-size: 1.05em;
           text-align: justify;
           word-wrap: break-word;
           overflow-wrap: break-word;
+        }
+
+        .chapter-content p {
+          margin: 0 0 1em 0;
         }
 
         .page-break {
@@ -542,7 +596,11 @@ export class ExportService {
 
           <div class="export-card">
             <h1 class="export-title">${this.text(chara.firstName)} ${this.text(chara.lastName)}</h1>
-            <p class="export-subtitle">${this.text(chara.age)} ans — ${this.text(chara.birthPlace)} — Rôle : ${stars}</p>
+            <p class="export-subtitle">
+              ${this.meta("Âge", chara.age ? `${chara.age} ans` : undefined)}
+              ${this.meta("Naissance", chara.birthPlace)}
+              ${this.meta("Rôle", stars)}
+            </p>
 
             ${this.section(
               "État civil",
@@ -578,8 +636,8 @@ export class ExportService {
             ${this.section(
               "Caractère",
               this.fields(`
-                ${this.field("Qualités", this.badges(chara.characterQualities))}
-                ${this.field("Défauts", this.badges(chara.characterFlaws))}
+                ${this.badgeField("Qualités", chara.characterQualities)}
+                ${this.badgeField("Défauts", chara.characterFlaws)}
                 ${this.field("Goûts", chara.tastes)}
                 ${this.field("Tics", chara.tics)}
                 ${this.field("Peurs", chara.fears)}
@@ -641,7 +699,11 @@ export class ExportService {
 
         <div class="export-card">
           <h1 class="export-title">${this.text(place.name)}</h1>
-          <p class="export-subtitle">${this.text(typeMap[place.type])} — Importance ${this.text(importanceMap[place.narrativeImportance])}</p>
+          <p class="export-subtitle">
+            ${this.meta("Type", typeMap[place.type])}
+            ${this.meta("Importance", importanceMap[place.narrativeImportance])}
+            ${this.meta("Localisation", place.localisation)}
+          </p>
 
           ${this.section(
             "Informations générales",
@@ -700,7 +762,11 @@ export class ExportService {
 
         <div class="export-card">
           <h1 class="export-title">${this.text(object.name)}</h1>
-          <p class="export-subtitle">${object.type ? this.text(typeMap[object.type]) : "Non spécifié"} — Importance ${this.text(importanceMap[object.importance])}</p>
+          <p class="export-subtitle">
+            ${this.meta("Type", object.type ? typeMap[object.type] : undefined)}
+            ${this.meta("Importance", importanceMap[object.importance])}
+            ${this.meta("Localisation", object.location)}
+          </p>
 
           ${this.section(
             "Informations générales",
@@ -736,9 +802,11 @@ export class ExportService {
 
         <div class="export-card">
           <h1 class="export-title">${this.text(note.title)}</h1>
-          <p class="export-subtitle">${note.linkFile ? `Fichier joint : ${this.text(note.linkFile)}` : "Aucun fichier joint"}</p>
+          <p class="export-subtitle">
+            ${this.meta("Fichier joint", note.linkFile)}
+          </p>
 
-          ${this.section("Tags", `<p>${this.badges(note.tags)}</p>`)}
+          ${this.section("Tags", `<div class="fields">${this.badgeField("Tags", note.tags)}</div>`)}
           ${this.section("Contenu", this.noteBox(note.content))}
         </div>
       `,
@@ -764,7 +832,10 @@ export class ExportService {
 
         <div class="export-card">
           <h1 class="export-title">${this.text(research.title)}</h1>
-          <p class="export-subtitle">${this.text(typeLabels[research.type])}</p>
+          <p class="export-subtitle">
+            ${this.meta("Type", typeLabels[research.type])}
+            ${this.meta("Source", research.sources)}
+          </p>
 
           ${this.section(
             "Informations",
@@ -776,7 +847,7 @@ export class ExportService {
           )}
 
           ${this.section("Description", this.noteBox(research.description))}
-          ${this.section("Tags", `<p>${this.badges(research.tag)}</p>`)}
+          ${this.section("Tags", `<div class="fields">${this.badgeField("Tags", research.tag)}</div>`)}
           ${this.section("Note", this.noteBox(research.note))}
         </div>
       `,
@@ -801,15 +872,18 @@ export class ExportService {
         <div class="export-card">
           <h1 class="export-title">${this.text(event.title)}</h1>
           <p class="export-subtitle">
-            ${
+            ${this.meta(
+              "Date",
               event.eventDate
                 ? new Date(event.eventDate).toLocaleDateString("fr-FR", {
                     day: "2-digit",
                     month: "long",
                     year: "numeric",
                   })
-                : "Date inconnue"
-            } — ${this.text(importanceMap[event.importance ?? "normal"])}
+                : undefined
+            )}
+            ${this.meta("Importance", importanceMap[event.importance ?? "normal"])}
+            ${this.meta("Lieu", event.location)}
           </p>
 
           ${this.section(
@@ -939,8 +1013,9 @@ export class ExportService {
         .replace(/&amp;/gu, "&")
         .replace(/&lt;/gu, "<")
         .replace(/&gt;/gu, ">")
-        // eslint-disable-next-line prettier/prettier
-        .replace(/&quot;/gu, "\"")
+
+        // eslint-disable-next-line quotes
+        .replace(/&quot;/gu, '"')
         .replace(/&#039;/gu, "'")
         .replace(/&nbsp;/gu, " ")
     );
@@ -994,7 +1069,7 @@ export class ExportService {
     const endX = doc.page.width - doc.page.margins.right;
     const y = doc.y + 4;
 
-    doc.moveTo(startX, y).lineTo(endX, y).lineWidth(0.5).strokeColor("#d1d5db").stroke();
+    doc.moveTo(startX, y).lineTo(endX, y).lineWidth(0.5).strokeColor("#e2e8f0").stroke();
 
     doc.moveDown(0.8);
   }
@@ -1005,29 +1080,30 @@ export class ExportService {
     const left = doc.page.margins.left;
     const right = pageWidth - doc.page.margins.right;
 
-    doc.rect(0, 0, pageWidth, pageHeight).fill("#f8fafc");
-    doc.rect(left, 140, 8, 220).fill("#2563eb");
+    doc.rect(0, 0, pageWidth, pageHeight).fill("#ffffff");
+    doc.rect(left, 150, 4, 170).fill("#2563eb");
     doc
       .fillColor("#0f172a")
-      .font("Times-Bold")
-      .fontSize(34)
-      .text(title, left + 28, 160, {
-        width: right - left - 28,
+      .font("Helvetica-Bold")
+      .fontSize(32)
+      .text(title, left + 24, 164, {
+        width: right - left - 24,
         align: "left",
+        lineGap: 4,
       });
     doc
       .moveDown(0.8)
-      .font("Times-Italic")
-      .fontSize(15)
+      .font("Helvetica")
+      .fontSize(13)
       .fillColor("#475569")
       .text("Dossier exporté depuis Papyrus", {
-        width: right - left - 28,
+        width: right - left - 24,
       });
     doc
-      .font("Times-Roman")
+      .font("Helvetica")
       .fontSize(11)
       .fillColor("#64748b")
-      .text(new Date().toLocaleDateString("fr-FR"), left + 28, pageHeight - 120);
+      .text(new Date().toLocaleDateString("fr-FR"), left + 24, pageHeight - 120);
   }
 
   private writePdfPageNumbers(doc: PDFKit.PDFDocument): void {
@@ -1040,7 +1116,7 @@ export class ExportService {
       const y = doc.page.height - 36;
 
       doc
-        .font("Times-Roman")
+        .font("Helvetica")
         .fontSize(9)
         .fillColor("#94a3b8")
         .text(String(pageNumber), doc.page.margins.left, y, {
@@ -1062,45 +1138,45 @@ export class ExportService {
     const left = doc.page.margins.left;
     const right = pageWidth - doc.page.margins.right;
 
-    doc.rect(0, 0, pageWidth, pageHeight).fill("#f8fafc");
-    doc.rect(left, 132, 8, 260).fill("#2563eb");
+    doc.rect(0, 0, pageWidth, pageHeight).fill("#ffffff");
+    doc.rect(left, 142, 4, 210).fill("#2563eb");
     doc
-      .font("Times-Bold")
+      .font("Helvetica-Bold")
       .fontSize(11)
       .fillColor("#2563eb")
-      .text("SECTION", left + 28, 142, {
+      .text("SECTION", left + 24, 152, {
         characterSpacing: 2,
-        width: right - left - 28,
+        width: right - left - 24,
       });
     doc
-      .font("Times-Bold")
-      .fontSize(34)
+      .font("Helvetica-Bold")
+      .fontSize(32)
       .fillColor("#0f172a")
-      .text(title, left + 28, 170, {
-        width: right - left - 28,
+      .text(title, left + 24, 180, {
+        width: right - left - 24,
         lineGap: 4,
       });
 
     if (description) {
       doc
         .moveDown(0.8)
-        .font("Times-Italic")
-        .fontSize(14)
+        .font("Helvetica")
+        .fontSize(12)
         .fillColor("#475569")
         .text(description, {
-          width: right - left - 28,
+          width: right - left - 24,
           lineGap: 3,
         });
     }
 
     if (count && count !== description) {
       doc
-        .font("Times-Bold")
+        .font("Helvetica-Bold")
         .fontSize(10)
         .fillColor("#64748b")
-        .text(count.toUpperCase(), left + 28, 382, {
+        .text(count.toUpperCase(), left + 24, 360, {
           characterSpacing: 1,
-          width: right - left - 28,
+          width: right - left - 24,
         });
     }
   }
@@ -1110,7 +1186,7 @@ export class ExportService {
 
     this.ensureSpace(doc, 36);
     doc
-      .font(isPart ? "Times-Bold" : "Times-Roman")
+      .font(isPart ? "Helvetica-Bold" : "Helvetica")
       .fontSize(isPart ? 13 : 11)
       .fillColor(isPart ? "#111827" : "#475569")
       .text(block.text, {
@@ -1125,15 +1201,19 @@ export class ExportService {
 
     for (const block of blocks) {
       if (block.type === "h1") {
-        doc.font("Times-Bold").fontSize(28).fillColor("#0f172a").text(block.text);
+        doc.font("Helvetica-Bold").fontSize(28).fillColor("#0f172a").text(block.text);
         doc.moveDown(0.4);
       } else if (block.text === "Sommaire") {
-        doc.font("Times-Bold").fontSize(11).fillColor("#2563eb").text(block.text.toUpperCase(), {
-          characterSpacing: 2,
-        });
+        doc
+          .font("Helvetica-Bold")
+          .fontSize(11)
+          .fillColor("#2563eb")
+          .text(block.text.toUpperCase(), {
+            characterSpacing: 2,
+          });
         doc.moveDown(0.4);
       } else if (block.text.startsWith("Repères")) {
-        doc.font("Times-Italic").fontSize(12).fillColor("#64748b").text(block.text);
+        doc.font("Helvetica").fontSize(12).fillColor("#64748b").text(block.text);
         doc.moveDown(1);
       } else {
         this.writePdfTocBlock(doc, block);
@@ -1146,10 +1226,11 @@ export class ExportService {
       this.ensureSpace(doc, 120);
 
       doc.moveDown(1);
-      doc.font("Times-Bold").fontSize(28).fillColor("#111827").text(block.text, {
-        align: "center",
+      doc.font("Helvetica-Bold").fontSize(26).fillColor("#0f172a").text(block.text, {
+        align: "left",
+        lineGap: 3,
       });
-      doc.moveDown(1.2);
+      doc.moveDown(0.8);
 
       return;
     }
@@ -1158,7 +1239,7 @@ export class ExportService {
       this.ensureSpace(doc, 90);
 
       doc.moveDown(0.8);
-      doc.font("Times-Bold").fontSize(20).fillColor("#111827").text(block.text);
+      doc.font("Times-Bold").fontSize(20).fillColor("#0f172a").text(block.text);
       doc.moveDown(0.6);
 
       return;
@@ -1168,7 +1249,7 @@ export class ExportService {
       this.ensureSpace(doc, 80);
 
       doc.moveDown(1);
-      doc.font("Times-Bold").fontSize(12).fillColor("#1d4ed8").text(block.text.toUpperCase(), {
+      doc.font("Helvetica-Bold").fontSize(11).fillColor("#334155").text(block.text.toUpperCase(), {
         characterSpacing: 1,
       });
       this.writeDivider(doc);
@@ -1178,9 +1259,9 @@ export class ExportService {
 
     this.ensureSpace(doc, 50);
 
-    doc.font("Times-Roman").fontSize(12).fillColor("#334155").text(block.text, {
+    doc.font("Helvetica").fontSize(11).fillColor("#334155").text(block.text, {
       align: "justify",
-      lineGap: 4,
+      lineGap: 3,
     });
 
     doc.moveDown(0.5);
@@ -1276,8 +1357,8 @@ export class ExportService {
         return new Paragraph({
           text: block.text,
           heading: HeadingLevel.HEADING_1,
-          spacing: { before: 360, after: 240 },
-          alignment: AlignmentType.CENTER,
+          spacing: { before: 360, after: 220 },
+          alignment: AlignmentType.LEFT,
         });
       }
 
@@ -1296,10 +1377,10 @@ export class ExportService {
               text: block.text.toUpperCase(),
               bold: true,
               size: 24,
-              color: "111827",
+              color: "334155",
             }),
           ],
-          spacing: { before: 280, after: 160 },
+          spacing: { before: 260, after: 140 },
         });
       }
 
@@ -1307,12 +1388,12 @@ export class ExportService {
         children: [
           new TextRun({
             text: block.text,
-            size: 24,
-            color: "374151",
+            size: 23,
+            color: "334155",
           }),
         ],
         alignment: AlignmentType.JUSTIFIED,
-        spacing: { after: 160 },
+        spacing: { after: 140 },
       });
     });
   }
@@ -1329,7 +1410,7 @@ export class ExportService {
             text: "SECTION",
             bold: true,
             color: "2563EB",
-            size: 22,
+            size: 20,
           }),
         ],
         spacing: { before: 1200, after: 240 },
@@ -1369,7 +1450,7 @@ export class ExportService {
       new Paragraph({
         text: title,
         heading: HeadingLevel.TITLE,
-        alignment: AlignmentType.CENTER,
+        alignment: AlignmentType.LEFT,
         spacing: { before: 1200, after: 240 },
       }),
       new Paragraph({
@@ -1381,7 +1462,7 @@ export class ExportService {
             size: 26,
           }),
         ],
-        alignment: AlignmentType.CENTER,
+        alignment: AlignmentType.LEFT,
         spacing: { after: 720 },
       }),
     ];

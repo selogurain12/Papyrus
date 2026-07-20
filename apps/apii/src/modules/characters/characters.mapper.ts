@@ -65,6 +65,7 @@ export class CharacterMapper {
       future: entity.future,
       notes: entity.notes,
       color: entity.color,
+      avatarLink: entity.avatarLink,
       project: projectDto,
     };
   }
@@ -127,6 +128,7 @@ export class CharacterMapper {
       future: createDto.future,
       notes: createDto.notes,
       color: createDto.color,
+      avatarLink: createDto.avatarLink ?? null,
       project: projectEntity,
       role: createDto.role,
       roleStar: createDto.roleStar,
@@ -186,6 +188,7 @@ export class CharacterMapper {
       future: updateDto.future,
       notes: updateDto.notes,
       color: updateDto.color,
+      avatarLink: updateDto.avatarLink,
     });
   }
 }

@@ -147,6 +147,9 @@ export class CharacterEntity {
   @Property({ type: "string", nullable: true })
   public color: ColorType | null = null;
 
+  @Property({ type: "text", nullable: true })
+  public avatarLink: string | null = null;
+
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
 
@@ -205,6 +208,7 @@ export class CharacterEntity {
     future: string | null;
     notes: string | null;
     color: ColorType | null;
+    avatarLink?: string | null;
     project: ProjectEntity;
   }) {
     this.roleStar = parameters.roleStar;
@@ -246,6 +250,7 @@ export class CharacterEntity {
     this.future = parameters.future;
     this.notes = parameters.notes;
     this.color = parameters.color;
+    this.avatarLink = parameters.avatarLink ?? null;
     this.project = ref(parameters.project);
   }
 }

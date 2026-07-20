@@ -34,6 +34,7 @@ export class ObjectMapper {
       location: entity.location,
       significance: entity.significance,
       type: entity.type,
+      avatarLink: entity.avatarLink,
       project: projectDto,
     };
   }
@@ -67,6 +68,7 @@ export class ObjectMapper {
       type: createDto.type,
       history: createDto.history,
       color: createDto.color,
+      avatarLink: createDto.avatarLink ?? null,
       project: projectEntity,
     });
     return result;
@@ -91,6 +93,7 @@ export class ObjectMapper {
       type: updateDto.type,
       history: updateDto.history,
       color: updateDto.color,
+      avatarLink: updateDto.avatarLink,
     });
     return objectEntity;
   }

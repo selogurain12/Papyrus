@@ -60,6 +60,7 @@ export const createPlaceSchema = z.object({
     .nullable(),
   narrativeImportance: z.enum(importanceLevelTypes),
   color: z.enum(colorTypes),
+  avatarLink: z.string().nullable().optional(),
   project: z.lazy(() => projectSchema),
 });
 

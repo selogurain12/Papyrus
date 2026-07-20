@@ -47,6 +47,9 @@ export class ObjectEntity {
   @Property({ type: "string", nullable: true })
   public color: ColorType | null = null;
 
+  @Property({ type: "text", nullable: true })
+  public avatarLink: string | null = null;
+
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
 
@@ -69,6 +72,7 @@ export class ObjectEntity {
     location: string | null;
     history: string | null;
     color: ColorType | null;
+    avatarLink?: string | null;
     project: ProjectEntity;
   }) {
     this.name = parameters.name;
@@ -80,6 +84,7 @@ export class ObjectEntity {
     this.location = parameters.location;
     this.history = parameters.history;
     this.color = parameters.color;
+    this.avatarLink = parameters.avatarLink ?? null;
     this.project = ref(parameters.project);
   }
 }

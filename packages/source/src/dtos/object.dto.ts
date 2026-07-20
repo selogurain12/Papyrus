@@ -40,6 +40,7 @@ export const createObjectSchema = z.object({
     .max(1000, { message: "Histoire trop grande, maximum 1000 caractères" })
     .nullable(),
   color: z.enum(colorTypes).nullable(),
+  avatarLink: z.string().nullable().optional(),
   project: z.lazy(() => projectSchema),
 });
 

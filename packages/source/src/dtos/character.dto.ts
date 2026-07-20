@@ -80,6 +80,7 @@ export const createCharacterSchema = z.object({
   // autre
   notes: z.string().nullable(),
   color: z.enum(colorTypes).nullable(),
+  avatarLink: z.string().nullable().optional(),
 
   project: z.lazy(() => projectSchema),
 });

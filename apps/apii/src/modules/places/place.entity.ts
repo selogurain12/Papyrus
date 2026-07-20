@@ -62,6 +62,9 @@ export class PlaceEntity {
   @Property({ type: "string" })
   public color: ColorType;
 
+  @Property({ type: "text", nullable: true })
+  public avatarLink: string | null = null;
+
   @Property({ type: ZonedDateTimeType, onCreate: () => now("UTC") })
   public createdAt!: ZonedDateTime;
 
@@ -74,6 +77,7 @@ export class PlaceEntity {
   @ManyToOne(() => ProjectEntity, { ref: true, deleteRule: "cascade" })
   public project: Ref<ProjectEntity>;
 
+  // eslint-disable-next-line complexity
   public constructor(parameters: {
     name: string;
     nickname?: string | null;
@@ -89,6 +93,7 @@ export class PlaceEntity {
     ressources?: string | null;
     narrativeImportance: ImportanceLevelType;
     color: ColorType;
+    avatarLink?: string | null;
     project: ProjectEntity;
   }) {
     this.name = parameters.name;
@@ -105,6 +110,7 @@ export class PlaceEntity {
     this.ressources = parameters.ressources ?? null;
     this.narrativeImportance = parameters.narrativeImportance;
     this.color = parameters.color;
+    this.avatarLink = parameters.avatarLink ?? null;
     this.project = ref(parameters.project);
   }
 }

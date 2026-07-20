@@ -17,7 +17,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { Card } from "../ui/card";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { client } from "../../utils/client/client";
 import { queryKeys } from "@papyrus/source";
 import { useProject } from "../../context/project-provider";
@@ -113,6 +113,17 @@ const exportParams: ExportParam[] = [
   },
 ];
 
+const WORDS_PER_PAGE = 300;
+const SECTION_COVER_PAGE_ESTIMATE = 1;
+const ANNEX_PAGE_ESTIMATES: Record<ExportOption, number> = {
+  characters: 1,
+  places: 1,
+  objects: 0.75,
+  events: 0.5,
+  notes: 0.5,
+  researchs: 0.5,
+};
+
 function getExportExtension(format: ExportFormat["id"]) {
   if (format === "pdf") {
     return "pdf";
@@ -143,6 +154,10 @@ function getBlobFromBody(body: unknown, format: ExportFormat["id"]): Blob {
   });
 }
 
+function getListTotal(list: { body?: { total?: number } } | undefined) {
+  return list?.body?.total ?? 0;
+}
+
 export function ExportPage() {
   const { t } = useTranslation(["export/export-page", "common"]);
   const { currentProject } = useProject();
@@ -171,6 +186,119 @@ export function ExportPage() {
       params: { projectId: currentProject.id },
     },
   });
+
+  const { data: characters } = client.character.getAll.useQuery({
+    queryKey: queryKeys.character.getAll({
+      pathParams: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    }),
+    queryData: {
+      params: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    },
+    enabled: Boolean(options.characters),
+  });
+
+  const { data: places } = client.place.getAll.useQuery({
+    queryKey: queryKeys.place.getAll({
+      pathParams: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    }),
+    queryData: {
+      params: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    },
+    enabled: Boolean(options.places),
+  });
+
+  const { data: objects } = client.object.getAll.useQuery({
+    queryKey: queryKeys.object.getAll({
+      pathParams: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    }),
+    queryData: {
+      params: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    },
+    enabled: Boolean(options.objects),
+  });
+
+  const { data: events } = client.event.getAll.useQuery({
+    queryKey: queryKeys.event.getAll({
+      pathParams: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    }),
+    queryData: {
+      params: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    },
+    enabled: Boolean(options.events),
+  });
+
+  const { data: notes } = client.note.getAll.useQuery({
+    queryKey: queryKeys.note.getAll({
+      pathParams: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    }),
+    queryData: {
+      params: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    },
+    enabled: Boolean(options.notes),
+  });
+
+  const { data: researchs } = client.research.getAll.useQuery({
+    queryKey: queryKeys.research.getAll({
+      pathParams: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    }),
+    queryData: {
+      params: { projectId: currentProject.id },
+      query: { page: 1, itemsPerPage: 5 },
+    },
+    enabled: Boolean(options.researchs),
+  });
+
+  const estimatedPages = useMemo(() => {
+    const manuscriptPages = Math.ceil((currentProject.currentWordCount ?? 0) / WORDS_PER_PAGE);
+    const annexTotals: Record<ExportOption, number> = {
+      characters: getListTotal(characters),
+      places: getListTotal(places),
+      objects: getListTotal(objects),
+      events: getListTotal(events),
+      notes: getListTotal(notes),
+      researchs: getListTotal(researchs),
+    };
+
+    const annexPages = exportParams.reduce((total, parameter) => {
+      if (!options[parameter.id]) {
+        return total;
+      }
+
+      const itemCount = annexTotals[parameter.id];
+
+      if (itemCount === 0) {
+        return total;
+      }
+
+      return (
+        total +
+        SECTION_COVER_PAGE_ESTIMATE +
+        Math.ceil(itemCount * ANNEX_PAGE_ESTIMATES[parameter.id])
+      );
+    }, 0);
+
+    return manuscriptPages + annexPages;
+  }, [
+    characters,
+    places,
+    objects,
+    events,
+    notes,
+    researchs,
+    options,
+    currentProject.currentWordCount,
+  ]);
 
   const { data: epubData, isSuccess: isEpubSuccess } = client.export.epub.useQuery({
     queryKey: [
@@ -411,7 +539,7 @@ export function ExportPage() {
 
             <div className="flex justify-between">
               <p className="font-medium">{t("estimatedPages")}</p>
-              <p>{Math.ceil((currentProject.currentWordCount ?? 0) / 300)}</p>
+              <p>{estimatedPages}</p>
             </div>
           </div>
 

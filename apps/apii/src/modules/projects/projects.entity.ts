@@ -63,6 +63,9 @@ export class ProjectEntity {
   @Property({ type: ZonedDateTimeType, nullable: true })
   public deadline: ZonedDateTime | null = null;
 
+  @Property({ type: "string", nullable: true })
+  public coverLink?: string | null = null;
+
   @ManyToOne(() => SettingEntity, { ref: true, deleteRule: "cascade" })
   public settings: Ref<SettingEntity>;
 
@@ -122,6 +125,7 @@ export class ProjectEntity {
     structure: StructureEntity;
     user: UserEntity;
     tags: string[] | null;
+    coverLink?: string | null;
   }) {
     this.title = parameters.title;
     this.description = parameters.description;
@@ -136,5 +140,6 @@ export class ProjectEntity {
     this.structure = ref(parameters.structure);
     this.user = ref(parameters.user);
     this.tags = parameters.tags ?? [];
+    this.coverLink = parameters.coverLink;
   }
 }

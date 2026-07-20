@@ -64,6 +64,7 @@ export class ProjectMapper {
       user: userDto,
       structure: structureDto,
       tags: entity.tags ?? [],
+      coverLink: entity.coverLink,
     };
   }
 
@@ -92,6 +93,7 @@ export class ProjectMapper {
       structure: this.structureMapper.createDtoToEntity(),
       user: userEntity,
       tags: createDto.tags ?? [],
+      coverLink: createDto.coverLink,
     });
   }
 
@@ -110,6 +112,7 @@ export class ProjectMapper {
       language,
       deadline,
       tags,
+      coverLink,
     } = updateDto;
 
     return em.assign(entity, {
@@ -121,6 +124,7 @@ export class ProjectMapper {
       status,
       language,
       tags,
+      coverLink,
       deadline:
         deadline === null || deadline === undefined
           ? deadline

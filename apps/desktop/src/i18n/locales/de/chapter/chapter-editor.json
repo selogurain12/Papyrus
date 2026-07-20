@@ -5,5 +5,19 @@
     "saving": "Automatisches Speichern...",
     "saved": "Automatisch gespeichert",
     "error": "Automatisches Speichern fehlgeschlagen"
+  },
+  "references": {
+    "show": "Steckbriefe öffnen",
+    "hide": "Steckbriefe ausblenden",
+    "title": "Steckbriefe",
+    "characters": "Figuren",
+    "places": "Orte",
+    "objects": "Objekte",
+    "empty": "Keine Steckbriefe verfügbar.",
+    "untitled": "Ohne Titel",
+    "research": "Recherchen",
+    "notes": "Notizen",
+    "events": "Ereignisse",
+    "select": "Wähle einen Steckbrief aus."
   }
 }

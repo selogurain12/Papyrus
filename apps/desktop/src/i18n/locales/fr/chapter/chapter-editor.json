@@ -5,5 +5,19 @@
     "saving": "Sauvegarde automatique...",
     "saved": "Sauvegarde automatique effectuée",
     "error": "Échec de la sauvegarde automatique"
+  },
+  "references": {
+    "show": "Ouvrir les fiches",
+    "hide": "Masquer les fiches",
+    "title": "Fiches",
+    "characters": "Personnages",
+    "places": "Lieux",
+    "objects": "Objets",
+    "empty": "Aucune fiche disponible.",
+    "untitled": "Sans titre",
+    "research": "Recherches",
+    "notes": "Notes",
+    "events": "Évènements",
+    "select": "Sélectionnez une fiche à consulter."
   }
 }

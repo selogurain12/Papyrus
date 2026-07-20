@@ -5,5 +5,19 @@
     "saving": "正在自动保存...",
     "saved": "已自动保存",
     "error": "自动保存失败"
+  },
+  "references": {
+    "show": "打开资料卡",
+    "hide": "隐藏资料卡",
+    "title": "资料卡",
+    "characters": "角色",
+    "places": "地点",
+    "objects": "物品",
+    "empty": "没有可用的资料卡。",
+    "untitled": "无标题",
+    "research": "研究",
+    "notes": "笔记",
+    "events": "事件",
+    "select": "选择一张资料卡查看。"
   }
 }

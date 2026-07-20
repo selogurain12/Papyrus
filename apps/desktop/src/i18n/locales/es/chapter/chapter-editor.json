@@ -5,5 +5,19 @@
     "saving": "Guardado automático...",
     "saved": "Guardado automáticamente",
     "error": "Error en el guardado automático"
+  },
+  "references": {
+    "show": "Abrir fichas",
+    "hide": "Ocultar fichas",
+    "title": "Fichas",
+    "characters": "Personajes",
+    "places": "Lugares",
+    "objects": "Objetos",
+    "empty": "No hay fichas disponibles.",
+    "untitled": "Sin título",
+    "research": "Investigaciones",
+    "notes": "Notas",
+    "events": "Eventos",
+    "select": "Selecciona una ficha para verla."
   }
 }

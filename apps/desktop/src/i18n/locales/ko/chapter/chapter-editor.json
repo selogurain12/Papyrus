@@ -5,5 +5,19 @@
     "saving": "자동 저장 중...",
     "saved": "자동 저장됨",
     "error": "자동 저장 실패"
+  },
+  "references": {
+    "show": "시트 열기",
+    "hide": "시트 숨기기",
+    "title": "시트",
+    "characters": "캐릭터",
+    "places": "장소",
+    "objects": "오브젝트",
+    "empty": "사용 가능한 시트가 없습니다.",
+    "untitled": "제목 없음",
+    "research": "자료 조사",
+    "notes": "노트",
+    "events": "이벤트",
+    "select": "볼 시트를 선택하세요."
   }
 }

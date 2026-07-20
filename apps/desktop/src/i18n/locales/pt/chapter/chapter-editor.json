@@ -5,5 +5,19 @@
     "saving": "Gravação automática...",
     "saved": "Gravado automaticamente",
     "error": "Falha na gravação automática"
+  },
+  "references": {
+    "show": "Abrir fichas",
+    "hide": "Ocultar fichas",
+    "title": "Fichas",
+    "characters": "Personagens",
+    "places": "Lugares",
+    "objects": "Objetos",
+    "empty": "Nenhuma ficha disponível.",
+    "untitled": "Sem título",
+    "research": "Pesquisas",
+    "notes": "Notas",
+    "events": "Eventos",
+    "select": "Selecione uma ficha para consultar."
   }
 }

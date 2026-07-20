@@ -5,5 +5,19 @@
     "saving": "Auto-saving...",
     "saved": "Auto-saved",
     "error": "Auto-save failed"
+  },
+  "references": {
+    "show": "Open sheets",
+    "hide": "Hide sheets",
+    "title": "Sheets",
+    "characters": "Characters",
+    "places": "Places",
+    "objects": "Objects",
+    "empty": "No sheet available.",
+    "untitled": "Untitled",
+    "research": "Research",
+    "notes": "Notes",
+    "events": "Events",
+    "select": "Select a sheet to view."
   }
 }

@@ -5,5 +5,19 @@
     "saving": "Salvataggio automatico...",
     "saved": "Salvataggio automatico completato",
     "error": "Salvataggio automatico non riuscito"
+  },
+  "references": {
+    "show": "Apri schede",
+    "hide": "Nascondi schede",
+    "title": "Schede",
+    "characters": "Personaggi",
+    "places": "Luoghi",
+    "objects": "Oggetti",
+    "empty": "Nessuna scheda disponibile.",
+    "untitled": "Senza titolo",
+    "research": "Ricerche",
+    "notes": "Note",
+    "events": "Eventi",
+    "select": "Seleziona una scheda da consultare."
   }
 }

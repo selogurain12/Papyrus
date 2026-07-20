@@ -5,5 +5,19 @@
     "saving": "自動保存中...",
     "saved": "自動保存しました",
     "error": "自動保存に失敗しました"
+  },
+  "references": {
+    "show": "シートを開く",
+    "hide": "シートを隠す",
+    "title": "シート",
+    "characters": "人物",
+    "places": "場所",
+    "objects": "オブジェクト",
+    "empty": "利用できるシートはありません。",
+    "untitled": "無題",
+    "research": "リサーチ",
+    "notes": "メモ",
+    "events": "イベント",
+    "select": "表示するシートを選択してください。"
   }
 }

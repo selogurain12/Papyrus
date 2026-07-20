@@ -5,5 +5,19 @@
     "saving": "Automatické ukládání...",
     "saved": "Automaticky uloženo",
     "error": "Automatické uložení selhalo"
+  },
+  "references": {
+    "show": "Otevřít karty",
+    "hide": "Skrýt karty",
+    "title": "Karty",
+    "characters": "Postavy",
+    "places": "Místa",
+    "objects": "Objekty",
+    "empty": "Žádná karta není dostupná.",
+    "untitled": "Bez názvu",
+    "research": "Rešerše",
+    "notes": "Poznámky",
+    "events": "Události",
+    "select": "Vyberte kartu k zobrazení."
   }
 }

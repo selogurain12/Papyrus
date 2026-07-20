@@ -55,7 +55,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
     <Card className="rounded-xl overflow-hidden">
       <div className="relative w-full h-48">
         <img
-          src="../../assets/book.jpg"
+          src={`${project.coverLink}`}
           alt={t("card.coverAlt")}
           className="w-full h-full object-cover"
         />

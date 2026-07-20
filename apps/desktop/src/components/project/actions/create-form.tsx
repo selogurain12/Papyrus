@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-len */
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DialogContent } from "../../ui/dialogs/dialog-content";
 import { DialogHeader } from "../../ui/dialogs/dialog-header";
 import { DialogTitle } from "../../ui/dialogs/dialog-title";
@@ -29,6 +29,9 @@ import { useTranslation } from "react-i18next";
 import { Tag } from "../../ui/tag";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { FileUpload } from "../../ui/file-attachment";
+import { clientFile } from "../../../utils/client/client-file";
+import { saveLocalAttachment } from "../../../local-db/local-file-store";
 
 interface CreateProjectFormProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -36,6 +39,7 @@ interface CreateProjectFormProps {
 
 export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
   const { t } = useTranslation(["project/actions/create-form", "common"]);
+  const [file, setFile] = useState<File | null>(null);
   const { user } = useAuth();
   const isOnline = useOnlineStatus();
   if (user === null) {
@@ -50,6 +54,7 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
       user,
     },
   });
+  const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
   const { mutate } = client.project.create.useMutation({
     onSuccess: () => {
       toast.success(t("create.success"));
@@ -72,18 +77,37 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
       toast.error("User is null");
       return;
     }
+    let fileUrl = data.coverLink?.trim() ? data.coverLink : null;
     if (!isOnline) {
-      await createOfflineEntity<CreateProjectDto, ProjectDto>("projects", user.id, data);
+      if (file) {
+        fileUrl = await saveLocalAttachment(file);
+      }
+      await createOfflineEntity<CreateProjectDto, ProjectDto>("projects", user.id, {
+        ...data,
+        coverLink: fileUrl,
+      });
       toast.success(t("common:offline.savedLocally"));
       await queryClient.invalidateQueries({ queryKey: ["project.getAll"] });
       form.reset();
+      setFile(null);
       setOpen(false);
       return;
+    }
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await uploadFile({
+        body: formData,
+      });
+
+      fileUrl = res.body.url;
     }
 
     mutate({
       body: {
         ...data,
+        coverLink: fileUrl,
       },
       params: { userId: user.id },
     });
@@ -91,7 +115,7 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
 
   return (
     <DialogContent
-      className="overscroll-none sm:max-w-200 sm:max-h-[80%] bg-white p-8 max-h-4/5"
+      className="overscroll-none sm:max-w-200 sm:max-h-[80%] bg-white p-8 max-h-4/5 overflow-y-scroll"
       onInteractOutside={(event) => {
         event.preventDefault();
         setOpen(false);
@@ -197,6 +221,19 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
                       {...field}
                       value={field.value ?? ""}
                     />
+                  </FormControl>
+                  <FormMessage className="mt-1" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="coverLink"
+              render={() => (
+                <FormItem className="flex flex-col items-start">
+                  <FormLabel htmlFor="coverLink">Couverture du livre</FormLabel>
+                  <FormControl>
+                    <FileUpload onFileSelected={(file) => setFile(file)} accept="image/*" />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>

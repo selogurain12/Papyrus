@@ -1,4 +1,4 @@
-import { createRouter } from "@tanstack/react-router";
+import { createHashHistory, createRouter } from "@tanstack/react-router";
 import { queryClient } from "../context/query-client";
 import { indexRoute } from "./index.routes";
 import { defaultLayoutRoute } from "./layout.routes";
@@ -53,6 +53,7 @@ export const routeTree = rootRoute.addChildren([
 export const router = createRouter({
   routeTree,
   context: queryClient,
+  history: createHashHistory(),
 });
 
 declare module "@tanstack/react-router" {

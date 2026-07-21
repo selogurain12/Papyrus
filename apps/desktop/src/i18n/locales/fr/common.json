@@ -2,6 +2,7 @@
   "app.tagline": "Studio d'écriture",
   "currentProject": "Projet actuel",
   "backToProjects": "Retour aux projets",
+  "logout": "Déconnexion",
   "save": "Sauvegarder",
   "cancel": "Annuler",
   "loading": "Chargement...",

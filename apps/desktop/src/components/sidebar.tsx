@@ -34,6 +34,7 @@ import { dashboardRoute } from "../routes/dashboard/index.route";
 import { goalsRoute } from "../routes/goals/index.route";
 import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { LogoutButton } from "./authentification/logout-button";
 
 const menu = [
   { id: "dashboard", labelKey: "menu.dashboard", icon: Home, path: dashboardRoute, segment: "" },
@@ -102,7 +103,7 @@ export function Sidebar({ name }: SidebarProps) {
 
   return (
     <div
-      className="w-64 bg-background shadow-lg border-r border-gray-300 h-full"
+      className="w-64 bg-background shadow-lg border-r border-gray-300 h-full flex flex-col"
       data-tour="sidebar"
     >
       <div className="p-6 border-b border-gray-300">
@@ -142,7 +143,7 @@ export function Sidebar({ name }: SidebarProps) {
         </div>
       </div>
 
-      <nav className="mt-6" data-tour="navigation">
+      <nav className="mt-6 flex-1 overflow-y-auto" data-tour="navigation">
         <ul className="space-y-1 px-4">
           {menu.map((item) => {
             const Icon = item.icon;
@@ -171,6 +172,10 @@ export function Sidebar({ name }: SidebarProps) {
           })}
         </ul>
       </nav>
+
+      <div className="border-t border-gray-300 p-4">
+        <LogoutButton variant="ghost" className="w-full justify-start text-gray-600" />
+      </div>
     </div>
   );
 }

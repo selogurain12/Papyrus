@@ -9,10 +9,13 @@ import { CreateProjectForm } from "../components/project/actions/create-form";
 import { ListProject } from "../components/project/list-project";
 import { useTranslation } from "react-i18next";
 import { HomeTour, HomeTourButton } from "../components/onboarding/app-tour";
+import { useAuth } from "../context/auth-provider";
+import { LogoutButton } from "../components/authentification/logout-button";
 
 export function ProjectPage() {
   const { t } = useTranslation("pages/project-page");
   const navigate = useNavigate();
+  const { token } = useAuth();
   const [open, setOpen] = useState(false);
 
   return (
@@ -43,13 +46,17 @@ export function ProjectPage() {
               {t("page.new")}
             </Button>
 
-            <Button
-              variant="ghost"
-              data-tour="home-account"
-              onClick={() => navigate({ to: loginRoute.to })}
-            >
-              <CircleUserRound className="w-8 h-8 font-light" />
-            </Button>
+            {token ? (
+              <LogoutButton variant="outline" data-tour="home-account" />
+            ) : (
+              <Button
+                variant="ghost"
+                data-tour="home-account"
+                onClick={() => navigate({ to: loginRoute.to })}
+              >
+                <CircleUserRound className="w-8 h-8 font-light" />
+              </Button>
+            )}
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ RUN corepack enable
 FROM base AS dependencies
 
 COPY package.json yarn.lock .yarnrc.yml ./
+COPY apps/app-vitrine/package.json ./apps/app-vitrine/package.json
 COPY apps/desktop/package.json ./apps/desktop/package.json
 COPY packages/source/package.json ./packages/source/package.json
 RUN yarn install --immutable

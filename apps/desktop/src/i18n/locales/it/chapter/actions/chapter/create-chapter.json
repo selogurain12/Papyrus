@@ -17,7 +17,10 @@
       "toStart": "Da iniziare",
       "inProgress": "In corso",
       "completed": "Completato"
-    }
+    },
+    "chapterNumberPlaceholder": "Example: 1, 2, 3...",
+    "wordGoalPlaceholder": "Target word count for this chapter",
+    "resumePlaceholder": "Summarize the stakes, planned scenes, or important chapter notes..."
   },
   "projectNotFound": "Progetto non trovato",
   "title": "Aggiungi un capitolo",

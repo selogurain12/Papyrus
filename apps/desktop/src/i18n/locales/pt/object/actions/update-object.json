@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "Selecione uma importância",
     "name": "Por exemplo Bússola antiga",
-    "type": "Selecione um tipo"
+    "type": "Selecione um tipo",
+    "location": "Location or owner",
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, former owners, related events...",
+    "significance": "Explain its role, symbolic value, or impact on the story"
   },
   "types": {
     "artifact": "Artefato",

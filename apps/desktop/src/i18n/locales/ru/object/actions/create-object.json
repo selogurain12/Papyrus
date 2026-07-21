@@ -28,7 +28,8 @@
     "importance": "Выберите важность",
     "name": "Например. Древний компас",
     "significance": "Почему этот объект важен",
-    "type": "Выберите тип"
+    "type": "Выберите тип",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "Артефакт",

@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "Seleccionar una importancia",
     "name": "Ej.: Brújula antigua",
-    "type": "Seleccionar un tipo"
+    "type": "Seleccionar un tipo",
+    "location": "Location or owner",
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, former owners, related events...",
+    "significance": "Explain its role, symbolic value, or impact on the story"
   },
   "types": {
     "artifact": "Artefacto",

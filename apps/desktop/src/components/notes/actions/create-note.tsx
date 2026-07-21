@@ -152,7 +152,7 @@ export function CreateNoteForm({ setOpen }: CreateNoteFormProps) {
               <FormItem>
                 <FormLabel>{t("fields.title")}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder={t("placeholders.title")} />
+                  <Input {...field} id="create-note-title" placeholder={t("placeholders.title")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -167,6 +167,7 @@ export function CreateNoteForm({ setOpen }: CreateNoteFormProps) {
                 <FormControl>
                   <Textarea
                     {...field}
+                    id="create-note-content"
                     value={field.value ?? ""}
                     onChange={(note) => field.onChange(note.target.value || null)}
                     placeholder={t("placeholders.content")}

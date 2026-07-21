@@ -74,7 +74,8 @@
     "fontSize": "Sélectionner une taille",
     "fontFamily": "Sélectionner une police",
     "shortcutAction": "Ex: Ouvrir les notes",
-    "shortcut": "Cliquez puis appuyez"
+    "shortcut": "Cliquez puis appuyez",
+    "dailyWordGoal": "Ex : 1000"
   },
   "theme": {
     "light": "Clair",

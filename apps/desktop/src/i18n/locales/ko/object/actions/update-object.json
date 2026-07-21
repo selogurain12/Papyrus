@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "중요도 선택",
     "name": "예: 고대 나침반",
-    "type": "유형을 선택하세요"
+    "type": "유형을 선택하세요",
+    "location": "Location or owner",
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, former owners, related events...",
+    "significance": "Explain its role, symbolic value, or impact on the story"
   },
   "types": {
     "artifact": "인공물",

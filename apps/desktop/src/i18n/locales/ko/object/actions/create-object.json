@@ -28,7 +28,8 @@
     "importance": "중요도 선택",
     "name": "예: 고대 나침반",
     "significance": "이 객체가 중요한 이유",
-    "type": "유형을 선택하세요"
+    "type": "유형을 선택하세요",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "인공물",

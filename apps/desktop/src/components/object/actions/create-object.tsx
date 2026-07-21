@@ -162,7 +162,11 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
                 <FormItem>
                   <FormLabel>{t("fields.name")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={t("placeholders.name")} />
+                    <Input
+                      {...field}
+                      id="create-object-name"
+                      placeholder={t("placeholders.name")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -227,8 +231,10 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
                   <FormControl>
                     <Input
                       {...field}
+                      id="create-object-location"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
+                      placeholder={t("placeholders.location")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -264,6 +270,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-object-description"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
@@ -285,6 +292,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-object-appearance"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
@@ -306,6 +314,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-object-significance"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
@@ -327,6 +336,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-object-history"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}

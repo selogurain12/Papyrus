@@ -17,7 +17,10 @@
     },
     "statusPlaceholder": "Sélectionner un statut",
     "titlePlaceholder": "Ex: Chapitre 1",
-    "wordGoal": "Objectif en mots"
+    "wordGoal": "Objectif en mots",
+    "chapterNumberPlaceholder": "Ex : 1, 2, 3...",
+    "wordGoalPlaceholder": "Nombre de mots visé pour ce chapitre",
+    "resumePlaceholder": "Résumez les enjeux, les scènes prévues ou les points importants du chapitre..."
   },
   "projectNotFound": "Projet non trouvé",
   "title": "Ajouter un chapitre",

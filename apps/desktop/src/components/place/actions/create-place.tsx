@@ -173,7 +173,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                 <FormItem>
                   <FormLabel className="font-semibold mb-1">{t("fields.name")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={t("placeholders.name")} />
+                    <Input {...field} id="create-place-name" placeholder={t("placeholders.name")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -189,8 +189,10 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Input
                       {...field}
+                      id="create-place-nickname"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
+                      placeholder={t("placeholders.nickname")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -231,7 +233,11 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                 <FormItem>
                   <FormLabel className="font-semibold mb-1">{t("fields.localisation")}</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input
+                      {...field}
+                      id="create-place-localisation"
+                      placeholder={t("placeholders.localisation")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -315,6 +321,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-place-history"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.history")}
@@ -337,6 +344,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-place-physical-description"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.physicalDescription")}
@@ -357,6 +365,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-place-atmosphere"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.atmosphere")}
@@ -377,6 +386,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-place-population"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.population")}
@@ -397,6 +407,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-place-usages"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.usages")}
@@ -417,6 +428,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-place-government"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.government")}
@@ -437,6 +449,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-place-ressources"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.ressources")}

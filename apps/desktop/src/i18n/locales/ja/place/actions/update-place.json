@@ -26,13 +26,15 @@
     "government": "政府の種類、指導者...",
     "history": "過去、原点…",
     "importance": "重要度を選択してください",
-    "language": "話し言葉...",
+    "language": "Main language",
     "name": "例えば。カフェ ル メトロポリタン",
     "physicalDescription": "一般的な説明...",
     "ressources": "自然、経済、戦略的資源...",
     "type": "タイプを選択してください",
     "usages": "建築、装飾…",
-    "population": "人口、集団、コミュニティ..."
+    "population": "人口、集団、コミュニティ...",
+    "nickname": "Place nickname",
+    "localisation": "Region, country, address..."
   },
   "types": {
     "city": "市",

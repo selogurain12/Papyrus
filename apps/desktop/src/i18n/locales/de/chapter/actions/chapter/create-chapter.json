@@ -17,7 +17,10 @@
     },
     "statusPlaceholder": "Status auswählen",
     "titlePlaceholder": "z. B. Kapitel 1",
-    "wordGoal": "Wortziel"
+    "wordGoal": "Wortziel",
+    "chapterNumberPlaceholder": "Example: 1, 2, 3...",
+    "wordGoalPlaceholder": "Target word count for this chapter",
+    "resumePlaceholder": "Summarize the stakes, planned scenes, or important chapter notes..."
   },
   "projectNotFound": "Projekt nicht gefunden",
   "title": "Kapitel hinzufügen",

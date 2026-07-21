@@ -97,6 +97,7 @@ export function ListResearch() {
           <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2">
             <SearchIcon className="w-4 h-4 text-gray-400" />
             <Input
+              id="research-search"
               type="search"
               placeholder={t("searchPlaceholder")}
               onChange={(event) => setSearch(event.target.value)}

@@ -570,5 +570,8 @@
         }
       }
     }
+  },
+  "color": {
+    "customPlaceholder": "#2563eb or linear-gradient(...)"
   }
 }

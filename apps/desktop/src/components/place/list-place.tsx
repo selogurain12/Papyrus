@@ -105,7 +105,11 @@ export function PlacesList() {
       </div>
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3" data-tour="page-list">
-          <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
+          <Input
+            id="place-search"
+            placeholder={t("search")}
+            onChange={(event) => setSearch(event.target.value)}
+          />
           {places?.data.map((place) => (
             <PlaceCard
               key={place.id}

@@ -17,7 +17,10 @@
       "toStart": "시작 예정",
       "inProgress": "진행 중",
       "completed": "완료"
-    }
+    },
+    "chapterNumberPlaceholder": "Example: 1, 2, 3...",
+    "wordGoalPlaceholder": "Target word count for this chapter",
+    "resumePlaceholder": "Summarize the stakes, planned scenes, or important chapter notes..."
   },
   "projectNotFound": "프로젝트를 찾을 수 없습니다",
   "title": "챕터 추가",

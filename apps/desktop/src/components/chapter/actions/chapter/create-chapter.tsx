@@ -138,7 +138,7 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
               <FormItem>
                 <FormLabel>{t("title")}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder={t("fields.titlePlaceholder")} />
+                  <Input id="title" {...field} placeholder={t("fields.titlePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -199,8 +199,9 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
                 <FormControl>
                   <Input
                     {...field}
-                    id="age"
+                    id="chapterNumber"
                     type="number"
+                    placeholder={t("fields.chapterNumberPlaceholder")}
                     value={field.value}
                     onChange={(event) => field.onChange(Number(event.target.value) || null)}
                   />
@@ -218,8 +219,9 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
                 <FormControl>
                   <Input
                     {...field}
-                    id="age"
+                    id="wordGoal"
                     type="number"
+                    placeholder={t("fields.wordGoalPlaceholder")}
                     value={field.value}
                     onChange={(event) => field.onChange(Number(event.target.value) || null)}
                   />
@@ -239,7 +241,8 @@ export function CreateChapter({ setOpen }: CreateChapterProps) {
                     {...field}
                     value={field.value ?? ""}
                     onChange={(event) => field.onChange(event.target.value || null)}
-                    id="outfit"
+                    id="resume"
+                    placeholder={t("fields.resumePlaceholder")}
                   />
                 </FormControl>
                 <FormMessage />

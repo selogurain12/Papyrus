@@ -28,7 +28,8 @@
     "importance": "Select an importance",
     "name": "E.g. Ancient compass",
     "significance": "Why this object matters",
-    "type": "Select a type"
+    "type": "Select a type",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "Artifact",

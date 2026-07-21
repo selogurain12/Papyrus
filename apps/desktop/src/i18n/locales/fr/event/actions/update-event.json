@@ -22,5 +22,11 @@
     "submit": "Modifier l'événement",
     "success": "Événement mis à jour !",
     "title": "Modifier l'événement"
+  },
+  "placeholders": {
+    "title": "Ex : La rencontre au port",
+    "additionalDetails": "Conséquences, enjeux, indices, personnages impliqués...",
+    "description": "Décrivez ce qui se passe, pourquoi l’évènement compte et ce qu’il change",
+    "location": "Lieu précis ou zone concernée"
   }
 }

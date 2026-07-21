@@ -159,7 +159,11 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                 <FormItem>
                   <FormLabel>{t("fields.title")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={t("placeholders.title")} />
+                    <Input
+                      {...field}
+                      id="create-research-title"
+                      placeholder={t("placeholders.title")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -220,6 +224,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                   <FormControl>
                     <Input
                       {...field}
+                      id="create-research-link"
                       value={field.value ?? undefined}
                       placeholder={t("placeholders.link")}
                     />
@@ -238,6 +243,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                   <FormControl>
                     <Input
                       {...field}
+                      id="create-research-sources"
                       value={field.value ?? ""}
                       placeholder={t("placeholders.sources")}
                     />
@@ -263,6 +269,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-research-description"
                       value={field.value ?? ""}
                       placeholder={t("placeholders.description")}
                       rows={4}
@@ -293,6 +300,7 @@ export function CreateResearchForm({ setOpen }: CreateResearchFormProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="create-research-note"
                       value={field.value ?? ""}
                       placeholder={t("placeholders.note")}
                       rows={3}

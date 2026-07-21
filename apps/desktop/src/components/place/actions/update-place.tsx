@@ -178,7 +178,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                 <FormItem>
                   <FormLabel className="font-semibold mb-1">{t("fields.name")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={t("placeholders.name")} />
+                    <Input {...field} id="update-place-name" placeholder={t("placeholders.name")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -195,8 +195,10 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Input
                       {...field}
+                      id="update-place-nickname"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
+                      placeholder={t("placeholders.nickname")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -239,7 +241,11 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                 <FormItem>
                   <FormLabel className="font-semibold mb-1">{t("fields.localisation")}</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input
+                      {...field}
+                      id="update-place-localisation"
+                      placeholder={t("placeholders.localisation")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -256,6 +262,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-place-population"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.population")}
@@ -323,6 +330,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-place-history"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.history")}
@@ -346,6 +354,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-place-physical-description"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.physicalDescription")}
@@ -367,6 +376,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-place-atmosphere"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.atmosphere")}
@@ -413,6 +423,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-place-usages"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.usages")}
@@ -434,6 +445,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-place-government"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.government")}
@@ -455,6 +467,7 @@ export function UpdatePlace({ onCancel, place }: UpdatePlaceProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-place-ressources"
                       value={field.value ?? ""}
                       onChange={(event) => field.onChange(event.target.value || null)}
                       placeholder={t("placeholders.ressources")}

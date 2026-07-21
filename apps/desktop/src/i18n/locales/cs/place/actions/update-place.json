@@ -26,13 +26,15 @@
     "government": "Typ vlády, vůdci...",
     "history": "Minulost, původ...",
     "importance": "Vyberte důležitost",
-    "language": "Mluvené jazyky...",
+    "language": "Main language",
     "name": "Např. Kavárna Le Metropolitain",
     "physicalDescription": "Obecný popis...",
     "ressources": "Přírodní, ekonomické, strategické zdroje...",
     "type": "Vyberte typ",
     "usages": "Architektura, výzdoba...",
-    "population": "Obyvatelstvo, skupiny, komunity..."
+    "population": "Obyvatelstvo, skupiny, komunity...",
+    "nickname": "Place nickname",
+    "localisation": "Region, country, address..."
   },
   "types": {
     "city": "Město",

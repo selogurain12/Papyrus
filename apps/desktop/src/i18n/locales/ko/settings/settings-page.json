@@ -74,7 +74,8 @@
     "fontSize": "크기 선택",
     "fontFamily": "글꼴 선택",
     "shortcutAction": "예: 노트 열기",
-    "shortcut": "클릭 후 키를 누르세요"
+    "shortcut": "클릭 후 키를 누르세요",
+    "dailyWordGoal": "Example: 1000"
   },
   "theme": {
     "light": "라이트",

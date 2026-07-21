@@ -17,7 +17,10 @@
       "toStart": "待开始",
       "inProgress": "进行中",
       "completed": "已完成"
-    }
+    },
+    "chapterNumberPlaceholder": "Example: 1, 2, 3...",
+    "wordGoalPlaceholder": "Target word count for this chapter",
+    "resumePlaceholder": "Summarize the stakes, planned scenes, or important chapter notes..."
   },
   "projectNotFound": "未找到项目",
   "title": "添加章节",

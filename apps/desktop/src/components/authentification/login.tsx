@@ -88,7 +88,7 @@ export function Login() {
                     {t("email")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t("emailPlaceholder")} {...field} />
+                    <Input id="email" placeholder={t("emailPlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>
@@ -103,7 +103,12 @@ export function Login() {
                     {t("password")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t("passwordPlaceholder")} type="password" {...field} />
+                    <Input
+                      id="password"
+                      placeholder={t("passwordPlaceholder")}
+                      type="password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>

@@ -88,7 +88,7 @@ export function Register() {
                     {t("firstName")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t("firstNamePlaceholder")} {...field} />
+                    <Input id="firstName" placeholder={t("firstNamePlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>
@@ -103,7 +103,7 @@ export function Register() {
                     {t("lastName")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t("lastNamePlaceholder")} {...field} />
+                    <Input id="lastName" placeholder={t("lastNamePlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>
@@ -118,7 +118,7 @@ export function Register() {
                     {t("email")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t("emailPlaceholder")} {...field} />
+                    <Input id="email" placeholder={t("emailPlaceholder")} {...field} />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>
@@ -133,7 +133,12 @@ export function Register() {
                     {t("email")}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t("emailPlaceholder")} type="password" {...field} />
+                    <Input
+                      id="password"
+                      placeholder={t("emailPlaceholder")}
+                      type="password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage className="mt-1" />
                 </FormItem>

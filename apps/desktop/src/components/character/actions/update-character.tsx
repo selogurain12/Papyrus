@@ -307,7 +307,11 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="firstName">{t("fields.firstName")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="firstName" />
+                          <Input
+                            {...field}
+                            id="firstName"
+                            placeholder={t("placeholders.firstName")}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -320,7 +324,11 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="lastName">{t("fields.lastName")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="lastName" />
+                          <Input
+                            {...field}
+                            id="lastName"
+                            placeholder={t("placeholders.lastName")}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -333,7 +341,11 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="nickName">{t("fields.nickName")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="nickName" />
+                          <Input
+                            {...field}
+                            id="nickName"
+                            placeholder={t("placeholders.nickName")}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -346,7 +358,11 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="pronouns">{t("fields.pronouns")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="pronouns" />
+                          <Input
+                            {...field}
+                            id="pronouns"
+                            placeholder={t("placeholders.pronouns")}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -394,6 +410,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="nationality"
+                            placeholder={t("placeholders.nationality")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -412,6 +429,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="age"
                             type="number"
                             value={field.value ?? ""}
+                            placeholder={t("placeholders.age")}
                             onChange={(event) => {
                               const age = Number(event.target.value) || null;
                               if (birthDate !== null) {
@@ -458,6 +476,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="birthPlace"
+                            placeholder={t("placeholders.birthPlace")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -476,6 +495,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="residencePlace"
+                            placeholder={t("placeholders.residencePlace")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -494,6 +514,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="occupation"
+                            placeholder={t("placeholders.occupation")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -521,6 +542,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="height"
                             type="number"
                             value={field.value ?? ""}
+                            placeholder={t("placeholders.height")}
                             onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
@@ -540,6 +562,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="weight"
                             type="number"
                             value={field.value ?? ""}
+                            placeholder={t("placeholders.weight")}
                             onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
                         </FormControl>
@@ -559,6 +582,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="corpulence"
+                            placeholder={t("placeholders.corpulence")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -577,6 +601,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="hairColor"
+                            placeholder={t("placeholders.hairColor")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -595,6 +620,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="eyesColor"
+                            placeholder={t("placeholders.eyesColor")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -613,6 +639,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="voice"
+                            placeholder={t("placeholders.voice")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -631,6 +658,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="outfit"
+                            placeholder={t("placeholders.outfit")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -649,6 +677,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="accessory"
+                            placeholder={t("placeholders.accessory")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -667,6 +696,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             id="description"
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
+                            placeholder={t("placeholders.description")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -734,6 +764,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="tastes"
+                            placeholder={t("placeholders.tastes")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -753,6 +784,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="tics"
+                            placeholder={t("placeholders.tics")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -772,6 +804,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="fears"
+                            placeholder={t("placeholders.fears")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -793,6 +826,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="typicalExpression"
+                            placeholder={t("placeholders.typicalExpression")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -820,6 +854,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="education"
+                            placeholder={t("placeholders.education")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -841,6 +876,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="class"
+                            placeholder={t("placeholders.class")}
                           />
                         </FormControl>
 
@@ -860,6 +896,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="belief"
+                            placeholder={t("placeholders.belief")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -878,6 +915,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="secrets"
+                            placeholder={t("placeholders.secrets")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -896,6 +934,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="notablePlaces"
+                            placeholder={t("placeholders.notablePlaces")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -923,6 +962,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="goals"
+                            placeholder={t("placeholders.goals")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -941,6 +981,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="past"
+                            placeholder={t("placeholders.past")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -959,6 +1000,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="present"
+                            placeholder={t("placeholders.present")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -977,6 +1019,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="future"
+                            placeholder={t("placeholders.future")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -1003,6 +1046,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
                           value={field.value ?? ""}
                           onChange={(event) => field.onChange(event.target.value || null)}
                           id="notes"
+                          placeholder={t("placeholders.notes")}
                         />
                       </FormControl>
                       <FormMessage />

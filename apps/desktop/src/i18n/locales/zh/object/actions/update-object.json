@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "选择重要性",
     "name": "例如。古代指南针",
-    "type": "选择类型"
+    "type": "选择类型",
+    "location": "Location or owner",
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, former owners, related events...",
+    "significance": "Explain its role, symbolic value, or impact on the story"
   },
   "types": {
     "artifact": "人工制品",

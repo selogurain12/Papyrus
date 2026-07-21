@@ -74,7 +74,8 @@
     "fontSize": "Выберите размер",
     "fontFamily": "Выберите шрифт",
     "shortcutAction": "Напр.: открыть заметки",
-    "shortcut": "Нажмите и введите клавиши"
+    "shortcut": "Нажмите и введите клавиши",
+    "dailyWordGoal": "Example: 1000"
   },
   "theme": {
     "light": "Светлая",

@@ -105,7 +105,11 @@ export function CharactersList() {
       </div>
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3" data-tour="page-list">
-          <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
+          <Input
+            id="character-search"
+            placeholder={t("search")}
+            onChange={(event) => setSearch(event.target.value)}
+          />
           {characters?.data.map((character) => (
             <CharacterCard
               key={character.id}

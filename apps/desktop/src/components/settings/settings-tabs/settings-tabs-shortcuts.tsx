@@ -129,6 +129,7 @@ export function SettingsTabsShortcuts({ setting, updateSetting }: SettingsTabsSh
           <div className="space-y-2">
             <Label>{t("fields.shortcut")}</Label>
             <Input
+              id="settings-shortcut"
               readOnly
               value={acceleratorToDisplay(shortcutValue)}
               onKeyDown={handleShortcutKeyDown}

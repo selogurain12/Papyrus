@@ -74,7 +74,8 @@
     "fontSize": "Größe auswählen",
     "fontFamily": "Schrift auswählen",
     "shortcutAction": "Z. B. Notizen öffnen",
-    "shortcut": "Klicken und Tasten drücken"
+    "shortcut": "Klicken und Tasten drücken",
+    "dailyWordGoal": "Example: 1000"
   },
   "theme": {
     "light": "Hell",

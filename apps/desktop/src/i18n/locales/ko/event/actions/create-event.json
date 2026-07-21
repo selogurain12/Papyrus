@@ -19,5 +19,11 @@
     "critical": "비판적인",
     "important": "중요한",
     "normal": "정상"
+  },
+  "placeholders": {
+    "title": "Example: The meeting at the harbor",
+    "additionalDetails": "Consequences, stakes, clues, involved characters...",
+    "description": "Describe what happens, why the event matters, and what it changes",
+    "location": "Specific place or affected area"
   }
 }

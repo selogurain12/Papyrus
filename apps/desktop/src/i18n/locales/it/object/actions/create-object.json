@@ -28,7 +28,8 @@
     "importance": "Seleziona un'importanza",
     "name": "Per esempio. Bussola antica",
     "significance": "Perché questo oggetto è importante",
-    "type": "Seleziona un tipo"
+    "type": "Seleziona un tipo",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "Artefatto",

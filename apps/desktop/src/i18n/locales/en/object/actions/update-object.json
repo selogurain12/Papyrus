@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "Select an importance",
     "name": "E.g. Ancient compass",
-    "type": "Select a type"
+    "type": "Select a type",
+    "location": "Location or owner",
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, former owners, related events...",
+    "significance": "Explain its role, symbolic value, or impact on the story"
   },
   "types": {
     "artifact": "Artifact",

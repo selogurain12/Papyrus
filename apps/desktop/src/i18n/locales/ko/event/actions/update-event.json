@@ -22,5 +22,11 @@
     "submit": "업데이트 이벤트",
     "success": "이벤트가 업데이트되었습니다!",
     "title": "이벤트 수정"
+  },
+  "placeholders": {
+    "title": "Example: The meeting at the harbor",
+    "additionalDetails": "Consequences, stakes, clues, involved characters...",
+    "description": "Describe what happens, why the event matters, and what it changes",
+    "location": "Specific place or affected area"
   }
 }

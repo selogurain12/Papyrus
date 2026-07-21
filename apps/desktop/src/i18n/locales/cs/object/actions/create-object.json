@@ -28,7 +28,8 @@
     "importance": "Vyberte důležitost",
     "name": "Např. Starověký kompas",
     "significance": "Proč na tomto objektu záleží",
-    "type": "Vyberte typ"
+    "type": "Vyberte typ",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "Artefakt",

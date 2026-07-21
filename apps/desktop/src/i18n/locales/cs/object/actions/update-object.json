@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "Vyberte důležitost",
     "name": "Např. Starověký kompas",
-    "type": "Vyberte typ"
+    "type": "Vyberte typ",
+    "location": "Location or owner",
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, former owners, related events...",
+    "significance": "Explain its role, symbolic value, or impact on the story"
   },
   "types": {
     "artifact": "Artefakt",

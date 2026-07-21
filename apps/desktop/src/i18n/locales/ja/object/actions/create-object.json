@@ -28,7 +28,8 @@
     "importance": "重要度を選択してください",
     "name": "例えば。古代のコンパス",
     "significance": "このオブジェクトが重要な理由",
-    "type": "タイプを選択してください"
+    "type": "タイプを選択してください",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "アーチファクト",

@@ -74,7 +74,8 @@
     "fontSize": "Seleziona una dimensione",
     "fontFamily": "Seleziona un carattere",
     "shortcutAction": "Es: Apri note",
-    "shortcut": "Clicca e premi i tasti"
+    "shortcut": "Clicca e premi i tasti",
+    "dailyWordGoal": "Example: 1000"
   },
   "theme": {
     "light": "Chiaro",

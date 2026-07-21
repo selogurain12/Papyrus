@@ -37,7 +37,7 @@ root.render(
                 <Toaster richColors />
                 <NotificationManager />
                 <OfflineSyncManager />
-                <RouterProvider basepath={import.meta.env.BASE_URL} router={router} />
+                <RouterProvider router={router} />
               </TooltipProvider>
             </main>
           </PreferencesProvider>

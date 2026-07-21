@@ -163,7 +163,11 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
                 <FormItem>
                   <FormLabel>{t("fields.title")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={t("placeholders.title")} />
+                    <Input
+                      {...field}
+                      id="update-note-title"
+                      placeholder={t("placeholders.title")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,6 +182,7 @@ export function UpdateNoteForm({ setOpen, note }: UpdateNoteFormProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-note-content"
                       value={field.value ?? ""}
                       onChange={(note) => field.onChange(note.target.value || null)}
                       placeholder={t("placeholders.content")}

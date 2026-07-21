@@ -147,7 +147,11 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                   <FormItem>
                     <FormLabel>{t("fields.title")}</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        {...field}
+                        id="update-event-title"
+                        placeholder={t("placeholders.title")}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -218,8 +222,10 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                     <FormControl>
                       <Textarea
                         {...field}
+                        id="update-event-additional-details"
                         value={field.value ?? ""}
                         onChange={(event) => field.onChange(event.target.value || null)}
+                        placeholder={t("placeholders.additionalDetails")}
                       />
                     </FormControl>
                     <FormMessage />
@@ -238,8 +244,10 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                     <FormControl>
                       <Textarea
                         {...field}
+                        id="update-event-description"
                         value={field.value ?? ""}
                         onChange={(event) => field.onChange(event.target.value || null)}
+                        placeholder={t("placeholders.description")}
                       />
                     </FormControl>
                     <FormMessage />
@@ -256,8 +264,10 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
                     <FormControl>
                       <Input
                         {...field}
+                        id="update-event-location"
                         value={field.value ?? ""}
                         onChange={(event) => field.onChange(event.target.value || null)}
+                        placeholder={t("placeholders.location")}
                       />
                     </FormControl>
                     <FormMessage />

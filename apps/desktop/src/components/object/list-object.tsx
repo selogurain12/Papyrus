@@ -105,7 +105,11 @@ export function ObjectsList() {
       </div>
       <div className="flex w-full">
         <div className="flex flex-col gap-4 w-1/3" data-tour="page-list">
-          <Input placeholder={t("search")} onChange={(event) => setSearch(event.target.value)} />
+          <Input
+            id="object-search"
+            placeholder={t("search")}
+            onChange={(event) => setSearch(event.target.value)}
+          />
           {objects?.data.map((object) => (
             <ObjectCard
               key={object.id}

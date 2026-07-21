@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "Sélectionner une importance",
     "name": "Ex : Boussole ancienne",
-    "type": "Sélectionner un type"
+    "type": "Sélectionner un type",
+    "location": "Emplacement ou propriétaire",
+    "appearance": "Aspect, matière, détails visuels...",
+    "description": "Description générale de l’objet",
+    "history": "Origine, anciens propriétaires, évènements associés...",
+    "significance": "Expliquez son rôle, sa valeur symbolique ou son impact dans l’histoire"
   },
   "types": {
     "artifact": "Artefact",

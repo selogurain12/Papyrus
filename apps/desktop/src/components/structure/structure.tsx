@@ -241,6 +241,7 @@ export function StructurePage() {
               </div>
               <p>{t("premise")}</p>
               <Input
+                id="structure-premise"
                 placeholder={t("placeholders.premise")}
                 className="mb-4"
                 value={form.watch("premise") ?? ""}
@@ -251,6 +252,7 @@ export function StructurePage() {
               />
               <p>{t("genre")}</p>
               <Input
+                id="structure-genre"
                 placeholder={t("placeholders.genre")}
                 className="mb-4"
                 value={form.watch("genre") ?? ""}
@@ -261,6 +263,7 @@ export function StructurePage() {
               />
               <p>{t("theme")}</p>
               <Input
+                id="structure-theme"
                 placeholder={t("placeholders.theme")}
                 value={form.watch("theme") ?? ""}
                 onChange={(event) => {
@@ -291,6 +294,7 @@ export function StructurePage() {
               </div>
               <p>{t("structure")}</p>
               <Input
+                id="structure-plan"
                 placeholder={t("placeholders.structure")}
                 className="mb-4"
                 value={form.watch("structure") ?? ""}
@@ -325,6 +329,7 @@ export function StructurePage() {
                   {form.watch("objectives")?.map((objective, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <Input
+                        id={`structure-objective-${index}`}
                         placeholder={t("objective", { index: index + 1 })}
                         value={objective}
                         onChange={(event) => {

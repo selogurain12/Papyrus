@@ -28,7 +28,8 @@
     "importance": "Wählen Sie eine Wichtigkeit aus",
     "name": "Z.B. Alter Kompass",
     "significance": "Warum dieses Objekt wichtig ist",
-    "type": "Wählen Sie einen Typ aus"
+    "type": "Wählen Sie einen Typ aus",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "Artefakt",

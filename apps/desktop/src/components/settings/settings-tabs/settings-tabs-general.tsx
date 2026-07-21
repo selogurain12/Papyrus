@@ -79,11 +79,13 @@ export function SettingsTabsGeneral({ setting, updateSetting }: SettingsTabsGene
         <div className="space-y-2">
           <Label>{t("fields.dailyWordGoal")}</Label>
           <Input
+            id="settings-daily-word-goal"
             min={100}
             max={10000}
             step={100}
             type="number"
             value={setting.dailyWordCountGoal}
+            placeholder={t("placeholders.dailyWordGoal")}
             onChange={(event) => {
               updateSetting("dailyWordCountGoal", Number.parseInt(event.currentTarget.value, 10));
             }}

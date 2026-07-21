@@ -26,13 +26,15 @@
     "government": "政府类型、领导人...",
     "history": "过去、起源...",
     "importance": "选择重要性",
-    "language": "口语...",
+    "language": "Main language",
     "name": "例如。大都会咖啡馆",
     "physicalDescription": "一般描述...",
     "ressources": "自然、经济、战略资源...",
     "type": "选择类型",
     "usages": "建筑、装饰...",
-    "population": "人口、群体、社区..."
+    "population": "人口、群体、社区...",
+    "nickname": "Place nickname",
+    "localisation": "Region, country, address..."
   },
   "types": {
     "city": "城市",

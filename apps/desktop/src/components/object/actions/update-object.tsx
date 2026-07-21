@@ -168,7 +168,11 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
                 <FormItem>
                   <FormLabel>{t("fields.name")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={t("placeholders.name")} />
+                    <Input
+                      {...field}
+                      id="update-object-name"
+                      placeholder={t("placeholders.name")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -233,8 +237,10 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
                   <FormControl>
                     <Input
                       {...field}
+                      id="update-object-location"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
+                      placeholder={t("placeholders.location")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -270,9 +276,11 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-object-description"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
+                      placeholder={t("placeholders.description")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -290,9 +298,11 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-object-appearance"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
+                      placeholder={t("placeholders.appearance")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -310,9 +320,11 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-object-significance"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
+                      placeholder={t("placeholders.significance")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -330,9 +342,11 @@ export function UpdateObject({ onCancel, object }: UpdateObjectProps) {
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-object-history"
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value || null)}
                       rows={4}
+                      placeholder={t("placeholders.history")}
                     />
                   </FormControl>
                   <FormMessage />

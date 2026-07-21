@@ -157,7 +157,7 @@ export function UpdateChapter({ setOpen, chapter, onUpdated }: UpdateChapterProp
               <FormItem>
                 <FormLabel>{t("title")}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder={t("fields.titlePlaceholder")} />
+                  <Input {...field} id="title" placeholder={t("fields.titlePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -218,7 +218,8 @@ export function UpdateChapter({ setOpen, chapter, onUpdated }: UpdateChapterProp
                 <FormControl>
                   <Input
                     {...field}
-                    id="age"
+                    id="chapterNumber"
+                    placeholder={t("fields.chapterNumberPlaceholder")}
                     type="number"
                     value={field.value}
                     onChange={(event) => field.onChange(Number(event.target.value) || null)}
@@ -237,7 +238,8 @@ export function UpdateChapter({ setOpen, chapter, onUpdated }: UpdateChapterProp
                 <FormControl>
                   <Input
                     {...field}
-                    id="age"
+                    id="wordGoal"
+                    placeholder={t("fields.wordGoalPlaceholder")}
                     type="number"
                     value={field.value}
                     onChange={(event) => field.onChange(Number(event.target.value) || null)}
@@ -258,7 +260,8 @@ export function UpdateChapter({ setOpen, chapter, onUpdated }: UpdateChapterProp
                     {...field}
                     value={field.value ?? ""}
                     onChange={(event) => field.onChange(event.target.value || null)}
-                    id="outfit"
+                    id="resume"
+                    placeholder={t("fields.resumePlaceholder")}
                   />
                 </FormControl>
                 <FormMessage />

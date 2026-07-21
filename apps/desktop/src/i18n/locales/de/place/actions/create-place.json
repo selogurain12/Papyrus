@@ -31,13 +31,15 @@
     "government": "Art der Regierung, Führer...",
     "history": "Vergangenheit, Herkunft...",
     "importance": "Wählen Sie eine Wichtigkeit aus",
-    "language": "Gesprochene Sprachen...",
+    "language": "Main language",
     "name": "Z.B. Café Le Metropolitain",
     "physicalDescription": "Allgemeine Beschreibung...",
     "ressources": "Natürliche, wirtschaftliche, strategische Ressourcen...",
     "type": "Wählen Sie einen Typ aus",
     "usages": "Architektur, Dekor...",
-    "population": "Bevölkerung, Gruppen, Gemeinschaften..."
+    "population": "Bevölkerung, Gruppen, Gemeinschaften...",
+    "nickname": "Place nickname",
+    "localisation": "Region, country, address..."
   },
   "types": {
     "city": "Stadt",

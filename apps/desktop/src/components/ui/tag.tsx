@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { cn } from "../../lib/utils";
@@ -13,8 +13,10 @@ interface TagProps {
   disabled?: boolean;
   maxTags?: number;
   placeholder?: string;
+  id?: string;
 }
 
+// eslint-disable-next-line complexity
 export function Tag({
   value,
   onChange,
@@ -22,8 +24,10 @@ export function Tag({
   disabled = false,
   maxTags = undefined,
   placeholder = undefined,
+  id = undefined,
 }: TagProps) {
   const { t } = useTranslation(["ui/tag", "common"]);
+  const generatedId = useId();
   const [tagInput, setTagInput] = useState("");
   const tags = value ?? [];
   const canAddTag = maxTags === undefined || tags.length < maxTags;
@@ -47,6 +51,7 @@ export function Tag({
     <div className={cn("space-y-2", className)}>
       <div className="flex items-center gap-2">
         <Input
+          id={id ?? generatedId}
           value={tagInput}
           disabled={disabled || !canAddTag}
           onChange={(event) => setTagInput(event.target.value)}

@@ -164,7 +164,11 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                 <FormItem>
                   <FormLabel>{t("fields.title")}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={t("placeholders.title")} />
+                    <Input
+                      {...field}
+                      id="update-research-title"
+                      placeholder={t("placeholders.title")}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -225,6 +229,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                   <FormControl>
                     <Input
                       {...field}
+                      id="update-research-link"
                       value={field.value ?? ""}
                       placeholder={t("placeholders.link")}
                     />
@@ -243,6 +248,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                   <FormControl>
                     <Input
                       {...field}
+                      id="update-research-sources"
                       value={field.value ?? ""}
                       placeholder={t("placeholders.sources")}
                     />
@@ -268,6 +274,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-research-description"
                       value={field.value ?? ""}
                       placeholder={t("placeholders.description")}
                       rows={4}
@@ -298,6 +305,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
                   <FormControl>
                     <Textarea
                       {...field}
+                      id="update-research-note"
                       value={field.value ?? ""}
                       placeholder={t("placeholders.note")}
                       rows={3}

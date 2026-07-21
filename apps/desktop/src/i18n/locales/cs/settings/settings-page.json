@@ -74,7 +74,8 @@
     "fontSize": "Vyberte velikost",
     "fontFamily": "Vyberte písmo",
     "shortcutAction": "Např.: Otevřít poznámky",
-    "shortcut": "Klikněte a stiskněte klávesy"
+    "shortcut": "Klikněte a stiskněte klávesy",
+    "dailyWordGoal": "Example: 1000"
   },
   "theme": {
     "light": "Světlý",

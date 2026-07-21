@@ -26,13 +26,15 @@
     "government": "Тип правительства, лидеры...",
     "history": "Прошлое, происхождение...",
     "importance": "Выберите важность",
-    "language": "Разговорные языки...",
+    "language": "Main language",
     "name": "Например. Кафе Ле Метрополитен",
     "physicalDescription": "Общее описание...",
     "ressources": "Природные, экономические, стратегические ресурсы...",
     "type": "Выберите тип",
     "usages": "Архитектура, декор...",
-    "population": "Население, группы, сообщества..."
+    "population": "Население, группы, сообщества...",
+    "nickname": "Place nickname",
+    "localisation": "Region, country, address..."
   },
   "types": {
     "city": "Город",

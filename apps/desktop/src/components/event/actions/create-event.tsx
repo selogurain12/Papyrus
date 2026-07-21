@@ -154,7 +154,11 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                   <FormItem>
                     <FormLabel>{t("fields.title")}</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        {...field}
+                        id="create-event-title"
+                        placeholder={t("placeholders.title")}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -225,8 +229,10 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                     <FormControl>
                       <Textarea
                         {...field}
+                        id="create-event-additional-details"
                         value={field.value ?? ""}
                         onChange={(event) => field.onChange(event.target.value || null)}
+                        placeholder={t("placeholders.additionalDetails")}
                       />
                     </FormControl>
                     <FormMessage />
@@ -245,8 +251,10 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                     <FormControl>
                       <Textarea
                         {...field}
+                        id="create-event-description"
                         value={field.value ?? ""}
                         onChange={(event) => field.onChange(event.target.value || null)}
+                        placeholder={t("placeholders.description")}
                       />
                     </FormControl>
                     <FormMessage />
@@ -263,8 +271,10 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
                     <FormControl>
                       <Input
                         {...field}
+                        id="create-event-location"
                         value={field.value ?? ""}
                         onChange={(event) => field.onChange(event.target.value || null)}
+                        placeholder={t("placeholders.location")}
                       />
                     </FormControl>
                     <FormMessage />

@@ -19,5 +19,11 @@
     "critical": "批判的",
     "important": "重要的",
     "normal": "普通的"
+  },
+  "placeholders": {
+    "title": "Example: The meeting at the harbor",
+    "additionalDetails": "Consequences, stakes, clues, involved characters...",
+    "description": "Describe what happens, why the event matters, and what it changes",
+    "location": "Specific place or affected area"
   }
 }

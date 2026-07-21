@@ -241,6 +241,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                   <div className="flex gap-1">
                     {Array.from({ length: 5 }).map((_, index) => (
                       <button
+                        id="roleStar"
                         key={index}
                         type="button"
                         onClick={() => form.setValue("roleStar", index + 1)}
@@ -305,7 +306,11 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="firstName">{t("fields.firstName")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="firstName" />
+                          <Input
+                            placeholder={t("placeholders.firstName")}
+                            {...field}
+                            id="firstName"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -318,7 +323,11 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="lastName">{t("fields.lastName")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="lastName" />
+                          <Input
+                            {...field}
+                            placeholder={t("placeholders.lastName")}
+                            id="lastName"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -331,7 +340,11 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="nickName">{t("fields.nickName")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="nickName" />
+                          <Input
+                            {...field}
+                            placeholder={t("placeholders.nickName")}
+                            id="nickName"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -344,7 +357,11 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                       <FormItem>
                         <FormLabel htmlFor="pronouns">{t("fields.pronouns")}</FormLabel>
                         <FormControl>
-                          <Input {...field} id="pronouns" />
+                          <Input
+                            {...field}
+                            placeholder={t("placeholders.pronouns")}
+                            id="pronouns"
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -389,6 +406,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                         <FormControl>
                           <Input
                             {...field}
+                            placeholder={t("placeholders.nationality")}
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="nationality"
@@ -408,6 +426,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                           <Input
                             {...field}
                             id="age"
+                            placeholder={t("placeholders.age")}
                             type="number"
                             value={field.value ?? ""}
                             onChange={(event) => {
@@ -434,6 +453,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                         <FormLabel htmlFor="birthDate">{t("fields.birthDate")}</FormLabel>
                         <FormControl>
                           <DatePicker
+                            id="birthDate"
                             changeValue={(date) => field.onChange(date)}
                             disabledRange={undefined}
                             placeholder={t("placeholders.date")}
@@ -453,6 +473,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                         <FormControl>
                           <Input
                             {...field}
+                            placeholder={t("placeholders.birthPlace")}
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="birthPlace"
@@ -471,6 +492,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                         <FormControl>
                           <Input
                             {...field}
+                            placeholder={t("placeholders.residencePlace")}
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="residencePlace"
@@ -489,6 +511,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                         <FormControl>
                           <Input
                             {...field}
+                            placeholder={t("placeholders.occupation")}
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="occupation"
@@ -518,6 +541,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             {...field}
                             id="height"
                             type="number"
+                            placeholder={t("placeholders.height")}
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
@@ -537,6 +561,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             {...field}
                             id="weight"
                             type="number"
+                            placeholder={t("placeholders.weight")}
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(Number(event.target.value) || null)}
                           />
@@ -557,6 +582,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="corpulence"
+                            placeholder={t("placeholders.corpulence")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -575,6 +601,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="hairColor"
+                            placeholder={t("placeholders.hairColor")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -593,6 +620,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="eyesColor"
+                            placeholder={t("placeholders.eyesColor")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -611,6 +639,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="voice"
+                            placeholder={t("placeholders.voice")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -629,6 +658,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="outfit"
+                            placeholder={t("placeholders.outfit")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -647,6 +677,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="accessory"
+                            placeholder={t("placeholders.accessory")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -665,6 +696,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             id="description"
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
+                            placeholder={t("placeholders.description")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -732,6 +764,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="tastes"
+                            placeholder={t("placeholders.tastes")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -751,6 +784,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="tics"
+                            placeholder={t("placeholders.tics")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -770,6 +804,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="fears"
+                            placeholder={t("placeholders.fears")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -791,6 +826,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="typicalExpression"
+                            placeholder={t("placeholders.typicalExpression")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -818,6 +854,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="education"
+                            placeholder={t("placeholders.education")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -839,6 +876,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="class"
+                            placeholder={t("placeholders.class")}
                           />
                         </FormControl>
 
@@ -858,6 +896,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="belief"
+                            placeholder={t("placeholders.belief")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -876,6 +915,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="secrets"
+                            placeholder={t("placeholders.secrets")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -894,6 +934,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="notablePlaces"
+                            placeholder={t("placeholders.notablePlaces")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -921,6 +962,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="goals"
+                            placeholder={t("placeholders.goals")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -939,6 +981,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="past"
+                            placeholder={t("placeholders.past")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -957,6 +1000,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="present"
+                            placeholder={t("placeholders.present")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -975,6 +1019,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                             value={field.value ?? ""}
                             onChange={(event) => field.onChange(event.target.value || null)}
                             id="future"
+                            placeholder={t("placeholders.future")}
                           />
                         </FormControl>
                         <FormMessage />
@@ -1001,6 +1046,7 @@ export function CreateCharacter({ onCancel, onCreated }: CreateCharacterProps) {
                           value={field.value ?? ""}
                           onChange={(event) => field.onChange(event.target.value || null)}
                           id="notes"
+                          placeholder={t("placeholders.notes")}
                         />
                       </FormControl>
                       <FormMessage />

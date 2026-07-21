@@ -188,6 +188,7 @@ export function GradientPicker({
         <Input
           className="col-span-2 h-8 mt-4"
           id="custom"
+          placeholder={t("color.customPlaceholder")}
           onChange={(event) => {
             setBackground(event.currentTarget.value);
           }}

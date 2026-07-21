@@ -101,7 +101,7 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
               <FormItem>
                 <FormLabel>{t("fields.title")}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder={t("fields.titlePlaceholder")} />
+                  <Input {...field} id="title" placeholder={t("fields.titlePlaceholder")} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

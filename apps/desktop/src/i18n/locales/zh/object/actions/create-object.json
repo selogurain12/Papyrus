@@ -28,7 +28,8 @@
     "importance": "选择重要性",
     "name": "例如。古代指南针",
     "significance": "为什么这个对象很重要",
-    "type": "选择类型"
+    "type": "选择类型",
+    "location": "Location or owner"
   },
   "types": {
     "artifact": "人工制品",

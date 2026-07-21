@@ -74,7 +74,8 @@
     "fontSize": "Select a size",
     "fontFamily": "Select a font",
     "shortcutAction": "E.g. Open notes",
-    "shortcut": "Click then press keys"
+    "shortcut": "Click then press keys",
+    "dailyWordGoal": "Example: 1000"
   },
   "theme": {
     "light": "Light",

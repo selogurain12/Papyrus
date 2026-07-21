@@ -19,7 +19,12 @@
   "placeholders": {
     "importance": "重要度を選択してください",
     "name": "例えば。古代のコンパス",
-    "type": "タイプを選択してください"
+    "type": "タイプを選択してください",
+    "location": "Location or owner",
+    "appearance": "Look, material, visual details...",
+    "description": "General description of the object",
+    "history": "Origin, former owners, related events...",
+    "significance": "Explain its role, symbolic value, or impact on the story"
   },
   "types": {
     "artifact": "アーチファクト",

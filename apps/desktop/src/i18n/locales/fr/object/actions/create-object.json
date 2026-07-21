@@ -28,7 +28,8 @@
     "importance": "Sélectionner une importance",
     "name": "Ex : Boussole ancienne",
     "significance": "Pourquoi cet objet est important",
-    "type": "Sélectionner un type"
+    "type": "Sélectionner un type",
+    "location": "Emplacement ou propriétaire"
   },
   "types": {
     "artifact": "Artefact",

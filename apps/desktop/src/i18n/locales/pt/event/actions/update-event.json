@@ -22,5 +22,11 @@
     "submit": "Evento de atualização",
     "success": "Evento atualizado!",
     "title": "Editar evento"
+  },
+  "placeholders": {
+    "title": "Example: The meeting at the harbor",
+    "additionalDetails": "Consequences, stakes, clues, involved characters...",
+    "description": "Describe what happens, why the event matters, and what it changes",
+    "location": "Specific place or affected area"
   }
 }

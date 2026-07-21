@@ -96,6 +96,7 @@ export const unitOptions = [
 
 export const autoSaveIntervalOptions = [
   { id: "1", label: "options.autoSaveInterval.1" },
+  { id: "2", label: "options.autoSaveInterval.2" },
   { id: "5", label: "options.autoSaveInterval.5" },
   { id: "10", label: "options.autoSaveInterval.10" },
   { id: "15", label: "options.autoSaveInterval.15" },

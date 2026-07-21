@@ -16,6 +16,7 @@ node_modules
 /data*
 .env
 /apps/apii/.env
+apps/desktop/.native/
 
 # IDEs and editors
 /.idea

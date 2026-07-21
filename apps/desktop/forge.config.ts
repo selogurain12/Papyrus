@@ -25,29 +25,46 @@ const desktopPath = __dirname;
 const electronVersion = desktopPackage.devDependencies.electron;
 const electronAbi = Number(nodeAbi.getAbi(electronVersion, "electron"));
 const nativeDirectoryPath = path.resolve(__dirname, ".native");
-const sourceBindingPath = path.join(
-  rootPath,
-  "node_modules/better-sqlite3/build/Release/better_sqlite3.node"
-);
+const betterSqliteModulePath = path.join(rootPath, "node_modules/better-sqlite3");
+const sourceBindingPath = path.join(betterSqliteModulePath, "build/Release/better_sqlite3.node");
 const targetBindingPath = path.join(nativeDirectoryPath, "better_sqlite3-electron.node");
+
+async function prepareBetterSqliteNative() {
+  await rebuild({
+    buildPath: desktopPath,
+    electronVersion,
+    forceABI: electronAbi,
+    force: true,
+    onlyModules: ["better-sqlite3"],
+    projectRootPath: rootPath,
+  });
+  fs.mkdirSync(nativeDirectoryPath, { recursive: true });
+  fs.copyFileSync(sourceBindingPath, targetBindingPath);
+}
+
+function copyBetterSqliteModule(buildPath: string) {
+  const targetModulePath = path.join(buildPath, "node_modules/better-sqlite3");
+
+  fs.mkdirSync(path.dirname(targetModulePath), { recursive: true });
+  fs.rmSync(targetModulePath, { force: true, recursive: true });
+  fs.cpSync(betterSqliteModulePath, targetModulePath, {
+    recursive: true,
+    filter: (source) => !source.startsWith(path.join(betterSqliteModulePath, "node_modules")),
+  });
+}
 
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    icon: path.resolve(__dirname, "assets/icon"),
+    extraResource: [nativeDirectoryPath],
   },
   rebuildConfig: {},
   hooks: {
-    preStart: async () => {
-      await rebuild({
-        buildPath: desktopPath,
-        electronVersion,
-        forceABI: electronAbi,
-        force: true,
-        onlyModules: ["better-sqlite3"],
-        projectRootPath: rootPath,
-      });
-      fs.mkdirSync(nativeDirectoryPath, { recursive: true });
-      fs.copyFileSync(sourceBindingPath, targetBindingPath);
+    preStart: prepareBetterSqliteNative,
+    prePackage: prepareBetterSqliteNative,
+    packageAfterPrune: async (_forgeConfig, buildPath) => {
+      copyBetterSqliteModule(buildPath);
     },
   },
   makers: [new MakerSquirrel({}), new MakerZIP({}, ["darwin"]), new MakerRpm({}), new MakerDeb({})],

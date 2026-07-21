@@ -1,0 +1,16 @@
+.git
+.gitignore
+.nx
+.yarn/install-state.gz
+
+node_modules
+**/node_modules
+dist
+tmp
+
+apps/apii/data
+**/data
+exports
+
+*.log
+.DS_Store

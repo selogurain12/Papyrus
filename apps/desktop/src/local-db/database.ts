@@ -12,6 +12,7 @@ function getNativeBindingPath(): string | undefined {
     path.join(process.cwd(), ".native", "better_sqlite3-electron.node"),
     path.join(process.cwd(), "apps/desktop/.native", "better_sqlite3-electron.node"),
     path.join(app.getAppPath(), ".native", "better_sqlite3-electron.node"),
+    path.join(process.resourcesPath, ".native", "better_sqlite3-electron.node"),
   ];
 
   return candidates.find((candidate) => existsSync(candidate));

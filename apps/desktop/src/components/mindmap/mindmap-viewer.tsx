@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { useTranslation } from "react-i18next";
 import { Download } from "lucide-react";
 import { getLocalDatabaseApi } from "../../local-db/renderer";
+import { MindMapGuideButton } from "./mindmap-guide";
 
 export function MindMapViewer() {
   const { t } = useTranslation("common");
@@ -94,16 +95,22 @@ export function MindMapViewer() {
   return (
     <div className="p-6">
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
+        <div
+          className="flex justify-between items-center"
+          data-mindmap-guide="mindmap-viewer-header"
+        >
           <h2 className="text-2xl font-semibold">{mindmap.title}</h2>
           <div className="gap-2 flex">
+            <MindMapGuideButton variant="viewer" />
             <Button
               onClick={download}
+              data-mindmap-guide="mindmap-viewer-download"
               className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
             >
               <Download />
             </Button>
             <Button
+              data-mindmap-guide="mindmap-viewer-close"
               onClick={() =>
                 void navigate({
                   to: mindmapRoute.to,
@@ -118,7 +125,11 @@ export function MindMapViewer() {
         </div>
 
         <div className="bg-white shadow rounded-xl p-4">
-          <div id="viewer-map" style={{ height: "500px", width: "100%" }} />
+          <div
+            id="viewer-map"
+            data-mindmap-guide="mindmap-viewer-canvas"
+            style={{ height: "500px", width: "100%" }}
+          />
         </div>
       </div>
     </div>

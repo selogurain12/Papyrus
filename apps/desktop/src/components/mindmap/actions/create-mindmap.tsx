@@ -14,28 +14,37 @@ import { Button } from "../../ui/button";
 import { useTranslation } from "react-i18next";
 import { useOnlineStatus } from "../../../hooks/use-online-status";
 import { createOfflineEntity } from "../../../local-db/offline-entity-store";
+import { getEditableMindMapOptions } from "../mind-elixir-options";
+import { MindMapGuideButton } from "../mindmap-guide";
 
 export function CreateMindMap() {
-  const { t } = useTranslation(["mindmap/actions/create-mindmap", "common"]);
+  const { t, i18n } = useTranslation(["mindmap/actions/create-mindmap", "common"]);
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
   const navigate = useNavigate();
   const { currentProject } = useProject();
   const isOnline = useOnlineStatus();
 
   useEffect(() => {
+    const mindMapOptions = getEditableMindMapOptions(i18n.language, t("newTopic"));
     const instance = new MindElixir({
       el: "#map",
       direction: MindElixir.LEFT,
       draggable: true,
-      contextMenu: true,
+      contextMenu: mindMapOptions.contextMenu,
       toolBar: true,
       keypress: true,
+      newTopicName: mindMapOptions.newTopicName,
     });
 
     instance.init(MindElixir.new(t("newTopic")));
 
     mindRef.current = instance;
-  }, []);
+
+    return () => {
+      instance.destroy();
+      mindRef.current = null;
+    };
+  }, [i18n.language, t]);
 
   const { mutate } = client.mindmap.create.useMutation({
     onSuccess: () => {
@@ -93,28 +102,39 @@ export function CreateMindMap() {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-3">
+      <div
+        className="flex justify-between items-center mb-3"
+        data-mindmap-guide="mindmap-editor-header"
+      >
         <form onSubmit={handleSubmit} className="rounded-xl">
           <h2 className="text-2xl font-semibold">{t("create.title")}</h2>
         </form>
-        <Button
-          onClick={() =>
-            navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })
-          }
-          className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
-        >
-          {t("common:backToProjects")}
-        </Button>
+        <div className="flex gap-2">
+          <MindMapGuideButton variant="editor" />
+          <Button
+            onClick={() =>
+              navigate({ to: mindmapRoute.to, params: { name: currentProject?.title ?? "" } })
+            }
+            className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-gray-400 transition"
+          >
+            {t("common:backToProjects")}
+          </Button>
+        </div>
       </div>
       <div className="space-y-2">
         <div className="bg-white shadow rounded-xl p-4">
           <h3 className="text-xl font-semibold mb-4">{t("canvas")}</h3>
-          <div id="map" style={{ height: "500px", width: "100%" }} />
+          <div
+            id="map"
+            data-mindmap-guide="mindmap-editor-canvas"
+            style={{ height: "500px", width: "100%" }}
+          />
         </div>
       </div>
       <div className="mt-6 flex w-full">
         <Button
           onClick={handleSubmit}
+          data-mindmap-guide="mindmap-editor-save"
           className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
         >
           {t("create.submit")}

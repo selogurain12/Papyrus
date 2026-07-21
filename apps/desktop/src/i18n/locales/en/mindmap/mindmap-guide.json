@@ -1,0 +1,81 @@
+{
+  "button": "Mind map guide",
+  "list": {
+    "help": {
+      "title": "Mind map guide",
+      "description": "This guide explains how to create, edit, open, and export a mind map."
+    },
+    "intro": {
+      "title": "Mind maps view",
+      "description": "This page gathers all project mind maps. Use them to organize visual ideas: characters, plots, places, systems, or relationships."
+    },
+    "createPanel": {
+      "title": "Create a map",
+      "description": "This panel opens a blank canvas with a central topic. Give the main node a clear title before saving."
+    },
+    "createButton": {
+      "title": "New mind map",
+      "description": "Click here to open the editor and start building your map."
+    },
+    "existingList": {
+      "title": "Existing maps",
+      "description": "Saved maps appear here. They remain available offline when cached or created locally."
+    },
+    "cardActions": {
+      "title": "Map actions",
+      "description": "Open the map in read-only mode, edit it, or delete it from these buttons."
+    }
+  },
+  "editor": {
+    "help": {
+      "title": "Editor guide",
+      "description": "This guide explains how to use the canvas, organize branches, and save your map."
+    },
+    "header": {
+      "title": "Map editing",
+      "description": "The displayed title comes from the central topic. To rename the map, rename the main node before saving."
+    },
+    "canvas": {
+      "title": "Interactive canvas",
+      "description": "Use the toolbar, context menu, or editor shortcuts to add, rename, move, or delete ideas. Keep nodes short to preserve readability."
+    },
+    "nodes": {
+      "title": "Create and organize items",
+      "description": "Click a node to select it. Press Tab to create a child item, Enter to create an item at the same level, and F2 to rename the selected item. You can also move items by dragging and dropping them."
+    },
+    "relations": {
+      "title": "Add relationships",
+      "description": "To connect two ideas that are not in the same branch, use Mind Elixir's context menu with a right click on a node, then choose the link option. This is useful for showing a relationship between two characters, a place and an event, or two clues."
+    },
+    "shortcuts": {
+      "title": "Useful shortcuts",
+      "description": "Remove an item with Delete or Backspace. Use the arrow keys to move between nodes, PageUp/PageDown to reorder, Ctrl + plus or Ctrl + minus to zoom, and Ctrl + 0 to reset zoom."
+    },
+    "save": {
+      "title": "Save the map",
+      "description": "This button saves the map. Offline changes are stored locally and synced when the connection returns."
+    }
+  },
+  "viewer": {
+    "help": {
+      "title": "Viewer guide",
+      "description": "This guide shows how to consult and export a mind map."
+    },
+    "header": {
+      "title": "Read-only view",
+      "description": "This view lets you consult the map without editing it. To change content, return to the list and use edit."
+    },
+    "canvas": {
+      "title": "Displayed map",
+      "description": "The map is shown in read-only mode so you can review its structure or present it."
+    },
+    "download": {
+      "title": "Export as PNG",
+      "description": "Download the map as an image to include it in a document or share it."
+    },
+    "close": {
+      "title": "Close viewer",
+      "description": "This button returns you to the project mind map list."
+    }
+  }
+}

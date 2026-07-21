@@ -1,0 +1,81 @@
+{
+  "button": "Mindmap-Anleitung",
+  "list": {
+    "help": {
+      "title": "Mindmap-Anleitung",
+      "description": "Diese Anleitung erklärt, wie du eine Mindmap erstellst, bearbeitest, öffnest und exportierst."
+    },
+    "intro": {
+      "title": "Mindmap-Ansicht",
+      "description": "Diese Seite sammelt alle Mindmaps des Projekts. Nutze sie, um visuelle Ideen zu organisieren: Figuren, Handlungen, Orte, Systeme oder Beziehungen."
+    },
+    "createPanel": {
+      "title": "Eine Map erstellen",
+      "description": "Dieser Bereich öffnet eine leere Arbeitsfläche mit einem zentralen Thema. Gib dem Hauptknoten vor dem Speichern einen klaren Titel."
+    },
+    "createButton": {
+      "title": "Neue Mindmap",
+      "description": "Klicke hier, um den Editor zu öffnen und deine Map zu erstellen."
+    },
+    "existingList": {
+      "title": "Vorhandene Maps",
+      "description": "Gespeicherte Maps erscheinen hier. Sie bleiben offline verfügbar, wenn sie zwischengespeichert oder lokal erstellt wurden."
+    },
+    "cardActions": {
+      "title": "Map-Aktionen",
+      "description": "Öffne die Map im Lesemodus, bearbeite sie oder lösche sie mit diesen Schaltflächen."
+    }
+  },
+  "editor": {
+    "help": {
+      "title": "Editor-Anleitung",
+      "description": "Diese Anleitung erklärt, wie du die Arbeitsfläche nutzt, Zweige organisierst und deine Map speicherst."
+    },
+    "header": {
+      "title": "Map bearbeiten",
+      "description": "Der angezeigte Titel kommt vom zentralen Thema. Um die Map umzubenennen, benenne den Hauptknoten vor dem Speichern um."
+    },
+    "canvas": {
+      "title": "Interaktive Arbeitsfläche",
+      "description": "Nutze die Werkzeugleiste, das Kontextmenü oder die Tastenkürzel des Editors, um Ideen hinzuzufügen, umzubenennen, zu verschieben oder zu löschen. Halte Knoten kurz, damit die Map lesbar bleibt."
+    },
+    "nodes": {
+      "title": "Elemente erstellen und organisieren",
+      "description": "Klicke auf einen Knoten, um ihn auszuwählen. Drücke Tab, um ein Unterelement zu erstellen, Enter für ein Element auf derselben Ebene und F2, um das ausgewählte Element umzubenennen. Du kannst Elemente auch per Drag-and-drop verschieben."
+    },
+    "relations": {
+      "title": "Beziehungen hinzufügen",
+      "description": "Um zwei Ideen zu verbinden, die nicht im selben Zweig liegen, nutze das Kontextmenü von Mind Elixir mit einem Rechtsklick auf einen Knoten und wähle die Link-Option. Das ist nützlich für Beziehungen zwischen Figuren, einem Ort und einem Ereignis oder zwei Hinweisen."
+    },
+    "shortcuts": {
+      "title": "Nützliche Tastenkürzel",
+      "description": "Entferne ein Element mit Entf oder Rücktaste. Nutze die Pfeiltasten zum Navigieren, PageUp/PageDown zum Sortieren, Ctrl + Plus oder Ctrl + Minus zum Zoomen und Ctrl + 0 zum Zurücksetzen des Zooms."
+    },
+    "save": {
+      "title": "Map speichern",
+      "description": "Dieser Button speichert die Map. Offline werden Änderungen lokal behalten und synchronisiert, sobald die Verbindung zurück ist."
+    }
+  },
+  "viewer": {
+    "help": {
+      "title": "Ansichts-Anleitung",
+      "description": "Diese Anleitung zeigt, wie du eine Mindmap ansiehst und exportierst."
+    },
+    "header": {
+      "title": "Nur-Lese-Ansicht",
+      "description": "Diese Ansicht dient zum Ansehen der Map ohne Änderungen. Um Inhalte zu ändern, kehre zur Liste zurück und nutze Bearbeiten."
+    },
+    "canvas": {
+      "title": "Angezeigte Map",
+      "description": "Die Map wird im Lesemodus angezeigt, damit du ihre Struktur prüfen oder präsentieren kannst."
+    },
+    "download": {
+      "title": "Als PNG exportieren",
+      "description": "Lade die Map als Bild herunter, um sie in ein Dokument einzufügen oder zu teilen."
+    },
+    "close": {
+      "title": "Ansicht schließen",
+      "description": "Dieser Button bringt dich zurück zur Mindmap-Liste des Projekts."
+    }
+  }
+}

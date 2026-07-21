@@ -1,0 +1,81 @@
+{
+  "button": "Guida mappe mentali",
+  "list": {
+    "help": {
+      "title": "Guida alle mappe mentali",
+      "description": "Questa guida spiega come creare, modificare, aprire ed esportare una mappa mentale."
+    },
+    "intro": {
+      "title": "Vista mappe mentali",
+      "description": "Questa pagina raccoglie tutte le mappe del progetto. Usale per organizzare idee visive: personaggi, trame, luoghi, sistemi o relazioni."
+    },
+    "createPanel": {
+      "title": "Creare una mappa",
+      "description": "Questo pannello apre una tela vuota con un argomento centrale. Dai un titolo chiaro al nodo principale prima di salvare."
+    },
+    "createButton": {
+      "title": "Nuova mappa mentale",
+      "description": "Clicca qui per aprire l'editor e iniziare a costruire la mappa."
+    },
+    "existingList": {
+      "title": "Mappe esistenti",
+      "description": "Le mappe salvate appaiono qui. Restano disponibili offline se sono state memorizzate nella cache o create localmente."
+    },
+    "cardActions": {
+      "title": "Azioni della mappa",
+      "description": "Apri la mappa in sola lettura, modificala o eliminala con questi pulsanti."
+    }
+  },
+  "editor": {
+    "help": {
+      "title": "Guida dell'editor",
+      "description": "Questa guida spiega come usare la tela, organizzare i rami e salvare la mappa."
+    },
+    "header": {
+      "title": "Modifica della mappa",
+      "description": "Il titolo visualizzato deriva dall'argomento centrale. Per rinominare la mappa, rinomina il nodo principale prima di salvare."
+    },
+    "canvas": {
+      "title": "Tela interattiva",
+      "description": "Usa la barra degli strumenti, il menu contestuale o le scorciatoie dell'editor per aggiungere, rinominare, spostare o eliminare idee. Mantieni i nodi brevi per preservare la leggibilità."
+    },
+    "nodes": {
+      "title": "Creare e organizzare elementi",
+      "description": "Clicca su un nodo per selezionarlo. Premi Tab per creare un sottoelemento, Invio per creare un elemento allo stesso livello e F2 per rinominare l'elemento selezionato. Puoi anche spostare gli elementi trascinandoli."
+    },
+    "relations": {
+      "title": "Aggiungere relazioni",
+      "description": "Per collegare due idee che non sono nello stesso ramo, usa il menu contestuale di Mind Elixir con un clic destro su un nodo, poi scegli l'opzione di collegamento. È utile per mostrare una relazione tra due personaggi, un luogo e un evento, o due indizi."
+    },
+    "shortcuts": {
+      "title": "Scorciatoie utili",
+      "description": "Elimina un elemento con Canc o Backspace. Usa le frecce per navigare tra i nodi, PageUp/PageDown per riordinare, Ctrl + più o Ctrl + meno per zoomare e Ctrl + 0 per reimpostare lo zoom."
+    },
+    "save": {
+      "title": "Salvare la mappa",
+      "description": "Questo pulsante salva la mappa. Offline, le modifiche vengono conservate localmente e sincronizzate quando torna la connessione."
+    }
+  },
+  "viewer": {
+    "help": {
+      "title": "Guida alla visualizzazione",
+      "description": "Questa guida mostra come consultare ed esportare una mappa mentale."
+    },
+    "header": {
+      "title": "Vista sola lettura",
+      "description": "Questa vista serve a consultare la mappa senza modificarla. Per cambiare il contenuto, torna alla lista e usa modifica."
+    },
+    "canvas": {
+      "title": "Mappa visualizzata",
+      "description": "La mappa viene mostrata in sola lettura per verificarne la struttura o presentarla."
+    },
+    "download": {
+      "title": "Esportare in PNG",
+      "description": "Scarica la mappa come immagine per inserirla in un documento o condividerla."
+    },
+    "close": {
+      "title": "Chiudere la visualizzazione",
+      "description": "Questo pulsante ti riporta alla lista delle mappe mentali del progetto."
+    }
+  }
+}

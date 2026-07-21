@@ -1,0 +1,81 @@
+{
+  "button": "Guide cartes mentales",
+  "list": {
+    "help": {
+      "title": "Guide des cartes mentales",
+      "description": "Ce guide explique comment créer, modifier, ouvrir et exporter une carte mentale."
+    },
+    "intro": {
+      "title": "Vue cartes mentales",
+      "description": "Cette page regroupe toutes les cartes du projet. Utilisez-les pour organiser des idées visuelles : personnages, intrigues, lieux, systèmes ou relations."
+    },
+    "createPanel": {
+      "title": "Créer une carte",
+      "description": "Ce panneau lance un canvas vide avec un sujet central. Donnez un titre clair au noeud principal avant de sauvegarder."
+    },
+    "createButton": {
+      "title": "Nouvelle carte mentale",
+      "description": "Cliquez ici pour ouvrir l'éditeur et commencer à construire votre carte."
+    },
+    "existingList": {
+      "title": "Cartes existantes",
+      "description": "Les cartes sauvegardées apparaissent ici. Elles restent disponibles hors ligne si elles ont été mises en cache ou créées localement."
+    },
+    "cardActions": {
+      "title": "Actions d'une carte",
+      "description": "Ouvrez la carte en lecture seule, modifiez-la, ou supprimez-la depuis ces boutons."
+    }
+  },
+  "editor": {
+    "help": {
+      "title": "Guide de l'éditeur",
+      "description": "Ce guide explique comment utiliser le canvas, organiser les branches et enregistrer votre carte."
+    },
+    "header": {
+      "title": "Edition de la carte",
+      "description": "Le titre affiché vient du sujet central. Pour renommer la carte, renommez le noeud principal avant de sauvegarder."
+    },
+    "canvas": {
+      "title": "Canvas interactif",
+      "description": "Utilisez la barre d'outils, le menu contextuel ou les raccourcis de l'éditeur pour ajouter, renommer, déplacer ou supprimer des idées. Gardez des noeuds courts pour préserver la lisibilité."
+    },
+    "nodes": {
+      "title": "Créer et organiser des éléments",
+      "description": "Cliquez sur un noeud pour le sélectionner. Appuyez sur Tab pour créer un sous-élément, sur Entrée pour créer un élément au même niveau, et sur F2 pour renommer l'élément sélectionné. Vous pouvez aussi déplacer les éléments par glisser-déposer."
+    },
+    "relations": {
+      "title": "Ajouter des relations",
+      "description": "Pour relier deux idées qui ne sont pas dans la même branche, utilisez le menu contextuel de Mind Elixir avec un clic droit sur un noeud, puis l'option de lien. C'est pratique pour montrer une relation entre deux personnages, un lieu et un événement, ou deux indices."
+    },
+    "shortcuts": {
+      "title": "Raccourcis utiles",
+      "description": "Supprimez un élément avec Suppr ou Retour arrière. Utilisez les flèches pour naviguer entre les noeuds, Page haut/Page bas pour réordonner, Ctrl + plus ou Ctrl + moins pour zoomer, et Ctrl + 0 pour réinitialiser le zoom."
+    },
+    "save": {
+      "title": "Sauvegarder la carte",
+      "description": "Ce bouton enregistre la carte. Hors ligne, les changements sont conservés localement puis synchronisés au retour de la connexion."
+    }
+  },
+  "viewer": {
+    "help": {
+      "title": "Guide de visualisation",
+      "description": "Ce guide montre comment consulter et exporter une carte mentale."
+    },
+    "header": {
+      "title": "Lecture seule",
+      "description": "Cette vue sert à consulter la carte sans la modifier. Pour changer son contenu, revenez à la liste puis utilisez l'action de modification."
+    },
+    "canvas": {
+      "title": "Carte affichée",
+      "description": "La carte est affichée en lecture seule pour vérifier sa structure ou la présenter."
+    },
+    "download": {
+      "title": "Exporter en PNG",
+      "description": "Téléchargez la carte sous forme d'image pour l'insérer dans un document ou la partager."
+    },
+    "close": {
+      "title": "Fermer la visualisation",
+      "description": "Ce bouton vous ramène à la liste des cartes mentales du projet."
+    }
+  }
+}

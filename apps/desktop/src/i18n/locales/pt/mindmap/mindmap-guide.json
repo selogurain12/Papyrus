@@ -1,0 +1,81 @@
+{
+  "button": "Guia de mapas mentais",
+  "list": {
+    "help": {
+      "title": "Guia de mapas mentais",
+      "description": "Este guia explica como criar, editar, abrir e exportar um mapa mental."
+    },
+    "intro": {
+      "title": "Vista de mapas mentais",
+      "description": "Esta página reúne todos os mapas do projeto. Use-os para organizar ideias visuais: personagens, enredos, lugares, sistemas ou relações."
+    },
+    "createPanel": {
+      "title": "Criar um mapa",
+      "description": "Este painel abre uma tela vazia com um tópico central. Dê um título claro ao nó principal antes de salvar."
+    },
+    "createButton": {
+      "title": "Novo mapa mental",
+      "description": "Clique aqui para abrir o editor e começar a construir seu mapa."
+    },
+    "existingList": {
+      "title": "Mapas existentes",
+      "description": "Os mapas salvos aparecem aqui. Eles ficam disponíveis offline quando estão em cache ou foram criados localmente."
+    },
+    "cardActions": {
+      "title": "Ações do mapa",
+      "description": "Abra o mapa em modo somente leitura, edite-o ou exclua-o usando estes botões."
+    }
+  },
+  "editor": {
+    "help": {
+      "title": "Guia do editor",
+      "description": "Este guia explica como usar a tela, organizar ramos e salvar seu mapa."
+    },
+    "header": {
+      "title": "Edição do mapa",
+      "description": "O título exibido vem do tópico central. Para renomear o mapa, renomeie o nó principal antes de salvar."
+    },
+    "canvas": {
+      "title": "Tela interativa",
+      "description": "Use a barra de ferramentas, o menu de contexto ou os atalhos do editor para adicionar, renomear, mover ou excluir ideias. Mantenha os nós curtos para preservar a legibilidade."
+    },
+    "nodes": {
+      "title": "Criar e organizar elementos",
+      "description": "Clique em um nó para selecioná-lo. Pressione Tab para criar um subelemento, Enter para criar um elemento no mesmo nível e F2 para renomear o elemento selecionado. Você também pode mover elementos arrastando e soltando."
+    },
+    "relations": {
+      "title": "Adicionar relações",
+      "description": "Para conectar duas ideias que não estão no mesmo ramo, use o menu de contexto do Mind Elixir com clique direito em um nó e escolha a opção de link. Isso é útil para mostrar uma relação entre dois personagens, um lugar e um evento, ou duas pistas."
+    },
+    "shortcuts": {
+      "title": "Atalhos úteis",
+      "description": "Remova um elemento com Delete ou Backspace. Use as setas para navegar entre nós, PageUp/PageDown para reordenar, Ctrl + mais ou Ctrl + menos para zoom, e Ctrl + 0 para redefinir o zoom."
+    },
+    "save": {
+      "title": "Salvar o mapa",
+      "description": "Este botão salva o mapa. Offline, as alterações são mantidas localmente e sincronizadas quando a conexão retorna."
+    }
+  },
+  "viewer": {
+    "help": {
+      "title": "Guia de visualização",
+      "description": "Este guia mostra como consultar e exportar um mapa mental."
+    },
+    "header": {
+      "title": "Vista somente leitura",
+      "description": "Esta vista serve para consultar o mapa sem modificá-lo. Para alterar o conteúdo, volte à lista e use a ação de edição."
+    },
+    "canvas": {
+      "title": "Mapa exibido",
+      "description": "O mapa é exibido em modo somente leitura para verificar sua estrutura ou apresentá-lo."
+    },
+    "download": {
+      "title": "Exportar como PNG",
+      "description": "Baixe o mapa como imagem para inseri-lo em um documento ou compartilhá-lo."
+    },
+    "close": {
+      "title": "Fechar visualização",
+      "description": "Este botão leva você de volta à lista de mapas mentais do projeto."
+    }
+  }
+}

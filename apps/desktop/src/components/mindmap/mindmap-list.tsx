@@ -15,6 +15,7 @@ import {
 import { MindMapDeleteActions } from "./actions/delete-mindmap";
 import { useTranslation } from "react-i18next";
 import { useOfflineList } from "../../hooks/use-offline-list";
+import { MindMapGuideButton } from "./mindmap-guide";
 
 // eslint-disable-next-line complexity
 export function MindMapPage() {
@@ -53,14 +54,18 @@ export function MindMapPage() {
 
   return (
     <div className="p-6">
-      <div data-tour="page-header">
-        <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
-        <p className="text-gray-600">{t("subtitle")}</p>
+      <div className="flex items-start justify-between gap-4" data-tour="page-header">
+        <div data-mindmap-guide="mindmap-page-intro">
+          <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
+          <p className="text-gray-600">{t("subtitle")}</p>
+        </div>
+        <MindMapGuideButton variant="list" />
       </div>
 
       <div
         className="mt-6 bg-blue-100 p-4 rounded-lg text-center items-center justify-center flex flex-col border border-blue-300"
         data-tour="mindmap-canvas"
+        data-mindmap-guide="mindmap-create-panel"
       >
         <GitBranch className="w-10 h-10 text-blue-600 mb-2" />
         <p className="font-bold">{t("canvas")}</p>
@@ -69,6 +74,7 @@ export function MindMapPage() {
         <Button
           className="mt-4"
           variant="blue"
+          data-mindmap-guide="mindmap-create-button"
           onClick={() => {
             void navigate({
               to: createMindmapRoute.to,
@@ -81,7 +87,11 @@ export function MindMapPage() {
       </div>
 
       {mindmaps?.total !== 0 && (
-        <div className="mt-6 space-y-4" data-tour="mindmap-list">
+        <div
+          className="mt-6 space-y-4"
+          data-tour="mindmap-list"
+          data-mindmap-guide="mindmap-existing-list"
+        >
           <h3 className="text-xl font-semibold">{t("yourMaps")}</h3>
 
           {mindmaps?.data?.map((mindmap) => (
@@ -92,7 +102,10 @@ export function MindMapPage() {
               <div>
                 <p className="font-bold">{mindmap.title}</p>
               </div>
-              <div className="flex items-center space-x-2">
+              <div
+                className="flex items-center space-x-2"
+                data-mindmap-guide="mindmap-card-actions"
+              >
                 <Button
                   variant="outline"
                   className="hover:bg-gray-300"

@@ -26,6 +26,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@base-ui/react": "^1.6.0",
     "@electron-forge/plugin-vite": "^7.8.3",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/lora": "^5.2.8",
@@ -65,6 +66,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "driver.js": "^1.8.0",
     "electron-squirrel-startup": "^1.0.1",
     "electron-store": "^11.0.2",
     "embla-carousel-react": "^8.6.0",

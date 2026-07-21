@@ -6,7 +6,8 @@
     "moduleResolution": "Node16",
     "noEmit": true,
     "paths": {
-      "@papyrus/source": ["packages/source/src/index.ts"]
+      "@papyrus/source": ["packages/source/src/index.ts"],
+      "driver.js": ["tests/desktop/support/driver-js-mock.ts"]
     },
     "types": ["node", "jest", "vite/client"]
   },

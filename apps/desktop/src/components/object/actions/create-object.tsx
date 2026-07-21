@@ -65,7 +65,7 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
   });
   const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
 
-  const { mutate } = client.object.create.useMutation({
+  const { mutate, isPending } = client.object.create.useMutation({
     onSuccess: () => {
       toast.success(t("create.success"));
       void queryClient.invalidateQueries({
@@ -368,7 +368,11 @@ export function CreateObject({ onCancel }: CreateObjectProps) {
               {t("common:cancel")}
             </Button>
 
-            <Button type="submit" variant="blue">
+            <Button
+              type="submit"
+              variant="blue"
+              isLoading={form.formState.isSubmitting || isPending}
+            >
               {t("create.submit")}
             </Button>
           </div>

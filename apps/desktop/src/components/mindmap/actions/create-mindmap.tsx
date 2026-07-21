@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import MindElixir from "mind-elixir";
 import { CreateMindMapDto, MindMapDto, createMindMapSchema } from "@papyrus/source";
 import "mind-elixir/style.css";
@@ -23,6 +23,7 @@ export function CreateMindMap() {
   const navigate = useNavigate();
   const { currentProject } = useProject();
   const isOnline = useOnlineStatus();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const mindMapOptions = getEditableMindMapOptions(i18n.language, t("newTopic"));
@@ -46,7 +47,7 @@ export function CreateMindMap() {
     };
   }, [i18n.language, t]);
 
-  const { mutate } = client.mindmap.create.useMutation({
+  const { mutate, isPending } = client.mindmap.create.useMutation({
     onSuccess: () => {
       toast.success(t("create.success"));
       void queryClient.invalidateQueries({ queryKey: ["mindmap.getAll"] });
@@ -63,12 +64,16 @@ export function CreateMindMap() {
   });
 
   async function handleSubmit() {
+    if (isSubmitting || isPending) return;
+    setIsSubmitting(true);
     if (!mindRef.current) {
       toast.error(t("notInitialized"));
+      setIsSubmitting(false);
       return;
     }
     if (!currentProject) {
       toast.error(t("common:projectNotSelected"));
+      setIsSubmitting(false);
       return;
     }
 
@@ -81,6 +86,7 @@ export function CreateMindMap() {
 
     if (!parsed.success) {
       toast.error(t("invalidFields"));
+      setIsSubmitting(false);
       return;
     }
 
@@ -91,13 +97,19 @@ export function CreateMindMap() {
       toast.success(t("common:offline.savedLocally"));
       await queryClient.invalidateQueries({ queryKey: ["mindmap.getAll"] });
       void navigate({ to: mindmapRoute.to, params: { name: currentProject.title } });
+      setIsSubmitting(false);
       return;
     }
 
-    mutate({
-      body,
-      params: { projectId: currentProject.id },
-    });
+    mutate(
+      {
+        body,
+        params: { projectId: currentProject.id },
+      },
+      {
+        onSettled: () => setIsSubmitting(false),
+      }
+    );
   }
 
   return (
@@ -135,6 +147,7 @@ export function CreateMindMap() {
         <Button
           onClick={handleSubmit}
           data-mindmap-guide="mindmap-editor-save"
+          isLoading={isSubmitting || isPending}
           className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
         >
           {t("create.submit")}

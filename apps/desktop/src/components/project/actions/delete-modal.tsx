@@ -40,7 +40,7 @@ export function ProjectDeleteActions({
     return null;
   }
 
-  const { mutate } = client.project.delete.useMutation({
+  const { mutate, isPending } = client.project.delete.useMutation({
     onSuccess: () => {
       toast.success(t("delete.success"));
       void queryClient.invalidateQueries({
@@ -69,6 +69,7 @@ export function ProjectDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => window.history.back()} />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("projects", project.id);

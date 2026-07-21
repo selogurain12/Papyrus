@@ -367,7 +367,7 @@ export function UpdateResearchForm({ setOpen, research }: UpdateResearchFormProp
             >
               {t("common:cancel")}
             </Button>
-            <Button variant="blue" disabled={loading} className="min-w-45">
+            <Button variant="blue" isLoading={loading} className="min-w-45">
               {loading ? t("common:saving") : t("update.submit")}
             </Button>
           </div>

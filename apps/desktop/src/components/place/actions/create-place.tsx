@@ -74,7 +74,7 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
   });
   const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
 
-  const { mutate } = client.place.create.useMutation({
+  const { mutate, isPending } = client.place.create.useMutation({
     onSuccess: () => {
       toast.success(t("create.success"));
       void queryClient.invalidateQueries({
@@ -481,7 +481,11 @@ export function CreatePlace({ onCancel }: CreatePlaceProps) {
               {t("common:cancel")}
             </Button>
 
-            <Button type="submit" variant="blue">
+            <Button
+              type="submit"
+              variant="blue"
+              isLoading={form.formState.isSubmitting || isPending}
+            >
               {t("create.submit")}
             </Button>
           </div>

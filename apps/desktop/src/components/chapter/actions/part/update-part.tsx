@@ -141,7 +141,7 @@ export function UpdatePart({ setOpen, part }: UpdatePartProps) {
             >
               {t("common:cancel")}
             </Button>
-            <Button variant="blue" disabled={loading} className="min-w-45">
+            <Button variant="blue" isLoading={loading} className="min-w-45">
               {loading ? t("actions.loading") : t("actions.submit")}
             </Button>
           </div>

@@ -139,7 +139,7 @@ export function CreatePart({ setOpen }: CreatePartProps) {
             >
               {t("actions.cancel")}
             </Button>
-            <Button variant="blue" disabled={loading} className="min-w-45">
+            <Button variant="blue" isLoading={loading} className="min-w-45">
               {loading ? t("actions.loading") : t("actions.submit")}
             </Button>
           </div>

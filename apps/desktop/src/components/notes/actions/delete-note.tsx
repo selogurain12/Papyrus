@@ -41,7 +41,7 @@ export function NoteDeleteActions({
     return null;
   }
 
-  const { mutate } = client.note.softDelete.useMutation({
+  const { mutate, isPending } = client.note.softDelete.useMutation({
     onSuccess: () => {
       toast.success(t("delete.success"));
       void queryClient.invalidateQueries({ queryKey: ["note.getAll"] });
@@ -70,6 +70,7 @@ export function NoteDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("notes", note.id);

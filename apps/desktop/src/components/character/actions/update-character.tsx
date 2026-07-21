@@ -106,7 +106,7 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
   });
   const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
 
-  const { mutate } = client.character.update.useMutation({
+  const { mutate, isPending } = client.character.update.useMutation({
     onSuccess: () => {
       toast.success(t("update.success"));
       void queryClient.invalidateQueries({
@@ -1092,7 +1092,11 @@ export function UpdateCharacter({ onCancel, character }: UpdateCharacterProps) {
             >
               {t("common:cancel")}
             </Button>
-            <Button type="submit" variant="blue">
+            <Button
+              type="submit"
+              variant="blue"
+              isLoading={form.formState.isSubmitting || isPending}
+            >
               {t("update.submit")}
             </Button>
           </div>

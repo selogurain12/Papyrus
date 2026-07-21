@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import { Loader2 } from "lucide-react";
 import React, { forwardRef, type ButtonHTMLAttributes } from "react";
 import { motion } from "motion/react";
 
@@ -63,17 +64,25 @@ interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  isLoading?: boolean;
 }
 
 const buttonComponent = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, reference) => {
+  (
+    { children, className, disabled, isLoading = false, variant, size, asChild = false, ...props },
+    reference
+  ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
+        disabled={disabled || isLoading}
         ref={reference}
         {...props}
-      />
+      >
+        {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+        {children}
+      </Comp>
     );
   }
 );

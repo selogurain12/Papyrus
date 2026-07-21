@@ -221,7 +221,7 @@ export function CreateNoteForm({ setOpen }: CreateNoteFormProps) {
             >
               {t("common:cancel")}
             </Button>
-            <Button variant="blue" disabled={loading} className="min-w-45">
+            <Button variant="blue" isLoading={loading} className="min-w-45">
               {loading ? t("common:saving") : t("create.submit")}
             </Button>
           </div>

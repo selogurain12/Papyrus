@@ -30,7 +30,7 @@ export function Login() {
   const form = useForm<LoginDto>({
     resolver: zodResolver(loginSchema),
   });
-  const { mutate } = client.authentification.login.useMutation({
+  const { mutate, isPending } = client.authentification.login.useMutation({
     onSuccess: async ({ body }) => {
       toast.success(t("loginSuccess"));
       void queryClient.invalidateQueries({
@@ -121,6 +121,7 @@ export function Login() {
             form.handleSubmit(onSubmit)();
           }}
           type="submit"
+          isLoading={isPending}
           className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           {t("submit")}

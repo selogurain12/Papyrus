@@ -56,7 +56,7 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
     },
   });
   const { mutateAsync: uploadFile } = clientFile.s3.upload.useMutation();
-  const { mutate } = client.project.create.useMutation({
+  const { mutate, isPending } = client.project.create.useMutation({
     onSuccess: () => {
       toast.success(t("create.success"));
       void queryClient.invalidateQueries({
@@ -371,6 +371,7 @@ export function CreateProjectForm({ setOpen }: CreateProjectFormProps) {
           form.handleSubmit(onSubmit)();
         }}
         type="submit"
+        isLoading={form.formState.isSubmitting || isPending}
         className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         {t("create.submit")}

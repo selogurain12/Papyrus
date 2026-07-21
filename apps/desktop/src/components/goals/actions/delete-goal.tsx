@@ -34,7 +34,7 @@ export function GoalDeleteActions({ goal, open, setOpen, onClose }: GoalDeleteAc
     return null;
   }
 
-  const { mutate } = client.goal.softDelete.useMutation({
+  const { mutate, isPending } = client.goal.softDelete.useMutation({
     onSuccess: () => {
       toast.success(t("toast.deleteSuccess"));
       void queryClient.invalidateQueries({ queryKey: ["goal.getAll"] });
@@ -64,6 +64,7 @@ export function GoalDeleteActions({ goal, open, setOpen, onClose }: GoalDeleteAc
             }}
           />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("goals", goal.id);

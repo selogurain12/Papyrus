@@ -42,7 +42,7 @@ export function ChapterDeleteActions({
     return null;
   }
 
-  const { mutate } = client.chapter.softDelete.useMutation({
+  const { mutate, isPending } = client.chapter.softDelete.useMutation({
     onSuccess: () => {
       toast.error(t("toasts.success"));
       void queryClient.invalidateQueries({
@@ -82,6 +82,7 @@ export function ChapterDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("chapters", chapter.id);

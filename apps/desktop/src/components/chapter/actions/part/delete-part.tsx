@@ -42,7 +42,7 @@ export function PartDeleteActions({
     return null;
   }
 
-  const { mutate } = client.part.softDelete.useMutation({
+  const { mutate, isPending } = client.part.softDelete.useMutation({
     onSuccess: () => {
       toast.error(t("toasts.success"));
       void queryClient.invalidateQueries({
@@ -79,6 +79,7 @@ export function PartDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("parts", part.id);

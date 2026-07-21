@@ -272,6 +272,7 @@ export function SettingsPage() {
           <Button
             variant="blue"
             disabled={isLoading || isSaving || !isDirty || !canSave}
+            isLoading={isSaving}
             onClick={saveSettings}
           >
             <Save className="mr-2 h-4 w-4" />

@@ -56,7 +56,7 @@ export function UpdateGoalForm({ setOpen, goal }: UpdateGoalFormProps) {
       status: goal.status,
     },
   });
-  const { mutate } = client.goal.update.useMutation({
+  const { mutate, isPending } = client.goal.update.useMutation({
     onSuccess: () => {
       toast.success(t("toast.updateSuccess"));
       void queryClient.invalidateQueries({
@@ -294,6 +294,7 @@ export function UpdateGoalForm({ setOpen, goal }: UpdateGoalFormProps) {
           }}
           type="submit"
           variant="blue"
+          isLoading={form.formState.isSubmitting || isPending}
           className="text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-1/2"
         >
           {t("submit")}

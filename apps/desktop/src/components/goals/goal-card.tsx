@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { isFetchError } from "@ts-rest/react-query/v5";
 import { toast } from "sonner";
-import { AlertTriangle, Calendar, Check, Pencil, Trash2 } from "lucide-react";
+import { AlertTriangle, Calendar, Check, Loader2, Pencil, Trash2 } from "lucide-react";
 import { now, parseZonedDateTime } from "@internationalized/date";
 import { GoalDto } from "@papyrus/source";
 import { useTranslation } from "react-i18next";
@@ -113,7 +113,7 @@ export function GoalCard({
     }
   };
 
-  const { mutate } = client.goal.update.useMutation({
+  const { mutate, isPending } = client.goal.update.useMutation({
     onSuccess: () => {
       toast.success(t("toast.updateSuccess"));
       void queryClient.invalidateQueries({
@@ -181,13 +181,19 @@ export function GoalCard({
         <div className="flex space-x-1 ml-4">
           <button
             className="p-2 text-gray-400 hover:text-green-600 transition-colors"
+            disabled={isPending}
             title={t("actions.markCompleted")}
             onClick={markAsCompleted}
           >
-            <Check className="w-4 h-4" />
+            {isPending ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Check className="w-4 h-4" />
+            )}
           </button>
           <button
             className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
+            disabled={isPending}
             title={t("actions.update")}
             onClick={() => {
               setSelectedGoal(goal);
@@ -198,6 +204,7 @@ export function GoalCard({
           </button>
           <button
             className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+            disabled={isPending}
             title={t("actions.delete")}
             onClick={() => {
               setSelectedGoal(goal);

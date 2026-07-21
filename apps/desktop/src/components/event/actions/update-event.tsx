@@ -82,7 +82,7 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
     onlineData: chapters?.body,
   });
 
-  const { mutate } = client.event.update.useMutation({
+  const { mutate, isPending } = client.event.update.useMutation({
     onSuccess: () => {
       toast.success(t("update.success"));
       void queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
@@ -342,7 +342,11 @@ export function UpdateEvent({ event, onCancel }: UpdateEventProps) {
               {t("common:cancel")}
             </Button>
 
-            <Button type="submit" variant="blue">
+            <Button
+              type="submit"
+              variant="blue"
+              isLoading={form.formState.isSubmitting || isPending}
+            >
               {t("update.submit")}
             </Button>
           </div>

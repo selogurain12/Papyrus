@@ -44,7 +44,7 @@ export function ObjectDeleteActions({
     return null;
   }
 
-  const { mutate } = client.object.softDelete.useMutation({
+  const { mutate, isPending } = client.object.softDelete.useMutation({
     onSuccess: () => {
       toast.success(t("delete.success"));
       void queryClient.invalidateQueries({
@@ -74,6 +74,7 @@ export function ObjectDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("objects", object.id);

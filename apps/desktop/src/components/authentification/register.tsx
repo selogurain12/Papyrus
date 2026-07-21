@@ -30,7 +30,7 @@ export function Register() {
   const form = useForm<RegisterDto>({
     resolver: zodResolver(registerSchema),
   });
-  const { mutate } = client.authentification.register.useMutation({
+  const { mutate, isPending } = client.authentification.register.useMutation({
     onSuccess: async ({ body }) => {
       toast.success(t("registerSuccess"));
       void queryClient.invalidateQueries({
@@ -151,6 +151,7 @@ export function Register() {
             form.handleSubmit(onSubmit)();
           }}
           type="submit"
+          isLoading={isPending}
           className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           {t("submit")}

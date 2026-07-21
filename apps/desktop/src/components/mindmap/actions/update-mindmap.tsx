@@ -18,6 +18,7 @@ import { getLocalDatabaseApi } from "../../../local-db/renderer";
 import { getEditableMindMapOptions } from "../mind-elixir-options";
 import { MindMapGuideButton } from "../mindmap-guide";
 
+// eslint-disable-next-line complexity
 export function UpdateMindMap() {
   const { t, i18n } = useTranslation([
     "mindmap/actions/update-mindmap",
@@ -30,6 +31,7 @@ export function UpdateMindMap() {
   const mindRef = useRef<InstanceType<typeof MindElixir> | null>(null);
   const isOnline = useOnlineStatus();
   const [cachedMindmap, setCachedMindmap] = useState<MindMapDto | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { data } = client.mindmap.get.useQuery({
     queryKey: queryKeys.mindmap.get({ pathParams: { id, projectId: currentProject?.id ?? "" } }),
@@ -100,7 +102,7 @@ export function UpdateMindMap() {
     };
   }, [i18n.language, mindmap, t]);
 
-  const { mutate } = client.mindmap.update.useMutation({
+  const { mutate, isPending } = client.mindmap.update.useMutation({
     onSuccess: (data) => {
       toast.success(t("update.success"));
       void queryClient.invalidateQueries({
@@ -124,12 +126,16 @@ export function UpdateMindMap() {
   });
 
   async function handleSubmit() {
+    if (isSubmitting || isPending) return;
+    setIsSubmitting(true);
     if (!mindRef.current) {
       toast.error(t("notInitialized"));
+      setIsSubmitting(false);
       return;
     }
     if (!currentProject) {
       toast.error(t("common:projectNotSelected"));
+      setIsSubmitting(false);
       return;
     }
 
@@ -142,6 +148,7 @@ export function UpdateMindMap() {
 
     if (!parsed.success) {
       toast.error(t("invalidFields"));
+      setIsSubmitting(false);
       return;
     }
 
@@ -159,13 +166,19 @@ export function UpdateMindMap() {
         queryKey: queryKeys.mindmap.getAll({ pathParams: { projectId: currentProject.id } }),
       });
       void navigate({ to: mindmapRoute.to, params: { name: currentProject.title } });
+      setIsSubmitting(false);
       return;
     }
 
-    mutate({
-      body,
-      params: { projectId: currentProject.id, id },
-    });
+    mutate(
+      {
+        body,
+        params: { projectId: currentProject.id, id },
+      },
+      {
+        onSettled: () => setIsSubmitting(false),
+      }
+    );
   }
 
   if (!mindmap) return <div>{t("common:loading")}</div>;
@@ -205,6 +218,7 @@ export function UpdateMindMap() {
           <Button
             onClick={handleSubmit}
             data-mindmap-guide="mindmap-editor-save"
+            isLoading={isSubmitting || isPending}
             className="px-6 py-3 w-full bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
           >
             {t("update.submit")}

@@ -218,7 +218,11 @@ export function ChapterEditor({ chapter, setOpen, setChapter }: ChapterEditorPro
                 {autoSaveStatus === "saved" ? t("autoSave.saved") : null}
                 {autoSaveStatus === "error" ? t("autoSave.error") : null}
               </p>
-              <Button variant="blue" onClick={() => void handleSave()}>
+              <Button
+                variant="blue"
+                isLoading={autoSaveStatus === "saving"}
+                onClick={() => void handleSave()}
+              >
                 {t("save")}
               </Button>
             </div>

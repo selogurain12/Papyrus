@@ -125,22 +125,23 @@ export function StructurePage() {
     };
   }, []);
 
-  const { mutate: updateStructure } = client.structure.update.useMutation({
-    onSuccess: () => {
-      toast.success(t("success"));
-      void queryClient.invalidateQueries({
-        queryKey: ["structure.get"],
-      });
-      setIsUpdating(false);
-    },
-    onError: (error) => {
-      if (isFetchError(error)) {
-        toast.error(t("error", { message: error.message }));
-      } else {
-        toast.error(t("unknownError"));
-      }
-    },
-  });
+  const { mutate: updateStructure, isPending: isSavingStructure } =
+    client.structure.update.useMutation({
+      onSuccess: () => {
+        toast.success(t("success"));
+        void queryClient.invalidateQueries({
+          queryKey: ["structure.get"],
+        });
+        setIsUpdating(false);
+      },
+      onError: (error) => {
+        if (isFetchError(error)) {
+          toast.error(t("error", { message: error.message }));
+        } else {
+          toast.error(t("unknownError"));
+        }
+      },
+    });
 
   if (isLoading && !structure) {
     return <div>{t("common:loading")}</div>;
@@ -228,6 +229,7 @@ export function StructurePage() {
                   variant="transparent"
                   className={`border rounded-lg ${isUpdating ? "bg-green-600 hover:bg-green-700" : ""}`}
                   size="sm"
+                  isLoading={isSavingStructure}
                   onClick={() => {
                     if (isUpdating) {
                       void form.handleSubmit(onSubmit)();
@@ -281,6 +283,7 @@ export function StructurePage() {
                   variant="transparent"
                   className={`border rounded-lg ${isUpdating ? "bg-green-600 hover:bg-green-700" : ""}`}
                   size="sm"
+                  isLoading={isSavingStructure}
                   onClick={() => {
                     if (isUpdating) {
                       void form.handleSubmit(onSubmit)();
@@ -313,6 +316,7 @@ export function StructurePage() {
                   variant="transparent"
                   className={`border rounded-lg ${isUpdating ? "bg-green-600 hover:bg-green-700" : ""}`}
                   size="sm"
+                  isLoading={isSavingStructure}
                   onClick={() => {
                     if (isUpdating) {
                       void form.handleSubmit(onSubmit)();

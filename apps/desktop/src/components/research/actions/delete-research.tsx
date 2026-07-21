@@ -41,7 +41,7 @@ export function ResearchDeleteActions({
     return null;
   }
 
-  const { mutate } = client.research.softDelete.useMutation({
+  const { mutate, isPending } = client.research.softDelete.useMutation({
     onSuccess: () => {
       toast.success(t("delete.success"));
       void queryClient.invalidateQueries({ queryKey: ["research.getAll"] });
@@ -70,6 +70,7 @@ export function ResearchDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("research", research.id);

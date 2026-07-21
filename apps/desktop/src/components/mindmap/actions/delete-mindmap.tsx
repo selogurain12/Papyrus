@@ -41,7 +41,7 @@ export function MindMapDeleteActions({
     return null;
   }
 
-  const { mutate } = client.mindmap.softDelete.useMutation({
+  const { mutate, isPending } = client.mindmap.softDelete.useMutation({
     onSuccess: () => {
       toast.success(t("delete.success"));
       void queryClient.invalidateQueries({ queryKey: ["mindmap.getAll"] });
@@ -70,6 +70,7 @@ export function MindMapDeleteActions({
         <AlertDialogFooter>
           <MotionAlertDialogCancelWrapper onClick={() => setOpen(false)} />
           <MotionAlertDialogActionWrapper
+            isLoading={isPending}
             onClick={async () => {
               if (!isOnline) {
                 await deleteOfflineEntity("mindmaps", mindmap.id);

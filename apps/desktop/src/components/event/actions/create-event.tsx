@@ -86,7 +86,7 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
     onlineData: chapters?.body,
   });
 
-  const { mutate } = client.event.create.useMutation({
+  const { mutate, isPending } = client.event.create.useMutation({
     onSuccess: () => {
       toast.success(t("create.success"));
       void queryClient.invalidateQueries({ queryKey: ["event.getAll"] });
@@ -349,7 +349,11 @@ export function CreateEvent({ onCancel }: CreateEventProps) {
               {t("common:cancel")}
             </Button>
 
-            <Button type="submit" variant="blue">
+            <Button
+              type="submit"
+              variant="blue"
+              isLoading={form.formState.isSubmitting || isPending}
+            >
               {t("create.submit")}
             </Button>
           </div>

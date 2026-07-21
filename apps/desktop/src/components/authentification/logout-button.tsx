@@ -2,11 +2,11 @@ import { LogOut } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "@tanstack/react-router";
-import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../../context/auth-provider";
 import { useProject } from "../../context/project-provider";
-import { loginRoute } from "../../routes/authentification/index.route";
+import { queryClient } from "../../context/query-client";
 import { Button, type ButtonProps } from "../ui/button";
+import { loginRoute } from "../../routes/authentification/index.route";
 
 type LogoutButtonProps = Omit<ButtonProps, "children" | "isLoading" | "onClick"> & {
   showLabel?: boolean;
@@ -15,7 +15,6 @@ type LogoutButtonProps = Omit<ButtonProps, "children" | "isLoading" | "onClick">
 export function LogoutButton({ showLabel = true, ...props }: LogoutButtonProps) {
   const { t } = useTranslation("common");
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const { clearAuth } = useAuth();
   const { setCurrentProject } = useProject();
   const [isLoggingOut, setIsLoggingOut] = useState(false);

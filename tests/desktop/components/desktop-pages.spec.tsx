@@ -39,6 +39,10 @@ jest.mock("../../../apps/desktop/src/context/project-provider", () => ({
   useProject: () => ({ currentProject: projectFixture, setCurrentProject: jest.fn() }),
 }));
 
+jest.mock("../../../apps/desktop/src/context/auth-provider", () => ({
+  useAuth: () => ({ clearAuth: jest.fn(), token: "token", user: { id: "user-1" } }),
+}));
+
 jest.mock("../../../apps/desktop/src/hooks/use-offline-list", () => ({
   useOfflineList: (options: unknown) => useOfflineListMock(options),
 }));
@@ -123,6 +127,10 @@ jest.mock("../../../apps/desktop/src/routes/settings/index.route", () => ({ sett
 jest.mock("../../../apps/desktop/src/routes/dashboard/index.route", () => ({ dashboardRoute: { to: "/dashboard" } }));
 jest.mock("../../../apps/desktop/src/routes/goals/index.route", () => ({ goalsRoute: { to: "/goals" } }));
 jest.mock("../../../apps/desktop/src/routes/index.routes", () => ({ indexRoute: { to: "/" } }));
+jest.mock("../../../apps/desktop/src/routes/authentification/index.route", () => ({
+  loginRoute: { to: "/login" },
+  registerRoute: { to: "/register" },
+}));
 
 describe("desktop pages and navigation", () => {
   beforeEach(() => {

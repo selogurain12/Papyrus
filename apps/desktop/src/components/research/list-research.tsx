@@ -78,18 +78,21 @@ export function ListResearch() {
 
   return (
     <div className="p-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"
+        data-tour="page-header"
+      >
         <div>
           <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
           <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
-        <Button variant="blue" onClick={() => setIsCreating(true)}>
+        <Button variant="blue" onClick={() => setIsCreating(true)} data-tour="page-create-action">
           <Plus className="w-4 h-4 mr-2" />
           {t("new")}
         </Button>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-white p-4 mb-6">
+      <div className="rounded-xl border border-gray-200 bg-white p-4 mb-6" data-tour="page-filters">
         <div className="grid gap-3 sm:grid-cols-[1fr_auto] items-center">
           <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2">
             <SearchIcon className="w-4 h-4 text-gray-400" />
@@ -128,7 +131,7 @@ export function ListResearch() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4" data-tour="page-list">
         {researchList?.data.length === 0 ? (
           <div className={emptyResearchClassName}>{t("empty")}</div>
         ) : (

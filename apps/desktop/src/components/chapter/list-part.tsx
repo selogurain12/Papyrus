@@ -157,12 +157,12 @@ export function PartsList() {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between gap-2 mb-4">
+      <div className="flex justify-between gap-2 mb-4" data-tour="page-header">
         <div>
           <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
           <p className="text-gray-600 mb-6">{t("subtitle")}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2" data-tour="chapter-actions">
           <Button variant="blue" onClick={() => setIsCreatingPart(true)}>
             <Plus className="w-4 h-4 mr-2" />
             {t("addPart")}
@@ -174,9 +174,12 @@ export function PartsList() {
         </div>
       </div>
       <div className="flex gap-6">
-        <div className="w-1/2 gap-6 bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div
+          className="w-1/2 gap-6 bg-white rounded-lg shadow p-4 border border-gray-200"
+          data-tour="chapter-tree"
+        >
           <p className="text-lg font-semibold">{t("overview")}</p>
-          <div className="mt-4 flex w-full gap-4 pb-4">
+          <div className="mt-4 flex w-full gap-4 pb-4" data-tour="chapter-overview">
             <div className="flex flex-col w-1/3 items-center justify-center px-4 py-3 rounded-xl shadow-sm bg-purple-50">
               <span className="text-2xl font-bold text-pink-800">{cachedParts?.total ?? 0}</span>
               <span className="text-sm font-medium text-gray-700">
@@ -290,7 +293,7 @@ export function PartsList() {
             )}
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="w-1/2" data-tour="chapter-detail">
           {selectedChapter && (
             <ChapterDetail
               chapter={selectedChapter}

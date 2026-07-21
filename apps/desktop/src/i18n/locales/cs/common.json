@@ -140,5 +140,435 @@
   "menu.goals": "Cíle",
   "file.unsupportedType": "Nepodporovaný formát souboru. Povolené formáty: obrázky, PDF, EPUB, videa a PowerPoint.",
   "file.acceptedFormats": "Povolené formáty: {{formats}}",
-  "confirm": "Potvrdit"
+  "confirm": "Potvrdit",
+  "tour": {
+    "button": "Spustit průvodce",
+    "progress": "{{current}} z {{total}}",
+    "brand": {
+      "title": "Vítejte v Papyrusu",
+      "description": "Vaše psací prostředí spojuje projekt, karty a nástroje pro sledování."
+    },
+    "currentProject": {
+      "title": "Aktuální projekt",
+      "description": "Zde vidíte otevřený projekt a tlačítkem složky se vrátíte na seznam projektů."
+    },
+    "navigation": {
+      "title": "Navigace",
+      "description": "Otevřete postavy, místa, objekty, kapitoly, rešerše, poznámky, cíle a exporty."
+    },
+    "header": {
+      "title": "Horní lišta",
+      "description": "Název projektu, stav připojení a rychlé akce zůstávají zde."
+    },
+    "pageContent": {
+      "title": "Pracovní plocha",
+      "description": "Tady vytváříte, upravujete a prohlížíte obsah každé sekce."
+    },
+    "replay": {
+      "title": "Spustit znovu",
+      "description": "Tímto tlačítkem si můžete průvodce kdykoliv znovu zobrazit."
+    },
+    "home": {
+      "button": "Prohlídka domovské stránky",
+      "brand": {
+        "title": "Welcome to Papyrus",
+        "description": "This page gathers your writing projects and helps you resume work quickly."
+      },
+      "createProject": {
+        "title": "Create a project",
+        "description": "Start a new novel, short story, or any writing project from this button."
+      },
+      "account": {
+        "title": "User account",
+        "description": "Access login or your account from this area."
+      },
+      "stats": {
+        "title": "Overview",
+        "description": "These cards summarize your projects, written words, and manuscript status."
+      },
+      "projectList": {
+        "title": "Your projects",
+        "description": "Each card represents a project with its progress, status, and actions."
+      },
+      "projectCard": {
+        "title": "Project card",
+        "description": "Find the cover, genre, description, and progress for the project."
+      },
+      "openProject": {
+        "title": "Open project",
+        "description": "This button opens the full workspace for the selected project."
+      },
+      "replay": {
+        "title": "Replay the tour",
+        "description": "You can view this home page tour again at any time."
+      }
+    },
+    "project": {
+      "button": "Průvodce projektem",
+      "brand": {
+        "title": "Papyrus",
+        "description": "Your writing studio centralizes the manuscript, sheets, and project tools."
+      },
+      "currentProject": {
+        "title": "Current project",
+        "description": "This area shows the open project and lets you return to the project list."
+      },
+      "navigation": {
+        "title": "Project navigation",
+        "description": "The sidebar gives you access to every section of your universe and manuscript."
+      },
+      "navDashboard": {
+        "title": "Dashboard",
+        "description": "Track global progress, goals, activity, and creation shortcuts."
+      },
+      "navCharacters": {
+        "title": "Characters",
+        "description": "Create detailed character sheets and keep their evolution consistent."
+      },
+      "navChapters": {
+        "title": "Chapters",
+        "description": "Organize parts, open the editor, and write your manuscript."
+      },
+      "navResearch": {
+        "title": "Research",
+        "description": "Store sources, links, images, videos, files, and documentation notes."
+      },
+      "navGoals": {
+        "title": "Goals",
+        "description": "Set word or progress goals and track their status."
+      },
+      "header": {
+        "title": "Top bar",
+        "description": "Find the project title, connection status, and helpful actions like this tour."
+      },
+      "dashboardSummary": {
+        "title": "Quick statistics",
+        "description": "These cards give an immediate view of your progress."
+      },
+      "dashboardGoals": {
+        "title": "Current goals",
+        "description": "Keep open goals and their progress in sight."
+      },
+      "dashboardProgress": {
+        "title": "Progress",
+        "description": "View important writing and world-building indicators."
+      },
+      "dashboardActivity": {
+        "title": "Recent activity",
+        "description": "Find the latest creations and updates in the project."
+      },
+      "quickActions": {
+        "title": "Quick actions",
+        "description": "Create a character, chapter, place, object, event, or note directly."
+      },
+      "writingStreak": {
+        "title": "Writing streak",
+        "description": "Track your writing streak and daily goal."
+      },
+      "pageContent": {
+        "title": "Workspace",
+        "description": "Each section displays its lists, forms, details, and dedicated tools here."
+      },
+      "replay": {
+        "title": "Replay the tour",
+        "description": "This button lets you view the deeper project tour again."
+      },
+      "sections": {
+        "characters": {
+          "openTitle": "Open characters",
+          "openDescription": "Let’s move to the character sheet section.",
+          "title": "Characters",
+          "description": "Create, organize, and view the characters in your story with their detailed information."
+        },
+        "places": {
+          "openTitle": "Open places",
+          "openDescription": "Let’s move to the places that shape your story world.",
+          "title": "Places",
+          "description": "Describe places, atmosphere, population, and narrative role."
+        },
+        "objects": {
+          "openTitle": "Open objects",
+          "openDescription": "Let’s move to the important objects in your story.",
+          "title": "Objects",
+          "description": "Track objects, artifacts, and significant elements in your universe."
+        },
+        "chapters": {
+          "openTitle": "Open chapters",
+          "openDescription": "Let’s move to manuscript organization and writing.",
+          "title": "Chapters",
+          "description": "Structure parts, select a chapter, and open the editor to write."
+        },
+        "research": {
+          "openTitle": "Open research",
+          "openDescription": "Let’s move to your documentation.",
+          "title": "Research",
+          "description": "Centralize sources, links, media, files, and notes useful to the project."
+        },
+        "timeline": {
+          "openTitle": "Open timeline",
+          "openDescription": "Let’s move to your story events.",
+          "title": "Timeline",
+          "description": "Place events in time and connect them to chapters when needed."
+        },
+        "structure": {
+          "openTitle": "Open structure",
+          "openDescription": "Let’s move to the narrative foundations of the project.",
+          "title": "Structure",
+          "description": "Define the theme, premise, narrative goals, and overall structure."
+        },
+        "mindMaps": {
+          "openTitle": "Open mind maps",
+          "openDescription": "Let’s move to mind maps.",
+          "title": "Mind maps",
+          "description": "Visualize ideas, relationships, and branches as maps."
+        },
+        "notes": {
+          "openTitle": "Open notes",
+          "openDescription": "Let’s move to free notes.",
+          "title": "Notes",
+          "description": "Keep ideas, reminders, and work fragments available at any time."
+        },
+        "goals": {
+          "openTitle": "Open goals",
+          "openDescription": "Let’s move to goal tracking.",
+          "title": "Goals",
+          "description": "Create goals and track their progress, urgency, and status."
+        },
+        "export": {
+          "openTitle": "Open export",
+          "openDescription": "Let’s move to file preparation.",
+          "title": "Export",
+          "description": "Choose what to export and prepare a readable version of your project."
+        },
+        "settings": {
+          "openTitle": "Open settings",
+          "openDescription": "Let’s finish with project settings.",
+          "title": "Settings",
+          "description": "Configure appearance, autosave, notifications, shortcuts, and preferences."
+        }
+      },
+      "pageParts": {
+        "characters": {
+          "header": {
+            "title": "Characters view",
+            "description": "This page gathers your project characters and helps you keep their information consistent."
+          },
+          "create": {
+            "title": "New character",
+            "description": "Create a complete profile with identity, physical description, personality, relationships, notes, and avatar."
+          },
+          "list": {
+            "title": "List and search",
+            "description": "Filter characters, select a profile, then edit or delete items directly from their cards."
+          },
+          "detail": {
+            "title": "Detailed profile",
+            "description": "The right panel shows the selected profile with its sections, story information, and actions."
+          }
+        },
+        "places": {
+          "header": {
+            "title": "Places view",
+            "description": "This page gathers the important locations in your world, from description to story purpose."
+          },
+          "create": {
+            "title": "New place",
+            "description": "Add a setting, city, country, or key location with details, population, and atmosphere."
+          },
+          "list": {
+            "title": "List and search",
+            "description": "Quickly find a place with search, then open its profile from the list."
+          },
+          "detail": {
+            "title": "Place details",
+            "description": "Review the description, traits, and useful information before reusing the place in scenes."
+          }
+        },
+        "objects": {
+          "header": {
+            "title": "Objects view",
+            "description": "This page tracks objects, artifacts, resources, and symbolic elements in your story."
+          },
+          "create": {
+            "title": "New object",
+            "description": "Create an object profile with its type, appearance, importance, and optional avatar."
+          },
+          "list": {
+            "title": "List and search",
+            "description": "Browse existing objects, select one, or use the quick actions on each card."
+          },
+          "detail": {
+            "title": "Object details",
+            "description": "The detail panel keeps the selected object’s purpose, properties, and narrative role visible."
+          }
+        },
+        "notes": {
+          "header": {
+            "title": "Notes view",
+            "description": "This page stores free ideas, reminders, scene fragments, and thoughts to revisit later."
+          },
+          "create": {
+            "title": "New note",
+            "description": "Add a standalone note, with or without a file, so ideas are not lost while writing."
+          },
+          "list": {
+            "title": "Notes list",
+            "description": "Notes appear as cards that are easy to open, edit, or delete."
+          },
+          "detail": {
+            "title": "Note reading",
+            "description": "When a note is selected, its content and attachments are displayed in this panel."
+          }
+        },
+        "research": {
+          "header": {
+            "title": "Research view",
+            "description": "This page centralizes your documentation: sources, links, media, books, files, and comments."
+          },
+          "create": {
+            "title": "New research item",
+            "description": "Add a documentation resource, local file, or useful link for your world."
+          },
+          "filters": {
+            "title": "Search and categories",
+            "description": "Filter by text or resource type to quickly find the right reference."
+          },
+          "list": {
+            "title": "Saved resources",
+            "description": "Each card lets you open, download, edit, or delete a resource depending on its format."
+          }
+        },
+        "timeline": {
+          "header": {
+            "title": "Timeline view",
+            "description": "This page organizes story events over time and helps check continuity."
+          },
+          "create": {
+            "title": "New event",
+            "description": "Add a date, importance, location, and optionally a linked chapter."
+          },
+          "list": {
+            "title": "Timeline",
+            "description": "The left side shows ordered events so you can read the plot progression."
+          },
+          "detail": {
+            "title": "Details or form",
+            "description": "The right side is used to view, create, or edit the selected event."
+          }
+        },
+        "chapters": {
+          "header": {
+            "title": "Chapters view",
+            "description": "This page connects manuscript structure with the actual writing of each chapter."
+          },
+          "actions": {
+            "title": "Create parts and chapters",
+            "description": "Add a part to organize the manuscript or create a chapter directly, even without a part."
+          },
+          "overview": {
+            "title": "Manuscript summary",
+            "description": "These counters give a quick view of parts, chapters, and written words."
+          },
+          "tree": {
+            "title": "Parts tree",
+            "description": "Expand parts to see chapters, change the selection, and access actions."
+          },
+          "detail": {
+            "title": "Chapter details",
+            "description": "After selecting a chapter, read its summary, check word count, and open the editor."
+          }
+        },
+        "structure": {
+          "header": {
+            "title": "Structure view",
+            "description": "This page defines your story foundations before and during drafting."
+          },
+          "tabs": {
+            "title": "Structure tabs",
+            "description": "Switch between concept, plan, and narrative objectives depending on your preparation level."
+          },
+          "content": {
+            "title": "Editable content",
+            "description": "Enable editing to adjust the premise, genre, theme, structure, or objectives."
+          }
+        },
+        "mindMaps": {
+          "header": {
+            "title": "Mind maps view",
+            "description": "This page helps organize ideas visually and explore links between concepts."
+          },
+          "canvas": {
+            "title": "Create a map",
+            "description": "Start a new mind map for characters, places, plots, or systems."
+          },
+          "list": {
+            "title": "Existing maps",
+            "description": "Find your maps, open them for editing, or delete the ones you no longer need."
+          }
+        },
+        "goals": {
+          "header": {
+            "title": "Goals view",
+            "description": "This page tracks your writing goals and their status based on deadlines."
+          },
+          "create": {
+            "title": "New goal",
+            "description": "Create a daily, weekly, monthly, or project goal with a progress unit."
+          },
+          "stats": {
+            "title": "Statistics cards",
+            "description": "These cards summarize active, daily, completed goals and average progress."
+          },
+          "filters": {
+            "title": "Type filters",
+            "description": "Show all goals or limit the view to one frequency."
+          },
+          "active": {
+            "title": "Active goals",
+            "description": "Track open goals, progress, status, and available actions."
+          },
+          "completed": {
+            "title": "Completed goals",
+            "description": "Completed goals remain visible in history so you can keep track of progress."
+          }
+        },
+        "export": {
+          "header": {
+            "title": "Export view",
+            "description": "This page prepares a readable version of the project to download or share."
+          },
+          "formats": {
+            "title": "Available formats",
+            "description": "Choose the right file type: PDF, Word, EPUB, or plain text."
+          },
+          "preview": {
+            "title": "Export preview",
+            "description": "Check the chosen format, chapters, word count, and estimated pages."
+          },
+          "options": {
+            "title": "Annexes",
+            "description": "Add character, place, object, event, note, or research sheets at the end of the document."
+          }
+        },
+        "settings": {
+          "header": {
+            "title": "Settings view",
+            "description": "This page gathers project and app preferences."
+          },
+          "actions": {
+            "title": "Reset or save",
+            "description": "The top buttons let you cancel changes or save the settings."
+          },
+          "tabs": {
+            "title": "Settings categories",
+            "description": "Move between general, appearance, shortcuts, and notifications."
+          },
+          "panel": {
+            "title": "Active settings",
+            "description": "The right panel displays the options for the selected category."
+          }
+        }
+      }
+    }
+  }
 }

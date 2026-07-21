@@ -130,5 +130,435 @@
       "videos": "Vidéos",
       "powerPoint": "PowerPoint"
     }
+  },
+  "tour": {
+    "button": "Lancer le tour guidé",
+    "progress": "{{current}} sur {{total}}",
+    "brand": {
+      "title": "Bienvenue dans Papyrus",
+      "description": "Votre espace d’écriture regroupe votre projet, vos fiches et vos outils de suivi."
+    },
+    "currentProject": {
+      "title": "Projet actuel",
+      "description": "Retrouvez ici le projet ouvert et revenez à la liste de vos projets avec le bouton dossier."
+    },
+    "navigation": {
+      "title": "Navigation",
+      "description": "Accédez aux personnages, lieux, objets, chapitres, recherches, notes, objectifs et exports."
+    },
+    "header": {
+      "title": "Barre supérieure",
+      "description": "Le titre du projet, l’état de connexion et les actions rapides restent disponibles ici."
+    },
+    "pageContent": {
+      "title": "Zone de travail",
+      "description": "C’est ici que vous créez, modifiez et consultez le contenu de chaque section."
+    },
+    "replay": {
+      "title": "Relancer le tour",
+      "description": "Ce bouton permet de revoir le tour guidé à tout moment."
+    },
+    "home": {
+      "button": "Tour de la page d’accueil",
+      "brand": {
+        "title": "Bienvenue dans Papyrus",
+        "description": "Cette page regroupe vos projets d’écriture et vous permet de reprendre rapidement votre travail."
+      },
+      "createProject": {
+        "title": "Créer un projet",
+        "description": "Commencez un nouveau roman, une nouvelle ou tout autre projet d’écriture depuis ce bouton."
+      },
+      "account": {
+        "title": "Compte utilisateur",
+        "description": "Accédez à la connexion ou à votre compte depuis cette zone."
+      },
+      "stats": {
+        "title": "Vue d’ensemble",
+        "description": "Ces cartes résument vos projets, vos mots écrits et l’état de vos manuscrits."
+      },
+      "projectList": {
+        "title": "Vos projets",
+        "description": "Chaque carte représente un projet avec sa progression, son statut et ses actions."
+      },
+      "projectCard": {
+        "title": "Carte projet",
+        "description": "Retrouvez la couverture, le genre, la description et la progression du projet."
+      },
+      "openProject": {
+        "title": "Ouvrir le projet",
+        "description": "Ce bouton ouvre l’espace de travail complet du projet sélectionné."
+      },
+      "replay": {
+        "title": "Relancer le tour",
+        "description": "Vous pouvez revoir ce tour de la page d’accueil à tout moment."
+      }
+    },
+    "project": {
+      "button": "Tour guidé du projet",
+      "brand": {
+        "title": "Papyrus",
+        "description": "Votre studio d’écriture centralise le manuscrit, les fiches et les outils du projet."
+      },
+      "currentProject": {
+        "title": "Projet actuel",
+        "description": "Cette zone indique le projet ouvert et permet de revenir à la liste des projets."
+      },
+      "navigation": {
+        "title": "Navigation du projet",
+        "description": "La sidebar vous donne accès à toutes les sections de votre univers et de votre manuscrit."
+      },
+      "navDashboard": {
+        "title": "Tableau de bord",
+        "description": "Suivez l’avancement général, les objectifs, l’activité et les raccourcis de création."
+      },
+      "navCharacters": {
+        "title": "Personnages",
+        "description": "Créez des fiches détaillées pour vos personnages et gardez leur évolution cohérente."
+      },
+      "navChapters": {
+        "title": "Chapitres",
+        "description": "Organisez les parties, ouvrez l’éditeur et écrivez votre manuscrit."
+      },
+      "navResearch": {
+        "title": "Recherches",
+        "description": "Stockez vos sources, liens, images, vidéos, fichiers et notes de documentation."
+      },
+      "navGoals": {
+        "title": "Objectifs",
+        "description": "Définissez des objectifs de mots ou de progression et suivez leur état."
+      },
+      "header": {
+        "title": "Barre supérieure",
+        "description": "Retrouvez le titre du projet, l’état de connexion et les actions utiles comme ce tour."
+      },
+      "dashboardSummary": {
+        "title": "Statistiques rapides",
+        "description": "Ces cartes donnent une lecture immédiate de votre avancement."
+      },
+      "dashboardGoals": {
+        "title": "Objectifs en cours",
+        "description": "Gardez sous les yeux les objectifs ouverts et leur progression."
+      },
+      "dashboardProgress": {
+        "title": "Progression",
+        "description": "Visualisez les indicateurs importants de votre rythme d’écriture et de construction."
+      },
+      "dashboardActivity": {
+        "title": "Activité récente",
+        "description": "Retrouvez les dernières créations et modifications du projet."
+      },
+      "quickActions": {
+        "title": "Actions rapides",
+        "description": "Créez directement un personnage, un chapitre, un lieu, un objet, un évènement ou une note."
+      },
+      "writingStreak": {
+        "title": "Régularité d’écriture",
+        "description": "Suivez votre série d’écriture et votre objectif quotidien."
+      },
+      "pageContent": {
+        "title": "Zone de travail",
+        "description": "Chaque section affiche ici ses listes, formulaires, détails et outils métier."
+      },
+      "replay": {
+        "title": "Relancer le tour",
+        "description": "Ce bouton permet de revoir le tour approfondi du projet."
+      },
+      "sections": {
+        "characters": {
+          "openTitle": "Ouvrir les personnages",
+          "openDescription": "Passons à la section dédiée aux fiches personnages.",
+          "title": "Personnages",
+          "description": "Créez, organisez et consultez les personnages de votre récit avec leurs informations détaillées."
+        },
+        "places": {
+          "openTitle": "Ouvrir les lieux",
+          "openDescription": "Passons aux lieux qui construisent l’univers de votre histoire.",
+          "title": "Lieux",
+          "description": "Décrivez les lieux, leurs ambiances, leur population et leur rôle narratif."
+        },
+        "objects": {
+          "openTitle": "Ouvrir les objets",
+          "openDescription": "Passons aux objets importants de votre récit.",
+          "title": "Objets",
+          "description": "Suivez les objets, artefacts et éléments significatifs de votre univers."
+        },
+        "chapters": {
+          "openTitle": "Ouvrir les chapitres",
+          "openDescription": "Passons à l’organisation et à l’écriture du manuscrit.",
+          "title": "Chapitres",
+          "description": "Structurez vos parties, sélectionnez un chapitre et ouvrez l’éditeur pour écrire."
+        },
+        "research": {
+          "openTitle": "Ouvrir les recherches",
+          "openDescription": "Passons à votre documentation.",
+          "title": "Recherches",
+          "description": "Centralisez vos sources, liens, médias, fichiers et notes utiles au projet."
+        },
+        "timeline": {
+          "openTitle": "Ouvrir la chronologie",
+          "openDescription": "Passons aux évènements de votre histoire.",
+          "title": "Chronologie",
+          "description": "Placez les évènements dans le temps et reliez-les à vos chapitres si besoin."
+        },
+        "structure": {
+          "openTitle": "Ouvrir la structure",
+          "openDescription": "Passons aux fondations narratives du projet.",
+          "title": "Structure",
+          "description": "Définissez le thème, la prémice, les objectifs narratifs et la structure générale."
+        },
+        "mindMaps": {
+          "openTitle": "Ouvrir les cartes mentales",
+          "openDescription": "Passons aux cartes mentales.",
+          "title": "Cartes mentales",
+          "description": "Visualisez vos idées, relations et ramifications sous forme de cartes."
+        },
+        "notes": {
+          "openTitle": "Ouvrir les notes",
+          "openDescription": "Passons aux notes libres.",
+          "title": "Notes",
+          "description": "Gardez des idées, rappels et fragments de travail disponibles à tout moment."
+        },
+        "goals": {
+          "openTitle": "Ouvrir les objectifs",
+          "openDescription": "Passons au suivi des objectifs.",
+          "title": "Objectifs",
+          "description": "Créez des objectifs et suivez leur progression, leur urgence et leur statut."
+        },
+        "export": {
+          "openTitle": "Ouvrir l’export",
+          "openDescription": "Passons à la préparation des fichiers.",
+          "title": "Export",
+          "description": "Choisissez les contenus à exporter et préparez une version lisible de votre projet."
+        },
+        "settings": {
+          "openTitle": "Ouvrir les paramètres",
+          "openDescription": "Terminons par les réglages du projet.",
+          "title": "Paramètres",
+          "description": "Configurez l’apparence, la sauvegarde automatique, les notifications, raccourcis et préférences."
+        }
+      },
+      "pageParts": {
+        "characters": {
+          "header": {
+            "title": "Vue personnages",
+            "description": "Cette page rassemble les fiches de personnages du projet et sert à garder leurs informations cohérentes."
+          },
+          "create": {
+            "title": "Nouveau personnage",
+            "description": "Créez une fiche complète avec identité, description physique, personnalité, relations, notes et avatar."
+          },
+          "list": {
+            "title": "Liste et recherche",
+            "description": "Filtrez les personnages, sélectionnez une fiche, puis modifiez ou supprimez les éléments depuis les cartes."
+          },
+          "detail": {
+            "title": "Fiche détaillée",
+            "description": "Le panneau de droite affiche la fiche sélectionnée avec ses sections, ses informations narratives et ses actions."
+          }
+        },
+        "places": {
+          "header": {
+            "title": "Vue lieux",
+            "description": "Cette page regroupe les lieux importants de votre univers, de leurs descriptions à leur rôle dans le récit."
+          },
+          "create": {
+            "title": "Nouveau lieu",
+            "description": "Ajoutez un décor, une ville, un pays ou un lieu clé avec ses détails, sa population et son ambiance."
+          },
+          "list": {
+            "title": "Liste et recherche",
+            "description": "Retrouvez rapidement un lieu grâce à la recherche, puis ouvrez sa fiche depuis la liste."
+          },
+          "detail": {
+            "title": "Détail du lieu",
+            "description": "Consultez la description, les caractéristiques et les informations utiles pour réutiliser le lieu dans vos scènes."
+          }
+        },
+        "objects": {
+          "header": {
+            "title": "Vue objets",
+            "description": "Cette page sert à suivre les objets, artefacts, ressources ou éléments symboliques de votre histoire."
+          },
+          "create": {
+            "title": "Nouvel objet",
+            "description": "Créez une fiche objet avec son type, son apparence, son importance et son éventuel avatar."
+          },
+          "list": {
+            "title": "Liste et recherche",
+            "description": "Parcourez les objets existants, sélectionnez une fiche, ou utilisez les actions rapides de chaque carte."
+          },
+          "detail": {
+            "title": "Détail de l’objet",
+            "description": "Le détail rappelle l’usage, les propriétés et le rôle narratif de l’objet sélectionné."
+          }
+        },
+        "notes": {
+          "header": {
+            "title": "Vue notes",
+            "description": "Cette page accueille les idées libres, rappels, fragments de scènes et pensées à reprendre plus tard."
+          },
+          "create": {
+            "title": "Nouvelle note",
+            "description": "Ajoutez une note autonome, avec ou sans fichier, pour ne pas perdre une idée pendant l’écriture."
+          },
+          "list": {
+            "title": "Liste des notes",
+            "description": "Les notes sont affichées sous forme de cartes faciles à ouvrir, modifier ou supprimer."
+          },
+          "detail": {
+            "title": "Lecture de note",
+            "description": "Quand une note est sélectionnée, son contenu et ses pièces jointes s’affichent dans ce panneau."
+          }
+        },
+        "research": {
+          "header": {
+            "title": "Vue recherches",
+            "description": "Cette page centralise votre documentation : sources, liens, médias, livres, fichiers et remarques."
+          },
+          "create": {
+            "title": "Nouvelle recherche",
+            "description": "Ajoutez une ressource documentaire, un fichier local ou un lien utile à votre univers."
+          },
+          "filters": {
+            "title": "Recherche et catégories",
+            "description": "Filtrez par texte ou par type de ressource pour retrouver rapidement la bonne référence."
+          },
+          "list": {
+            "title": "Ressources enregistrées",
+            "description": "Chaque carte permet d’ouvrir, télécharger, modifier ou supprimer une ressource selon son format."
+          }
+        },
+        "timeline": {
+          "header": {
+            "title": "Vue chronologie",
+            "description": "Cette page organise les évènements de l’histoire dans le temps et aide à vérifier la cohérence."
+          },
+          "create": {
+            "title": "Nouvel évènement",
+            "description": "Ajoutez une date, une importance, un lieu et éventuellement un chapitre lié."
+          },
+          "list": {
+            "title": "Ligne temporelle",
+            "description": "La partie gauche affiche les évènements ordonnés pour visualiser la progression de l’intrigue."
+          },
+          "detail": {
+            "title": "Détail ou formulaire",
+            "description": "La partie droite sert à consulter, créer ou modifier l’évènement sélectionné."
+          }
+        },
+        "chapters": {
+          "header": {
+            "title": "Vue chapitres",
+            "description": "Cette page relie la structure du manuscrit à l’écriture concrète de chaque chapitre."
+          },
+          "actions": {
+            "title": "Créer parties et chapitres",
+            "description": "Ajoutez une partie pour organiser le manuscrit ou créez directement un chapitre, même sans partie."
+          },
+          "overview": {
+            "title": "Résumé du manuscrit",
+            "description": "Ces compteurs donnent une lecture rapide du nombre de parties, de chapitres et de mots écrits."
+          },
+          "tree": {
+            "title": "Arbre des parties",
+            "description": "Dépliez les parties pour voir leurs chapitres, déplacer votre sélection et accéder aux actions."
+          },
+          "detail": {
+            "title": "Détail du chapitre",
+            "description": "Après sélection, vous pouvez lire le résumé, vérifier le nombre de mots et ouvrir l’éditeur."
+          }
+        },
+        "structure": {
+          "header": {
+            "title": "Vue structure",
+            "description": "Cette page pose les fondations narratives du projet avant et pendant l’écriture."
+          },
+          "tabs": {
+            "title": "Onglets de structure",
+            "description": "Passez du concept au plan puis aux objectifs narratifs selon le niveau de préparation voulu."
+          },
+          "content": {
+            "title": "Contenu éditable",
+            "description": "Activez l’édition pour ajuster la prémice, le genre, le thème, la structure ou les objectifs."
+          }
+        },
+        "mindMaps": {
+          "header": {
+            "title": "Vue cartes mentales",
+            "description": "Cette page sert à organiser les idées visuellement et à explorer les liens entre concepts."
+          },
+          "canvas": {
+            "title": "Créer une carte",
+            "description": "Lancez une nouvelle carte mentale pour poser personnages, lieux, intrigues ou systèmes."
+          },
+          "list": {
+            "title": "Cartes existantes",
+            "description": "Retrouvez vos cartes, ouvrez-les en édition, ou supprimez celles qui ne sont plus utiles."
+          }
+        },
+        "goals": {
+          "header": {
+            "title": "Vue objectifs",
+            "description": "Cette page suit vos objectifs d’écriture et leur état selon leur échéance."
+          },
+          "create": {
+            "title": "Nouvel objectif",
+            "description": "Créez un objectif quotidien, hebdomadaire, mensuel ou lié au projet avec une unité de progression."
+          },
+          "stats": {
+            "title": "Cartes de statistiques",
+            "description": "Ces cartes résument les objectifs actifs, quotidiens, terminés et la progression moyenne."
+          },
+          "filters": {
+            "title": "Filtres par type",
+            "description": "Affichez tous les objectifs ou limitez la vue à une fréquence précise."
+          },
+          "active": {
+            "title": "Objectifs en cours",
+            "description": "Suivez les objectifs encore ouverts, leur avancement, leur statut et leurs actions."
+          },
+          "completed": {
+            "title": "Objectifs atteints",
+            "description": "Les objectifs terminés restent visibles dans l’historique pour garder une trace de vos progrès."
+          }
+        },
+        "export": {
+          "header": {
+            "title": "Vue export",
+            "description": "Cette page prépare une version lisible du projet à télécharger ou partager."
+          },
+          "formats": {
+            "title": "Formats disponibles",
+            "description": "Choisissez le type de fichier adapté : PDF, Word, EPUB ou texte brut."
+          },
+          "preview": {
+            "title": "Aperçu de l’export",
+            "description": "Vérifiez le format choisi, le nombre de chapitres, de mots et l’estimation de pages."
+          },
+          "options": {
+            "title": "Annexes",
+            "description": "Ajoutez les fiches personnages, lieux, objets, évènements, notes ou recherches à la fin du document."
+          }
+        },
+        "settings": {
+          "header": {
+            "title": "Vue paramètres",
+            "description": "Cette page regroupe les préférences du projet et de l’application."
+          },
+          "actions": {
+            "title": "Réinitialiser ou sauvegarder",
+            "description": "Les boutons en haut permettent d’annuler les changements ou d’enregistrer les réglages."
+          },
+          "tabs": {
+            "title": "Catégories de réglages",
+            "description": "Naviguez entre général, apparence, raccourcis et notifications."
+          },
+          "panel": {
+            "title": "Réglages actifs",
+            "description": "Le panneau de droite affiche les options de la catégorie sélectionnée."
+          }
+        }
+      }
+    }
   }
 }

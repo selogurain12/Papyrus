@@ -184,7 +184,7 @@ export function GoalPage() {
 
   return (
     <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6" data-tour="page-header">
         <div>
           <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
           <p className="text-md">{t("subtitle")}</p>
@@ -192,6 +192,7 @@ export function GoalPage() {
         <div>
           <Button
             variant="blue"
+            data-tour="page-create-action"
             onClick={() => {
               setIsCreating(true);
             }}
@@ -202,7 +203,7 @@ export function GoalPage() {
         </div>
       </div>
       <div>
-        <div className="flex justify-between gap-3">
+        <div className="flex justify-between gap-3" data-tour="goals-stats">
           {statsGoals.map((stat) => (
             <StatGoalsCard
               key={stat.titleKey}
@@ -214,7 +215,7 @@ export function GoalPage() {
           ))}
         </div>
       </div>
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2" data-tour="goals-filters">
         {types.map((type) => (
           <button
             key={type.value}
@@ -237,7 +238,7 @@ export function GoalPage() {
           </button>
         ))}
       </div>
-      <div className="mt-6">
+      <div className="mt-6" data-tour="goals-active">
         <h2 className="font-bold mb-4">{t("sections.activeGoals")}</h2>
         <div className="space-y-4 grid grid-cols-2 gap-2">
           {openGoals?.length === 0 ? (
@@ -255,7 +256,7 @@ export function GoalPage() {
           )}
         </div>
       </div>
-      <div className="mt-6">
+      <div className="mt-6" data-tour="goals-completed">
         <h2 className="font-bold mb-4 flex">
           <Award color="orange" />
           {t("sections.completedGoals")}

@@ -53,7 +53,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
   }
 
   return (
-    <Card className="rounded-xl overflow-hidden">
+    <Card className="rounded-xl overflow-hidden" data-tour="home-project-card">
       <div className="relative w-full h-48">
         <img
           src={project.coverLink ?? bookCover}
@@ -98,6 +98,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
             className="text-xs rounded-xl"
             size="sm"
             variant="blue"
+            data-tour="home-open-project"
             onClick={() => {
               setCurrentProject(project);
               void navigate({ to: projectHomeRoute.to, params: { name: project.title } });

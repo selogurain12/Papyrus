@@ -101,9 +101,12 @@ export function Sidebar({ name }: SidebarProps) {
   const activeView = menu.find((item) => item.segment === activeSegment)?.id ?? "dashboard";
 
   return (
-    <div className="w-64 bg-background shadow-lg border-r border-gray-300 h-full">
+    <div
+      className="w-64 bg-background shadow-lg border-r border-gray-300 h-full"
+      data-tour="sidebar"
+    >
       <div className="p-6 border-b border-gray-300">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3" data-tour="brand">
           <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
             <BookOpen className="w-6 h-6 text-white" />
           </div>
@@ -112,7 +115,10 @@ export function Sidebar({ name }: SidebarProps) {
             <p className="text-sm text-secondary-500">{t("app.tagline")}</p>
           </div>
         </div>
-        <div className="flex items-center justify-between mt-3 bg-blue-200 dark:bg-blue-950 rounded-xl p-2">
+        <div
+          className="flex items-center justify-between mt-3 bg-blue-200 dark:bg-blue-950 rounded-xl p-2"
+          data-tour="current-project"
+        >
           <div>
             <p className="text-sm text-blue-600 dark:text-blue-300">{t("currentProject")}</p>
             <p className="text-sm text-blue-900 dark:text-blue-100">{name}</p>
@@ -136,7 +142,7 @@ export function Sidebar({ name }: SidebarProps) {
         </div>
       </div>
 
-      <nav className="mt-6">
+      <nav className="mt-6" data-tour="navigation">
         <ul className="space-y-1 px-4">
           {menu.map((item) => {
             const Icon = item.icon;
@@ -145,6 +151,7 @@ export function Sidebar({ name }: SidebarProps) {
             return (
               <li key={item.id}>
                 <button
+                  data-tour={`nav-${item.id}`}
                   onClick={() => {
                     void navigate({ to: item.path.to, params: { name: name } });
                   }}

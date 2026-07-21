@@ -194,15 +194,18 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
-      <div>
+    <div className="p-6 space-y-6" data-tour="dashboard">
+      <div data-tour="dashboard-intro">
         <h2 className="text-3xl font-bold text-foreground mb-2">{t("title")}</h2>
         <p className="text-muted-foreground">
           {t("subtitle", { projectTitle: currentProject.title })}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"
+        data-tour="dashboard-summary"
+      >
         {dashboard.summaryCards.map((stat) => {
           const Icon = summaryIcons[stat.icon];
           return (
@@ -232,7 +235,7 @@ export function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-        <Card className="rounded-lg">
+        <Card className="rounded-lg" data-tour="dashboard-goals">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle className="text-lg">{t("sections.currentGoals")}</CardTitle>
             <Target className="w-5 h-5 text-muted-foreground" />
@@ -264,7 +267,7 @@ export function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-lg">
+        <Card className="rounded-lg" data-tour="dashboard-progress">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle className="text-lg">{t("sections.progress")}</CardTitle>
             <TrendingUp className="w-5 h-5 text-muted-foreground" />
@@ -293,7 +296,7 @@ export function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-lg">
+        <Card className="rounded-lg" data-tour="dashboard-activity">
           <CardHeader className="flex-row items-center justify-between">
             <CardTitle className="text-lg">{t("sections.recentActivity")}</CardTitle>
             <TrendingUp className="w-5 h-5 text-muted-foreground" />
@@ -328,7 +331,7 @@ export function DashboardPage() {
         </Card>
       </div>
 
-      <Card className="rounded-lg">
+      <Card className="rounded-lg" data-tour="dashboard-quick-actions">
         <CardHeader>
           <CardTitle className="text-lg">{t("sections.quickActions")}</CardTitle>
         </CardHeader>
@@ -362,6 +365,7 @@ export function DashboardPage() {
       <section
         className="rounded-lg border border-blue-200 bg-linear-to-r from-blue-50
           to-violet-50 p-6"
+        data-tour="dashboard-streak"
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
           <h3 className="text-lg font-semibold text-gray-950">{t("sections.writingStreak")}</h3>

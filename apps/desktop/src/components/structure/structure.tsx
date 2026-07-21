@@ -188,11 +188,13 @@ export function StructurePage() {
   }
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
-      <p className="text-gray-600">{t("subtitle")}</p>
+      <div data-tour="page-header">
+        <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
+        <p className="text-gray-600">{t("subtitle")}</p>
+      </div>
       <div>
         <Tabs defaultValue="concept" className="w-full mt-6">
-          <TabsList className="w-full gap-6 p-1">
+          <TabsList className="w-full gap-6 p-1" data-tour="structure-tabs">
             <TabsTrigger
               value="concept"
               variant="blue"
@@ -218,7 +220,7 @@ export function StructurePage() {
               {t("tabs.objectives")}
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="concept" className="mt-4">
+          <TabsContent value="concept" className="mt-4" data-tour="structure-content">
             <Card className="p-4 rounded-lg">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg mb-2">{t("mainConcept")}</h3>

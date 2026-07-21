@@ -255,12 +255,12 @@ export function SettingsPage() {
 
   return (
     <div className="p-6">
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex items-center justify-between" data-tour="page-header">
         <div>
           <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
           <p className="text-md text-muted-foreground">{t("subtitle")}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2" data-tour="settings-actions">
           <Button
             variant="outline"
             disabled={isLoading || isSaving || !isDirty}
@@ -282,7 +282,10 @@ export function SettingsPage() {
 
       <Tabs value={activeView} onValueChange={setActiveView}>
         <div className="flex gap-6">
-          <div className="w-1/3 rounded-xl border border-gray-200 bg-white p-3 dark:border-border dark:bg-card">
+          <div
+            className="w-1/3 rounded-xl border border-gray-200 bg-white p-3 dark:border-border dark:bg-card"
+            data-tour="settings-tabs"
+          >
             <TabsList className="w-full flex-col items-stretch justify-start bg-transparent p-0">
               {tabs.map((item) => {
                 const Icon = item.icon;
@@ -308,7 +311,10 @@ export function SettingsPage() {
             </TabsList>
           </div>
 
-          <div className="w-2/3 rounded-xl border border-gray-200 bg-white p-6 dark:border-border dark:bg-card">
+          <div
+            className="w-2/3 rounded-xl border border-gray-200 bg-white p-6 dark:border-border dark:bg-card"
+            data-tour="settings-panel"
+          >
             <SettingsTabsGeneral setting={settings} updateSetting={updateSetting} />
 
             <SettingsTabsAppearance setting={settings} updateSetting={updateSetting} />

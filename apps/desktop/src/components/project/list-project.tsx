@@ -51,7 +51,7 @@ export function ListProject() {
 
   return (
     <div>
-      <div className="gap-3 flex pb-8">
+      <div className="gap-3 flex pb-8" data-tour="home-project-stats">
         <Card className="p-3 flex w-1/4">
           <div className="justify-between w-full flex items-center">
             <div>
@@ -89,7 +89,10 @@ export function ListProject() {
           </div>
         </Card>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-3">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-3"
+        data-tour="home-project-list"
+      >
         {projects?.data.map((project) => (
           <ProjectCard
             key={project.id}

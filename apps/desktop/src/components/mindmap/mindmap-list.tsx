@@ -53,10 +53,15 @@ export function MindMapPage() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
-      <p className="text-gray-600">{t("subtitle")}</p>
+      <div data-tour="page-header">
+        <h2 className="text-2xl font-bold mb-4">{t("title")}</h2>
+        <p className="text-gray-600">{t("subtitle")}</p>
+      </div>
 
-      <div className="mt-6 bg-blue-100 p-4 rounded-lg text-center items-center justify-center flex flex-col border border-blue-300">
+      <div
+        className="mt-6 bg-blue-100 p-4 rounded-lg text-center items-center justify-center flex flex-col border border-blue-300"
+        data-tour="mindmap-canvas"
+      >
         <GitBranch className="w-10 h-10 text-blue-600 mb-2" />
         <p className="font-bold">{t("canvas")}</p>
         <p className="text-sm text-gray-500 mt-1">{t("canvasDescription")}</p>
@@ -76,7 +81,7 @@ export function MindMapPage() {
       </div>
 
       {mindmaps?.total !== 0 && (
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 space-y-4" data-tour="mindmap-list">
           <h3 className="text-xl font-semibold">{t("yourMaps")}</h3>
 
           {mindmaps?.data?.map((mindmap) => (

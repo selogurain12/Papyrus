@@ -471,7 +471,7 @@ export function ExportPage() {
 
   return (
     <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6" data-tour="page-header">
         <div className="">
           <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
           <p className="text-md">{t("subtitle")}</p>
@@ -479,7 +479,10 @@ export function ExportPage() {
       </div>
 
       <div className="flex justify-between space-x-4 space-y-4">
-        <div className="w-2/3 bg-white h-fit rounded-lg border border-gray-200 p-4">
+        <div
+          className="w-2/3 bg-white h-fit rounded-lg border border-gray-200 p-4"
+          data-tour="export-formats"
+        >
           <p className="font-bold text-lg p-2">{t("formatTitle")}</p>
 
           <div className="grid grid-cols-2 gap-4 auto-rows-fr">
@@ -518,7 +521,10 @@ export function ExportPage() {
           </div>
         </div>
 
-        <div className="w-1/3 bg-white h-fit rounded-lg border border-gray-200 p-4">
+        <div
+          className="w-1/3 bg-white h-fit rounded-lg border border-gray-200 p-4"
+          data-tour="export-preview"
+        >
           <p className="font-bold text-lg pb-2">{t("previewTitle")}</p>
 
           <div className="space-y-2 pb-3">
@@ -555,7 +561,10 @@ export function ExportPage() {
         </div>
       </div>
 
-      <div className="w-2/3 bg-white h-fit rounded-lg border border-gray-200 p-4">
+      <div
+        className="w-2/3 bg-white h-fit rounded-lg border border-gray-200 p-4"
+        data-tour="export-options"
+      >
         <div className="flex items-center">
           <Settings />
           <p className="font-bold text-lg p-2">{t("optionsTitle")}</p>

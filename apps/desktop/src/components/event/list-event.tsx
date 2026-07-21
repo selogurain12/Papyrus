@@ -61,18 +61,18 @@ export function EventsList() {
 
   return (
     <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6" data-tour="page-header">
         <div className="">
           <h2 className="text-2xl font-bold text-foreground">{t("title")}</h2>
           <p className="text-md">{t("subtitle")}</p>
         </div>
-        <Button variant="blue" onClick={() => setIsCreating(true)}>
+        <Button variant="blue" onClick={() => setIsCreating(true)} data-tour="page-create-action">
           <Plus className="w-4 h-4 mr-2" />
           {t("new")}
         </Button>
       </div>
       <div className="flex w-full">
-        <div className="flex flex-col gap-4 w-2/4">
+        <div className="flex flex-col gap-4 w-2/4" data-tour="timeline-list">
           <EventTimeline
             selectedEvent={eventSelected}
             setSelectedEvent={setEventSelected}
@@ -81,7 +81,7 @@ export function EventsList() {
           />
         </div>
 
-        <div className="flex-1 ml-6">
+        <div className="flex-1 ml-6" data-tour="timeline-detail">
           {isCreating ? (
             <CreateEvent onCancel={() => setIsCreating(false)} />
           ) : isUpdating && eventSelected ? (

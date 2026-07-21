@@ -8,6 +8,7 @@ import { Dialog } from "../components/ui/dialogs/dialog";
 import { CreateProjectForm } from "../components/project/actions/create-form";
 import { ListProject } from "../components/project/list-project";
 import { useTranslation } from "react-i18next";
+import { HomeTour, HomeTourButton } from "../components/onboarding/app-tour";
 
 export function ProjectPage() {
   const { t } = useTranslation("pages/project-page");
@@ -16,9 +17,10 @@ export function ProjectPage() {
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-background text-foreground">
-      <div className="w-full border-b border-gray-300 p-4 bg-background">
+      <HomeTour />
+      <div className="w-full border-b border-gray-300 p-4 bg-background" data-tour="home-header">
         <div className="max-w-6xl mx-auto flex items-center justify-between w-full px-4">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4" data-tour="home-brand">
             <div className="w-10 h-10 bg-linear-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <BookOpen className="w-6 h-6 text-white" />
             </div>
@@ -30,16 +32,22 @@ export function ProjectPage() {
           </div>
 
           <div className="flex text-right gap-2 items-center">
+            <HomeTourButton />
             <Button
               variant="blue"
               className="transition-colors shadow-sm"
+              data-tour="home-create-project"
               onClick={() => setOpen(true)}
             >
               <Plus className="w-4 h-4 mr-2" />
               {t("page.new")}
             </Button>
 
-            <Button variant="ghost" onClick={() => navigate({ to: loginRoute.to })}>
+            <Button
+              variant="ghost"
+              data-tour="home-account"
+              onClick={() => navigate({ to: loginRoute.to })}
+            >
               <CircleUserRound className="w-8 h-8 font-light" />
             </Button>
           </div>
@@ -50,7 +58,7 @@ export function ProjectPage() {
         <CreateProjectForm setOpen={setOpen} />
       </Dialog>
 
-      <div className="mx-[15%] mt-6">
+      <div className="mx-[15%] mt-6" data-tour="home-projects">
         <ListProject />
       </div>
     </div>

@@ -103,6 +103,8 @@ module.exports = {
       ],
       moduleNameMapper: {
         "^@papyrus/source$": "<rootDir>/tests/desktop/support/source-mock.ts",
+        "^driver\\.js$": "<rootDir>/tests/desktop/support/driver-js-mock.ts",
+        "\\.(css|less)$": "<rootDir>/tests/desktop/support/file-mock.ts",
         "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/tests/desktop/support/file-mock.ts",
       },
       moduleDirectories: ["node_modules", "<rootDir>/apps/desktop/node_modules"],

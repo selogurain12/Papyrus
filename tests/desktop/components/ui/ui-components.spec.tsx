@@ -71,6 +71,26 @@ describe("UI components", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
+  it("disables a loading button to prevent repeated clicks", async () => {
+    const user = userEvent.setup();
+    const onClick = jest.fn();
+
+    render(
+      <Button isLoading onClick={onClick}>
+        Enregistrer
+      </Button>
+    );
+
+    const button = screen.getByRole("button", { name: "Enregistrer" });
+
+    expect(button).toBeDisabled();
+    expect(button.querySelector(".animate-spin")).toBeInTheDocument();
+
+    await user.click(button);
+
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
   it("renders an input and keeps typed value", async () => {
     const user = userEvent.setup();
 

@@ -14,6 +14,10 @@ describe("shortcut key utilities", () => {
   it("converts accelerators to display labels", () => {
     expect(acceleratorToDisplay("CommandOrControl+Shift+P")).toBe("⌘ ⇧ P");
     expect(acceleratorToDisplay("Alt+Down")).toBe("⌥ ↓");
+    expect(acceleratorToDisplay("CmdOrCtrl+Command+Cmd+Control+Ctrl")).toBe("⌘ ⌘ ⌘ ⌘ ⌘");
+    expect(acceleratorToDisplay("Option+Super+Meta+Space+Up+Left+Right+Escape+Plus")).toBe(
+      "⌥ Meta Meta Space ↑ ← → Esc +"
+    );
   });
 
   it("builds accelerators from keyboard events", () => {
@@ -44,6 +48,40 @@ describe("shortcut key utilities", () => {
         shiftKey: true,
       } as KeyboardEvent)
     ).toBe("");
+  });
+
+  it("formats special keyboard keys for accelerators", () => {
+    const baseEvent = {
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+    };
+
+    expect(getAcceleratorFromKeyboardEvent({ ...baseEvent, key: " " } as KeyboardEvent)).toBe(
+      "Space"
+    );
+    expect(getAcceleratorFromKeyboardEvent({ ...baseEvent, key: "ArrowUp" } as KeyboardEvent)).toBe(
+      "Up"
+    );
+    expect(
+      getAcceleratorFromKeyboardEvent({ ...baseEvent, key: "ArrowDown" } as KeyboardEvent)
+    ).toBe("Down");
+    expect(
+      getAcceleratorFromKeyboardEvent({ ...baseEvent, key: "ArrowLeft" } as KeyboardEvent)
+    ).toBe("Left");
+    expect(
+      getAcceleratorFromKeyboardEvent({ ...baseEvent, key: "ArrowRight" } as KeyboardEvent)
+    ).toBe("Right");
+    expect(getAcceleratorFromKeyboardEvent({ ...baseEvent, key: "Escape" } as KeyboardEvent)).toBe(
+      "Escape"
+    );
+    expect(getAcceleratorFromKeyboardEvent({ ...baseEvent, key: "Enter" } as KeyboardEvent)).toBe(
+      "Enter"
+    );
+    expect(getAcceleratorFromKeyboardEvent({ ...baseEvent, key: "+" } as KeyboardEvent)).toBe(
+      "Plus"
+    );
   });
 
   it("normalizes labels for search", () => {

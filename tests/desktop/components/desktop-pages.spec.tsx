@@ -18,6 +18,27 @@ import {
 const navigateMock = jest.fn(() => Promise.resolve());
 const useRouterStateMock = jest.fn();
 const useOfflineListMock = jest.fn();
+let mockCurrentProject: typeof projectFixture | null = projectFixture;
+let mockDashboardBody: typeof dashboardFixture | undefined = dashboardFixture;
+let mockDashboardLoading = false;
+let mockGoalsList: Array<Record<string, unknown>> = [
+  {
+    id: "goal-1",
+    title: "Objectif quotidien",
+    current: 250,
+    goals: 500,
+    isOpen: true,
+    deadline: "2026-07-15T23:59:00[Europe/Paris]",
+  },
+];
+let mockHistoryList: Array<Record<string, unknown>> = [
+  {
+    type: "create",
+    entity: "chapter",
+    title: "Chapitre ajouté",
+    date: "2026-07-14T12:00:00[Europe/Paris]",
+  },
+];
 
 jest.mock("react-i18next", () => ({
   useTranslation: () => ({
@@ -36,7 +57,7 @@ jest.mock("@tanstack/react-router", () => ({
 }));
 
 jest.mock("../../../apps/desktop/src/context/project-provider", () => ({
-  useProject: () => ({ currentProject: projectFixture, setCurrentProject: jest.fn() }),
+  useProject: () => ({ currentProject: mockCurrentProject, setCurrentProject: jest.fn() }),
 }));
 
 jest.mock("../../../apps/desktop/src/context/auth-provider", () => ({
@@ -51,7 +72,10 @@ jest.mock("../../../apps/desktop/src/utils/client/client", () => ({
   client: {
     dashboard: {
       get: {
-        useQuery: () => ({ data: { body: dashboardFixture }, isLoading: false }),
+        useQuery: () => ({
+          data: mockDashboardBody ? { body: mockDashboardBody } : undefined,
+          isLoading: mockDashboardLoading,
+        }),
       },
     },
     goal: {
@@ -59,16 +83,7 @@ jest.mock("../../../apps/desktop/src/utils/client/client", () => ({
         useQuery: () => ({
           data: {
             body: {
-              data: [
-                {
-                  id: "goal-1",
-                  title: "Objectif quotidien",
-                  current: 250,
-                  goals: 500,
-                  isOpen: true,
-                  deadline: "2026-07-15T23:59:00[Europe/Paris]",
-                },
-              ],
+              data: mockGoalsList,
             },
           },
         }),
@@ -79,14 +94,7 @@ jest.mock("../../../apps/desktop/src/utils/client/client", () => ({
         useQuery: () => ({
           data: {
             body: {
-              data: [
-                {
-                  type: "create",
-                  entity: "chapter",
-                  title: "Chapitre ajouté",
-                  date: "2026-07-14T12:00:00[Europe/Paris]",
-                },
-              ],
+              data: mockHistoryList,
             },
           },
         }),
@@ -136,9 +144,75 @@ describe("desktop pages and navigation", () => {
   beforeEach(() => {
     navigateMock.mockClear();
     useOfflineListMock.mockReset();
+    mockCurrentProject = projectFixture;
+    mockDashboardBody = dashboardFixture;
+    mockDashboardLoading = false;
+    mockGoalsList = [
+      {
+        id: "goal-1",
+        title: "Objectif quotidien",
+        current: 250,
+        goals: 500,
+        isOpen: true,
+        deadline: "2026-07-15T23:59:00[Europe/Paris]",
+      },
+    ];
+    mockHistoryList = [
+      {
+        type: "create",
+        entity: "chapter",
+        title: "Chapitre ajouté",
+        date: "2026-07-14T12:00:00[Europe/Paris]",
+      },
+    ];
     useRouterStateMock.mockImplementation((options) =>
       options.select({ location: { pathname: "/project/Projet%20test/chapter" } })
     );
+  });
+
+  it("shows dashboard fallback states for missing, loading and empty data", () => {
+    mockCurrentProject = null;
+    const { rerender } = render(<DashboardPage />);
+
+    expect(screen.getByText("currentProjectMissing")).toBeInTheDocument();
+
+    mockCurrentProject = projectFixture;
+    mockDashboardBody = undefined;
+    mockDashboardLoading = true;
+    rerender(<DashboardPage />);
+
+    expect(document.querySelectorAll(".bg-muted\\/40")).toHaveLength(4);
+
+    mockDashboardLoading = false;
+    mockDashboardBody = {
+      summaryCards: [
+        { label: "Label inconnu", value: 1, change: "stable", icon: "bookOpen", color: "blue" },
+      ],
+      progress: [{ label: "Progression inconnue", value: 120, target: 100, color: "green" }],
+      writingStreak: {
+        days: 0,
+        progress: 0,
+        currentWordCount: 0,
+        targetWordCount: 1000,
+      },
+    } as typeof dashboardFixture;
+    mockGoalsList = [
+      {
+        id: "goal-closed",
+        title: "Objectif fermé",
+        current: 0,
+        goals: 100,
+        isOpen: false,
+        deadline: null,
+      },
+    ];
+    mockHistoryList = [];
+    rerender(<DashboardPage />);
+
+    expect(screen.getByText("emptyGoals")).toBeInTheDocument();
+    expect(screen.getByText("emptyActivity")).toBeInTheDocument();
+    expect(screen.getByText("streakInactive")).toBeInTheDocument();
+    expect(screen.getByText("Progression inconnue")).toBeInTheDocument();
   });
 
   it("shows dashboard stats and opens quick-create actions after navigation", async () => {

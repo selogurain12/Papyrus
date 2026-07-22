@@ -32,6 +32,11 @@ jobs:
         env:
           HUSKY: 0
 
+      - name: Run lint
+        run: |
+          yarn eslint ./apps/apii
+          yarn workspace desktop eslint src
+
       - name: Run tests
         run: yarn test --coverage --runInBand
 

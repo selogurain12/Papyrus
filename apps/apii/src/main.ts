@@ -5,12 +5,51 @@ import { ValidationPipe } from "@nestjs/common";
 import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
 import * as express from "express";
+import { NextFunction, Request, Response } from "express";
 import { AppModule } from "./app.module";
 
 dotenv.config();
 
+const rateLimitWindowMs = 60_000;
+const rateLimitMaxRequests = 300;
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+
+function securityHeaders(_request: Request, response: Response, next: NextFunction) {
+  response.setHeader("X-Content-Type-Options", "nosniff");
+  response.setHeader("X-Frame-Options", "DENY");
+  response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  response.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; object-src 'none'"
+  );
+  next();
+}
+
+function rateLimit(request: Request, response: Response, next: NextFunction) {
+  const now = Date.now();
+  const key = request.ip ?? request.socket.remoteAddress ?? "unknown";
+  const current = rateLimitStore.get(key);
+
+  if (!current || current.resetAt <= now) {
+    rateLimitStore.set(key, { count: 1, resetAt: now + rateLimitWindowMs });
+    next();
+    return;
+  }
+
+  if (current.count >= rateLimitMaxRequests) {
+    response.status(429).json({ message: "Too many requests" });
+    return;
+  }
+
+  current.count += 1;
+  next();
+}
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(securityHeaders);
+  app.use(rateLimit);
   app.use("/exports", express.static(path.join(process.cwd(), "exports")));
 
   app.use(bodyParser.json({ limit: "50mb" }));

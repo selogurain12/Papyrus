@@ -125,6 +125,11 @@ export class AuthificationService {
       throw new Error("JWT_SECRET is not defined");
     }
 
-    return jwt.sign(payload, secret);
+    const expiresIn = (this.configService.get<string>("JWT_EXPIRES_IN") ??
+      "7d") as jwt.SignOptions["expiresIn"];
+
+    return jwt.sign(payload, secret, {
+      expiresIn,
+    });
   }
 }

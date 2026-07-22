@@ -23,7 +23,11 @@ export class S3Service {
   }
 
   async uploadFile(file: Express.Multer.File, bucket: string) {
-    const key = `${Date.now()}-${file.originalname}`;
+    const safeFileName = file.originalname
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9._-]/g, "_");
+    const key = `${Date.now()}-${safeFileName}`;
 
     const s3 = this.getClient();
     const command = new PutObjectCommand({

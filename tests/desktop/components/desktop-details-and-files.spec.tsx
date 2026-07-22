@@ -86,6 +86,38 @@ describe("desktop details and file viewers", () => {
     expect(onDelete).toHaveBeenCalledTimes(1);
   });
 
+  it("renders chapter empty and fallback states", () => {
+    const { rerender } = render(
+      <ChapterDetail
+        chapter={undefined as any}
+        onEdit={jest.fn()}
+        onEditor={jest.fn()}
+        onDelete={jest.fn()}
+      />
+    );
+
+    expect(screen.getByText("selectTitle")).toBeInTheDocument();
+
+    rerender(
+      <ChapterDetail
+        chapter={{
+          ...chapterFixture,
+          content: null,
+          resume: null,
+          status: "custom",
+          wordCount: 0,
+        }}
+        onEdit={jest.fn()}
+        onEditor={jest.fn()}
+        onDelete={jest.fn()}
+      />
+    );
+
+    expect(screen.getByText("noSummary")).toBeInTheDocument();
+    expect(screen.getByText("noContent")).toBeInTheDocument();
+    expect(screen.getByText("custom")).toBeInTheDocument();
+  });
+
   it("opens note PDFs inside the viewer and disables the file action when no file exists", async () => {
     const user = userEvent.setup();
     const { rerender } = render(<NoteDetails note={noteFixture} />);
@@ -177,5 +209,66 @@ describe("desktop details and file viewers", () => {
       />
     );
     expect(screen.getByRole("button", { name: "noFile" })).toBeDisabled();
+  });
+
+  it("renders detail fallbacks when optional values are missing", async () => {
+    const user = userEvent.setup();
+    const { rerender } = render(
+      <CharacterDetail
+        character={{
+          ...characterFixture,
+          age: null,
+          birthDate: null,
+          birthPlace: null,
+          characterFlaws: [],
+          characterQualities: [],
+          gender: "unknown",
+          lastName: null,
+          nickName: null,
+          occupation: null,
+          residencePlace: null,
+        }}
+      />
+    );
+
+    expect(screen.getByText("Ada")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "sections.maritalStatus" }));
+    expect(screen.getAllByText("notSpecified").length).toBeGreaterThan(0);
+
+    rerender(
+      <PlaceDetail
+        place={{
+          ...placeFixture,
+          atmosphere: null,
+          government: null,
+          history: null,
+          language: null,
+          narrativeImportance: "unknown",
+          physicalDescription: null,
+          population: null,
+          ressources: null,
+          type: ["city", "castle"],
+          usages: null,
+        }}
+      />
+    );
+    expect(screen.getByText("Citadelle Bleue")).toBeInTheDocument();
+    expect(screen.getAllByText("notSpecified").length).toBeGreaterThan(0);
+
+    rerender(
+      <ObjectDetail
+        object={{
+          ...objectFixture,
+          appearance: null,
+          description: null,
+          history: null,
+          importance: "unknown",
+          location: null,
+          significance: null,
+        }}
+      />
+    );
+    expect(screen.getByText("Boussole lunaire")).toBeInTheDocument();
+    expect(screen.getAllByText("notSpecified").length).toBeGreaterThan(0);
   });
 });

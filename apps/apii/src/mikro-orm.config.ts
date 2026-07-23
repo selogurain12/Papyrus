@@ -1,4 +1,7 @@
 import { defineConfig, PostgreSqlDriver } from "@mikro-orm/postgresql";
+import { loadApiEnv } from "./utils/load-api-env";
+
+loadApiEnv();
 
 export default defineConfig({
   driver: PostgreSqlDriver,

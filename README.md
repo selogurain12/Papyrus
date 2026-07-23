@@ -100,6 +100,7 @@ Exemple minimal :
 PGDATABASE=papyrus
 PGUSER=papyrus
 PGPASSWORD=change-moi
+DBHOST=localhost
 PGPORT=5432
 
 JWT_SECRET=change-moi-avec-une-valeur-longue

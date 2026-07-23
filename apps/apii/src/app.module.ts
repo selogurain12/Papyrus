@@ -26,7 +26,10 @@ import { HistoryModule } from "./modules/history/history.module";
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      envFilePath: ["apps/apii/.env", ".env"],
+      isGlobal: true,
+    }),
     ScheduleModule.forRoot(),
     MikroOrmModule.forRoot({
       entities: ["./dist/**/*.entity.js"],

@@ -2,13 +2,13 @@ import * as path from "path";
 import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
-import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import { NextFunction, Request, Response } from "express";
 import { AppModule } from "./app.module";
+import { loadApiEnv } from "./utils/load-api-env";
 
-dotenv.config();
+loadApiEnv();
 
 const rateLimitWindowMs = 60_000;
 const rateLimitMaxRequests = 300;
@@ -81,7 +81,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);
 
-  await app.listen(Number(process.env.PORT ?? 3000), "0.0.0.0");
+  await app.listen(Number(process.env.PORT ?? 3000));
 }
 
 void bootstrap();

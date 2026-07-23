@@ -1,9 +1,9 @@
-import * as dotenv from "dotenv";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "../app.module";
 import { GoalStatusCronService } from "../modules/goals/goal-status-cron.service";
+import { loadApiEnv } from "../utils/load-api-env";
 
-dotenv.config();
+loadApiEnv();
 
 async function main() {
   const app = await NestFactory.createApplicationContext(AppModule);

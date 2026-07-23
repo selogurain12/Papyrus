@@ -66,7 +66,7 @@ Si `corepack` n'est pas disponible, installe une version recente de Node.js, pui
 ## Installation locale
 
 ```bash
-git clone <url-du-repo>
+git clone https://github.com/selogurain12/Papyrus.git
 cd Papyrus
 corepack enable
 corepack prepare yarn@4.9.2 --activate

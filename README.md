@@ -136,7 +136,67 @@ Variables importantes :
 
 ## Lancer le projet en developpement
 
-### 1. Lancer PostgreSQL en Docker
+### Option recommandee : lancer l'API avec Docker
+
+Le fichier `apps/apii/docker-compose.yaml` lance deja l'API, PostgreSQL et pgAdmin. C'est donc la facon la plus simple de demarrer le back complet :
+
+```bash
+docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env up -d --build
+```
+
+Services disponibles :
+
+- API : `http://localhost:3000`
+- PostgreSQL : `localhost:5432`
+- pgAdmin : `http://localhost:5050`
+
+Dans ce mode, il ne faut pas lancer `yarn nx run apii:serve` en plus, sinon tu risques d'avoir deux API qui essaient d'utiliser le meme port ou deux configurations de base differentes.
+
+Tu peux suivre les logs de l'API avec :
+
+```bash
+docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env logs -f api
+```
+
+### Build du package partage
+
+Avant de lancer l'application desktop ou de travailler sur les contrats partages :
+
+```bash
+yarn workspace @papyrus/source build
+```
+
+### Lancer l'application desktop
+
+Dans un autre terminal :
+
+```bash
+yarn workspace desktop start
+```
+
+Cette commande reconstruit aussi les modules natifs Electron, notamment `better-sqlite3`.
+
+Note : le client desktop pointe actuellement vers l'API de production dans `apps/desktop/src/utils/client/client.ts` et `apps/desktop/src/utils/client/client-file.ts`. Pour tester avec l'API Docker locale, remplace temporairement l'URL par :
+
+```ts
+http://localhost:3000
+```
+
+### Lancer le site vitrine
+
+```bash
+yarn workspace app-vitrine dev
+```
+
+Le site vitrine est lance par Vite, generalement sur :
+
+```text
+http://localhost:5173
+```
+
+ou le prochain port disponible.
+
+### Option alternative : lancer seulement PostgreSQL en Docker
 
 Si tu veux seulement la base de donnees et pgAdmin :
 
@@ -152,54 +212,19 @@ pgAdmin est disponible sur :
 http://localhost:5050
 ```
 
-### 2. Build du package partage
+Dans ce cas seulement, tu peux lancer l'API en local avec Nx :
 
 ```bash
 yarn workspace @papyrus/source build
-```
-
-### 3. Build puis lancer l'API
-
-```bash
 yarn nx run apii:build
 yarn nx run apii:serve
 ```
 
-Par defaut, l'API ecoute sur :
+Par defaut, l'API locale ecoute sur :
 
 ```text
 http://localhost:3000
 ```
-
-### 4. Lancer l'application desktop
-
-Dans un autre terminal :
-
-```bash
-yarn workspace desktop start
-```
-
-Cette commande reconstruit aussi les modules natifs Electron, notamment `better-sqlite3`.
-
-Note : le client desktop pointe actuellement vers l'API de production dans `apps/desktop/src/utils/client/client.ts` et `apps/desktop/src/utils/client/client-file.ts`. Pour tester avec l'API locale, remplace temporairement l'URL par :
-
-```ts
-http://localhost:3000
-```
-
-### 5. Lancer le site vitrine
-
-```bash
-yarn workspace app-vitrine dev
-```
-
-Le site vitrine est lance par Vite, generalement sur :
-
-```text
-http://localhost:5173
-```
-
-ou le prochain port disponible.
 
 ## Base de donnees et migrations
 
@@ -374,7 +399,8 @@ docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env down -
 | Installer les dependances | `yarn install --immutable` |
 | Build package partage | `yarn workspace @papyrus/source build` |
 | Build API | `yarn nx run apii:build` |
-| Lancer API | `yarn nx run apii:serve` |
+| Lancer API avec Docker | `docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env up -d --build` |
+| Lancer API en local, sans conteneur API | `yarn nx run apii:serve` |
 | Lancer desktop | `yarn workspace desktop start` |
 | Lancer vitrine | `yarn workspace app-vitrine dev` |
 | Tests | `yarn test` |

@@ -34,6 +34,12 @@
         "command": "cd apps/apii && TS_NODE_PROJECT=tsconfig.app.json yarn ts-node -r tsconfig-paths/register src/scripts/update-goal-statuses.ts"
       }
     },
+    "demo-data:seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/apii && TS_NODE_PROJECT=tsconfig.app.json yarn ts-node -r tsconfig-paths/register src/scripts/seed-demo-data.ts"
+      }
+    },
     "typecheck": {
       "executor": "nx:run-commands",
       "options": {

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { HeadBucketCommand, S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Express } from "express";
 
 @Injectable()
@@ -42,5 +42,11 @@ export class S3Service {
     const url = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
 
     return { url };
+  }
+
+  async checkAvailability(): Promise<void> {
+    const bucket = process.env.AWS_BUCKET;
+    if (!bucket) throw new Error("AWS_BUCKET not configured");
+    await this.getClient().send(new HeadBucketCommand({ Bucket: bucket }));
   }
 }

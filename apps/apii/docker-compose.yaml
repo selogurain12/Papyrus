@@ -6,6 +6,8 @@ services:
         restart: always
         environment:
             NODE_ENV: production
+            APP_VERSION: ${APP_VERSION:-1.0.1}
+            EXPECTED_MIGRATION: ${EXPECTED_MIGRATION:?EXPECTED_MIGRATION must identify the latest application migration}
             PORT: 3000
             DBHOST: postgres
             PGPORT: 5432
@@ -24,6 +26,12 @@ services:
         depends_on:
             postgres:
                 condition: service_healthy
+        healthcheck:
+            test: ["CMD", "node", "-e", "fetch('http://localhost:3000/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+            interval: 60s
+            timeout: 10s
+            retries: 2
+            start_period: 30s
 
     postgres:
         image: postgres:16

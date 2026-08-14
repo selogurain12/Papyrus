@@ -19410,7 +19410,7 @@ __metadata:
     rxjs: "npm:^7.8.0"
     ts-jest: "npm:^29.4.11"
     ts-node: "npm:^10.9.2"
-    typescript: "npm:~5.8.2"
+    typescript: "npm:~5.9.2"
     typescript-eslint: "npm:^8.39.1"
   languageName: unknown
   linkType: soft

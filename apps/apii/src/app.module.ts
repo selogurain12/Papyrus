@@ -23,6 +23,7 @@ import { ExportModule } from "./modules/export/export.module";
 import { DashboardModule } from "./modules/dashboard/dashboard.module";
 import { GoalModule } from "./modules/goals/goal.module";
 import { HistoryModule } from "./modules/history/history.module";
+import { HealthModule } from "./modules/health/health.module";
 
 @Module({
   imports: [
@@ -63,6 +64,7 @@ import { HistoryModule } from "./modules/history/history.module";
     DashboardModule,
     GoalModule,
     HistoryModule,
+    HealthModule,
   ],
 })
 export class AppModule {}

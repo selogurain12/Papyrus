@@ -1,0 +1,67 @@
+name: Release desktop
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: yarn install --immutable
+        env:
+          HUSKY: 0
+      - run: yarn workspace desktop lint
+      - run: yarn test:desktop --runInBand
+      - run: yarn workspace desktop typecheck
+
+  build:
+    needs: quality
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable
+      - run: yarn install --immutable
+        env:
+          HUSKY: 0
+      - run: yarn workspace desktop make
+      - name: Generate SHA-256 checksums
+        shell: bash
+        run: find apps/desktop/out/make -type f -exec shasum -a 256 {} \; > checksums-${{ matrix.os }}.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: papyrus-${{ matrix.os }}
+          path: |
+            apps/desktop/out/make/**
+            checksums-${{ matrix.os }}.txt
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          body_path: CHANGELOG.md
+          files: release-assets/**

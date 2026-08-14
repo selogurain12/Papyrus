@@ -21,6 +21,7 @@ jobs:
       - run: yarn install --immutable
         env:
           HUSKY: 0
+      - run: yarn workspace @papyrus/source build
       - run: yarn workspace desktop lint
       - run: yarn test:desktop --runInBand
       - run: yarn workspace desktop typecheck
@@ -40,6 +41,7 @@ jobs:
       - run: yarn install --immutable
         env:
           HUSKY: 0
+      - run: yarn workspace @papyrus/source build
       - run: yarn workspace desktop make
       - name: Generate SHA-256 checksums
         shell: bash

@@ -1,5 +1,9 @@
 name: Deploy API
 
+permissions:
+  contents: read
+  issues: write
+
 on:
   push:
     branches:
@@ -63,9 +67,110 @@ jobs:
             set -e
             cd "${{ secrets.VPS_APP_DIR }}"
             git pull --ff-only
+            export EXPECTED_MIGRATION=Migration20260720120000
             docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env build --no-cache api
             docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env up -d --force-recreate api
             docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env exec -T api \
               node node_modules/@mikro-orm/cli/cli.js migration:up \
               --config dist/apps/apii/apps/apii/src/mikro-orm.config.js
             docker image prune -f
+
+  supervision-drill:
+    name: Controlled supervision drill
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: contains(github.event.head_commit.message, '[supervision-drill]')
+    env:
+      HEALTH_URL: http://${{ secrets.VPS_HOST }}:3000/health
+    steps:
+      - name: Confirm healthy baseline from outside the VPS
+        run: curl --fail --silent --show-error --max-time 15 "$HEALTH_URL"
+
+      - name: Stop the API intentionally
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd "${{ secrets.VPS_APP_DIR }}"
+            export EXPECTED_MIGRATION=Migration20260720120000
+            docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env stop api
+
+      - name: Confirm the outage from outside the VPS
+        run: |
+          if curl --fail --silent --show-error --max-time 10 "$HEALTH_URL"; then
+            echo "The API still answers successfully; the controlled outage was not observed."
+            exit 1
+          fi
+          printf '{"detected_at":"%s","url":"%s","state":"down"}\n' "$(date -u +%FT%TZ)" "$HEALTH_URL" > supervision-drill.json
+
+      - name: Create the external alert
+        id: alert
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[ALERTE SUPERVISION] API indisponible — exercice contrôlé ${context.runId}`,
+              body: `La sonde externe GitHub Actions a détecté l'indisponibilité de \`${process.env.HEALTH_URL}\`.\n\nExercice contrôlé, run : ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+            });
+            core.setOutput('issue_number', issue.data.number);
+
+      - name: Restart the API
+        if: always()
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd "${{ secrets.VPS_APP_DIR }}"
+            export EXPECTED_MIGRATION=Migration20260720120000
+            docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env start api
+
+      - name: Confirm recovery from outside the VPS
+        id: recovery
+        if: always()
+        run: |
+          for attempt in {1..18}; do
+            if curl --fail --silent --show-error --max-time 10 "$HEALTH_URL"; then
+              printf '{"recovered_at":"%s","url":"%s","state":"up"}\n' "$(date -u +%FT%TZ)" "$HEALTH_URL" > supervision-recovery.json
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1
+
+      - name: Record recovery and close the alert
+        if: steps.alert.outputs.issue_number != '' && steps.recovery.outcome == 'success'
+        uses: actions/github-script@v7
+        env:
+          ISSUE_NUMBER: ${{ steps.alert.outputs.issue_number }}
+        with:
+          script: |
+            const issue_number = Number(process.env.ISSUE_NUMBER);
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body: `Retour au vert confirmé par la sonde externe. API de nouveau disponible. Run : ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              state: 'closed',
+              state_reason: 'completed'
+            });
+
+      - name: Archive the supervision evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: supervision-drill-${{ github.run_id }}
+          path: supervision-*.json
+          if-no-files-found: warn

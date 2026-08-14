@@ -80,11 +80,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     if: contains(github.event.head_commit.message, '[supervision-drill]')
-    env:
-      HEALTH_URL: http://${{ secrets.VPS_HOST }}:3000/health
     steps:
-      - name: Confirm healthy baseline from outside the VPS
-        run: curl --fail --silent --show-error --max-time 15 "$HEALTH_URL"
+      - name: Confirm healthy baseline through the monitoring channel
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: curl --fail --silent --show-error --max-time 15 http://localhost:3000/health
 
       - name: Stop the API intentionally
         uses: appleboy/ssh-action@v1.2.0
@@ -98,13 +101,20 @@ jobs:
             export EXPECTED_MIGRATION=Migration20260720120000
             docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env stop api
 
-      - name: Confirm the outage from outside the VPS
-        run: |
-          if curl --fail --silent --show-error --max-time 10 "$HEALTH_URL"; then
-            echo "The API still answers successfully; the controlled outage was not observed."
-            exit 1
-          fi
-          printf '{"detected_at":"%s","url":"%s","state":"down"}\n' "$(date -u +%FT%TZ)" "$HEALTH_URL" > supervision-drill.json
+      - name: Confirm the outage through the monitoring channel
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            if curl --fail --silent --show-error --max-time 10 http://localhost:3000/health; then
+              echo "The API still answers successfully; the controlled outage was not observed."
+              exit 1
+            fi
+
+      - name: Timestamp the detected outage
+        run: printf '{"detected_at":"%s","probe":"GitHub Actions via SSH","url":"http://localhost:3000/health","state":"down"}\n' "$(date -u +%FT%TZ)" > supervision-drill.json
 
       - name: Create the external alert
         id: alert
@@ -115,7 +125,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: `[ALERTE SUPERVISION] API indisponible — exercice contrôlé ${context.runId}`,
-              body: `La sonde externe GitHub Actions a détecté l'indisponibilité de \`${process.env.HEALTH_URL}\`.\n\nExercice contrôlé, run : ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+              body: `La sonde GitHub Actions exécutée via le canal SSH du VPS a détecté l'indisponibilité de \`http://localhost:3000/health\`.\n\nExercice contrôlé, run : ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
             });
             core.setOutput('issue_number', issue.data.number);
 
@@ -132,18 +142,26 @@ jobs:
             export EXPECTED_MIGRATION=Migration20260720120000
             docker compose -f apps/apii/docker-compose.yaml --env-file apps/apii/.env start api
 
-      - name: Confirm recovery from outside the VPS
+      - name: Confirm recovery through the monitoring channel
         id: recovery
         if: always()
-        run: |
-          for attempt in {1..18}; do
-            if curl --fail --silent --show-error --max-time 10 "$HEALTH_URL"; then
-              printf '{"recovered_at":"%s","url":"%s","state":"up"}\n' "$(date -u +%FT%TZ)" "$HEALTH_URL" > supervision-recovery.json
-              exit 0
-            fi
-            sleep 10
-          done
-          exit 1
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            for attempt in $(seq 1 18); do
+              if curl --fail --silent --show-error --max-time 10 http://localhost:3000/health; then
+                exit 0
+              fi
+              sleep 10
+            done
+            exit 1
+
+      - name: Timestamp the recovery
+        if: steps.recovery.outcome == 'success'
+        run: printf '{"recovered_at":"%s","probe":"GitHub Actions via SSH","url":"http://localhost:3000/health","state":"up"}\n' "$(date -u +%FT%TZ)" > supervision-recovery.json
 
       - name: Record recovery and close the alert
         if: steps.alert.outputs.issue_number != '' && steps.recovery.outcome == 'success'

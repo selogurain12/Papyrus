@@ -74,7 +74,7 @@ export class PartService {
       offset = ((filter.page ?? 1) - 1) * limit;
     }
     const orderBy = filter.orderBy ?? {
-      createdAt: "DESC",
+      createdAt: "ASC",
     };
 
     const qb = em.qb(PartEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });

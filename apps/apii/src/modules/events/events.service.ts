@@ -68,7 +68,7 @@ export class EventService {
       offset = ((filter.page ?? 1) - 1) * limit;
     }
     const orderBy = filter.orderBy ?? {
-      eventDate: "DESC",
+      eventDate: "ASC",
     };
     let qb = em.qb(EventEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
     if (filter.importance !== undefined && filter.importance.length > 0) {

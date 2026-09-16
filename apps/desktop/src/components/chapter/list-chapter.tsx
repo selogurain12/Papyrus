@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 
 import { ChapterDto } from "@papyrus/source";
-import { useProject } from "../../context/project-provider";
 import { FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useProject } from "../../context/project-provider";
 import { useOfflineList } from "../../hooks/use-offline-list";
 
 interface ChapterListProps {
@@ -28,9 +28,15 @@ export function ChapterList({
     entityType: "chapters",
     projectId: currentProject?.id,
   });
-  const chapters = (providedChapters ?? cachedChapters?.data ?? []).filter((chapter) =>
-    withoutPart ? !chapter.part : chapter.part?.id === id
-  );
+  const chapters = (providedChapters ?? cachedChapters?.data ?? [])
+    .filter((chapter) => (withoutPart ? !chapter.part : chapter.part?.id === id))
+    .toSorted((firstChapter, secondChapter) => {
+      const numberDifference = firstChapter.chapterNumber - secondChapter.chapterNumber;
+
+      return numberDifference === 0
+        ? firstChapter.title.localeCompare(secondChapter.title)
+        : numberDifference;
+    });
 
   const statusColorMap: Record<string, string> = {
     toStart: "bg-slate-400",
@@ -53,7 +59,9 @@ export function ChapterList({
           <div
             className={`flex items-center justify-between gap-4 border border-gray-200 py-2 p-2 rounded-lg ${selectedChapter?.id === ch.id ? "bg-blue-100 border-blue-500" : ""}`}
             key={ch.id}
-            onClick={() => setSelectedChapter && setSelectedChapter(ch)}
+            onClick={() => {
+              setSelectedChapter?.(ch);
+            }}
           >
             <div className="flex items-center gap-4">
               <FileText className="text-gray-900" size={16} />

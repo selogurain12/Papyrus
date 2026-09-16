@@ -73,7 +73,7 @@ export class ChapterService {
       offset = ((filter.page ?? 1) - 1) * limit;
     }
     const orderBy = filter.orderBy ?? {
-      createdAt: "DESC",
+      chapterNumber: "ASC",
     };
 
     const qb = em.qb(ChapterEntity).where({ deletedAt: { $eq: null }, project: { id: projectId } });
@@ -97,7 +97,7 @@ export class ChapterService {
     const limit: number | undefined = undefined;
     const offset: number | undefined = undefined;
     const orderBy = {
-      chapterNumber: "DESC",
+      chapterNumber: "ASC",
     };
 
     const qb = em

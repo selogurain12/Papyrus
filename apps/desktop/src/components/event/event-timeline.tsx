@@ -76,14 +76,14 @@ export function EventTimeline({
     itemsPerPage: 20,
 
     orderBy: {
-      eventDate: "desc",
+      eventDate: "asc",
     },
 
     page: 1,
   });
   const eventTimeline = client.event.getAll.useQuery({
     queryKey: queryKeys.event.getAll({
-      query: { ...options },
+      query: options,
     }),
     queryData: {
       query: options,
@@ -95,6 +95,12 @@ export function EventTimeline({
     projectId: currentProject?.id,
     onlineData: eventTimeline.data?.body,
     search: options.search,
+  });
+  const sortedEvents = events?.data.toSorted((firstEvent, secondEvent) => {
+    const firstDate = parseZonedDateTimeInLocalTimeZone(firstEvent.eventDate).toDate().getTime();
+    const secondDate = parseZonedDateTimeInLocalTimeZone(secondEvent.eventDate).toDate().getTime();
+
+    return firstDate - secondDate;
   });
 
   function content(currentEvent: EventDto) {
@@ -160,11 +166,11 @@ export function EventTimeline({
         <CardContent className="items-center md:items-start">
           <ScrollArea className="grow h-fit">
             <Timeline>
-              {events?.data.map((event, index, array) => {
+              {sortedEvents?.map((event, index, array) => {
                 const isLast = index === array.length - 1;
                 const isSelected = selectedEvent?.id === event.id;
                 return (
-                  <TimelineItem className="p-1" key={event.eventDate}>
+                  <TimelineItem className="p-1" key={event.id}>
                     <TimelineDot className={getStatusIcon(event.importance).color} isLast={isLast}>
                       {getStatusIcon(event.importance).icon}
                     </TimelineDot>

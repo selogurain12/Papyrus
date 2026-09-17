@@ -28,7 +28,19 @@ import { loadApiEnv } from "../utils/load-api-env";
 loadApiEnv();
 
 const demoEmail = "demo@papyrus.app";
-const demoPassword = "PapyrusDemo2026!";
+
+function getDemoPassword(): string {
+  if (process.env.ALLOW_DEMO_SEED !== "true") {
+    throw new Error("Le seeder est désactivé. Définissez ALLOW_DEMO_SEED=true pour l'exécuter.");
+  }
+
+  const password = process.env.DEMO_SEED_PASSWORD;
+  if (!password) {
+    throw new Error("DEMO_SEED_PASSWORD doit contenir le mot de passe du compte de démonstration.");
+  }
+
+  return password;
+}
 
 const richEditorContent = (paragraphs: string[]): string =>
   JSON.stringify({
@@ -52,6 +64,31 @@ const richEditorContent = (paragraphs: string[]): string =>
       version: 1,
     },
   });
+
+const countWords = (paragraphs: string[]): number =>
+  paragraphs.join(" ").trim().split(/\s+/).filter(Boolean).length;
+
+const expandDraft = (paragraphs: string[], targetWordCount: number): string[] => {
+  const transitions = [
+    "Un peu plus tard, la scène se prolongea et révéla de nouveaux détails.",
+    "À mesure que les heures passaient, chaque indice prenait une signification différente.",
+    "Dans le silence revenu, les personnages reprirent leur enquête avec davantage de prudence.",
+    "La brume transforma encore la lumière et donna au même lieu une apparence nouvelle.",
+    "Avant de poursuivre, Maelis consigna soigneusement ce qu'elle venait d'observer.",
+  ];
+  const expanded = [...paragraphs];
+  let paragraphIndex = 0;
+
+  while (countWords(expanded) < targetWordCount) {
+    const sourceParagraph = paragraphs[paragraphIndex % paragraphs.length];
+    const transition =
+      transitions[Math.floor(paragraphIndex / paragraphs.length) % transitions.length];
+    expanded.push(`${transition} ${sourceParagraph}`);
+    paragraphIndex += 1;
+  }
+
+  return expanded;
+};
 
 const demoMindmap: MindElixirData = {
   nodeData: {
@@ -213,7 +250,39 @@ async function ensureDemoSchema(em: EntityManager) {
   `);
 }
 
-async function createDemoData(em: EntityManager) {
+async function createDemoData(em: EntityManager, demoPassword: string) {
+  const chapterOneDraft = [
+    "La cloche de verre sonna trois fois au-dessus d'Aster. Chaque vibration traversa les câbles de la cité et fit trembler les rayonnages de l'atelier. Maelis Orlan retint le registre ouvert devant elle avant qu'il ne glisse de son lutrin.",
+    "Elle travaillait depuis l'aube sur une reliure du Conseil. Le cuir portait les traces d'un ancien incendie, pourtant les pages ne sentaient ni la fumée ni la cendre. Sous sa loupe, les fibres du papier formaient des lignes trop régulières, comme si quelqu'un avait remplacé les feuillets après leur rédaction.",
+    "Maelis posa sa lame de restauration et approcha la lampe. Le titre du registre se brouilla. L'encre se contracta lentement, lettre après lettre, jusqu'à composer une phrase qu'elle n'avait jamais lue dans aucun document officiel : personne ne se souvient de la première chute.",
+    "Elle vérifia la porte de l'atelier, puis copia la phrase dans le carnet hérité de son père. Lorsqu'elle releva les yeux, le titre d'origine avait reparu. Seule une poussière bleue, déposée au bord de la page, prouvait que le changement n'avait pas été imaginé.",
+  ];
+  const chapterTwoDraft = [
+    "Kael Varyn attendait au bord du pont des Lanternes, sa carte roulée contre lui comme une preuve trop lourde. La brume montait entre les plateformes et effaçait par instants les passerelles inférieures.",
+    "Maelis reconnut le cartographe à son manteau couvert de poches et au compas qu'il faisait tourner entre ses doigts. Il ne lui demanda pas pourquoi une restauratrice des archives souhaitait consulter un plan interdit. Il déroula simplement une feuille couverte de corrections rouges.",
+    "Une rue apparaissait entre le quartier des Verriers et la tour du Conseil. Aucun registre récent ne la mentionnait, mais les anciennes mesures de Kael confirmaient qu'un passage occupait cet espace. Plus étrange encore, les habitants ralentissaient devant son entrée sans sembler la voir.",
+    "Kael proposa de s'y rendre après la dernière cloche. En échange, Maelis devait lui montrer le registre altéré. Elle accepta, consciente que cette alliance pouvait lui coûter sa place aux archives. Pour la première fois depuis la disparition de son père, la peur céda devant la nécessité de comprendre.",
+  ];
+  const chapterThreeDraft = [
+    "L'ancien monte-charge s'arrêta sous le dernier niveau habitable. Au-delà de la grille, un escalier descendait dans une obscurité humide. Maelis alluma sa lampe tandis que Kael marquait leur trajet à la craie.",
+    "Les marches portaient des numéros gravés dans la pierre, mais la suite sautait du vingt-sept au trente-et-un. Dans l'intervalle, trois portes avaient été murées. Derrière l'une d'elles, un froissement régulier rappelait le bruit de pages tournées par le vent.",
+    "Ils atteignirent enfin une salle où des centaines de registres reposaient sous des draps gris. La loupe d'Orlan révéla le même reflet bleu que dans l'atelier. Ces livres n'étaient pas des copies oubliées : ils constituaient la version originale de l'histoire d'Aster.",
+  ];
+  const chapterFourDraft = [
+    "Père, si cette lettre te parvient, c'est que nous avons trouvé les archives basses. Je comprends maintenant pourquoi tu as choisi le silence, mais je ne sais pas encore si je peux te pardonner.",
+    "Tu m'as appris que restaurer un livre ne consiste pas à le rendre neuf. Il faut conserver ses marques, ses blessures et les traces de ceux qui l'ont transmis. Pourquoi notre cité aurait-elle droit à moins de vérité que ses livres ?",
+  ];
+  const chapterOneContent = expandDraft(chapterOneDraft, 6500);
+  const chapterTwoContent = expandDraft(chapterTwoDraft, 6000);
+  const chapterThreeContent = expandDraft(chapterThreeDraft, 5000);
+  const chapterFourContent = expandDraft(chapterFourDraft, 2500);
+  const chapterOneWordCount = countWords(chapterOneContent);
+  const chapterTwoWordCount = countWords(chapterTwoContent);
+  const chapterThreeWordCount = countWords(chapterThreeContent);
+  const chapterFourWordCount = countWords(chapterFourContent);
+  const projectWordCount =
+    chapterOneWordCount + chapterTwoWordCount + chapterThreeWordCount + chapterFourWordCount;
+
   const user = new UserEntity({
     firstName: "Camille",
     lastName: "Demo",
@@ -249,7 +318,7 @@ async function createDemoData(em: EntityManager) {
       "Roman de fantasy atmosphérique centré sur une cité suspendue, des archives vivantes et une héroïne qui remet en cause la mémoire officielle.",
     genre: "fantasy",
     targetWordCount: 85000,
-    currentWordCount: 24680,
+    currentWordCount: projectWordCount,
     status: "writing",
     author: "Camille Demo",
     language: "fr",
@@ -281,15 +350,11 @@ async function createDemoData(em: EntityManager) {
   const chapterOne = new ChapterEntity({
     title: "Chapitre 1 - La reliure impossible",
     status: "completed",
-    content: richEditorContent([
-      "La cloche de verre sonna trois fois au-dessus d'Aster, et chaque vibration fit trembler les rayonnages de l'atelier.",
-      "Maelis Orlan posa sa lame de restauration sur la table. Le livre qu'elle réparait venait de changer de titre sous ses yeux.",
-      "À la place du registre attendu, une phrase s'était imprimée dans l'encre fraîche : personne ne se souvient de la première chute.",
-    ]),
+    content: richEditorContent(chapterOneContent),
     resume:
       "Maelis découvre un registre altéré dans les archives officielles. Cette anomalie introduit le mystère central du roman.",
     chapterNumber: 1,
-    wordCount: 4280,
+    wordCount: chapterOneWordCount,
     wordGoal: 4000,
     project,
     part: partOne,
@@ -297,15 +362,12 @@ async function createDemoData(em: EntityManager) {
 
   const chapterTwo = new ChapterEntity({
     title: "Chapitre 2 - Le cartographe sans ombre",
-    status: "inProgress",
-    content: richEditorContent([
-      "Kael Varyn attendait au bord du pont des Lanternes, sa carte roulée contre lui comme une preuve trop lourde.",
-      "Il affirmait avoir trouvé une rue qui n'existait sur aucun plan, mais que tous les habitants évitaient instinctivement.",
-    ]),
+    status: "completed",
+    content: richEditorContent(chapterTwoContent),
     resume:
       "Maelis rencontre Kael, un cartographe qui connaît les passages oubliés de la cité. Leur alliance se met en place.",
     chapterNumber: 2,
-    wordCount: 3620,
+    wordCount: chapterTwoWordCount,
     wordGoal: 4500,
     project,
     part: partOne,
@@ -313,12 +375,12 @@ async function createDemoData(em: EntityManager) {
 
   const chapterThree = new ChapterEntity({
     title: "Chapitre 3 - Les marches du dessous",
-    status: "toStart",
-    content: null,
+    status: "inProgress",
+    content: richEditorContent(chapterThreeContent),
     resume:
       "Maelis et Kael descendent sous la cité pour trouver les archives basses, un lieu officiellement détruit.",
     chapterNumber: 3,
-    wordCount: 0,
+    wordCount: chapterThreeWordCount,
     wordGoal: 4500,
     project,
     part: partOne,
@@ -327,12 +389,10 @@ async function createDemoData(em: EntityManager) {
   const chapterFour = new ChapterEntity({
     title: "Interlude - Lettre non envoyée",
     status: "inProgress",
-    content: richEditorContent([
-      "Père, si cette lettre te parvient, c'est que j'ai compris pourquoi tu as choisi le silence.",
-    ]),
+    content: richEditorContent(chapterFourContent),
     resume: "Court interlude épistolaire révélant une part du passé familial de Maelis.",
     chapterNumber: 4,
-    wordCount: 950,
+    wordCount: chapterFourWordCount,
     wordGoal: 1500,
     project,
     part: null,
@@ -552,16 +612,16 @@ async function createDemoData(em: EntityManager) {
 
   const dailyGoal = new GoalEntity({
     type: "daily",
-    title: "Écrire 1200 mots par jour",
-    goals: 1200,
+    title: "Écrire 250 mots aujourd'hui",
+    goals: 250,
     unit: "words",
     project,
-    deadline: parseZonedDateTime("2026-07-24T23:59:00+02:00[Europe/Paris]"),
-    description: "Objectif de rythme pour maintenir l'avancée du premier acte.",
+    deadline: parseZonedDateTime("2026-09-17T23:59:00+02:00[Europe/Paris]"),
+    description: "Poursuivre la rédaction du chapitre 3 avant la fin de la journée.",
     status: "urgent",
-    currentBaseline: 23480,
+    currentBaseline: projectWordCount - chapterThreeWordCount,
   });
-  dailyGoal.current = 820;
+  dailyGoal.current = chapterThreeWordCount;
 
   const weeklyGoal = new GoalEntity({
     type: "weekly",
@@ -569,7 +629,7 @@ async function createDemoData(em: EntityManager) {
     goals: 3,
     unit: "chapters",
     project,
-    deadline: parseZonedDateTime("2026-07-28T23:59:00+02:00[Europe/Paris]"),
+    deadline: parseZonedDateTime("2026-09-21T23:59:00+02:00[Europe/Paris]"),
     description: "Finaliser les trois premiers chapitres et l'interlude.",
     status: "warning",
     currentBaseline: 1,
@@ -587,7 +647,7 @@ async function createDemoData(em: EntityManager) {
     status: null,
     currentBaseline: 0,
   });
-  projectGoal.current = 24680;
+  projectGoal.current = projectWordCount;
 
   const notes = [
     new NoteEntity({
@@ -677,28 +737,28 @@ async function createDemoData(em: EntityManager) {
     new HistoryEntity({
       type: "create",
       entity: "part",
-      date: parseZonedDateTime("2026-07-20T09:00:00+02:00[Europe/Paris]"),
+      date: parseZonedDateTime("2026-09-10T09:00:00+02:00[Europe/Paris]"),
       title: "Création du projet Les Brumes d'Aster",
       project,
     }),
     new HistoryEntity({
       type: "update",
       entity: "chapter",
-      date: parseZonedDateTime("2026-07-21T18:30:00+02:00[Europe/Paris]"),
+      date: parseZonedDateTime("2026-09-14T18:30:00+02:00[Europe/Paris]"),
       title: "Modification du chapitre La reliure impossible",
       project,
     }),
     new HistoryEntity({
       type: "create",
       entity: "character",
-      date: parseZonedDateTime("2026-07-22T14:10:00+02:00[Europe/Paris]"),
+      date: parseZonedDateTime("2026-09-15T14:10:00+02:00[Europe/Paris]"),
       title: "Ajout du personnage Kael Varyn",
       project,
     }),
     new HistoryEntity({
       type: "create",
       entity: "export",
-      date: parseZonedDateTime("2026-07-23T10:45:00+02:00[Europe/Paris]"),
+      date: parseZonedDateTime("2026-09-16T10:45:00+02:00[Europe/Paris]"),
       title: "Génération d'un export DOCX de démonstration",
       project,
     }),
@@ -742,19 +802,42 @@ async function createDemoData(em: EntityManager) {
   ]);
 
   await em.flush();
+
+  return {
+    chapterWordCounts: [
+      { title: chapterOne.title, wordCount: chapterOneWordCount },
+      { title: chapterTwo.title, wordCount: chapterTwoWordCount },
+      { title: chapterThree.title, wordCount: chapterThreeWordCount },
+      { title: chapterFour.title, wordCount: chapterFourWordCount },
+    ],
+    projectWordCount,
+  };
 }
 
 async function main() {
+  const demoPassword = getDemoPassword();
   const app = await NestFactory.createApplicationContext(AppModule);
   const em = app.get(EntityManager).fork();
 
   try {
     await ensureDemoSchema(em);
-    await resetDemoUser(em);
-    await createDemoData(em);
+    await em.begin();
+    const result = await (async () => {
+      await resetDemoUser(em);
+      return await createDemoData(em, demoPassword);
+    })();
+    await em.commit();
     console.log("Données de démonstration créées.");
     console.log(`Email : ${demoEmail}`);
-    console.log(`Mot de passe : ${demoPassword}`);
+    for (const chapter of result.chapterWordCounts) {
+      console.log(`${chapter.title} : ${chapter.wordCount} mots`);
+    }
+    console.log(`Total du projet : ${result.projectWordCount} mots`);
+  } catch (error) {
+    if (em.isInTransaction()) {
+      await em.rollback();
+    }
+    throw error;
   } finally {
     await app.close();
   }

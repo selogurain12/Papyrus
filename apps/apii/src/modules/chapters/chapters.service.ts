@@ -97,7 +97,7 @@ export class ChapterService {
     const limit: number | undefined = undefined;
     const offset: number | undefined = undefined;
     const orderBy = {
-      chapterNumber: "ASC",
+      chapterNumber: "DESC",
     };
 
     const qb = em
